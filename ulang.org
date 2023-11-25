@@ -1,5 +1,8 @@
-#+TITLE: ulang
-#+OPTIONS: toc:nil
+{{{header(ulang,
+Richard Westhaver,
+ellis@rwest.io,
+The Universal Language)}}}
+
 This document describes a *U-Language* as described by the late great
 Haskell Curry:
 
@@ -14,56 +17,14 @@ if it were not for the fact that language is more intimately related
 to our job than of most others.
 #+end_quote
 
-There is a natural reader/writer relationship that exists in countless
-places, but is rarely examined because it is rarely necessary. However
-there is a wide array of significantly complex code and prose projects
-out there which would benefit greatly from such an investigation.
-
-I would also like to humbly clarify on our interpretation of a *job*
-as Curry puts it. 
-
-We all have the same job really - to be curious, and to solve
-problems. It is the *problems* I would like to shine a light on, if
-just for a moment, because it's important. 
-
-Just as Curry thinks of languages, we can think of problems. There
-exists the *problem of problems* which is the subject of our
-investigations. This *U-Problem* is what we are solving for at all
-times. In this light, we can view the *U-Language* as a means of
-bringing both the /reader/ and /writer/ as close as possible to the
-*U-Problem*.
-
-For convenience, our *U-Problem* is undecidable, but we model and
-solve for it using ~computers~, or more abstractly ~machines~. Thus,
-our *U-Language* helps bring the /reader/ and /writer/ closer to our
-~machines~ as well as expedite communications between reader and
-writer.
-
-:summary:
-- /Why do we need a U-Language?/ :: To bring both the /reader/ and
-  /writer/ closer to our *U-Problem*.
-
-- /What is our U-Problem?/ :: Undecidable, but we use /computers/ as a
-  model of the *U-Problem*. When we are dealing with the *U-Problem*
-  we are speaking in terms of /computation/ and the ability of a given
-  machine to /compute/.
-
-- /How do we solve our U-Problem?/ :: With /computers/, by developing
-  accurate models and finding optimal solutions.
-:end:
-
 * ulang
 :PROPERTIES:
 :CUSTOM_ID: 8447a560-7f77-45c7-bd14-2a2af6ad2abc
 :END:
-As the title suggest we refer to our *Universal Language* as
+As the title suggest we refer to our *U-Language* as
 ulang. When I say something along the lines of "Please refer to
 [[Links][ulang:links]]", I am referencing the section named /Links/ of this
 document.
-
-This is a "living" document. In other words, it is incomplete. I may
-include additional elements in the ulang, or modify the specification
-of existing ones.
 
 Each section of this document describes an element of the ulang. It is
 recommended to skim through the top-level sections ([[Org-mode][Org-mode]] and
@@ -81,22 +42,18 @@ documentation engine.
 If you are already familiar with Emacs and org-mode, I recommend
 opening the source file of this document in Emacs and following along.
 
-If not, I recommend browsing through the [[https://orgmode.org/worg/][Worg resources]], but we're not
-getting too deep into tribal hacker knowledge of Emacs. The choice of
-Org is arbitrary and the concepts here would apply to other formats
+If not, I recommend browsing through the [[https://orgmode.org/worg/][Worg resources]], but we won't
+be getting too deep into tribal hacker knowledge of Emacs. The choice
+of Org is arbitrary and the concepts here would apply to other formats
 (LaTeX, Markdown, etc).
 
 Let us first consider /Org the syntax/.
 
 Org syntax is much less popular than Markdown and lacks parsing
-utilities in popular programming languages[fn:1]. Perhaps Org is not
-suited as a /universal/ text format because it's arguably harder to
-parse, making it less interoperable and intimidating to adopt.
-
-Regardless, we are committed to it as a foundation because it is the
-most hackable documentation engine available. With enough experience
-you can morph Org into whatever system you want, and that is /exactly/
-our intention.
+utilities in popular programming languages[fn:1]. Regardless, we are
+committed to it as a foundation because it is the most hackable
+documentation engine available. With enough experience you can morph
+Org into whatever documentation system that is needed.
 
 [fn:1] The ecosystem is changing though, thanks to the dedication of
 some excellent hackers: [[https://github.com/karlicoss/orgparse][python]], [[https://github.com/tecosaur/Org.jl][julia]]
@@ -106,28 +63,26 @@ some excellent hackers: [[https://github.com/karlicoss/orgparse][python]], [[htt
 :CUSTOM_ID: 22474039-5c18-4179-82aa-a6731e6313a2
 :END:
 - State "TODO"       from              [2023-11-05 Sun 19:21]
-Org is the designated text representation of our ulang. Org-mode
-depends on Emacs (it's written in Emacs Lisp) but that doesn't mean we
-have to. To solve the issue of interoperability between different
-systems, we are developing a modular tool called [[https://lab.rwest.io/comp/core/-/tree/branch/default/lisp/lib/organ][organ]]. The purpose of
-=organ= is to provide an external API for Org documents that doesn't
-depend on GNU Emacs.
+
+=Org-mode= the application depends on Emacs (it's written in Emacs
+Lisp) but that doesn't mean we need to. To solve the issue of
+interoperability between different systems, we are developing a tool
+called [[https://lab.rwest.io/comp/core/-/tree/branch/default/lisp/lib/organ][organ]]. The purpose of =organ= is to provide an external API for
+Org documents that doesn't depend on GNU Emacs.
 
 If we were designing a /personal/ note-taking system, I would argue
-that we don't need this tool. The problem is it's not personal - we
-have a much wider intended audience - it's business. This means
-thinking about hundreds to thousands of documents instead of tens,
-about processing those documents into a full-text search database, and
-reducing cost along the way.
+that we don't need this tool. The problem is it's /not/ personal - we
+have a much wider intended audience and need to present information in
+many different ways. This means thinking about hundreds to thousands
+of documents instead of tens, about processing those documents into a
+full-text search database, and reducing cost along the way.
 
-Emacs can do all of these things, but do you really want it to? I
-don't. Emacs should remain close to the developer and we can outsource
-the tricky bits to =organ=.
-
+Emacs can do all of these things, but do you really want it to?
 ** Elements
 :PROPERTIES:
 :CUSTOM_ID: 4aa3ec2a-b360-43ae-b2d8-f9735f211290
 :END:
+
 *** Keywords
 :PROPERTIES:
 :CUSTOM_ID: 2cadda9a-22a3-4b42-ad4e-d7a774f74cba
@@ -197,33 +152,50 @@ first word in a heading to signify a requirement or a workflow state:
 
 10. DRAFT   Designates a draft item.
 
-11. NOPE   Item that will not be completed.
+11. DEAD   Item that will not be completed.
 
 12. DONE   Completed task.
+
+13. COMMENT A 'commented' item.
+
+*** Macros
+:PROPERTIES:
+:CUSTOM_ID: cdb4976b-1d0d-49df-bfb1-3dbd5d99590e
+:END:
+Several *global* [[https://orgmode.org/manual/Macro-Replacement.html][Org Macros]] are used throughout our documents. They are listed
+here for convenience.
+
+#+name: ulang-macros
+#+begin_src emacs-lisp :exports both :results pp
+  org-export-global-macros
+#+end_src
+
+#+RESULTS: ulang-macros
+: (("opts" . "#+OPTIONS: $1\n")
+:  ("header" .
+:   "#+TITLE: $1\n#+AUTHOR: $2\n#+EMAIL: $3\n#+DESCRIPTION: $4\n#+SUBTITLE: $4\n#+OPTIONS: ^:nil toc:nil num:nil html-postamble:nil\n#+HTML_HEAD: <link rel=\"stylesheet\" href=\"https://fonts.xz.style/serve/inter.css\"/>\n#+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.compiler.company/css/new.min.css\"/>\n#+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.compiler.company/css/night.css\"/>\n"))
+
+Macros /are not expanded/ in source files - you will see them in the
+form ={{{NAME(ARGS)}}}=. You will need the relevant macro definition
+(in =ulang.el=) in order to export ulang docs with the macros
+expanded.
 
 *** Abbrevs
 :PROPERTIES:
 :CUSTOM_ID: b4c326ba-f74c-4409-9314-8d32df61fc5e
 :END:
-Abbrevs include domain-specific acronyms and slang such as /DB/ for
-database or /M$/ for Microsoft. They're abbreviations, but even lazier
-(we can't even be bothered to spell out the name). By defining them in
-one place we can use Emacs to lookup abbrevs on the fly, and we can
-automatically generate help text and references to abbrev definitions
-for our readers.
-*** Operators
-:PROPERTIES:
-:CUSTOM_ID: f91ca826-2c72-4d00-810c-2d61aa073658
-:END:
+There are several 'abbrev' types made available via =ulang.el=. They
+are intended for flexible templating and ease-of-use for the author.
+
+We try to align our abbrevs following categories:
+- uri
+- term
+- phrase
+- block
+
+Abbrevs may take arguments explicitly or inherit from their
+environment, but usually /are expanded/ in source files.
+
 *** Links
-:PROPERTIES:
-:CUSTOM_ID: 7bd8eeaa-9f21-4ab4-ba6e-be118e68d36a
-:END:
+
 *** Timestamps
-:PROPERTIES:
-:CUSTOM_ID: 4faf913e-7c15-4937-9547-b50a6c8ba896
-:END:
-*** Macros
-:PROPERTIES:
-:CUSTOM_ID: cdb4976b-1d0d-49df-bfb1-3dbd5d99590e
-:END:
