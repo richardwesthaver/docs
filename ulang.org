@@ -19,11 +19,11 @@ to our job than of most others.
 
 * ulang
 :PROPERTIES:
-:CUSTOM_ID: 8447a560-7f77-45c7-bd14-2a2af6ad2abc
+:CUSTOM_ID: ulang
 :END:
 As the title suggest we refer to our *U-Language* as
 ulang. When I say something along the lines of "Please refer to
-[[Links][ulang:links]]", I am referencing the section named /Links/ of this
+[[*Hyperlinks][ulang.Hyperlinks]]", I am referencing the section named /Links/ of this
 document.
 
 Each section of this document describes an element of the ulang. It is
@@ -47,17 +47,6 @@ be getting too deep into tribal hacker knowledge of Emacs. The choice
 of Org is arbitrary and the concepts here would apply to other formats
 (LaTeX, Markdown, etc).
 
-Let us first consider /Org the syntax/.
-
-Org syntax is much less popular than Markdown and lacks parsing
-utilities in popular programming languages[fn:1]. Regardless, we are
-committed to it as a foundation because it is the most hackable
-documentation engine available. With enough experience you can morph
-Org into whatever documentation system that is needed.
-
-[fn:1] The ecosystem is changing though, thanks to the dedication of
-some excellent hackers: [[https://github.com/karlicoss/orgparse][python]], [[https://github.com/tecosaur/Org.jl][julia]]
-
 *** TODO organ
 :PROPERTIES:
 :CUSTOM_ID: 22474039-5c18-4179-82aa-a6731e6313a2
@@ -78,18 +67,40 @@ of documents instead of tens, about processing those documents into a
 full-text search database, and reducing cost along the way.
 
 Emacs can do all of these things, but do you really want it to?
+
+** Syntax
+Let us first consider /Org the syntax/.
+
+Org syntax is much less popular than Markdown and lacks parsing
+utilities in popular programming languages[fn:1]. Regardless, we are
+committed to it as a foundation because it is the most hackable
+documentation engine available. With enough experience you can morph
+Org into whatever documentation system that is needed.
+
+
+As such, all documentation we write is done using =Org syntax=. When
+we refer to Org syntax we are referring to the vanilla syntax which
+comes built-in with Emacs.
+
+=Ulang syntax= is an extension of =Org syntax=. If some feature of the
+=Ulang= is undocumented, refer to =Org syntax= for guidance.
+
+[fn:1] The ecosystem is changing though, thanks to the dedication of
+some excellent hackers: [[https://github.com/karlicoss/orgparse][python]], [[https://github.com/tecosaur/Org.jl][julia]]
+
 ** Elements
 :PROPERTIES:
 :CUSTOM_ID: 4aa3ec2a-b360-43ae-b2d8-f9735f211290
 :END:
+This section documents the /extensions/ made to =Org syntax=. Each
+sub-heading focuses on a pre-existing =Org= element and describes
+=Ulang= functionality included with =ulang.el=.
 
 *** Keywords
 :PROPERTIES:
 :CUSTOM_ID: 2cadda9a-22a3-4b42-ad4e-d7a774f74cba
 :END:
-The ulang *Keywords* are a superset of those defined by [[https://datatracker.ietf.org/doc/html/rfc2119][RFC-2119]]. The
-definition of a keyword from the original spec is ultimately
-unchanged:
+The ulang *Keywords* are a superset of those defined by [[https://datatracker.ietf.org/doc/html/rfc2119][RFC-2119]].
 
 #+begin_quote
 In many standards track documents several words are used to signify
@@ -103,9 +114,6 @@ NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
 "OPTIONAL" in this document are to be interpreted as described in
 RFC 2119.
 #+end_quote
-
-We can't be bothered to include these with every document, so here
-they are - don't forget!
 
 #+begin_quote
 1. MUST   This word, or the terms "REQUIRED" or "SHALL", mean that the
@@ -166,36 +174,107 @@ Several *global* [[https://orgmode.org/manual/Macro-Replacement.html][Org Macros
 here for convenience.
 
 #+name: ulang-macros
-#+begin_src emacs-lisp :exports both :results pp
+#+begin_src emacs-lisp :exports both :results replace pp
   org-export-global-macros
 #+end_src
 
 #+RESULTS: ulang-macros
-: (("opts" . "#+OPTIONS: $1\n")
-:  ("header" .
-:   "#+TITLE: $1\n#+AUTHOR: $2\n#+EMAIL: $3\n#+DESCRIPTION: $4\n#+SUBTITLE: $4\n#+OPTIONS: ^:nil toc:nil num:nil html-postamble:nil\n#+HTML_HEAD: <link rel=\"stylesheet\" href=\"https://fonts.xz.style/serve/inter.css\"/>\n#+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.compiler.company/css/new.min.css\"/>\n#+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.compiler.company/css/night.css\"/>\n"))
+: (("header" .
+:   "#+TITLE: $1\n#+AUTHOR: $2\n#+EMAIL: $3\n#+DESCRIPTION: $4\n#+SUBTITLE: $4\n#+OPTIONS: ^:nil toc:nil num:nil html-postamble:nil\n#+HTML_HEAD: <link rel=\"stylesheet\" href=\"https://fonts.xz.style/serve/inter.css\"/>\n#+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.compiler.company/css/new.min.css\"/>\n#+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.compiler.company/css/night.css\"/>\n")
+:  ("opts" . "#+OPTIONS: $1\n"))
 
 Macros /are not expanded/ in source files - you will see them in the
 form ={{{NAME(ARGS)}}}=. You will need the relevant macro definition
 (in =ulang.el=) in order to export ulang docs with the macros
 expanded.
 
-*** Abbrevs
+*** Hyperlinks
+The Org-mode [[https://orgmode.org/manual/Link-Format.html][Link Format]] is used throughout the Ulang and needs little
+introduction.
+**** Types
+#+begin_src emacs-lisp :results replace pp :exports both
+(org-link-types)
+#+end_src
+
+#+RESULTS:
+: ("notmuch-tree" "notmuch-search" "notmuch" "man" "eww" "rmail" "mhe"
+:  "irc" "info" "gnus" "docview" "bibtex" "bbdb" "w3m" "doi" "id"
+:  "elfeed" "file+sys" "file+emacs" "shell" "news" "mailto" "https"
+:  "http" "ftp" "help" "file" "elisp")
+
+**** Abbrevs
+For ease of use we have defined some special link handling abbrevs:
+
+#+begin_src emacs-lisp :results replace pp :exports both
+  org-link-abbrev-alist
+#+end_src
+
+#+RESULTS:
+: (("vc" . "https://vc.compiler.company/%s")
+:  ("comp" . "https://compiler.company/%s")
+:  ("cdn" . "https://cdn.compiler.company/%s")
+:  ("packy" . "https://packy.compiler.company/%s")
+:  ("yt" . "https://youtube.com/watch?v=%s"))
+
+*** Dynamic Blocks
+[[https://orgmode.org/manual/Blocks.html][Blocks]] are a feature of vanilla Org-mode which are described in the
+manual. We extend this functionality with [[https://orgmode.org/manual/Dynamic-Blocks.html][Dynamic Blocks]]. The
+important feature of these blocks is that their contents are updated
+/dynamically/ by a user within an Org-mode document.
+
+For example, typing ~C-c C-c~ on the block below dynamically generates
+the standard clocktable for the current file.
+
+To update all dynamic blocks in a document, use the
+=org-dblock-update= ~C-c C-x C-u~ function.
+
+#+BEGIN: clocktable
+#+CAPTION: Clock summary at [2023-11-25 Sat 15:26]
+| Headline     | Time   |
+|--------------+--------|
+| *Total time* | *0:00* |
+#+END:
+
+#+begin_src emacs-lisp :results replace pp :exports both
+  org-dynamic-block-alist
+#+end_src
+
+#+RESULTS:
+: (("files" . ulang-dblock-insert-files)
+:  ("links" . ulang-dblock-insert-links)
+:  ("columnview" . org-columns-insert-dblock)
+:  ("clocktable" . org-clock-report))
+
+*** Tables
 :PROPERTIES:
-:CUSTOM_ID: b4c326ba-f74c-4409-9314-8d32df61fc5e
+:CUSTOM_ID: ulang-tables
 :END:
-There are several 'abbrev' types made available via =ulang.el=. They
-are intended for flexible templating and ease-of-use for the author.
 
-We try to align our abbrevs following categories:
-- uri
-- term
-- phrase
-- block
+Org [[https://orgmode.org/manual/Tables.html][Tables]] are powerful but require many extensions to really /feel/
+powerful. As they come in vanilla Emacs, they don't feel as good as
+commercial spreadsheet-based software. The Ulang Table extensions add
+some sane defaults and additional data-processing utilities to work
+with tables in any text, not just Org docs.
 
-Abbrevs may take arguments explicitly or inherit from their
-environment, but usually /are expanded/ in source files.
+A vanilla Org Table may look like this:
 
-*** Links
+| x |  y |  z |
+|---+----+----|
+| 1 |  2 |  3 |
+| 8 |  9 | 10 |
+| 9 | 10 | 11 |
+| 3 |  4 |  5 |
+| 7 |  8 |  9 |
+| 2 |  3 |  4 |
+#+TBLFM: $2=$1+1::$3=$2+1
 
-*** Timestamps
+Just like in Excel, we can define a table outline like the one above
+and use code to fill in the values with a formula: =$2=$1+1::$3=$2+1=.
+
+Unlike Excel, these tables can appear pretty much anywhere - including
+in source code.
+
+Usually we prefer to use lisp to prepare our data and
+populate complex tables, or no-nonsense keyboard commands for short
+tables. This is done with a few functions in Org docs and the =orgtbl=
+minor-mode everywhere else.
