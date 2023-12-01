@@ -2,9 +2,10 @@
 Richard Westhaver,
 ellis@rwest.io,
 The Universal Language)}}}
+#+OPTIONS: toc:t
 
 This document describes a *U-Language* as described by the late great
-Haskell Curry:
+[[https://iep.utm.edu/haskell-brooks-curry/][Haskell Curry]]:
 
 #+begin_quote
 Every investigation, including the present one, has to be communicated
@@ -17,156 +18,131 @@ if it were not for the fact that language is more intimately related
 to our job than of most others.
 #+end_quote
 
-* ulang
-:PROPERTIES:
-:CUSTOM_ID: ulang
-:END:
-As the title suggest we refer to our *U-Language* as
-ulang. When I say something along the lines of "Please refer to
-[[*Hyperlinks][ulang.Hyperlinks]]", I am referencing the section named /Links/ of this
-document.
+In this document, we will be calling attention to our own language -
+examining it, and describing how it works.
 
-Each section of this document describes an element of the ulang. It is
-recommended to skim through the top-level sections ([[Org-mode][Org-mode]] and
-[[Elements][Elements]]) and review the element sub-headings as needed.
+Our job is to solve problems. Hard problems preferred. So we ought to
+pay close attention to the language we use because it brings the
+reader and writer /closer/ to the problem at hand.
 
-#+TOC: headlines 3
+For starters, we are primarily concerned with /written languages/ like
+the one you're reading now. We will skip past the obvious details -
+English is our primary form of communication for example. The line you
+are reading currently is a sentence which is part of a paragraph.
 
-** Org-mode
+There are some non-obvious questions which deserve inquiry though.
+
+- *Who is this for?* \\
+  This document is for authors and readers alike. It is a loose
+  specification, but also serves as introductory material into our
+  communication and design philosophy.
+  
+- *What is this for?* \\
+  The purpose of this document is to provide a /standard of
+  communication/.
+
+  All sources we write attempt to conform to this standard but this is
+  not strictly enforced. If there is a reason to not comply with a
+  rule, it is already broken.
+
+* Org Mode
 :PROPERTIES:
 :CUSTOM_ID: 98a02bb2-3f39-49c6-898a-68ccd8f3cbe1
 :END:
-[[https://www.gnu.org/software/emacs/][GNU Emacs]] is our text editor, so naturally [[https://orgmode.org/][Org Mode]] is our
-documentation engine. 
+[[https://www.gnu.org/software/emacs/][GNU Emacs]] is our text editor, so naturally [[https://orgmode.org/][Org Mode]] is our word
+processor.
 
-If you are already familiar with Emacs and org-mode, I recommend
-opening the source file of this document in Emacs and following along.
+If you are already familiar with Emacs and Org-Mode, I recommend
+opening the source of this document in Emacs and following along.
 
 If not, I recommend browsing through the [[https://orgmode.org/worg/][Worg resources]], but we won't
-be getting too deep into tribal hacker knowledge of Emacs. The choice
-of Org is arbitrary and the concepts here would apply to other formats
-(LaTeX, Markdown, etc).
+be getting too deep into tribal hacker knowledge of Emacs.
 
-*** TODO organ
+What's important to know is this: There is /Org Syntax/ and
+/Org-mode/ - these are different things.
+
+Our =ulang= is almost /exclusively/ based on /Org Syntax/ and we are
+not concerned about /Org-mode/ the application in this document.
+
+* ulang
 :PROPERTIES:
-:CUSTOM_ID: 22474039-5c18-4179-82aa-a6731e6313a2
+:ID: ulang
 :END:
-- State "TODO"       from              [2023-11-05 Sun 19:21]
+As the title suggest we refer to our *U-Language* as *ulang*. Each
+section of this document describes a feature.
+** Outlines
+In Org, headings can be summarize as any line starting with a star: =*
+H1=. Headings can be nested or 'demoted' by prepending another star:
+=** H2=.
 
-=Org-mode= the application depends on Emacs (it's written in Emacs
-Lisp) but that doesn't mean we need to. To solve the issue of
-interoperability between different systems, we are developing a tool
-called [[https://lab.rwest.io/comp/core/-/tree/branch/default/lisp/lib/organ][organ]]. The purpose of =organ= is to provide an external API for
-Org documents that doesn't depend on GNU Emacs.
+This is a useful pattern which we apply outside of Org - most commonly
+in our code comments.
 
-If we were designing a /personal/ note-taking system, I would argue
-that we don't need this tool. The problem is it's /not/ personal - we
-have a much wider intended audience and need to present information in
-many different ways. This means thinking about hundreds to thousands
-of documents instead of tens, about processing those documents into a
-full-text search database, and reducing cost along the way.
+In our source code, we use the comment character instead of a star:
+#+begin_src lisp
+;;; foo
+(print "H1") ;; just an inline comment
+;;;; bar
+(print "H2")
+;;; baz
+(print "H1")
+#+end_src
 
-Emacs can do all of these things, but do you really want it to?
+A collection of /headings/ is what we call an *Outline* - which is
+also the name of the major-mode utilized for this feature and of
+course - what Org itself is derived from.
 
-** Syntax
-Let us first consider /Org the syntax/.
-
-Org syntax is much less popular than Markdown and lacks parsing
-utilities in popular programming languages[fn:1]. Regardless, we are
-committed to it as a foundation because it is the most hackable
-documentation engine available. With enough experience you can morph
-Org into whatever documentation system that is needed.
-
-
-As such, all documentation we write is done using =Org syntax=. When
-we refer to Org syntax we are referring to the vanilla syntax which
-comes built-in with Emacs.
-
-=Ulang syntax= is an extension of =Org syntax=. If some feature of the
-=Ulang= is undocumented, refer to =Org syntax= for guidance.
-
-[fn:1] The ecosystem is changing though, thanks to the dedication of
-some excellent hackers: [[https://github.com/karlicoss/orgparse][python]], [[https://github.com/tecosaur/Org.jl][julia]]
-
-** Elements
-:PROPERTIES:
-:CUSTOM_ID: 4aa3ec2a-b360-43ae-b2d8-f9735f211290
-:END:
-This section documents the /extensions/ made to =Org syntax=. Each
-sub-heading focuses on a pre-existing =Org= element and describes
-=Ulang= functionality included with =ulang.el=.
-
-*** Keywords
+** Keywords
 :PROPERTIES:
 :CUSTOM_ID: 2cadda9a-22a3-4b42-ad4e-d7a774f74cba
 :END:
-The ulang *Keywords* are a superset of those defined by [[https://datatracker.ietf.org/doc/html/rfc2119][RFC-2119]].
 
-#+begin_quote
-In many standards track documents several words are used to signify
-the requirements in the specification.  These words are often
-capitalized.  This document defines these words as they should be
-interpreted in IETF documents.  Authors who follow these guidelines
-should incorporate this phrase near the beginning of their document:
+The following keywords indicate the state of an element. They often
+appear as the first word in a heading to indicate a [[*Tasks][Task]].
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
-NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
-"OPTIONAL" in this document are to be interpreted as described in
-RFC 2119.
-#+end_quote
+- TBD :: A task to be done at a later date.
+- TODO :: A task yet to be done.
+- FIXME :: Item that needs fixing.
+- WIP :: Work In Progress task.
+- WAIT :: A suspended task.
+- DEAD :: Item that will not be completed.
+- DONE :: Completed task.
+- BUG :: Designate a bug item.
+- IDEA :: Designate an idea item.
+- NOTE :: Designates a note item.
+- DRAFT :: Designates a draft item.
+- COMMENT :: A 'commented' item.
+** Tasks
+Tasks as they are known in Org, usually consist of a heading that
+starts with a [[#2cadda9a-22a3-4b42-ad4e-d7a774f74cba][Keyword]]. Here we describe some additional sections and
+metadata which are present in our collection of tasks.
 
-#+begin_quote
-1. MUST   This word, or the terms "REQUIRED" or "SHALL", mean that the
-   definition is an absolute requirement of the specification.
+Our task management system is roughly a hybrid of two more
+conventional methods: GTD and Agile. For convenience I will describe
+these styles and how I use them separately, but the concepts may be
+spliced differently in real tasks.
 
-2. MUST NOT   This phrase, or the phrase "SHALL NOT", mean that the
-   definition is an absolute prohibition of the specification.
+- *GTD* \\
+- *Agile* \\
+  It's a dirty word in some tech circles - the dreaded PIs, daily
+  standups, and still nobody knows what's going on, Oh my! Do not
+  worry. For the most part we just borrow the vocabulary.
 
-3. SHOULD   This word, or the adjective "RECOMMENDED", mean that there
-   may exist valid reasons in particular circumstances to ignore a
-   particular item, but the full implications must be understood and
-   carefully weighed before choosing a different course.
+  Our /Agile/ workflow consists of roadmaps, features (epics/ARTs),
+  issues (user stories), and of course, tasks.
+** Ids
+We reference two different types of identifiers in documentation:
+- UUID :: CUSTOM_ID property
+- User-defined :: ID property
 
-4. SHOULD NOT   This phrase, or the phrase "NOT RECOMMENDED" mean that
-   there may exist valid reasons in particular circumstances when the
-   particular behavior is acceptable or even useful, but the full
-   implications should be understood and the case carefully weighed
-   before implementing any behavior described with this label.
+UUIDs on =CUSTOM_ID= property is admittedly a kludge. This is done for
+reasons of portability. We may at some point rename this property
+=UUID= (TBD).
 
-5. MAY   This word, or the adjective "OPTIONAL", mean that an item is
-   truly optional.  One vendor may choose to include the item because a
-   particular marketplace requires it or because the vendor feels that
-   it enhances the product while another vendor may omit the same item.
-   An implementation which does not include a particular option MUST be
-   prepared to interoperate with another implementation which does
-   include the option, though perhaps with reduced functionality. In the
-   same vein an implementation which does include a particular option
-   MUST be prepared to interoperate with another implementation which
-   does not include the option (except, of course, for the feature the
-   option provides.)
-#+end_quote
-
-One of the important features of keywords is that we use them as Org
-[[https://orgmode.org/manual/Workflow-states.html][Workflow states]]. You may use any of the keywords above or below as the
-first word in a heading to signify a requirement or a workflow state:
-
-6. TBD   A task to be done at a later date.
-
-7. TODO   A task yet to be done.
-
-8. WIP   Work In Progress task.
-
-9. NOTE   Designates a note item.
-
-10. DRAFT   Designates a draft item.
-
-11. DEAD   Item that will not be completed.
-
-12. DONE   Completed task.
-
-13. COMMENT A 'commented' item.
-
-*** Macros
+Most of the time these Ids don't add any information for the reader -
+the UUIDs are used to index and graph documents, IDs are for
+convenience.
+** Macros
 :PROPERTIES:
 :CUSTOM_ID: cdb4976b-1d0d-49df-bfb1-3dbd5d99590e
 :END:
@@ -185,96 +161,6 @@ here for convenience.
 
 Macros /are not expanded/ in source files - you will see them in the
 form ={{{NAME(ARGS)}}}=. You will need the relevant macro definition
-(in =ulang.el=) in order to export ulang docs with the macros
-expanded.
+(in =ulang.el=) in order to use some Org-Mode functions (org-export)
+with our docs.
 
-*** Hyperlinks
-The Org-mode [[https://orgmode.org/manual/Link-Format.html][Link Format]] is used throughout the Ulang and needs little
-introduction.
-**** Types
-#+begin_src emacs-lisp :results replace pp :exports both
-(org-link-types)
-#+end_src
-
-#+RESULTS:
-: ("notmuch-tree" "notmuch-search" "notmuch" "man" "eww" "rmail" "mhe"
-:  "irc" "info" "gnus" "docview" "bibtex" "bbdb" "w3m" "doi" "id"
-:  "elfeed" "file+sys" "file+emacs" "shell" "news" "mailto" "https"
-:  "http" "ftp" "help" "file" "elisp")
-
-**** Abbrevs
-For ease of use we have defined some special link handling abbrevs:
-
-#+begin_src emacs-lisp :results replace pp :exports both
-  org-link-abbrev-alist
-#+end_src
-
-#+RESULTS:
-: (("vc" . "https://vc.compiler.company/%s")
-:  ("comp" . "https://compiler.company/%s")
-:  ("cdn" . "https://cdn.compiler.company/%s")
-:  ("packy" . "https://packy.compiler.company/%s")
-:  ("yt" . "https://youtube.com/watch?v=%s"))
-
-*** Dynamic Blocks
-[[https://orgmode.org/manual/Blocks.html][Blocks]] are a feature of vanilla Org-mode which are described in the
-manual. We extend this functionality with [[https://orgmode.org/manual/Dynamic-Blocks.html][Dynamic Blocks]]. The
-important feature of these blocks is that their contents are updated
-/dynamically/ by a user within an Org-mode document.
-
-For example, typing ~C-c C-c~ on the block below dynamically generates
-the standard clocktable for the current file.
-
-To update all dynamic blocks in a document, use the
-=org-dblock-update= ~C-c C-x C-u~ function.
-
-#+BEGIN: clocktable
-#+CAPTION: Clock summary at [2023-11-25 Sat 15:26]
-| Headline     | Time   |
-|--------------+--------|
-| *Total time* | *0:00* |
-#+END:
-
-#+begin_src emacs-lisp :results replace pp :exports both
-  org-dynamic-block-alist
-#+end_src
-
-#+RESULTS:
-: (("files" . ulang-dblock-insert-files)
-:  ("links" . ulang-dblock-insert-links)
-:  ("columnview" . org-columns-insert-dblock)
-:  ("clocktable" . org-clock-report))
-
-*** Tables
-:PROPERTIES:
-:CUSTOM_ID: ulang-tables
-:END:
-
-Org [[https://orgmode.org/manual/Tables.html][Tables]] are powerful but require many extensions to really /feel/
-powerful. As they come in vanilla Emacs, they don't feel as good as
-commercial spreadsheet-based software. The Ulang Table extensions add
-some sane defaults and additional data-processing utilities to work
-with tables in any text, not just Org docs.
-
-A vanilla Org Table may look like this:
-
-| x |  y |  z |
-|---+----+----|
-| 1 |  2 |  3 |
-| 8 |  9 | 10 |
-| 9 | 10 | 11 |
-| 3 |  4 |  5 |
-| 7 |  8 |  9 |
-| 2 |  3 |  4 |
-#+TBLFM: $2=$1+1::$3=$2+1
-
-Just like in Excel, we can define a table outline like the one above
-and use code to fill in the values with a formula: =$2=$1+1::$3=$2+1=.
-
-Unlike Excel, these tables can appear pretty much anywhere - including
-in source code.
-
-Usually we prefer to use lisp to prepare our data and
-populate complex tables, or no-nonsense keyboard commands for short
-tables. This is done with a few functions in Org docs and the =orgtbl=
-minor-mode everywhere else.
