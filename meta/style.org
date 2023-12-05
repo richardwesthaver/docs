@@ -14,7 +14,6 @@ on code comments and developer docs.
 [fn:1] https://google.github.io/styleguide/ 
 
 * General Programming
-
 - indent-offset = 2
 - max-line-width = 80
 - page-length ~ 32
@@ -26,14 +25,15 @@ on code comments and developer docs.
 - use ulang-comments as needed for referencing bugs, notes, etc.
 - inline documentation should be declarative. your code explains your
   comments for you.
-
+- variables, imports, and exports belong at the top of a file
+- =main= functions belong at the bottom of a file
 * Common Lisp
 
 - prefer symbol docs to comments
 - use stdin/stdout/stderr correctly - see [[https://zenodo.org/records/3414191][CDR-11]]
-- prefer =core= libraries over vendored
-
-** File templates
+- always prefer =core= libraries over vendored dependencies
+- use the compiler internals - if a function or class is generally
+  useful, add it to the core
 * Rust
 - don't make =mod.rs= files
   - use the =foo.rs=, =foo/*= pattern instead
