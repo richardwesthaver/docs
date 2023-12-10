@@ -1,0 +1,51 @@
+{{{header(skel,Richard Westhaver,ellis@rwest.io)}}}
+
+=skel= is /a hacker's project compiler and build tool/. It is an
+extensible software library designed for managing /projects/.
+
+The [[https://compiler.company/docs/core/app/skel.html][cli]] is the main entry point for typical users. This documentation
+is for library developers and internal use.
+
+* Overview
+This library started as a Rust crate but was re-written in Lisp as the
+purpose of the library grew from managing a small collection of
+user-space libraries (also written in Rust) to managing large
+collections in many different langs.
+
+It is obvious in hindsight, that this project needs Lisp. Today we are
+built on CLOS with classes and methods exposing the library API.
+
+* Design
+The library core is built on CLOS. Most important data structures are
+represented with classes, slots, and methods such as the ~sk-project~
+class which has a slot named ~:components~ and a method specialized on
+it called ~load-ast~.
+
+We make use of mixins defined within the library like ~sk-meta~ as
+well as classes defined downstream - the ~sxp~ class for example
+provides a default method for AST functions (~load-ast~ ~build-ast~)
+and is defined in the ~std/sxp~ package.
+
+On top of the core we build our compilers or 'translators' which
+convert core objects to a corresponding external representation. For
+example the ~makefile~ and ~mk-*~ classes defined in ~skel/comp/make~
+can be built from a ~sk-project~ and ~sk-*~ instances. Once built, the
+~sk-compile~ method can be used to actually generate the GNU Make
+output as a stream of bytes.
+
+The remainder of the ~skel~ system is dedicated to extensions. These
+are all optional. There are built-in extension called ~tools~ which
+run within the ~skel~ system and external extensions (~ext~) which
+integrate with a particular external system.
+
+The ~tools~ we provide are similar to Cargo's [[https://doc.rust-lang.org/book/ch14-05-extending-cargo.html][custom commands]], but
+they don't need to be a separate binary - they can be compiled into
+the core image. The downside is that this requires re-compiling ~skel~
+every time you want to add a new tool. However since this is Lisp not
+Rust, we can compile anywhere - including from within ~skel~
+itself.
+
+~ext~ contains extensions for external systems. These modules are the
+'edges' of the system and provide support to programs which need to be
+able to access ~skel~ data at runtime. These modules always compiled
+separately and aren't built into the default core image.

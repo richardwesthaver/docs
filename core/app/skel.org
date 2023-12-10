@@ -1,0 +1,166 @@
+{{{header(skel,Richard Westhaver,ellis@rwest.io)}}}
+
+The =skel= CLI is the primary build tool for contributors and serves a
+similar role to language-agnostic build tools like [[https://www.gnu.org/software/make/][GNU Make]], but with
+the features and ease-of-use of language-specific build tools like
+Rust's [[https://github.com/rust-lang/cargo][Cargo]].
+
+* features
+** configuration
+The ~skel~ tool can be configured at runtime using the CLI flags, or
+via local configuration files. The configuration files are in the
+~skelfile~ format and are assigned the following locations by default:
+- ~*default-user-skelrc*~ :: =$HOME/.skelrc=
+- ~*default-system-skelrc*~ :: =/etc/skel/skelrc=
+
+Both files are optional and the user skelrc takes precedence over
+system.
+
+Example =~/.skelrc=:
+#+begin_src skel :results pp replace :exports both
+  ;;; .skelrc @ 2023-10-12.02:58:08 -*- mode: skel; -*-
+  :author "Richard Westhaver <ellis@rwest.io>"
+  :user "ellis"
+  :version "0.1.0"
+  :tags ("auto")
+  :fmt :collapsed
+  :vc :hg
+  :auto-insert t
+  :license "MPL"
+  :log-level nil
+  :shed "~/lab/shed"
+  :stash "~/lab/stash"
+  :scripts "~/bin/sh"
+  :alias-list
+  (("p" "vc push")
+   ("P" "vc pull")
+   ("ci" "vc commit"))
+#+end_src
+
+** projects
+Projects are the main top-level object users interact with. A project
+consists of a list of slots which are populated automatically or by
+the user. Once a project is initialized the slots can be accessed and
+a set of high-level operations can be performed.
+
+The easiest way to initialize a project is with a ~skelfile~. These
+files are parsed as a simplified Lisp dialect and generate
+~sk-project~ objects based on their contents.
+
+The simplest project looks like this:
+
+#+begin_src skel :results pp replace :exports both
+:name hello-world
+#+end_src
+
+Don't worry, this is still lisp - the parentheses are implied. All we
+actually need is a name to generate an object, and we can fill in the
+blanks later as the project develops.
+
+Here is a more verbose example, still with only metadata:
+
+#+begin_src skel :results pp replace :exports both
+;;; skelfile --- core skelfile -*- mode: skel; -*-
+:name "core"
+:author "Richard Westhaver <ellis@rwest.io>"
+:version "0.1.0"
+:license "MPL"
+:description "The Compiler Company Core"
+:vc :hg
+:tags ("core")
+:docs ((:org "readme") (:org "install") (:org "tests") (:org "todo"))
+:imports ("lisp/lisp.sk" "rust/rust.sk")
+#+end_src
+
+** version control
+=skel= integrates closely with our Version Control System (VCS) which
+is built on [[https://www.mercurial-scm.org/][Mercurial]], but we also interact with and host many [[https://git-scm.com/][Git]]
+repositories.
+
+The =skel= tool helps us abstract away the differences between git/hg
+and make maximum use of their utility. When you run a =skel vc=
+command the currently active ~sk-project~ and configuration are used
+to determine the appropriate VC backend to call. New backends can of
+course be added as extensions.
+
+** TODO compilers
+- State "TODO"       from              [2023-12-09 Sat 19:28]
+One of the most unusual features of =skel= is the compiler set. With
+the =skel= CLI you can compile the following types of files for your
+project directly from a ~skelfile~:
+- Makefile (.mk)
+- Lisp system defs (.asd)
+- Cargo.toml
+- Containerfile
+- .hgignore/.gitignore
+
+We treat skelfiles as the mother of all build formats and consolidate
+different formats into our own project DSL. This helps reduce
+complexity while increasing capability and portability.
+
+Project compilation occurs on demand with the =sk compile= command.
+
+** TODO virtualization
+- State "TODO"       from              [2023-12-09 Sat 18:55]
+
+  =skel= offers a mechanism for generating and running Virtual
+  Machines (VMs) and Containers. Under the hood we depend on [[https://podman.io/][podman]]
+  for our container runtime as well as [[https://www.qemu.org/][QEMU]] for some
+  functionality.
+
+** TODO emacs integration
+- State "TODO"       from              [2023-12-09 Sat 19:30]
+=sk.el= is the Emacs support package for skel. It contains a
+=skel-mode= for working with skelfiles and will soon contain
+additional built-in integrations for =project.el=, =vc.el=, and more.
+** TODO deployment
+- State "TODO"       from              [2023-12-09 Sat 19:37]
+** TODO visualization
+- State "TODO"       from              [2023-12-09 Sat 19:37]
+* help
+#+begin_src shell :results pp replace :exports both
+skel -h
+#+end_src
+
+#+RESULTS:
+#+begin_example
+skel v0.1.1
+  usage: skel [global] <command> [<arg>]
+
+  A hacker's project compiler and build tool.
+  options:
+     -h/--help* :  print this message
+     -v/--version* :  print version
+     -d/--debug* :  set log level (debug,info,trace,warn)
+     -c/--config* :  set a custom skel user config
+     -i/--input  :  input source
+     -o/--output  :  output target
+  commands:
+    init  :  initialize a skelfile in the current directory
+     -n/--name  :  project name
+    
+    show  :  describe the project skelfile
+     -f/--file  :  path to skelfile
+    
+    inspect  :  inspect the project skelfile
+     -f/--file  :  path to skelfile
+    
+    make  :  build project targets
+     -t/--target  :  target to build
+    
+    run  :  run a script or command
+    
+    push  :  push the current project upstream
+    
+    pull  :  pull the current project from remote
+    
+    clone  :  clone a remote project
+    
+    commit  :  commit changes to the project vc
+    
+    edit  :  edit a project file
+    
+    shell  :  open the sk-shell interpreter
+    
+#+end_example
+
