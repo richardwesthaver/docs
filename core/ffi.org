@@ -1,0 +1,46 @@
+{{{header(core/ffi,Richard Westhaver,ellis@rwest.io)}}}
+
+This doc is about the [[https://en.wikipedia.org/wiki/Foreign_function_interface][Foreign Function Interface]] (FFI) features of the
+=core=. 
+
+Besides accessing system, OS, and external libraries via binding code
+(dynamically in Lisp, statically in Rust), we also expose parts of the
+core in a C-compatible fashion. In Lisp, we use the SB-ALIEN interface
+to load (with dlopen) and call foreign symbols. In Rust we mostly use
+rust-bindgen and the built-in rustc features.
+
+* Libraries
+The following binding libraries are provided with supporting
+code. There is some cross-over between the Lisp and Rust bindings
+depending on what library features we need and where. Some of the
+bindings are very minimal or for experimental-use only only.
+** xkb
+These bindings are actually directed at libxkbcommon instead of
+x11/xkb directly.
+*** xkbcommon
+https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
+** rocksdb
+[[https://github.com/facebook/rocksdb/wiki][RocksDB Wiki]]
+** btrfs
+The kernel headers btrfs and btrfs_tree will be wrapped at some point
+in addition to the userspace library (btrfsutil) documented below.
+*** btrfsutil
+https://github.com/kdave/btrfs-progs
+** uring
+https://man.archlinux.org/man/io_uring.7.en
+** alpm
+https://man.archlinux.org/man/core/pacman/libalpm.3.en
+https://github.com/archlinux/alpm.rs/tree/382af70cdbff8e1f65c0bf8df79693786f44429c/alpm/examples
+** zstd
+zstd compression bindings: https://github.com/facebook/zstd
+** tree-sitter
+bindings to tree-sitter parser generator and language libraries: https://github.com/tree-sitter/tree-sitter
+** blake3
+temporary package for CL implementation of Blake3 SHA. Wraps C
+implementation (libblake3).
+** bqn
+These bindings are for libcbqn which can be build from CBQN:
+https://github.com/dzaima/CBQN
+** k
+https://codeberg.org/ngn/k
+bindings for ngn/k (libk).
