@@ -2,6 +2,22 @@
 
 The =organ= CLI tool is used to manipulate [[https://orgmode.org/][Org Mode]] files.
 
+* Overview
+=Org-mode= the application depends on Emacs (it's written in Emacs
+Lisp) but that doesn't mean we need to. To solve the issue of
+interoperability between different systems, we are developing a tool
+called [[https://lab.rwest.io/comp/core/-/tree/branch/default/lisp/lib/organ][organ]]. The purpose of =organ= is to provide an external API for
+Org documents that doesn't depend on GNU Emacs.
+
+If we were designing a /personal/ note-taking system, I would argue
+that we don't need this tool. The problem is it's /not/ personal - we
+have a much wider intended audience and need to present information in
+many different ways. This means thinking about hundreds to thousands
+of documents instead of tens, about processing those documents into a
+full-text search database, and reducing cost along the way.
+
+Emacs can do all of these things, but do you really want it to?
+
 * help
 #+begin_src shell :results pp replace
 organ -h
