@@ -1,0 +1,1699 @@
+# -*- org-export-babel-evaluate: nil -*-
+{{{header(tests,Richard Westhaver,ellis@rwest.io,core test results)}}}
+#+property: header-args :dir /home/ellis/dev/comp/core/
+* rust
+** sys
+These crates contain FFI bindings to foreign libraries, usually in C.
+*** btrfs
+*** btrfsutil
+*** rocksdb
+** lib
+*** TODO alch
+*** audio
+#+begin_src shell :results output replace :exports results
+  cd rust/lib/audio
+  cargo test
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+running 1 test
+test default_device ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+#+end_example
+
+*** crypto
+#+begin_src shell :results output replace :exports results
+cd rust/lib/crypto
+cargo test
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+running 6 tests
+test tests::salsa20_key0_ivhi ... ok
+test tests::salsa20_key1_iv0 ... ok
+test tests::salsa20_key0_iv1 ... ok
+test tests::xsalsa20_encrypt_hello_world ... ok
+test tests::xsalsa20_encrypt_zeros ... ok
+test tests::gen_keypair ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+#+end_example
+
+*** TODO db
+#+begin_src shell :results output replace :exports results :eval no
+cd rust/lib/db
+cargo test
+#+end_src
+
+#+RESULTS:
+
+*** flate
+#+begin_src shell :results output replace :exports results
+cd rust/lib/flate
+cargo test
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+running 1 test
+test pack_test ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+#+end_example
+
+*** hash
+#+begin_src shell :results output replace :exports results
+cd rust/lib/hash
+cargo test
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+running 5 tests
+test tests::hex_hash ... ok
+test tests::id_hex ... ok
+test tests::id_state_hash ... ok
+test tests::rand_id ... ok
+test tests::random_demon_id_is_valid ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+#+end_example
+
+*** krypt
+*** logger
+#+begin_src shell :results output replace :exports results
+cd rust/lib/logger
+cargo test
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+running 1 test
+test tests::simple_init ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+#+end_example
+
+*** sxp
+#+begin_src shell :results output replace :exports results
+cd rust/lib/sxp
+cargo test
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 1 test
+test canonical_fmt ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 5 tests
+test list_form ... ok
+test num_form ... ok
+test sym_form ... ok
+test nil_form ... ok
+test str_form ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 3 tests
+test ser_enum ... ok
+test ser_form ... ok
+test ser_struct ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 5 tests
+test list_end_token ... ok
+test list_start_token ... ok
+test num_token ... ok
+test str_token ... ok
+test sym_token ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+#+end_example
+
+*** tenex
+*** util
+#+begin_src shell :results output replace :exports results
+cd rust/lib/util
+cargo test
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+running 1 test
+test tests::test_related_paths ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+#+end_example
+
+* lisp
+#+name: start-slime
+#+begin_src emacs-lisp
+  (slime)
+#+end_src
+
+#+RESULTS: start-slime
+: #<buffer *inferior-lisp*>
+
+#+name: load-core-systems
+#+begin_src lisp :results output replace :exports both
+  (ql:quickload :std)
+  (ql:quickload :rt)
+  (ql:quickload :sxp)
+  (ql:quickload :parse)
+  (ql:quickload :cli)
+  (ql:quickload :xkb)
+  ;; (ql:quickload :alpm)
+  (ql:quickload :btrfs)
+  (ql:quickload :bqn)
+  (ql:quickload :k)
+  (ql:quickload :tree-sitter)
+  (ql:quickload :uring)
+  (ql:quickload :zstd)
+  (ql:quickload :blake3)
+  (ql:quickload :rocksdb)
+  (ql:quickload :rdb)
+  (ql:quickload :skel)
+  (ql:quickload :organ)
+  (ql:quickload :nlp)
+  (ql:quickload :dot)
+  (ql:quickload :obj)
+  (ql:quickload :log)
+  (ql:quickload :net)
+  ;; (ql:quickload :pwn)
+  (ql:quickload :packy)
+#+end_src
+
+#+RESULTS: load-core-systems
+#+begin_example
+To load "std":
+  Load 1 ASDF system:
+    std
+; Loading "std"
+..
+To load "rt":
+  Load 1 ASDF system:
+    rt
+; Loading "rt"
+
+To load "sxp":
+  Load 1 ASDF system:
+    sxp
+; Loading "sxp"
+
+To load "parse":
+  Load 1 ASDF system:
+    parse
+; Loading "parse"
+
+To load "cli":
+  Load 1 ASDF system:
+    cli
+; Loading "cli"
+[package cli/progress].........
+To load "xkb":
+  Load 1 ASDF system:
+    xkb
+; Loading "xkb"
+
+To load "btrfs":
+  Load 1 ASDF system:
+    btrfs
+; Loading "btrfs"
+
+To load "bqn":
+  Load 1 ASDF system:
+    bqn
+; Loading "bqn"
+
+To load "k":
+  Load 1 ASDF system:
+    k
+; Loading "k"
+
+To load "tree-sitter":
+  Load 1 ASDF system:
+    tree-sitter
+; Loading "tree-sitter"
+
+To load "uring":
+  Load 1 ASDF system:
+    uring
+; Loading "uring"
+
+To load "zstd":
+  Load 1 ASDF system:
+    zstd
+; Loading "zstd"
+
+To load "blake3":
+  Load 1 ASDF system:
+    blake3
+; Loading "blake3"
+
+To load "rocksdb":
+  Load 1 ASDF system:
+    rocksdb
+; Loading "rocksdb"
+
+To load "rdb":
+  Load 1 ASDF system:
+    rdb
+; Loading "rdb"
+
+To load "skel":
+  Load 1 ASDF system:
+    skel
+; Loading "skel"
+[package dot].....................................
+[package skel/core]...............................
+[package skel/comp]...............................
+[package skel/viz]................................
+[package skel/deploy]..........
+To load "organ":
+  Load 1 ASDF system:
+    organ
+; Loading "organ"
+
+To load "nlp":
+  Load 1 ASDF system:
+    nlp
+; Loading "nlp"
+
+To load "dot":
+  Load 1 ASDF system:
+    dot
+; Loading "dot"
+
+To load "obj":
+  Load 1 ASDF system:
+    obj
+; Loading "obj"
+
+To load "log":
+  Load 1 ASDF system:
+    log
+; Loading "log"
+
+To load "net":
+  Load 1 ASDF system:
+    net
+; Loading "net"
+.
+To load "packy":
+  Load 1 ASDF system:
+    packy
+; Loading "packy"
+
+#+end_example
+
+#+name: gen-core-coverage-report
+#+begin_src lisp :results output replace :exports both
+  (defun gen-report (system &optional (directory #P"/mnt/y/data/report/coverage/core/"))
+    (progn
+      (declaim (optimize sb-cover:store-coverage-data))
+      (asdf:oos 'asdf:load-op system :force t)
+      (asdf:test-system system)
+      (prog1
+          (sb-cover:report directory)
+        (declaim (optimize (sb-cover:store-coverage-data 0))))))
+
+  (defun gen-core-coverage-report ()
+    (time
+     (progn 
+       (gen-report :std)
+       (setq *sxp-test-file* "lisp/lib/sxp/tests.sxp")
+       (gen-report :sxp)
+       (gen-report :parse)
+       ;; (gen-report :cli)
+       (gen-report :xkb)
+       ;; (gen-report :alpm)
+       (gen-report :btrfs)
+       (gen-report :bqn)
+       (gen-report :k)
+       (gen-report :tree-sitter)
+       (gen-report :uring)
+       (gen-report :zstd)
+       (gen-report :blake3)
+       (gen-report :rocksdb)
+       (gen-report :rdb)
+       (gen-report :skel)
+       (gen-report :organ)
+       (gen-report :nlp)
+       (gen-report :dot)
+       (gen-report :obj)
+       (gen-report :log)
+       ;; (gen-report :pwn)
+       (gen-report :net)
+       (gen-report :packy))))
+#+end_src
+
+#+RESULTS: gen-core-coverage-report
+
+#+name: gen-trace-report
+#+begin_src lisp :results output replace :exports both
+  (trace "STD" "SXP" "PARSE" "CLI" "XKB" "RDB" "SKEL" "ORGAN" "NLP" "DOT" "OBJ" "LOG" "NET" "PACKY")
+  (rt/trace:start-tracing)
+  (gen-core-coverage-report)
+  (rt/trace:stop-tracing)
+  (rt/trace:save-report "/mnt/y/data/report/trace/core.json")
+#+end_src
+
+#+RESULTS: gen-trace-report
+#+begin_example
+; compiling file "/home/ellis/dev/comp/core/lisp/std/named-readtables.lisp" (written 24 NOV 2023 07:25:20 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/named-readtables-tmp4RNSVVC1.fasl
+; compilation finished in 0:00:00.186
+; compiling file "/home/ellis/dev/comp/core/lisp/std/pkg.lisp" (written 17 DEC 2023 05:42:24 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/pkg-tmpN626KU7B.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/std/err.lisp" (written 13 DEC 2023 03:46:17 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/err-tmpOO0K1B0C.fasl
+; compilation finished in 0:00:00.023
+; compiling file "/home/ellis/dev/comp/core/lisp/std/str.lisp" (written 13 DEC 2023 05:59:58 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/str-tmpVFL7JAFK.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/std/fmt.lisp" (written 13 DEC 2023 03:47:34 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/fmt-tmpU45RTF.fasl
+; compilation finished in 0:00:00.023
+; compiling file "/home/ellis/dev/comp/core/lisp/std/sym.lisp" (written 13 DEC 2023 04:51:54 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/sym-tmpZTS6G7ND.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/std/list.lisp" (written 17 DEC 2023 05:42:10 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/list-tmp5TNBATEG.fasl
+; compilation finished in 0:00:00.013
+; compiling file "/home/ellis/dev/comp/core/lisp/std/util.lisp" (written 13 DEC 2023 05:26:51 PM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/util-tmpJL6JXW7Z.fasl
+; compilation finished in 0:00:00.383
+; compiling file "/home/ellis/dev/comp/core/lisp/std/readtable.lisp" (written 17 DEC 2023 03:27:38 PM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/readtable-tmp5PQ00DH7.fasl
+; compilation finished in 0:00:00.063
+; compiling file "/home/ellis/dev/comp/core/lisp/std/fu.lisp" (written 17 DEC 2023 03:32:32 PM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/fu-tmp5R1KP4O2.fasl
+; compilation finished in 0:00:00.150
+; compiling file "/home/ellis/dev/comp/core/lisp/std/ana.lisp" (written 13 DEC 2023 03:52:56 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/ana-tmpXQDKKJYI.fasl
+; compilation finished in 0:00:00.016
+; compiling file "/home/ellis/dev/comp/core/lisp/std/pan.lisp" (written 13 DEC 2023 03:52:44 PM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/pan-tmpGJ3P31TF.fasl
+; compilation finished in 0:00:00.016
+; compiling file "/home/ellis/dev/comp/core/lisp/std/thread.lisp" (written 13 DEC 2023 04:52:49 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/thread-tmpT2P2LFJI.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/std/alien.lisp" (written 13 DEC 2023 05:54:54 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/alien-tmpKOV75BS9.fasl
+; compilation finished in 0:00:00.016
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/sxp/pkg.lisp" (written 13 DEC 2023 04:21:43 PM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/sxp/pkg-tmpP07HWIXP.fasl
+; compilation finished in 0:00:00.030
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/log/pkg.lisp" (written 13 DEC 2023 04:11:10 PM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/log/pkg-tmpURW0SA3C.fasl
+; compilation finished in 0:00:00.023
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rt/pkg.lisp" (written 17 DEC 2023 09:31:35 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rt/pkg-tmp627QKRZN.fasl
+; compilation finished in 0:00:00.130
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rt/bench.lisp" (written 17 DEC 2023 06:05:37 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rt/bench-tmpK8OFNZFV.fasl
+; compilation finished in 0:00:00.010
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rt/trace.lisp" (written 17 DEC 2023 05:41:51 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rt/trace-tmpRMCY5COB.fasl
+; compilation finished in 0:00:00.116
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rt/flamegraph.lisp" (written 17 DEC 2023 06:02:47 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rt/flamegraph-tmp9TN1FOJ6.fasl
+; compilation finished in 0:00:00.023
+; compiling file "/home/ellis/dev/comp/core/lisp/std/tests.lisp" (written 17 DEC 2023 04:04:56 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/std/tests-tmpEID7NJG3.fasl
+; compilation finished in 0:00:00.006
+in suite std with 11/11 tests:
+#<PASS CURRY-TEST894119> 
+#<PASS ALIEN-TEST894118> 
+#<PASS PAN-TEST894117> 
+#<PASS ANA-TEST894116> 
+#<PASS FMT-TEST894115> 
+#<PASS THREAD-TEST894114> 
+#<PASS COND-TEST894113> 
+#<PASS LIST-TEST894112> 
+#<PASS STR-TEST894111> 
+#<PASS SYM-TEST894110> 
+#<PASS READTABLES-TEST894109> 
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/sxp/pkg.lisp" (written 13 DEC 2023 04:21:43 PM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/sxp/pkg-tmp8CJLVG9R.fasl
+; compilation finished in 0:00:00.033
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rt/pkg.lisp" (written 17 DEC 2023 09:31:35 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rt/pkg-tmpZCJK45JG.fasl
+; compilation finished in 0:00:00.123
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rt/bench.lisp" (written 17 DEC 2023 06:05:37 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rt/bench-tmpQC4TENAZ.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rt/trace.lisp" (written 17 DEC 2023 05:41:51 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rt/trace-tmp4HJFFDY3.fasl
+; compilation finished in 0:00:00.109
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rt/flamegraph.lisp" (written 17 DEC 2023 06:02:47 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rt/flamegraph-tmp78H81ZL.fasl
+; compilation finished in 0:00:00.023
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/sxp/tests.lisp" (written 17 DEC 2023 09:58:45 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/sxp/tests-tmp86K6JU7V.fasl
+; compilation finished in 0:00:00.003
+in suite sxp with 4/4 tests:
+#<PASS SXP-STREAM-TEST941820> 
+#<PASS SXP-STRING-TEST941819> 
+#<PASS SXP-FILE-TEST941818> 
+#<PASS FORMS-TEST941817> 
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/parse/pkg.lisp" (written 17 DEC 2023 06:42:36 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/parse/pkg-tmp2L6X9BVQ.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/parse/lex.lisp" (written 17 DEC 2023 06:54:47 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/parse/lex-tmpES5DCUFN.fasl
+; compilation finished in 0:00:00.063
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/parse/lalr.lisp" (written 17 DEC 2023 06:44:41 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/parse/lalr-tmpDVKOEP6R.fasl
+; compilation finished in 0:00:00.180
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/parse/tests.lisp" (written 17 DEC 2023 06:56:15 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/parse/tests-tmp4TWTKS75.fasl
+; compilation finished in 0:00:00.003
+in suite parse with 2/2 tests:
+Table ready, 9 rules, 16 states.
+Table ready, 9 rules, 16 states.
+Table ready, 9 rules, 16 states.
+#<PASS LALR-TEST989485> 
+#<PASS LEX-TEST989484> 
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/xkb/pkg.lisp" (written 13 DEC 2023 06:44:53 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/xkb/pkg-tmpXSOQ2I78.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/xkb/constants.lisp-temp" (written 17 DEC 2023 10:31:38 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/xkb/constants-tmpUA03GLW1.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/xkb/tests.lisp" (written 13 DEC 2023 06:45:16 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/xkb/tests-tmpO0OW34V4.fasl
+; compilation finished in 0:00:00.003
+in suite xkb with 1/1 tests:
+#<PASS XKB-BASIC-TEST1037147> 
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/btrfs/pkg.lisp" (written 13 DEC 2023 06:45:58 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/btrfs/pkg-tmpU8KQLETJ.fasl
+; compilation finished in 0:00:00.010
+; compiling file "/home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/btrfs/constants.lisp-temp" (written 17 DEC 2023 10:31:38 PM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/btrfs/constants-tmpLBWGBOTB.fasl
+; compilation finished in 0:00:00.083
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/btrfs/tests.lisp" (written 25 NOV 2023 05:56:52 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/btrfs/tests-tmpRX2XGI9U.fasl
+; compilation finished in 0:00:00.003
+in suite btrfs with 0/0 tests:
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/bqn/pkg.lisp" (written 13 DEC 2023 06:58:19 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/bqn/pkg-tmpT2A3PQL9.fasl
+; compilation finished in 0:00:00.030
+; compiling file "/home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/bqn/constants.lisp-temp" (written 17 DEC 2023 10:31:39 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/bqn/constants-tmpOVHYA3BO.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/bqn/tests.lisp" (written 13 DEC 2023 05:50:29 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/bqn/tests-tmpLT3TYWCE.fasl
+; compilation finished in 0:00:00.003
+in suite bqn with 1/1 tests:
+#<FAIL ARITHMETIC ERROR FLOATING-POINT-INVALID-OPERATION SIGNALLED> 
+1 out of 1 total tests failed: 
+   #<RT:TEST BQN :FN BQN-TEST1132470 :ARGS NIL :PERSIST NIL {100F648323}>.
+1 unexpected failures: 
+   #<FAIL ARITHMETIC ERROR FLOATING-POINT-INVALID-OPERATION SIGNALLED>.
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/k/pkg.lisp" (written 13 DEC 2023 06:58:50 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/k/pkg-tmp3YF2HENI.fasl
+; compilation finished in 0:00:00.070
+; compiling file "/home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/k/constants.lisp-temp" (written 17 DEC 2023 10:31:40 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/k/constants-tmp9EEV8FN4.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/k/tests.lisp" (written 13 DEC 2023 05:51:12 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/k/tests-tmpDK25NJJO.fasl
+; compilation finished in 0:00:00.003
+in suite k with 1/1 tests:
+#<PASS K-TEST1180132> 
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/tree-sitter/pkg.lisp" (written 13 DEC 2023 06:46:39 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/tree-sitter/pkg-tmpNMZ5RT9R.fasl
+; compilation finished in 0:00:00.063
+; compiling file "/home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/tree-sitter/constants.lisp-temp" (written 17 DEC 2023 10:31:40 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/tree-sitter/constants-tmp8K51P1O1.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/tree-sitter/tests.lisp" (written 13 DEC 2023 05:51:56 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/tree-sitter/tests-tmpXAVJ8WEV.fasl
+; compilation finished in 0:00:00.003
+in suite tree-sitter with 2/2 tests:
+#<FAIL THE ALIEN FUNCTION "TREE_SITTER_RUST" IS UNDEFINED.> 
+#<PASS TS-JSON-TEST1227794> 
+1 out of 2 total tests failed: 
+   #<RT:TEST TS-RUST :FN TS-RUST-TEST1227795 :ARGS NIL :PERSIST NIL {100DEB7CC3}>.
+1 unexpected failures: 
+   #<FAIL THE ALIEN FUNCTION "TREE_SITTER_RUST" IS UNDEFINED.>.
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/uring/pkg.lisp" (written 13 DEC 2023 05:52:54 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/uring/pkg-tmpOZHFIU2N.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/uring/constants.lisp-temp" (written 17 DEC 2023 10:31:41 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/uring/constants-tmpJD9SCIW3.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/uring/tests.lisp" (written 13 DEC 2023 05:52:46 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/uring/tests-tmpICVK4HSI.fasl
+; compilation finished in 0:00:00.003
+in suite uring with 0/0 tests:
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/zstd/pkg.lisp" (written 13 DEC 2023 05:53:38 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/zstd/pkg-tmpA5CK3QHN.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/zstd/constants.lisp-temp" (written 17 DEC 2023 10:31:41 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/zstd/constants-tmp5KE6HXAY.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/zstd/tests.lisp" (written 13 DEC 2023 05:53:59 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/zstd/tests-tmp5UBS1APN.fasl
+; compilation finished in 0:00:00.000
+in suite zstd with 0/0 tests:
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/blake3/pkg.lisp" (written 13 DEC 2023 06:48:06 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/blake3/pkg-tmpSI9E4AQB.fasl
+; compilation finished in 0:00:00.033
+; compiling file "/home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/blake3/constants.lisp-temp" (written 17 DEC 2023 10:31:42 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/blake3/constants-tmpID7X8UGC.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/blake3/tests.lisp" (written 13 DEC 2023 10:48:14 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/blake3/tests-tmpFYN8G5D1.fasl
+; compilation finished in 0:00:00.003
+in suite blake3 with 2/2 tests:
+
+#<sb-alien-internals:alien-value :sap #X7FCA3A12F888 :type (*
+                                                            (sb-alien:struct
+                                                             blake3/pkg:blake3-hasher
+                                                             (blake3/pkg::key
+                                                              (array
+                                                               (sb-alien:unsigned
+                                                                32)
+                                                               8)
+                                                              :offset 0)
+                                                             (blake3/pkg::chunk
+                                                              (sb-alien:struct
+                                                               blake3/pkg:blake3-chunk-state
+                                                               (blake3/pkg::key
+                                                                (array
+                                                                 (sb-alien:unsigned
+                                                                  32)
+                                                                 8)
+                                                                :offset 0)
+                                                               (blake3/pkg::chunk-counter
+                                                                (sb-alien:unsigned
+                                                                 64)
+                                                                :offset 256)
+                                                               (blake3/pkg::buf
+                                                                (array
+                                                                 (sb-alien:unsigned
+                                                                  8)
+                                                                 64)
+                                                                :offset 320)
+                                                               (blake3/pkg::buf-len
+                                                                (sb-alien:unsigned
+                                                                 8)
+                                                                :offset 832)
+                                                               (blake3/pkg::blocks-compressed
+                                                                (sb-alien:unsigned
+                                                                 8)
+                                                                :offset 840)
+                                                               (blake3/pkg::flags
+                                                                (sb-alien:unsigned
+                                                                 8)
+                                                                :offset 848))
+                                                              :offset 256)
+                                                             (blake3/pkg::cv-stack-len
+                                                              (sb-alien:unsigned
+                                                               8)
+                                                              :offset 1152)
+                                                             (blake3/pkg::cv-stack
+                                                              (array
+                                                               (sb-alien:unsigned
+                                                                8)
+                                                               1760)
+                                                              :offset 1160)))> 
+#<sb-alien-internals:alien-value :sap #X7FCA3A12F880 :type (*
+                                                            (*
+                                                             (sb-alien:unsigned
+                                                              8)))> 
+#<PASS HASHER-TEST1370780> 
+#<PASS VERSION-TEST1370779> 
+No tests failed.
+in suite blake3 with 0/2 tests:
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/rocksdb/pkg.lisp" (written 15 DEC 2023 07:58:11 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/rocksdb/pkg-tmpG1VNK6NW.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/rocksdb/macs.lisp" (written 15 DEC 2023 09:41:24 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/rocksdb/macs-tmpV4YWE7CS.fasl
+; compilation finished in 0:00:00.010
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/rocksdb/types.lisp" (written 15 DEC 2023 11:17:56 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/rocksdb/types-tmpC487WU3K.fasl
+; compilation finished in 0:00:00.023
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/rocksdb/opts.lisp" (written 15 DEC 2023 10:06:42 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/rocksdb/opts-tmpKMQH3GP.fasl
+; compilation finished in 0:00:00.566
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/rocksdb/db.lisp" (written 15 DEC 2023 07:48:32 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/rocksdb/db-tmp8N0WO2QA.fasl
+; compilation finished in 0:00:00.240
+; compiling file "/home/ellis/dev/comp/core/lisp/ffi/rocksdb/tests.lisp" (written 16 DEC 2023 03:58:56 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/ffi/rocksdb/tests-tmpZ9QI367A.fasl
+; compilation finished in 0:00:00.013
+in suite rocksdb with 2/2 tests:
+#<PASS DB-BASIC-TEST1418431> 
+#<PASS SET-OPTS-TEST1418430> 
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rdb/pkg.lisp" (written 15 DEC 2023 10:28:03 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rdb/pkg-tmpRD10QMAI.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rdb/err.lisp" (written 16 DEC 2023 01:58:11 AM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rdb/err-tmp2L2R3A8M.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rdb/util.lisp" (written 15 DEC 2023 10:26:02 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rdb/util-tmp1CJ2OZ96.fasl
+; compilation finished in 0:00:00.056
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rdb/proto.lisp" (written 11 DEC 2023 10:15:28 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rdb/proto-tmpDKS9KGUG.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rdb/obj.lisp" (written 16 DEC 2023 12:49:27 AM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rdb/obj-tmp3E37X9HX.fasl
+; compilation finished in 0:00:00.063
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rdb/macs.lisp" (written 14 DEC 2023 05:26:46 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rdb/macs-tmpXPWOLC8S.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rdb/tests.lisp" (written 16 DEC 2023 12:20:45 AM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rdb/tests-tmpUSWNVC8E.fasl
+; compilation finished in 0:00:00.013
+in suite rdb with 7/7 tests:
+#<PASS RDB-BYTES-TEST1466155> 
+#<PASS ERRORS-TEST1466154> 
+
+#<FAIL #<RDB-ERROR EXCEPTION: UNHANDLED MEMORY FAULT AT #X10. {1007AC2CB3}>> 
+
+#<FAIL #<RDB-ERROR EXCEPTION: UNHANDLED MEMORY FAULT AT #X10. {100A122CE3}>> 
+
+#<FAIL #<RDB-ERROR EXCEPTION: UNHANDLED MEMORY FAULT AT #X10. {100A9F1E73}>> 
+
+#<FAIL #<RDB-ERROR EXCEPTION: UNHANDLED MEMORY FAULT AT #X0. {100BB96D53}>> 
+#<PASS MINIMAL-TEST1466149> 
+4 out of 7 total tests failed: 
+   #<RT:TEST WITH-CF :FN WITH-CF-TEST1466153 :ARGS NIL :PERSIST NIL {100558B543}>, 
+   #<RT:TEST WITH-ITER :FN WITH-ITER-TEST1466152 :ARGS NIL :PERSIST NIL {100558B463}>, 
+   #<RT:TEST WITH-DB-RAW :FN WITH-DB-RAW-TEST1466151 :ARGS NIL :PERSIST NIL {100558B383}>, 
+   #<RT:TEST RDB :FN RDB-TEST1466150 :ARGS NIL :PERSIST NIL {100558B2A3}>.
+4 unexpected failures: 
+   #<FAIL #<RDB-ERROR EXCEPTION: UNHANDLED MEMORY FAULT AT #X0. {100BB96D53}>>, 
+   #<FAIL #<RDB-ERROR EXCEPTION: UNHANDLED MEMORY FAULT AT #X10. {100A9F1E73}>>, 
+   #<FAIL #<RDB-ERROR EXCEPTION: UNHANDLED MEMORY FAULT AT #X10. {100A122CE3}>>, 
+   #<FAIL #<RDB-ERROR EXCEPTION: UNHANDLED MEMORY FAULT AT #X10. {1007AC2CB3}>>.
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/pkg.lisp" (written 17 DEC 2023 07:40:17 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/pkg-tmp68FKQK8H.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/uri.lisp" (written 17 DEC 2023 12:58:47 AM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/uri-tmpMU3D23G2.fasl
+; compilation finished in 0:00:00.563
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/hash.lisp" (written 16 DEC 2023 08:51:51 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/hash-tmpP7RRFRW4.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/id.lisp" (written 16 DEC 2023 09:27:24 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/id-tmp11AFZINB.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/seq.lisp" (written 17 DEC 2023 03:58:19 AM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/seq-tmpN84Z1F4D.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/tree.lisp" (written 16 DEC 2023 08:49:18 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/tree-tmpHX0IAQ8A.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/graph.lisp" (written 16 DEC 2023 11:23:51 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/graph-tmp8MQVZGT.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/color.lisp" (written 16 DEC 2023 04:26:21 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/color-tmp88LUAVGW.fasl
+; compilation finished in 0:00:00.046
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/tbl.lisp" (written 16 DEC 2023 04:26:46 PM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/tbl-tmpM5RP096T.fasl
+; compilation finished in 0:00:00.026
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/nlp/data.lisp" (written 24 NOV 2023 05:46:34 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/nlp/data-tmpRHTB3TH1.fasl
+; compilation finished in 0:00:00.020
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/nlp/stem/porter.lisp" (written 24 NOV 2023 03:07:28 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/nlp/stem/porter-tmp4YJPLPB8.fasl
+; compilation finished in 0:00:00.120
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/nlp/tokenize.lisp" (written 13 DEC 2023 06:09:12 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/nlp/tokenize-tmp6202QBVV.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/nlp/doc.lisp" (written 13 DEC 2023 06:01:56 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/nlp/doc-tmp8COQHEZO.fasl
+; compilation finished in 0:00:00.036
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/nlp/textrank.lisp" (written 24 NOV 2023 06:13:14 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/nlp/textrank-tmpQYBBS7QC.fasl
+; compilation finished in 0:00:00.020
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/nlp/dbscan.lisp" (written 24 NOV 2023 05:44:58 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/nlp/dbscan-tmpAMQ7AMSJ.fasl
+; compilation finished in 0:00:00.026
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/nlp/section.lisp" (written 24 NOV 2023 05:52:49 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/nlp/section-tmpQSC8Z7I4.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/nlp/pkg.lisp" (written 24 NOV 2023 06:04:26 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/nlp/pkg-tmpNGMCS43U.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/organ/pkg.lisp" (written 13 DEC 2023 04:17:10 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/organ/pkg-tmp5EM0MAXI.fasl
+; compilation finished in 0:00:00.033
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/dot/pkg.lisp" (written 16 DEC 2023 05:41:27 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/dot/pkg-tmpPO1KM2UM.fasl
+; compilation finished in 0:00:00.186
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/cli/pkg.lisp" (written 17 DEC 2023 08:58:41 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/cli/pkg-tmpSFHGUSI2.fasl
+; compilation finished in 0:00:00.213
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/cli/progress.lisp" (written 16 DEC 2023 09:27:11 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/cli/progress-tmpJEMJHCAQ.fasl
+; compilation finished in 0:00:00.036
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/cli/repl.lisp" (written 16 DEC 2023 09:18:04 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/cli/repl-tmpJV5SBQ61.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/pkg.lisp" (written 17 DEC 2023 07:49:55 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/pkg-tmpFHSB04A0.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/core/err.lisp" (written 09 DEC 2023 09:34:08 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/core/err-tmpQQZWJZI3.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/core/proto.lisp" (written 16 DEC 2023 06:07:07 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/core/proto-tmpPHMA69WA.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/core/header.lisp" (written 16 DEC 2023 06:08:37 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/core/header-tmpXFTEJBZU.fasl
+; compilation finished in 0:00:00.020
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/core/virt.lisp" (written 09 DEC 2023 09:39:10 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/core/virt-tmpXHDS9JD.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/core/obj.lisp" (written 16 DEC 2023 06:09:31 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/core/obj-tmp7DVUZNNP.fasl
+; compilation finished in 0:00:00.100
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/core/vc/git.lisp" (written 17 DEC 2023 07:50:07 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/core/vc/git-tmpSLELCKLF.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/core/vc/hg.lisp" (written 16 DEC 2023 01:02:47 AM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/core/vc/hg-tmpRFCZGW36.fasl
+; compilation finished in 0:00:00.030
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/core/util.lisp" (written 16 DEC 2023 06:09:48 PM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/core/util-tmpQPTRRFAI.fasl
+; compilation finished in 0:00:00.020
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/core/vm.lisp" (written 16 DEC 2023 06:10:07 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/core/vm-tmpVZ9V8GEH.fasl
+; compilation finished in 0:00:00.026
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/comp/asd.lisp" (written 09 DEC 2023 09:40:44 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/comp/asd-tmpI0YDSDVA.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/comp/containerfile.lisp" (written 09 DEC 2023 09:40:51 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/comp/containerfile-tmpKLR0OPN5.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/comp/ignore.lisp" (written 09 DEC 2023 09:40:57 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/comp/ignore-tmpQNILNMER.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/comp/makefile.lisp" (written 13 DEC 2023 06:53:54 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/comp/makefile-tmpMAMO3XGR.fasl
+; compilation finished in 0:00:00.040
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/comp/pkgbuild.lisp" (written 09 DEC 2023 10:59:33 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/comp/pkgbuild-tmp4CBIDXQU.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/tools/deploy.lisp" (written 10 DEC 2023 09:15:04 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/tools/deploy-tmp4M6Z7O9T.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/tools/viz.lisp" (written 10 DEC 2023 09:15:08 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/tools/viz-tmp3RKO0O0S.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/tests.lisp" (written 16 DEC 2023 06:08:02 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/tests-tmpJNADND61.fasl
+; compilation finished in 0:00:00.006
+in suite skel with 6/6 tests:
+#<PASS VM-TEST1513936> 
+#<PASS MAKEFILE-TEST1513935> 
+#<PASS SKELRC-TEST1513934> 
+#<PASS SKELFILE-TEST1513933> 
+#<PASS HEADER-COMMENTS-TEST1513932> 
+#<PASS SANITY-TEST1513931> 
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/organ/pkg.lisp" (written 13 DEC 2023 04:17:10 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/organ/pkg-tmpKEV7GFR4.fasl
+; compilation finished in 0:00:00.033
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/organ/tests.lisp" (written 13 DEC 2023 06:29:43 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/organ/tests-tmp13EJYBWB.fasl
+; compilation finished in 0:00:00.003
+in suite organ with 3/3 tests:
+
+#<FAIL #<FUNCTION (LAMBDA (STRING CL-PPCRE::START CL-PPCRE::END)
+                    :IN
+                    CL-PPCRE::CREATE-SCANNER-AUX) {101854C63B}> IS NOT A STRING DESIGNATOR.> 
+
+#<FAIL THE FILE #P"/HOME/ELLIS/DEV/COMP/CORE/TESTS.ORG" DOES NOT EXIST:
+         NO SUCH FILE OR DIRECTORY> 
+
+#<FAIL THE FILE #P"/HOME/ELLIS/DEV/COMP/CORE/TESTS.ORG" DOES NOT EXIST:
+         NO SUCH FILE OR DIRECTORY> 
+3 out of 3 total tests failed: 
+   #<RT:TEST ORG-HEADLINE :FN ORG-HEADLINE-TEST1562613 :ARGS NIL :PERSIST NIL {101890A4A3}>, 
+   #<RT:TEST ORG-LINES :FN ORG-LINES-TEST1562612 :ARGS NIL :PERSIST NIL {101890A3C3}>, 
+   #<RT:TEST ORG-FILE :FN ORG-FILE-TEST1562611 :ARGS NIL :PERSIST NIL {101890A2E3}>.
+3 unexpected failures: 
+   #<FAIL THE FILE #P"/HOME/ELLIS/DEV/COMP/CORE/TESTS.ORG" DOES NOT EXIST:
+         NO SUCH FILE OR DIRECTORY>, 
+   #<FAIL THE FILE #P"/HOME/ELLIS/DEV/COMP/CORE/TESTS.ORG" DOES NOT EXIST:
+         NO SUCH FILE OR DIRECTORY>, 
+   #<FAIL #<FUNCTION (LAMBDA (STRING CL-PPCRE::START CL-PPCRE::END)
+                    :IN
+                    CL-PPCRE::CREATE-SCANNER-AUX) {101854C63B}> IS NOT A STRING DESIGNATOR.>.
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/nlp/tests.lisp" (written 13 DEC 2023 06:02:19 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/nlp/tests-tmp93YER753.fasl
+; compilation finished in 0:00:00.003
+in suite nlp with 3/3 tests:
+#<PASS TEXTRANK-TEST1610261> 
+#<PASS DBSCAN-TEST1610260> 
+#<PASS PORTER-STEM-TEST1610259> 
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/dot/pkg.lisp" (written 16 DEC 2023 05:41:27 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/dot/pkg-tmpB50UYUD7.fasl
+; compilation finished in 0:00:00.186
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/dot/tests.lisp" (written 13 DEC 2023 10:36:17 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/dot/tests-tmp7R9QD7N9.fasl
+; compilation finished in 0:00:00.010
+in suite dot with 1/1 tests:
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#<PASS DOT-TEST1657914> 
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/pkg.lisp" (written 17 DEC 2023 07:40:17 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/pkg-tmpGP8R3FTA.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/uri.lisp" (written 17 DEC 2023 12:58:47 AM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/uri-tmp121QKS9N.fasl
+; compilation finished in 0:00:00.716
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/hash.lisp" (written 16 DEC 2023 08:51:51 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/hash-tmp2JF031K4.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/id.lisp" (written 16 DEC 2023 09:27:24 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/id-tmpX1DK061H.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/seq.lisp" (written 17 DEC 2023 03:58:19 AM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/seq-tmp4FJCN3GX.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/tree.lisp" (written 16 DEC 2023 08:49:18 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/tree-tmpWO4JLIQB.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/graph.lisp" (written 16 DEC 2023 11:23:51 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/graph-tmpHBCFHPPX.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/color.lisp" (written 16 DEC 2023 04:26:21 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/color-tmp8ZEXUD27.fasl
+; compilation finished in 0:00:00.050
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/tbl.lisp" (written 16 DEC 2023 04:26:46 PM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/tbl-tmp95B25LCL.fasl
+; compilation finished in 0:00:00.030
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/tests.lisp" (written 17 DEC 2023 07:42:38 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/tests-tmpAMNCEZSG.fasl
+; compilation finished in 0:00:00.006
+in suite obj with 5/5 tests:
+#<PASS DEF-SEQ-TEST1705646> 
+#<PASS DEF-ITER-TEST1705645> 
+#<PASS IDS-TEST1705644> 
+#<PASS TABLES-TEST1705643> 
+#<PASS RAINBOW-TEST1705642> 
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/log/pkg.lisp" (written 13 DEC 2023 04:11:10 PM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/log/pkg-tmpVQGQLFW2.fasl
+; compilation finished in 0:00:00.026
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rt/pkg.lisp" (written 17 DEC 2023 09:31:35 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rt/pkg-tmpXATIMY4E.fasl
+; compilation finished in 0:00:00.133
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rt/bench.lisp" (written 17 DEC 2023 06:05:37 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rt/bench-tmp3LJ5VTJR.fasl
+; compilation finished in 0:00:00.010
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rt/trace.lisp" (written 17 DEC 2023 05:41:51 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rt/trace-tmp8VUWAF03.fasl
+; compilation finished in 0:00:00.133
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/rt/flamegraph.lisp" (written 17 DEC 2023 06:02:47 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/rt/flamegraph-tmpJUI0JWVS.fasl
+; compilation finished in 0:00:00.030
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/log/tests.lisp" (written 13 DEC 2023 05:07:32 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/log/tests-tmpHNA3KE33.fasl
+; compilation finished in 0:00:00.003
+in suite log with 1/1 tests:
+#<PASS LOG-TEST1753338> 
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/pkg.lisp" (written 17 DEC 2023 02:19:00 AM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/pkg-tmp9QACGPOH.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/err.lisp" (written 16 DEC 2023 10:06:36 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/err-tmpST69PK2Q.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/obj.lisp" (written 17 DEC 2023 01:36:27 AM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/obj-tmpYAKMHP3C.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/udp.lisp" (written 16 DEC 2023 10:09:22 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/udp-tmpT250CJEH.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/tcp.lisp" (written 16 DEC 2023 11:08:35 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/tcp-tmpZ5LLIZWU.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/codec/punycode.lisp" (written 17 DEC 2023 02:20:41 AM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/codec/punycode-tmpK87BOA56.fasl
+; compilation finished in 0:00:00.060
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/codec/dns.lisp" (written 17 DEC 2023 01:57:54 AM):
+
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/codec/dns-tmpRL4WWIL2.fasl
+; compilation finished in 0:00:00.046
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/codec/tlv.lisp" (written 16 DEC 2023 10:27:28 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/codec/tlv-tmp9PRKYPOC.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/codec/osc.lisp" (written 17 DEC 2023 01:32:18 AM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/codec/osc-tmp747V57QS.fasl
+; compilation finished in 0:00:00.136
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/proto/crew.lisp" (written 16 DEC 2023 10:59:21 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/proto/crew-tmpK7KF0QEZ.fasl
+; compilation finished in 0:00:00.006
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/proto/dns.lisp" (written 17 DEC 2023 02:14:45 AM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/proto/dns-tmp7L3QASG.fasl
+; compilation finished in 0:00:00.056
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/tests.lisp" (written 17 DEC 2023 02:21:58 AM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/tests-tmpSU9OHSB9.fasl
+; compilation finished in 0:00:00.003
+in suite net with 6/6 tests:
+#<PASS SANITY-TEST1801043> 
+#<PASS OSC-TEST1801042> 
+#<PASS TLV-TEST1801041> 
+#<PASS UDP-TEST1801040> 
+#<PASS TCP-TEST1801039> 
+#<PASS DNS-TEST1801038> 
+No tests failed.
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/packy/pkg.lisp" (written 12 DEC 2023 06:27:36 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/packy/pkg-tmpTEZ5J20P.fasl
+; compilation finished in 0:00:00.003
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/packy/proto.lisp" (written 09 DEC 2023 11:17:07 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/packy/proto-tmp7EQWE70T.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/packy/obj.lisp" (written 09 DEC 2023 11:19:20 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/packy/obj-tmp83ON8YFR.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/packy/db.lisp" (written 09 DEC 2023 11:18:09 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/packy/db-tmpEOOWYRL6.fasl
+; compilation finished in 0:00:00.000
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/packy/tests.lisp" (written 13 DEC 2023 04:17:49 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/packy/tests-tmpFDZ5SF8C.fasl
+; compilation finished in 0:00:00.003
+in suite packy with 1/1 tests:
+#<PASS PACKY-OBJECTS-TEST1848705> 
+No tests failed.
+#+end_example
+
+** std
+#+begin_src lisp :results output replace :exports both
+  (load "lisp/std/tests.lisp")
+  (asdf:test-system :std)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+in suite std with 11/11 tests:
+#<PASS CURRY-TEST879395> 
+#<PASS ALIEN-TEST879394> 
+#<PASS PAN-TEST879393> 
+#<PASS ANA-TEST879392> 
+#<PASS FMT-TEST879391> 
+#<PASS THREAD-TEST879390> 
+#<PASS COND-TEST879389> 
+#<PASS LIST-TEST879388> 
+#<PASS STR-TEST879387> 
+#<PASS SYM-TEST879386> 
+#<PASS READTABLES-TEST879385> 
+No tests failed.
+#+end_example
+
+** lib
+*** rdb
+#+begin_src lisp :results output replace :exports results
+  (load "lisp/lib/rdb/tests.lisp")
+  (asdf:test-system :rdb)
+#+end_src
+*** sxp
+#+begin_src lisp :results output replace :exports both
+  (load "lisp/lib/sxp/tests.lisp")
+  (rt:do-tests :sxp)
+#+end_src
+
+#+RESULTS:
+: in suite sxp with 4/4 tests:
+: #<PASS SXP-STREAM-TEST78386> 
+: #<PASS SXP-STRING-TEST78385> 
+: #<PASS SXP-FILE-TEST78384> 
+: #<PASS FORMS-TEST78383> 
+: No tests failed.
+
+*** organ
+#+begin_src lisp :results output replace :exports results
+  (load "lisp/lib/organ/tests.lisp")
+  (asdf:test-system :organ)
+#+end_src
+#+RESULTS:
+#+begin_example
+in suite organ with 3/3 tests:
+
+#<FAIL #<FUNCTION (LAMBDA (STRING CL-PPCRE::START CL-PPCRE::END)
+                    :IN
+                    CL-PPCRE::CREATE-SCANNER-AUX) {100AC9C56B}> IS NOT A STRING DESIGNATOR.> 
+#<PASS ORG-LINES-TEST313189> 
+#<PASS ORG-FILE-TEST313188> 
+1 out of 3 total tests failed: 
+   #<STD/RT:TEST ORG-HEADLINE :FN ORG-HEADLINE-TEST313190 :ARGS NIL :PERSIST NIL {100AE3E723}>.
+1 unexpected failures: 
+   #<FAIL #<FUNCTION (LAMBDA (STRING CL-PPCRE::START CL-PPCRE::END)
+                    :IN
+                    CL-PPCRE::CREATE-SCANNER-AUX) {100AC9C56B}> IS NOT A STRING DESIGNATOR.>.
+#+end_example
+*** skel
+#+begin_src lisp :results output replace :exports results
+  (load "lisp/lib/skel/tests.lisp")
+  (asdf:test-system :skel)
+#+end_src
+#+RESULTS:
+#+begin_example
+in suite skel with 6/6 tests:
+#<FAIL THE FUNCTION SKEL/CORE:MAKE-SK-VM IS UNDEFINED.> 
+#<FAIL THE FUNCTION SKEL/CORE:MAKE-SOURCE-HEADER-COMMENT IS UNDEFINED.> 
+#<PASS SKELRC-TEST313206> 
+#<FAIL THE FUNCTION SKEL/CORE:MAKE-SOURCE-HEADER-COMMENT IS UNDEFINED.> 
+#<FAIL THE FUNCTION SKEL/CORE:MAKE-SHEBANG-COMMENT IS UNDEFINED.> 
+#<PASS SANITY-TEST313203> 
+4 out of 6 total tests failed: 
+   #<STD/RT:TEST VM :FN VM-TEST313208 :ARGS NIL :PERSIST NIL {100D0B1FE3}>, 
+   #<STD/RT:TEST MAKEFILE :FN MAKEFILE-TEST313207 :ARGS NIL :PERSIST NIL {100D0B1EF3}>, 
+   #<STD/RT:TEST SKELFILE :FN SKELFILE-TEST313205 :ARGS NIL :PERSIST NIL {100D0B1D13}>, 
+   #<STD/RT:TEST HEADER-COMMENTS :FN HEADER-COMMENTS-TEST313204 :ARGS NIL :PERSIST NIL {100D0B1C23}>.
+4 unexpected failures: 
+   #<FAIL THE FUNCTION SKEL/CORE:MAKE-SHEBANG-COMMENT IS UNDEFINED.>, 
+   #<FAIL THE FUNCTION SKEL/CORE:MAKE-SOURCE-HEADER-COMMENT IS UNDEFINED.>, 
+   #<FAIL THE FUNCTION SKEL/CORE:MAKE-SOURCE-HEADER-COMMENT IS UNDEFINED.>, 
+   #<FAIL THE FUNCTION SKEL/CORE:MAKE-SK-VM IS UNDEFINED.>.
+#+end_example
+*** packy
+#+begin_src lisp :results output replace :exports results
+  (load "lisp/lib/packy/tests.lisp")
+  (asdf:test-system :packy)
+#+end_src
+
+#+RESULTS:
+: in suite packy with 1/1 tests:
+: #<PASS PACKY-OBJECTS-TEST314215> 
+: No tests failed.
+
+*** nlp
+#+begin_src lisp :results output replace :exports results
+  (load "lisp/lib/nlp/tests.lisp")
+  (asdf:test-system :nlp)
+#+end_src
+
+#+RESULTS:
+: in suite nlp with 3/3 tests:
+: #<PASS TEXTRANK-TEST314218> 
+: #<PASS DBSCAN-TEST314217> 
+: #<PASS PORTER-STEM-TEST314216> 
+: No tests failed.
+
+*** dot
+#+begin_src lisp :results output replace :exports results
+  (load "lisp/lib/dot/tests.lisp")
+  (asdf:test-system :dot)
+#+end_src
+
+#+RESULTS:
+: in suite dot with 1/1 tests:
+: ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#<PASS DOT-TEST314273> 
+: No tests failed.
+
+*** net
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :net)
+  (load "lisp/lib/net/tests.lisp")
+  (asdf:test-system :net)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+To load "net":
+  Load 1 ASDF system:
+    net
+; Loading "net"
+
+in suite net with 6/6 tests:
+#<PASS SANITY-TEST78482> 
+#<PASS OSC-TEST78481> 
+#<PASS TLV-TEST78480> 
+#<PASS UDP-TEST78479> 
+#<PASS TCP-TEST78478> 
+#<PASS DNS-TEST78477> 
+No tests failed.
+#+end_example
+
+*** log
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :log)
+  (load "lisp/lib/log/tests.lisp")
+  (asdf:test-system :log)
+#+end_src
+
+#+RESULTS:
+: To load "log":
+:   Load 1 ASDF system:
+:     log
+: ; Loading "log"
+: 
+: in suite log with 1/1 tests:
+: #<PASS LOG-TEST78498> 
+: No tests failed.
+
+*** gui
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :gui)
+  (load "lisp/lib/gui/tests.lisp")
+  (asdf:test-system :gui)
+#+end_src
+
+*** cli
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :cli)
+  (load "lisp/lib/cli/tests.lisp")
+  (asdf:test-system :cli)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+To load "cli":
+  Load 1 ASDF system:
+    cli
+; Loading "cli"
+[package cli/progress].........
+; compiling file "/home/ellis/dev/comp/core/lisp/lib/cli/tests.lisp" (written 17 DEC 2023 07:10:11 PM):
+
+; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/cli/tests-tmpP2MKOF4W.fasl
+; compilation finished in 0:00:00.016
+in suite cli with 2/2 tests:
+#<FAIL THE FUNCTION CLI:PARSE-STR-OPT IS UNDEFINED.> 
+#<FAIL THE FUNCTION CLI/TESTS::TPFOO-PROMPT IS UNDEFINED.> 
+2 out of 2 total tests failed: 
+   #<RT:TEST CLI :FN CLI-TEST78617 :ARGS NIL :PERSIST NIL {1005E376B3}>, 
+   #<RT:TEST CLI-PROMPT :FN CLI-PROMPT-TEST78616 :ARGS NIL :PERSIST NIL {1005E35E43}>.
+2 unexpected failures: 
+   #<FAIL THE FUNCTION CLI/TESTS::TPFOO-PROMPT IS UNDEFINED.>, 
+   #<FAIL THE FUNCTION CLI:PARSE-STR-OPT IS UNDEFINED.>.
+#+end_example
+
+*** rt
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :rt)
+  (load "lisp/lib/rt/tests.lisp")
+  (asdf:test-system :rt)
+#+end_src
+
+#+RESULTS:
+: To load "rt":
+:   Load 1 ASDF system:
+:     rt
+: ; Loading "rt"
+: 
+: in suite rt with 1/1 tests:
+: #<PASS RT-TEST78682> 
+: No tests failed.
+
+*** pwn
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :pwn)
+  (load "lisp/lib/pwn/tests.lisp")
+  (asdf:test-system :pwn)
+#+end_src
+
+*** obj
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :obj)
+  (load "lisp/lib/obj/tests.lisp")
+  (asdf:test-system :obj)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+To load "obj":
+  Load 1 ASDF system:
+    obj
+; Loading "obj"
+
+in suite obj with 5/5 tests:
+#<PASS DEF-SEQ-TEST318> 
+#<PASS DEF-ITER-TEST317> 
+#<PASS IDS-TEST316> 
+#<PASS TABLES-TEST315> 
+#<PASS RAINBOW-TEST314> 
+No tests failed.
+#+end_example
+
+** ffi
+*** btrfs
+#+begin_src lisp :results output replace :exports results
+  (load "lisp/ffi/btrfs/tests.lisp")
+  (asdf:test-system :btrfs)
+#+end_src
+
+#+RESULTS:
+: in suite btrfs with 0/0 tests:
+: No tests failed.
+
+*** rocksdb
+#+begin_src lisp :results output replace :exports results
+  (load "lisp/ffi/rocksdb/tests.lisp")
+  (asdf:test-system :rocksdb)
+#+end_src
+
+#+RESULTS:
+: in suite rocksdb with 2/2 tests:
+: #<PASS DB-BASIC-TEST314349> 
+: #<PASS SET-OPTS-TEST314348> 
+: No tests failed.
+
+*** uring
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :uring)
+  (load "lisp/ffi/uring/tests.lisp")
+  (asdf:test-system :uring)
+#+end_src
+
+#+RESULTS:
+: To load "uring":
+:   Load 1 ASDF system:
+:     uring
+: ; Loading "uring"
+: 
+: in suite uring with 0/0 tests:
+: No tests failed.
+
+*** tree-sitter
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :tree-sitter)
+  (load "lisp/ffi/tree-sitter/tests.lisp")
+  (asdf:test-system :tree-sitter)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+To load "tree-sitter":
+  Load 1 ASDF system:
+    tree-sitter
+; Loading "tree-sitter"
+
+in suite tree-sitter with 2/2 tests:
+#<FAIL THE ALIEN FUNCTION "TREE_SITTER_RUST" IS UNDEFINED.> 
+#<PASS TS-JSON-TEST355> 
+1 out of 2 total tests failed: 
+   #<RT:TEST TS-RUST :FN TS-RUST-TEST356 :ARGS NIL :PERSIST NIL {1004EA6773}>.
+1 unexpected failures: 
+   #<FAIL THE ALIEN FUNCTION "TREE_SITTER_RUST" IS UNDEFINED.>.
+#+end_example
+
+*** k
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :k)
+  (load "lisp/ffi/k/tests.lisp")
+  (asdf:test-system :k)
+#+end_src
+
+#+RESULTS:
+: To load "k":
+:   Load 1 ASDF system:
+:     k
+: ; Loading "k"
+: 
+: in suite k with 1/1 tests:
+: #<PASS K-TEST375> 
+: No tests failed.
+
+*** bqn
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :bqn)
+  (load "lisp/ffi/bqn/tests.lisp")
+  (asdf:test-system :bqn)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+To load "bqn":
+  Load 1 ASDF system:
+    bqn
+; Loading "bqn"
+
+in suite bqn with 1/1 tests:
+#<FAIL ARITHMETIC ERROR FLOATING-POINT-INVALID-OPERATION SIGNALLED> 
+1 out of 1 total tests failed: 
+   #<RT:TEST BQN :FN BQN-TEST394 :ARGS NIL :PERSIST NIL {100B6795C3}>.
+1 unexpected failures: 
+   #<FAIL ARITHMETIC ERROR FLOATING-POINT-INVALID-OPERATION SIGNALLED>.
+#+end_example
+
+*** blake3
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :blake3)
+  (load "lisp/ffi/blake3/tests.lisp")
+  (asdf:test-system :blake3)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+To load "blake3":
+  Load 1 ASDF system:
+    blake3
+; Loading "blake3"
+
+in suite blake3 with 2/2 tests:
+
+#<sb-alien-internals:alien-value :sap #X7FF2E315F888 :type (*
+                                                            (sb-alien:struct
+                                                             blake3/pkg:blake3-hasher
+                                                             (blake3/pkg::key
+                                                              (array
+                                                               (sb-alien:unsigned
+                                                                32)
+                                                               8)
+                                                              :offset 0)
+                                                             (blake3/pkg::chunk
+                                                              (sb-alien:struct
+                                                               blake3/pkg:blake3-chunk-state
+                                                               (blake3/pkg::key
+                                                                (array
+                                                                 (sb-alien:unsigned
+                                                                  32)
+                                                                 8)
+                                                                :offset 0)
+                                                               (blake3/pkg::chunk-counter
+                                                                (sb-alien:unsigned
+                                                                 64)
+                                                                :offset 256)
+                                                               (blake3/pkg::buf
+                                                                (array
+                                                                 (sb-alien:unsigned
+                                                                  8)
+                                                                 64)
+                                                                :offset 320)
+                                                               (blake3/pkg::buf-len
+                                                                (sb-alien:unsigned
+                                                                 8)
+                                                                :offset 832)
+                                                               (blake3/pkg::blocks-compressed
+                                                                (sb-alien:unsigned
+                                                                 8)
+                                                                :offset 840)
+                                                               (blake3/pkg::flags
+                                                                (sb-alien:unsigned
+                                                                 8)
+                                                                :offset 848))
+                                                              :offset 256)
+                                                             (blake3/pkg::cv-stack-len
+                                                              (sb-alien:unsigned
+                                                               8)
+                                                              :offset 1152)
+                                                             (blake3/pkg::cv-stack
+                                                              (array
+                                                               (sb-alien:unsigned
+                                                                8)
+                                                               1760)
+                                                              :offset 1160)))> 
+#<sb-alien-internals:alien-value :sap #X7FF2E315F880 :type (*
+                                                            (*
+                                                             (sb-alien:unsigned
+                                                              8)))> 
+#<PASS HASHER-TEST422> 
+#<PASS VERSION-TEST421> 
+No tests failed.
+in suite blake3 with 0/2 tests:
+No tests failed.
+#+end_example
+
+*** alpm
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :alpm)
+  (load "lisp/ffi/alpm/tests.lisp")
+  (asdf:test-system :alpm)
+#+end_src
+
+#+RESULTS:
+: To load "alpm":
+:   Load 1 ASDF system:
+:     alpm
+: ; Loading "alpm"
+: 
+: in suite alpm with 1/1 tests:
+: #<PASS ALPM-VERSION-TEST441> 
+: No tests failed.
+
+*** xkb
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :xkb)
+  (load "lisp/ffi/xkb/tests.lisp")
+  (asdf:test-system :xkb)
+#+end_src
+
+#+RESULTS:
+: To load "xkb":
+:   Load 1 ASDF system:
+:     xkb
+: ; Loading "xkb"
+: 
+: in suite xkb with 1/1 tests:
+: #<PASS XKB-BASIC-TEST460> 
+: No tests failed.
+
+* emacs
+=sudo pacman -Syu libvoikko librsvg imagemagick=
+

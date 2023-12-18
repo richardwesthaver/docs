@@ -27,16 +27,23 @@ on code comments and developer docs.
   comments for you.
 - variables, imports, and exports belong at the top of a file
 - =main= functions belong at the bottom of a file
+- use LSP wherever possible (eglot, slime)
 * Common Lisp
-
 - prefer symbol docs to comments
 - use stdin/stdout/stderr correctly - see [[https://zenodo.org/records/3414191][CDR-11]]
 - always prefer =core= libraries over vendored dependencies
-- use the compiler internals - if a function or class is generally
+- use the compiler built-ins - if a function or class is generally
   useful, add it to the core
+- use conditions, restarts, and error handling where appropriate
+- save type declarations and hairy optimizations for when the API is
+  polished
+- don't be afraid of macros
 * Rust
 - don't make =mod.rs= files
   - use the =foo.rs=, =foo/*= pattern instead
+- derive =Debug= and =Clone= wherever possible
+- write a sensible =Display= impl
+- use generics where appropriate: =foo<P:AsRef<Path>>(path:P){p.as_ref();}=
 * Emacs Lisp
 * Org-mode
 * Shell
