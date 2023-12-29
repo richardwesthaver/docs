@@ -78,7 +78,7 @@
 :PROPERTIES:
 :CUSTOM_ID: af778a5f-4834-4f0c-ae53-36d35cb98d8c
 :END:
-* TODO parse                                                       :lisp:lib:
+* TODO parse 0.1 [0/2]                                             :lisp:lib:
 :LOGBOOK:
 - State "TODO"       from "TODO"       [2023-12-13 Wed 18:24]
 :END:
@@ -90,6 +90,18 @@
 - lalr.lisp
 - lex.lisp
 - obj api
+** TODO tests
+:LOGBOOK:
+- State "TODO"       from              [2023-12-24 Sun 19:28]
+:END:
+add tests for lexer and LALR. figure out if there are any gaps that we
+need to fill.
+** TODO toml impl
+:LOGBOOK:
+- State "TODO"       from              [2023-12-24 Sun 19:28]
+:END:
+the toml parser on quicklisp is based on esrap, make a comparable one
+using our parser module.
 * TBD wayland compositor                                          :rust:lisp:
 :LOGBOOK:
 - State "TBD"        from "TODO"       [2023-11-29 Wed 21:25]
@@ -253,15 +265,22 @@
 - use to replace LOAD-AST for sk-project and friends
 - requires mop
 - take a look at UNWRAP-OBJECT too, may need rewrite for a better API
-* TODO obj 0.1 [0/1]                                               :lisp:obj:
+* TODO obj 0.1 [1/2]                                               :lisp:obj:
 :LOGBOOK:
 - State "TODO"       from              [2023-12-17 Sun 00:59]
 :END:
-** TODO uri
+** NOPE uri
 :LOGBOOK:
 - State "TODO"       from              [2023-12-17 Sun 01:00]
+- Note taken on [2023-12-20 Wed 18:26] \\
+  the franz impl doesn't play well with SBCL, at least with our hacks. I'm not sure how faithfully I want to follow the RFCs anyhow.. maybe we go for the dead simple approach and focus on MOP for a path and URI protocol.
 :END:
 - mostly just need the tests and to finish porting the Franz implementation
+** TODO db
+:LOGBOOK:
+- State "TODO"       from              [2023-12-20 Wed 18:26]
+:END:
+- ported from XDB2
 * TODO net 0.1 [0/7]                                               :lisp:net:
 :LOGBOOK:
 - State "TODO"       from              [2023-12-17 Sun 01:00]
@@ -313,8 +332,26 @@
 :LOGBOOK:
 - State "TODO"       from              [2023-12-17 Sun 03:40]
 :END:
+* NOPE dot 0.1 [1/1]                                               :lisp:dot:
+:LOGBOOK:
+- State "TODO"       from              [2023-12-20 Wed 18:27]
+:END:
+** NOPE PARSE-SPECIALIZER-USING-CLASS
+:LOGBOOK:
+- State "TODO"       from              [2023-12-20 Wed 18:28]
+:END:
+- experimental SB-MOP generic, may be useful in places where we would
+  typically use =(eql OBJECT)= as a specializer for GRAPH.
 
-* TBD homer 0.1 [0/0]                                            :lisp:homer:
+* TBD homer 0.1 [0/2]                                            :lisp:homer:
 :LOGBOOK:
 - State "TBD"        from "TODO"       [2023-12-12 Tue 19:53]
+:END:
+** TODO review GNU stow API
+:LOGBOOK:
+- State "TODO"       from              [2023-12-24 Sun 19:32]
+:END:
+** TODO consolidate with skel
+:LOGBOOK:
+- State "TODO"       from              [2023-12-24 Sun 19:32]
 :END:

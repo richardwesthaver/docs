@@ -1,0 +1,56 @@
+# -*- org-export-babel-evaluate: nil -*-
+{{{header(docs/core,Richard Westhaver,ellis@rwest.io)}}}
+#+property: header-args :dir /home/ellis/dev/comp/core/
+#+begin_src shell :results pp :exports results
+  tokei -t=rust,lisp
+#+end_src
+
+#+RESULTS:
+#+begin_example
+===============================================================================
+ Language            Files        Lines         Code     Comments       Blanks
+===============================================================================
+ Lisp                  259        29567        22520         3163         3884
+-------------------------------------------------------------------------------
+ Rust                  142        12407        10732          443         1232
+ |- Markdown           101          804            0          709           95
+ (Total)                          13211        10732         1152         1327
+===============================================================================
+ Total                 401        41974        33252         3606         5116
+===============================================================================
+#+end_example
+
+#+name: tally-package-symbols
+#+begin_src lisp :exports both
+  (quickload-core-systems)
+  (defparameter *core-packages* '("STD" "SXP" "PARSE" "CLI" "XKB" "ALPM" "BTRFS" "BQN" "K"
+                                  "TREE-SITTER" "URING" "ZSTD" "BLAKE3" "ROCKSDB" "RDB" "SKEL" 
+                                  "ORGAN" "NLP" "DAT" "OBJ" "LOG" "NET" "PACKY" "GUI" "SYN" "DOC"))
+  (defvar *core-symbols* nil)
+
+  (loop with n = 0
+        for pkg in *core-packages*
+        do (loop for s being the external-symbols of (find-package pkg)
+                 do (incf n)
+                    (print (type-of s))
+                    (pushnew s *core-symbols*))
+        finally (return (cons (length *core-packages*) n)))
+#+end_src
+
+#+RESULTS: tally-package-symbols
+: (24 . 1571)
+
+#+name: tally-functions-and-symbols
+#+begin_src lisp :exports both
+  (defvar *core-functions* nil)
+  (defvar *core-variables* nil)
+  (loop for s in *core-symbols*
+        do (let ((f (fboundp s))
+                 (v (boundp s)))
+             (when f (pushnew s *core-functions*))
+             (when v (pushnew s *core-variables*)))
+        finally (return (cons (length *core-functions*) (length *core-variables*))))
+#+end_src
+
+#+RESULTS: tally-functions-and-symbols
+: (1098 . 75)
