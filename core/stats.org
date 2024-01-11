@@ -1,7 +1,9 @@
 # -*- org-export-babel-evaluate: nil -*-
 {{{header(docs/core,Richard Westhaver,ellis@rwest.io)}}}
+* files
 #+property: header-args :dir /home/ellis/dev/comp/core/
 #+begin_src shell :results pp :exports results
+  cd rust && cargo clean && cd ..
   tokei -t=rust,lisp
 #+end_src
 
@@ -10,20 +12,24 @@
 ===============================================================================
  Language            Files        Lines         Code     Comments       Blanks
 ===============================================================================
- Lisp                  259        29567        22520         3163         3884
+ Lisp                  264        30965        23547         3360         4058
 -------------------------------------------------------------------------------
- Rust                  142        12407        10732          443         1232
- |- Markdown           101          804            0          709           95
- (Total)                          13211        10732         1152         1327
+ Rust                  145        12513        10807          462         1244
+ |- Markdown           102          813            0          718           95
+ (Total)                          13326        10807         1180         1339
 ===============================================================================
- Total                 401        41974        33252         3606         5116
+ Total                 409        43478        34354         3822         5302
 ===============================================================================
 #+end_example
 
+* lisp
+** systems
+** packages
+** symbols
 #+name: tally-package-symbols
 #+begin_src lisp :exports both
   (quickload-core-systems)
-  (defparameter *core-packages* '("STD" "SXP" "PARSE" "CLI" "XKB" "ALPM" "BTRFS" "BQN" "K"
+  (defparameter *core-packages* '("STD" "PARSE" "CLI" "XKB" "ALPM" "BTRFS" "BQN" "K"
                                   "TREE-SITTER" "URING" "ZSTD" "BLAKE3" "ROCKSDB" "RDB" "SKEL" 
                                   "ORGAN" "NLP" "DAT" "OBJ" "LOG" "NET" "PACKY" "GUI" "SYN" "DOC"))
   (defvar *core-symbols* nil)
@@ -54,3 +60,19 @@
 
 #+RESULTS: tally-functions-and-symbols
 : (1098 . 75)
+
+** fasls
+#+begin_src shell :dir /home/ellis/dev/comp/infra/
+  for f in dist/fasl/*; do
+    du -s $f
+  done
+#+end_src
+
+#+RESULTS:
+| 240728 | dist/fasl/cli.core     |
+| 240920 | dist/fasl/organ.core   |
+| 244152 | dist/fasl/pod.core     |
+| 274504 | dist/fasl/prelude.core |
+| 240760 | dist/fasl/rdb.core     |
+| 241400 | dist/fasl/skel.core    |
+| 240664 | dist/fasl/std.core     |

@@ -232,7 +232,6 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
   (defun quickload-core-systems ()
     (ql:quickload :std)
     (ql:quickload :rt)
-    (ql:quickload :sxp)
     (ql:quickload :parse)
     (ql:quickload :cli)
     (ql:quickload :xkb)
@@ -240,6 +239,10 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
     (ql:quickload :btrfs)
     ;; (ql:quickload :bqn)
     (ql:quickload :k)
+    (ql:quickload :syn)
+    (ql:quickload :pod)
+    (ql:quickload :vc)
+    (ql:quickload :dat)
     (ql:quickload :tree-sitter)
     (ql:quickload :uring)
     (ql:quickload :zstd)
@@ -273,8 +276,10 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
     (time
      (progn 
        (gen-report :std)
-       (setq *sxp-test-file* "lisp/lib/sxp/tests.sxp")
-       (gen-report :sxp)
+       (gen-report :dat)
+       (gen-report :pod)
+       (gen-report :vc)
+       (gen-report :syn)
        (gen-report :parse)
        (gen-report :cli)
        (gen-report :xkb)
@@ -303,8 +308,8 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 #+name: gen-trace-report
 #+begin_src lisp :results output :exports code
   (quickload-core-systems)
-  (trace "STD" "SXP" "PARSE" "CLI" "XKB" "SKEL" "ORGAN" 
-         "OBJ" "XDB" "LOG" "NET" "PACKY" "NLP"
+  (trace "STD" "PARSE" "CLI" "XKB" "SKEL" "ORGAN" 
+         "OBJ" "XDB" "LOG" "NET" "PACKY" "NLP" "DAT"
          "ROCKSDB" "K" "BTRFS" "TREE-SITTER" "ZSTD" "BLAKE3" "URING")
   (rt/trace:start-tracing)
   (gen-core-coverage-report)
@@ -959,20 +964,6 @@ Sort
 No tests failed.
 #+end_example
 
-*** sxp
-#+begin_src lisp :results output replace :exports both
-  (load "lisp/lib/sxp/tests.lisp")
-  (rt:do-tests :sxp)
-#+end_src
-
-#+RESULTS:
-: in suite sxp with 4/4 tests:
-: #<PASS SXP-STREAM-TEST248089> 
-: #<PASS SXP-STRING-TEST248088> 
-: #<PASS SXP-FILE-TEST248087> 
-: #<PASS FORMS-TEST248086> 
-: No tests failed.
-
 *** organ
 #+begin_src lisp :results output replace :exports results
   (load "lisp/lib/organ/tests.lisp")
@@ -1213,6 +1204,48 @@ in suite doc with 4/4 tests:
 #<PASS DOC-SYMBOL-TEST924> 
 No tests failed.
 #+end_example
+
+*** vc
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :vc)
+  (load "lisp/lib/vc/tests.lisp")
+  (asdf:test-system :vc)
+#+end_src
+
+#+RESULTS:
+: To load "vc":
+:   Load 1 ASDF system:
+:     vc
+: ; Loading "vc"
+: 
+: in suite vc with 2/2 tests:
+: #<PASS HG-TEST2877> 
+: #<PASS GIT-TEST2876> 
+: No tests failed.
+
+*** pod
+#+begin_src emacs-lisp
+  (async-shell-command "podman system service --time=10 unix:///run/user/$UID/podman.sock")
+#+end_src
+
+#+RESULTS:
+: #<window 167 on *Async Shell Command*>
+
+#+begin_src lisp :results output replace :exports results
+  (ql:quickload :pod)
+  (load "lisp/lib/pod/tests.lisp")
+  (asdf:test-system :pod)
+#+end_src
+
+#+RESULTS:
+: To load "pod":
+:   Load 1 ASDF system:
+:     pod
+: ; Loading "pod"
+: 
+: in suite pod with 1/1 tests:
+: #<PASS POKE-AND-PROD-TEST2882> 
+: No tests failed.
 
 ** ffi
 *** btrfs
