@@ -1,6 +1,14 @@
 # -*- org-export-babel-evaluate: nil -*-
 {{{header(tests,Richard Westhaver,ellis@rwest.io,core test results)}}}
 #+property: header-args :dir /home/ellis/dev/comp/core/
+Unit tests are performed on a per-lang basis and described in the
+sections below. 
+
+The Nushell module at =nu/lib/test.nu= acts as a high-level test
+harness which can be used interactively by devs or via =make test=.
+
+Integration tests are typically found in the [[https://vc.compiler.company/comp/demo][demo]] repository.
+
 * rust
 ** sys
 These crates contain FFI bindings to foreign libraries, usually in C.
@@ -21,7 +29,7 @@ These crates contain FFI bindings to foreign libraries, usually in C.
 running 1 test
 test default_device ... ok
 
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
 
 
 running 0 tests
@@ -219,51 +227,16 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 #+end_example
 
 * lisp
-#+name: start-slime
-#+begin_src emacs-lisp
-  (slime)
-#+end_src
-
-#+RESULTS: start-slime
-: #<buffer *inferior-lisp*>
-
-#+name: quickload-core-systems
-#+begin_src lisp :results silent :exports code
-  (defun quickload-core-systems ()
-    (ql:quickload :std)
-    (ql:quickload :rt)
-    (ql:quickload :parse)
-    (ql:quickload :cli)
-    (ql:quickload :xkb)
-    ;; (ql:quickload :alpm)
-    (ql:quickload :btrfs)
-    ;; (ql:quickload :bqn)
-    (ql:quickload :k)
-    (ql:quickload :syn)
-    (ql:quickload :pod)
-    (ql:quickload :vc)
-    (ql:quickload :dat)
-    (ql:quickload :tree-sitter)
-    (ql:quickload :uring)
-    (ql:quickload :zstd)
-    (ql:quickload :blake3)
-    (ql:quickload :rocksdb)
-    (ql:quickload :rdb)
-    (ql:quickload :xdb)
-    (ql:quickload :skel)
-    (ql:quickload :organ)
-    (ql:quickload :nlp)
-    (ql:quickload :obj)
-    (ql:quickload :log)
-    (ql:quickload :net)
-    (ql:quickload :packy))
-#+end_src
-
 #+name: gen-core-coverage-report
-#+begin_src lisp :results silent :exports both
-  ;; (require :sb-cover)
-  (defun gen-report (system &optional (directory #P"/mnt/y/data/packy/report/cover/core/"))
+#+begin_src lisp :results silent :exports code
+  (ql:quickload :prelude)
+  ;; (require 'sb-cover)
+  (defpackage :core-coverage-report
+    (:use :cl :std :rt :rt/tracing))
 
+  (in-package :core-coverage-report)
+
+  (defun gen-report (system &optional (directory #P"/mnt/y/data/packy/report/cover/core/"))
     (progn
       (declaim (optimize sb-cover:store-coverage-data))
       (asdf:compile-system system)
@@ -283,17 +256,14 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
        (gen-report :parse)
        (gen-report :cli)
        (gen-report :xkb)
-       ;; (gen-report :alpm)
        ;; (gen-report :btrfs)
-       ;; (gen-report :bqn)
-       ;; (gen-report :k)
        (gen-report :tree-sitter)
-       (gen-report :uring)
-       (gen-report :zstd)
-       (gen-report :blake3)
+       ;; (gen-report :uring)
+       ;; (gen-report :zstd)
+       ;; (gen-report :blake3)
        (gen-report :rocksdb)
        (gen-report :rdb)
-       (gen-report :xdb)
+       ;; (gen-report :xdb)
        (gen-report :skel)
        (gen-report :organ)
        (gen-report :nlp)
@@ -303,595 +273,365 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
        (gen-report :packy))))
 #+end_src
 
-#+RESULTS: gen-core-coverage-report
-
 #+name: gen-trace-report
 #+begin_src lisp :results output :exports code
-  (quickload-core-systems)
   (trace "STD" "PARSE" "CLI" "XKB" "SKEL" "ORGAN" 
          "OBJ" "XDB" "LOG" "NET" "PACKY" "NLP" "DAT"
-         "ROCKSDB" "K" "BTRFS" "TREE-SITTER" "ZSTD" "BLAKE3" "URING")
-  (rt/trace:start-tracing)
+         "ROCKSDB" "BTRFS" "TREE-SITTER" "ZSTD" "BLAKE3" "URING")
+  (rt/tracing:start-tracing)
   (gen-core-coverage-report)
-  (rt/trace:stop-tracing)
-  (rt/trace:save-report "/mnt/y/data/packy/report/trace/core.json")
+  (rt/tracing:stop-tracing)
+  (rt/tracing:save-report "/mnt/y/data/packy/report/trace/core.json")
   (sb-thread:print-allocator-histogram)
   (std:dump-thread)
 #+end_src
 
 #+RESULTS: gen-trace-report
 #+begin_example
-To load "std":
-  Load 1 ASDF system:
-    std
-; Loading "std"
-
-To load "rt":
-  Load 1 ASDF system:
-    rt
-; Loading "rt"
-
-To load "sxp":
-  Load 1 ASDF system:
-    sxp
-; Loading "sxp"
-
-To load "parse":
-  Load 1 ASDF system:
-    parse
-; Loading "parse"
-
-To load "cli":
-  Load 1 ASDF system:
-    cli
-; Loading "cli"
-
-To load "xkb":
-  Load 1 ASDF system:
-    xkb
-; Loading "xkb"
-
-To load "btrfs":
-  Load 1 ASDF system:
-    btrfs
-; Loading "btrfs"
-
-To load "k":
-  Load 1 ASDF system:
-    k
-; Loading "k"
-
-To load "tree-sitter":
-  Load 1 ASDF system:
-    tree-sitter
-; Loading "tree-sitter"
-
-To load "uring":
-  Load 1 ASDF system:
-    uring
-; Loading "uring"
-
-To load "zstd":
-  Load 1 ASDF system:
-    zstd
-; Loading "zstd"
-
-To load "blake3":
-  Load 1 ASDF system:
-    blake3
-; Loading "blake3"
-
-To load "rocksdb":
-  Load 1 ASDF system:
-    rocksdb
-; Loading "rocksdb"
-
-To load "rdb":
-  Load 1 ASDF system:
-    rdb
-; Loading "rdb"
-
-To load "xdb":
-  Load 1 ASDF system:
-    xdb
-; Loading "xdb"
-
-To load "skel":
-  Load 1 ASDF system:
-    skel
-; Loading "skel"
-
-To load "organ":
-  Load 1 ASDF system:
-    organ
-; Loading "organ"
-
-To load "nlp":
-  Load 1 ASDF system:
-    nlp
-; Loading "nlp"
-
-To load "obj":
-  Load 1 ASDF system:
-    obj
-; Loading "obj"
-
-To load "log":
-  Load 1 ASDF system:
-    log
-; Loading "log"
-
-To load "net":
-  Load 1 ASDF system:
-    net
-; Loading "net"
-
-To load "packy":
-  Load 1 ASDF system:
-    packy
-; Loading "packy"
-
-in suite std with 11/11 tests:
-#<PASS CURRY-TEST620> 
-#<PASS ALIEN-TEST619> 
-#<PASS PAN-TEST618> 
-#<PASS ANA-TEST617> 
-#<PASS FMT-TEST616> 
-#<FAIL ODD NUMBER OF &KEY ARGUMENTS> 
-#<PASS ERR-TEST614> 
-#<PASS LIST-TEST613> 
-#<PASS STR-TEST612> 
-#<PASS SYM-TEST611> 
-#<PASS READTABLES-TEST610> 
-1 out of 11 total tests failed: 
-   #<RT:TEST THREAD :FN THREAD-TEST615 :ARGS NIL :PERSIST NIL {100D51CCE3}>.
-1 unexpected failures: #<FAIL ODD NUMBER OF &KEY ARGUMENTS>.in suite sxp with 4/4 tests:
-#<PASS SXP-STREAM-TEST660> 
-#<PASS SXP-STRING-TEST659> 
-#<PASS SXP-FILE-TEST658> 
-#<PASS FORMS-TEST657> 
+in suite STD with 0/11 tests:
 No tests failed.
-; compiling file "/home/ellis/dev/comp/core/lisp/lib/parse/tests.lisp" (written 24 DEC 2023 04:50:53 PM):
+in suite XKB with 0/1 tests:
+No tests failed.
+in suite POD with 1/1 tests:
+#<FAIL SOCKET ERROR IN "CONNECT": 2 (NO SUCH FILE OR DIRECTORY)> 
+1 out of 1 total tests failed: 
+   #<RT:TEST POKE-AND-PROD :FN POKE-AND-PROD-TEST5833238 :ARGS NIL :PERSIST NIL {100B102D23}>.
+6 unexpected failures: 
+   #<FAIL SOCKET ERROR IN "CONNECT": 2 (NO SUCH FILE OR DIRECTORY)>, 
+   #<FAIL SOCKET ERROR IN "CONNECT": 2 (NO SUCH FILE OR DIRECTORY)>, 
+   #<FAIL SOCKET ERROR IN "CONNECT": 2 (NO SUCH FILE OR DIRECTORY)>, 
+   #<FAIL SOCKET ERROR IN "CONNECT": 2 (NO SUCH FILE OR DIRECTORY)>, 
+   #<FAIL SOCKET ERROR IN "CONNECT": 2 (NO SUCH FILE OR DIRECTORY)>, 
+   #<FAIL SOCKET ERROR IN "CONNECT": 2 (NO SUCH FILE OR DIRECTORY)>.in suite VC with 0/2 tests:
+No tests failed.
+in suite SYN with 0/1 tests:
+No tests failed.
+in suite PARSE with 0/2 tests:
+No tests failed.
+in suite CLI with 0/7 tests:
+No tests failed.
+in suite XKB with 0/1 tests:
+No tests failed.
+in suite TREE-SITTER with 0/2 tests:
+No tests failed.
+in suite ROCKSDB with 0/2 tests:
+No tests failed.
+in suite RDB with 1/4 tests:
 
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/parse/tests-tmp28QY7AHM.fasl
-; compilation finished in 0:00:00.006
-in suite parse with 2/2 tests:
-Table ready, 9 rules, 16 states.
-#<PASS LALR-TEST800> 
-#<PASS LEX-TEST799> 
+#<FAIL #<RDB-ERROR UNHANDLED EXCEPTION IN BODY OF WITH-DB: #<RDB-ERROR UNHANDLED MEMORY FAULT AT #X0. {10234F44F3}> {10234F4773}>> 
+1 out of 4 total tests failed: 
+   #<RT:TEST RDB :FN RDB-TEST6245796 :ARGS NIL :PERSIST NIL {100A95F5A3}>.
+6 unexpected failures: 
+   #<FAIL #<RDB-ERROR UNHANDLED EXCEPTION IN BODY OF WITH-DB: #<RDB-ERROR UNHANDLED MEMORY FAULT AT #X0. {10234F44F3}> {10234F4773}>>, 
+   #<FAIL #<RDB-ERROR UNHANDLED EXCEPTION IN BODY OF WITH-DB: #<RDB-ERROR UNHANDLED MEMORY FAULT AT #X0. {1018E0FB53}> {1018E0FDD3}>>, 
+   #<FAIL #<RDB-ERROR UNHANDLED EXCEPTION IN BODY OF WITH-DB: #<RDB-ERROR UNHANDLED MEMORY FAULT AT #X0. {1011B47C23}> {1011B47EA3}>>, 
+   #<FAIL #<RDB-ERROR UNHANDLED EXCEPTION IN BODY OF WITH-DB: #<RDB-ERROR UNHANDLED MEMORY FAULT AT #X0. {1021767773}> {10217679F3}>>, 
+   #<FAIL #<RDB-ERROR UNHANDLED EXCEPTION IN BODY OF WITH-DB: #<RDB-ERROR UNHANDLED MEMORY FAULT AT #X0. {1016C0BE03}> {1016C0C083}>>, 
+   #<FAIL #<RDB-ERROR UNHANDLED EXCEPTION IN BODY OF WITH-DB: #<RDB-ERROR UNHANDLED MEMORY FAULT AT #X0. {101301E3B3}> {100AA9E213}>>.in suite SKEL with 0/6 tests:
 No tests failed.
-in suite cli with 5/5 tests:
-#<PASS REPL-TEST1290> 
-#<PASS SPARK-TEST1289> 
-TEST: # of steps = 100
-==================================================
-Finished in
-#<PASS PROGRESS-TEST1288> 
-#<PASS CLI-TEST1287> 
-#<PASS ANSI-TEST1285> 
+in suite ORGAN with 0/8 tests:
 No tests failed.
-in suite xkb with 1/1 tests:
-#<PASS XKB-BASIC-TEST1775> 
+in suite NLP with 0/3 tests:
 No tests failed.
-in suite tree-sitter with 2/2 tests:
-#<FAIL THE ALIEN FUNCTION "TREE_SITTER_RUST" IS UNDEFINED.> 
-#<PASS TS-JSON-TEST2281> 
-1 out of 2 total tests failed: 
-   #<RT:TEST TS-RUST :FN TS-RUST-TEST2282 :ARGS NIL :PERSIST NIL {1010D8DB43}>.
-1 unexpected failures: 
-   #<FAIL THE ALIEN FUNCTION "TREE_SITTER_RUST" IS UNDEFINED.>.in suite uring with 0/0 tests:
+in suite OBJ with 0/12 tests:
 No tests failed.
-in suite zstd with 0/0 tests:
+in suite LOG with 0/1 tests:
 No tests failed.
-in suite blake3 with 2/2 tests:
+in suite NET with 2/9 tests:
 
-#<sb-alien-internals:alien-value :sap #X7F35619FF888 :type (*
-                                                            (sb-alien:struct
-                                                             blake3/pkg:blake3-hasher
-                                                             (blake3/pkg::key
-                                                              (array
-                                                               (sb-alien:unsigned
-                                                                32)
-                                                               8)
-                                                              :offset 0)
-                                                             (blake3/pkg::chunk
-                                                              (sb-alien:struct
-                                                               blake3/pkg:blake3-chunk-state
-                                                               (blake3/pkg::key
-                                                                (array
-                                                                 (sb-alien:unsigned
-                                                                  32)
-                                                                 8)
-                                                                :offset 0)
-                                                               (blake3/pkg::chunk-counter
-                                                                (sb-alien:unsigned
-                                                                 64)
-                                                                :offset 256)
-                                                               (blake3/pkg::buf
-                                                                (array
-                                                                 (sb-alien:unsigned
-                                                                  8)
-                                                                 64)
-                                                                :offset 320)
-                                                               (blake3/pkg::buf-len
-                                                                (sb-alien:unsigned
-                                                                 8)
-                                                                :offset 832)
-                                                               (blake3/pkg::blocks-compressed
-                                                                (sb-alien:unsigned
-                                                                 8)
-                                                                :offset 840)
-                                                               (blake3/pkg::flags
-                                                                (sb-alien:unsigned
-                                                                 8)
-                                                                :offset 848))
-                                                              :offset 256)
-                                                             (blake3/pkg::cv-stack-len
-                                                              (sb-alien:unsigned
-                                                               8)
-                                                              :offset 1152)
-                                                             (blake3/pkg::cv-stack
-                                                              (array
-                                                               (sb-alien:unsigned
-                                                                8)
-                                                               1760)
-                                                              :offset 1160)))> 
-#<sb-alien-internals:alien-value :sap #X7F35619FF880 :type (*
-                                                            (*
-                                                             (sb-alien:unsigned
-                                                              8)))> 
-#<PASS HASHER-TEST3972> 
-#<PASS VERSION-TEST3971> 
-No tests failed.
-in suite blake3 with 0/2 tests:
-No tests failed.
-in suite rocksdb with 2/2 tests:
-#<PASS DB-BASIC-TEST4606> 
-#<PASS OPTS-TEST4605> 
-No tests failed.
-in suite rdb with 4/4 tests:
-#<PASS RDB-BYTES-TEST5731> 
-#<PASS RDB-TEST5730> 
-#<PASS RAW-TEST5729> 
-#<PASS MINIMAL-TEST5728> 
-No tests failed.
-; compiling file "/home/ellis/dev/comp/core/lisp/lib/xdb/tests.lisp" (written 20 DEC 2023 09:14:24 PM):
+#<FAIL THE VALUE
+         #<SB-CONCURRENCY:GATE "WORKER-READY" (CLOSED) {1028DCEC63}>
+       IS NOT OF TYPE
+         SB-THREAD:WAITQUEUE
+       WHEN BINDING SB-THREAD::QUEUE> 
 
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/xdb/tests-tmpEHXRK656.fasl
-; compilation finished in 0:00:00.006
-in suite xdb with 1/1 tests:
-Hash Test
-Store
-Sum
-Find
-Sort
-List Test
-Store
-Sum
-Find
-Sort
-Object non storable Test
-Store
-Sum
-Find
-Sort
-Object storable Test
-Store
-Sum
-Find
-Sort
-#<PASS DB-TEST54187> 
-No tests failed.
-; compiling file "/home/ellis/dev/comp/core/lisp/lib/skel/tests.lisp" (written 21 DEC 2023 04:20:56 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/skel/tests-tmpQQRV1WLF.fasl
-; compilation finished in 0:00:00.036
-in suite skel with 6/6 tests:
-#<PASS VM-TEST56243> 
-#<PASS MAKEFILE-TEST56242> 
-#<PASS SKELRC-TEST56241> 
-#<PASS SKELFILE-TEST56240> 
-#<PASS HEADER-COMMENTS-TEST56239> 
-#<PASS SANITY-TEST56238> 
-No tests failed.
-; compiling file "/home/ellis/dev/comp/core/lisp/lib/organ/tests.lisp" (written 24 DEC 2023 01:26:01 AM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/organ/tests-tmp15GX2XW9.fasl
-; compilation finished in 0:00:00.003
-in suite organ with 3/3 tests:
-#<organ:org-headline {102F08B5C3}>
-  [standard-object]
-
-Slots with :class allocation:
-  kind                           = :org-headline
-Slots with :instance allocation:
-  text                           = "** DONE testing stuff :test:test:"
-  state                          = nil
-  level                          = 2
-  props                          = nil
-  priority                       = nil
-  tags                           = #(#<organ:org-tag {102F2DB9A3}> #<organ:org-tag {102F2DBB83}>)
-  title                          = "DONE testing stuff"
-#<PASS ORG-HEADLINE-TEST59570> 
-#<PASS ORG-LINES-TEST59569> 
-#<PASS ORG-FILE-TEST59568> 
-No tests failed.
-; compiling file "/home/ellis/dev/comp/core/lisp/lib/nlp/tests.lisp" (written 13 DEC 2023 06:02:19 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/nlp/tests-tmpZ0FX1HG7.fasl
-; compilation finished in 0:00:00.006
-in suite nlp with 3/3 tests:
-#<PASS TEXTRANK-TEST61946> 
-#<PASS DBSCAN-TEST61945> 
-#<PASS PORTER-STEM-TEST61944> 
-No tests failed.
-; compiling file "/home/ellis/dev/comp/core/lisp/lib/obj/tests.lisp" (written 24 DEC 2023 07:22:44 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/obj/tests-tmpEVNDT64K.fasl
-; compilation finished in 0:00:00.033
-in suite obj with 12/12 tests:
-#<PASS GRAPH-TEST64366> 
-#<PASS AVL-TREE-TEST64365> 
-#<PASS RB-TREE-TEST64364> 
-#<PASS BRO-TREE-TEST64363> 
-#<PASS GENERIC-TREE-TEST64362> 
-#<PASS RING-TEST64361> 
-#<PASS CASTABLE-SOLO-TEST64359> 
-#<PASS DEF-SEQ-TEST64358> 
-#<PASS DEF-ITER-TEST64357> 
-#<PASS IDS-TEST64356> 
-#<PASS TABLES-TEST64355> 
-#<PASS COLORS-TEST64354> 
-No tests failed.
-in suite log with 1/1 tests:
-#<PASS LOG-TEST67551> 
-No tests failed.
-; compiling file "/home/ellis/dev/comp/core/lisp/lib/net/tests.lisp" (written 17 DEC 2023 02:21:58 AM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.3.12+main-linux-x64/home/ellis/dev/comp/core/lisp/lib/net/tests-tmpBCUL6QPT.fasl
-; compilation finished in 0:00:00.003
-in suite net with 6/6 tests:
-#<PASS SANITY-TEST70768> 
-#<PASS OSC-TEST70767> 
-#<PASS TLV-TEST70766> 
-#<PASS UDP-TEST70765> 
-#<PASS TCP-TEST70764> 
-#<PASS DNS-TEST70763> 
-No tests failed.
-in suite packy with 1/1 tests:
-#<PASS PACKY-OBJECTS-TEST73999> 
+#<FAIL WHILE COMPUTING THE CLASS PRECEDENCE LIST OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A FORWARD REFERENCED CLASS.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A DIRECT SUPERCLASS OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.> 
+2 out of 9 total tests failed: 
+   #<RT:TEST CREW :FN CREW-TEST6626934 :ARGS NIL :PERSIST NIL {10107F01F3}>, 
+   #<RT:TEST SANS-IO :FN SANS-IO-TEST6626928 :ARGS NIL :PERSIST NIL {10107E7C93}>.
+12 unexpected failures: 
+   #<FAIL WHILE COMPUTING THE CLASS PRECEDENCE LIST OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A FORWARD REFERENCED CLASS.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A DIRECT SUPERCLASS OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.>, 
+   #<FAIL THE VALUE
+         #<SB-CONCURRENCY:GATE "WORKER-READY" (CLOSED) {1028DCEC63}>
+       IS NOT OF TYPE
+         SB-THREAD:WAITQUEUE
+       WHEN BINDING SB-THREAD::QUEUE>, 
+   #<FAIL WHILE COMPUTING THE CLASS PRECEDENCE LIST OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A FORWARD REFERENCED CLASS.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A DIRECT SUPERCLASS OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.>, 
+   #<FAIL THE VALUE
+         #<SB-CONCURRENCY:GATE "WORKER-READY" (CLOSED) {101C3D0EF3}>
+       IS NOT OF TYPE
+         SB-THREAD:WAITQUEUE
+       WHEN BINDING SB-THREAD::QUEUE>, 
+   #<FAIL WHILE COMPUTING THE CLASS PRECEDENCE LIST OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A FORWARD REFERENCED CLASS.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A DIRECT SUPERCLASS OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.>, 
+   #<FAIL THE VALUE
+         #<SB-CONCURRENCY:GATE "WORKER-READY" (CLOSED) {101551E123}>
+       IS NOT OF TYPE
+         SB-THREAD:WAITQUEUE
+       WHEN BINDING SB-THREAD::QUEUE>, 
+   #<FAIL WHILE COMPUTING THE CLASS PRECEDENCE LIST OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A FORWARD REFERENCED CLASS.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A DIRECT SUPERCLASS OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.>, 
+   #<FAIL THE VALUE
+         #<SB-CONCURRENCY:GATE "WORKER-READY" (CLOSED) {1005885023}>
+       IS NOT OF TYPE
+         SB-THREAD:WAITQUEUE
+       WHEN BINDING SB-THREAD::QUEUE>, 
+   #<FAIL WHILE COMPUTING THE CLASS PRECEDENCE LIST OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A FORWARD REFERENCED CLASS.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A DIRECT SUPERCLASS OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.>, 
+   #<FAIL THE VALUE
+         #<SB-CONCURRENCY:GATE "WORKER-READY" (CLOSED) {101B5164E3}>
+       IS NOT OF TYPE
+         SB-THREAD:WAITQUEUE
+       WHEN BINDING SB-THREAD::QUEUE>, 
+   #<FAIL WHILE COMPUTING THE CLASS PRECEDENCE LIST OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A FORWARD REFERENCED CLASS.
+THE CLASS NAMED NET/TESTS::ENDPOINT IS A DIRECT SUPERCLASS OF THE CLASS NAMED NET/TESTS::MOCK-ENDPOINT.>, 
+   #<FAIL THE VALUE
+         #<SB-CONCURRENCY:GATE "WORKER-READY" (CLOSED) {1010F093A3}>
+       IS NOT OF TYPE
+         SB-THREAD:WAITQUEUE
+       WHEN BINDING SB-THREAD::QUEUE>.in suite PACKY with 0/4 tests:
 No tests failed.
  Bin      Size     Allocated     Count    Cum%
-  0         16             0         0 nil    
-  1         32             0         0 nil    
-  2         48             0         0 nil    
-  3         64             0         0 nil    
-  4         80             0         0 nil    
-  5         96             0         0 nil    
-  6        112             0         0 nil    
-  7        128             0         0 nil    
-  8        144             0         0 nil    
-  9        160             0         0 nil    
- 10        176             0         0 nil    
- 11        192             0         0 nil    
- 12        208             0         0 nil    
- 13        224             0         0 nil    
- 14        240             0         0 nil    
- 15        256             0         0 nil    
- 16        272             0         0 nil    
- 17        288             0         0 nil    
- 18        304             0         0 nil    
- 19        320             0         0 nil    
- 20        336             0         0 nil    
- 21        352             0         0 nil    
- 22        368             0         0 nil    
- 23        384             0         0 nil    
- 24        400             0         0 nil    
- 25        416             0         0 nil    
- 26        432             0         0 nil    
- 27        448             0         0 nil    
- 28        464             0         0 nil    
- 29        480             0         0 nil    
- 30        496             0         0 nil    
- 31        512             0         0 nil    
- 32     < 1024             0         0 nil    
- 33     < 2048             0         0 nil    
- 34     < 4096             0         0 nil    
- 35     < 8192             0         0 nil    
- 36    < 16384             0         0 nil    
- 37    < 32768             0         0 nil    
- 38    < 65536             0         0 nil    
- 39   < 131072             0         0 nil    
- 40   < 262144             0         0 nil    
- 41   < 524288             0         0 nil    
- 42     < 2^20             0         0 nil    
- 43     < 2^21             0         0 nil    
- 44     < 2^22             0         0 nil    
- 45     < 2^23             0         0 nil    
- 46     < 2^24             0         0 nil    
- 47     < 2^25             0         0 nil    
- 48     < 2^26             0         0 nil    
- 49     < 2^27             0         0 nil    
- 50     < 2^28             0         0 nil    
- 51     < 2^29             0         0 nil    
- 52     < 2^30             0         0 nil    
- 53     < 2^31             0         0 nil    
- 54     < 2^32             0         0 nil    
- 55     < 2^33             0         0 nil    
- 56     < 2^34             0         0 nil    
- 57     < 2^35             0         0 nil    
- 58     < 2^36             0         0 nil    
- 59     < 2^37             0         0 nil    
- 60     < 2^38             0         0 nil    
- 61     < 2^39             0         0 nil    
- 62     < 2^40             0         0 nil    
- 63     < 2^41             0         0 nil    
+  0         16             0         0 NIL    
+  1         32             0         0 NIL    
+  2         48             0         0 NIL    
+  3         64             0         0 NIL    
+  4         80             0         0 NIL    
+  5         96             0         0 NIL    
+  6        112             0         0 NIL    
+  7        128             0         0 NIL    
+  8        144             0         0 NIL    
+  9        160             0         0 NIL    
+ 10        176             0         0 NIL    
+ 11        192             0         0 NIL    
+ 12        208             0         0 NIL    
+ 13        224             0         0 NIL    
+ 14        240             0         0 NIL    
+ 15        256             0         0 NIL    
+ 16        272             0         0 NIL    
+ 17        288             0         0 NIL    
+ 18        304             0         0 NIL    
+ 19        320             0         0 NIL    
+ 20        336             0         0 NIL    
+ 21        352             0         0 NIL    
+ 22        368             0         0 NIL    
+ 23        384             0         0 NIL    
+ 24        400             0         0 NIL    
+ 25        416             0         0 NIL    
+ 26        432             0         0 NIL    
+ 27        448             0         0 NIL    
+ 28        464             0         0 NIL    
+ 29        480             0         0 NIL    
+ 30        496             0         0 NIL    
+ 31        512             0         0 NIL    
+ 32     < 1024             0         0 NIL    
+ 33     < 2048             0         0 NIL    
+ 34     < 4096             0         0 NIL    
+ 35     < 8192             0         0 NIL    
+ 36    < 16384             0         0 NIL    
+ 37    < 32768             0         0 NIL    
+ 38    < 65536             0         0 NIL    
+ 39   < 131072             0         0 NIL    
+ 40   < 262144             0         0 NIL    
+ 41   < 524288             0         0 NIL    
+ 42     < 2^20             0         0 NIL    
+ 43     < 2^21             0         0 NIL    
+ 44     < 2^22             0         0 NIL    
+ 45     < 2^23             0         0 NIL    
+ 46     < 2^24             0         0 NIL    
+ 47     < 2^25             0         0 NIL    
+ 48     < 2^26             0         0 NIL    
+ 49     < 2^27             0         0 NIL    
+ 50     < 2^28             0         0 NIL    
+ 51     < 2^29             0         0 NIL    
+ 52     < 2^30             0         0 NIL    
+ 53     < 2^31             0         0 NIL    
+ 54     < 2^32             0         0 NIL    
+ 55     < 2^33             0         0 NIL    
+ 56     < 2^34             0         0 NIL    
+ 57     < 2^35             0         0 NIL    
+ 58     < 2^36             0         0 NIL    
+ 59     < 2^37             0         0 NIL    
+ 60     < 2^38             0         0 NIL    
+ 61     < 2^39             0         0 NIL    
+ 62     < 2^40             0         0 NIL    
+ 63     < 2^41             0         0 NIL    
  Tot                       0         0
-TLS: (base=7F3561A00080)
-   1 stepping                       : #x0
-   2 binding-stack-pointer          : #x7F3561800290
-   3 current-catch-block            : #x7F35617FE9B0
-   4 current-unwind-protect-block   : #x7F35617FE520
-   5 pseudo-atomic-bits             : #x0
-   6 alien-stack-pointer            : #x7F3561A00000
-   7 profile-data                   : #x0
-   8 boxed-tlab                     : #x1000
+TLS: (base=76AF41800080)
+   1 STEPPING                       : #x0
+   2 BINDING-STACK-POINTER          : #x76AF41600290
+   3 CURRENT-CATCH-BLOCK            : #x76AF415FE9B0
+   4 CURRENT-UNWIND-PROTECT-BLOCK   : #x76AF415FE520
+   5 PSEUDO-ATOMIC-BITS             : #x0
+   6 ALIEN-STACK-POINTER            : #x76AF41800000
+   7 PROFILE-DATA                   : #x0
+   8 BOXED-TLAB                     : #x1000
    9                                : #x1000
   10                                : #x0
-  11 cons-tlab                      : #x10218C81E0
-  12                                : #x10218C8200
-  13                                : #x10218C8180
-  14 mixed-tlab                     : #x103C1C1AD0
-  15                                : #x103C1C8000
-  16                                : #x103C1C0000
-  17 os-address                     : #x7F35615FE000
-  18 os-thread                      : #x7F35617FF6C0
-  19 os-kernel-tid                  : #x8C850
-  20 alien-stack-start              : #x7F3561900000
-  21 binding-stack-start            : #x7F3561800000
-  22 control-stack-start            : #x7F3561600000
-  23 control-stack-end              : #x7F35617FEEB0
-  24 this                           : #x7F3561A00080
-  25 prev                           : #x0
-  26 next                           : #x7F3560D10080
-  27 state-word                     : #x1010101
-  28 sprof-data                     : #x0
-  29 arena                          : #x0
-  30 tls-size                       : #x8000
-  31 ffcall-active-p                : #x0
-  32 control-stack-pointer          : #x7F35617FDD60
-  33 card-table                     : #x7F35628DD010
-  34 symbol-tlab                    : #x1000
+  11 CONS-TLAB                      : #x10271FC0D0
+  12                                : #x10271FF380
+  13                                : #x10271F8000
+  14 MIXED-TLAB                     : #x1014B6AF40
+  15                                : #x1014B70000
+  16                                : #x1014B68000
+  17 OS-ADDRESS                     : #x76AF41400000
+  18 OS-THREAD                      : #x76AF415FF6C0
+  19 OS-KERNEL-TID                  : #x1F753
+  20 ALIEN-STACK-START              : #x76AF41700000
+  21 BINDING-STACK-START            : #x76AF41600000
+  22 CONTROL-STACK-START            : #x76AF41400000
+  23 CONTROL-STACK-END              : #x76AF415FEEB0
+  24 THIS                           : #x76AF41800080
+  25 PREV                           : #x76AF22600080
+  26 NEXT                           : #x76AF21A00080
+  27 STATE-WORD                     : #x1010101
+  28 SPROF-DATA                     : #x0
+  29 ARENA                          : #x0
+  30 TLS-SIZE                       : #x8000
+  31 FFCALL-ACTIVE-P                : #x0
+  32 CONTROL-STACK-POINTER          : #x76AF415FDC70
+  33 CARD-TABLE                     : #x76AF42600010
+  34 SYMBOL-TLAB                    : #x1000
   35                                : #x1000
   36                                : #x0
-  37 sys-mixed-tlab                 : #x103C1A0810
-  38                                : #x103C1A8000
-  39                                : #x103C1A0000
-  40 sys-cons-tlab                  : #x100000A610
-  41                                : #x100000A780
-  42                                : #x100000A600
-  43 tot-bytes-alloc-boxed          : #x0
-  44 tot-bytes-alloc-unboxed        : #x0
-  45 slow-path-allocs               : #x180444
-  46 et-allocator-mutex-acq         : #x0
-  47 et-find-freeish-page           : #x0
-  48 et-bzeroing                    : #x0
- 145 *current-thread*               : #<sb-thread:thread tid=575568 "worker" running {1012119283}>
- 146 *free-interrupt-context-index* : 0
- 147 *allow-with-interrupts*        : t
- 148 *interrupts-enabled*           : t
- 149 *interrupt-pending*            : nil
- 150 *in-without-gcing*             : nil
- 151 *gc-inhibit*                   : nil
- 152 *gc-pending*                   : nil
- 153 *stop-for-gc-pending*          : nil
- 154 0                              : nil
- 155 *pinned-objects*               : nil
- 156 *gc-pin-code-pages*            : 0
- 157 *restart-clusters*             : ((#<restart swank::retry {7F35617FE2B3}>) (#<restart abort {7F35617FE5C3}>)
-                                       (#<restart abort {7F35617FEB33}>))
- 158 *handler-clusters*             : (((#<sb-kernel::classoid-cell sb-impl::eval-error>
-                                         . #<function (lambda (condition) :in sb-int:simple-eval-in-lexenv) {7F35617FE19B}>))
-                                       ((#<sb-kernel::classoid-cell sb-c:compiler-error>
-                                         . #<function (lambda (sb-c::c) :in sb-int:simple-eval-in-lexenv) {10016FC2AB}>)) ..)
- 159 *ignored-package-locks*        : :invalid
- 160 *ir1-namespace*                : :unbound
- 161 *compilation*                  : :unbound
- 162 *saved-fp*                     : nil
- 163 *deadline*                     : nil
- 164 *descriptor-handlers*          : nil
- 165 *exit-in-progress*             : nil
- 166 *token-buf-pool*               : nil
- 167 *step-out*                     : nil
- 168 *package*                      : #<package "COMMON-LISP-USER">
- 190 *debugger-hook*                : #<function swank:swank-debugger-hook>
- 191 *standard-output*              : #<sb-impl::string-output-stream {10121281F3}>
- 220 *standard-input*               : #<swank/gray::slime-input-stream {10165C2C93}>
- 224 *default-pathname-defaults*    : #P"/home/ellis/dev/comp/core/"
- 268 *eval-source-info*             : nil
- 269 *eval-tlf-index*               : nil
- 270 *eval-source-context*          : (let ((*default-pathname-defaults* #P"/home/ellis/dev/comp/core/"))
-                                        (quickload-core-systems)
-                                        (trace "STD" "SXP" "PARSE" "CLI" "XKB" "SKEL" "ORGAN" "OBJ" "XDB" "LOG" "NET" "PACKY"
-                                               "NLP" "ROCKSDB" "K" "BTRFS" "TREE-SITTER" "ZSTD" "BLAKE3" "URING") ..)
- 340 *invoke-debugger-hook*         : #<function swank/sbcl::swank-invoke-debugger-hook {101212802B}>
- 406 *stepper-hook*                 : #<function (lambda (condition) :in swank/backend:call-with-debugger-hook) {1008B37D8B}>
- 434 *slime-interrupts-enabled*     : t
- 436 *sldb-quit-restart*            : #<restart abort {7F35617FE5C3}>
- 437 *emacs-connection*             : #<swank::multithreaded-connection {10164E05C3}>
- 438 *pending-slime-interrupts*     : nil
- 439 *send-counter*                 : 17
- 441 *buffer-package*               : #<package "COMMON-LISP-USER">
- 442 *buffer-readtable*             : #<named-readtable :current {10023EC023}>
- 443 *pending-continuations*        : (18)
+  37 SYS-MIXED-TLAB                 : #x1014A8F660
+  38                                : #x1014A90000
+  39                                : #x1014A88000
+  40 SYS-CONS-TLAB                  : #x10272108B0
+  41                                : #x1027216E80
+  42                                : #x1027210000
+  43 TOT-BYTES-ALLOC-BOXED          : #x0
+  44 TOT-BYTES-ALLOC-UNBOXED        : #x0
+  45 SLOW-PATH-ALLOCS               : #x36288
+  46 ET-ALLOCATOR-MUTEX-ACQ         : #x0
+  47 ET-FIND-FREEISH-PAGE           : #x0
+  48 ET-BZEROING                    : #x0
+ 145 *CURRENT-THREAD*               : #<SB-THREAD:THREAD tid=128851 "worker" RUNNING {1004D89BA3}>
+ 146 *FREE-INTERRUPT-CONTEXT-INDEX* : 0
+ 147 *ALLOW-WITH-INTERRUPTS*        : T
+ 148 *INTERRUPTS-ENABLED*           : T
+ 149 *INTERRUPT-PENDING*            : NIL
+ 150 *IN-WITHOUT-GCING*             : NIL
+ 151 *GC-INHIBIT*                   : NIL
+ 152 *GC-PENDING*                   : NIL
+ 153 *STOP-FOR-GC-PENDING*          : NIL
+ 154 0                              : NIL
+ 155 *PINNED-OBJECTS*               : NIL
+ 156 *GC-PIN-CODE-PAGES*            : 0
+ 157 *RESTART-CLUSTERS*             : ((#<RESTART SWANK::RETRY {76AF415FE2B3}>) (#<RESTART ABORT {76AF415FE5C3}>)
+                                       (#<RESTART ABORT {76AF415FEB33}>))
+ 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL SB-IMPL::EVAL-ERROR>
+                                         . #<FUNCTION (LAMBDA (CONDITION) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {76AF415FE19B}>))
+                                       ((#<SB-KERNEL::CLASSOID-CELL SB-C:COMPILER-ERROR>
+                                         . #<FUNCTION (LAMBDA (SB-C::C) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {10013EAE5B}>)) ..)
+ 159 *IGNORED-PACKAGE-LOCKS*        : :INVALID
+ 160 *IR1-NAMESPACE*                : :UNBOUND
+ 161 *COMPILATION*                  : :UNBOUND
+ 162 *SAVED-FP*                     : NIL
+ 163 *DEADLINE*                     : NIL
+ 164 *DESCRIPTOR-HANDLERS*          : NIL
+ 165 *EXIT-IN-PROGRESS*             : NIL
+ 166 *TOKEN-BUF-POOL*               : NIL
+ 167 *STEP-OUT*                     : NIL
+ 168 *PACKAGE*                      : #<PACKAGE "COMMON-LISP-USER">
+ 190 *DEBUGGER-HOOK*                : #<FUNCTION SWANK:SWANK-DEBUGGER-HOOK>
+ 191 *STANDARD-OUTPUT*              : #<SB-IMPL::STRING-OUTPUT-STREAM {1004DA08E3}>
+ 220 *STANDARD-INPUT*               : #<SWANK/GRAY::SLIME-INPUT-STREAM {100B2A2813}>
+ 224 *DEFAULT-PATHNAME-DEFAULTS*    : #P"/home/ellis/dev/comp/core/"
+ 268 *EVAL-SOURCE-INFO*             : NIL
+ 269 *EVAL-TLF-INDEX*               : NIL
+ 270 *EVAL-SOURCE-CONTEXT*          : (LET ((*DEFAULT-PATHNAME-DEFAULTS* #P"/home/ellis/dev/comp/core/"))
+                                        (TRACE "STD" "PARSE" "CLI" "XKB" "SKEL" "ORGAN" "OBJ" "XDB" "LOG" "NET" "PACKY" "NLP"
+                                               "DAT" "ROCKSDB" "BTRFS" "TREE-SITTER" "ZSTD" "BLAKE3" "URING")
+                                        (RT/TRACING:START-TRACING) ..)
+ 342 *INVOKE-DEBUGGER-HOOK*         : #<FUNCTION SWANK/SBCL::SWANK-INVOKE-DEBUGGER-HOOK {1004DA062B}>
+ 408 *STEPPER-HOOK*                 : #<FUNCTION (LAMBDA (CONDITION) :IN SWANK/BACKEND:CALL-WITH-DEBUGGER-HOOK) {1008B3571B}>
+ 436 *SLIME-INTERRUPTS-ENABLED*     : T
+ 438 *SLDB-QUIT-RESTART*            : #<RESTART ABORT {76AF415FE5C3}>
+ 439 *EMACS-CONNECTION*             : #<SWANK::MULTITHREADED-CONNECTION {100961BC43}>
+ 440 *PENDING-SLIME-INTERRUPTS*     : NIL
+ 441 *SEND-COUNTER*                 : 0
+ 443 *BUFFER-PACKAGE*               : #<PACKAGE "COMMON-LISP-USER">
+ 444 *BUFFER-READTABLE*             : #<NAMED-READTABLE :CURRENT {10021E3A73}>
+ 445 *PENDING-CONTINUATIONS*        : (469)
 
 Binding stack: (depth 41)
- 148 *interrupts-enabled*           : t
- 147 *allow-with-interrupts*        : t
- 147 *allow-with-interrupts*        : nil
- 148 *interrupts-enabled*           : nil
- 157 *restart-clusters*             : nil
- 148 *interrupts-enabled*           : t
- 147 *allow-with-interrupts*        : t
- 147 *allow-with-interrupts*        : nil
- 148 *interrupts-enabled*           : nil
- 437 *emacs-connection*             : :no-tls-value
- 438 *pending-slime-interrupts*     : :no-tls-value
- 439 *send-counter*                 : :no-tls-value
- 434 *slime-interrupts-enabled*     : :no-tls-value
- 158 *handler-clusters*             : (((#<sb-kernel::classoid-cell warning> . #<function "MAYBE-MUFFLE" {1001E7E6CB}>)
-                                        (#<sb-kernel::classoid-cell step-condition> . sb-impl::invoke-stepper)))
- 158 *handler-clusters*             : (((#<sb-kernel::classoid-cell swank::swank-error>
-                                         . #<function (lambda (sb-kernel::temp)
-                                                        :in
-                                                        swank::spawn-worker-thread) {7F35617FE83B}>)) ..)
- 220 *standard-input*               : :no-tls-value
- 190 *debugger-hook*                : :no-tls-value
- 406 *stepper-hook*                 : :no-tls-value
- 158 *handler-clusters*             : (((#<sb-kernel::classoid-cell swank::swank-error>
-                                         . #<function (lambda (condition) :in swank::spawn-worker-thread) {1008DF1EFB}>))
-                                       ((#<sb-kernel::classoid-cell swank::swank-error>
-                                         . #<function (lambda (sb-kernel::temp) ..)>)))
- 340 *invoke-debugger-hook*         : :no-tls-value
- 157 *restart-clusters*             : ((#<restart abort {7F35617FEB33}>))
- 436 *sldb-quit-restart*            : :no-tls-value
- 441 *buffer-package*               : :no-tls-value
- 442 *buffer-readtable*             : :no-tls-value
- 443 *pending-continuations*        : :no-tls-value
- 158 *handler-clusters*             : (((#<sb-kernel::classoid-cell step-condition> . sb-impl::invoke-stepper))
-                                       ((#<sb-kernel::classoid-cell swank::swank-error>
-                                         . #<function (lambda (condition) :in swank::spawn-worker-thread) {1008DF1EFB}>))
-                                       ((#<sb-kernel::classoid-cell swank::swank-error> ..)))
- 434 *slime-interrupts-enabled*     : nil
- 270 *eval-source-context*          : :no-tls-value
- 269 *eval-tlf-index*               : :no-tls-value
- 268 *eval-source-info*             : :no-tls-value
- 158 *handler-clusters*             : (((#<function sb-int:constantly-t>
-                                         . #<function (lambda (swank::c) :in swank:eval-for-emacs) {7F35617FE4FB}>))
-                                       ((#<sb-kernel::classoid-cell step-condition> . sb-impl::invoke-stepper))
-                                       ((#<sb-kernel::classoid-cell swank::swank-error> ..)))
- 158 *handler-clusters*             : (((#<sb-kernel::classoid-cell sb-c:compiler-error>
-                                         . #<function (lambda (sb-c::c) :in sb-int:simple-eval-in-lexenv) {10016FC2AB}>))
-                                       ((#<function sb-int:constantly-t>
-                                         . #<function (lambda (swank::c) :in swank:eval-for-emacs) {7F35617FE4FB}>)) ..)
- 168 *package*                      : :no-tls-value
- 157 *restart-clusters*             : ((#<restart abort {7F35617FE5C3}>) (#<restart abort {7F35617FEB33}>))
- 191 *standard-output*              : :no-tls-value
- 270 *eval-source-context*          : (swank:eval-and-grab-output
+ 148 *INTERRUPTS-ENABLED*           : T
+ 147 *ALLOW-WITH-INTERRUPTS*        : T
+ 147 *ALLOW-WITH-INTERRUPTS*        : NIL
+ 148 *INTERRUPTS-ENABLED*           : NIL
+ 157 *RESTART-CLUSTERS*             : NIL
+ 148 *INTERRUPTS-ENABLED*           : T
+ 147 *ALLOW-WITH-INTERRUPTS*        : T
+ 147 *ALLOW-WITH-INTERRUPTS*        : NIL
+ 148 *INTERRUPTS-ENABLED*           : NIL
+ 439 *EMACS-CONNECTION*             : :NO-TLS-VALUE
+ 440 *PENDING-SLIME-INTERRUPTS*     : :NO-TLS-VALUE
+ 441 *SEND-COUNTER*                 : :NO-TLS-VALUE
+ 436 *SLIME-INTERRUPTS-ENABLED*     : :NO-TLS-VALUE
+ 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL WARNING> . #<FUNCTION "MAYBE-MUFFLE" {1001CE67FB}>)
+                                        (#<SB-KERNEL::CLASSOID-CELL STEP-CONDITION> . SB-IMPL::INVOKE-STEPPER)))
+ 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL SWANK::SWANK-ERROR>
+                                         . #<FUNCTION (LAMBDA (SB-KERNEL::TEMP)
+                                                        :IN
+                                                        SWANK::SPAWN-WORKER-THREAD) {76AF415FE83B}>)) ..)
+ 220 *STANDARD-INPUT*               : :NO-TLS-VALUE
+ 190 *DEBUGGER-HOOK*                : :NO-TLS-VALUE
+ 408 *STEPPER-HOOK*                 : :NO-TLS-VALUE
+ 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL SWANK::SWANK-ERROR>
+                                         . #<FUNCTION (LAMBDA (CONDITION) :IN SWANK::SPAWN-WORKER-THREAD) {1008DCEC3B}>))
+                                       ((#<SB-KERNEL::CLASSOID-CELL SWANK::SWANK-ERROR>
+                                         . #<FUNCTION (LAMBDA (SB-KERNEL::TEMP) ..)>)))
+ 342 *INVOKE-DEBUGGER-HOOK*         : :NO-TLS-VALUE
+ 157 *RESTART-CLUSTERS*             : ((#<RESTART ABORT {76AF415FEB33}>))
+ 438 *SLDB-QUIT-RESTART*            : :NO-TLS-VALUE
+ 443 *BUFFER-PACKAGE*               : :NO-TLS-VALUE
+ 444 *BUFFER-READTABLE*             : :NO-TLS-VALUE
+ 445 *PENDING-CONTINUATIONS*        : :NO-TLS-VALUE
+ 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL STEP-CONDITION> . SB-IMPL::INVOKE-STEPPER))
+                                       ((#<SB-KERNEL::CLASSOID-CELL SWANK::SWANK-ERROR>
+                                         . #<FUNCTION (LAMBDA (CONDITION) :IN SWANK::SPAWN-WORKER-THREAD) {1008DCEC3B}>))
+                                       ((#<SB-KERNEL::CLASSOID-CELL SWANK::SWANK-ERROR> ..)))
+ 436 *SLIME-INTERRUPTS-ENABLED*     : NIL
+ 270 *EVAL-SOURCE-CONTEXT*          : :NO-TLS-VALUE
+ 269 *EVAL-TLF-INDEX*               : :NO-TLS-VALUE
+ 268 *EVAL-SOURCE-INFO*             : :NO-TLS-VALUE
+ 158 *HANDLER-CLUSTERS*             : (((#<FUNCTION SB-INT:CONSTANTLY-T>
+                                         . #<FUNCTION (LAMBDA (SWANK::C) :IN SWANK:EVAL-FOR-EMACS) {76AF415FE4FB}>))
+                                       ((#<SB-KERNEL::CLASSOID-CELL STEP-CONDITION> . SB-IMPL::INVOKE-STEPPER))
+                                       ((#<SB-KERNEL::CLASSOID-CELL SWANK::SWANK-ERROR> ..)))
+ 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL SB-C:COMPILER-ERROR>
+                                         . #<FUNCTION (LAMBDA (SB-C::C) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {10013EAE5B}>))
+                                       ((#<FUNCTION SB-INT:CONSTANTLY-T>
+                                         . #<FUNCTION (LAMBDA (SWANK::C) :IN SWANK:EVAL-FOR-EMACS) {76AF415FE4FB}>)) ..)
+ 168 *PACKAGE*                      : :NO-TLS-VALUE
+ 157 *RESTART-CLUSTERS*             : ((#<RESTART ABORT {76AF415FE5C3}>) (#<RESTART ABORT {76AF415FEB33}>))
+ 191 *STANDARD-OUTPUT*              : :NO-TLS-VALUE
+ 270 *EVAL-SOURCE-CONTEXT*          : (SWANK:EVAL-AND-GRAB-OUTPUT
                                        "(let ((*default-pathname-defaults* #P\"/home/ellis/dev/comp/core/\"
-)) (quickload-core-systems)
-(trace \"STD\" \"SXP\" \"PARSE\" \"CLI\" \"XKB\" \"SKEL\" \"ORGAN\"  ..)
- 269 *eval-tlf-index*               : nil
- 268 *eval-source-info*             : nil
- 158 *handler-clusters*             : (((#<sb-kernel::classoid-cell sb-impl::eval-error>
-                                         . #<function (lambda (condition) :in sb-int:simple-eval-in-lexenv) {7F35617FE41B}>))
-                                       ((#<sb-kernel::classoid-cell sb-c:compiler-error>
-                                         . #<function (lambda (sb-c::c) :in sb-int:simple-eval-in-lexenv) {10016FC2AB}>)) ..)
- 158 *handler-clusters*             : (((#<sb-kernel::classoid-cell sb-c:compiler-error>
-                                         . #<function (lambda (sb-c::c) :in sb-int:simple-eval-in-lexenv) {10016FC2AB}>))
-                                       ((#<sb-kernel::classoid-cell sb-impl::eval-error>
-                                         . #<function (lambda (condition) :in sb-int:simple-eval-in-lexenv) {7F35617FE41B}>)) ..)
- 224 *default-pathname-defaults*    : :no-tls-value
+)) (trace \"STD\" \"PARSE\" \"CLI\" \"XKB\" \"SKEL\" \"ORGAN\" 
+       \"OBJ\" \"XDB\" \"LOG\" \"NET\" \"PACKY\" \"NLP\" \"DAT\" ..)
+ 269 *EVAL-TLF-INDEX*               : NIL
+ 268 *EVAL-SOURCE-INFO*             : NIL
+ 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL SB-IMPL::EVAL-ERROR>
+                                         . #<FUNCTION (LAMBDA (CONDITION) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {76AF415FE41B}>))
+                                       ((#<SB-KERNEL::CLASSOID-CELL SB-C:COMPILER-ERROR>
+                                         . #<FUNCTION (LAMBDA (SB-C::C) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {10013EAE5B}>)) ..)
+ 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL SB-C:COMPILER-ERROR>
+                                         . #<FUNCTION (LAMBDA (SB-C::C) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {10013EAE5B}>))
+                                       ((#<SB-KERNEL::CLASSOID-CELL SB-IMPL::EVAL-ERROR>
+                                         . #<FUNCTION (LAMBDA (CONDITION) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {76AF415FE41B}>)) ..)
+ 224 *DEFAULT-PATHNAME-DEFAULTS*    : :NO-TLS-VALUE
 #+end_example
 
 ** std
@@ -902,18 +642,18 @@ Binding stack: (depth 41)
 
 #+RESULTS:
 #+begin_example
-in suite std with 11/11 tests:
-#<PASS CURRY-TEST77420> 
-#<PASS ALIEN-TEST77419> 
-#<PASS PAN-TEST77418> 
-#<PASS ANA-TEST77417> 
-#<PASS FMT-TEST77416> 
-#<PASS THREAD-TEST77415> 
-#<PASS ERR-TEST77414> 
-#<PASS LIST-TEST77413> 
-#<PASS STR-TEST77412> 
-#<PASS SYM-TEST77411> 
-#<PASS READTABLES-TEST77410> 
+in suite STD with 11/11 tests:
+#<PASS CURRY-TEST9513955> 
+#<PASS ALIEN-TEST9513954> 
+#<PASS PAN-TEST9513953> 
+#<PASS ANA-TEST9513952> 
+#<PASS FMT-TEST9513951> 
+#<PASS THREAD-TEST9513950> 
+#<PASS ERR-TEST9513949> 
+#<PASS LIST-TEST9513948> 
+#<PASS STR-TEST9513947> 
+#<PASS SYM-TEST9513946> 
+#<PASS READTABLES-TEST9513945> 
 No tests failed.
 #+end_example
 
@@ -1265,9 +1005,9 @@ No tests failed.
 #+end_src
 
 #+RESULTS:
-: in suite rocksdb with 2/2 tests:
-: #<PASS DB-BASIC-TEST249360> 
-: #<PASS OPTS-TEST249359> 
+: in suite ROCKSDB with 2/2 tests:
+: #<PASS DB-BASIC-TEST9514028> 
+: #<PASS OPTS-TEST9514027> 
 : No tests failed.
 
 *** uring
@@ -1283,7 +1023,7 @@ No tests failed.
 :     uring
 : ; Loading "uring"
 : 
-: in suite uring with 0/0 tests:
+: in suite URING with 0/0 tests:
 : No tests failed.
 
 *** tree-sitter
@@ -1294,59 +1034,15 @@ No tests failed.
 #+end_src
 
 #+RESULTS:
-#+begin_example
-To load "tree-sitter":
-  Load 1 ASDF system:
-    tree-sitter
-; Loading "tree-sitter"
-
-in suite tree-sitter with 2/2 tests:
-#<FAIL THE ALIEN FUNCTION "TREE_SITTER_RUST" IS UNDEFINED.> 
-#<PASS TS-JSON-TEST249402> 
-1 out of 2 total tests failed: 
-   #<RT:TEST TS-RUST :FN TS-RUST-TEST249403 :ARGS NIL :PERSIST NIL {1007F2CB53}>.
-1 unexpected failures: 
-   #<FAIL THE ALIEN FUNCTION "TREE_SITTER_RUST" IS UNDEFINED.>.
-#+end_example
-
-*** k
-#+begin_src lisp :results output replace :exports results
-  (ql:quickload :k)
-  (load "lisp/ffi/k/tests.lisp")
-  (asdf:test-system :k)
-#+end_src
-
-#+RESULTS:
-: To load "k":
+: To load "tree-sitter":
 :   Load 1 ASDF system:
-:     k
-: ; Loading "k"
+:     tree-sitter
+: ; Loading "tree-sitter"
 : 
-: in suite k with 1/1 tests:
-: #<PASS K-TEST249418> 
+: in suite TREE-SITTER with 2/2 tests:
+: #<PASS TS-RUST-TEST9514109> 
+: #<PASS TS-JSON-TEST9514108> 
 : No tests failed.
-
-*** bqn
-#+begin_src lisp :results output replace :exports results
-  (ql:quickload :bqn)
-  (load "lisp/ffi/bqn/tests.lisp")
-  (asdf:test-system :bqn)
-#+end_src
-
-#+RESULTS:
-#+begin_example
-To load "bqn":
-  Load 1 ASDF system:
-    bqn
-; Loading "bqn"
-
-in suite bqn with 1/1 tests:
-#<FAIL ARITHMETIC ERROR FLOATING-POINT-INVALID-OPERATION SIGNALLED> 
-1 out of 1 total tests failed: 
-   #<RT:TEST BQN :FN BQN-TEST394 :ARGS NIL :PERSIST NIL {100B6795C3}>.
-1 unexpected failures: 
-   #<FAIL ARITHMETIC ERROR FLOATING-POINT-INVALID-OPERATION SIGNALLED>.
-#+end_example
 
 *** blake3
 #+begin_src lisp :results output replace :exports results
@@ -1362,87 +1058,69 @@ To load "blake3":
     blake3
 ; Loading "blake3"
 
-in suite blake3 with 2/2 tests:
+in suite BLAKE3 with 2/2 tests:
 
-#<sb-alien-internals:alien-value :sap #X7F3B4D30F888 :type (*
-                                                            (sb-alien:struct
-                                                             blake3/pkg:blake3-hasher
-                                                             (blake3/pkg::key
-                                                              (array
-                                                               (sb-alien:unsigned
+#<SB-ALIEN-INTERNALS:ALIEN-VALUE :SAP #X76AF417FF888 :TYPE (*
+                                                            (SB-ALIEN:STRUCT
+                                                             BLAKE3/PKG:BLAKE3-HASHER
+                                                             (BLAKE3/PKG::KEY
+                                                              (ARRAY
+                                                               (SB-ALIEN:UNSIGNED
                                                                 32)
                                                                8)
-                                                              :offset 0)
-                                                             (blake3/pkg::chunk
-                                                              (sb-alien:struct
-                                                               blake3/pkg:blake3-chunk-state
-                                                               (blake3/pkg::key
-                                                                (array
-                                                                 (sb-alien:unsigned
+                                                              :OFFSET 0)
+                                                             (BLAKE3/PKG::CHUNK
+                                                              (SB-ALIEN:STRUCT
+                                                               BLAKE3/PKG:BLAKE3-CHUNK-STATE
+                                                               (BLAKE3/PKG::KEY
+                                                                (ARRAY
+                                                                 (SB-ALIEN:UNSIGNED
                                                                   32)
                                                                  8)
-                                                                :offset 0)
-                                                               (blake3/pkg::chunk-counter
-                                                                (sb-alien:unsigned
+                                                                :OFFSET 0)
+                                                               (BLAKE3/PKG::CHUNK-COUNTER
+                                                                (SB-ALIEN:UNSIGNED
                                                                  64)
-                                                                :offset 256)
-                                                               (blake3/pkg::buf
-                                                                (array
-                                                                 (sb-alien:unsigned
+                                                                :OFFSET 256)
+                                                               (BLAKE3/PKG::BUF
+                                                                (ARRAY
+                                                                 (SB-ALIEN:UNSIGNED
                                                                   8)
                                                                  64)
-                                                                :offset 320)
-                                                               (blake3/pkg::buf-len
-                                                                (sb-alien:unsigned
+                                                                :OFFSET 320)
+                                                               (BLAKE3/PKG::BUF-LEN
+                                                                (SB-ALIEN:UNSIGNED
                                                                  8)
-                                                                :offset 832)
-                                                               (blake3/pkg::blocks-compressed
-                                                                (sb-alien:unsigned
+                                                                :OFFSET 832)
+                                                               (BLAKE3/PKG::BLOCKS-COMPRESSED
+                                                                (SB-ALIEN:UNSIGNED
                                                                  8)
-                                                                :offset 840)
-                                                               (blake3/pkg::flags
-                                                                (sb-alien:unsigned
+                                                                :OFFSET 840)
+                                                               (BLAKE3/PKG::FLAGS
+                                                                (SB-ALIEN:UNSIGNED
                                                                  8)
-                                                                :offset 848))
-                                                              :offset 256)
-                                                             (blake3/pkg::cv-stack-len
-                                                              (sb-alien:unsigned
+                                                                :OFFSET 848))
+                                                              :OFFSET 256)
+                                                             (BLAKE3/PKG::CV-STACK-LEN
+                                                              (SB-ALIEN:UNSIGNED
                                                                8)
-                                                              :offset 1152)
-                                                             (blake3/pkg::cv-stack
-                                                              (array
-                                                               (sb-alien:unsigned
+                                                              :OFFSET 1152)
+                                                             (BLAKE3/PKG::CV-STACK
+                                                              (ARRAY
+                                                               (SB-ALIEN:UNSIGNED
                                                                 8)
                                                                1760)
-                                                              :offset 1160)))> 
-#<sb-alien-internals:alien-value :sap #X7F3B4D30F880 :type (*
+                                                              :OFFSET 1160)))> 
+#<SB-ALIEN-INTERNALS:ALIEN-VALUE :SAP #X76AF417FF880 :TYPE (*
                                                             (*
-                                                             (sb-alien:unsigned
+                                                             (SB-ALIEN:UNSIGNED
                                                               8)))> 
-#<PASS HASHER-TEST249420> 
-#<PASS VERSION-TEST249419> 
+#<PASS HASHER-TEST9514127> 
+#<PASS VERSION-TEST9514126> 
 No tests failed.
-in suite blake3 with 0/2 tests:
+in suite BLAKE3 with 0/2 tests:
 No tests failed.
 #+end_example
-
-*** alpm
-#+begin_src lisp :results output replace :exports results
-  (ql:quickload :alpm)
-  (load "lisp/ffi/alpm/tests.lisp")
-  (asdf:test-system :alpm)
-#+end_src
-
-#+RESULTS:
-: To load "alpm":
-:   Load 1 ASDF system:
-:     alpm
-: ; Loading "alpm"
-: 
-: in suite alpm with 1/1 tests:
-: #<PASS ALPM-VERSION-TEST249439> 
-: No tests failed.
-
 *** xkb
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :xkb)
@@ -1456,6 +1134,6 @@ No tests failed.
 :     xkb
 : ; Loading "xkb"
 : 
-: in suite xkb with 1/1 tests:
-: #<PASS XKB-BASIC-TEST249441> 
+: in suite XKB with 1/1 tests:
+: #<PASS XKB-BASIC-TEST9514128> 
 : No tests failed.

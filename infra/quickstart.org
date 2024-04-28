@@ -4,22 +4,33 @@ ellis@rwest.io,
 Infra Quickstart Guide)}}}
 #+property: header-args :dir /home/ellis/dev/comp/infra/
 
-- Minimum Dependencies
-  - Mercurial
-  - Make
-  - Podman
+- Minimum Host Requirements
+  - x86_64 4 core CPU
+  - 8G RAM
+  - 32G Disk Space
+  - Unix OS (Archlinux > other GNU/Linux > Darwin)
 
+- Minimum Dependencies
+  - Make
+  - Mercurial
+  - Git
+  - Clang
+  - Zstd
+  - Podman
+  - SBCL
+
+- init from container registry
 #+name: pull-infra-container
 #+begin_src shell
 podman pull registry.compiler.company/comp/infra/box:latest
 podman run -it infra/box
 #+end_src
 
-/or/
+/OR/
 
+- init from source
 #+name: pull-infra-source
 #+begin_src shell
-sudo pacman -Sy make mercurial podman
 hg clone https://vc.compiler.company/comp/infra
 cd infra
 make box

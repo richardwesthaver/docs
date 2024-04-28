@@ -1,6 +1,7 @@
-* TODO migrate to sb-grovel [8/9]                                  :lisp:ffi:
+* DONE migrate to sb-grovel [9/9]                                  :lisp:ffi:
 :LOGBOOK:
 - State "TODO"       from              [2023-11-27 Mon 23:42]
+- State "DONE"       from "TODO"       [2024-02-04 Sun 20:30]
 :END:
 :PROPERTIES:
 :CUSTOM_ID: bb365025-e5e7-4407-acba-32e30d1a245a
@@ -70,10 +71,11 @@
 :PROPERTIES:
 :CUSTOM_ID: 6ade8dd8-83b1-470d-a0da-a352ce4c2d06
 :END:
-** WIP xkb
+** DONE xkb
 :LOGBOOK:
 - State "TODO"       from              [2023-11-29 Wed 19:27]
 - State "WIP"        from "TODO"       [2023-12-10 Sun 22:47]
+- State "DONE"       from "WIP"        [2024-02-04 Sun 20:30]
 :END:
 :PROPERTIES:
 :CUSTOM_ID: af778a5f-4834-4f0c-ae53-36d35cb98d8c
@@ -102,13 +104,6 @@ need to fill.
 :END:
 the toml parser on quicklisp is based on esrap, make a comparable one
 using our parser module.
-* TBD wayland compositor                                          :rust:lisp:
-:LOGBOOK:
-- State "TBD"        from "TODO"       [2023-11-29 Wed 21:25]
-:END:
-:PROPERTIES:
-:CUSTOM_ID: e18a90d7-10bc-44d3-8508-56483d29d385
-:END:
 * TODO organ 0.2 [0/2]                                           :lisp:organ:
 :LOGBOOK:
 - State "TODO"       from              [2023-11-29 Wed 21:25]
@@ -220,17 +215,22 @@ using our parser module.
 - I feel this may be less efficient but haven't benched it (requires additional arg)
 - separate packages are a pain to query symbols with
 
+* TODO vc 0.1                                                            :vc:
+:LOGBOOK:
+- State "TODO"       from              [2024-02-29 Thu 16:10]
+:END:
+** TODO git                                                          :vc:git:
+:LOGBOOK:
+- State "TODO"       from              [2023-12-16 Sat 00:55]
+:END:
+** TODO hg                                                            :vc:hg:
+:LOGBOOK:
+- State "TODO"       from              [2023-12-16 Sat 00:56]
+:END:
+
 * TODO skel 0.2 [0/3]                                             :lisp:skel:
 :LOGBOOK:
 - State "TODO"       from              [2023-12-16 Sat 00:55]
-:END:
-** TODO git                                                              :vc:
-:LOGBOOK:
-- State "TODO"       from              [2023-12-16 Sat 00:55]
-:END:
-** TODO hg                                                               :vc:
-:LOGBOOK:
-- State "TODO"       from              [2023-12-16 Sat 00:56]
 :END:
 ** TODO eval rules from CLI
 :LOGBOOK:
@@ -238,7 +238,7 @@ using our parser module.
 :END:
 - need new command or flag for rules
 - evaluate forms instead of looking in skelfile
-* TODO std 0.2 [1/2]                                               :lisp:std:
+* TODO std 0.2 [1/6]                                               :lisp:std:
 :LOGBOOK:
 - State "TODO"       from              [2023-12-12 Tue 19:49]
 :END:
@@ -254,6 +254,23 @@ using our parser module.
 :LOGBOOK:
 - State "TODO"       from              [2023-12-13 Wed 19:39]
 :END:
+** TODO documentation sweep
+:LOGBOOK:
+- State "TODO"       from              [2024-02-29 Thu 16:09]
+:END:
+** TODO CLTL2 impl
+:LOGBOOK:
+- State "TODO"       from              [2024-02-29 Thu 16:09]
+:END:
+** TODO more bits
+:LOGBOOK:
+- State "TODO"       from              [2024-02-29 Thu 16:09]
+:END:
+** TODO list-package-symbols, etc
+:LOGBOOK:
+- State "TODO"       from              [2024-02-29 Thu 16:09]
+:END:
+
 * TODO sxp 0.2 [0/1]                                               :lisp:sxp:
 :LOGBOOK:
 - State "TODO"       from              [2023-12-12 Tue 19:49]
@@ -319,12 +336,14 @@ using our parser module.
 * TODO pwn 0.1 [0/1]                                               :lisp:pwn:
 :LOGBOOK:
 - State "TODO"       from              [2023-12-17 Sun 01:04]
+- Note taken on [2024-02-29 Thu 16:11] \\
+  Should this be a separate application? Lisp exploit development framework
 :END:
 ** TODO diz
 :LOGBOOK:
 - State "TODO"       from              [2023-12-17 Sun 01:04]
 :END:
-* TODO gui 0.1 [0/1]                                               :lisp:gui:
+* TODO gui 0.1 [0/2]                                               :lisp:gui:
 :LOGBOOK:
 - State "TODO"       from              [2023-12-17 Sun 03:40]
 :END:
@@ -332,6 +351,28 @@ using our parser module.
 :LOGBOOK:
 - State "TODO"       from              [2023-12-17 Sun 03:40]
 :END:
+** TBD wayland compositor                                         :rust:lisp:
+:LOGBOOK:
+- State "TBD"        from "TODO"       [2023-11-29 Wed 21:25]
+:END:
+:PROPERTIES:
+:CUSTOM_ID: e18a90d7-10bc-44d3-8508-56483d29d385
+:END:
+* TODO rt 0.1 [0/2]                                                      :rt:
+:LOGBOOK:
+- State "TODO"       from              [2024-02-29 Thu 16:06]
+:END:
+** TODO redirect I/O in tests
+:LOGBOOK:
+- State "TODO"       from              [2024-02-29 Thu 16:06]
+:END:
+prevent tests from printing implicitly. redirect stream locally, cache
+it somehow for review.
+** TODO *test-on-def*
+:LOGBOOK:
+- State "TODO"       from              [2024-02-29 Thu 17:17]
+:END:
+- simple flag to test when file is defined (part of deftest macro)
 * NOPE dot 0.1 [1/1]                                               :lisp:dot:
 :LOGBOOK:
 - State "TODO"       from              [2023-12-20 Wed 18:27]
@@ -351,6 +392,10 @@ using our parser module.
 :LOGBOOK:
 - State "TODO"       from              [2023-12-24 Sun 19:32]
 :END:
+[[https://www.gnu.org/software/stow/][homepage]]
+'symlink farm manager'
+rust impl: https://github.com/qboileau/rstow
+
 ** TODO consolidate with skel
 :LOGBOOK:
 - State "TODO"       from              [2023-12-24 Sun 19:32]
