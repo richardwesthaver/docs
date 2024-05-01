@@ -4,34 +4,100 @@ ellis@rwest.io,
 Infra Quickstart Guide)}}}
 #+property: header-args :dir /home/ellis/dev/comp/infra/
 
-- Minimum Host Requirements
+The CC =infra= project can be thought of as one big Makefile, and
+currently it is one.
+
+- *Host Requirements*
   - x86_64 4 core CPU
   - 8G RAM
   - 32G Disk Space
-  - Unix OS (Archlinux > other GNU/Linux > Darwin)
+  - Linux kernel
 
-- Minimum Dependencies
-  - Make
-  - Mercurial
-  - Git
-  - Clang
-  - Zstd
-  - Podman
-  - SBCL
+- *Minimum Dependencies*
+  - mercurial
+  - git
+  - clang
+  - zstd
 
-- init from container registry
-#+name: pull-infra-container
+* TODO check.sh
+Check that the current host is a qualified builder.
+
+This will interrogate the system, checking for minimum
+requirements. If any requirement isn't met an error is
+signaled. Environment variables are also reported here, but not
+set. On completion, the file =host.sxp= is written to the current
+directory.
+
+The minimum software dependencies above should be installed via your
+system's package manager. The remaining dependencies are installed via
+the =install.sh= script.
+
 #+begin_src shell
-podman pull registry.compiler.company/comp/infra/box:latest
-podman run -it infra/box
+./check.sh
 #+end_src
 
-/OR/
+* TODO profile.sh
+Provision a pre-configured profile for this host.
 
-- init from source
-#+name: pull-infra-source
-#+begin_src shell
-hg clone https://vc.compiler.company/comp/infra
-cd infra
-make box
-#+end_src
+The default profile builds most dependencies from source. Depending on
+your hardware this can take a very long time and may not be
+appropriate anyway. For example a 'guest' builder may want to be
+provisioned some dependencies from the host and install cached
+binaries.
+
+This script 
+* TODO install.sh
+Install core dependencies.
+
+This script may install any of the following depending on
+=profile.sxp=:
+
+- shared libraries and headers
+  - rocksdb
+  - tree-sitter
+  - tree-sitter-langs
+- programs
+  - emacs
+  - rust
+  - sbcl
+  - core-progs
+    - skel
+    - packy
+- system packages
+  - imagemagick
+  - giflib
+  - libgccjit
+  - uutils-coreutils
+  - wireguard-tools
+  - openssl
+  - linux-headers
+  - liburing
+  - libxkbcommon
+  - podman
+
+* TODO bootstrap.sh
+Bootstrap the core.
+
+- download the compressed =infra= lisp core from
+  https://packy.compiler.company
+- compile and load =bootstrap.lisp=
+
+Upon completion a local =stash= directory is provisioned. At this
+point we no longer need to depend on shell scripting as we have a
+fully interactive Lisp environment to hack on our builds with.
+
+From here, you may run =skel inspect= to inspect the infra =skelfile=
+and select a target to build on your machine or in a container. Use
+=skel --help= for a list of other commands.
+
+* TODO deploy.lisp
+Deploy =infra= builds to a remote.
+
+Deployment involves 'packing' a target found in =stash=, archiving it,
+compressing it, and sending it to a remote location possibly with a
+signature, checksum, or other metadata, and possibly encrypted. A
+'package' may also be a raw directory of plain-text files. It's a very
+loose term. Where the package ends up and how it is packed depends on
+the build-config and skelfile slots.
+
+Production deployments end up at https://packy.compiler.company.
