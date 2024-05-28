@@ -2,7 +2,7 @@
 Richard Westhaver,
 ellis@rwest.io,
 Infra Quickstart Guide)}}}
-#+property: header-args :dir /home/ellis/dev/comp/infra/
+#+property: header-args :dir /home/ellis/comp/infra/
 
 The CC =infra= project can be thought of as one big Makefile, and
 currently it is one.
@@ -16,7 +16,6 @@ currently it is one.
 - *Minimum Dependencies*
   - mercurial
   - git
-  - clang
   - zstd
 
 * TODO check.sh
@@ -36,50 +35,45 @@ the =install.sh= script.
 ./check.sh
 #+end_src
 
-* TODO profile.sh
-Provision a pre-configured profile for this host.
+#+RESULTS:
+| STASH=          |
+| STORE=          |
+| DIST=           |
+| PACKY_URL=      |
+| VC_URL=         |
+| INSTALL_PREFIX= |
+| CC=             |
+| AR=             |
+| HG=             |
+| GIT=            |
+| LISP=           |
+| RUST=           |
+| LD=             |
+| SHELL=/bin/bash |
+| DEV=            |
+| DEV_HOME=       |
+| ID=             |
+| WORKER=         |
+| WORKER_ID=      |
+| WORKER_HOME=    |
+| CARGO_HOME=     |
+| RUSTUP_HOME=    |
 
-The default profile builds most dependencies from source. Depending on
-your hardware this can take a very long time and may not be
-appropriate anyway. For example a 'guest' builder may want to be
-provisioned some dependencies from the host and install cached
-binaries.
-
-This script 
 * TODO install.sh
 Install core dependencies.
 
-This script may install any of the following depending on
-=profile.sxp=:
-
-- shared libraries and headers
-  - rocksdb
-  - tree-sitter
-  - tree-sitter-langs
-- programs
-  - emacs
-  - rust
-  - sbcl
-  - core-progs
-    - skel
-    - packy
-- system packages
-  - imagemagick
-  - giflib
-  - libgccjit
-  - uutils-coreutils
-  - wireguard-tools
-  - openssl
-  - linux-headers
-  - liburing
-  - libxkbcommon
-  - podman
+This script will install missing core binaries and libraries to the
+=infra= stash directory.
+- sbcl
+- librocksdb
+- rust
 
 * TODO bootstrap.sh
 Bootstrap the core.
 
-- download the compressed =infra= lisp core from
-  https://packy.compiler.company
+- download and run =cc-install=
+- install the latest =infra= lisp core from
+  https://packy.compiler.company to the stash
 - compile and load =bootstrap.lisp=
 
 Upon completion a local =stash= directory is provisioned. At this
