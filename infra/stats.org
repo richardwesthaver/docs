@@ -1,8 +1,26 @@
-{{{header(docs/core,Richard Westhaver,ellis@rwest.io)}}}
+#+title: stats
+#+author: Richard Westhaver
+#+email: ellis@rwest.io
 #+property: header-args :dir /home/ellis/comp/infra/
 
+#+begin_src shell :results pp
+  hg churn -f "%Y-%m" -s
+#+end_src
+
+#+RESULTS:
+: 2023-07     61 
+: 2023-11   5004 ***************************
+: 2023-12   2690 **************
+: 2024-01  11278 *************************************************************
+: 2024-02   1021 *****
+: 2024-03     21 
+: 2024-04   2063 ***********
+: 2024-05   8443 *********************************************
+: 2024-06     35 
+
+
 #+begin_src shell :results pp :exports results
-  tokei -e{build,cdn,dist}/*
+  tokei -e{.stash}/*
 #+end_src
 
 #+RESULTS:
@@ -11,10 +29,10 @@
  Language            Files        Lines         Code     Comments       Blanks
 ===============================================================================
  Lisp                    4          208          144           21           43
- Makefile                1          276          213           28           35
+ Makefile                1          277          214           28           35
  Org                     3           36           30            0            6
- Shell                  56         1726         1276          270          180
+ Shell                  70         1584         1147          283          154
 ===============================================================================
- Total                  64         2246         1663          319          264
+ Total                  78         2105         1535          332          238
 ===============================================================================
 #+end_example

@@ -1,4 +1,5 @@
-{{{header(skel,Richard Westhaver,ellis@rwest.io)}}}
+#+title: skel
+#+author: Richard Westhaver
 
 The =skel= CLI is the primary build tool for contributors and serves a
 similar role to language-agnostic build tools like [[https://www.gnu.org/software/make/][GNU Make]], but with
@@ -17,28 +18,35 @@ Both files are optional and the user skelrc takes precedence over
 system.
 
 Example =~/.skelrc=:
-#+begin_src skel :results pp replace :exports both
-  ;;; .skelrc @ 2023-10-12.02:58:08 -*- mode: skel; -*-
-  :author "Richard Westhaver <ellis@rwest.io>"
-  :user "ellis"
-  :version "0.1.0"
-  :tags ("auto")
-  :fmt :collapsed
-  :vc :hg
-  :auto-insert t
-  :license "MPL"
-  :log-level nil
-  :shed "~/lab/shed"
-  :stash "~/lab/stash"
-  :scripts "~/bin/sh"
-  :alias-list
-  (("p" "vc push")
-   ("P" "vc pull")
-   ("ci" "vc commit"))
+#+begin_src shell :results output
+cat ~/.skelrc
 #+end_src
 
+#+RESULTS:
+#+begin_example
+;;; .skelrc @ 2023-10-12.02:58:08 -*- mode: skel; -*-
+:name "Richard Westhaver <ellis@rwest.io>"
+:user "ellis"
+:version "0.1.0"
+:tags ("auto")
+:fmt :pretty
+:vc :hg
+:auto-insert t
+:license :mpl2
+:log-level :info
+:stash ".stash"
+;; :scratch ".stash/scratch"
+:cache ".cache"
+:registry ".data/skel/registry"
+:scripts ("/usr/local/share/stash/scripts" "~/stash/scripts")
+:alias-list
+(("p" "vc push")
+ ("P" "vc pull")
+ ("ci" "vc commit"))
+#+end_example
+
 ** projects
-Projects are the main top-level object users interact with. A project
+Projects are the highest-level objects int the ~skel~ system. A project
 consists of a list of slots which are populated automatically or by
 the user. Once a project is initialized the slots can be accessed and
 a set of high-level operations can be performed.
@@ -69,7 +77,7 @@ Here is a more verbose example, still with only metadata:
 :vc :hg
 :tags ("core")
 :docs ((:org "readme") (:org "install") (:org "tests") (:org "todo"))
-:imports ("lisp/lisp.sk" "rust/rust.sk")
+:import ("lisp/lisp.sk" "rust/rust.sk")
 #+end_src
 
 Another example with rules and components:
@@ -89,9 +97,6 @@ Another example with rules and components:
 :components
 ((:elisp "sk"))
 :stash "~/dev/comp/stash"
-:shed "~/dev/comp/shed"
-:snippets
-((autogen #$sbcl --eval '(ql:quickload :app/cli/skel)' --eval '(asdf:make :app/cli/skel)'$#))
 #+end_src
 ** version control
 =skel= integrates closely with our Version Control System (VCS) which
@@ -145,43 +150,43 @@ skel -h
 
 #+RESULTS:
 #+begin_example
-skel v0.1.1
+skel v0.1.1 --- A hacker's project compiler.
+
   usage: skel [global] <command> [<arg>]
 
-  A hacker's project compiler and build tool.
-  options:
-     -h/--help* :  print this message
-     -v/--version* :  print version
-     -d/--debug* :  set log level (debug,info,trace,warn)
-     -c/--config* :  set a custom skel user config
-     -i/--input  :  input source
-     -o/--output  :  output target
-  commands:
-    init  :  initialize a skelfile in the current directory
-     -n/--name  :  project name
-    
-    show  :  describe the project skelfile
-     -f/--file  :  path to skelfile
-    
-    inspect  :  inspect the project skelfile
-     -f/--file  :  path to skelfile
-    
-    make  :  build project targets
-     -t/--target  :  target to build
-    
-    run  :  run a script or command
-    
-    push  :  push the current project upstream
-    
-    pull  :  pull the current project from remote
-    
-    clone  :  clone a remote project
-    
-    commit  :  commit changes to the project vc
-    
-    edit  :  edit a project file
-    
-    shell  :  open the sk-shell interpreter
-    
+options:
+  -h/--help* :  print this message
+  -v/--version* :  print version
+  -l/--level* :  set log level (warn,info,debug,trace)
+  -c/--config* :  set a custom skel user config
+  -i/--input* :  input source
+  -o/--output* :  output target
+
+commands:
+  init : initialize a skelfile in the current directory
+    -n/--name :  project name
+  new : make a new skel project
+    -n/--name :  project name
+  describe : describe a skelfile
+  show : show project slots
+    -f/--file :  path to skelfile
+    -u/--user :  print user configuration
+    -s/--system :  print system configuration
+  vc : version control
+    -r/--root :  repository path
+  id : print the project id
+  rev : print the current vc revision id
+  inspect : inspect the project skelfile
+    -f/--file :  path to skelfile
+  make : build project targets
+    -t/--target :  target to build
+  run : run a script or command
+  status : print the vc status
+  push : push the current project upstream
+  pull : pull the current project from remote
+  clone : clone a remote project
+  commit : commit changes to the project vc
+  edit : edit a project file in emacs.
+  shell : open the sk-shell interpreter
 #+end_example
 

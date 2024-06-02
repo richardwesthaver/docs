@@ -4,8 +4,7 @@ ellis@rwest.io,
 Infra Quickstart Guide)}}}
 #+property: header-args :dir /home/ellis/comp/infra/
 
-The CC =infra= project can be thought of as one big Makefile, and
-currently it is one.
+The CC =infra= project is the CC software deployment toolkit.
 
 - *Host Requirements*
   - x86_64 4 core CPU
@@ -59,21 +58,12 @@ the =install.sh= script.
 | CARGO_HOME=     |
 | RUSTUP_HOME=    |
 
-* TODO install.sh
-Install core dependencies.
-
-This script will install missing core binaries and libraries to the
-=infra= stash directory.
-- sbcl
-- librocksdb
-- rust
-
 * TODO bootstrap.sh
 Bootstrap the core.
 
-- download and run =cc-install=
-- install the latest =infra= lisp core from
-  https://packy.compiler.company to the stash
+- download and prepare target-specific dependencies
+- install the latest =sk= binary from https://packy.compiler.company
+  to the stash
 - compile and load =bootstrap.lisp=
 
 Upon completion a local =stash= directory is provisioned. At this
@@ -95,3 +85,7 @@ loose term. Where the package ends up and how it is packed depends on
 the build-config and skelfile slots.
 
 Production deployments end up at https://packy.compiler.company.
+
+
+* TODO install.lisp
+Install core packages locally.
