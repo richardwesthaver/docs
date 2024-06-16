@@ -3,6 +3,8 @@
 #+author: Richard Westhaver
 #+property: header-args :dir /home/ellis/comp/core/
 #+setupfile: ../../clean.theme
+#+OPTIONS: num:nil
+#+INFOJS_OPT: toc:nil view:content
 * vc
 #+begin_src shell :results pp :exports results
   hg churn -f "%Y-%m" -s
@@ -17,7 +19,7 @@
 : 2024-03  27292 ***************************
 : 2024-04  23322 ***********************
 : 2024-05  24141 ***********************
-: 2024-06   2854 **
+: 2024-06   8581 ********
 
 * files
 #+begin_src shell :results pp :exports results
@@ -32,14 +34,14 @@
 ===============================================================================
  C                       2          130           70           21           39
  C Header               18         9990         4990         3555         1445
- Lisp                  431        64385        49700         6897         7788
+ Lisp                  442        64962        50063         7005         7894
  Makefile                1            6            6            0            0
 -------------------------------------------------------------------------------
- Rust                  148        12416        10737          475         1204
- |- Markdown           104          812            0          717           95
- (Total)                          13228        10737         1192         1299
+ Rust                  149        12468        10772          484         1212
+ |- Markdown           105          816            0          721           95
+ (Total)                          13284        10772         1205         1307
 ===============================================================================
- Total                 600        86927        65503        10948        10476
+ Total                 612        87556        65901        11065        10590
 ===============================================================================
 #+end_example
 
@@ -76,10 +78,10 @@
 - /home/ellis/comp/core/lisp/std/hash-table.lisp
 - /home/ellis/comp/core/lisp/std/alien.lisp
 - /home/ellis/comp/core/lisp/std/mop.lisp
-- /home/ellis/comp/core/lisp/std/thread.lisp
 - /home/ellis/comp/core/lisp/std/readtable.lisp
 - /home/ellis/comp/core/lisp/std/macs/
 - /home/ellis/comp/core/lisp/std/bit.lisp
+- /home/ellis/comp/core/lisp/std/thread.lisp
 - /home/ellis/comp/core/lisp/std/fmt.lisp
 - /home/ellis/comp/core/lisp/std/path.lisp
 - /home/ellis/comp/core/lisp/std/os.lisp
@@ -97,14 +99,8 @@
 - /home/ellis/comp/core/lisp/lib/cli/prompt.lisp
 - /home/ellis/comp/core/lisp/lib/cli/ed.lisp
 - /home/ellis/comp/core/lisp/lib/cli/tools/
-- /home/ellis/comp/core/lisp/lib/cli/clap.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/vars.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/macs.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/proto.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/opt.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/cmd.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/cli.lisp
+- /home/ellis/comp/core/lisp/lib/cli/clap/
+- /home/ellis/comp/core/lisp/lib/cli/cli.lisp
 - /home/ellis/comp/core/lisp/lib/log/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/log/err.lisp
 - /home/ellis/comp/core/lisp/lib/log/log.lisp
@@ -185,6 +181,7 @@
 - /home/ellis/comp/core/lisp/lib/organ/document.lisp
 - /home/ellis/comp/core/lisp/lib/packy/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/packy/proto.lisp
+- /home/ellis/comp/core/lisp/lib/packy/pkgbuild.lisp
 - /home/ellis/comp/core/lisp/lib/packy/db.lisp
 - /home/ellis/comp/core/lisp/lib/packy/client.lisp
 - /home/ellis/comp/core/lisp/lib/packy/server.lisp
@@ -211,7 +208,6 @@
 - /home/ellis/comp/core/lisp/lib/net/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/net/err.lisp
 - /home/ellis/comp/core/lisp/lib/net/obj.lisp
-- /home/ellis/comp/core/lisp/lib/net/sans-io.lisp
 - /home/ellis/comp/core/lisp/lib/net/util.lisp
 - /home/ellis/comp/core/lisp/lib/net/udp.lisp
 - /home/ellis/comp/core/lisp/lib/net/tcp.lisp
@@ -233,6 +229,9 @@
 - /home/ellis/comp/core/lisp/ffi/sndfile/constants.lisp
 - /home/ellis/comp/core/lisp/ffi/zstd/pkg.lisp
 - /home/ellis/comp/core/lisp/ffi/zstd/constants.lisp
+- /home/ellis/comp/core/lisp/ffi/zstd/simple.lisp
+- /home/ellis/comp/core/lisp/ffi/zstd/stream.lisp
+- /home/ellis/comp/core/lisp/ffi/zstd/dict.lisp
 - /home/ellis/comp/core/lisp/ffi/uring/pkg.lisp
 - /home/ellis/comp/core/lisp/ffi/uring/constants.lisp
 - /home/ellis/comp/core/lisp/ffi/uring/util.lisp
@@ -281,6 +280,13 @@
 - /home/ellis/comp/core/lisp/lib/krypt/err.lisp
 - /home/ellis/comp/core/lisp/lib/krypt/krypt.lisp
 - /home/ellis/comp/core/lisp/lib/io/pkg.lisp
+- /home/ellis/comp/core/lisp/lib/io/ring.lisp
+- /home/ellis/comp/core/lisp/lib/io/socket.lisp
+- /home/ellis/comp/core/lisp/lib/io/stream.lisp
+- /home/ellis/comp/core/lisp/lib/io/proto.lisp
+- /home/ellis/comp/core/lisp/lib/io/flate.lisp
+- /home/ellis/comp/core/lisp/lib/io/port.lisp
+- /home/ellis/comp/core/lisp/lib/io/zstd.lisp
 - /home/ellis/comp/core/lisp/lib/io/xsubseq.lisp
 - /home/ellis/comp/core/lisp/lib/io/smart-buffer.lisp
 - /home/ellis/comp/core/lisp/lib/gui/pkg.lisp

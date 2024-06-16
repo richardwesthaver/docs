@@ -1,6 +1,9 @@
 #+title: skel
 #+author: Richard Westhaver
 #+setupfile: ../../../clean.theme
+#+OPTIONS: num:nil
+#+INFOJS_OPT: toc:nil view:content
+
 The =skel= CLI is the primary build tool for contributors and serves a
 similar role to language-agnostic build tools like [[https://www.gnu.org/software/make/][GNU Make]], but with
 the features and ease-of-use of language-specific build tools like
@@ -57,7 +60,7 @@ files are parsed as a simplified Lisp dialect and generate
 
 The simplest project looks like this:
 
-#+begin_src skel :results pp replace :exports both
+#+begin_src skel :noeval t
 :name hello-world
 #+end_src
 
@@ -67,7 +70,7 @@ blanks later as the project develops.
 
 Here is a more verbose example, still with only metadata:
 
-#+begin_src skel :results pp replace :exports both
+#+begin_src skel :noeval t
 ;;; skelfile --- core skelfile -*- mode: skel; -*-
 :name "core"
 :author "Richard Westhaver <ellis@rwest.io>"
@@ -82,7 +85,7 @@ Here is a more verbose example, still with only metadata:
 
 Another example with rules and components:
 
-#+begin_src skel
+#+begin_src skel :noeval t
 ;;; skelfile @ 2023-10-08.02:37:25 -*- mode: skel; -*-
 :name skel
 :author "ellis"

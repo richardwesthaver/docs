@@ -2,7 +2,10 @@
 #+author: Richard Westhaver
 #+property: header-args :dir /home/ellis/comp/demo/
 #+setupfile: ../../clean.theme
-#+begin_src shell :results pp :exports results
+#+OPTIONS: num:nil
+#+INFOJS_OPT: toc:nil view:showall
+* vc
+#+begin_src shell :results pp :exports both
   hg churn -f "%Y-%m" -s
 #+end_src
 
@@ -14,6 +17,7 @@
 : 2023-12    350 
 : 2024-04    737 *
 
+* files
 #+begin_src shell :results pp :exports results
   tokei
 #+end_src
@@ -25,9 +29,9 @@
 ===============================================================================
  Lisp                   41         3077         2346          243          488
  Makefile                1           23           20            3            0
- Org                     2           45           45            0            0
+ Org                     1            4            4            0            0
  Shell                   2          618          477           64           77
- Plain Text              4            6            0            6            0
+ Plain Text              3            6            0            6            0
  TOML                    6           85           81            0            4
 -------------------------------------------------------------------------------
  HTML                    1            7            7            0            0
@@ -38,6 +42,6 @@
  |- Markdown             9           36            0           32            4
  (Total)                            779          635           35          109
 ===============================================================================
- Total                  74         4604         3611          319          674
+ Total                  72         4563         3570          319          674
 ===============================================================================
 #+end_example

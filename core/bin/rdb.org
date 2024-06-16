@@ -1,11 +1,33 @@
 #+title: rdb
 #+author: Richard Westhaver
 #+setupfile: ../../../clean.theme
+#+OPTIONS: num:nil
+#+INFOJS_OPT: toc:nil view:showall
+
 The =rdb= cli tool is a simple RocksDB management utility.
 
 * help
-#+begin_src shell :results pp replace
+#+begin_src shell :results pp replace :exports both
 rdb -h
 #+end_src
 
 #+RESULTS:
+#+begin_example
+rdb v0.1.0 --- A simple helper for RocksDB.
+
+  usage: rdb [global] <command> [<arg>]
+
+options:
+  -l/--level* :  set the log level
+  -h/--help* :  print help
+  -v/--version* :  print version
+  -d/--db* :  target db
+
+commands:
+  new 
+  show 
+  set 
+  get 
+  fuzz 
+  destroy 
+#+end_example
