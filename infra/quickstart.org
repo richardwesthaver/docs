@@ -15,54 +15,19 @@
   - git
   - zstd
 
-* TODO check.sh
-Check that the current host is a qualified builder.
+* bootstrap.sh
 
-This will interrogate the system, checking for minimum
-requirements. If any requirement isn't met an error is
-signaled. Environment variables are also reported here, but not
-set. On completion, the file =host.sxp= is written to the current
-directory.
+The easiest way to get started is to run the top-level script
+=bootstrap.sh=. Running the script will:
 
-The minimum software dependencies above should be installed via your
-system's package manager. The remaining dependencies are installed via
-the =install.sh= script.
+- run =check.sh=
+- install the latest cores and lisp runtime from
+  https://packy.compiler.company to the stash
+- load =autogen.lisp= and call the function =infra/autogen:autogen=
+  - check and apply the host config and profile
+  - build all features in parallel
 
-#+begin_src shell
-./check.sh
-#+end_src
-
-#+RESULTS:
-| STASH=          |
-| STORE=          |
-| DIST=           |
-| PACKY_URL=      |
-| VC_URL=         |
-| INSTALL_PREFIX= |
-| CC=             |
-| AR=             |
-| HG=             |
-| GIT=            |
-| LISP=           |
-| RUST=           |
-| LD=             |
-| SHELL=/bin/bash |
-| DEV=            |
-| DEV_HOME=       |
-| ID=             |
-| WORKER=         |
-| WORKER_ID=      |
-| WORKER_HOME=    |
-| CARGO_HOME=     |
-| RUSTUP_HOME=    |
-
-* TODO bootstrap.sh
-Bootstrap the core.
-
-- download and prepare target-specific dependencies
-- install the latest =sk= binary from https://packy.compiler.company
-  to the stash
-- compile and load =bootstrap.lisp=
+[[cdn:media/clip/infra-bootstrap.gif]]
 
 Upon completion a local =stash= directory is provisioned. At this
 point we no longer need to depend on shell scripting as we have a
@@ -71,6 +36,42 @@ fully interactive Lisp environment to hack on our builds with.
 From here, you may run =skel inspect= to inspect the infra =skelfile=
 and select a target to build on your machine or in a container. Use
 =skel --help= for a list of other commands.
+
+** check.sh
+This script checks that the current host is qualified. It needs to be
+ran once before the =autogen.lisp= file is loaded, usually via
+=bootstrap.sh=.
+
+This will interrogate the system, checking for minimum
+requirements. If any requirement isn't met an error is signaled. On
+completion, the name of an SXP file is printed which contains the host
+config.
+
+The minimum software dependencies above should be installed via your
+system's package manager.
+
+#+begin_src shell
+./check.sh
+#+end_src
+
+#+RESULTS:
+: zor.sxp
+
+** autogen.lisp
+Once a core and lisp runtime are available, we load =autogen.lisp= and
+call =infra/autogen:autogen=. This will process the host configuration
+(=zor.sxp= in the example above) and the profile (defaults to
+=default.sxp=), update environment variables for the current shell and
+take any additional actions needed.
+
+The order of operations are loosely as follows:
+- initialize profile
+- update host environment variables
+- check features and ensure host dependencies
+- initialize host
+- initialize infra =skelfile=
+- process all features
+- quit
 
 * TODO deploy.lisp
 Deploy =infra= builds to a remote.
@@ -83,7 +84,6 @@ loose term. Where the package ends up and how it is packed depends on
 the build-config and skelfile slots.
 
 Production deployments end up at https://packy.compiler.company.
-
 
 * TODO install.lisp
 Install core packages locally.
