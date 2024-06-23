@@ -4,7 +4,7 @@
 #+property: header-args :dir /home/ellis/comp/core/
 #+setupfile: ../../clean.theme
 #+OPTIONS: num:nil
-#+INFOJS_OPT: toc:nil view:content
+#+infojs_opt: toc:nil home:https://compiler.company up:./ view:content
 * vc
 #+begin_src shell :results pp :exports results
   hg churn -f "%Y-%m" -s
@@ -19,7 +19,7 @@
 : 2024-03  27292 ***************************
 : 2024-04  23322 ***********************
 : 2024-05  24141 ***********************
-: 2024-06   8581 ********
+: 2024-06  10718 **********
 
 * files
 #+begin_src shell :results pp :exports results
@@ -34,34 +34,69 @@
 ===============================================================================
  C                       2          130           70           21           39
  C Header               18         9990         4990         3555         1445
- Lisp                  442        64962        50063         7005         7894
+ Lisp                  443        65158        50191         7040         7927
  Makefile                1            6            6            0            0
 -------------------------------------------------------------------------------
- Rust                  149        12468        10772          484         1212
- |- Markdown           105          816            0          721           95
- (Total)                          13284        10772         1205         1307
+ Rust                  146        12278        10600          480         1198
+ |- Markdown           104          814            0          719           95
+ (Total)                          13092        10600         1199         1293
 ===============================================================================
- Total                 612        87556        65901        11065        10590
+ Total                 610        87562        65857        11096        10609
 ===============================================================================
 #+end_example
 
 * lisp
 ** systems
-#+name: find-systems
-#+begin_src lisp :exports both
+#+name: core-systems
+#+begin_src lisp :results list replace
   (asdf:load-asd "prelude.asd")
   (asdf:compile-system :prelude)
   (asdf:load-system :prelude)
+  (asdf:system-depends-on (asdf:find-system :prelude))
 #+end_src
 
-#+RESULTS: find-systems
-: T
+#+RESULTS: core-systems
+- std
+- cli
+- log
+- dat
+- rocksdb
+- btrfs
+- uring
+- doc
+- alsa
+- nlp
+- skel
+- syn
+- organ
+- packy
+- obj
+- net
+- tree-sitter
+- xkb
+- ssh2
+- sndfile
+- zstd
+- uring
+- blake3
+- ublk
+- parse
+- pod
+- rdb
+- gui
+- aud
+- cry
+- krypt
+- io
 
 ** files
-#+begin_src lisp :exports both :results list
+#+begin_src lisp :exports both :results list replace
   (let ((r))
     (dolist (s (doc:doc-dependencies (doc:system-documentation :prelude)) r)
-      (std::appendf r (mapcar #'namestring (doc:doc-files s)))))
+      (std::appendf r (std:flatten (mapcar
+                                    (lambda (x) (unless (std:directory-path-p x)
+                                                  (namestring x)))
+                                    (doc:doc-files s))))))
 #+end_src
 
 #+RESULTS:
@@ -71,15 +106,12 @@
 - /home/ellis/comp/core/lisp/std/sym.lisp
 - /home/ellis/comp/core/lisp/std/list.lisp
 - /home/ellis/comp/core/lisp/std/type.lisp
-- /home/ellis/comp/core/lisp/std/num/
 - /home/ellis/comp/core/lisp/std/stream.lisp
-- /home/ellis/comp/core/lisp/std/fu/
 - /home/ellis/comp/core/lisp/std/array.lisp
 - /home/ellis/comp/core/lisp/std/hash-table.lisp
 - /home/ellis/comp/core/lisp/std/alien.lisp
 - /home/ellis/comp/core/lisp/std/mop.lisp
 - /home/ellis/comp/core/lisp/std/readtable.lisp
-- /home/ellis/comp/core/lisp/std/macs/
 - /home/ellis/comp/core/lisp/std/bit.lisp
 - /home/ellis/comp/core/lisp/std/thread.lisp
 - /home/ellis/comp/core/lisp/std/fmt.lisp
@@ -98,8 +130,6 @@
 - /home/ellis/comp/core/lisp/lib/cli/shell.lisp
 - /home/ellis/comp/core/lisp/lib/cli/prompt.lisp
 - /home/ellis/comp/core/lisp/lib/cli/ed.lisp
-- /home/ellis/comp/core/lisp/lib/cli/tools/
-- /home/ellis/comp/core/lisp/lib/cli/clap/
 - /home/ellis/comp/core/lisp/lib/cli/cli.lisp
 - /home/ellis/comp/core/lisp/lib/log/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/log/err.lisp
@@ -110,8 +140,7 @@
 - /home/ellis/comp/core/lisp/lib/dat/sxp.lisp
 - /home/ellis/comp/core/lisp/lib/dat/csv.lisp
 - /home/ellis/comp/core/lisp/lib/dat/json.lisp
-- /home/ellis/comp/core/lisp/lib/dat/xml/
-- /home/ellis/comp/core/lisp/lib/dat/html/
+- /home/ellis/comp/core/lisp/lib/dat/mime.lisp
 - /home/ellis/comp/core/lisp/lib/dat/toml.lisp
 - /home/ellis/comp/core/lisp/lib/dat/arff.lisp
 - /home/ellis/comp/core/lisp/lib/dat/midi.lisp
@@ -158,15 +187,10 @@
 - /home/ellis/comp/core/lisp/lib/nlp/data.lisp
 - /home/ellis/comp/core/lisp/lib/nlp/tokenize.lisp
 - /home/ellis/comp/core/lisp/lib/nlp/doc.lisp
-- /home/ellis/comp/core/lisp/lib/nlp/stem/
 - /home/ellis/comp/core/lisp/lib/nlp/textrank.lisp
 - /home/ellis/comp/core/lisp/lib/nlp/dbscan.lisp
 - /home/ellis/comp/core/lisp/lib/nlp/section.lisp
-- /home/ellis/comp/core/lisp/lib/skel/core/
-- /home/ellis/comp/core/lisp/lib/skel/comp/
 - /home/ellis/comp/core/lisp/lib/skel/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/skel/tools/
-- /home/ellis/comp/core/lisp/lib/skel/ext/
 - /home/ellis/comp/core/lisp/lib/syn/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/organ/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/organ/vars.lisp
@@ -174,30 +198,21 @@
 - /home/ellis/comp/core/lisp/lib/organ/proto.lisp
 - /home/ellis/comp/core/lisp/lib/organ/util.lisp
 - /home/ellis/comp/core/lisp/lib/organ/macs.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/
-- /home/ellis/comp/core/lisp/lib/organ/element/
 - /home/ellis/comp/core/lisp/lib/organ/section.lisp
 - /home/ellis/comp/core/lisp/lib/organ/heading.lisp
 - /home/ellis/comp/core/lisp/lib/organ/document.lisp
 - /home/ellis/comp/core/lisp/lib/packy/pkg.lisp
+- /home/ellis/comp/core/lisp/lib/packy/vars.lisp
 - /home/ellis/comp/core/lisp/lib/packy/proto.lisp
 - /home/ellis/comp/core/lisp/lib/packy/pkgbuild.lisp
 - /home/ellis/comp/core/lisp/lib/packy/db.lisp
 - /home/ellis/comp/core/lisp/lib/packy/client.lisp
 - /home/ellis/comp/core/lisp/lib/packy/server.lisp
 - /home/ellis/comp/core/lisp/lib/obj/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/obj/meta/
-- /home/ellis/comp/core/lisp/lib/obj/hash/
 - /home/ellis/comp/core/lisp/lib/obj/id.lisp
-- /home/ellis/comp/core/lisp/lib/obj/uri/
 - /home/ellis/comp/core/lisp/lib/obj/url.lisp
 - /home/ellis/comp/core/lisp/lib/obj/seq.lisp
-- /home/ellis/comp/core/lisp/lib/obj/tree/
-- /home/ellis/comp/core/lisp/lib/obj/graph/
 - /home/ellis/comp/core/lisp/lib/obj/equiv.lisp
-- /home/ellis/comp/core/lisp/lib/obj/color/
-- /home/ellis/comp/core/lisp/lib/obj/music/
-- /home/ellis/comp/core/lisp/lib/obj/time/
 - /home/ellis/comp/core/lisp/lib/obj/uuid.lisp
 - /home/ellis/comp/core/lisp/lib/obj/temperature.lisp
 - /home/ellis/comp/core/lisp/lib/obj/direction.lisp
@@ -211,8 +226,6 @@
 - /home/ellis/comp/core/lisp/lib/net/util.lisp
 - /home/ellis/comp/core/lisp/lib/net/udp.lisp
 - /home/ellis/comp/core/lisp/lib/net/tcp.lisp
-- /home/ellis/comp/core/lisp/lib/net/codec/
-- /home/ellis/comp/core/lisp/lib/net/proto/
 - /home/ellis/comp/core/lisp/lib/net/cookie.lisp
 - /home/ellis/comp/core/lisp/lib/net/req.lisp
 - /home/ellis/comp/core/lisp/lib/net/fetch.lisp
@@ -254,9 +267,8 @@
 - /home/ellis/comp/core/lisp/lib/parse/yacc.lisp
 - /home/ellis/comp/core/lisp/lib/pod/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/pod/err.lisp
-- /home/ellis/comp/core/lisp/lib/pod/obj/
+- /home/ellis/comp/core/lisp/lib/pod/containerfile.lisp
 - /home/ellis/comp/core/lisp/lib/pod/api.lisp
-- /home/ellis/comp/core/lisp/lib/pod/buildah.lisp
 - /home/ellis/comp/core/lisp/lib/pod/podman.lisp
 - /home/ellis/comp/core/lisp/lib/pod/client.lisp
 - /home/ellis/comp/core/lisp/lib/pod/util.lisp
@@ -267,11 +279,11 @@
 - /home/ellis/comp/core/lisp/lib/rdb/proto.lisp
 - /home/ellis/comp/core/lisp/lib/rdb/obj.lisp
 - /home/ellis/comp/core/lisp/lib/rdb/sst.lisp
-- /home/ellis/comp/core/lisp/lib/rt/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/rt/bench.lisp
-- /home/ellis/comp/core/lisp/lib/rt/tracing.lisp
-- /home/ellis/comp/core/lisp/lib/rt/flamegraph.lisp
-- /home/ellis/comp/core/lisp/lib/rt/cover.lisp
+- /home/ellis/comp/core/lisp/lib/gui/pkg.lisp
+- /home/ellis/comp/core/lisp/lib/gui/err.lisp
+- /home/ellis/comp/core/lisp/lib/gui/server.lisp
+- /home/ellis/comp/core/lisp/lib/gui/client.lisp
+- /home/ellis/comp/core/lisp/lib/gui/ext.lisp
 - /home/ellis/comp/core/lisp/lib/aud/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/aud/mpd.lisp
 - /home/ellis/comp/core/lisp/lib/cry/pkg.lisp
@@ -289,12 +301,6 @@
 - /home/ellis/comp/core/lisp/lib/io/zstd.lisp
 - /home/ellis/comp/core/lisp/lib/io/xsubseq.lisp
 - /home/ellis/comp/core/lisp/lib/io/smart-buffer.lisp
-- /home/ellis/comp/core/lisp/lib/gui/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/gui/err.lisp
-- /home/ellis/comp/core/lisp/lib/gui/server.lisp
-- /home/ellis/comp/core/lisp/lib/gui/client.lisp
-- /home/ellis/comp/core/lisp/lib/gui/wm/
-- /home/ellis/comp/core/lisp/lib/gui/ext.lisp
 
 ** packages
 ** symbols
@@ -314,10 +320,10 @@
 #+end_src
 
 #+RESULTS: tally-package-symbols
-: (36 . 3050)
+: (36 . 3068)
 
 #+name: tally-functions-and-symbols
-#+begin_src lisp :exports both
+#+begin_src lisp :exports both :eval no
   (let ((vars) (funs))
     (loop for s in *core-symbols*
           do (let ((f (fboundp s))
@@ -338,11 +344,6 @@
 #+end_src
 
 #+RESULTS:
-| 319M | .stash/core.core    |
-| 511M | .stash/prelude.core |
-| 271M | .stash/std.core     |
-| 319M | .stash/tests.core   |
-| 319M | .stash/user.core    |
 
 * rust
 ** crates
@@ -357,7 +358,7 @@ alch v0.1.0 (/home/ellis/comp/core/rust/lib/alch)
 └── memmap2 v0.5.10
 
 alik v0.1.0 (/home/ellis/comp/core/rust/bin/alik)
-├── clap v4.5.4
+├── clap v4.5.7
 ├── db v0.1.0 (/home/ellis/comp/core/rust/lib/db)
 │   [dev-dependencies]
 ├── krypt v0.1.0 (/home/ellis/comp/core/rust/lib/krypt)
@@ -368,7 +369,7 @@ alik v0.1.0 (/home/ellis/comp/core/rust/bin/alik)
 ├── serde v1.0.203
 ├── tenex v0.1.0 (/home/ellis/comp/core/rust/lib/tenex)
 │   [dev-dependencies]
-├── tokio v1.37.0
+├── tokio v1.38.0
 └── util v0.1.0 (/home/ellis/comp/core/rust/lib/util)
 [build-dependencies]
 └── util v0.1.0 (/home/ellis/comp/core/rust/lib/util)
@@ -376,7 +377,9 @@ alik v0.1.0 (/home/ellis/comp/core/rust/bin/alik)
 alik_ui v0.1.0 (/home/ellis/comp/core/rust/ui/alik)
 ├── eframe v0.27.2
 ├── egui v0.27.2
+├── futures v0.3.30
 ├── log v0.4.21
+├── rfd v0.14.1
 └── serde v1.0.203 (*)
 
 audio v0.1.0 (/home/ellis/comp/core/rust/lib/audio)
@@ -385,10 +388,10 @@ audio v0.1.0 (/home/ellis/comp/core/rust/lib/audio)
 └── hound v3.5.1
 
 aws v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/models/aws)
-├── aws-config v1.5.0
-├── aws-sdk-iam v1.28.0
-├── aws-sdk-route53 v1.28.0
-└── tokio v1.37.0 (*)
+├── aws-config v1.5.1
+├── aws-sdk-iam v1.30.0
+├── aws-sdk-route53 v1.30.0
+└── tokio v1.38.0 (*)
 
 btrfs-sys v0.1.0 (/home/ellis/comp/core/rust/sys/btrfs)
 [build-dependencies]
@@ -397,20 +400,6 @@ btrfs-sys v0.1.0 (/home/ellis/comp/core/rust/sys/btrfs)
 btrfsutil-sys v0.1.0 (/home/ellis/comp/core/rust/sys/btrfsutil)
 [build-dependencies]
 └── bindgen v0.66.1 (*)
-
-cc-install v0.1.0 (/home/ellis/comp/core/rust/bin/cc-install)
-├── clap v4.5.4 (*)
-├── dl v1.26.0 (/home/ellis/comp/core/rust/lib/dl)
-│   [dev-dependencies]
-├── flate v0.1.0 (/home/ellis/comp/core/rust/lib/flate)
-│   [dev-dependencies]
-├── logger v0.1.0 (/home/ellis/comp/core/rust/lib/logger) (*)
-├── net v0.1.0 (/home/ellis/comp/core/rust/lib/net) (*)
-├── obj v0.1.0 (/home/ellis/comp/core/rust/lib/obj) (*)
-├── tokio v1.37.0 (*)
-└── util v0.1.0 (/home/ellis/comp/core/rust/lib/util) (*)
-[build-dependencies]
-└── util v0.1.0 (/home/ellis/comp/core/rust/lib/util) (*)
 
 crypto v0.1.0 (/home/ellis/comp/core/rust/lib/crypto)
 ├── ed25519-dalek v1.0.1
@@ -421,19 +410,37 @@ crypto v0.1.0 (/home/ellis/comp/core/rust/lib/crypto)
 
 db v0.1.0 (/home/ellis/comp/core/rust/lib/db) (*)
 
-dl v1.26.0 (/home/ellis/comp/core/rust/lib/dl) (*)
+dl v1.26.0 (/home/ellis/comp/core/rust/lib/dl)
+├── anyhow v1.0.86
+├── curl v0.4.46
+├── env_proxy v0.4.1
+├── once_cell v1.19.0
+├── reqwest v0.11.27
+├── thiserror v1.0.61
+└── url v2.5.1
+[dev-dependencies]
+├── http-body-util v0.1.2
+├── hyper v1.3.1
+├── hyper-util v0.1.5
+├── tempfile v3.10.1
+└── tokio v1.38.0 (*)
 
 dsp v0.1.0 (/home/ellis/comp/core/rust/lib/audio/dsp) (*)
 
-flate v0.1.0 (/home/ellis/comp/core/rust/lib/flate) (*)
+flate v0.1.0 (/home/ellis/comp/core/rust/lib/flate)
+├── tar v0.4.41
+├── zip v0.5.13
+└── zstd v0.12.4
+[dev-dependencies]
+└── tempfile v3.10.1 (*)
 
 freesound v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/models/freesound)
 ├── futures-util v0.3.30
-├── reqwest v0.11.27
+├── reqwest v0.11.27 (*)
 ├── serde v1.0.203 (*)
 ├── serde_json v1.0.117
 ├── tenex-util v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/util)
-└── tokio v1.37.0 (*)
+└── tokio v1.38.0 (*)
 
 gitlab v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/models/gitlab)
 ├── gitlab v0.1611.0
@@ -449,11 +456,11 @@ ipapi v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/models/ipapi)
 krypt v0.1.0 (/home/ellis/comp/core/rust/lib/krypt) (*)
 
 krypt-cli v0.1.0 (/home/ellis/comp/core/rust/bin/krypt)
-├── clap v4.5.4 (*)
+├── clap v4.5.7 (*)
 ├── krypt v0.1.0 (/home/ellis/comp/core/rust/lib/krypt) (*)
 ├── logger v0.1.0 (/home/ellis/comp/core/rust/lib/logger) (*)
 ├── obj v0.1.0 (/home/ellis/comp/core/rust/lib/obj) (*)
-├── tokio v1.37.0 (*)
+├── tokio v1.38.0 (*)
 └── util v0.1.0 (/home/ellis/comp/core/rust/lib/util) (*)
 [build-dependencies]
 └── util v0.1.0 (/home/ellis/comp/core/rust/lib/util) (*)
@@ -461,12 +468,12 @@ krypt-cli v0.1.0 (/home/ellis/comp/core/rust/bin/krypt)
 logger v0.1.0 (/home/ellis/comp/core/rust/lib/logger) (*)
 
 mailman-cli v0.1.0 (/home/ellis/comp/core/rust/bin/mailman)
-├── clap v4.5.4 (*)
+├── clap v4.5.7 (*)
 ├── jmap-client v0.3.2
 ├── krypt v0.1.0 (/home/ellis/comp/core/rust/lib/krypt) (*)
 ├── logger v0.1.0 (/home/ellis/comp/core/rust/lib/logger) (*)
 ├── obj v0.1.0 (/home/ellis/comp/core/rust/lib/obj) (*)
-├── tokio v1.37.0 (*)
+├── tokio v1.38.0 (*)
 └── util v0.1.0 (/home/ellis/comp/core/rust/lib/util) (*)
 
 net v0.1.0 (/home/ellis/comp/core/rust/lib/net) (*)
@@ -496,9 +503,6 @@ sxp v0.1.0 (/home/ellis/comp/core/rust/lib/sxp)
 tenex v0.1.0 (/home/ellis/comp/core/rust/lib/tenex) (*)
 
 tenex-util v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/util) (*)
-
-tz v0.1.0 (/home/ellis/comp/core/rust/bin/tz)
-└── flate v0.1.0 (/home/ellis/comp/core/rust/lib/flate) (*)
 
 ui v0.1.0 (/home/ellis/comp/core/rust/lib/ui)
 ├── serde v1.0.203 (*)

@@ -1,5 +1,6 @@
-{{{header(skel,Richard Westhaver,ellis@rwest.io)}}}
-
+#+title: skel
+#+author: Richard Westhaver
+#+setupfile: ../../../clean.theme
 =skel= is /a hacker's project compiler and build tool/. It is an
 extensible software library designed for managing /projects/.
 
@@ -12,10 +13,10 @@ purpose of the library grew from managing a small collection of
 user-space libraries (also written in Rust) to managing large
 collections in many different langs.
 
-It is obvious in hindsight, that this project needs Lisp. Today we are
-built on CLOS with classes and methods exposing the library API.
+It is obvious in hindsight, that this project needs Lisp. Today,
+=skel= built on [[https://en.wikipedia.org/wiki/Common_Lisp_Object_System][CLOS]] with classes and methods exposing the core API.
 
-* Design
+* Architecture
 The library core is built on CLOS. Most important data structures are
 represented with classes, slots, and methods such as the ~sk-project~
 class which has a slot named ~:components~ and a method specialized on

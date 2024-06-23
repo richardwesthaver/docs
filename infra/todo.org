@@ -2,23 +2,62 @@
 #+author: Richard Westhaver
 #+email: richard.westhaver@gmail.com
 #+setupfile: ../../clean.theme
-* TODO deploy [0/3]
+#+infojs_opt: toc:nil home:https://compiler.company up:./ view:overview
+#+options: num:nil
+* TODO [#A] deploy [0/4]                                               :lisp:
+:PROPERTIES:
+:Effort:   8h
+:END:
 :LOGBOOK:
 - State "TODO"       from              [2023-12-30 Sat 19:20]
 :END:
-** TODO ci
+- [ ] collect artifacts
+- [ ] pack
+- [ ] send output to =DIST=
+- [ ] Adapt to =skel deploy=
+
+- *assumptions*
+  - host is qualified builder
+  - all dependendencies installed on system (not in stash)
+  - current user has access to DIST
+
+* TODO [#B] publish [0/4]                                        :lisp:emacs:
+:LOGBOOK:
+- State "TODO"       from              [2024-06-21 Fri 15:00]
+:END:
+- [ ] load dependencies (htmlize,default.el,babel.org)
+- [ ] load =publish.el=
+- [ ] set =publish-directory=
+- [ ] eval =publish=
+
+* TODO install [0/7]
+:LOGBOOK:
+- State "TODO"       from              [2024-06-21 Fri 15:20]
+:END:
+- [ ] from source or pack?
+- [ ] which features?
+- [ ] set INSTALL_PREFIX
+- [ ] check host target, install pack or clone src
+- [ ] if from source run =build=
+- [ ] if from pack run =unpack=
+- [ ] run install script
+* TBD [#C] demo
+SCHEDULED: <2024-08-01 Thu>
+:LOGBOOK:
+- State "TODO"       from              [2023-12-30 Sat 19:22]
+- State "TBD"        from "TODO"       [2024-06-21 Fri 15:04]
+:END:
+The demo will eventually need to be integrated with and deployed by
+=infra=.
+
+* TODO ci
 :LOGBOOK:
 - State "TODO"       from              [2023-12-30 Sat 19:22]
 :END:
-** TODO packy
-:LOGBOOK:
-- State "TODO"       from              [2023-12-30 Sat 19:22]
-:END:
-** TODO demo
-:LOGBOOK:
-- State "TODO"       from              [2023-12-30 Sat 19:22]
-:END:
-* TODO install-tree-sitter-pack.sh
+- timers
+- triggers
+
+* TODO tree-sitter-pack
 :LOGBOOK:
 - State "TODO"       from              [2024-01-24 Wed 22:59]
 :END:

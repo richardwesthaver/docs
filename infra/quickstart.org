@@ -1,21 +1,43 @@
 #+title: infra/quickstart
-#+author: Richard Westhaver
-#+email: ellis@rwest.io
 #+description: Infra Quickstart Guide
 #+property: header-args :dir /home/ellis/comp/infra/
+#+property: header-args:dot :dir /tmp/ :file bootstrap.svg
 #+setupfile: ../../clean.theme
+#+infojs_opt: toc:nil home:https://compiler.company up:./ view:overview
+
+* Overview
 - *Host Requirements*
   - x86_64 4 core CPU
   - 8G RAM
   - 32G Disk Space
   - Linux kernel
-
 - *Minimum Dependencies*
   - mercurial
   - git
   - zstd
 
+
 * bootstrap.sh
+#+begin_src lisp :results none :exports none
+    (ql:quickload '(:dat :cli))
+    (in-package :dat/dot)
+    (let ((g (make-instance 'directed-graph)))
+      (add-node g :check)
+      (add-node g :bootstrap)
+      (add-node g :autogen)
+      (add-node g "profile.sxp")
+      (add-node g "host.sxp")
+      (add-edge g '(:check "host.sxp"))
+      (add-edge g '(:bootstrap :check))
+      (add-edge g '(:bootstrap :autogen))
+      (add-edge g '("profile.sxp" :autogen))
+      (add-edge g '("host.sxp" :autogen))
+      (to-dot-file g #p"/tmp/bootstrap.dot")
+      ;; (sb-ext:run-program (cli:find-exe "dot") (list "-Tsvg" "/tmp/bootstrap.dot" "-o" "/tmp/bootstrap.svg"))
+      )
+#+end_src
+
+[[cdn:media/img/bootstrap.svg]]
 
 The easiest way to get started is to run the top-level script
 =bootstrap.sh=. Running the script will:
