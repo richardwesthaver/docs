@@ -1,0 +1,127 @@
+#+title: CLI
+#+author: Richard Westhaver
+#+description: Command-line Interface Library
+#+setupfile: clean.theme
+#+filetags: lisp cli
+#+property: header-args :dir ~/comp/core/ :exports both
+#+setupfile: ../../../clean.theme
+#+INFOJS_OPT: toc:nil
+
+* Overview
+The =cli= library is a fully-featured toolkit for building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]]
+programs.
+
+
+* stats
+** dependencies
+#+begin_src lisp :results list
+  (ql:quickload :doc)
+  (let ((sys (asdf:find-system :cli)))
+    (asdf:system-depends-on sys))
+#+end_src
+
+#+RESULTS:
+- std
+- log
+
+** dependents
+#+begin_src lisp :results list
+  (ql:quickload :doc)
+  (let ((sys (doc:system-documentation :cli)))
+    (mapcar (lambda (s) (asdf:component-name (doc:doc-system s))) (doc:doc-dependents sys)))
+#+end_src
+
+#+RESULTS:
+- prelude
+- pod
+- packy
+- vc
+- skel
+- obj
+- cli/tests
+- user
+
+** files
+#+begin_src lisp :output replace :results list
+  (mapcar (lambda (p)
+              (enough-namestring p (asdf:system-source-directory :cli)))
+            (doc:doc-files (doc:system-documentation :cli)))
+#+end_src
+
+#+RESULTS:
+- pkg.lisp
+- ansi.lisp
+- env.lisp
+- progress.lisp
+- spark.lisp
+- repl.lisp
+- shell.lisp
+- prompt.lisp
+- ed.lisp
+- tools/tmux.lisp
+- tools/pacman.lisp
+- clap/pkg.lisp
+- clap/ast.lisp
+- clap/vars.lisp
+- clap/util.lisp
+- clap/macs.lisp
+- clap/proto.lisp
+- clap/opt.lisp
+- clap/cmd.lisp
+- clap/cli.lisp
+- cli.lisp
+
+** packages
+#+begin_src lisp :output replace :results list
+  (mapcar (lambda (p) (package-name (doc:doc-package p)))
+          (doc:doc-packages (doc:system-documentation :cli)))
+#+end_src
+
+#+RESULTS:
+- CLI/CLAP/OBJ
+- CLI/CLAP/SIMPLE
+- CLI/SHELL
+- CLI/ANSI
+- CLI/CLAP/PROTO
+- CLI/CLAP/AST
+- CLI/ED
+- CLI
+- CLI/CLAP
+- CLI/CLAP/VARS
+- CLI/TESTS
+- CLI/REPL
+- CLI/CLAP/UTIL
+- CLI/ENV
+- CLI/PROGRESS
+- CLI/PROMPT
+- CLI-USER
+- CLI/SPARK
+- CLI/TMUX
+- CLI/CLAP/MACS
+
+** tests
+#+begin_src lisp :output replace
+  (ql:quickload :cli/tests)
+  (print rt:*test-suite* nil)
+#+end_src
+
+#+RESULTS:
+: #<RT:TEST-SUITE CLI [10:10:0:0] {103BAFED63}>
+
+#+begin_src lisp :output replace
+  (rt:tests rt:*test-suite*)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+(#<RT:TEST MAIN-OUTPUT :fn MAIN-OUTPUT-TEST2479 {103BB3F5C3}>
+ #<RT:TEST CLAP-AST :fn CLAP-AST-TEST2478 {103BB3F4E3}>
+ #<RT:TEST ENV :fn ENV-TEST2477 {103BB3F403}>
+ #<RT:TEST REPL :fn REPL-TEST2476 {103BB3F323}>
+ #<RT:TEST SPARK :fn SPARK-TEST2475 {103BB3F243}>
+ #<RT:TEST PROGRESS :fn PROGRESS-TEST2474 {103BB3F163}>
+ #<RT:TEST CLAP-OPTS :fn CLAP-OPTS-TEST2473 {103BB3F083}>
+ #<RT:TEST CLAP-BASIC :fn CLAP-BASIC-TEST2472 {103BB3EF73}>
+ #<RT:TEST CLI-PROMPT :fn CLI-PROMPT-TEST2471 {103BB10603}>
+ #<RT:TEST ANSI :fn ANSI-TEST2470 {103BAFEF73}>)
+#+end_example
