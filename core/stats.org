@@ -5,6 +5,7 @@
 #+setupfile: ../../clean.theme
 #+OPTIONS: num:nil
 #+infojs_opt: toc:nil home:https://compiler.company up:./ view:content
+
 * vc
 #+begin_src shell :results pp :exports results
   hg churn -f "%Y-%m" -s
@@ -15,13 +16,13 @@
 2023-10  36394 ************************************
 2023-11  12777 ************
 2023-12  61624 *************************************************************
-2024-01   4923 ****
+2024-01   4923 ****u
 2024-02   5701 *****
 2024-03  27292 ***************************
 2024-04  23322 ***********************
 2024-05  24141 ***********************
 2024-06  17608 *****************
-2024-07   2742 **
+2024-07   6390 ******
 #+end_example
 
 * files
@@ -37,14 +38,14 @@
 ===============================================================================
  C                       2          130           70           21           39
  C Header               18         9990         4990         3555         1445
- Lisp                  479        69114        53191         7376         8547
+ Lisp                  490        70427        54246         7426         8755
  Makefile                1            6            6            0            0
 -------------------------------------------------------------------------------
  Rust                  145        12142        10477          468         1197
  |- Markdown           103          801            0          706           95
  (Total)                          12943        10477         1174         1292
 ===============================================================================
- Total                 645        91382        68734        11420        11228
+ Total                 656        92695        69789        11470        11436
 ===============================================================================
 #+end_example
 
@@ -52,53 +53,27 @@
 ** systems
 #+name: core-systems
 #+begin_src lisp :results list replace
-  (asdf:load-asd "prelude.asd")
-  (asdf:compile-system :prelude)
-  (asdf:load-system :prelude)
-  (asdf:system-depends-on (asdf:find-system :prelude))
+  (asdf:load-asd "core.asd")
+  (asdf:compile-system :core)
+  (asdf:load-system :core)
+  (asdf:system-depends-on (asdf:find-system :core))
 #+end_src
 
 #+RESULTS: core-systems
 - std
-- cli
 - log
-- dat
-- rocksdb
-- btrfs
-- uring
-- doc
-- alsa
-- nlp
-- skel
-- syn
-- organ
-- packy
+- io
 - obj
 - net
-- tree-sitter
-- xkb
-- ssh2
-- sndfile
-- zstd
-- uring
-- blake3
-- ublk
-- parse
-- pod
-- rdb
-- gui
-- aud
 - cry
-- krypt
-- io
-- glib
-- gstreamer
-- q
+- parse
+- syn
+- dat
 
 ** files
 #+begin_src lisp :exports both :results list replace
   (let ((r))
-    (dolist (s (doc:doc-dependencies (doc:system-documentation :prelude)) r)
+    (dolist (s (doc:doc-dependencies (doc:system-documentation :core)) r)
       (std::appendf r (std:flatten (mapcar
                                     (lambda (x) (unless (std:directory-path-p x)
                                                   (namestring x)))
@@ -136,177 +111,20 @@
 - /home/ellis/comp/core/lisp/std/string.lisp
 - /home/ellis/comp/core/lisp/std/seq.lisp
 - /home/ellis/comp/core/lisp/std/sys.lisp
-- /home/ellis/comp/core/lisp/lib/cli/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/cli/ansi.lisp
-- /home/ellis/comp/core/lisp/lib/cli/env.lisp
-- /home/ellis/comp/core/lisp/lib/cli/progress.lisp
-- /home/ellis/comp/core/lisp/lib/cli/spark.lisp
-- /home/ellis/comp/core/lisp/lib/cli/repl.lisp
-- /home/ellis/comp/core/lisp/lib/cli/shell.lisp
-- /home/ellis/comp/core/lisp/lib/cli/prompt.lisp
-- /home/ellis/comp/core/lisp/lib/cli/ed.lisp
-- /home/ellis/comp/core/lisp/lib/cli/tools/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/cli/tools/term.lisp
-- /home/ellis/comp/core/lisp/lib/cli/tools/tmux.lisp
-- /home/ellis/comp/core/lisp/lib/cli/tools/pacman.lisp
-- /home/ellis/comp/core/lisp/lib/cli/tools/cc.lisp
-- /home/ellis/comp/core/lisp/lib/cli/tools/systemd.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/ast.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/vars.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/util.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/macs.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/proto.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/opt.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/cmd.lisp
-- /home/ellis/comp/core/lisp/lib/cli/clap/cli.lisp
-- /home/ellis/comp/core/lisp/lib/cli/cli.lisp
 - /home/ellis/comp/core/lisp/lib/log/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/log/err.lisp
 - /home/ellis/comp/core/lisp/lib/log/log.lisp
 - /home/ellis/comp/core/lisp/lib/log/stream.lisp
-- /home/ellis/comp/core/lisp/lib/dat/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/dat/proto.lisp
-- /home/ellis/comp/core/lisp/lib/dat/sxp.lisp
-- /home/ellis/comp/core/lisp/lib/dat/dot.lisp
-- /home/ellis/comp/core/lisp/lib/dat/csv.lisp
-- /home/ellis/comp/core/lisp/lib/dat/json.lisp
-- /home/ellis/comp/core/lisp/lib/dat/xml/xml.lisp
-- /home/ellis/comp/core/lisp/lib/dat/xml/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/dat/xml/svg.lisp
-- /home/ellis/comp/core/lisp/lib/dat/xml/fixml.lisp
-- /home/ellis/comp/core/lisp/lib/dat/html/const.lisp
-- /home/ellis/comp/core/lisp/lib/dat/html/entity.lisp
-- /home/ellis/comp/core/lisp/lib/dat/html/html.lisp
-- /home/ellis/comp/core/lisp/lib/dat/mime.lisp
-- /home/ellis/comp/core/lisp/lib/dat/toml.lisp
-- /home/ellis/comp/core/lisp/lib/dat/arff.lisp
-- /home/ellis/comp/core/lisp/lib/dat/midi.lisp
-- /home/ellis/comp/core/lisp/lib/dat/base64.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/pkg.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/macs.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/types.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/opts.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/sst.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/slice.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/db.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/metadata.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/compaction.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/comparator.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/merge.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/stats.lisp
-- /home/ellis/comp/core/lisp/ffi/rocksdb/vars.lisp
-- /home/ellis/comp/core/lisp/ffi/btrfs/pkg.lisp
-- /home/ellis/comp/core/lisp/ffi/btrfs/constants.lisp
-- /home/ellis/comp/core/lisp/ffi/btrfs/util.lisp
-- /home/ellis/comp/core/lisp/ffi/uring/pkg.lisp
-- /home/ellis/comp/core/lisp/ffi/uring/constants.lisp
-- /home/ellis/comp/core/lisp/ffi/uring/util.lisp
-- /home/ellis/comp/core/lisp/ffi/uring/macs.lisp
-- /home/ellis/comp/core/lisp/ffi/uring/alien.lisp
-- /home/ellis/comp/core/lisp/ffi/uring/prim.lisp
-- /home/ellis/comp/core/lisp/ffi/uring/opcode.lisp
-- /home/ellis/comp/core/lisp/ffi/uring/register.lisp
-- /home/ellis/comp/core/lisp/ffi/uring/submit.lisp
-- /home/ellis/comp/core/lisp/ffi/uring/sq.lisp
-- /home/ellis/comp/core/lisp/ffi/uring/cq.lisp
-- /home/ellis/comp/core/lisp/ffi/uring/uring.lisp
-- /home/ellis/comp/core/lisp/lib/doc/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/doc/proto.lisp
-- /home/ellis/comp/core/lisp/lib/doc/err.lisp
-- /home/ellis/comp/core/lisp/lib/doc/symbol.lisp
-- /home/ellis/comp/core/lisp/lib/doc/file.lisp
-- /home/ellis/comp/core/lisp/lib/doc/package.lisp
-- /home/ellis/comp/core/lisp/lib/doc/system.lisp
-- /home/ellis/comp/core/lisp/lib/doc/dist.lisp
-- /home/ellis/comp/core/lisp/lib/doc/image.lisp
-- /home/ellis/comp/core/lisp/ffi/alsa/pkg.lisp
-- /home/ellis/comp/core/lisp/ffi/alsa/constants.lisp
-- /home/ellis/comp/core/lisp/lib/nlp/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/nlp/data.lisp
-- /home/ellis/comp/core/lisp/lib/nlp/tokenize.lisp
-- /home/ellis/comp/core/lisp/lib/nlp/doc.lisp
-- /home/ellis/comp/core/lisp/lib/nlp/stem/porter.lisp
-- /home/ellis/comp/core/lisp/lib/nlp/textrank.lisp
-- /home/ellis/comp/core/lisp/lib/nlp/dbscan.lisp
-- /home/ellis/comp/core/lisp/lib/nlp/section.lisp
-- /home/ellis/comp/core/lisp/lib/skel/core/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/skel/core/err.lisp
-- /home/ellis/comp/core/lisp/lib/skel/core/types.lisp
-- /home/ellis/comp/core/lisp/lib/skel/core/proto.lisp
-- /home/ellis/comp/core/lisp/lib/skel/core/header.lisp
-- /home/ellis/comp/core/lisp/lib/skel/core/vars.lisp
-- /home/ellis/comp/core/lisp/lib/skel/core/obj.lisp
-- /home/ellis/comp/core/lisp/lib/skel/core/util.lisp
-- /home/ellis/comp/core/lisp/lib/skel/core/vm.lisp
-- /home/ellis/comp/core/lisp/lib/skel/comp/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/skel/comp/asd.lisp
-- /home/ellis/comp/core/lisp/lib/skel/comp/cargo.lisp
-- /home/ellis/comp/core/lisp/lib/skel/comp/container.lisp
-- /home/ellis/comp/core/lisp/lib/skel/comp/org.lisp
-- /home/ellis/comp/core/lisp/lib/skel/comp/dir-locals.lisp
-- /home/ellis/comp/core/lisp/lib/skel/comp/makefile.lisp
-- /home/ellis/comp/core/lisp/lib/skel/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/skel/tools/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/skel/tools/deploy.lisp
-- /home/ellis/comp/core/lisp/lib/skel/tools/viz.lisp
-- /home/ellis/comp/core/lisp/lib/skel/ext/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/skel/ext/asdf.lisp
-- /home/ellis/comp/core/lisp/lib/skel/ext/inspect.lisp
-- /home/ellis/comp/core/lisp/lib/skel/ext/krypt.lisp
-- /home/ellis/comp/core/lisp/lib/skel/ext/packy.lisp
-- /home/ellis/comp/core/lisp/lib/skel/ext/net.lisp
-- /home/ellis/comp/core/lisp/lib/syn/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/organ/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/organ/vars.lisp
-- /home/ellis/comp/core/lisp/lib/organ/err.lisp
-- /home/ellis/comp/core/lisp/lib/organ/proto.lisp
-- /home/ellis/comp/core/lisp/lib/organ/util.lisp
-- /home/ellis/comp/core/lisp/lib/organ/macs.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/markup.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/entity.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/citation.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/footnote-ref.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/inline-babel-call.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/inline-source-block.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/line-break.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/link.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/macro.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/export-snippet.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/sscript.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/stat-cookie.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/table-cell.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/target.lisp
-- /home/ellis/comp/core/lisp/lib/organ/object/timestamp.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/lesser/paragraph.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/lesser/block.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/lesser/clock.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/lesser/diary-sexp.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/lesser/latex-env.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/lesser/comment.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/lesser/fixed-width.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/lesser/horizontal-rule.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/lesser/keyword.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/lesser/planning.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/lesser/table-row.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/lesser/node-property.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/greater/plain-list.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/greater/block.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/greater/drawer.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/greater/footnote-def.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/greater/item.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/greater/table.lisp
-- /home/ellis/comp/core/lisp/lib/organ/element/headline.lisp
-- /home/ellis/comp/core/lisp/lib/organ/section.lisp
-- /home/ellis/comp/core/lisp/lib/organ/heading.lisp
-- /home/ellis/comp/core/lisp/lib/organ/document.lisp
-- /home/ellis/comp/core/lisp/lib/packy/pkg.lisp
-- /home/ellis/comp/core/lisp/lib/packy/vars.lisp
-- /home/ellis/comp/core/lisp/lib/packy/proto.lisp
-- /home/ellis/comp/core/lisp/lib/packy/pkgbuild.lisp
-- /home/ellis/comp/core/lisp/lib/packy/db.lisp
-- /home/ellis/comp/core/lisp/lib/packy/client.lisp
-- /home/ellis/comp/core/lisp/lib/packy/server.lisp
+- /home/ellis/comp/core/lisp/lib/io/pkg.lisp
+- /home/ellis/comp/core/lisp/lib/io/ring.lisp
+- /home/ellis/comp/core/lisp/lib/io/socket.lisp
+- /home/ellis/comp/core/lisp/lib/io/stream.lisp
+- /home/ellis/comp/core/lisp/lib/io/proto.lisp
+- /home/ellis/comp/core/lisp/lib/io/flate.lisp
+- /home/ellis/comp/core/lisp/lib/io/port.lisp
+- /home/ellis/comp/core/lisp/lib/io/zstd.lisp
+- /home/ellis/comp/core/lisp/lib/io/xsubseq.lisp
+- /home/ellis/comp/core/lisp/lib/io/smart-buffer.lisp
 - /home/ellis/comp/core/lisp/lib/obj/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/obj/meta/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/obj/meta/sealed.lisp
@@ -362,27 +180,47 @@
 - /home/ellis/comp/core/lisp/lib/net/udp.lisp
 - /home/ellis/comp/core/lisp/lib/net/tcp.lisp
 - /home/ellis/comp/core/lisp/lib/net/codec/punycode.lisp
-- \...
-
-** packages
-** symbols
-#+name: tally-package-symbols
-#+begin_src lisp :exports both
-  ;; (quickload-core-systems)
-  (let ((pkgs '("STD" "PARSE" "CLI" "XKB" "BTRFS" "SSH2" "BOX" "POD" "SYN" "ALSA" "NUKLEAR" "SNDFILE" "UBLK"
-                "TREE-SITTER" "URING" "ZSTD" "BLAKE3" "ROCKSDB" "RDB" "SKEL" "BOX" "AUD" "RT" "GLIB" "GSTREAMER"
-                "ORGAN" "NLP" "DAT" "PARSE" "VC" "XDB""OBJ" "LOG" "NET" "PACKY" "GUI" "SYN" "DOC" "Q"))
-        (syms))
-    (loop with n = 0
-          for pkg in pkgs
-          do (loop for s being the external-symbols of (find-package pkg)
-                   do (incf n)
-                      (pushnew s syms))
-          finally (return (cons (length pkgs) n))))
-#+end_src
-
-#+RESULTS: tally-package-symbols
-: (39 . 4056)
+- /home/ellis/comp/core/lisp/lib/net/codec/dns.lisp
+- /home/ellis/comp/core/lisp/lib/net/codec/tlv.lisp
+- /home/ellis/comp/core/lisp/lib/net/codec/osc.lisp
+- /home/ellis/comp/core/lisp/lib/net/proto/swank.lisp
+- /home/ellis/comp/core/lisp/lib/net/proto/http.lisp
+- /home/ellis/comp/core/lisp/lib/net/proto/dns.lisp
+- /home/ellis/comp/core/lisp/lib/net/proto/ssh.lisp
+- /home/ellis/comp/core/lisp/lib/net/cookie.lisp
+- /home/ellis/comp/core/lisp/lib/net/req.lisp
+- /home/ellis/comp/core/lisp/lib/net/fetch.lisp
+- /home/ellis/comp/core/lisp/lib/cry/pkg.lisp
+- /home/ellis/comp/core/lisp/lib/cry/err.lisp
+- /home/ellis/comp/core/lisp/lib/cry/crc64.lisp
+- /home/ellis/comp/core/lisp/lib/cry/authinfo.lisp
+- /home/ellis/comp/core/lisp/lib/cry/jwt.lisp
+- /home/ellis/comp/core/lisp/lib/cry/hotp.lisp
+- /home/ellis/comp/core/lisp/lib/cry/totp.lisp
+- /home/ellis/comp/core/lisp/lib/parse/pkg.lisp
+- /home/ellis/comp/core/lisp/lib/parse/bytes.lisp
+- /home/ellis/comp/core/lisp/lib/parse/lex.lisp
+- /home/ellis/comp/core/lisp/lib/parse/pratt.lisp
+- /home/ellis/comp/core/lisp/lib/parse/yacc.lisp
+- /home/ellis/comp/core/lisp/lib/syn/pkg.lisp
+- /home/ellis/comp/core/lisp/lib/dat/pkg.lisp
+- /home/ellis/comp/core/lisp/lib/dat/proto.lisp
+- /home/ellis/comp/core/lisp/lib/dat/sxp.lisp
+- /home/ellis/comp/core/lisp/lib/dat/dot.lisp
+- /home/ellis/comp/core/lisp/lib/dat/csv.lisp
+- /home/ellis/comp/core/lisp/lib/dat/json.lisp
+- /home/ellis/comp/core/lisp/lib/dat/xml/xml.lisp
+- /home/ellis/comp/core/lisp/lib/dat/xml/pkg.lisp
+- /home/ellis/comp/core/lisp/lib/dat/xml/svg.lisp
+- /home/ellis/comp/core/lisp/lib/dat/xml/fixml.lisp
+- /home/ellis/comp/core/lisp/lib/dat/html/const.lisp
+- /home/ellis/comp/core/lisp/lib/dat/html/entity.lisp
+- /home/ellis/comp/core/lisp/lib/dat/html/html.lisp
+- /home/ellis/comp/core/lisp/lib/dat/mime.lisp
+- /home/ellis/comp/core/lisp/lib/dat/toml.lisp
+- /home/ellis/comp/core/lisp/lib/dat/arff.lisp
+- /home/ellis/comp/core/lisp/lib/dat/midi.lisp
+- /home/ellis/comp/core/lisp/lib/dat/base64.lisp
 
 ** images
 #+begin_src shell
