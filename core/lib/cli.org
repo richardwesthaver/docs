@@ -23,6 +23,7 @@ programs.
 #+RESULTS:
 - std
 - log
+- dat
 
 ** dependents
 #+begin_src lisp :results list
@@ -32,14 +33,13 @@ programs.
 #+end_src
 
 #+RESULTS:
-- prelude
-- pod
+- user
 - packy
+- pod
 - vc
 - skel
-- obj
+- prelude
 - cli/tests
-- user
 
 ** files
 #+begin_src lisp :output replace :results list
@@ -58,8 +58,14 @@ programs.
 - shell.lisp
 - prompt.lisp
 - ed.lisp
+- tools/pkg.lisp
+- tools/term.lisp
 - tools/tmux.lisp
 - tools/pacman.lisp
+- tools/cc.lisp
+- tools/systemd.lisp
+- tools/cargo.lisp
+- tools/sbcl.lisp
 - clap/pkg.lisp
 - clap/ast.lisp
 - clap/vars.lisp
@@ -78,17 +84,23 @@ programs.
 #+end_src
 
 #+RESULTS:
+- CLI/TOOLS/SBCL
 - CLI/CLAP/OBJ
 - CLI/CLAP/SIMPLE
 - CLI/SHELL
+- CLI/TOOLS/TERM
 - CLI/ANSI
 - CLI/CLAP/PROTO
 - CLI/CLAP/AST
 - CLI/ED
-- CLI
+- CLI/TOOLS/PACMAN
+- CLI/TOOLS/CARGO
 - CLI/CLAP
+- CLI
+- CLI/TOOLS/CC
 - CLI/CLAP/VARS
 - CLI/TESTS
+- CLI/TOOLS/TMUX
 - CLI/REPL
 - CLI/CLAP/UTIL
 - CLI/ENV
@@ -96,8 +108,8 @@ programs.
 - CLI/PROMPT
 - CLI-USER
 - CLI/SPARK
-- CLI/TMUX
 - CLI/CLAP/MACS
+- CLI/TOOLS/SYSTEMD
 
 ** tests
 #+begin_src lisp :output replace
@@ -106,7 +118,7 @@ programs.
 #+end_src
 
 #+RESULTS:
-: #<RT:TEST-SUITE CLI [10:10:0:0] {103BAFED63}>
+: #<RT:TEST-SUITE CLI [11:11:0:0] {101709DC53}>
 
 #+begin_src lisp :output replace
   (rt:tests rt:*test-suite*)
@@ -114,14 +126,15 @@ programs.
 
 #+RESULTS:
 #+begin_example
-(#<RT:TEST MAIN-OUTPUT :fn MAIN-OUTPUT-TEST2479 {103BB3F5C3}>
- #<RT:TEST CLAP-AST :fn CLAP-AST-TEST2478 {103BB3F4E3}>
- #<RT:TEST ENV :fn ENV-TEST2477 {103BB3F403}>
- #<RT:TEST REPL :fn REPL-TEST2476 {103BB3F323}>
- #<RT:TEST SPARK :fn SPARK-TEST2475 {103BB3F243}>
- #<RT:TEST PROGRESS :fn PROGRESS-TEST2474 {103BB3F163}>
- #<RT:TEST CLAP-OPTS :fn CLAP-OPTS-TEST2473 {103BB3F083}>
- #<RT:TEST CLAP-BASIC :fn CLAP-BASIC-TEST2472 {103BB3EF73}>
- #<RT:TEST CLI-PROMPT :fn CLI-PROMPT-TEST2471 {103BB10603}>
- #<RT:TEST ANSI :fn ANSI-TEST2470 {103BAFEF73}>)
+(#<RT:TEST SBCL-TOOLS :fn SBCL-TOOLS-TEST749 {10170B9CF3}>
+ #<RT:TEST MAIN-OUTPUT :fn MAIN-OUTPUT-TEST748 {10170B9C03}>
+ #<RT:TEST CLAP-AST :fn CLAP-AST-TEST747 {10170B9B13}>
+ #<RT:TEST ENV :fn ENV-TEST746 {10170B9A23}>
+ #<RT:TEST REPL :fn REPL-TEST745 {10170B9933}>
+ #<RT:TEST SPARK :fn SPARK-TEST744 {10170B9843}>
+ #<RT:TEST PROGRESS :fn PROGRESS-TEST743 {10170B9753}>
+ #<RT:TEST CLAP-OPTS :fn CLAP-OPTS-TEST742 {10170B9663}>
+ #<RT:TEST CLAP-BASIC :fn CLAP-BASIC-TEST741 {10170B9543}>
+ #<RT:TEST CLI-PROMPT :fn CLI-PROMPT-TEST740 {101709EFF3}>
+ #<RT:TEST ANSI :fn ANSI-TEST739 {101709DE63}>)
 #+end_example

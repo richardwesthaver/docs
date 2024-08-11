@@ -16,13 +16,14 @@
 2023-10  36394 ************************************
 2023-11  12777 ************
 2023-12  61624 *************************************************************
-2024-01   4923 ****u
+2024-01   4923 ****
 2024-02   5701 *****
 2024-03  27292 ***************************
 2024-04  23322 ***********************
 2024-05  24141 ***********************
 2024-06  17608 *****************
-2024-07   6390 ******
+2024-07   9757 *********
+2024-08   5655 *****
 #+end_example
 
 * files
@@ -38,14 +39,14 @@
 ===============================================================================
  C                       2          130           70           21           39
  C Header               18         9990         4990         3555         1445
- Lisp                  490        70427        54246         7426         8755
+ Lisp                  504        74157        57425         7701         9031
  Makefile                1            6            6            0            0
 -------------------------------------------------------------------------------
  Rust                  145        12142        10477          468         1197
  |- Markdown           103          801            0          706           95
  (Total)                          12943        10477         1174         1292
 ===============================================================================
- Total                 656        92695        69789        11470        11436
+ Total                 670        96425        72968        11745        11712
 ===============================================================================
 #+end_example
 
@@ -83,12 +84,13 @@
 #+RESULTS:
 - /home/ellis/comp/core/lisp/std/defpkg.lisp
 - /home/ellis/comp/core/lisp/std/pkg.lisp
-- /home/ellis/comp/core/lisp/std/err.lisp
+- /home/ellis/comp/core/lisp/std/condition.lisp
 - /home/ellis/comp/core/lisp/std/sym.lisp
 - /home/ellis/comp/core/lisp/std/list.lisp
 - /home/ellis/comp/core/lisp/std/type.lisp
 - /home/ellis/comp/core/lisp/std/num/float.lisp
 - /home/ellis/comp/core/lisp/std/num/parse.lisp
+- /home/ellis/comp/core/lisp/std/num/leb128.lisp
 - /home/ellis/comp/core/lisp/std/stream.lisp
 - /home/ellis/comp/core/lisp/std/fu/curry.lisp
 - /home/ellis/comp/core/lisp/std/array.lisp
@@ -136,9 +138,9 @@
 - /home/ellis/comp/core/lisp/lib/obj/meta/overloaded.lisp
 - /home/ellis/comp/core/lisp/lib/obj/meta/storable.lisp
 - /home/ellis/comp/core/lisp/lib/obj/hash/hasher.lisp
+- /home/ellis/comp/core/lisp/lib/obj/hash/chash.lisp
 - /home/ellis/comp/core/lisp/lib/obj/hash/map.lisp
 - /home/ellis/comp/core/lisp/lib/obj/hash/set.lisp
-- /home/ellis/comp/core/lisp/lib/obj/hash/chash.lisp
 - /home/ellis/comp/core/lisp/lib/obj/hash/castable.lisp
 - /home/ellis/comp/core/lisp/lib/obj/id.lisp
 - /home/ellis/comp/core/lisp/lib/obj/uri/pkg.lisp
@@ -159,11 +161,12 @@
 - /home/ellis/comp/core/lisp/lib/obj/graph/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/obj/equiv.lisp
 - /home/ellis/comp/core/lisp/lib/obj/color/color.lisp
-- /home/ellis/comp/core/lisp/lib/obj/color/palette.lisp
 - /home/ellis/comp/core/lisp/lib/obj/color/util.lisp
-- /home/ellis/comp/core/lisp/lib/obj/color/x11-colors.lisp
+- /home/ellis/comp/core/lisp/lib/obj/color/x11.lisp
+- /home/ellis/comp/core/lisp/lib/obj/color/palette.lisp
 - /home/ellis/comp/core/lisp/lib/obj/music/music.lisp
 - /home/ellis/comp/core/lisp/lib/obj/time/local.lisp
+- /home/ellis/comp/core/lisp/lib/obj/time/util.lisp
 - /home/ellis/comp/core/lisp/lib/obj/uuid.lisp
 - /home/ellis/comp/core/lisp/lib/obj/temperature.lisp
 - /home/ellis/comp/core/lisp/lib/obj/direction.lisp
@@ -183,6 +186,7 @@
 - /home/ellis/comp/core/lisp/lib/net/codec/dns.lisp
 - /home/ellis/comp/core/lisp/lib/net/codec/tlv.lisp
 - /home/ellis/comp/core/lisp/lib/net/codec/osc.lisp
+- /home/ellis/comp/core/lisp/lib/net/proto/crew.lisp
 - /home/ellis/comp/core/lisp/lib/net/proto/swank.lisp
 - /home/ellis/comp/core/lisp/lib/net/proto/http.lisp
 - /home/ellis/comp/core/lisp/lib/net/proto/dns.lisp
@@ -209,6 +213,13 @@
 - /home/ellis/comp/core/lisp/lib/dat/dot.lisp
 - /home/ellis/comp/core/lisp/lib/dat/csv.lisp
 - /home/ellis/comp/core/lisp/lib/dat/json.lisp
+- /home/ellis/comp/core/lisp/lib/dat/parquet/gen.lisp
+- /home/ellis/comp/core/lisp/lib/dat/parquet/pkg.lisp
+- /home/ellis/comp/core/lisp/lib/dat/parquet/obj.lisp
+- /home/ellis/comp/core/lisp/lib/dat/parquet/tcompact.lisp
+- /home/ellis/comp/core/lisp/lib/dat/parquet/io.lisp
+- /home/ellis/comp/core/lisp/lib/dat/parquet/rle.lisp
+- /home/ellis/comp/core/lisp/lib/dat/parquet/proto.lisp
 - /home/ellis/comp/core/lisp/lib/dat/xml/xml.lisp
 - /home/ellis/comp/core/lisp/lib/dat/xml/pkg.lisp
 - /home/ellis/comp/core/lisp/lib/dat/xml/svg.lisp
@@ -230,12 +241,11 @@
 #+end_src
 
 #+RESULTS:
-| 361M | .stash/core.core    |
-| 20M  | .stash/infra.core   |
-| 492M | .stash/prelude.core |
-| 359M | .stash/std.core     |
-| 480M | .stash/tests.core   |
-| 385M | .stash/user.core    |
+| 454M | .stash/core.core    |
+| 22M  | .stash/infra.core   |
+| 538M | .stash/prelude.core |
+| 452M | .stash/std.core     |
+| 531M | .stash/user.core    |
 
 * rust
 ** crates
@@ -250,7 +260,7 @@ alch v0.1.0 (/home/ellis/comp/core/rust/lib/alch)
 └── memmap2 v0.5.10
 
 alik v0.1.0 (/home/ellis/comp/core/rust/bin/alik)
-├── clap v4.5.7
+├── clap v4.5.9
 ├── db v0.1.0 (/home/ellis/comp/core/rust/lib/db)
 │   [dev-dependencies]
 ├── krypt v0.1.0 (/home/ellis/comp/core/rust/lib/krypt)
@@ -258,10 +268,10 @@ alik v0.1.0 (/home/ellis/comp/core/rust/bin/alik)
 ├── net v0.1.0 (/home/ellis/comp/core/rust/lib/net)
 ├── obj v0.1.0 (/home/ellis/comp/core/rust/lib/obj)
 │   [dev-dependencies]
-├── serde v1.0.203
+├── serde v1.0.204
 ├── tenex v0.1.0 (/home/ellis/comp/core/rust/lib/tenex)
 │   [dev-dependencies]
-├── tokio v1.38.0
+├── tokio v1.38.1
 └── util v0.1.0 (/home/ellis/comp/core/rust/lib/util)
 [build-dependencies]
 └── util v0.1.0 (/home/ellis/comp/core/rust/lib/util)
@@ -270,9 +280,9 @@ alik_ui v0.1.0 (/home/ellis/comp/core/rust/ui/alik)
 ├── eframe v0.27.2 (https://github.com/emilk/egui?branch=emilk/release-0.27.2#014327e3)
 ├── egui v0.27.2 (https://github.com/emilk/egui?branch=emilk/release-0.27.2#014327e3)
 ├── futures v0.3.30
-├── log v0.4.21
+├── log v0.4.22
 ├── rfd v0.14.1
-└── serde v1.0.203 (*)
+└── serde v1.0.204 (*)
 
 audio v0.1.0 (/home/ellis/comp/core/rust/lib/audio)
 ├── cpal v0.13.5
@@ -280,10 +290,10 @@ audio v0.1.0 (/home/ellis/comp/core/rust/lib/audio)
 └── hound v3.5.1
 
 aws v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/models/aws)
-├── aws-config v1.5.1
-├── aws-sdk-iam v1.30.0
-├── aws-sdk-route53 v1.30.0
-└── tokio v1.38.0 (*)
+├── aws-config v1.5.4
+├── aws-sdk-iam v1.36.0
+├── aws-sdk-route53 v1.36.0
+└── tokio v1.38.1 (*)
 
 btrfs-sys v0.1.0 (/home/ellis/comp/core/rust/sys/btrfs)
 [build-dependencies]
@@ -301,7 +311,7 @@ crypto v0.1.0 (/home/ellis/comp/core/rust/lib/crypto)
 └── totp-rs v5.5.1
 
 dash v0.1.0 (/home/ellis/comp/core/rust/ui/alik/dash)
-└── rerun v0.16.1
+└── rerun v0.17.0
     [build-dependencies]
 
 db v0.1.0 (/home/ellis/comp/core/rust/lib/db) (*)
@@ -312,14 +322,14 @@ dl v1.26.0 (/home/ellis/comp/core/rust/lib/dl)
 ├── env_proxy v0.4.1
 ├── once_cell v1.19.0
 ├── reqwest v0.11.27
-├── thiserror v1.0.61
-└── url v2.5.1
+├── thiserror v1.0.63
+└── url v2.5.2
 [dev-dependencies]
 ├── http-body-util v0.1.2
-├── hyper v1.3.1
-├── hyper-util v0.1.5
+├── hyper v1.4.1
+├── hyper-util v0.1.6
 ├── tempfile v3.10.1
-└── tokio v1.38.0 (*)
+└── tokio v1.38.1 (*)
 
 dsp v0.1.0 (/home/ellis/comp/core/rust/lib/audio/dsp) (*)
 
@@ -333,10 +343,10 @@ flate v0.1.0 (/home/ellis/comp/core/rust/lib/flate)
 freesound v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/models/freesound)
 ├── futures-util v0.3.30
 ├── reqwest v0.11.27 (*)
-├── serde v1.0.203 (*)
-├── serde_json v1.0.117
+├── serde v1.0.204 (*)
+├── serde_json v1.0.120
 ├── tenex-util v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/util)
-└── tokio v1.38.0 (*)
+└── tokio v1.38.1 (*)
 
 gitlab v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/models/gitlab)
 ├── gitlab v0.1611.0
@@ -345,56 +355,56 @@ gitlab v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/models/gitlab)
 hash v0.1.0 (/home/ellis/comp/core/rust/lib/hash) (*)
 
 ipapi v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/models/ipapi)
-├── log v0.4.21 (*)
+├── log v0.4.22 (*)
 ├── reqwest v0.11.27 (*)
-└── serde_json v1.0.117 (*)
+└── serde_json v1.0.120 (*)
 
 krypt v0.1.0 (/home/ellis/comp/core/rust/lib/krypt) (*)
 
 logger v0.1.0 (/home/ellis/comp/core/rust/lib/logger) (*)
 
 mailman-cli v0.1.0 (/home/ellis/comp/core/rust/bin/mailman)
-├── clap v4.5.7 (*)
+├── clap v4.5.9 (*)
 ├── jmap-client v0.3.2
 ├── krypt v0.1.0 (/home/ellis/comp/core/rust/lib/krypt) (*)
 ├── logger v0.1.0 (/home/ellis/comp/core/rust/lib/logger) (*)
 ├── obj v0.1.0 (/home/ellis/comp/core/rust/lib/obj) (*)
-├── tokio v1.38.0 (*)
+├── tokio v1.38.1 (*)
 └── util v0.1.0 (/home/ellis/comp/core/rust/lib/util) (*)
 
 net v0.1.0 (/home/ellis/comp/core/rust/lib/net) (*)
 
 nws v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/models/nws)
 ├── chrono v0.4.38
-├── log v0.4.21 (*)
+├── log v0.4.22 (*)
 ├── reqwest v0.11.27 (*)
-├── serde v1.0.203 (*)
-└── serde_json v1.0.117 (*)
+├── serde v1.0.204 (*)
+└── serde_json v1.0.120 (*)
 
 obj v0.1.0 (/home/ellis/comp/core/rust/lib/obj) (*)
 
 sbcl-sys v0.1.0 (/home/ellis/comp/core/rust/sys/sbcl)
 ├── libc v0.2.155
-└── libloading v0.8.3
+└── libloading v0.8.4
 
 sxp v0.1.0 (/home/ellis/comp/core/rust/lib/sxp)
 ├── indexmap v2.2.6
 ├── itoa v1.0.11
 ├── ryu v1.0.18
-└── serde v1.0.203 (*)
+└── serde v1.0.204 (*)
 [dev-dependencies]
 ├── rand v0.8.5
-└── serde_derive v1.0.203 (proc-macro)
+└── serde_derive v1.0.204 (proc-macro)
 
 tenex v0.1.0 (/home/ellis/comp/core/rust/lib/tenex) (*)
 
 tenex-util v0.1.0 (/home/ellis/comp/core/rust/lib/tenex/util) (*)
 
 ui v0.1.0 (/home/ellis/comp/core/rust/lib/ui)
-├── serde v1.0.203 (*)
-└── slint v1.6.0
+├── serde v1.0.204 (*)
+└── slint v1.7.0
 [build-dependencies]
-└── slint-build v1.6.0
+└── slint-build v1.7.0
 
 util v0.1.0 (/home/ellis/comp/core/rust/lib/util) (*)
 
