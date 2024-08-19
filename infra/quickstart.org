@@ -6,6 +6,9 @@
 #+infojs_opt: toc:nil home:https://compiler.company up:./ view:overview
 
 * Overview
+:PROPERTIES:
+:ID:       bbb86596-4be5-4f5e-8854-9ea28b077879
+:END:
 - *Host Requirements*
   - x86_64 4 core CPU
   - 8G RAM
@@ -18,6 +21,9 @@
 
 
 * bootstrap.sh
+:PROPERTIES:
+:ID:       b906e6ea-71c2-41ae-9c29-c911582f054e
+:END:
 #+begin_src lisp :results none :exports none
     (ql:quickload '(:dat :cli))
     (in-package :dat/dot)
@@ -60,6 +66,9 @@ and select a target to build on your machine or in a container. Use
 =skel --help= for a list of other commands.
 
 ** check.sh
+:PROPERTIES:
+:ID:       6a7b9d91-b22b-4534-9ff4-7ef5b71aca5c
+:END:
 This script checks that the current host is qualified. It needs to be
 ran once before the =autogen.lisp= file is loaded, usually via
 =bootstrap.sh=.
@@ -80,6 +89,9 @@ system's package manager.
 : zor.sxp
 
 ** autogen.lisp
+:PROPERTIES:
+:ID:       cd5c94d4-bb53-4b1b-9898-320711e62a85
+:END:
 Once a core and lisp runtime are available, we load =autogen.lisp= and
 call =infra/autogen:autogen=. This will process the host configuration
 (=zor.sxp= in the example above) and the profile (defaults to
@@ -96,6 +108,9 @@ The order of operations are loosely as follows:
 - quit
 
 * TODO deploy.lisp
+:PROPERTIES:
+:ID:       02b3701a-b969-473b-9dbd-ac4815f9d284
+:END:
 Deploy =infra= builds to a remote.
 
 Deployment involves 'packing' a target found in =stash=, archiving it,
@@ -108,4 +123,7 @@ the build-config and skelfile slots.
 Production deployments end up at https://packy.compiler.company.
 
 * TODO install.lisp
+:PROPERTIES:
+:ID:       26107fe5-6f4a-4fe5-9bdf-e35947bc7198
+:END:
 Install core packages locally.

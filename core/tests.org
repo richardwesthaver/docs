@@ -9,14 +9,38 @@ Unit tests are performed on a per-lang basis and described in the
 sections below. 
 
 * rust
+:PROPERTIES:
+:ID:       aab59686-a82b-4718-a8ed-93d96c2846fe
+:END:
 ** sys
+:PROPERTIES:
+:ID:       01a2b4f4-f289-49cd-9108-cfd35d591403
+:END:
 These crates contain FFI bindings to foreign libraries, usually in C.
 *** btrfs
+:PROPERTIES:
+:ID:       5fe13144-8651-413f-b2a7-6c57bb780d60
+:END:
 *** btrfsutil
+:PROPERTIES:
+:ID:       0d74253d-634c-4865-afcd-1a2875062ed3
+:END:
 *** rocksdb
+:PROPERTIES:
+:ID:       b78abbdb-aeb4-4a7f-8712-f39b4ce14e23
+:END:
 ** lib
+:PROPERTIES:
+:ID:       b43b62b5-fad3-4ff0-9d90-ff5d6b60d84a
+:END:
 *** TODO alch
+:PROPERTIES:
+:ID:       8706627d-902d-4943-b775-f72a823d74a8
+:END:
 *** audio
+:PROPERTIES:
+:ID:       7ef2a0b3-4457-4b6f-8aa4-40f1707d6a99
+:END:
 #+begin_src shell :results output replace :exports results
   cd rust/lib/audio
   cargo test
@@ -38,6 +62,9 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 #+end_example
 
 *** crypto
+:PROPERTIES:
+:ID:       04a1b07d-0a9e-44eb-8791-242d69982867
+:END:
 #+begin_src shell :results output replace :exports results
 cd rust/lib/crypto
 cargo test
@@ -64,6 +91,9 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 #+end_example
 
 *** TODO db
+:PROPERTIES:
+:ID:       82ef593a-1b9b-4e6d-9975-02634e2aa529
+:END:
 #+begin_src shell :results output replace :exports results :eval no
 cd rust/lib/db
 cargo test
@@ -72,6 +102,9 @@ cargo test
 #+RESULTS:
 
 *** flate
+:PROPERTIES:
+:ID:       23599c41-ffde-4cb9-86de-018fea66de76
+:END:
 #+begin_src shell :results output replace :exports results
 cd rust/lib/flate
 cargo test
@@ -93,6 +126,9 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 #+end_example
 
 *** hash
+:PROPERTIES:
+:ID:       92cc5cfc-8112-4019-835f-71a437cec034
+:END:
 #+begin_src shell :results output replace :exports results
 cd rust/lib/hash
 cargo test
@@ -118,7 +154,13 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 #+end_example
 
 *** krypt
+:PROPERTIES:
+:ID:       a8bd94aa-61a9-44ed-8b6b-8d0b880da45c
+:END:
 *** logger
+:PROPERTIES:
+:ID:       75607e41-c411-4e20-b00b-1a50c900e556
+:END:
 #+begin_src shell :results output replace :exports results
 cd rust/lib/logger
 cargo test
@@ -140,6 +182,9 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 #+end_example
 
 *** sxp
+:PROPERTIES:
+:ID:       d03bb57a-bb4c-42bb-b121-d398b0ce0815
+:END:
 #+begin_src shell :results output replace :exports results
 cd rust/lib/sxp
 cargo test
@@ -204,7 +249,13 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 #+end_example
 
 *** tenex
+:PROPERTIES:
+:ID:       ebc2e94b-d4ce-4d96-ab02-fa1c6926dde7
+:END:
 *** util
+:PROPERTIES:
+:ID:       5c490df8-7039-4729-bfa3-bfeebfac7533
+:END:
 #+begin_src shell :results output replace :exports results
 cd rust/lib/util
 cargo test
@@ -226,6 +277,9 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 #+end_example
 
 * lisp
+:PROPERTIES:
+:ID:       6e6c29eb-d206-4f05-9e72-528ba77e373e
+:END:
 #+name: gen-core-coverage-report
 #+begin_src lisp :results silent :exports code
   (ql:quickload :prelude)
@@ -1460,6 +1514,9 @@ Binding stack: (depth 42)
 #+end_example
 
 ** std
+:PROPERTIES:
+:ID:       46810d6e-6ed8-43b5-942e-84cd5f9660b4
+:END:
 #+begin_src lisp :results output replace :exports both
   (load "lisp/std/tests.lisp")
   (asdf:test-system :std)
@@ -1483,7 +1540,13 @@ No tests failed.
 #+end_example
 
 ** lib
+:PROPERTIES:
+:ID:       e465bc66-1614-4c1e-b5d8-7deff751d15a
+:END:
 *** rdb
+:PROPERTIES:
+:ID:       c1e76284-f474-4218-8907-40cfc199b5df
+:END:
 #+begin_src lisp :results output replace :exports results
   (load "lisp/lib/rdb/tests.lisp")
   (asdf:test-system :rdb)
@@ -1497,6 +1560,9 @@ No tests failed.
 : #<PASS MINIMAL-TEST200920> 
 : No tests failed.
 *** xdb
+:PROPERTIES:
+:ID:       c645b172-9efb-4b25-aead-f102b7178cd8
+:END:
 #+begin_src lisp :results output replace :exports results
   (load "lisp/lib/xdb/tests.lisp")
   (asdf:test-system :xdb)
@@ -1530,6 +1596,9 @@ No tests failed.
 #+end_example
 
 *** organ
+:PROPERTIES:
+:ID:       1910b9a4-39ab-4e6a-a11f-b04c59717fb9
+:END:
 #+begin_src lisp :results output replace :exports results
   (load "lisp/lib/organ/tests.lisp")
   (asdf:test-system :organ)
@@ -1558,6 +1627,9 @@ No tests failed.
 #+end_example
 
 *** skel
+:PROPERTIES:
+:ID:       2ad33de1-6d24-48c0-acbb-10aaa74537a6
+:END:
 #+begin_src lisp :results output replace :exports results
   (load "lisp/lib/skel/tests.lisp")
   (asdf:test-system :skel)
@@ -1574,6 +1646,9 @@ No tests failed.
 : No tests failed.
 
 *** packy
+:PROPERTIES:
+:ID:       e9cd88d5-fd78-4fb5-ad79-67a34619d45c
+:END:
 #+begin_src lisp :results output replace :exports results
   (load "lisp/lib/packy/tests.lisp")
   (asdf:test-system :packy)
@@ -1585,6 +1660,9 @@ No tests failed.
 : No tests failed.
 
 *** nlp
+:PROPERTIES:
+:ID:       4d585b8f-aaa8-4779-9a0b-bccebffb8249
+:END:
 #+begin_src lisp :results output replace :exports results
   (load "lisp/lib/nlp/tests.lisp")
   (asdf:test-system :nlp)
@@ -1598,6 +1676,9 @@ No tests failed.
 : No tests failed.
 
 *** net
+:PROPERTIES:
+:ID:       ad77b355-0d20-4d9c-840f-44c884ee6577
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :net)
   (load "lisp/lib/net/tests.lisp")
@@ -1622,6 +1703,9 @@ No tests failed.
 #+end_example
 
 *** log
+:PROPERTIES:
+:ID:       e153861a-3303-4c5a-ae8f-0e788d8ae519
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :log)
   (load "lisp/lib/log/tests.lisp")
@@ -1639,6 +1723,9 @@ No tests failed.
 : No tests failed.
 
 *** gui
+:PROPERTIES:
+:ID:       e0b24ca7-0fd5-4f2b-9d86-501c7dfcea3e
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :gui/tests)
   (load "lisp/lib/gui/tests.lisp")
@@ -1656,6 +1743,9 @@ No tests failed.
 : No tests failed.
 
 *** cli
+:PROPERTIES:
+:ID:       b3f5355c-6897-43bf-8e60-ce593c71c432
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :cli)
   (load "lisp/lib/cli/tests.lisp")
@@ -1682,6 +1772,9 @@ No tests failed.
 #+end_example
 
 *** rt
+:PROPERTIES:
+:ID:       e01d5158-140a-4613-abba-2df63f56653e
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :rt)
   (load "lisp/lib/rt/tests.lisp")
@@ -1699,6 +1792,9 @@ No tests failed.
 : No tests failed.
 
 *** obj
+:PROPERTIES:
+:ID:       dac3f1c9-9d1f-48c9-9e3e-a8a1c6a591af
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :obj)
   (load "lisp/lib/obj/tests.lisp")
@@ -1732,6 +1828,9 @@ in suite obj with 12/12 tests:
 #+end_example
 
 *** syn
+:PROPERTIES:
+:ID:       0a15866a-139d-4a13-ba92-6b70251c28d3
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :syn)
   (load "lisp/lib/syn/tests.lisp")
@@ -1749,6 +1848,9 @@ in suite obj with 12/12 tests:
 : No tests failed.
 
 *** doc
+:PROPERTIES:
+:ID:       b1e58fcc-939c-4656-abdd-f9900d52f602
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :doc)
   (load "lisp/lib/doc/tests.lisp")
@@ -1771,6 +1873,9 @@ No tests failed.
 #+end_example
 
 *** vc
+:PROPERTIES:
+:ID:       c1797c28-abdc-45f3-88f9-7d74e584bf21
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :vc)
   (load "lisp/lib/vc/tests.lisp")
@@ -1789,6 +1894,9 @@ No tests failed.
 : No tests failed.
 
 *** pod
+:PROPERTIES:
+:ID:       6a518f68-138f-4faf-84ef-e4148d9641f1
+:END:
 #+begin_src emacs-lisp
   (async-shell-command "podman system service --time=10 unix:///run/user/$UID/podman.sock")
 #+end_src
@@ -1813,7 +1921,13 @@ No tests failed.
 : No tests failed.
 
 ** ffi
+:PROPERTIES:
+:ID:       4646d63e-e4e7-408e-bd44-ac5543dea605
+:END:
 *** btrfs
+:PROPERTIES:
+:ID:       a41bcf3f-8e2a-42b5-9e7e-4aba12088710
+:END:
 #+begin_src lisp :results output replace :exports results
   (load "lisp/ffi/btrfs/tests.lisp")
   (asdf:test-system :btrfs)
@@ -1824,6 +1938,9 @@ No tests failed.
 : No tests failed.
 
 *** rocksdb
+:PROPERTIES:
+:ID:       d3d159f1-23a8-4a0e-9403-2f7a0dc21e04
+:END:
 #+begin_src lisp :results output replace :exports results
   (load "lisp/ffi/rocksdb/tests.lisp")
   (asdf:test-system :rocksdb)
@@ -1836,6 +1953,9 @@ No tests failed.
 : No tests failed.
 
 *** uring
+:PROPERTIES:
+:ID:       8fd3cdfb-0147-4309-899a-9df352975288
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :uring)
   (load "lisp/ffi/uring/tests.lisp")
@@ -1852,6 +1972,9 @@ No tests failed.
 : No tests failed.
 
 *** tree-sitter
+:PROPERTIES:
+:ID:       46e73820-2a0d-4af6-8fdb-34ce34517757
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :tree-sitter)
   (load "lisp/ffi/tree-sitter/tests.lisp")
@@ -1870,6 +1993,9 @@ No tests failed.
 : No tests failed.
 
 *** blake3
+:PROPERTIES:
+:ID:       00ede9c1-25cf-41ca-9eb5-c6daf0a2ae7e
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :blake3)
   (load "lisp/ffi/blake3/tests.lisp")
@@ -1947,6 +2073,9 @@ in suite BLAKE3 with 0/2 tests:
 No tests failed.
 #+end_example
 *** xkb
+:PROPERTIES:
+:ID:       e4bc7094-e30f-4c40-b743-ab4b48a3322f
+:END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :xkb)
   (load "lisp/ffi/xkb/tests.lisp")

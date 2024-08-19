@@ -7,6 +7,9 @@
 #+infojs_opt: toc:nil home:https://compiler.company up:./ view:content
 
 * vc
+:PROPERTIES:
+:ID:       c5078cb0-d8bf-4281-a320-a49d258585bc
+:END:
 #+begin_src shell :results pp :exports results
   hg churn -f "%Y-%m" -s
 #+end_src
@@ -27,6 +30,9 @@
 #+end_example
 
 * files
+:PROPERTIES:
+:ID:       5fc970df-a6d1-4670-9673-e53ce70354bb
+:END:
 #+begin_src shell :results pp :exports results
   cd rust && cargo clean && cd ..
   tokei -t='rust','lisp','c','c header','makefile','shell'
@@ -51,7 +57,13 @@
 #+end_example
 
 * lisp
+:PROPERTIES:
+:ID:       7293eb8c-a5e7-414f-b1eb-33239adf7873
+:END:
 ** systems
+:PROPERTIES:
+:ID:       f024eecb-1f44-4780-9aba-8188db1408d9
+:END:
 #+name: core-systems
 #+begin_src lisp :results list replace
   (asdf:load-asd "core.asd")
@@ -72,6 +84,9 @@
 - dat
 
 ** files
+:PROPERTIES:
+:ID:       b523235d-f9d3-45a5-8c44-8c6999be8e87
+:END:
 #+begin_src lisp :exports both :results list replace
   (let ((r))
     (dolist (s (doc:doc-dependencies (doc:system-documentation :core)) r)
@@ -235,6 +250,9 @@
 - /home/ellis/comp/core/lisp/lib/dat/base64.lisp
 
 ** images
+:PROPERTIES:
+:ID:       a2c797aa-e7e0-44d7-b02d-261811ab4d71
+:END:
 #+begin_src shell
   for f in .stash/*.core; do
     du -sh $f
@@ -250,7 +268,13 @@
 | 521M | .stash/user.core    |
 
 * rust
+:PROPERTIES:
+:ID:       ae3145d1-6826-4f8a-a026-09f3817f5fbf
+:END:
 ** crates
+:PROPERTIES:
+:ID:       243a971e-8312-4950-ad90-ac5dafceeab4
+:END:
 #+begin_src shell :exports both :results output
 cd rust && cargo tree --workspace --depth 1 --all-features
 #+end_src
