@@ -2,87 +2,93 @@
 #+author: Richard Westhaver
 #+email: ellis@rwest.io
 #+setupfile: ../../clean.theme
-#+begin_src shell :dir /home/ellis/comp/infra/scripts :results list replace :output results
-  ls
+#+property: header-args :dir /home/ellis/comp/core/ :eval no-export
+#+begin_src shell :dir /home/ellis/comp/infra :results replace output :output results
+  skel :scripts
 #+end_src
 
 #+RESULTS:
-- add-hg-user.sh
-- add-vc-user.sh
-- arch-upgrade.sh
-- aws-set-env.sh
-- box-make.sh
-- box-run.sh
-- build-baseline-vm.sh
-- build-containers.sh
-- build-emacs-mini.sh
-- build-emacs.sh
-- build-releng-vm.sh
-- build-vm-cow.sh
-- build-win11-vm.sh
-- bundle-comp.sh
-- bundle-packy.sh
-- cargo-install.sh
-- check.lisp
-- check-vm-for-update.sh
-- dist-emacs-binary.sh
-- dist-rocksdb-binary.sh
-- dist-rocksdb-source.sh
-- dist-sbcl-binary.sh
-- dist-sbcl-source.sh
-- dist-stumpwm-binary.sh
-- easy-rsa-gen-ca.sh
-- easy-rsa-gen-client.sh
-- easy-rsa-gen-server.sh
-- eval.sh
-- find-heptapod.sh
-- gen-mac.sh
-- get-blake3.sh
-- get-cl.sh
-- get-code.sh
-- get-ecl.sh
-- get-emacs.sh
-- get-etc.sh
-- get-iso.sh
-- get-linux.sh
-- get-lust.sh
-- get-nushell.sh
-- get-nyxt.sh
-- get-rocksdb.sh
-- get-rust.sh
-- get-sbcl.sh
-- get-scryer-prolog.sh
-- get-sk.sh
-- get-stumpwm.sh
-- get-tree-sitter.sh
-- get-ublksrv.sh
-- git-vendor-pull.sh
-- install-cargo-tools.sh
-- install-core-pack.sh
-- install-emacs-mini-pack.sh
-- install-emacs-pack.sh
-- install-nushell-pack.sh
-- install-rocksdb-pack.sh
-- install-rust-pack.sh
-- install-sbcl-pack.sh
-- make-windows-iso.nu
-- mkarchiso-baseline.sh
-- mkarchiso-releng.sh
-- print-colors.sh
-- pull-containers.sh
-- push-containers.sh
-- qemu-ifup.sh
-- quicklisp-install.sh
-- record-gif.sh
-- run-vm.sh
-- sbcl-make-bin.sh
-- sbcl-save-core.sh
-- sc.sh
-- start-podman-service.sh
-- start-vm.sh
-- t-rec.sh
-- tree-sitter-langs.sh
-- tscriptr.sh
-- tscript.sh
-- wg-gen-keys.sh
+#+begin_example
+#(#<SK-SCRIPT 2c9b-c5bc-203b-0bba :sh wg-gen-keys>
+  #<SK-SCRIPT 175e-bb11-2b4d-ed3b :sh tscriptr>
+  #<SK-SCRIPT 1ce9-8441-9492-3742 :sh tscript>
+  #<SK-SCRIPT 3fe4-720c-ff92-7322 :sh tree-sitter-langs>
+  #<SK-SCRIPT 3706-6df5-f37e-a009 :sh t-rec>
+  #<SK-SCRIPT 3521-f4dd-bebf-31ac :sh start-vm>
+  #<SK-SCRIPT 39d4-d1c2-03e3-3470 :sh start-podman-service>
+  #<SK-SCRIPT 26a9-0933-1df1-1a6a :sh sc>
+  #<SK-SCRIPT 03e9-f5f7-ad84-a799 :sh sbcl-save-core>
+  #<SK-SCRIPT 1fd8-ccbe-e487-f98e :sh sbcl-make-bin>
+  #<SK-SCRIPT 3531-c4e6-b0ee-5793 :sh run-vm>
+  #<SK-SCRIPT 0546-6c2a-a7d7-8b97 :sh record-gif>
+  #<SK-SCRIPT 2454-3355-30f6-2abb :sh quicklisp-install>
+  #<SK-SCRIPT 23c8-ad24-4f3b-21f2 :sh qemu-ifup>
+  #<SK-SCRIPT 031f-02ff-c4e7-fef0 :sh push-containers>
+  #<SK-SCRIPT 1772-aa2d-de4d-9347 :sh pull-containers>
+  #<SK-SCRIPT 3b89-7c3d-6543-9a3e :sh print-colors>
+  #<SK-SCRIPT 20d5-1e7a-c46b-01d2 :sh mkarchiso-releng>
+  #<SK-SCRIPT 1995-e074-4c1c-1d04 :sh mkarchiso-baseline>
+  #<SK-SCRIPT 23f9-441e-fafc-de2f :nu make-windows-iso>
+  #<SK-SCRIPT 352f-d9a3-d791-105e :sh install-sbcl-pack>
+  #<SK-SCRIPT 11ab-d735-f158-c264 :sh install-rust-pack>
+  #<SK-SCRIPT 3463-0cce-7532-508a :sh install-rocksdb-pack>
+  #<SK-SCRIPT 0d83-c4cd-42b1-2849 :sh install-nushell-pack>
+  #<SK-SCRIPT 35bd-9bf9-5f52-a442 :sh install-emacs-pack>
+  #<SK-SCRIPT 2814-7627-e5fc-dd1e :sh install-emacs-mini-pack>
+  #<SK-SCRIPT 0598-7826-5860-b5af :sh install-core-pack>
+  #<SK-SCRIPT 1767-536f-0b2b-ffc9 :sh install-cargo-tools>
+  #<SK-SCRIPT 053b-fa4b-bf6f-e688 :sh init-vc-bundles>
+  #<SK-SCRIPT 0666-4b4b-0117-09b9 :sh git-vendor-pull>
+  #<SK-SCRIPT 1bc9-f7ae-0703-783c :sh get-ublksrv>
+  #<SK-SCRIPT 3e6d-e344-e6f1-b52f :sh get-tree-sitter>
+  #<SK-SCRIPT 0df4-1b79-198c-0400 :sh get-stumpwm>
+  #<SK-SCRIPT 0319-c1ef-5e19-fadc :sh get-scryer-prolog>
+  #<SK-SCRIPT 2ae1-ff2a-9207-850f :sh get-sbcl>
+  #<SK-SCRIPT 2ecb-7c32-ff36-54c5 :sh get-rust>
+  #<SK-SCRIPT 0dfd-4d3b-c892-0bf6 :sh get-rocksdb>
+  #<SK-SCRIPT 0ee3-d7d5-5a17-b550 :sh get-nyxt>
+  #<SK-SCRIPT 3760-d76b-736f-9b5c :sh get-nushell>
+  #<SK-SCRIPT 2f36-cf11-7c5b-c023 :sh get-lust>
+  #<SK-SCRIPT 0610-6045-6025-05f8 :sh get-linux>
+  #<SK-SCRIPT 09fd-4dda-6fdb-10a4 :sh get-iso>
+  #<SK-SCRIPT 0197-aead-966d-15ce :sh get-etc>
+  #<SK-SCRIPT 1300-39a7-d209-19e9 :sh get-emacs>
+  #<SK-SCRIPT 2733-e861-2161-f7d9 :sh get-ecl>
+  #<SK-SCRIPT 2505-1c9f-9040-e517 :sh get-code>
+  #<SK-SCRIPT 1205-6a81-6d0a-be07 :sh get-cl>
+  #<SK-SCRIPT 0d06-7bb1-1b81-2c51 :sh get-blake3>
+  #<SK-SCRIPT 04f8-f396-7b0e-4dd3 :sh gen-mac>
+  #<SK-SCRIPT 173f-fdec-2e04-4191 :sh find-heptapod>
+  #<SK-SCRIPT 0370-d669-ae08-1322 :sh eval>
+  #<SK-SCRIPT 2752-1ddd-a5cc-ea36 :sh easy-rsa-gen-server>
+  #<SK-SCRIPT 0869-0dc6-fe57-b6e4 :sh easy-rsa-gen-client>
+  #<SK-SCRIPT 2ae1-03bc-ac97-37a8 :sh easy-rsa-gen-ca>
+  #<SK-SCRIPT 0d2f-5d21-4571-57d5 :sh dist-stumpwm-binary>
+  #<SK-SCRIPT 1c24-d4cd-fbb4-d281 :sh dist-sbcl-source>
+  #<SK-SCRIPT 1a84-46c0-3f7b-5b76 :sh dist-sbcl-binary>
+  #<SK-SCRIPT 1d17-ec6e-bcaa-58b2 :sh dist-rocksdb-source>
+  #<SK-SCRIPT 0817-251d-d069-9c7a :sh dist-rocksdb-binary>
+  #<SK-SCRIPT 21eb-d994-5995-6cfc :sh dist-emacs-binary>
+  #<SK-SCRIPT 1239-87bf-0870-d21a :lisp check>
+  #<SK-SCRIPT 32bf-0109-3374-a090 :sh check-vm-for-update>
+  #<SK-SCRIPT 2ccb-55b4-fa4a-b899 :sh cargo-install>
+  #<SK-SCRIPT 302a-2162-c4a7-45b4 :sh bundle-packy>
+  #<SK-SCRIPT 3719-c16d-4462-ab82 :sh bundle-comp>
+  #<SK-SCRIPT 3abb-a1d4-aa5e-b349 :sh build-win11-vm>
+  #<SK-SCRIPT 21e7-4e73-b779-dccb :sh build-vm-cow>
+  #<SK-SCRIPT 390f-2df8-1bd2-6f68 :sh build-sbcl>
+  #<SK-SCRIPT 0e80-f985-3f5a-9981 :sh build-sbcl-gencgc>
+  #<SK-SCRIPT 0206-e2c2-1c64-89d3 :sh build-releng-vm>
+  #<SK-SCRIPT 1e33-0385-a0c3-0a63 :sh build-emacs>
+  #<SK-SCRIPT 147c-3828-cd55-faf7 :sh build-emacs-mini>
+  #<SK-SCRIPT 3dc4-9b3b-cd7c-6fef :sh build-containers>
+  #<SK-SCRIPT 18f8-5d97-7452-ee0a :sh build-baseline-vm>
+  #<SK-SCRIPT 30f1-254f-98f8-a0d7 :sh box-run>
+  #<SK-SCRIPT 2da9-4661-da31-4802 :sh box-make>
+  #<SK-SCRIPT 17cc-8f7b-8c7d-ffdc :sh aws-set-env>
+  #<SK-SCRIPT 04ea-7d92-211c-4e19 :sh arch-upgrade>
+  #<SK-SCRIPT 1226-3184-2e21-745d :sh add-vc-user>
+  #<SK-SCRIPT 0781-7daa-f039-d394 :sh add-hg-user>)
+
+#+end_example
 

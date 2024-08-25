@@ -8,12 +8,21 @@
 #+INFOJS_OPT: toc:nil
 
 * Overview
+:PROPERTIES:
+:ID:       fb7c1b49-e293-41b7-863c-f38eaa361080
+:END:
 The =cli= library is a fully-featured toolkit for building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]]
 programs.
 
 
 * stats
+:PROPERTIES:
+:ID:       36ae93c8-83f4-4a03-a348-8eee8554c59a
+:END:
 ** dependencies
+:PROPERTIES:
+:ID:       5d0f369d-5de0-41b1-8288-2633a84c3a42
+:END:
 #+begin_src lisp :results list
   (ql:quickload :doc)
   (let ((sys (asdf:find-system :cli)))
@@ -26,6 +35,9 @@ programs.
 - dat
 
 ** dependents
+:PROPERTIES:
+:ID:       6c86510a-2c59-48a6-91c3-8533ceb0dcda
+:END:
 #+begin_src lisp :results list
   (ql:quickload :doc)
   (let ((sys (doc:system-documentation :cli)))
@@ -42,6 +54,9 @@ programs.
 - cli/tests
 
 ** files
+:PROPERTIES:
+:ID:       dc23dd4f-6025-40cb-90c7-982def7ef530
+:END:
 #+begin_src lisp :output replace :results list
   (mapcar (lambda (p)
               (enough-namestring p (asdf:system-source-directory :cli)))
@@ -78,6 +93,9 @@ programs.
 - cli.lisp
 
 ** packages
+:PROPERTIES:
+:ID:       c62cb04c-1c86-4bbe-bd1e-b962c887b008
+:END:
 #+begin_src lisp :output replace :results list
   (mapcar (lambda (p) (package-name (doc:doc-package p)))
           (doc:doc-packages (doc:system-documentation :cli)))
@@ -112,6 +130,9 @@ programs.
 - CLI/TOOLS/SYSTEMD
 
 ** tests
+:PROPERTIES:
+:ID:       7fa7ae69-b3a0-4bdf-907c-dacb25cb3662
+:END:
 #+begin_src lisp :output replace
   (ql:quickload :cli/tests)
   (print rt:*test-suite* nil)
