@@ -2,9 +2,8 @@
 #+author: Richard Westhaver
 #+setupfile: ../../../clean.theme
 #+OPTIONS: num:nil
-#+INFOJS_OPT: toc:nil view:content
 
-The =skel= CLI is the primary build tool for contributors and serves a
+=skel= is the primary build tool for contributors and serves a
 similar role to language-agnostic build tools like [[https://www.gnu.org/software/make/][GNU Make]], but with
 the features and ease-of-use of language-specific build tools like
 Rust's [[https://github.com/rust-lang/cargo][Cargo]].
@@ -111,7 +110,7 @@ Another example with rules and components:
 :PROPERTIES:
 :ID:       c15f58b5-d55e-425b-acf5-7001ef4591e4
 :END:
-=skel= integrates closely with our Version Control System (VCS) which
+=skel= integrates closely with our Version Control System which
 is built on [[https://www.mercurial-scm.org/][Mercurial]], but we also interact with and host many [[https://git-scm.com/][Git]]
 repositories.
 
@@ -149,8 +148,7 @@ Project compilation occurs on demand with the =sk compile= command.
 
   =skel= offers a mechanism for generating and running Virtual
   Machines (VMs) and Containers. Under the hood we depend on [[https://podman.io/][podman]]
-  for our container runtime as well as [[https://www.qemu.org/][QEMU]] for some
-  functionality.
+  for our container runtime as well as [[https://www.qemu.org/][QEMU]] for some functionality.
 
 ** TODO emacs integration
 :PROPERTIES:
@@ -180,7 +178,7 @@ skel -h
 
 #+RESULTS:
 #+begin_example
-skel v0.1.1 --- A hacker's project compiler.
+skel v0.1.1:97dd03beda03+ --- A hacker's project compiler.
 
   usage: skel [global] <command> [<arg>]
 
@@ -194,7 +192,12 @@ options:
 
 commands:
   init : initialize a skelfile in the current directory
-    -n/--name :  project name
+    -n/--name* 
+    -n/--name 
+    -d/--description* 
+    -p/--project name 
+    -k/--kind* 
+    -s/--string* 
   new : make a new skel project
     -n/--name :  project name
   describe : describe a skelfile
@@ -205,12 +208,22 @@ commands:
   vc : version control
     -r/--root :  repository path
   id : print the project id
-  rev : print the current vc revision id
   inspect : inspect the project skelfile
     -f/--file :  path to skelfile
   make : build project targets
     -t/--target :  target to build
   run : run a script or command
+  compile : compile source code
+  build : build programs and libraries
+  dist : distribute build artifacts
+  install : install stuff
+  pack : pack stuff
+  unpack : unpack stuff
+  bundle : bundle source code
+  unbundle : unbundle source code
+  clean : clean up the project
+  test : run tests
+  bench : run benchmark
   status : print the vc status
   push : push the current project upstream
   pull : pull the current project from remote
@@ -218,5 +231,6 @@ commands:
   commit : commit changes to the project vc
   edit : edit a project file in emacs.
   shell : open the sk-shell interpreter
+
 #+end_example
 

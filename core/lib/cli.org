@@ -1,24 +1,16 @@
-#+title: CLI
+#+title: cli
 #+author: Richard Westhaver
 #+description: Command-line Interface Library
 #+setupfile: ../../../clean.theme
 #+filetags: lisp cli
 #+property: header-args :dir ~/comp/core/ :exports both
 #+setupfile: ../../../clean.theme
-#+INFOJS_OPT: toc:nil
-
 * Overview
 :PROPERTIES:
 :ID:       fb7c1b49-e293-41b7-863c-f38eaa361080
 :END:
-The =cli= library is a fully-featured toolkit for building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]]
-programs.
-
-
-* stats
-:PROPERTIES:
-:ID:       36ae93c8-83f4-4a03-a348-8eee8554c59a
-:END:
+The =cli= library is a fully-featured toolkit for working with and
+building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 ** dependencies
 :PROPERTIES:
 :ID:       5d0f369d-5de0-41b1-8288-2633a84c3a42
@@ -33,6 +25,7 @@ programs.
 - std
 - log
 - dat
+- obj
 
 ** dependents
 :PROPERTIES:
@@ -46,12 +39,15 @@ programs.
 
 #+RESULTS:
 - user
+- prelude
 - packy
+- box
 - pod
+- net
 - vc
 - skel
-- prelude
 - cli/tests
+- core/lib
 
 ** files
 :PROPERTIES:
@@ -79,6 +75,7 @@ programs.
 - tools/pacman.lisp
 - tools/cc.lisp
 - tools/systemd.lisp
+- tools/wg.lisp
 - tools/cargo.lisp
 - tools/sbcl.lisp
 - clap/pkg.lisp
@@ -102,32 +99,33 @@ programs.
 #+end_src
 
 #+RESULTS:
-- CLI/TOOLS/SBCL
-- CLI/CLAP/OBJ
-- CLI/CLAP/SIMPLE
-- CLI/SHELL
-- CLI/TOOLS/TERM
-- CLI/ANSI
-- CLI/CLAP/PROTO
-- CLI/CLAP/AST
-- CLI/ED
-- CLI/TOOLS/PACMAN
-- CLI/TOOLS/CARGO
-- CLI/CLAP
-- CLI
-- CLI/TOOLS/CC
-- CLI/CLAP/VARS
-- CLI/TESTS
-- CLI/TOOLS/TMUX
 - CLI/REPL
 - CLI/CLAP/UTIL
+- CLI/CLAP/PROTO
+- CLI/TOOLS/PACMAN
+- CLI/CLAP/OBJ
 - CLI/ENV
-- CLI/PROGRESS
+- CLI/CLAP/MACS
+- CLI/TOOLS/SBCL
+- CLI/TOOLS/WG
+- CLI/TOOLS/SYSTEMD
 - CLI/PROMPT
 - CLI-USER
+- CLI/PROGRESS
+- CLI/CLAP
+- CLI/TOOLS/TMUX
+- CLI/TESTS
+- CLI/ANSI
 - CLI/SPARK
-- CLI/CLAP/MACS
-- CLI/TOOLS/SYSTEMD
+- CLI/TOOLS/TERM
+- CLI/CLAP/AST
+- CLI/CLAP/VARS
+- CLI/ED
+- CLI/TOOLS/CARGO
+- CLI/CLAP/SIMPLE
+- CLI/TOOLS/CC
+- CLI
+- CLI/SHELL
 
 ** tests
 :PROPERTIES:
@@ -135,11 +133,12 @@ programs.
 :END:
 #+begin_src lisp :output replace
   (ql:quickload :cli/tests)
+  (rt:in-suite :cli)
   (print rt:*test-suite* nil)
 #+end_src
 
 #+RESULTS:
-: #<RT:TEST-SUITE CLI [11:11:0:0] {101709DC53}>
+: #<RT:TEST-SUITE CLI [11:11:0:0] {1003038B23}>
 
 #+begin_src lisp :output replace
   (rt:tests rt:*test-suite*)
@@ -147,15 +146,30 @@ programs.
 
 #+RESULTS:
 #+begin_example
-(#<RT:TEST SBCL-TOOLS :fn SBCL-TOOLS-TEST749 {10170B9CF3}>
- #<RT:TEST MAIN-OUTPUT :fn MAIN-OUTPUT-TEST748 {10170B9C03}>
- #<RT:TEST CLAP-AST :fn CLAP-AST-TEST747 {10170B9B13}>
- #<RT:TEST ENV :fn ENV-TEST746 {10170B9A23}>
- #<RT:TEST REPL :fn REPL-TEST745 {10170B9933}>
- #<RT:TEST SPARK :fn SPARK-TEST744 {10170B9843}>
- #<RT:TEST PROGRESS :fn PROGRESS-TEST743 {10170B9753}>
- #<RT:TEST CLAP-OPTS :fn CLAP-OPTS-TEST742 {10170B9663}>
- #<RT:TEST CLAP-BASIC :fn CLAP-BASIC-TEST741 {10170B9543}>
- #<RT:TEST CLI-PROMPT :fn CLI-PROMPT-TEST740 {101709EFF3}>
- #<RT:TEST ANSI :fn ANSI-TEST739 {101709DE63}>)
+(#<RT:TEST SBCL-TOOLS :fn SBCL-TOOLS-TEST787 {100303C973}>
+ #<RT:TEST CLAP-MAIN :fn CLAP-MAIN-TEST786 {100303C8E3}>
+ #<RT:TEST CLI-AST :fn CLI-AST-TEST785 {100303C823}>
+ #<RT:TEST ENV :fn ENV-TEST784 {100303C793}>
+ #<RT:TEST REPL :fn REPL-TEST783 {100303C703}>
+ #<RT:TEST SPARK :fn SPARK-TEST782 {100303C673}>
+ #<RT:TEST PROGRESS :fn PROGRESS-TEST781 {100303C5E3}>
+ #<RT:TEST CLAP-OPTS :fn CLAP-OPTS-TEST780 {100303C553}>
+ #<RT:TEST CLAP-BASIC :fn CLAP-BASIC-TEST779 {100303C493}>
+ #<RT:TEST CLI-PROMPT :fn CLI-PROMPT-TEST778 {1003038F83}>
+ #<RT:TEST ANSI :fn ANSI-TEST777 {1003038D33}>)
 #+end_example
+* Packages
+** cli/clap
+- nicknames :: clap
+
+=clap= is a name borrowed from the [[https://github.com/clap-rs/clap][clap.rs]] Command Line Argument
+Parser. What can I say, it's a good acronym.
+
+Besides the system tests, you can find this package used in our lisp
+applications (=lisp/bin=).
+
+=clap= provides an object protocol and classes which parse input into
+a simple AST and execute the appropriate option and command handlers.
+
+Several macros form the public API used to build a CLI including
+=defcommand=, =defopt=, =define-cli=, and =defmain=.

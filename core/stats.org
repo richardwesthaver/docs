@@ -1,18 +1,37 @@
-# -*- org-export-babel-evaluate: nil -*-
 #+title: stats
 #+author: Richard Westhaver
-#+property: header-args :dir /home/ellis/comp/core/
-#+setupfile: ../../clean.theme
 #+OPTIONS: num:nil
-#+infojs_opt: toc:nil home:https://compiler.company up:./ view:content
-#+property: header-args :dir /home/ellis/comp/core/ :eval no-export
-* vc
-:PROPERTIES:
-:ID:       c5078cb0-d8bf-4281-a320-a49d258585bc
-:END:
-#+begin_src shell :results pp :exports results
-  hg churn -f "%Y-%m" -s
-#+end_src
+#+property: header-args :dir ~/comp/core/ :exports results
+#+location: ~/comp/core
+#+setupfile: ../../clean.theme
+#+BEGIN: project-info
+#+CALL: project-details() :dir ~/comp/core/
+
+#+RESULTS:
+|-------------+-------------------------------------------------------------------------|
+| name        | core                                                                    |
+| version     | 0.1.0                                                                   |
+| description | The Compiler Company Core                                               |
+| id          | 15bc-b763-ec92-1cf5                                                     |
+| root        | ~/comp/core/                                                            |
+| vc          | :hg [[https://vc.compiler.company/core][vc.compiler.company/core]] :rev [[https://vc.compiler.company/core/rev/b88bf15f60d0][b88bf15f60d0]] :id 637+                 |
+| tags        | (core lisp rust emacs c)                                                |
+| updated     | 3 days ago                                                              |
+| langs       | (c cheader elisp html javascript json lisp makefile org rust text toml) |
+| lines       | 95432 :λ 73671 :# 10159 :_ 11602                                        |
+|-------------+-------------------------------------------------------------------------|
+
+#+CALL: hg-status() :dir ~/comp/core/
+
+#+RESULTS:
+| M | emacs/default.el     |
+| M | emacs/lib/graph.el   |
+| M | emacs/lib/inbox.el   |
+| M | emacs/lib/publish.el |
+| M | emacs/lib/scrum.el   |
+| M | emacs/lib/ulang.el   |
+
+#+CALL: hg-churn() :dir ~/comp/core/
 
 #+RESULTS:
 #+begin_example
@@ -26,36 +45,26 @@
 2024-05  24141 ***********************
 2024-06  17608 *****************
 2024-07   9757 *********
-2024-08  13993 *************
+2024-08  16177 ****************
+2024-09   2430 **
 #+end_example
 
-* files
-:PROPERTIES:
-:ID:       5fc970df-a6d1-4670-9673-e53ce70354bb
-:END:
-#+begin_src shell :results pp :exports results
-  cd rust && cargo clean && cd ..
-  tokei -t='rust','lisp','c','c header','makefile','shell'
-#+end_src
+#+CALL: files() :dir ~/comp/core/
 
 #+RESULTS:
-#+begin_example
-===============================================================================
- Language            Files        Lines         Code     Comments       Blanks
-===============================================================================
- C                       1           65           35           11           19
- C Header                2         1194          318          721          155
- Lisp                  507        74118        56975         7867         9276
- Makefile                1            6            6            0            0
--------------------------------------------------------------------------------
- Rust                  145        12142        10477          468         1197
- |- Markdown           103          801            0          706           95
- (Total)                          12943        10477         1174         1292
-===============================================================================
- Total                 656        87525        67811         9067        10647
-===============================================================================
-#+end_example
+| file       | size |          updated |
+|------------+------+------------------|
+| emacs      |  110 | 2024-09-07-19:30 |
+| emacs.sk   |  100 | 2024-07-26-21:46 |
+| lisp       |  182 | 2024-09-02-17:12 |
+| lisp.sk    |  240 | 2024-08-15-21:56 |
+| readme.org |  13K | 2024-09-04-20:22 |
+| rust       |   86 | 2024-08-25-20:40 |
+| rust.sk    |  194 | 2024-06-25-19:51 |
+| skelfile   | 6.0K | 2024-09-03-17:01 |
+| x.lisp     |  11K | 2024-08-23-18:40 |
 
+#+END:
 * lisp
 :PROPERTIES:
 :ID:       7293eb8c-a5e7-414f-b1eb-33239adf7873
@@ -183,6 +192,265 @@
                                     (doc:doc-files s))))))
 #+end_src
 
+#+RESULTS:
+| lisp/std/defpkg.lisp                               |
+| lisp/std/pkg.lisp                                  |
+| lisp/std/condition.lisp                            |
+| lisp/std/sym.lisp                                  |
+| lisp/std/list.lisp                                 |
+| lisp/std/type.lisp                                 |
+| lisp/std/num/float.lisp                            |
+| lisp/std/num/parse.lisp                            |
+| lisp/std/num/leb128.lisp                           |
+| lisp/std/stream.lisp                               |
+| lisp/std/fu/curry.lisp                             |
+| lisp/std/array.lisp                                |
+| lisp/std/hash-table.lisp                           |
+| lisp/std/alien.lisp                                |
+| lisp/std/mop.lisp                                  |
+| lisp/std/readtable.lisp                            |
+| lisp/std/macs/ana.lisp                             |
+| lisp/std/macs/pan.lisp                             |
+| lisp/std/macs/const.lisp                           |
+| lisp/std/macs/collecting.lisp                      |
+| lisp/std/macs/loop.lisp                            |
+| lisp/std/macs/control.lisp                         |
+| lisp/std/bit.lisp                                  |
+| lisp/std/thread.lisp                               |
+| lisp/std/task.lisp                                 |
+| lisp/std/fmt.lisp                                  |
+| lisp/std/path.lisp                                 |
+| lisp/std/os.lisp                                   |
+| lisp/std/file.lisp                                 |
+| lisp/std/string.lisp                               |
+| lisp/std/seq.lisp                                  |
+| lisp/std/sys.lisp                                  |
+| lisp/lib/cli/pkg.lisp                              |
+| lisp/lib/cli/ansi.lisp                             |
+| lisp/lib/cli/env.lisp                              |
+| lisp/lib/cli/progress.lisp                         |
+| lisp/lib/cli/spark.lisp                            |
+| lisp/lib/cli/repl.lisp                             |
+| lisp/lib/cli/shell.lisp                            |
+| lisp/lib/cli/prompt.lisp                           |
+| lisp/lib/cli/ed.lisp                               |
+| lisp/lib/cli/tools/pkg.lisp                        |
+| lisp/lib/cli/tools/term.lisp                       |
+| lisp/lib/cli/tools/tmux.lisp                       |
+| lisp/lib/cli/tools/pacman.lisp                     |
+| lisp/lib/cli/tools/cc.lisp                         |
+| lisp/lib/cli/tools/systemd.lisp                    |
+| lisp/lib/cli/tools/wg.lisp                         |
+| lisp/lib/cli/tools/cargo.lisp                      |
+| lisp/lib/cli/tools/sbcl.lisp                       |
+| lisp/lib/cli/clap/pkg.lisp                         |
+| lisp/lib/cli/clap/ast.lisp                         |
+| lisp/lib/cli/clap/vars.lisp                        |
+| lisp/lib/cli/clap/util.lisp                        |
+| lisp/lib/cli/clap/macs.lisp                        |
+| lisp/lib/cli/clap/proto.lisp                       |
+| lisp/lib/cli/clap/opt.lisp                         |
+| lisp/lib/cli/clap/cmd.lisp                         |
+| lisp/lib/cli/clap/cli.lisp                         |
+| lisp/lib/cli/cli.lisp                              |
+| lisp/lib/log/pkg.lisp                              |
+| lisp/lib/log/err.lisp                              |
+| lisp/lib/log/log.lisp                              |
+| lisp/lib/log/stream.lisp                           |
+| lisp/lib/dat/pkg.lisp                              |
+| lisp/lib/dat/proto.lisp                            |
+| lisp/lib/dat/sxp.lisp                              |
+| lisp/lib/dat/dot.lisp                              |
+| lisp/lib/dat/csv.lisp                              |
+| lisp/lib/dat/json.lisp                             |
+| lisp/lib/dat/parquet/gen.lisp                      |
+| lisp/lib/dat/parquet/pkg.lisp                      |
+| lisp/lib/dat/parquet/obj.lisp                      |
+| lisp/lib/dat/parquet/thrift.lisp                   |
+| lisp/lib/dat/parquet/tcompact.lisp                 |
+| lisp/lib/dat/parquet/io.lisp                       |
+| lisp/lib/dat/parquet/rle.lisp                      |
+| lisp/lib/dat/parquet/proto.lisp                    |
+| lisp/lib/dat/xml/xml.lisp                          |
+| lisp/lib/dat/xml/pkg.lisp                          |
+| lisp/lib/dat/xml/svg.lisp                          |
+| lisp/lib/dat/xml/fixml.lisp                        |
+| lisp/lib/dat/html/const.lisp                       |
+| lisp/lib/dat/html/entity.lisp                      |
+| lisp/lib/dat/html/html.lisp                        |
+| lisp/lib/dat/handlebars.lisp                       |
+| lisp/lib/dat/mime.lisp                             |
+| lisp/lib/dat/toml.lisp                             |
+| lisp/lib/dat/arff.lisp                             |
+| lisp/lib/dat/midi.lisp                             |
+| lisp/lib/dat/base64.lisp                           |
+| lisp/ffi/rocksdb/pkg.lisp                          |
+| lisp/ffi/rocksdb/prim.lisp                         |
+| lisp/ffi/rocksdb/types.lisp                        |
+| lisp/ffi/rocksdb/opts.lisp                         |
+| lisp/ffi/rocksdb/sst.lisp                          |
+| lisp/ffi/rocksdb/db.lisp                           |
+| lisp/ffi/rocksdb/checkpoint.lisp                   |
+| lisp/ffi/rocksdb/metadata.lisp                     |
+| lisp/ffi/rocksdb/merge.lisp                        |
+| lisp/ffi/rocksdb/compaction.lisp                   |
+| lisp/ffi/rocksdb/comparator.lisp                   |
+| lisp/ffi/rocksdb/slicetransform.lisp               |
+| lisp/ffi/rocksdb/writebatch.lisp                   |
+| lisp/ffi/rocksdb/logger.lisp                       |
+| lisp/ffi/rocksdb/stats.lisp                        |
+| lisp/ffi/rocksdb/vars.lisp                         |
+| lisp/ffi/rocksdb/macs.lisp                         |
+| lisp/ffi/btrfs/pkg.lisp                            |
+| lisp/ffi/btrfs/constants.lisp                      |
+| lisp/ffi/btrfs/util.lisp                           |
+| lisp/lib/doc/pkg.lisp                              |
+| lisp/lib/doc/proto.lisp                            |
+| lisp/lib/doc/err.lisp                              |
+| lisp/lib/doc/symbol.lisp                           |
+| lisp/lib/doc/file.lisp                             |
+| lisp/lib/doc/package.lisp                          |
+| lisp/lib/doc/system.lisp                           |
+| lisp/lib/doc/dist.lisp                             |
+| lisp/lib/doc/reprex.lisp                           |
+| lisp/lib/doc/explain.lisp                          |
+| lisp/lib/doc/image.lisp                            |
+| lisp/ffi/alsa/pkg.lisp                             |
+| lisp/ffi/alsa/constants.lisp                       |
+| lisp/lib/nlp/pkg.lisp                              |
+| lisp/lib/nlp/data.lisp                             |
+| lisp/lib/nlp/tokenize.lisp                         |
+| lisp/lib/nlp/doc.lisp                              |
+| lisp/lib/nlp/stem/porter.lisp                      |
+| lisp/lib/nlp/textrank.lisp                         |
+| lisp/lib/nlp/dbscan.lisp                           |
+| lisp/lib/nlp/section.lisp                          |
+| lisp/lib/skel/core/pkg.lisp                        |
+| lisp/lib/skel/core/err.lisp                        |
+| lisp/lib/skel/core/types.lisp                      |
+| lisp/lib/skel/core/proto.lisp                      |
+| lisp/lib/skel/core/header.lisp                     |
+| lisp/lib/skel/core/vars.lisp                       |
+| lisp/lib/skel/core/obj.lisp                        |
+| lisp/lib/skel/core/print.lisp                      |
+| lisp/lib/skel/core/util.lisp                       |
+| lisp/lib/skel/core/vm.lisp                         |
+| lisp/lib/skel/comp/pkg.lisp                        |
+| lisp/lib/skel/comp/asd.lisp                        |
+| lisp/lib/skel/comp/cargo.lisp                      |
+| lisp/lib/skel/comp/container.lisp                  |
+| lisp/lib/skel/comp/org.lisp                        |
+| lisp/lib/skel/comp/dir-locals.lisp                 |
+| lisp/lib/skel/comp/makefile.lisp                   |
+| lisp/lib/skel/pkg.lisp                             |
+| lisp/lib/skel/tools/pkg.lisp                       |
+| lisp/lib/skel/tools/deploy.lisp                    |
+| lisp/lib/skel/tools/viz.lisp                       |
+| lisp/lib/skel/ext/pkg.lisp                         |
+| lisp/lib/skel/ext/asdf.lisp                        |
+| lisp/lib/skel/ext/inspect.lisp                     |
+| lisp/lib/skel/ext/krypt.lisp                       |
+| lisp/lib/skel/ext/packy.lisp                       |
+| lisp/lib/skel/ext/net.lisp                         |
+| lisp/lib/syn/pkg.lisp                              |
+| lisp/lib/organ/pkg.lisp                            |
+| lisp/lib/organ/vars.lisp                           |
+| lisp/lib/organ/err.lisp                            |
+| lisp/lib/organ/proto.lisp                          |
+| lisp/lib/organ/util.lisp                           |
+| lisp/lib/organ/macs.lisp                           |
+| lisp/lib/organ/object/markup.lisp                  |
+| lisp/lib/organ/object/entity.lisp                  |
+| lisp/lib/organ/object/citation.lisp                |
+| lisp/lib/organ/object/footnote-ref.lisp            |
+| lisp/lib/organ/object/inline-babel-call.lisp       |
+| lisp/lib/organ/object/inline-source-block.lisp     |
+| lisp/lib/organ/object/line-break.lisp              |
+| lisp/lib/organ/object/link.lisp                    |
+| lisp/lib/organ/object/macro.lisp                   |
+| lisp/lib/organ/object/export-snippet.lisp          |
+| lisp/lib/organ/object/sscript.lisp                 |
+| lisp/lib/organ/object/stat-cookie.lisp             |
+| lisp/lib/organ/object/table-cell.lisp              |
+| lisp/lib/organ/object/target.lisp                  |
+| lisp/lib/organ/object/timestamp.lisp               |
+| lisp/lib/organ/element/lesser/paragraph.lisp       |
+| lisp/lib/organ/element/lesser/block.lisp           |
+| lisp/lib/organ/element/lesser/clock.lisp           |
+| lisp/lib/organ/element/lesser/diary-sexp.lisp      |
+| lisp/lib/organ/element/lesser/latex-env.lisp       |
+| lisp/lib/organ/element/lesser/comment.lisp         |
+| lisp/lib/organ/element/lesser/fixed-width.lisp     |
+| lisp/lib/organ/element/lesser/horizontal-rule.lisp |
+| lisp/lib/organ/element/lesser/keyword.lisp         |
+| lisp/lib/organ/element/lesser/planning.lisp        |
+| lisp/lib/organ/element/lesser/table-row.lisp       |
+| lisp/lib/organ/element/lesser/node-property.lisp   |
+| lisp/lib/organ/element/greater/plain-list.lisp     |
+| lisp/lib/organ/element/greater/block.lisp          |
+| lisp/lib/organ/element/greater/drawer.lisp         |
+| lisp/lib/organ/element/greater/footnote-def.lisp   |
+| lisp/lib/organ/element/greater/item.lisp           |
+| lisp/lib/organ/element/greater/table.lisp          |
+| lisp/lib/organ/element/headline.lisp               |
+| lisp/lib/organ/section.lisp                        |
+| lisp/lib/organ/heading.lisp                        |
+| lisp/lib/organ/document.lisp                       |
+| lisp/lib/packy/pkg.lisp                            |
+| lisp/lib/packy/vars.lisp                           |
+| lisp/lib/packy/proto.lisp                          |
+| lisp/lib/packy/pkgbuild.lisp                       |
+| lisp/lib/packy/db.lisp                             |
+| lisp/lib/packy/client.lisp                         |
+| lisp/lib/packy/server.lisp                         |
+| lisp/lib/obj/pkg.lisp                              |
+| lisp/lib/obj/meta/pkg.lisp                         |
+| lisp/lib/obj/meta/sealed.lisp                      |
+| lisp/lib/obj/meta/stealth.lisp                     |
+| lisp/lib/obj/meta/typed.lisp                       |
+| lisp/lib/obj/meta/filtered.lisp                    |
+| lisp/lib/obj/meta/fast.lisp                        |
+| lisp/lib/obj/meta/lazy.lisp                        |
+| lisp/lib/obj/meta/overloaded.lisp                  |
+| lisp/lib/obj/meta/storable.lisp                    |
+| lisp/lib/obj/hash/hasher.lisp                      |
+| lisp/lib/obj/hash/chash.lisp                       |
+| lisp/lib/obj/hash/map.lisp                         |
+| lisp/lib/obj/hash/set.lisp                         |
+| lisp/lib/obj/hash/castable.lisp                    |
+| lisp/lib/obj/id.lisp                               |
+| lisp/lib/obj/uri/pkg.lisp                          |
+| lisp/lib/obj/uri/domain.lisp                       |
+| lisp/lib/obj/uri/uri.lisp                          |
+| lisp/lib/obj/uri/mask.lisp                         |
+| lisp/lib/obj/uri/state.lisp                        |
+| lisp/lib/obj/uri/parse.lisp                        |
+| lisp/lib/obj/uri/print.lisp                        |
+| lisp/lib/obj/uri/path.lisp                         |
+| lisp/lib/obj/uri/intern.lisp                       |
+| lisp/lib/obj/url.lisp                              |
+| lisp/lib/obj/seq.lisp                              |
+| lisp/lib/obj/tree/node.lisp                        |
+| lisp/lib/obj/tree/avl.lisp                         |
+| lisp/lib/obj/tree/rb.lisp                          |
+| lisp/lib/obj/tree/bro.lisp                         |
+| lisp/lib/obj/graph/pkg.lisp                        |
+| lisp/lib/obj/equiv.lisp                            |
+| lisp/lib/obj/color/color.lisp                      |
+| lisp/lib/obj/color/util.lisp                       |
+| lisp/lib/obj/color/x11.lisp                        |
+| lisp/lib/obj/color/palette.lisp                    |
+| lisp/lib/obj/music/music.lisp                      |
+| lisp/lib/obj/time/local.lisp                       |
+| lisp/lib/obj/time/util.lisp                        |
+| lisp/lib/obj/uuid.lisp                             |
+| lisp/lib/obj/temperature.lisp                      |
+| lisp/lib/obj/direction.lisp                        |
+| lisp/lib/obj/shape.lisp                            |
+| lisp/lib/obj/query.lisp                            |
+| lisp/lib/obj/secret.lisp                           |
+| ...                                                |
+
 ** images
 :PROPERTIES:
 :ID:       a2c797aa-e7e0-44d7-b02d-261811ab4d71
@@ -210,7 +478,7 @@
 :ID:       243a971e-8312-4950-ad90-ac5dafceeab4
 :END:
 #+begin_src shell :exports both :results output
-cd rust && cargo tree --workspace --depth 1 --all-features
+cd rust && cargo tree --workspace --depth 1
 #+end_src
 
 #+RESULTS:
