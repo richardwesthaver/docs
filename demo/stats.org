@@ -3,65 +3,90 @@
 #+property: header-args :dir /home/ellis/comp/demo/
 #+setupfile: ../../clean.theme
 #+OPTIONS: num:nil
-#+INFOJS_OPT: toc:nil view:showall
+#+LOCATION: ~/comp/demo
 #+property: header-args :dir /home/ellis/comp/core/ :eval no-export
-* vc
-:PROPERTIES:
-:ID:       a652fdcd-8c25-4f30-a23e-87354b906c90
-:END:
-#+begin_src shell :results pp :exports both
-  hg churn -f "%Y-%m" -s
-#+end_src
+#+BEGIN: project-info
+#+CALL: project-details() :dir ~/comp/demo/
 
 #+RESULTS:
-#+begin_example
-2023-10  36394 ************************************
-2023-11  12777 ************
-2023-12  61624 *************************************************************
-2024-01   4923 ****
-2024-02   5701 *****
-2024-03  27292 ***************************
-2024-04  23322 ***********************
-2024-05  24141 ***********************
-2024-06  17608 *****************
-2024-07   9757 *********
-2024-08  16177 ****************
-2024-09   2430 **
-#+end_example
+|-------------+----------------------------------------------------|
+| name        | demo                                               |
+| version     | 0.1.0                                              |
+| description | The CC Demo System                                 |
+| skel-id     | 0af9-06a7-9152-e7c1                                |
+| root        | ~/comp/demo/                                       |
+| vc          | :hg [[https://vc.compiler.company/demo][vc.compiler.company/demo]] :rev [[https://vc.compiler.company/demo/rev/99d4ab4f8d53][99d4ab4f8d53:44+]] |
+| tags        |                                                    |
+| updated     | Sun Aug 11 01:50:18 2024 -0400                     |
+| langs       | (lisp org text)                                    |
+| lines       | 2719 :λ 2060 :# 236 :_ 423                         |
+|-------------+----------------------------------------------------|
 
-* files
-:PROPERTIES:
-:ID:       5c0b5839-1b93-4354-b4ce-8684bea5e5ac
-:END:
-#+begin_src shell :results pp :exports results
-  tokei
-#+end_src
+#+CALL: hg-status() :dir ~/comp/demo/
 
 #+RESULTS:
-#+begin_example
-===============================================================================
- Language            Files        Lines         Code     Comments       Blanks
-===============================================================================
- C                       1           65           35           11           19
- C Header                2         1194          318          721          155
- Emacs Lisp             20         5181         3628          840          713
- JavaScript              1           25           21            2            2
- JSON                    1          159          159            0            0
- Lisp                  513        75259        57999         7900         9360
- Makefile                1            6            6            0            0
- Org                     2          470          391            4           75
- Plain Text              6          202            0          177           25
- TOML                   32          576          519           23           34
--------------------------------------------------------------------------------
- HTML                    1           35           20            8            7
- |- CSS                  1           84           65            9           10
- |- JavaScript           1            6            5            1            0
- (Total)                            125           90           18           17
--------------------------------------------------------------------------------
- Rust                  145        12142        10477          468         1197
- |- Markdown           103          801            0          706           95
- (Total)                          12943        10477         1174         1292
-===============================================================================
- Total                 725        95314        73573        10154        11587
-===============================================================================
-#+end_example
+| M | examples/db/tao.lisp      |
+| M | examples/org/publish.lisp |
+| ! | default.sxp               |
+| ! | examples/db/colordb.lisp  |
+| ! | pkg.lisp                  |
+| ! | tools/build-cli.lisp      |
+| ! | tools/build-image.lisp    |
+| ! | tools/dep.sh              |
+| ! | tools/init.lisp           |
+| ! | tools/prepare-image.lisp  |
+| ! | tools/woo-bench.sh        |
+| ? | config.sxp                |
+| ? | system-index.txt          |
+
+#+CALL: project-tasks() :dir ~/comp/demo/
+
+#+RESULTS:
+| todo | item | tags | scheduled | deadline | effort |
+|------+------+------+-----------+----------+--------|
+
+#+CALL: hg-churn() :dir ~/comp/demo/
+
+#+RESULTS:
+: 'churn' is provided by the following extension:
+: 
+:     churn         command to display statistics about repository history
+: 
+: (use 'hg help extensions' for information on enabling extensions)
+
+#+CALL: project-files() :dir ~/comp/demo/
+
+#+RESULTS:
+| file                                   | size | modified            |
+|----------------------------------------+------+---------------------|
+| [[https://vc.compiler.company/demo/file/tip/examples/db/tao.lisp][examples/db/tao.lisp]]                   | 3.8k | 2024-08-11 02:49:07 |
+| [[https://vc.compiler.company/demo/file/tip/examples/org/publish.lisp][examples/org/publish.lisp]]              |  147 | 2024-08-12 18:03:35 |
+| [[https://vc.compiler.company/demo/file/tip/.hgignore][.hgignore]]                              |   93 | 2023-07-25 21:54:09 |
+| [[https://vc.compiler.company/demo/file/tip/demo.asd][demo.asd]]                               |  532 | 2024-07-28 21:17:58 |
+| [[https://vc.compiler.company/demo/file/tip/examples/app/mpk.lisp][examples/app/mpk.lisp]]                  |  479 | 2024-06-01 23:10:36 |
+| [[https://vc.compiler.company/demo/file/tip/examples/clos/fast-def.lisp][examples/clos/fast-def.lisp]]            |  225 | 2024-04-12 21:03:31 |
+| [[https://vc.compiler.company/demo/file/tip/examples/clos/fast.lisp][examples/clos/fast.lisp]]                |  357 | 2024-04-12 20:58:37 |
+| [[https://vc.compiler.company/demo/file/tip/examples/clos/filtered.lisp][examples/clos/filtered.lisp]]            |   37 | 2024-04-12 20:19:47 |
+| [[https://vc.compiler.company/demo/file/tip/examples/clos/pkg.lisp][examples/clos/pkg.lisp]]                 |  436 | 2024-04-13 23:46:58 |
+| [[https://vc.compiler.company/demo/file/tip/examples/clos/readme.txt][examples/clos/readme.txt]]               |  120 | 2024-04-12 19:55:02 |
+| [[https://vc.compiler.company/demo/file/tip/examples/clos/sealed.lisp][examples/clos/sealed.lisp]]              |   35 | 2024-04-12 20:15:46 |
+| [[https://vc.compiler.company/demo/file/tip/examples/clos/stealth.lisp][examples/clos/stealth.lisp]]             |   36 | 2024-04-12 20:19:37 |
+| [[https://vc.compiler.company/demo/file/tip/examples/db/cl-simple-example-raw.lisp][examples/db/cl-simple-example-raw.lisp]] |   2k | 2024-04-08 21:10:43 |
+| [[https://vc.compiler.company/demo/file/tip/examples/db/mbdb.lisp][examples/db/mbdb.lisp]]                  |  12k | 2024-06-19 22:04:41 |
+| [[https://vc.compiler.company/demo/file/tip/examples/db/mini-redis.lisp][examples/db/mini-redis.lisp]]            |   4k | 2024-04-08 21:56:04 |
+| [[https://vc.compiler.company/demo/file/tip/examples/db/xdb/disk.lisp][examples/db/xdb/disk.lisp]]              |  28k | 2024-05-27 22:47:02 |
+| [[https://vc.compiler.company/demo/file/tip/examples/db/xdb/document.lisp][examples/db/xdb/document.lisp]]          | 1.8k | 2024-05-26 20:15:29 |
+| [[https://vc.compiler.company/demo/file/tip/examples/db/xdb/io.lisp][examples/db/xdb/io.lisp]]                | 9.1k | 2024-05-26 20:12:00 |
+| [[https://vc.compiler.company/demo/file/tip/examples/db/xdb/pkg.lisp][examples/db/xdb/pkg.lisp]]               |  110 | 2024-05-27 22:48:40 |
+| [[https://vc.compiler.company/demo/file/tip/examples/db/xdb/proto.lisp][examples/db/xdb/proto.lisp]]             | 3.3k | 2024-05-26 20:09:56 |
+| [[https://vc.compiler.company/demo/file/tip/examples/db/xdb/tests.lisp][examples/db/xdb/tests.lisp]]             | 8.2k | 2024-05-27 22:59:40 |
+| [[https://vc.compiler.company/demo/file/tip/examples/db/xdb/xdb.asd][examples/db/xdb/xdb.asd]]                |  401 | 2024-05-26 20:11:22 |
+| [[https://vc.compiler.company/demo/file/tip/examples/db/xdb/xdb.lisp][examples/db/xdb/xdb.lisp]]               |  10k | 2024-05-26 20:10:24 |
+| [[https://vc.compiler.company/demo/file/tip/examples/examples.asd][examples/examples.asd]]                  |  610 | 2024-06-19 22:05:31 |
+| [[https://vc.compiler.company/demo/file/tip/examples/mbdump.lisp][examples/mbdump.lisp]]                   | 4.6k | 2024-08-11 01:41:55 |
+| [[https://vc.compiler.company/demo/file/tip/examples/net/yoctochat.lisp][examples/net/yoctochat.lisp]]            | 1.8k | 2024-04-15 15:45:48 |
+| [[https://vc.compiler.company/demo/file/tip/examples/vegadat.lisp][examples/vegadat.lisp]]                  | 2.5k | 2024-04-11 16:30:07 |
+| [[https://vc.compiler.company/demo/file/tip/readme.org][readme.org]]                             |   15 | 2024-07-28 21:19:18 |
+| [[https://vc.compiler.company/demo/file/tip/skelfile][skelfile]]                               |  165 | 2024-07-28 21:18:34 |
+
+#+END:
