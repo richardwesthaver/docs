@@ -14,32 +14,34 @@
 | description | The Compiler Company Infrastructure                  |
 | skel-id     | 3466-87d9-5b04-a5df                                  |
 | root        | ~/comp/infra/                                        |
-| vc          | :hg [[https://vc.compiler.company/infra][vc.compiler.company/infra]] :rev [[https://vc.compiler.company/infra/rev/ad4e0ebd3693][ad4e0ebd3693:367+]] |
+| vc          | :hg [[https://vc.compiler.company/infra][vc.compiler.company/infra]] :rev [[https://vc.compiler.company/infra/rev/7dcabf3e0edc][7dcabf3e0edc:371+]] |
 | tags        | (INFRA)                                              |
-| updated     | Fri Sep 13 22:17:56 2024 -0400                       |
-| langs       | (lisp org sh)                                        |
-| lines       | 2232 :λ 1660 :# 330 :_ 242                           |
+| updated     | Tue Sep 24 15:53:24 2024 -0400                       |
+| langs       | (autoconf bash lisp org sh)                          |
+| lines       | 2563 :λ 1891 :# 388 :_ 284                           |
 |-------------+------------------------------------------------------|
 
 #+CALL: hg-status() :dir ~/comp/infra/
 
 #+RESULTS:
-| M | .hgsubstate                    |
-| M | scripts/org-graph-db-init.lisp |
-| M | skelfile                       |
+: M scripts/org-graph-db-init.lisp
 
 #+CALL: project-tasks() :dir ~/comp/infra/
 
 #+RESULTS:
-| todo | item             | tags         | scheduled            | deadline |
-|------+------------------+--------------+----------------------+----------|
-| TODO | autogen.lisp     | (lisp)       |                      |          |
-| TODO | deploy [0/4]     | (lisp)       |                      |          |
-| TODO | publish [0/4]    | (lisp emacs) |                      |          |
-| TODO | install [0/7]    |              |                      |          |
-| TBD  | demo             |              | 2024-08-01 Thu 00:00 |          |
-| TODO | ci               |              |                      |          |
-| TODO | tree-sitter-pack |              |                      |          |
+| todo    | item              | tags         | scheduled            | deadline |
+|---------+-------------------+--------------+----------------------+----------|
+| TODO    | autogen.lisp      | (lisp)       |                      |          |
+| TODO    | deploy [0/4]      | (lisp)       |                      |          |
+| TODO    | publish [0/4]     | (lisp emacs) |                      |          |
+| TODO    | install [0/7]     |              |                      |          |
+| PROJECT | box               |              |                      |          |
+| TODO    | refactor box repo |              |                      |          |
+| PROJECT | pod               |              |                      |          |
+| PROJECT | home              |              |                      |          |
+| TBD     | demo              |              | 2024-08-01 Thu 00:00 |          |
+| TODO    | ci                |              |                      |          |
+| TODO    | tree-sitter-pack  |              |                      |          |
 
 #+CALL: hg-churn() :dir ~/comp/infra/
 
@@ -56,7 +58,7 @@
 2024-06   2189 ***********
 2024-07    351 *
 2024-08    144 
-2024-09     70 
+2024-09    111 
 #+end_example
 
 #+CALL: project-files() :dir ~/comp/infra/
@@ -64,14 +66,13 @@
 #+RESULTS:
 | file                               | size | modified            |
 |------------------------------------+------+---------------------|
-| [[https://vc.compiler.company/infra/file/tip/.hgsubstate][.hgsubstate]]                        |  181 | 2024-09-13 21:26:22 |
-| [[https://vc.compiler.company/infra/file/tip/scripts/org-graph-db-init.lisp][scripts/org-graph-db-init.lisp]]     | 3.8k | 2024-09-20 23:10:35 |
-| [[https://vc.compiler.company/infra/file/tip/skelfile][skelfile]]                           | 6.3k | 2024-09-21 23:16:38 |
+| [[https://vc.compiler.company/infra/file/tip/scripts/org-graph-db-init.lisp][scripts/org-graph-db-init.lisp]]     | 4.3k | 2024-09-26 20:03:19 |
 | [[https://vc.compiler.company/infra/file/tip/.hgignore][.hgignore]]                          |  136 | 2024-05-06 18:50:45 |
 | [[https://vc.compiler.company/infra/file/tip/.hgsub][.hgsub]]                             |  169 | 2024-09-08 18:35:45 |
+| [[https://vc.compiler.company/infra/file/tip/.hgsubstate][.hgsubstate]]                        |  181 | 2024-09-24 16:56:16 |
 | [[https://vc.compiler.company/infra/file/tip/.shellcheckrc][.shellcheckrc]]                      |  295 | 2023-12-05 19:54:00 |
 | [[https://vc.compiler.company/infra/file/tip/autogen.lisp][autogen.lisp]]                       |  11k | 2024-07-07 00:07:49 |
-| [[https://vc.compiler.company/infra/file/tip/bootstrap.sh][bootstrap.sh]]                       |  11k | 2024-07-06 22:34:39 |
+| [[https://vc.compiler.company/infra/file/tip/bootstrap.sh][bootstrap.sh]]                       |  11k | 2024-09-24 16:56:16 |
 | [[https://vc.compiler.company/infra/file/tip/check.sh][check.sh]]                           | 9.1k | 2024-06-12 19:43:59 |
 | [[https://vc.compiler.company/infra/file/tip/default.sxp][default.sxp]]                        |  982 | 2024-09-13 21:26:00 |
 | [[https://vc.compiler.company/infra/file/tip/deploy.lisp][deploy.lisp]]                        |  733 | 2024-08-01 16:17:27 |
@@ -108,22 +109,22 @@
 | [[https://vc.compiler.company/infra/file/tip/scripts/eval.sh][scripts/eval.sh]]                    |  290 | 2023-12-30 00:52:48 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/find-heptapod.sh][scripts/find-heptapod.sh]]           |  115 | 2024-01-11 19:03:37 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/gen-mac.sh][scripts/gen-mac.sh]]                 |  126 | 2024-06-01 18:35:18 |
-| [[https://vc.compiler.company/infra/file/tip/scripts/get-blake3.sh][scripts/get-blake3.sh]]              |  118 | 2024-06-14 19:05:51 |
+| [[https://vc.compiler.company/infra/file/tip/scripts/get-blake3.sh][scripts/get-blake3.sh]]              |  114 | 2024-09-24 16:56:16 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/get-code.sh][scripts/get-code.sh]]                |  443 | 2024-05-30 21:24:01 |
-| [[https://vc.compiler.company/infra/file/tip/scripts/get-ecl.sh][scripts/get-ecl.sh]]                 |  136 | 2024-05-25 16:02:13 |
+| [[https://vc.compiler.company/infra/file/tip/scripts/get-ecl.sh][scripts/get-ecl.sh]]                 |  132 | 2024-09-24 16:56:16 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/get-emacs.sh][scripts/get-emacs.sh]]               |  111 | 2024-09-14 22:33:24 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/get-etc.sh][scripts/get-etc.sh]]                 |   91 | 2024-09-03 17:03:38 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/get-iso.sh][scripts/get-iso.sh]]                 |  154 | 2024-05-31 23:56:24 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/get-linux.sh][scripts/get-linux.sh]]               | 7.1k | 2024-05-25 15:57:23 |
-| [[https://vc.compiler.company/infra/file/tip/scripts/get-nushell.sh][scripts/get-nushell.sh]]             |   85 | 2024-05-25 16:02:47 |
-| [[https://vc.compiler.company/infra/file/tip/scripts/get-nyxt.sh][scripts/get-nyxt.sh]]                |   79 | 2024-05-30 17:10:54 |
+| [[https://vc.compiler.company/infra/file/tip/scripts/get-nushell.sh][scripts/get-nushell.sh]]             |   81 | 2024-09-24 16:56:16 |
+| [[https://vc.compiler.company/infra/file/tip/scripts/get-nyxt.sh][scripts/get-nyxt.sh]]                |   75 | 2024-09-24 16:56:16 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/get-rocksdb.sh][scripts/get-rocksdb.sh]]             |  117 | 2024-09-14 22:33:24 |
-| [[https://vc.compiler.company/infra/file/tip/scripts/get-rust.sh][scripts/get-rust.sh]]                |  304 | 2024-05-25 16:01:24 |
+| [[https://vc.compiler.company/infra/file/tip/scripts/get-rust.sh][scripts/get-rust.sh]]                |  300 | 2024-09-24 16:56:16 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/get-sbcl.sh][scripts/get-sbcl.sh]]                |  135 | 2024-09-14 22:33:24 |
-| [[https://vc.compiler.company/infra/file/tip/scripts/get-scryer-prolog.sh][scripts/get-scryer-prolog.sh]]       |  107 | 2024-05-30 12:57:56 |
-| [[https://vc.compiler.company/infra/file/tip/scripts/get-stumpwm.sh][scripts/get-stumpwm.sh]]             |   85 | 2024-05-30 17:10:37 |
-| [[https://vc.compiler.company/infra/file/tip/scripts/get-tree-sitter.sh][scripts/get-tree-sitter.sh]]         |   99 | 2024-05-25 16:03:05 |
-| [[https://vc.compiler.company/infra/file/tip/scripts/get-ublksrv.sh][scripts/get-ublksrv.sh]]             |  121 | 2024-06-14 19:05:51 |
+| [[https://vc.compiler.company/infra/file/tip/scripts/get-scryer-prolog.sh][scripts/get-scryer-prolog.sh]]       |  103 | 2024-09-24 16:56:16 |
+| [[https://vc.compiler.company/infra/file/tip/scripts/get-stumpwm.sh][scripts/get-stumpwm.sh]]             |   81 | 2024-09-24 16:56:16 |
+| [[https://vc.compiler.company/infra/file/tip/scripts/get-tree-sitter.sh][scripts/get-tree-sitter.sh]]         |   95 | 2024-09-24 16:56:16 |
+| [[https://vc.compiler.company/infra/file/tip/scripts/get-ublksrv.sh][scripts/get-ublksrv.sh]]             |  117 | 2024-09-24 16:56:16 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/git-vendor-pull.sh][scripts/git-vendor-pull.sh]]         |  394 | 2024-05-25 16:01:47 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/init-vc-bundles.sh][scripts/init-vc-bundles.sh]]         |  532 | 2024-07-24 17:47:10 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/install-cargo-tools.sh][scripts/install-cargo-tools.sh]]     |  720 | 2024-05-03 13:18:35 |
@@ -151,6 +152,7 @@
 | [[https://vc.compiler.company/infra/file/tip/scripts/tscript.sh][scripts/tscript.sh]]                 |  226 | 2024-01-25 21:10:56 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/tscriptr.sh][scripts/tscriptr.sh]]                |  156 | 2024-01-25 20:58:36 |
 | [[https://vc.compiler.company/infra/file/tip/scripts/wg-gen-keys.sh][scripts/wg-gen-keys.sh]]             |  144 | 2024-08-12 20:59:56 |
+| [[https://vc.compiler.company/infra/file/tip/skelfile][skelfile]]                           | 6.3k | 2024-09-24 16:56:16 |
 
 #+END:
 

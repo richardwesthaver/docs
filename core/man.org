@@ -7,6 +7,7 @@
 #+texinfo_dir_category: Software development
 #+texinfo_dir_title: Core: (core)
 #+texinfo_dir_desc: CC Software Development Ecosystem
+
 This manual documents the [[comp:][CC]] [[vc:core][core]] software. The core is a
 multi-language library and framework used to build advanced
 applications. It is composed of language-specific collections of
@@ -17,8 +18,33 @@ development ecosystem.
 :PROPERTIES:
 :ID:       156ffb70-9e00-4532-be47-b921c1825a91
 :END:
-Welcome to the *core*, the software development ecosystem of [[comp:][CC]].
+Welcome to the *core*, the primary software development ecosystem of
+[[comp:][CC]].
 
+Here you will find a large collection of interconnected modules and
+tools which forms the foundation of all applications we produce. The
+core is designed to be the best toolkit for rapid development of
+next-gen applications.
+
+To achieve this end we narrow the scope of our work in many ways and
+have some hard-coded opinions worth mentioning.
+
+For example, we make no efforts to support cross-compilation or
+porting of our software to devices or operating systems the developer
+can't fully control such as Windows/MacOS/iOS/Android. We always
+assume the developer is running a GNU/Linux host.
+
+We also don't obey any rules regarding backward-compatibility. APIs
+change fast and breaking changes may be introduced without notice.
+
+We track the development branches and host mirrors of all of our major
+dependencies including SBCL and Emacs as well as
+libraries including RocksDB and Zstd so that we can incorporate
+pre-release APIs and our own custom patches as needed. Internally we
+do not test against public release binaries and only support binaries
+built from our own mirrors.
+
+** COMMENT bleh
 The idea of a =core= is one that is quite common in software
 design. It implies something that is fundamental - the machine behind
 the machine, whatever the machine may be.
@@ -47,17 +73,92 @@ from applications and is not dependent on them. We are not building a
 'top-down' system. Instead, we build 'bottom-up' from scratch and keep
 our core insulated (but not completely isolated) from applications.
 
-** On Lisp
-:PROPERTIES:
-:ID:       44119d2d-9de4-4091-9821-1450bc8138fd
-:END:
-
-** On Rust
-:PROPERTIES:
-:ID:       a5eb63a1-9194-49d9-946b-23f687893f67
-:END:
-
 * Overview
 :PROPERTIES:
 :ID:       ceb67759-c656-411d-a0c0-df19b18732e5
 :END:
+The Core itself is not an application but is complex enough that it
+merits its own dedicated manual. There are dedicated manuals for the
+applications which are part of the core, so what we are concerned with
+here is managing and hacking on the source code itself. We are
+directing our attention inwards, towards the core instead of extending
+our gaze away from it to see where it leads.
+
+This manual is often technical, but occassionally theoretical in
+nature and intended for software developers with experience in Linux,
+Lisp, and Emacs.
+
+The Core is primarily a Lisp code base. Common Lisp is our language of
+choice and there is a significant amount of Emacs Lisp code too. Other
+languages which are present include C as well as Rust.
+
+A solid understanding of C is recommended for developing on the Core,
+but is not a hard requirement. We make heavy use of FFI to communicate
+with the OS as well as C libraries but we provide high-level Lispy
+bindings in most cases.
+
+The Rust portions of the code base are currently under construction
+and isolated from the rest of the Core. In the future we may
+incorporate it into this manual, but for the purpose of the following
+we may safely ignore it.
+
+* Getting Started
+*** Dependencies
+**** Minimum Requirements
+- GNU/Linux
+- GNU Emacs
+- SBCL
+- Quicklisp
+- RocksDB (shared library and headers)
+- Zstd
+- Mercurial
+**** Additional Requirements
+- Rust
+- X11
+- Btrfs
+- Treesitter
+- Podman
+- QEMU
+- CUDA
+- Readline
+- GStreamer
+- Rustls
+*** Bootstrap
+Bootstrapping the core can be done via an existing core image or the
+=skel= binary in a 'self-bootstrapping' fashion. See the [[comp:docs/infra][infra]] project
+documentation for details on that process.
+
+Bootstrapping from source is quite easy too. All that is needed is to
+get the source, load the project =skelfile= and run =sk-make=.
+
+  #+begin_src shell :eval never
+    # clone the source code
+    hg clone https://vc.compiler.company/core
+    cd core
+    sbcl
+  #+end_src
+
+Then in the SBCL REPL:
+#+begin_src lisp :dir ~/comp/core/
+  (ql:quickload :skel)
+  (in-package :sk-user)
+  (init-skel)
+  (sk-make *skel-project*)
+#+end_src
+
+#+RESULTS:
+: (#<RULE all (%STASH PSL.DAT PARQUET.JSON RGB.TXT BUILD-TREE-SITTER-ALIEN
+:              SAVE-CORE BUILD-CORE)>)
+
+Installation is trivial and can be done from the same REPL session.
+#+begin_src lisp :dir ~/comp/core/
+  (sk-make *skel-project* :install-core)
+#+end_src
+
+#+RESULTS:
+| :INSTALL-CORE |
+
+*** Play
+
+* Testing
+

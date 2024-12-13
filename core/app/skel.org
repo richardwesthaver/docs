@@ -178,59 +178,51 @@ skel -h
 
 #+RESULTS:
 #+begin_example
-skel v0.1.1:97dd03beda03+ --- A hacker's project compiler.
+skel v0.1.1:5aef8a70622e+ --- A hacker's project compiler.
 
-  usage: skel [global] <command> [<arg>]
+  usage: skel [opts] <command> [<arg>]
 
 options:
-  -h/--help* :  print this message
-  -v/--version* :  print version
-  -l/--level* :  set log level (warn,info,debug,trace)
-  -c/--config* :  set a custom skel user config
-  -i/--input* :  input source
-  -o/--output* :  output target
+  -h/--help               print help
+  -v/--version            print version
+  -a/--ast                save the intermediate skel AST
+  -l/--level              set log level (warn,info,debug,trace)
+  -c/--config             set a custom skel user config
 
 commands:
-  init : initialize a skelfile in the current directory
-    -n/--name* 
-    -n/--name 
-    -d/--description* 
-    -p/--project name 
-    -k/--kind* 
-    -s/--string* 
-  new : make a new skel project
-    -n/--name :  project name
-  describe : describe a skelfile
-  show : show project slots
-    -f/--file :  path to skelfile
-    -u/--user :  print user configuration
-    -s/--system :  print system configuration
-  vc : version control
-    -r/--root :  repository path
-  id : print the project id
-  inspect : inspect the project skelfile
-    -f/--file :  path to skelfile
-  make : build project targets
-    -t/--target :  target to build
-  run : run a script or command
-  compile : compile source code
-  build : build programs and libraries
-  dist : distribute build artifacts
-  install : install stuff
-  pack : pack stuff
-  unpack : unpack stuff
-  bundle : bundle source code
-  unbundle : unbundle source code
-  clean : clean up the project
-  test : run tests
-  bench : run benchmark
-  status : print the vc status
-  push : push the current project upstream
-  pull : pull the current project from remote
-  clone : clone a remote project
-  commit : commit changes to the project vc
-  edit : edit a project file in emacs.
-  shell : open the sk-shell interpreter
-
+  init                    initialize a skelfile in the current directory
+    -n/--name               project name
+  new                     make a new skel project
+    -n/--name               project name
+  describe                describe a skelfile
+  show                    show project slots
+    -f/--file               path to skelfile
+  vc                      version control
+    -r/--root               repository path
+  id                      print the project id
+  inspect                 inspect the project skelfile
+    -f/--file               path to skelfile
+  make                    build project targets
+  run                     run a script or command
+  compile                 compile source code
+  build                   build programs and libraries
+  save                    save a file
+  dist                    distribute build artifacts
+  install                 install stuff
+  pack                    pack stuff
+  unpack                  unpack stuff
+  bundle                  bundle source code
+  unbundle                unbundle source code
+  clean                   clean up the project
+  test                    run tests
+  bench                   run benchmark
+  status                  print the vc status
+  push                    push the current project upstream
+  pull                    pull the current project from remote
+  clone                   clone a remote project
+  commit                  commit changes to the project vc
+    -m/--message            commit message
+  edit                    edit a project file in emacs.
+  shell                   open the sk-shell interpreter
 #+end_example
 
