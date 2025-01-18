@@ -8,7 +8,10 @@ branch of the [[https://vc.compiler.company/core][core]].
 
 #+call: user-slime()
 
-#+begin_src lisp :results output replace
+#+begin_src lisp :results replace
+  `(:packages ,(length (list-all-packages))
+    :symbols ,(length (package-symbols :core)))
 #+end_src
 
 #+RESULTS:
+| :PACKAGES | 675 | :SYMBOLS | 3158 |
