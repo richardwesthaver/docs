@@ -45,6 +45,9 @@ do not test against public release binaries and only support binaries
 built from our own mirrors.
 
 ** COMMENT bleh
+:PROPERTIES:
+:ID:       0cb05ffe-b06c-4f89-b2a2-b5f87faf04bd
+:END:
 The idea of a =core= is one that is quite common in software
 design. It implies something that is fundamental - the machine behind
 the machine, whatever the machine may be.
@@ -103,18 +106,40 @@ incorporate it into this manual, but for the purpose of the following
 we may safely ignore it.
 
 * Getting Started
+:PROPERTIES:
+:ID:       636ffa98-c39a-4f2a-9a49-aa82497a8ca8
+:END:
 *** Dependencies
+:PROPERTIES:
+:ID:       22b763b9-c781-4061-b5ef-fc4f19720cf0
+:END:
 **** Minimum Requirements
-- GNU/Linux
-- GNU Emacs
+:PROPERTIES:
+:ID:       2b2485b6-29d1-4ead-aaf5-91e4798c5779
+:END:
+- GNU/Linux, linux-headers
+- GCC
 - SBCL
+- GNU Emacs
 - Quicklisp
-- RocksDB (shared library and headers)
+- RocksDB
 - Zstd
 - Mercurial
-**** Additional Requirements
+- OpenSSL
+**** Optional Requirements
+:PROPERTIES:
+:ID:       3089b83f-1bd1-423e-9e09-48c839fbac07
+:END:
 - Rust
 - X11
+- BLAKE3
+- CUDA
+- Libevdev
+- Libkeyutils
+- Wasmer
+- Libsndfile
+- Libreadline
+- Libssh2
 - Btrfs
 - Treesitter
 - Podman
@@ -124,6 +149,9 @@ we may safely ignore it.
 - GStreamer
 - Rustls
 *** Bootstrap
+:PROPERTIES:
+:ID:       dcb3ffff-5388-4387-8a46-553ae0309d70
+:END:
 Bootstrapping the core can be done via an existing core image or the
 =skel= binary in a 'self-bootstrapping' fashion. See the [[comp:docs/infra][infra]] project
 documentation for details on that process.
@@ -132,8 +160,8 @@ Bootstrapping from source is quite easy too. All that is needed is to
 get the source, load the project =skelfile= and run =sk-make=.
 
   #+begin_src shell :eval never
-    # clone the source code
-    hg clone https://vc.compiler.company/core
+    # clone the source code from a mirror
+    git clone https://codeberg.org/c-c/core
     cd core
     sbcl
   #+end_src
@@ -143,22 +171,131 @@ Then in the SBCL REPL:
   (ql:quickload :skel)
   (in-package :sk-user)
   (init-skel)
-  (sk-make *skel-project*)
+  (sk-make *skel-project* :build-all-core)
 #+end_src
 
 #+RESULTS:
-: (#<RULE all (%STASH PSL.DAT PARQUET.JSON RGB.TXT BUILD-TREE-SITTER-ALIEN
-:              SAVE-CORE BUILD-CORE)>)
+| :BUILD-ALL-CORE |
 
-Installation is trivial and can be done from the same REPL session.
-#+begin_src lisp :dir ~/comp/core/
-  (sk-make *skel-project* :install-core)
+Installation is trivial and can be done from the same REPL session. By
+default the =core= binary will be written to =/usr/local/bin/= and a
+series of symlinks will be created in the same directory - similar to
+Busybox binaries.
+
+#+begin_src lisp :dir ~/comp/core/ :package sk-user :eval never
+  (sk-make *skel-project* :install-all-core)
 #+end_src
 
-#+RESULTS:
-| :INSTALL-CORE |
+You should see some output like the following:
 
-*** Play
+#+begin_src 
+skel -> core -> /usr/local/bin/
+homer -> core -> /usr/local/bin/
+packy -> core -> /usr/local/bin/
+rdb -> core -> /usr/local/bin/
+organ -> core -> /usr/local/bin/
+vc -> core -> /usr/local/bin/
+gen -> core -> /usr/local/bin/
+swm -> core -> /usr/local/bin/
+#+end_src
 
+*** Configuration
+:PROPERTIES:
+:ID:       d9a1f958-c43e-4465-9916-3526f7a27268
+:END:
+The next think you'll want to take care of is user configuration.
+
+**** Emacs
+:PROPERTIES:
+:ID:       6c87dbd0-0a4b-4395-bc70-fff94b680787
+:END:
+If you don't have your own Emacs config you can install the default CC
+Emacs configuration using the =skel= command. 
+
+- Warning :: that this will mess with your =~/.emacs.d= directory:
+  #+begin_src shell :dir ~/comp/core/ :results output
+  cd emacs && skel install
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  default.el -> /home/ellis/.emacs.d/default.el
+  early-init.el -> /home/ellis/.emacs.d/early-init.el
+  init.el -> /home/ellis/.emacs.d/init.el
+  keys.el -> /home/ellis/.emacs.d/keys.el
+  util.el -> /home/ellis/.emacs.d/util.el
+  c2.el -> /home/ellis/.emacs.d/lib/c2.el
+  corfu-terminal.el -> /home/ellis/.emacs.d/lib/corfu-terminal.el
+  exec-path-from-shell.el -> /home/ellis/.emacs.d/lib/exec-path-from-shell.el
+  graph.el -> /home/ellis/.emacs.d/lib/graph.el
+  inbox.el -> /home/ellis/.emacs.d/lib/inbox.el
+  mpk.el -> /home/ellis/.emacs.d/lib/mpk.el
+  org-expiry.el -> /home/ellis/.emacs.d/lib/org-expiry.el
+  publish.el -> /home/ellis/.emacs.d/lib/publish.el
+  scrum.el -> /home/ellis/.emacs.d/lib/scrum.el
+  sk.el -> /home/ellis/.emacs.d/lib/sk.el
+  skt.el -> /home/ellis/.emacs.d/lib/skt.el
+  slime-cape.el -> /home/ellis/.emacs.d/lib/slime-cape.el
+  slime-company.el -> /home/ellis/.emacs.d/lib/slime-company.el
+  slime-repl-ansi-color.el -> /home/ellis/.emacs.d/lib/slime-repl-ansi-color.el
+  sxp.el -> /home/ellis/.emacs.d/lib/sxp.el
+  ulang.el -> /home/ellis/.emacs.d/lib/ulang.el
+  uml-mode.el -> /home/ellis/.emacs.d/lib/uml-mode.el
+  #+end_example
+The default config supports user customizations in a file with the
+same name as the current user, so when =$USER = ellis= then we check
+for =ellis.el= and load it if it exists in =~/.emacs.d/=.
+
+**** SBCL
+:PROPERTIES:
+:ID:       52a44b82-d5e8-4926-83e9-2944b1df8e62
+:END:
+
+**** Core Apps
+:PROPERTIES:
+:ID:       db2ee1f1-846f-433c-9747-83ec18d47e40
+:END:
+The core is a single binary which dispatches on argv[0] from the
+CLI. Each unique symlink to the core binary is treated as a separate
+dispatch to a 'main' function like so:
+#+begin_src lisp
+  (define-multi-main dispatch-core
+    (progn (in-package :core-lisp)
+           ,#+nil ...)
+    (:skel (bin/skel::start-skel))
+    (:homer (bin/homer::start-homer))
+    (:mpk (bin/mpk::start-mpk))
+    ,#+nil ...)
+#+end_src
+
+The current apps that read a configuration file on startup are:
+- skel - project management: =.skelrc=
+- homer - home management: =.homerc=
+- mpk - media production kit: =.mpkrc=
+
+These apps all use the same /configuration protocol/.
+
+***** Skel
+:PROPERTIES:
+:ID:       d666962c-e15e-430c-8997-bf5a80bb9632
+:END:
+A skel config in 'canonical' format (plain S-Expression) is written to
+=~/.skelrc= the first time you run it from the CLI, if it does not
+already exist. You may want to adjust the defaults and rewrite in the
+'pretty' format which is easier on the eyes.
+
+#+begin_src skel
+#+end_src
+***** Homer
+:PROPERTIES:
+:ID:       526513cb-5b7a-4cc0-8d91-739db3e635f6
+:END:
+***** Mpk
+:PROPERTIES:
+:ID:       1acfa6a4-41df-4ab7-84dd-72656cff0889
+:END:
 * Testing
+:PROPERTIES:
+:ID:       c074e53b-846d-45ed-8ddc-70e559ed6f0c
+:END:
 
