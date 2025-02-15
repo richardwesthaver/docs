@@ -35,7 +35,6 @@ cat ~/.skelrc
 ;;; .skelrc @ 2023-10-12.02:58:08 -*- mode: skel; -*-
 :name "Richard Westhaver"
 :email "richard.westhaver@gmail.com"
-:user "ellis"
 :version "0.1.0"
 :tags ("auto")
 :fmt :pretty
@@ -47,7 +46,7 @@ cat ~/.skelrc
 ;; :scratch ".stash/scratch"
 :cache ".stash/cache"
 :registry ".data/skel/registry"
-:scripts ("/usr/local/share/stash/scripts" "~/stash/scripts")
+:scripts ("/usr/local/share/stash/scripts" "~/.stash/scripts")
 #+end_example
 
 ** projects
@@ -178,34 +177,40 @@ skel -h
 
 #+RESULTS:
 #+begin_example
-skel v0.1.1:5aef8a70622e+ --- A hacker's project compiler.
-
-  usage: skel [opts] <command> [<arg>]
+skel v0.1.1:65abc2f8476c+ --- The hackable devtool.
 
 options:
   -h/--help               print help
+    :doc Print help and exit.
   -v/--version            print version
+    :doc Print version and exit.
   -a/--ast                save the intermediate skel AST
+    :doc Set the *KEEP-AST* variable.
   -l/--level              set log level (warn,info,debug,trace)
+    :doc Set the *LOG-LEVEL* for this CLI session.
   -c/--config             set a custom skel user config
+  -i/--interactive        enter the lisp image after running commands
 
 commands:
   init                    initialize a skelfile in the current directory
     -n/--name               project name
+  id                      print the current project id
+  inspect                 inspect the project skelfile
+    -f/--file               path to skelfile
   new                     make a new skel project
     -n/--name               project name
   describe                describe a skelfile
-  show                    show project slots
+  edit                    edit a project file in emacs.
+  show*                   show skel objects slots
     -f/--file               path to skelfile
-  vc                      version control
-    -r/--root               repository path
-  id                      print the project id
-  inspect                 inspect the project skelfile
-    -f/--file               path to skelfile
+  list                    list skel objects
   make                    build project targets
+  search                  search the current project
+    :doc Search the current project and return a date-frame of results.
   run                     run a script or command
   compile                 compile source code
   build                   build programs and libraries
+  update                  update components
   save                    save a file
   dist                    distribute build artifacts
   install                 install stuff
@@ -216,13 +221,12 @@ commands:
   clean                   clean up the project
   test                    run tests
   bench                   run benchmark
-  status                  print the vc status
-  push                    push the current project upstream
-  pull                    pull the current project from remote
-  clone                   clone a remote project
-  commit                  commit changes to the project vc
-    -m/--message            commit message
-  edit                    edit a project file in emacs.
   shell                   open the sk-shell interpreter
+  db                      interact with the skel database
+  net                     communicate with skel clients and servers
+  vc                      version control
+  pk                      packages
+  kr                      cryptography
+  view                    View a skel object in the Skel Viewer GUI.
 #+end_example
 
