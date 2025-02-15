@@ -2,7 +2,6 @@
 #+author: Richard Westhaver
 #+setupfile: ../../../clean.theme
 #+OPTIONS: num:nil
-
 =skel= is the primary build tool for contributors and serves a
 similar role to language-agnostic build tools like [[https://www.gnu.org/software/make/][GNU Make]], but with
 the features and ease-of-use of language-specific build tools like
@@ -26,7 +25,7 @@ Both files are optional and the user skelrc takes precedence over
 system.
 
 Example =~/.skelrc=:
-#+begin_src shell :results output
+#+begin_src shell :results output :exports both
 cat ~/.skelrc
 #+end_src
 
@@ -167,6 +166,131 @@ additional built-in integrations for =project.el=, =vc.el=, and more.
 :ID:       efa22675-70d6-453f-b377-8e76875e5f1f
 :END:
 - State "TODO"       from              [2023-12-09 Sat 19:37]
+
+* example
+:PROPERTIES:
+:END:
+Here is the default output when running =skel= in a project directory:
+
+#+begin_src shell :results output :dir ~/comp/core :exports both
+skel
+#+end_src
+
+#+RESULTS:
+#+begin_example
+:project 15bc-b763-ec92-1cf5
+:name core
+:path /home/ellis/comp/core/skelfile
+:author (Richard Westhaver . ellis@rwest.io)
+:version 0.1.0
+:tags (core lisp rust emacs c)
+:description The Compiler Company Core
+:license MPL
+:ast nil
+:id 1566328410216733941
+:vc #<hg-repo (default . https://vc.compiler.company/core)
+              (cb . ssh://git@codeberg.org/c-c/core)
+              (gh . ssh://git@github.com/richardwesthaver/core)>
+:src /home/ellis/comp/core/
+:stash .stash
+:store .store
+:components
+ [ #<org-file readme>  #<lisp-system prelude>  #<lisp-system user>
+   #<lisp-system core> #<mod std>  #<mod ffi>  #<mod lib>  #<mod bin> ... ]
+:bind ((stash .stash))
+:phases
+ { (:link-pod #<rule link-pod-core>)
+   (:build-all #<rule build-all-core (%stash)>)
+   (:compile #<rule compile-bench> #<rule compile-tests> #<rule compile-core>
+    #<rule compile-user> #<rule compile-prelude>)
+   (:save #<rule save-tests> #<rule save-core> #<rule save-infra>
+    #<rule save-user> #<rule save-prelude> #<rule save-std>)
+   (:build-gui #<rule build-gui-skel>)
+   (:install #<rule install-core> #<rule install-skel> #<rule install-rdb>
+    #<rule install-swm> #<rule install-zstd-alien>
+    #<rule install-tree-sitter-alien>)
+   (:build #<rule build-core (%stash)> #<rule build-packy> #<rule build-gen>
+    #<rule build-homer> #<rule build-organ> #<rule build-vc> #<rule build-skc>
+    #<rule build-skel> #<rule build-rdb> #<rule build-swm>
+    #<rule build-zstd-alien> #<rule build-tree-sitter-alien>)
+   (:run #<rule run-swank>) ... }
+:include
+ [ #<project core/rust :components 1 :rules 3>
+   #<project core/emacs :components 0 :rules 2> ]
+#+end_example
+
+You can also view specific slots which will print all values without
+an ellipses:
+
+#+begin_src shell :results output :dir ~/comp/core :exports both
+skel :rules
+#+end_src
+
+#+RESULTS:
+#+begin_example
+:rules
+ [ #<rule all (%stash psl.dat parquet.thrift rgb.txt build-zstd-alien
+               build-tree-sitter-alien build-all-core)>
+   #<rule upstream>  #<rule clean> #<rule update-readme> #<rule run-swank>
+   #<rule build-tree-sitter-alien> #<rule install-tree-sitter-alien>
+   #<rule build-zstd-alien>  #<rule build-tree-sitter-alien>
+   #<rule install-zstd-alien>  #<rule install-tree-sitter-alien>
+   #<rule psl.dat (%stash)>  #<rule rgb.txt (%stash)>
+   #<rule x11.lisp (rgb.txt)>  #<rule parquet.thrift (%stash)>
+   #<rule parquet.json (%stash)> #<rule freedesktop.org.xml (%stash)>
+   #<rule parquet-test-data (%stash)>  #<rule %stash>  #<rule ssl-certs>
+   #<rule ssl-client-certs>  #<rule build-swm> #<rule build-zstd-alien>
+   #<rule build-tree-sitter-alien> #<rule install-swm>
+   #<rule install-zstd-alien>  #<rule install-tree-sitter-alien>
+   #<rule build-rdb> #<rule build-swm> #<rule build-zstd-alien>
+   #<rule build-tree-sitter-alien> #<rule install-rdb> #<rule install-swm>
+   #<rule install-zstd-alien>  #<rule install-tree-sitter-alien>
+   #<rule build-skel>  #<rule build-rdb> #<rule build-swm>
+   #<rule build-zstd-alien>  #<rule build-tree-sitter-alien>
+   #<rule build-gui-skel>  #<rule install-skel>  #<rule install-rdb>
+   #<rule install-swm> #<rule install-zstd-alien>
+   #<rule install-tree-sitter-alien> #<rule build-skc> #<rule build-skel>
+   #<rule build-rdb> #<rule build-swm> #<rule build-zstd-alien>
+   #<rule build-tree-sitter-alien> #<rule build-vc>  #<rule build-skc>
+   #<rule build-skel>  #<rule build-rdb> #<rule build-swm>
+   #<rule build-zstd-alien>  #<rule build-tree-sitter-alien>
+   #<rule build-organ> #<rule build-vc>  #<rule build-skc> #<rule build-skel>
+   #<rule build-rdb> #<rule build-swm> #<rule build-zstd-alien>
+   #<rule build-tree-sitter-alien> #<rule build-homer> #<rule build-organ>
+   #<rule build-vc>  #<rule build-skc> #<rule build-skel>  #<rule build-rdb>
+   #<rule build-swm> #<rule build-zstd-alien>  #<rule build-tree-sitter-alien>
+   #<rule build-gen> #<rule build-homer> #<rule build-organ> #<rule build-vc>
+   #<rule build-skc> #<rule build-skel>  #<rule build-rdb> #<rule build-swm>
+   #<rule build-zstd-alien>  #<rule build-tree-sitter-alien>
+   #<rule build-packy> #<rule build-gen> #<rule build-homer>
+   #<rule build-organ> #<rule build-vc>  #<rule build-skc> #<rule build-skel>
+   #<rule build-rdb> #<rule build-swm> #<rule build-zstd-alien>
+   #<rule build-tree-sitter-alien> #<rule save-std>  #<rule save-prelude>
+   #<rule save-std>  #<rule compile-prelude> #<rule save-user>
+   #<rule save-prelude>  #<rule save-std>  #<rule compile-user>
+   #<rule compile-prelude> #<rule save-infra>  #<rule save-user>
+   #<rule save-prelude>  #<rule save-std>  #<rule build-core (%stash)>
+   #<rule build-packy> #<rule build-gen> #<rule build-homer>
+   #<rule build-organ> #<rule build-vc>  #<rule build-skc> #<rule build-skel>
+   #<rule build-rdb> #<rule build-swm> #<rule build-zstd-alien>
+   #<rule build-tree-sitter-alien> #<rule build-all-core (%stash)>
+   #<rule save-core> #<rule save-infra>  #<rule save-user> #<rule save-prelude>
+   #<rule save-std>  #<rule compile-core>  #<rule compile-user>
+   #<rule compile-prelude> #<rule install-core>  #<rule install-skel>
+   #<rule install-rdb> #<rule install-swm> #<rule install-zstd-alien>
+   #<rule install-tree-sitter-alien> #<rule link-pod-core> #<rule save-tests>
+   #<rule save-core> #<rule save-infra>  #<rule save-user> #<rule save-prelude>
+   #<rule save-std>  #<rule compile-tests> #<rule compile-core>
+   #<rule compile-user>  #<rule compile-prelude> #<rule compile-bench>
+   #<rule compile-tests> #<rule compile-core>  #<rule compile-user>
+   #<rule compile-prelude>
+   #<rule fasls (compile-core compile-bench compile-user compile-prelude)>
+   #<rule mailman> #<rule alik>  #<rule rust-bin (mailman alik)>
+   #<rule alik-ui> #<rule install (install-core)>  #<rule syms.sxp>
+   #<rule dist>  #<rule dist-source (clean)>
+   #<rule dist-core (clean %stash build-core)> ]
+#+end_example
+
 * help
 :PROPERTIES:
 :ID:       f8e9fab4-67dc-4e7f-b172-7e0fc21047ad
@@ -177,7 +301,7 @@ skel -h
 
 #+RESULTS:
 #+begin_example
-skel v0.1.1:65abc2f8476c+ --- The hackable devtool.
+skel v0.1.1:15b26615e8d1 --- The hackable devtool.
 
 options:
   -h/--help               print help
@@ -227,6 +351,5 @@ commands:
   vc                      version control
   pk                      packages
   kr                      cryptography
-  view                    View a skel object in the Skel Viewer GUI.
 #+end_example
 
