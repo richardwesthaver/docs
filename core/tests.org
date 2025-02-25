@@ -20,36 +20,22 @@ sections below.
 :ID:       23599c41-ffde-4cb9-86de-018fea66de76
 :END:
 #+begin_src shell :results output replace :exports results
-cd rust/lib/flate
+cd crates/flate
 cargo test
 #+end_src
 
 #+RESULTS:
 #+begin_example
 
-running 1 test
-test pack_test ... ok
+running 5 tests
+test tests::id_hex ... ok
+test tests::hex_hash ... ok
+test tests::id_state_hash ... ok
+test tests::rand_id ... ok
+test tests::random_demon_id_is_valid ... ok
 
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
 
-
-running 0 tests
-
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-
-#+end_example
-
-*** logger
-:PROPERTIES:
-:ID:       75607e41-c411-4e20-b00b-1a50c900e556
-:END:
-#+begin_src shell :results output replace :exports results
-cd rust/lib/logger
-cargo test
-#+end_src
-
-#+RESULTS:
-#+begin_example
 
 running 1 test
 test tests::simple_init ... ok
@@ -57,23 +43,24 @@ test tests::simple_init ... ok
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
 
-running 0 tests
+running 1 test
+test tests::udp_start ... ok
 
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-#+end_example
 
-*** sxp
-:PROPERTIES:
-:ID:       d03bb57a-bb4c-42bb-b121-d398b0ce0815
-:END:
-#+begin_src shell :results output replace :exports results
-cd rust/lib/sxp
-cargo test
-#+end_src
+running 8 tests
+test config::test::test_repo_config ... ok
+test object::location::london_to_paris ... ok
+test config::test::test_package_cfg ... ok
+test config::test::test_network_cfg ... ok
+test object::test::test_basic_file_metadata ... ok
+test object::test::test_docs ... ok
+test object::test::test_location_points ... ok
+test object::test::test_media ... ok
 
-#+RESULTS:
-#+begin_example
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
 
 running 0 tests
 
@@ -93,10 +80,10 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 running 5 tests
 test list_form ... ok
-test num_form ... ok
-test sym_form ... ok
 test nil_form ... ok
+test num_form ... ok
 test str_form ... ok
+test sym_form ... ok
 
 test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
@@ -124,6 +111,128 @@ test sym_token ... ok
 test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
 
+running 1 test
+test tests::test_related_paths ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+#+end_example
+
+*** logger
+:PROPERTIES:
+:ID:       75607e41-c411-4e20-b00b-1a50c900e556
+:END:
+#+begin_src shell :results output replace :exports results
+cd crates/logger
+cargo test
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+running 1 test
+test tests::simple_init ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+#+end_example
+
+*** sxp
+:PROPERTIES:
+:ID:       d03bb57a-bb4c-42bb-b121-d398b0ce0815
+:END:
+#+begin_src shell :results output replace :exports results
+cd crates/sxp
+cargo test
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 1 test
+test canonical_fmt ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 5 tests
+test nil_form ... ok
+test list_form ... ok
+test num_form ... ok
+test str_form ... ok
+test sym_form ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 3 tests
+test ser_form ... ok
+test ser_enum ... ok
+test ser_struct ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 5 tests
+test list_end_token ... ok
+test list_start_token ... ok
+test num_token ... ok
+test str_token ... ok
+test sym_token ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
 running 0 tests
 
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
@@ -135,7 +244,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 :ID:       5c490df8-7039-4729-bfa3-bfeebfac7533
 :END:
 #+begin_src shell :results output replace :exports results
-cd rust/lib/util
+cd crates/util
 cargo test
 #+end_src
 
@@ -166,36 +275,33 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
   (in-package :std-user)
   (use-package :rt/tracing)
 
-  (defun gen-report (system &optional (directory #P"/tmp/core/"))
-    (progn
-      (declaim (optimize sb-cover:store-coverage-data))
-      (asdf:compile-system system)
-      (asdf:test-system system)
-      (prog1
-          (sb-cover:report directory)
-        (declaim (optimize (sb-cover:store-coverage-data 0))))))
+  (defun gen-report (system)
+    (declare (optimize sb-cover:store-coverage-data))
+    (asdf:compile-system system)
+    (asdf:test-system system :force t))
 
   (defun gen-core-coverage-report ()
     (time
-     (progn 
+     (progn
+       (rt/cover:enable-coverage)
        (gen-report :std)
        (gen-report :dat)
        (gen-report :pod)
        (gen-report :vc)
-       (gen-report :syn)
+       ;; (gen-report :syn)
        (gen-report :parse)
-       ;; (gen-report :cli)
+       (gen-report :cli)
        ;; (gen-report :xkb)
        (gen-report :btrfs)
-       ;; (gen-report :tree-sitter)
+       (gen-report :tree-sitter)
        (gen-report :uring)
        (gen-report :zstd)
-       ;; (gen-report :blake3)
-       ;; (gen-report :rocksdb)
+       (gen-report :blake3)
+       (gen-report :rocksdb)
        (gen-report :rdb)
        (gen-report :skel)
        (gen-report :organ)
-       ;; (gen-report :nlp)
+       (gen-report :nlp)
        (gen-report :obj)
        (gen-report :log)
        (gen-report :net)
@@ -204,207 +310,284 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 #+name: gen-trace-report
 #+begin_src lisp :results output :exports code
-  (trace "STD" "PARSE" "SKEL" "ORGAN" ;; "CLI" "NLP"
-         "OBJ" "LOG" "NET" "PACKY" "DAT"
-         "RDB" "BTRFS" "SYN" "ZSTD" "URING")
-  (rt/tracing:start-tracing)
-  (gen-core-coverage-report)
+  (rt/tracing:start-tracing 
+   (list
+    "STD" "PARSE" "SKEL" "ORGAN" ;; "CLI" "NLP"
+    "OBJ" "LOG" "NET" "PACKY" "DAT"
+    "RDB" "BTRFS" "SYN" "ZSTD" "URING"))
   (rt/tracing:stop-tracing)
+  (gen-core-coverage-report)
   (rt/tracing:save-report "/tmp/core/core.json")
   (sb-thread:print-allocator-histogram)
-  (std:dump-thread)
+  ;; (std:dump-thread)
 #+end_src
 
 #+RESULTS: gen-trace-report
 #+begin_example
-; compiling file "/home/ellis/comp/core/lisp/std/tests.lisp" (written 24 MAY 2024 02:14:39 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/std/tests-tmpI5A0Y7VS.fasl
-; compilation finished in 0:00:00.013
 in suite STD:
-; with 12/12 tests
-#<PASS CURRY> 
-#<PASS ALIEN> 
-#<PASS ANA> 
-#<PASS FMT> 
-#<PASS TASKS> 
-#<PASS TIMERS> 
-#<PASS THREADS> 
-#<PASS ERR> 
-#<PASS LIST> 
-#<PASS STRING> 
-#<PASS SYM> 
-#<PASS READTABLES> 
+; with 0/16 tests
 No tests failed.
-in suite STD:
-; with 0/12 tests
+in suite CORE:
+; with 0/1 tests
 No tests failed.
-; compiling file "/home/ellis/comp/core/lisp/lib/pod/tests.lisp" (written 02 JAN 2024 05:22:00 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/pod/tests-tmp84UD6PWI.fasl
-; compilation finished in 0:00:00.006
 in suite POD:
-; with 1/1 tests
-#<FAIL SOCKET ERROR IN "CONNECT": 2 (NO SUCH FILE OR DIRECTORY)> 
-1 out of 1 total tests failed: 
-   #<RT:TEST POKE-AND-PROD :FN POKE-AND-PROD-TEST5924 {10367B46E3}>.
-1 unexpected failures: 
-   #<FAIL SOCKET ERROR IN "CONNECT": 2 (NO SUCH FILE OR DIRECTORY)>.
-; compiling file "/home/ellis/comp/core/lisp/lib/vc/tests.lisp" (written 10 MAY 2024 06:07:35 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/vc/tests-tmpPMEC02IF.fasl
-; compilation finished in 0:00:00.003
+; with 0/2 tests
+No tests failed.
 in suite VC:
-; with 2/2 tests
-#<PASS HG> 
-#<PASS GIT> 
+; with 0/4 tests
 No tests failed.
-; compiling file "/home/ellis/comp/core/lisp/lib/syn/tests.lisp" (written 28 DEC 2023 08:07:00 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/syn/tests-tmpL3I7IMTN.fasl
-; compilation finished in 0:00:00.000
 in suite SYN:
-; with 1/1 tests
-#<PASS TS-SANITY> 
-No tests failed.
-; compiling file "/home/ellis/comp/core/lisp/lib/parse/tests.lisp" (written 03 APR 2024 10:22:30 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/parse/tests-tmpOR8JZXZN.fasl
-; compilation finished in 0:00:00.063
-in suite PARSE:
-; with 2/2 tests
-#<PASS YACC> 
-#<PASS LEX> 
-No tests failed.
-; compiling file "/home/ellis/comp/core/lisp/lib/cli/tests.lisp" (written 20 APR 2024 08:04:07 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/cli/tests-tmpU7B9PAMJ.fasl
-; compilation finished in 0:00:00.033
-; compiling file "/home/ellis/comp/core/lisp/lib/cli/tests.lisp" (written 20 APR 2024 08:04:07 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/cli/tests-tmpTENXXTV6.fasl
-; compilation finished in 0:00:00.046
-in suite CLI:
-; with 2/2 tests
-#<FAIL THE FUNCTION CLI/TESTS::TPFOO-PROMPT IS UNDEFINED.> 
-
-"normal" [1m
-"bold" [4m
-"bold underline" [7m
-"bold underline reverse" [22m
-"underline reverse" [24m
-"reverse" [27m
-"normal" [1;4;7m
-"bold underline reverse" [0m
-"normal" [2J[1;1H[48;5;0m [48;5;1m [48;5;2m [48;5;3m [48;5;4m [48;5;5m [48;5;6m [48;5;7m [48;5;8m [48;5;9m [48;5;10m [48;5;11m [48;5;12m [48;5;13m [48;5;14m [48;5;15m [48;5;16m [48;5;17m [48;5;18m [48;5;19m [48;5;20m [48;5;21m [48;5;22m [48;5;23m [48;5;24m [48;5;25m [48;5;26m [48;5;27m [48;5;28m [48;5;29m [48;5;30m [48;5;31m [48;5;32m [48;5;33m [48;5;34m [48;5;35m [48;5;36m [48;5;37m [48;5;38m [48;5;39m [48;5;40m [48;5;41m [48;5;42m [48;5;43m [48;5;44m [48;5;45m [48;5;46m [48;5;47m [48;5;48m [48;5;49m [48;5;50m [48;5;51m [48;5;52m [48;5;53m [48;5;54m [48;5;55m [48;5;56m [48;5;57m [48;5;58m [48;5;59m [48;5;60m [48;5;61m [48;5;62m [48;5;63m [48;5;64m [48;5;65m [48;5;66m [48;5;67m [48;5;68m [48;5;69m [48;5;70m [48;5;71m [48;5;72m [48;5;73m [48;5;74m [48;5;75m [48;5;76m [48;5;77m [48;5;78m [48;5;79m [48;5;80m [48;5;81m [48;5;82m [48;5;83m [48;5;84m [48;5;85m [48;5;86m [48;5;87m [48;5;88m [48;5;89m [48;5;90m [48;5;91m [48;5;92m [48;5;93m [48;5;94m [48;5;95m [48;5;96m [48;5;97m [48;5;98m [48;5;99m [48;5;100m [48;5;101m [48;5;102m [48;5;103m [48;5;104m [48;5;105m [48;5;106m [48;5;107m [48;5;108m [48;5;109m [48;5;110m [48;5;111m [48;5;112m [48;5;113m [48;5;114m [48;5;115m [48;5;116m [48;5;117m [48;5;118m [48;5;119m [48;5;120m [48;5;121m [48;5;122m [48;5;123m [48;5;124m [48;5;125m [48;5;126m [48;5;127m [48;5;128m [48;5;129m [48;5;130m [48;5;131m [48;5;132m [48;5;133m [48;5;134m [48;5;135m [48;5;136m [48;5;137m [48;5;138m [48;5;139m [48;5;140m [48;5;141m [48;5;142m [48;5;143m [48;5;144m [48;5;145m [48;5;146m [48;5;147m [48;5;148m [48;5;149m [48;5;150m [48;5;151m [48;5;152m [48;5;153m [48;5;154m [48;5;155m [48;5;156m [48;5;157m [48;5;158m [48;5;159m [48;5;160m [48;5;161m [48;5;162m [48;5;163m [48;5;164m [48;5;165m [48;5;166m [48;5;167m [48;5;168m [48;5;169m [48;5;170m [48;5;171m [48;5;172m [48;5;173m [48;5;174m [48;5;175m [48;5;176m [48;5;177m [48;5;178m [48;5;179m [48;5;180m [48;5;181m [48;5;182m [48;5;183m [48;5;184m [48;5;185m [48;5;186m [48;5;187m [48;5;188m [48;5;189m [48;5;190m [48;5;191m [48;5;192m [48;5;193m [48;5;194m [48;5;195m [48;5;196m [48;5;197m [48;5;198m [48;5;199m [48;5;200m [48;5;201m [48;5;202m [48;5;203m [48;5;204m [48;5;205m [48;5;206m [48;5;207m [48;5;208m [48;5;209m [48;5;210m [48;5;211m [48;5;212m [48;5;213m [48;5;214m [48;5;215m [48;5;216m [48;5;217m [48;5;218m [48;5;219m [48;5;220m [48;5;221m [48;5;222m [48;5;223m [48;5;224m [48;5;225m [48;5;226m [48;5;227m [48;5;228m [48;5;229m [48;5;230m [48;5;231m [48;5;232m [48;5;233m [48;5;234m [48;5;235m [48;5;236m [48;5;237m [48;5;238m [48;5;239m [48;5;240m [48;5;241m [48;5;242m [48;5;243m [48;5;244m [48;5;245m [48;5;246m [48;5;247m [48;5;248m [48;5;249m [48;5;250m [48;5;251m [48;5;252m [48;5;253m [48;5;254m [48;5;255m 
-[0m[38;5;0mX[38;5;1mX[38;5;2mX[38;5;3mX[38;5;4mX[38;5;5mX[38;5;6mX[38;5;7mX[38;5;8mX[38;5;9mX[38;5;10mX[38;5;11mX[38;5;12mX[38;5;13mX[38;5;14mX[38;5;15mX[38;5;16mX[38;5;17mX[38;5;18mX[38;5;19mX[38;5;20mX[38;5;21mX[38;5;22mX[38;5;23mX[38;5;24mX[38;5;25mX[38;5;26mX[38;5;27mX[38;5;28mX[38;5;29mX[38;5;30mX[38;5;31mX[38;5;32mX[38;5;33mX[38;5;34mX[38;5;35mX[38;5;36mX[38;5;37mX[38;5;38mX[38;5;39mX[38;5;40mX[38;5;41mX[38;5;42mX[38;5;43mX[38;5;44mX[38;5;45mX[38;5;46mX[38;5;47mX[38;5;48mX[38;5;49mX[38;5;50mX[38;5;51mX[38;5;52mX[38;5;53mX[38;5;54mX[38;5;55mX[38;5;56mX[38;5;57mX[38;5;58mX[38;5;59mX[38;5;60mX[38;5;61mX[38;5;62mX[38;5;63mX[38;5;64mX[38;5;65mX[38;5;66mX[38;5;67mX[38;5;68mX[38;5;69mX[38;5;70mX[38;5;71mX[38;5;72mX[38;5;73mX[38;5;74mX[38;5;75mX[38;5;76mX[38;5;77mX[38;5;78mX[38;5;79mX[38;5;80mX[38;5;81mX[38;5;82mX[38;5;83mX[38;5;84mX[38;5;85mX[38;5;86mX[38;5;87mX[38;5;88mX[38;5;89mX[38;5;90mX[38;5;91mX[38;5;92mX[38;5;93mX[38;5;94mX[38;5;95mX[38;5;96mX[38;5;97mX[38;5;98mX[38;5;99mX[38;5;100mX[38;5;101mX[38;5;102mX[38;5;103mX[38;5;104mX[38;5;105mX[38;5;106mX[38;5;107mX[38;5;108mX[38;5;109mX[38;5;110mX[38;5;111mX[38;5;112mX[38;5;113mX[38;5;114mX[38;5;115mX[38;5;116mX[38;5;117mX[38;5;118mX[38;5;119mX[38;5;120mX[38;5;121mX[38;5;122mX[38;5;123mX[38;5;124mX[38;5;125mX[38;5;126mX[38;5;127mX[38;5;128mX[38;5;129mX[38;5;130mX[38;5;131mX[38;5;132mX[38;5;133mX[38;5;134mX[38;5;135mX[38;5;136mX[38;5;137mX[38;5;138mX[38;5;139mX[38;5;140mX[38;5;141mX[38;5;142mX[38;5;143mX[38;5;144mX[38;5;145mX[38;5;146mX[38;5;147mX[38;5;148mX[38;5;149mX[38;5;150mX[38;5;151mX[38;5;152mX[38;5;153mX[38;5;154mX[38;5;155mX[38;5;156mX[38;5;157mX[38;5;158mX[38;5;159mX[38;5;160mX[38;5;161mX[38;5;162mX[38;5;163mX[38;5;164mX[38;5;165mX[38;5;166mX[38;5;167mX[38;5;168mX[38;5;169mX[38;5;170mX[38;5;171mX[38;5;172mX[38;5;173mX[38;5;174mX[38;5;175mX[38;5;176mX[38;5;177mX[38;5;178mX[38;5;179mX[38;5;180mX[38;5;181mX[38;5;182mX[38;5;183mX[38;5;184mX[38;5;185mX[38;5;186mX[38;5;187mX[38;5;188mX[38;5;189mX[38;5;190mX[38;5;191mX[38;5;192mX[38;5;193mX[38;5;194mX[38;5;195mX[38;5;196mX[38;5;197mX[38;5;198mX[38;5;199mX[38;5;200mX[38;5;201mX[38;5;202mX[38;5;203mX[38;5;204mX[38;5;205mX[38;5;206mX[38;5;207mX[38;5;208mX[38;5;209mX[38;5;210mX[38;5;211mX[38;5;212mX[38;5;213mX[38;5;214mX[38;5;215mX[38;5;216mX[38;5;217mX[38;5;218mX[38;5;219mX[38;5;220mX[38;5;221mX[38;5;222mX[38;5;223mX[38;5;224mX[38;5;225mX[38;5;226mX[38;5;227mX[38;5;228mX[38;5;229mX[38;5;230mX[38;5;231mX[38;5;232mX[38;5;233mX[38;5;234mX[38;5;235mX[38;5;236mX[38;5;237mX[38;5;238mX[38;5;239mX[38;5;240mX[38;5;241mX[38;5;242mX[38;5;243mX[38;5;244mX[38;5;245mX[38;5;246mX[38;5;247mX[38;5;248mX[38;5;249mX[38;5;250mX[38;5;251mX[38;5;252mX[38;5;253mX[38;5;254mX[38;5;255mX[0mcCursor visible:
-Cursor invisible:[?;25l
-Cursor visible:[?;25h#<PASS ANSI> 
-1 out of 2 total tests failed: 
-   #<RT:TEST CLI-PROMPT :FN CLI-PROMPT-TEST7032 {1043479F63}>.
-1 unexpected failures: 
-   #<FAIL THE FUNCTION CLI/TESTS::TPFOO-PROMPT IS UNDEFINED.>.
-; compiling file "/home/ellis/comp/core/lisp/ffi/xkb/tests.lisp" (written 30 DEC 2023 08:48:36 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/ffi/xkb/tests-tmpJQ2N61X.fasl
-; compilation finished in 0:00:00.003
-; compiling file "/home/ellis/comp/core/lisp/ffi/xkb/tests.lisp" (written 30 DEC 2023 08:48:36 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/ffi/xkb/tests-tmpBPCSO5X0.fasl
-; compilation finished in 0:00:00.003
-; compiling file "/home/ellis/comp/core/lisp/ffi/xkb/tests.lisp" (written 30 DEC 2023 08:48:36 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/ffi/xkb/tests-tmpFG1AROWT.fasl
-; compilation finished in 0:00:00.010
-in suite XKB:
 ; with 0/0 tests
 No tests failed.
-; compiling file "/home/ellis/comp/core/lisp/ffi/tree-sitter/tests.lisp" (written 29 DEC 2023 11:57:00 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/ffi/tree-sitter/tests-tmpAFAKAWBB.fasl
-; compilation finished in 0:00:00.006
-in suite TREE-SITTER:
-; with 2/2 tests
-#<FAIL THE FUNCTION TREE-SITTER:TS-LANGUAGE-VERSION IS UNDEFINED.> 
-#<FAIL THE FUNCTION TREE-SITTER:TS-LANGUAGE-VERSION IS UNDEFINED.> 
-2 out of 2 total tests failed: 
-   #<RT:TEST TS-RUST :FN TS-RUST-TEST8414 {101C727243}>, 
-   #<RT:TEST TS-JSON :FN TS-JSON-TEST8413 {101C727163}>.
-2 unexpected failures: 
-   #<FAIL THE FUNCTION TREE-SITTER:TS-LANGUAGE-VERSION IS UNDEFINED.>, 
-   #<FAIL THE FUNCTION TREE-SITTER:TS-LANGUAGE-VERSION IS UNDEFINED.>.
-; compiling file "/home/ellis/comp/core/lisp/ffi/rocksdb/tests.lisp" (written 26 APR 2024 08:31:27 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/ffi/rocksdb/tests-tmpWUE12NUE.fasl
-; compilation finished in 0:00:00.020
-in suite ROCKSDB:
-; with 10/10 tests
-#<PASS MERGE> 
-#:debug 0.02; 
-,** Compaction Stats [default] **
-Level    Files   Size     Score Read(GB)  Rn(GB) Rnp1(GB) Write(GB) Wnew(GB) Moved(GB) W-Amp Rd(MB/s) Wr(MB/s) Comp(sec) CompMergeCPU(sec) Comp(cnt) Avg(sec) KeyIn KeyDrop Rblob(GB) Wblob(GB)
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- Sum      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   0.0      0.0      0.0      0.00              0.00         0    0.000       0      0       0.0       0.0
- Int      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   0.0      0.0      0.0      0.00              0.00         0    0.000       0      0       0.0       0.0
-
-,** Compaction Stats [default] **
-Priority    Files   Size     Score Read(GB)  Rn(GB) Rnp1(GB) Write(GB) Wnew(GB) Moved(GB) W-Amp Rd(MB/s) Wr(MB/s) Comp(sec) CompMergeCPU(sec) Comp(cnt) Avg(sec) KeyIn KeyDrop Rblob(GB) Wblob(GB)
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Blob file count: 0, total size: 0.0 GB, garbage size: 0.0 GB, space amp: 0.0
-
-Uptime(secs): 0.0 total, 0.0 interval
-Flush(GB): cumulative 0.000, interval 0.000
-AddFile(GB): cumulative 0.000, interval 0.000
-AddFile(Total Files): cumulative 0, interval 0
-AddFile(L0 Files): cumulative 0, interval 0
-AddFile(Keys): cumulative 0, interval 0
-Cumulative compaction: 0.00 GB write, 0.00 MB/s write, 0.00 GB read, 0.00 MB/s read, 0.0 seconds
-Interval compaction: 0.00 GB write, 0.00 MB/s write, 0.00 GB read, 0.00 MB/s read, 0.0 seconds
-Estimated pending compaction bytes: 0
-Write Stall (count): cf-l0-file-count-limit-delays-with-ongoing-compaction: 0, cf-l0-file-count-limit-stops-with-ongoing-compaction: 0, l0-file-count-limit-delays: 0, l0-file-count-limit-stops: 0, memtable-limit-delays: 0, memtable-limit-stops: 0, pending-compaction-bytes-delays: 0, pending-compaction-bytes-stops: 0, total-delays: 0, total-stops: 0
-Block cache LRUCache@0x72cca80194f0#69661 capacity: 32.00 MB seed: 835614555 usage: 0.09 KB table_size: 1024 occupancy: 1 collections: 1 last_copies: 0 last_secs: 6.1e-05 secs_since: 0
-Block cache entry stats(count,size,portion): Misc(1,0.00 KB,0%)
-
-,** File Read Latency Histogram By Level [default] **
-
-,** DB Stats **
-Uptime(secs): 0.0 total, 0.0 interval
-Cumulative writes: 0 writes, 0 keys, 0 commit groups, 0.0 writes per commit group, ingest: 0.00 GB, 0.00 MB/s
-Cumulative WAL: 0 writes, 0 syncs, 0.00 writes per sync, written: 0.00 GB, 0.00 MB/s
-Cumulative stall: 00:00:0.000 H:M:S, 0.0 percent
-Interval writes: 0 writes, 0 keys, 0 commit groups, 0.0 writes per commit group, ingest: 0.00 MB, 0.00 MB/s
-Interval WAL: 0 writes, 0 syncs, 0.00 writes per sync, written: 0.00 GB, 0.00 MB/s
-Interval stall: 00:00:0.000 H:M:S, 0.0 percent
-Write Stall (count): write-buffer-manager-limit-stops: 0
-
-#<PASS PROPERTIES> 
-#<PASS METADATA> 
-#<PASS TRANSACTION> 
-#:debug 0.056666; min blob file size: 
-; 0
-#:debug 0.056666; max blob file size: 
-; 268435456
-#<PASS BLOB> 
-#:debug 1.273333; stats:
-; NIL
-#:debug 1.273333; count:
-; 0
-#<PASS STATS> 
-#<PASS LOGGER> 
-#<PASS SSTFILES> 
-#<PASS DB-BASIC> 
-#<PASS OPTS> 
+in suite PARSE:
+; with 0/2 tests
 No tests failed.
-; compiling file "/home/ellis/comp/core/lisp/lib/rdb/tests.lisp" (written 08 MAY 2024 09:02:45 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/rdb/tests-tmpPEGL38VN.fasl
-; compilation finished in 0:00:00.003
+in suite BTRFS:
+; with 0/2 tests
+No tests failed.
+in suite URING:
+; with 0/8 tests
+No tests failed.
+in suite ZSTD:
+; with 0/6 tests
+No tests failed.
 in suite RDB:
-; with 8/8 tests
-#<PASS ERRORS> 
-#<PASS SST> 
-#<PASS METADATA> 
+; with 0/13 tests
+No tests failed.
+in suite SKEL:
+; with 0/5 tests
+No tests failed.
+in suite ORGAN:
+; with 0/8 tests
+No tests failed.
+in suite OBJ:
+; with 1/18 tests
+
+#<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION OBJ/STORE::SET-INSTANCE-SCHEMA-ID (1)>
+       WHEN CALLED WITH ARGUMENTS
+         (NIL 2 3676932230077147091).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6> 
+1 out of 18 total tests failed: #<RT:TEST BTREE>.
+3 unexpected failures: 
+   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION OBJ/STORE::SET-INSTANCE-SCHEMA-ID (1)>
+       WHEN CALLED WITH ARGUMENTS
+         (NIL 2 3676932230077147091).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6>, 
+   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION OBJ/STORE::SET-INSTANCE-SCHEMA-ID (1)>
+       WHEN CALLED WITH ARGUMENTS
+         (NIL 1 3676932230077147091).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6>, 
+   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION OBJ/STORE::SET-INSTANCE-SCHEMA-ID (1)>
+       WHEN CALLED WITH ARGUMENTS
+         (NIL 0 3676932230077147091).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6>.in suite LOG:
+; with 3/9 tests
+
+#<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION LOG::QUEUE-LOCK (1)>
+       WHEN CALLED WITH ARGUMENTS
+         (NIL).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6> 
+
+#<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION (COMMON-LISP:SETF STD/PIPE:PIPE) (2)>
+       WHEN CALLED WITH ARGUMENTS
+         (#() NIL).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6> 
+
+#<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION STD/META:STOP (7)>
+       WHEN CALLED WITH ARGUMENTS
+         (NIL).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6> 
+3 out of 9 total tests failed: #<RT:TEST FILE-LOGGER>, 
+   #<RT:TEST ROTATING-FILE-LOGGER>, #<RT:TEST STOP-LOGGER>.
+9 unexpected failures: 
+   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION STD/META:STOP (7)>
+       WHEN CALLED WITH ARGUMENTS
+         (NIL).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6>, 
+   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION (COMMON-LISP:SETF STD/PIPE:PIPE) (2)>
+       WHEN CALLED WITH ARGUMENTS
+         (#() NIL).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6>, 
+   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION LOG::QUEUE-LOCK (1)>
+       WHEN CALLED WITH ARGUMENTS
+         (NIL).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6>, 
+   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION STD/META:STOP (7)>
+       WHEN CALLED WITH ARGUMENTS
+         (NIL).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6>, 
+   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION (COMMON-LISP:SETF STD/PIPE:PIPE) (2)>
+       WHEN CALLED WITH ARGUMENTS
+         (#() NIL).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6>, 
+   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION LOG::QUEUE-LOCK (1)>
+       WHEN CALLED WITH ARGUMENTS
+         (NIL).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6>, 
+   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION STD/META:STOP (7)>
+       WHEN CALLED WITH ARGUMENTS
+         (NIL).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6>, 
+   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION (COMMON-LISP:SETF STD/PIPE:PIPE) (2)>
+       WHEN CALLED WITH ARGUMENTS
+         (#() NIL).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6>, 
+   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
+         #<STANDARD-GENERIC-FUNCTION LOG::QUEUE-LOCK (1)>
+       WHEN CALLED WITH ARGUMENTS
+         (NIL).
+SEE ALSO:
+  THE ANSI STANDARD, SECTION 7.6.6>.in suite NET:
+; with 0/9 tests
+No tests failed.
+in suite PACKY:
+; with 0/2 tests
+No tests failed.
+ Bin      Size     Allocated     Count    Cum%
+  0         16             0         0 nil    
+  1         32             0         0 nil    
+  2         48             0         0 nil    
+  3         64             0         0 nil    
+  4         80             0         0 nil    
+  5         96             0         0 nil    
+  6        112             0         0 nil    
+  7        128             0         0 nil    
+  8        144             0         0 nil    
+  9        160             0         0 nil    
+ 10        176             0         0 nil    
+ 11        192             0         0 nil    
+ 12        208             0         0 nil    
+ 13        224             0         0 nil    
+ 14        240             0         0 nil    
+ 15        256             0         0 nil    
+ 16        272             0         0 nil    
+ 17        288             0         0 nil    
+ 18        304             0         0 nil    
+ 19        320             0         0 nil    
+ 20        336             0         0 nil    
+ 21        352             0         0 nil    
+ 22        368             0         0 nil    
+ 23        384             0         0 nil    
+ 24        400             0         0 nil    
+ 25        416             0         0 nil    
+ 26        432             0         0 nil    
+ 27        448             0         0 nil    
+ 28        464             0         0 nil    
+ 29        480             0         0 nil    
+ 30        496             0         0 nil    
+ 31        512             0         0 nil    
+ 32     < 1024             0         0 nil    
+ 33     < 2048             0         0 nil    
+ 34     < 4096             0         0 nil    
+ 35     < 8192             0         0 nil    
+ 36    < 16384             0         0 nil    
+ 37    < 32768             0         0 nil    
+ 38    < 65536             0         0 nil    
+ 39   < 131072             0         0 nil    
+ 40   < 262144             0         0 nil    
+ 41   < 524288             0         0 nil    
+ 42     < 2^20             0         0 nil    
+ 43     < 2^21             0         0 nil    
+ 44     < 2^22             0         0 nil    
+ 45     < 2^23             0         0 nil    
+ 46     < 2^24             0         0 nil    
+ 47     < 2^25             0         0 nil    
+ 48     < 2^26             0         0 nil    
+ 49     < 2^27             0         0 nil    
+ 50     < 2^28             0         0 nil    
+ 51     < 2^29             0         0 nil    
+ 52     < 2^30             0         0 nil    
+ 53     < 2^31             0         0 nil    
+ 54     < 2^32             0         0 nil    
+ 55     < 2^33             0         0 nil    
+ 56     < 2^34             0         0 nil    
+ 57     < 2^35             0         0 nil    
+ 58     < 2^36             0         0 nil    
+ 59     < 2^37             0         0 nil    
+ 60     < 2^38             0         0 nil    
+ 61     < 2^39             0         0 nil    
+ 62     < 2^40             0         0 nil    
+ 63     < 2^41             0         0 nil    
+ Tot                       0         0
+#+end_example
+
+** std
+:PROPERTIES:
+:ID:       46810d6e-6ed8-43b5-942e-84cd5f9660b4
+:END:
+#+begin_src lisp :results output replace :exports both
+  (load "std/tests/pkg.lisp")
+  (asdf:test-system :std)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+in suite STD:
+; with 11/11 tests
+#<PASS #<TEST READTABLES>> 
+#<PASS #<TEST SYM>> 
+#<PASS #<TEST STRING>> 
+#<PASS #<TEST LIST>> 
+#<PASS #<TEST ERR>> 
+#<PASS #<TEST FMT>> 
+#<PASS #<TEST ANA>> 
+#<PASS #<TEST PAN>> 
+#<PASS #<TEST ALIEN>> 
+#<PASS #<TEST CURRY>> 
+#<PASS #<TEST BITS>> 
+No tests failed.
+#+end_example
+
+** lib
+:PROPERTIES:
+:ID:       e465bc66-1614-4c1e-b5d8-7deff751d15a
+:END:
+*** rdb
+:PROPERTIES:
+:ID:       c1e76284-f474-4218-8907-40cfc199b5df
+:END:
+#+begin_src lisp :results output replace :exports results
+  (load "lib/rdb/tests.lisp")
+  (asdf:test-system :rdb)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+in suite RDB:
+; with 13/13 tests
+#<PASS #<TEST MINIMAL>> 
+#<PASS #<TEST OPTS>> 
+#<PASS #<TEST RAW>> 
 
 "rocksdb.block.cache.miss COUNT : 0
 rocksdb.block.cache.hit COUNT : 0
@@ -496,7 +679,7 @@ rocksdb.write.other COUNT : 0
 rocksdb.write.wal COUNT : 10000
 rocksdb.compact.read.bytes COUNT : 0
 rocksdb.compact.write.bytes COUNT : 0
-rocksdb.flush.write.bytes COUNT : 86396
+rocksdb.flush.write.bytes COUNT : 86461
 rocksdb.compact.read.marked.bytes COUNT : 0
 rocksdb.compact.read.periodic.bytes COUNT : 0
 rocksdb.compact.read.ttl.bytes COUNT : 0
@@ -510,12 +693,12 @@ rocksdb.number.superversion_cleanups COUNT : 0
 rocksdb.number.block.compressed COUNT : 49
 rocksdb.number.block.decompressed COUNT : 1
 rocksdb.bytes.compressed.from COUNT : 196554
-rocksdb.bytes.compressed.to COUNT : 85021
+rocksdb.bytes.compressed.to COUNT : 85053
 rocksdb.bytes.compression_bypassed COUNT : 0
 rocksdb.bytes.compression.rejected COUNT : 0
 rocksdb.number.block_compression_bypassed COUNT : 0
 rocksdb.number.block_compression_rejected COUNT : 0
-rocksdb.bytes.decompressed.from COUNT : 679
+rocksdb.bytes.decompressed.from COUNT : 681
 rocksdb.bytes.decompressed.to COUNT : 851
 rocksdb.merge.operation.time.nanos COUNT : 0
 rocksdb.filter.operation.time.nanos COUNT : 0
@@ -590,7 +773,7 @@ rocksdb.warm.file.read.count COUNT : 0
 rocksdb.cold.file.read.count COUNT : 0
 rocksdb.last.level.read.bytes COUNT : 0
 rocksdb.last.level.read.count COUNT : 0
-rocksdb.non.last.level.read.bytes COUNT : 1693
+rocksdb.non.last.level.read.bytes COUNT : 1739
 rocksdb.non.last.level.read.count COUNT : 4
 rocksdb.last.level.seek.filtered COUNT : 0
 rocksdb.last.level.seek.filter.match COUNT : 0
@@ -618,25 +801,27 @@ rocksdb.prefetch.bytes COUNT : 0
 rocksdb.prefetch.bytes.useful COUNT : 0
 rocksdb.prefetch.hits COUNT : 0
 rocksdb.footer.corruption.count COUNT : 0
-rocksdb.db.get.micros P50 : 0.510204 P95 : 0.969388 P99 : 2.000000 P100 : 8.000000 COUNT : 100 SUM : 84
-rocksdb.db.write.micros P50 : 2.349341 P95 : 5.749708 P99 : 9.952782 P100 : 13036.000000 COUNT : 20000 SUM : 74384
+rocksdb.file.read.corruption.retry.count COUNT : 0
+rocksdb.file.read.corruption.retry.success.count COUNT : 0
+rocksdb.db.get.micros P50 : 0.510204 P95 : 0.969388 P99 : 2.000000 P100 : 7.000000 COUNT : 100 SUM : 87
+rocksdb.db.write.micros P50 : 2.027834 P95 : 3.685780 P99 : 7.265116 P100 : 12098.000000 COUNT : 20000 SUM : 61372
 rocksdb.compaction.times.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.compaction.times.cpu_micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.subcompaction.setup.times.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.table.sync.micros P50 : 33.000000 P95 : 33.000000 P99 : 33.000000 P100 : 33.000000 COUNT : 1 SUM : 33
+rocksdb.table.sync.micros P50 : 31.000000 P95 : 31.000000 P99 : 31.000000 P100 : 31.000000 COUNT : 1 SUM : 31
 rocksdb.compaction.outfile.sync.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.wal.file.sync.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.manifest.file.sync.micros P50 : 1.166667 P95 : 2.650000 P99 : 2.930000 P100 : 3.000000 COUNT : 7 SUM : 12
-rocksdb.table.open.io.micros P50 : 53.000000 P95 : 53.000000 P99 : 53.000000 P100 : 53.000000 COUNT : 1 SUM : 53
+rocksdb.manifest.file.sync.micros P50 : 1.000000 P95 : 1.850000 P99 : 1.970000 P100 : 2.000000 COUNT : 3 SUM : 4
+rocksdb.table.open.io.micros P50 : 57.000000 P95 : 57.000000 P99 : 57.000000 P100 : 57.000000 COUNT : 1 SUM : 57
 rocksdb.db.multiget.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.read.block.compaction.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.read.block.get.micros P50 : 5.000000 P95 : 5.000000 P99 : 5.000000 P100 : 5.000000 COUNT : 1 SUM : 5
-rocksdb.write.raw.block.micros P50 : 0.728571 P95 : 2.483333 P99 : 4.980000 P100 : 5.000000 COUNT : 51 SUM : 50
+rocksdb.write.raw.block.micros P50 : 0.879310 P95 : 2.890000 P99 : 27.880000 P100 : 33.000000 COUNT : 51 SUM : 90
 rocksdb.numfiles.in.singlecompaction P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.db.seek.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.db.write.stall P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.sst.read.micros P50 : 1.000000 P95 : 2.800000 P99 : 2.960000 P100 : 3.000000 COUNT : 4 SUM : 7
-rocksdb.file.read.flush.micros P50 : 1.000000 P95 : 2.800000 P99 : 2.960000 P100 : 3.000000 COUNT : 4 SUM : 7
+rocksdb.sst.read.micros P50 : 1.000000 P95 : 1.900000 P99 : 1.980000 P100 : 2.000000 COUNT : 4 SUM : 6
+rocksdb.file.read.flush.micros P50 : 1.000000 P95 : 1.900000 P99 : 1.980000 P100 : 2.000000 COUNT : 4 SUM : 6
 rocksdb.file.read.compaction.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.file.read.db.open.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.file.read.get.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
@@ -644,8 +829,8 @@ rocksdb.file.read.multiget.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P
 rocksdb.file.read.db.iterator.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.file.read.verify.db.checksum.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.file.read.verify.file.checksums.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.sst.write.micros P50 : 0.565934 P95 : 1.685000 P99 : 2.970000 P100 : 5.000000 COUNT : 103 SUM : 35
-rocksdb.file.write.flush.micros P50 : 0.565934 P95 : 1.685000 P99 : 2.970000 P100 : 5.000000 COUNT : 103 SUM : 35
+rocksdb.sst.write.micros P50 : 0.613095 P95 : 1.865625 P99 : 5.940000 P100 : 33.000000 COUNT : 103 SUM : 77
+rocksdb.file.write.flush.micros P50 : 0.613095 P95 : 1.865625 P99 : 5.940000 P100 : 33.000000 COUNT : 103 SUM : 77
 rocksdb.file.write.compaction.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.file.write.db.open.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.num.subcompactions.scheduled P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
@@ -668,7 +853,7 @@ rocksdb.blobdb.blob.file.read.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.00000
 rocksdb.blobdb.blob.file.sync.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.blobdb.compression.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.blobdb.decompression.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.db.flush.micros P50 : 2452.000000 P95 : 2452.000000 P99 : 2452.000000 P100 : 2452.000000 COUNT : 1 SUM : 2452
+rocksdb.db.flush.micros P50 : 2513.000000 P95 : 2513.000000 P99 : 2513.000000 P100 : 2513.000000 COUNT : 1 SUM : 2513
 rocksdb.sst.batch.size P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.multiget.io.batch.size P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.num.index.and.filter.blocks.read.per.level P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
@@ -680,825 +865,39 @@ rocksdb.poll.wait.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.0
 rocksdb.prefetched.bytes.discarded P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.async.prefetch.abort.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
 rocksdb.table.open.prefetch.tail.read.bytes P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-" #:debug 3.806665; /tmp/TMP801475
-; 
-,** DB Stats **
-Uptime(secs): 1.2 total, 1.2 interval
-Cumulative writes: 10K writes, 10K keys, 10K commit groups, 1.0 writes per commit group, ingest: 0.00 GB, 0.23 MB/s
-Cumulative WAL: 10K writes, 0 syncs, 10000.00 writes per sync, written: 0.00 GB, 0.23 MB/s
-Cumulative stall: 00:00:0.000 H:M:S, 0.0 percent
-Interval writes: 10K writes, 10K keys, 10K commit groups, 1.0 writes per commit group, ingest: 0.27 MB, 0.23 MB/s
-Interval WAL: 10K writes, 0 syncs, 10000.00 writes per sync, written: 0.00 GB, 0.23 MB/s
-Interval stall: 00:00:0.000 H:M:S, 0.0 percent
-Write Stall (count): write-buffer-manager-limit-stops: 0
-
-; Level Files Size(MB)
---------------------
-  0        1        0
-  1        0        0
-  2        0        0
-  3        0        0
-  4        0        0
-  5        0        0
-  6        0        0
-
-; rocksdb.block.cache.miss COUNT : 0
-rocksdb.block.cache.hit COUNT : 0
-rocksdb.block.cache.add COUNT : 0
-rocksdb.block.cache.add.failures COUNT : 0
-rocksdb.block.cache.index.miss COUNT : 0
-rocksdb.block.cache.index.hit COUNT : 0
-rocksdb.block.cache.index.add COUNT : 0
-rocksdb.block.cache.index.bytes.insert COUNT : 0
-rocksdb.block.cache.filter.miss COUNT : 0
-rocksdb.block.cache.filter.hit COUNT : 0
-rocksdb.block.cache.filter.add COUNT : 0
-rocksdb.block.cache.filter.bytes.insert COUNT : 0
-rocksdb.block.cache.data.miss COUNT : 0
-rocksdb.block.cache.data.hit COUNT : 0
-rocksdb.block.cache.data.add COUNT : 0
-rocksdb.block.cache.data.bytes.insert COUNT : 0
-rocksdb.block.cache.bytes.read COUNT : 0
-rocksdb.block.cache.bytes.write COUNT : 0
-rocksdb.block.cache.compression.dict.miss COUNT : 0
-rocksdb.block.cache.compression.dict.hit COUNT : 0
-rocksdb.block.cache.compression.dict.add COUNT : 0
-rocksdb.block.cache.compression.dict.bytes.insert COUNT : 0
-rocksdb.block.cache.add.redundant COUNT : 0
-rocksdb.block.cache.index.add.redundant COUNT : 0
-rocksdb.block.cache.filter.add.redundant COUNT : 0
-rocksdb.block.cache.data.add.redundant COUNT : 0
-rocksdb.block.cache.compression.dict.add.redundant COUNT : 0
-rocksdb.secondary.cache.hits COUNT : 0
-rocksdb.secondary.cache.filter.hits COUNT : 0
-rocksdb.secondary.cache.index.hits COUNT : 0
-rocksdb.secondary.cache.data.hits COUNT : 0
-rocksdb.compressed.secondary.cache.dummy.hits COUNT : 0
-rocksdb.compressed.secondary.cache.hits COUNT : 0
-rocksdb.compressed.secondary.cache.promotions COUNT : 0
-rocksdb.compressed.secondary.cache.promotion.skips COUNT : 0
-rocksdb.bloom.filter.useful COUNT : 0
-rocksdb.bloom.filter.full.positive COUNT : 0
-rocksdb.bloom.filter.full.true.positive COUNT : 0
-rocksdb.bloom.filter.prefix.checked COUNT : 0
-rocksdb.bloom.filter.prefix.useful COUNT : 0
-rocksdb.bloom.filter.prefix.true.positive COUNT : 0
-rocksdb.persistent.cache.hit COUNT : 0
-rocksdb.persistent.cache.miss COUNT : 0
-rocksdb.sim.block.cache.hit COUNT : 0
-rocksdb.sim.block.cache.miss COUNT : 0
-rocksdb.memtable.hit COUNT : 100
-rocksdb.memtable.miss COUNT : 0
-rocksdb.l0.hit COUNT : 0
-rocksdb.l1.hit COUNT : 0
-rocksdb.l2andup.hit COUNT : 0
-rocksdb.compaction.key.drop.new COUNT : 0
-rocksdb.compaction.key.drop.obsolete COUNT : 0
-rocksdb.compaction.key.drop.range_del COUNT : 0
-rocksdb.compaction.key.drop.user COUNT : 0
-rocksdb.compaction.range_del.drop.obsolete COUNT : 0
-rocksdb.compaction.optimized.del.drop.obsolete COUNT : 0
-rocksdb.compaction.cancelled COUNT : 0
-rocksdb.number.keys.written COUNT : 10000
-rocksdb.number.keys.read COUNT : 100
-rocksdb.number.keys.updated COUNT : 0
-rocksdb.bytes.written COUNT : 287780
-rocksdb.bytes.read COUNT : 400
-rocksdb.number.db.seek COUNT : 2
-rocksdb.number.db.next COUNT : 0
-rocksdb.number.db.prev COUNT : 0
-rocksdb.number.db.seek.found COUNT : 0
-rocksdb.number.db.next.found COUNT : 0
-rocksdb.number.db.prev.found COUNT : 0
-rocksdb.db.iter.bytes.read COUNT : 0
-rocksdb.number.iter.skip COUNT : 0
-rocksdb.number.reseeks.iteration COUNT : 0
-rocksdb.num.iterator.created COUNT : 1
-rocksdb.num.iterator.deleted COUNT : 1
-rocksdb.no.file.opens COUNT : 1
-rocksdb.no.file.errors COUNT : 0
-rocksdb.stall.micros COUNT : 0
-rocksdb.db.mutex.wait.micros COUNT : 0
-rocksdb.number.multiget.get COUNT : 0
-rocksdb.number.multiget.keys.read COUNT : 0
-rocksdb.number.multiget.bytes.read COUNT : 0
-rocksdb.number.multiget.keys.found COUNT : 0
-rocksdb.number.merge.failures COUNT : 0
-rocksdb.getupdatessince.calls COUNT : 0
-rocksdb.wal.synced COUNT : 0
-rocksdb.wal.bytes COUNT : 287780
-rocksdb.write.self COUNT : 10000
-rocksdb.write.other COUNT : 0
-rocksdb.write.wal COUNT : 10000
-rocksdb.compact.read.bytes COUNT : 0
-rocksdb.compact.write.bytes COUNT : 0
-rocksdb.flush.write.bytes COUNT : 86396
-rocksdb.compact.read.marked.bytes COUNT : 0
-rocksdb.compact.read.periodic.bytes COUNT : 0
-rocksdb.compact.read.ttl.bytes COUNT : 0
-rocksdb.compact.write.marked.bytes COUNT : 0
-rocksdb.compact.write.periodic.bytes COUNT : 0
-rocksdb.compact.write.ttl.bytes COUNT : 0
-rocksdb.number.direct.load.table.properties COUNT : 0
-rocksdb.number.superversion_acquires COUNT : 1
-rocksdb.number.superversion_releases COUNT : 0
-rocksdb.number.superversion_cleanups COUNT : 0
-rocksdb.number.block.compressed COUNT : 49
-rocksdb.number.block.decompressed COUNT : 1
-rocksdb.bytes.compressed.from COUNT : 196554
-rocksdb.bytes.compressed.to COUNT : 85021
-rocksdb.bytes.compression_bypassed COUNT : 0
-rocksdb.bytes.compression.rejected COUNT : 0
-rocksdb.number.block_compression_bypassed COUNT : 0
-rocksdb.number.block_compression_rejected COUNT : 0
-rocksdb.bytes.decompressed.from COUNT : 679
-rocksdb.bytes.decompressed.to COUNT : 851
-rocksdb.merge.operation.time.nanos COUNT : 0
-rocksdb.filter.operation.time.nanos COUNT : 0
-rocksdb.compaction.total.time.cpu_micros COUNT : 0
-rocksdb.row.cache.hit COUNT : 0
-rocksdb.row.cache.miss COUNT : 0
-rocksdb.read.amp.estimate.useful.bytes COUNT : 0
-rocksdb.read.amp.total.read.bytes COUNT : 0
-rocksdb.number.rate_limiter.drains COUNT : 0
-rocksdb.blobdb.num.put COUNT : 0
-rocksdb.blobdb.num.write COUNT : 0
-rocksdb.blobdb.num.get COUNT : 0
-rocksdb.blobdb.num.multiget COUNT : 0
-rocksdb.blobdb.num.seek COUNT : 0
-rocksdb.blobdb.num.next COUNT : 0
-rocksdb.blobdb.num.prev COUNT : 0
-rocksdb.blobdb.num.keys.written COUNT : 0
-rocksdb.blobdb.num.keys.read COUNT : 0
-rocksdb.blobdb.bytes.written COUNT : 0
-rocksdb.blobdb.bytes.read COUNT : 0
-rocksdb.blobdb.write.inlined COUNT : 0
-rocksdb.blobdb.write.inlined.ttl COUNT : 0
-rocksdb.blobdb.write.blob COUNT : 0
-rocksdb.blobdb.write.blob.ttl COUNT : 0
-rocksdb.blobdb.blob.file.bytes.written COUNT : 0
-rocksdb.blobdb.blob.file.bytes.read COUNT : 0
-rocksdb.blobdb.blob.file.synced COUNT : 0
-rocksdb.blobdb.blob.index.expired.count COUNT : 0
-rocksdb.blobdb.blob.index.expired.size COUNT : 0
-rocksdb.blobdb.blob.index.evicted.count COUNT : 0
-rocksdb.blobdb.blob.index.evicted.size COUNT : 0
-rocksdb.blobdb.gc.num.files COUNT : 0
-rocksdb.blobdb.gc.num.new.files COUNT : 0
-rocksdb.blobdb.gc.failures COUNT : 0
-rocksdb.blobdb.gc.num.keys.relocated COUNT : 0
-rocksdb.blobdb.gc.bytes.relocated COUNT : 0
-rocksdb.blobdb.fifo.num.files.evicted COUNT : 0
-rocksdb.blobdb.fifo.num.keys.evicted COUNT : 0
-rocksdb.blobdb.fifo.bytes.evicted COUNT : 0
-rocksdb.blobdb.cache.miss COUNT : 0
-rocksdb.blobdb.cache.hit COUNT : 0
-rocksdb.blobdb.cache.add COUNT : 0
-rocksdb.blobdb.cache.add.failures COUNT : 0
-rocksdb.blobdb.cache.bytes.read COUNT : 0
-rocksdb.blobdb.cache.bytes.write COUNT : 0
-rocksdb.txn.overhead.mutex.prepare COUNT : 0
-rocksdb.txn.overhead.mutex.old.commit.map COUNT : 0
-rocksdb.txn.overhead.duplicate.key COUNT : 0
-rocksdb.txn.overhead.mutex.snapshot COUNT : 0
-rocksdb.txn.get.tryagain COUNT : 0
-rocksdb.files.marked.trash COUNT : 0
-rocksdb.files.marked.trash.deleted COUNT : 0
-rocksdb.files.deleted.immediately COUNT : 1
-rocksdb.error.handler.bg.error.count COUNT : 0
-rocksdb.error.handler.bg.io.error.count COUNT : 0
-rocksdb.error.handler.bg.retryable.io.error.count COUNT : 0
-rocksdb.error.handler.autoresume.count COUNT : 0
-rocksdb.error.handler.autoresume.retry.total.count COUNT : 0
-rocksdb.error.handler.autoresume.success.count COUNT : 0
-rocksdb.memtable.payload.bytes.at.flush COUNT : 217780
-rocksdb.memtable.garbage.bytes.at.flush COUNT : 0
-rocksdb.verify_checksum.read.bytes COUNT : 0
-rocksdb.backup.read.bytes COUNT : 0
-rocksdb.backup.write.bytes COUNT : 0
-rocksdb.remote.compact.read.bytes COUNT : 0
-rocksdb.remote.compact.write.bytes COUNT : 0
-rocksdb.hot.file.read.bytes COUNT : 0
-rocksdb.warm.file.read.bytes COUNT : 0
-rocksdb.cold.file.read.bytes COUNT : 0
-rocksdb.hot.file.read.count COUNT : 0
-rocksdb.warm.file.read.count COUNT : 0
-rocksdb.cold.file.read.count COUNT : 0
-rocksdb.last.level.read.bytes COUNT : 0
-rocksdb.last.level.read.count COUNT : 0
-rocksdb.non.last.level.read.bytes COUNT : 1693
-rocksdb.non.last.level.read.count COUNT : 4
-rocksdb.last.level.seek.filtered COUNT : 0
-rocksdb.last.level.seek.filter.match COUNT : 0
-rocksdb.last.level.seek.data COUNT : 0
-rocksdb.last.level.seek.data.useful.no.filter COUNT : 0
-rocksdb.last.level.seek.data.useful.filter.match COUNT : 0
-rocksdb.non.last.level.seek.filtered COUNT : 0
-rocksdb.non.last.level.seek.filter.match COUNT : 0
-rocksdb.non.last.level.seek.data COUNT : 0
-rocksdb.non.last.level.seek.data.useful.no.filter COUNT : 0
-rocksdb.non.last.level.seek.data.useful.filter.match COUNT : 0
-rocksdb.block.checksum.compute.count COUNT : 2
-rocksdb.block.checksum.mismatch.count COUNT : 0
-rocksdb.multiget.coroutine.count COUNT : 0
-rocksdb.read.async.micros COUNT : 0
-rocksdb.async.read.error.count COUNT : 0
-rocksdb.table.open.prefetch.tail.miss COUNT : 0
-rocksdb.table.open.prefetch.tail.hit COUNT : 0
-rocksdb.timestamp.filter.table.checked COUNT : 0
-rocksdb.timestamp.filter.table.filtered COUNT : 0
-rocksdb.readahead.trimmed COUNT : 0
-rocksdb.fifo.max.size.compactions COUNT : 0
-rocksdb.fifo.ttl.compactions COUNT : 0
-rocksdb.prefetch.bytes COUNT : 0
-rocksdb.prefetch.bytes.useful COUNT : 0
-rocksdb.prefetch.hits COUNT : 0
-rocksdb.footer.corruption.count COUNT : 0
-rocksdb.db.get.micros P50 : 0.510204 P95 : 0.969388 P99 : 2.000000 P100 : 8.000000 COUNT : 100 SUM : 84
-rocksdb.db.write.micros P50 : 2.349341 P95 : 5.749708 P99 : 9.952782 P100 : 13036.000000 COUNT : 20000 SUM : 74384
-rocksdb.compaction.times.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.compaction.times.cpu_micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.subcompaction.setup.times.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.table.sync.micros P50 : 33.000000 P95 : 33.000000 P99 : 33.000000 P100 : 33.000000 COUNT : 1 SUM : 33
-rocksdb.compaction.outfile.sync.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.wal.file.sync.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.manifest.file.sync.micros P50 : 1.166667 P95 : 2.650000 P99 : 2.930000 P100 : 3.000000 COUNT : 7 SUM : 12
-rocksdb.table.open.io.micros P50 : 53.000000 P95 : 53.000000 P99 : 53.000000 P100 : 53.000000 COUNT : 1 SUM : 53
-rocksdb.db.multiget.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.read.block.compaction.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.read.block.get.micros P50 : 5.000000 P95 : 5.000000 P99 : 5.000000 P100 : 5.000000 COUNT : 1 SUM : 5
-rocksdb.write.raw.block.micros P50 : 0.728571 P95 : 2.483333 P99 : 4.980000 P100 : 5.000000 COUNT : 51 SUM : 50
-rocksdb.numfiles.in.singlecompaction P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.db.seek.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.db.write.stall P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.sst.read.micros P50 : 1.000000 P95 : 2.800000 P99 : 2.960000 P100 : 3.000000 COUNT : 4 SUM : 7
-rocksdb.file.read.flush.micros P50 : 1.000000 P95 : 2.800000 P99 : 2.960000 P100 : 3.000000 COUNT : 4 SUM : 7
-rocksdb.file.read.compaction.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.file.read.db.open.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.file.read.get.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.file.read.multiget.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.file.read.db.iterator.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.file.read.verify.db.checksum.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.file.read.verify.file.checksums.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.sst.write.micros P50 : 0.565934 P95 : 1.685000 P99 : 2.970000 P100 : 5.000000 COUNT : 103 SUM : 35
-rocksdb.file.write.flush.micros P50 : 0.565934 P95 : 1.685000 P99 : 2.970000 P100 : 5.000000 COUNT : 103 SUM : 35
-rocksdb.file.write.compaction.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.file.write.db.open.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.num.subcompactions.scheduled P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.bytes.per.read P50 : 4.000000 P95 : 4.000000 P99 : 4.000000 P100 : 4.000000 COUNT : 100 SUM : 400
-rocksdb.bytes.per.write P50 : 28.000000 P95 : 29.000000 P99 : 29.000000 P100 : 29.000000 COUNT : 10000 SUM : 287780
-rocksdb.bytes.per.multiget P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.compression.times.nanos P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.decompression.times.nanos P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.read.num.merge_operands P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.key.size P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.value.size P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.write.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.get.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.multiget.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.seek.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.next.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.prev.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.blob.file.write.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.blob.file.read.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.blob.file.sync.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.compression.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.blobdb.decompression.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.db.flush.micros P50 : 2452.000000 P95 : 2452.000000 P99 : 2452.000000 P100 : 2452.000000 COUNT : 1 SUM : 2452
-rocksdb.sst.batch.size P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.multiget.io.batch.size P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.num.index.and.filter.blocks.read.per.level P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.num.sst.read.per.level P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.num.level.read.per.multiget P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.error.handler.autoresume.retry.count P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.async.read.bytes P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.poll.wait.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.prefetched.bytes.discarded P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.async.prefetch.abort.micros P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-rocksdb.table.open.prefetch.tail.read.bytes P50 : 0.000000 P95 : 0.000000 P99 : 0.000000 P100 : 0.000000 COUNT : 0 SUM : 0
-
-#<PASS TEMP-DB> 
-#:info 3.829999; ((prepopulate-blob-cache . 0) (wal-compression . 0)
-                  (manual-wal-flush) (atomic-flush) (compaction-style . 0)
-                  (bottommost-compression . 255) (compression . 1)
-                  (wal-recovery-mode . 2)
-                  (experimental-mempurge-threshold . 0.0d0)
-                  (avoid-unnecessary-blocking-io) (report-bg-io-stats)
-                  (inplace-update-num-locks . 10000) (inplace-update-support)
-                  (bloom-locality . 0) (max-successive-merges . 0)
-                  (memtable-huge-page-size . 0) (max-compaction-bytes . 0)
-                  (memtable-prefix-bloom-size-ratio . 0.0d0)
-                  (delete-obsolete-files-period-micros . 21600000000)
-                  (optimize-filters-for-hits) (disable-auto-compactions)
-                  (max-sequential-skip-in-iterations . 8)
-                  (enable-write-thread-adaptive-yield . T)
-                  (allow-concurrent-memtable-write . T)
-                  (writable-file-max-buffer-size . 1048576)
-                  (wal-bytes-per-sync . 0) (bytes-per-sync . 0)
-                  (use-adaptive-mutex) (advise-random-on-open . T)
-                  (stats-persist-period-sec . 600)
-                  (stats-dump-period-sec . 600) (is-fd-close-on-exec . T)
-                  (use-direct-io-for-flush-and-compaction) (use-direct-reads)
-                  (allow-mmap-writes) (allow-mmap-reads)
-                  (manifest-preallocation-size . 4194304) (use-fsync)
-                  (arena-block-size . 0) (table-cache-numshardbits . 6)
-                  (max-manifest-file-size . 1073741824)
-                  (hard-pending-compaction-bytes-limit . 274877906944)
-                  (soft-pending-compaction-bytes-limit . 68719476736)
-                  (recycle-log-file-num . 0) (keep-log-file-num . 1000)
-                  (log-file-time-to-roll . 0) (max-log-file-size . 0)
-                  (max-background-flushes . -1)
-                  (max-background-compactions . -1) (max-background-jobs . 8)
-                  (max-subcompactions . 1) (unordered-write)
-                  (enable-pipelined-write)
-                  (max-write-buffer-size-to-maintain . 0)
-                  (max-write-buffer-number-to-maintain . 0)
-                  (min-write-buffer-number-to-merge . 1)
-                  (max-write-buffer-number . 2) (blob-file-starting-level . 0)
-                  (blob-compaction-readahead-size . 0)
-                  (blob-gc-force-threshold . 1.0d0)
-                  (blob-gc-age-cutoff . 0.25d0) (enable-blob-gc)
-                  (blob-compression-type . 0) (blob-file-size . 268435456)
-                  (min-blob-size . 0) (enable-blob-files)
-                  (skip-checking-sst-file-sizes-on-db-open)
-                  (skip-stats-update-on-db-open) (statistics-level . 0)
-                  (allow-ingest-behind) (compaction-pri . 3)
-                  (max-bytes-for-level-multiplier . 10.0d0)
-                  (level-compaction-dynamic-level-bytes . 1)
-                  (max-bytes-for-level-base . 268435456)
-                  (target-file-size-multiplier . 1)
-                  (target-file-size-base . 67108864)
-                  (level0-stop-writes-trigger . 36)
-                  (level0-slowdown-writes-trigger . 20)
-                  (level0-file-num-compaction-trigger . 4) (num-levels . 7)
-                  (compression-options-use-zstd-dict-trainer . T)
-                  (compression-options-parallel-threads . 1)
-                  (compression-options-max-dict-buffer-bytes . 0)
-                  (compression-options-zstd-max-train-bytes . 0)
-                  (max-total-wal-size . 0) (max-file-opening-threads . 16)
-                  (max-open-files . -1) (db-write-buffer-size . 0)
-                  (write-buffer-size . 67108864) (info-log-level . 1)
-                  (paranoid-checks . T) (error-if-exists) (parallelism . 8)
-                  (create-missing-column-families . T) (create-if-missing . T))
-#:debug 3.843332; #()
-#<PASS RDB> 
-#<PASS RAW> 
-#<PASS OPTS> 
-#<PASS MINIMAL> 
-No tests failed.
-; compiling file "/home/ellis/comp/core/lisp/lib/skel/tests.lisp" (written 12 FEB 2024 09:01:37 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/skel/tests-tmpVIGJLYMI.fasl
-; compilation finished in 0:00:00.006
-in suite SKEL:
-; with 6/6 tests
-#<PASS VM> 
-#<FAIL INVALID NUMBER OF ARGUMENTS: 2> 
-#<PASS SKELRC> 
-#<FAIL #<SKEL/CORE:SK-VC-META :HG> CANNOT BE PRINTED READABLY.> 
-#<PASS HEADER-COMMENTS> 
-#<PASS SANITY> 
-2 out of 6 total tests failed: 
-   #<RT:TEST MAKEFILE :FN MAKEFILE-TEST1289117 {1026126B63}>, 
-   #<RT:TEST SKELFILE :FN SKELFILE-TEST1289115 {10261269A3}>.
-2 unexpected failures: 
-   #<FAIL #<SKEL/CORE:SK-VC-META :HG> CANNOT BE PRINTED READABLY.>, 
-   #<FAIL INVALID NUMBER OF ARGUMENTS: 2>.
-; compiling file "/home/ellis/comp/core/lisp/lib/organ/tests.lisp" (written 30 MAR 2024 11:57:47 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/organ/tests-tmp8LSFGHBA.fasl
-; compilation finished in 0:00:00.006
-in suite ORGAN:
-; with 8/8 tests
-#<PASS ORG-LINES> 
-#<PASS ORG-DOCUMENT> 
-#<PASS ORG-SECTION> 
-#<PASS ORG-HEADING> 
-#<PASS ORG-HEADLINE> 
-#<PASS ORG-STANDARD> 
-#<PASS ORG-MINIMAL> 
-#<PASS ORG-MARKUP> 
-No tests failed.
-; compiling file "/home/ellis/comp/core/lisp/lib/nlp/tests.lisp" (written 13 DEC 2023 06:02:19 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/nlp/tests-tmpEU75DS1U.fasl
-; compilation finished in 0:00:00.003
-in suite NLP:
-; with 3/3 tests
-#<PASS TEXTRANK> 
-#<PASS DBSCAN> 
-#<PASS PORTER-STEM> 
-No tests failed.
-; compiling file "/home/ellis/comp/core/lisp/lib/obj/tests.lisp" (written 12 APR 2024 06:41:07 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/obj/tests-tmpSQ0W0KBD.fasl
-; compilation finished in 0:00:00.043
-in suite OBJ:
-; with 13/13 tests
-;; https://192.132.95.22/foo.html
-;; https://192.132.95.22:81/foo.html
-;; https://layer@192.132.95.22/foo.html
-;; https://layer@192.132.95.22:81/foo.html
-;; https://layer:pass@192.132.95.22/foo.html
-;; https://layer:pass@192.132.95.22:81/foo.html
-;; https://[fe80::230:48ff:feb9:bbea]/foo.html
-;; https://[fe80::230:48ff:feb9:bbea]:81/foo.html
-;; https://[2001:470:1f05:548:230:48ff:feb9:bbea]/foo.html
-;; https://[2001:470:1f05:548:230:48ff:feb9:bbea]:81/foo.html
-;; https://[::1]/foo.html
-;; https://[::1]:81/foo.html
-#<PASS URIS> 
-#<PASS GRAPH> 
-#<PASS AVL-TREE> 
-#<PASS RB-TREE> 
-#<PASS BRO-TREE> 
-#<PASS GENERIC-TREE> 
-#<PASS RING> 
-#<PASS CASTABLE-SOLO> 
-#<PASS DEF-SEQ> 
-#<PASS DEF-ITER> 
-#<PASS IDS> 
-#<PASS TABLES> 
-#<PASS COLORS> 
-No tests failed.
-; compiling file "/home/ellis/comp/core/lisp/lib/log/tests.lisp" (written 13 DEC 2023 05:07:32 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/log/tests-tmpWU31URCX.fasl
-; compilation finished in 0:00:00.000
-in suite LOG:
-; with 1/1 tests
-#:debug 5.293333; test
-; DEBUG
-#<PASS LOG> 
-No tests failed.
-; compiling file "/home/ellis/comp/core/lisp/lib/net/tests.lisp" (written 23 MAY 2024 08:48:04 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/net/tests-tmpIP1C1YH.fasl
-; compilation finished in 0:00:00.003
-in suite NET:
-; with 7/7 tests
-#<PASS HTTP> 
-#<PASS OSC> 
-#<PASS TLV> 
-#<PASS UDP> 
-#<PASS TCP> 
-#<PASS DNS> 
-#<PASS SANITY> 
-No tests failed.
-; compiling file "/home/ellis/comp/core/lisp/lib/packy/tests.lisp" (written 24 FEB 2024 10:13:24 PM):
-
-; wrote /home/ellis/.cache/common-lisp/sbcl-2.4.5-linux-x64/home/ellis/comp/core/lisp/lib/packy/tests-tmpX78D0A8B.fasl
-; compilation finished in 0:00:00.000
-in suite PACKY:
-; with 2/2 tests
-#<PASS PACKY-OBJECTS> 
-#<PASS PACKY-DB> 
-No tests failed.
- Bin      Size     Allocated     Count    Cum%
-  0         16             0         0 NIL    
-  1         32             0         0 NIL    
-  2         48             0         0 NIL    
-  3         64             0         0 NIL    
-  4         80             0         0 NIL    
-  5         96             0         0 NIL    
-  6        112             0         0 NIL    
-  7        128             0         0 NIL    
-  8        144             0         0 NIL    
-  9        160             0         0 NIL    
- 10        176             0         0 NIL    
- 11        192             0         0 NIL    
- 12        208             0         0 NIL    
- 13        224             0         0 NIL    
- 14        240             0         0 NIL    
- 15        256             0         0 NIL    
- 16        272             0         0 NIL    
- 17        288             0         0 NIL    
- 18        304             0         0 NIL    
- 19        320             0         0 NIL    
- 20        336             0         0 NIL    
- 21        352             0         0 NIL    
- 22        368             0         0 NIL    
- 23        384             0         0 NIL    
- 24        400             0         0 NIL    
- 25        416             0         0 NIL    
- 26        432             0         0 NIL    
- 27        448             0         0 NIL    
- 28        464             0         0 NIL    
- 29        480             0         0 NIL    
- 30        496             0         0 NIL    
- 31        512             0         0 NIL    
- 32     < 1024             0         0 NIL    
- 33     < 2048             0         0 NIL    
- 34     < 4096             0         0 NIL    
- 35     < 8192             0         0 NIL    
- 36    < 16384             0         0 NIL    
- 37    < 32768             0         0 NIL    
- 38    < 65536             0         0 NIL    
- 39   < 131072             0         0 NIL    
- 40   < 262144             0         0 NIL    
- 41   < 524288             0         0 NIL    
- 42     < 2^20             0         0 NIL    
- 43     < 2^21             0         0 NIL    
- 44     < 2^22             0         0 NIL    
- 45     < 2^23             0         0 NIL    
- 46     < 2^24             0         0 NIL    
- 47     < 2^25             0         0 NIL    
- 48     < 2^26             0         0 NIL    
- 49     < 2^27             0         0 NIL    
- 50     < 2^28             0         0 NIL    
- 51     < 2^29             0         0 NIL    
- 52     < 2^30             0         0 NIL    
- 53     < 2^31             0         0 NIL    
- 54     < 2^32             0         0 NIL    
- 55     < 2^33             0         0 NIL    
- 56     < 2^34             0         0 NIL    
- 57     < 2^35             0         0 NIL    
- 58     < 2^36             0         0 NIL    
- 59     < 2^37             0         0 NIL    
- 60     < 2^38             0         0 NIL    
- 61     < 2^39             0         0 NIL    
- 62     < 2^40             0         0 NIL    
- 63     < 2^41             0         0 NIL    
- Tot                       0         0
-TLS: (base=72CCEA600080)
-   1 STEPPING                       : #x0
-   2 BINDING-STACK-POINTER          : #x72CCEA4002A0
-   3 CURRENT-CATCH-BLOCK            : #x72CCEA3FE9A0
-   4 CURRENT-UNWIND-PROTECT-BLOCK   : #x72CCEA3FE510
-   5 PSEUDO-ATOMIC-BITS             : #x0
-   6 ALIEN-STACK-POINTER            : #x72CCEA600000
-   7 PROFILE-DATA                   : #x0
-   8 BOXED-TLAB                     : #x1000
-   9                                : #x1000
-  10                                : #x0
-  11 CONS-TLAB                      : #x100DA627A0
-  12                                : #x100DA62A80
-  13                                : #x100DA62080
-  14 MIXED-TLAB                     : #x101BC62DB0
-  15                                : #x101BC68000
-  16                                : #x101BC60000
-  17 OS-ADDRESS                     : #x72CCEA200000
-  18 OS-THREAD                      : #x72CCEA3FF6C0
-  19 OS-KERNEL-TID                  : #x428CD
-  20 ALIEN-STACK-START              : #x72CCEA500000
-  21 BINDING-STACK-START            : #x72CCEA400000
-  22 CONTROL-STACK-START            : #x72CCEA200000
-  23 CONTROL-STACK-END              : #x72CCEA3FEEA0
-  24 THIS                           : #x72CCEA600080
-  25 PREV                           : #x0
-  26 NEXT                           : #x72CCEA000080
-  27 STATE-WORD                     : #x1010101
-  28 SPROF-DATA                     : #x0
-  29 ARENA                          : #x0
-  30 TLS-SIZE                       : #x8000
-  31 FFCALL-ACTIVE-P                : #x0
-  32 CONTROL-STACK-POINTER          : #x72CCEA3FDC78
-  33 CARD-TABLE                     : #x72CCEC600010
-  34 SYMBOL-TLAB                    : #x1000
-  35                                : #x1000
-  36                                : #x0
-  37 SYS-MIXED-TLAB                 : #x10122DC910
-  38                                : #x10122E0000
-  39                                : #x10122D8000
-  40 SYS-CONS-TLAB                  : #x100C92EBA0
-  41                                : #x100C930000
-  42                                : #x100C92D180
-  43 TOT-BYTES-ALLOC-BOXED          : #x0
-  44 TOT-BYTES-ALLOC-UNBOXED        : #x0
-  45 SLOW-PATH-ALLOCS               : #x10BFBA
-  46 ET-ALLOCATOR-MUTEX-ACQ         : #x0
-  47 ET-FIND-FREEISH-PAGE           : #x0
-  48 ET-BZEROING                    : #x0
- 145 *CURRENT-THREAD*               : #<SB-THREAD:THREAD tid=272589 "worker" RUNNING {10373DF543}>
- 146 *FREE-INTERRUPT-CONTEXT-INDEX* : 0
- 147 *ALLOW-WITH-INTERRUPTS*        : T
- 148 *INTERRUPTS-ENABLED*           : T
- 149 *INTERRUPT-PENDING*            : NIL
- 150 *IN-WITHOUT-GCING*             : NIL
- 151 *GC-INHIBIT*                   : NIL
- 152 *GC-PENDING*                   : NIL
- 153 *STOP-FOR-GC-PENDING*          : NIL
- 154 0                              : NIL
- 155 *PINNED-OBJECTS*               : NIL
- 156 *GC-PIN-CODE-PAGES*            : 0
- 157 *RESTART-CLUSTERS*             : ((#<RESTART SWANK::RETRY {72CCEA3FE2B3}>) (#<RESTART ABORT {72CCEA3FE5B3}>)
-                                       (#<RESTART ABORT {72CCEA3FEB23}>))
- 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL SB-IMPL::EVAL-ERROR>
-                                         . #<FUNCTION (LAMBDA (CONDITION) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {72CCEA3FE19B}>))
-                                       ((#<SB-KERNEL::CLASSOID-CELL SB-C:COMPILER-ERROR>
-                                         . #<FUNCTION (LAMBDA (SB-C::C) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {1000C744EB}>)) ..)
- 159 *IGNORED-PACKAGE-LOCKS*        : :INVALID
- 160 *IR1-NAMESPACE*                : :UNBOUND
- 161 *COMPILATION*                  : :UNBOUND
- 162 *SAVED-FP*                     : NIL
- 163 *DEADLINE*                     : NIL
- 164 *DESCRIPTOR-HANDLERS*          : NIL
- 165 *EXIT-IN-PROGRESS*             : NIL
- 166 *TOKEN-BUF-POOL*               : NIL
- 167 *STEP-OUT*                     : NIL
- 168 *PACKAGE*                      : #<PACKAGE "COMMON-LISP-USER">
- 190 *DEBUGGER-HOOK*                : #<FUNCTION SWANK:SWANK-DEBUGGER-HOOK>
- 191 *STANDARD-OUTPUT*              : #<SB-IMPL::STRING-OUTPUT-STREAM {1037440263}>
- 219 *STANDARD-INPUT*               : #<SWANK/GRAY::SLIME-INPUT-STREAM {10020FD123}>
- 223 *DEFAULT-PATHNAME-DEFAULTS*    : #P"/home/ellis/dev/comp/core/"
- 267 *EVAL-SOURCE-INFO*             : NIL
- 268 *EVAL-TLF-INDEX*               : NIL
- 269 *EVAL-SOURCE-CONTEXT*          : (LET ((*DEFAULT-PATHNAME-DEFAULTS* #P"/home/ellis/dev/comp/core/"))
-                                        (TRACE "STD" "PARSE" "CLI" "XKB" "SKEL" "ORGAN" "OBJ" "XDB" "LOG" "NET" "PACKY" "NLP"
-                                               "DAT" "ROCKSDB" "BTRFS" "TREE-SITTER" "ZSTD" "BLAKE3" "URING")
-                                        (RT/TRACING:START-TRACING) ..)
- 340 *INVOKE-DEBUGGER-HOOK*         : #<FUNCTION SWANK/SBCL::SWANK-INVOKE-DEBUGGER-HOOK {103744002B}>
- 405 *STEPPER-HOOK*                 : #<FUNCTION (LAMBDA (CONDITION) :IN SWANK/BACKEND:CALL-WITH-DEBUGGER-HOOK) {100A7B50AB}>
- 434 *SLIME-INTERRUPTS-ENABLED*     : T
- 436 *EMACS-CONNECTION*             : #<SWANK::MULTITHREADED-CONNECTION {101F29F063}>
- 437 *PENDING-SLIME-INTERRUPTS*     : NIL
- 438 *SEND-COUNTER*                 : 24
- 439 *SLDB-QUIT-RESTART*            : #<RESTART ABORT {72CCEA3FE5B3}>
- 441 *BUFFER-PACKAGE*               : #<PACKAGE "COMMON-LISP-USER">
- 442 *BUFFER-READTABLE*             : #<NAMED-READTABLE :CURRENT {10019D71E3}>
- 443 *PENDING-CONTINUATIONS*        : (1574)
- 444 *PRE-REPLY-HOOK*               : (SWANK::SYNC-INDENTATION-TO-EMACS SWANK::SYNC-FEATURES-TO-EMACS SWANK::FORCE-USER-OUTPUT)
-
-Binding stack: (depth 42)
- 148 *INTERRUPTS-ENABLED*           : T
- 147 *ALLOW-WITH-INTERRUPTS*        : T
- 147 *ALLOW-WITH-INTERRUPTS*        : NIL
- 148 *INTERRUPTS-ENABLED*           : NIL
- 157 *RESTART-CLUSTERS*             : NIL
- 148 *INTERRUPTS-ENABLED*           : T
- 147 *ALLOW-WITH-INTERRUPTS*        : T
- 147 *ALLOW-WITH-INTERRUPTS*        : NIL
- 148 *INTERRUPTS-ENABLED*           : NIL
- 436 *EMACS-CONNECTION*             : :NO-TLS-VALUE
- 437 *PENDING-SLIME-INTERRUPTS*     : :NO-TLS-VALUE
- 438 *SEND-COUNTER*                 : :NO-TLS-VALUE
- 434 *SLIME-INTERRUPTS-ENABLED*     : :NO-TLS-VALUE
- 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL WARNING> . #<FUNCTION "MAYBE-MUFFLE" {100152CEDB}>)
-                                        (#<SB-KERNEL::CLASSOID-CELL STEP-CONDITION> . SB-IMPL::INVOKE-STEPPER)))
- 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL SWANK::SWANK-ERROR>
-                                         . #<FUNCTION (LAMBDA (SB-KERNEL::TEMP)
-                                                        :IN
-                                                        SWANK::SPAWN-WORKER-THREAD) {72CCEA3FE82B}>)) ..)
- 219 *STANDARD-INPUT*               : :NO-TLS-VALUE
- 190 *DEBUGGER-HOOK*                : :NO-TLS-VALUE
- 405 *STEPPER-HOOK*                 : :NO-TLS-VALUE
- 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL SWANK::SWANK-ERROR>
-                                         . #<FUNCTION (LAMBDA (CONDITION) :IN SWANK::SPAWN-WORKER-THREAD) {1001CB8D0B}>))
-                                       ((#<SB-KERNEL::CLASSOID-CELL SWANK::SWANK-ERROR>
-                                         . #<FUNCTION (LAMBDA (SB-KERNEL::TEMP) ..)>)))
- 340 *INVOKE-DEBUGGER-HOOK*         : :NO-TLS-VALUE
- 157 *RESTART-CLUSTERS*             : ((#<RESTART ABORT {72CCEA3FEB23}>))
- 439 *SLDB-QUIT-RESTART*            : :NO-TLS-VALUE
- 441 *BUFFER-PACKAGE*               : :NO-TLS-VALUE
- 442 *BUFFER-READTABLE*             : :NO-TLS-VALUE
- 443 *PENDING-CONTINUATIONS*        : :NO-TLS-VALUE
- 444 *PRE-REPLY-HOOK*               : :NO-TLS-VALUE
- 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL STEP-CONDITION> . SB-IMPL::INVOKE-STEPPER))
-                                       ((#<SB-KERNEL::CLASSOID-CELL SWANK::SWANK-ERROR>
-                                         . #<FUNCTION (LAMBDA (CONDITION) :IN SWANK::SPAWN-WORKER-THREAD) {1001CB8D0B}>))
-                                       ((#<SB-KERNEL::CLASSOID-CELL SWANK::SWANK-ERROR> ..)))
- 434 *SLIME-INTERRUPTS-ENABLED*     : NIL
- 269 *EVAL-SOURCE-CONTEXT*          : :NO-TLS-VALUE
- 268 *EVAL-TLF-INDEX*               : :NO-TLS-VALUE
- 267 *EVAL-SOURCE-INFO*             : :NO-TLS-VALUE
- 158 *HANDLER-CLUSTERS*             : (((#<FUNCTION SB-INT:CONSTANTLY-T>
-                                         . #<FUNCTION (LAMBDA (SWANK::C) :IN SWANK:EVAL-FOR-EMACS) {72CCEA3FE4EB}>))
-                                       ((#<SB-KERNEL::CLASSOID-CELL STEP-CONDITION> . SB-IMPL::INVOKE-STEPPER))
-                                       ((#<SB-KERNEL::CLASSOID-CELL SWANK::SWANK-ERROR> ..)))
- 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL SB-C:COMPILER-ERROR>
-                                         . #<FUNCTION (LAMBDA (SB-C::C) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {1000C744EB}>))
-                                       ((#<FUNCTION SB-INT:CONSTANTLY-T>
-                                         . #<FUNCTION (LAMBDA (SWANK::C) :IN SWANK:EVAL-FOR-EMACS) {72CCEA3FE4EB}>)) ..)
- 168 *PACKAGE*                      : :NO-TLS-VALUE
- 157 *RESTART-CLUSTERS*             : ((#<RESTART ABORT {72CCEA3FE5B3}>) (#<RESTART ABORT {72CCEA3FEB23}>))
- 191 *STANDARD-OUTPUT*              : :NO-TLS-VALUE
- 269 *EVAL-SOURCE-CONTEXT*          : (SWANK:EVAL-AND-GRAB-OUTPUT
-                                       "(let ((*default-pathname-defaults* #P\"/home/ellis/dev/comp/core/\"
-)) (trace \"STD\" \"PARSE\" \"CLI\" \"XKB\" \"SKEL\" \"ORGAN\" 
-       \"OBJ\" \"XDB\" \"LOG\" \"NET\" \"PACKY\" \"NLP\" \"DAT\" ..)
- 268 *EVAL-TLF-INDEX*               : NIL
- 267 *EVAL-SOURCE-INFO*             : NIL
- 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL SB-IMPL::EVAL-ERROR>
-                                         . #<FUNCTION (LAMBDA (CONDITION) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {72CCEA3FE40B}>))
-                                       ((#<SB-KERNEL::CLASSOID-CELL SB-C:COMPILER-ERROR>
-                                         . #<FUNCTION (LAMBDA (SB-C::C) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {1000C744EB}>)) ..)
- 158 *HANDLER-CLUSTERS*             : (((#<SB-KERNEL::CLASSOID-CELL SB-C:COMPILER-ERROR>
-                                         . #<FUNCTION (LAMBDA (SB-C::C) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {1000C744EB}>))
-                                       ((#<SB-KERNEL::CLASSOID-CELL SB-IMPL::EVAL-ERROR>
-                                         . #<FUNCTION (LAMBDA (CONDITION) :IN SB-INT:SIMPLE-EVAL-IN-LEXENV) {72CCEA3FE40B}>)) ..)
- 223 *DEFAULT-PATHNAME-DEFAULTS*    : :NO-TLS-VALUE
-#+end_example
-
-** std
-:PROPERTIES:
-:ID:       46810d6e-6ed8-43b5-942e-84cd5f9660b4
-:END:
-#+begin_src lisp :results output replace :exports both
-  (load "lisp/std/tests.lisp")
-  (asdf:test-system :std)
-#+end_src
-
-#+RESULTS:
-#+begin_example
-in suite STD with 11/11 tests:
-#<PASS CURRY-TEST9513955> 
-#<PASS ALIEN-TEST9513954> 
-#<PASS PAN-TEST9513953> 
-#<PASS ANA-TEST9513952> 
-#<PASS FMT-TEST9513951> 
-#<PASS THREAD-TEST9513950> 
-#<PASS ERR-TEST9513949> 
-#<PASS LIST-TEST9513948> 
-#<PASS STR-TEST9513947> 
-#<PASS SYM-TEST9513946> 
-#<PASS READTABLES-TEST9513945> 
+" #<PASS #<TEST TEMP-DB>> 
+#<PASS #<TEST METADATA>> 
+#<PASS #<TEST SST>> 
+#<PASS #<TEST SCHEMA>> 
+#<PASS #<TEST TRANSACTION>> 
+#<PASS #<TEST MERGE-OP>> 
+#<PASS #<TEST PREFIX-OP>> 
+#<PASS #<TEST STORE>> 
+#<PASS #<TEST LOGGER>> 
+#<PASS #<TEST WBWI>> 
 No tests failed.
 #+end_example
-
-** lib
-:PROPERTIES:
-:ID:       e465bc66-1614-4c1e-b5d8-7deff751d15a
-:END:
-*** rdb
-:PROPERTIES:
-:ID:       c1e76284-f474-4218-8907-40cfc199b5df
-:END:
-#+begin_src lisp :results output replace :exports results
-  (load "lisp/lib/rdb/tests.lisp")
-  (asdf:test-system :rdb)
-#+end_src
-
-#+RESULTS:
-: in suite rdb with 4/4 tests:
-: #<PASS RDB-BYTES-TEST200923> 
-: #<PASS RDB-TEST200922> 
-: #<PASS RAW-TEST200921> 
-: #<PASS MINIMAL-TEST200920> 
-: No tests failed.
-*** xdb
-:PROPERTIES:
-:ID:       c645b172-9efb-4b25-aead-f102b7178cd8
-:END:
-#+begin_src lisp :results output replace :exports results
-  (load "lisp/lib/xdb/tests.lisp")
-  (asdf:test-system :xdb)
-#+end_src
-
-#+RESULTS:
-#+begin_example
-in suite xdb with 1/1 tests:
-Hash Test
-Store
-Sum
-Find
-Sort
-List Test
-Store
-Sum
-Find
-Sort
-Object non storable Test
-Store
-Sum
-Find
-Sort
-Object storable Test
-Store
-Sum
-Find
-Sort
-#<PASS DB-TEST248085> 
-No tests failed.
-#+end_example
-
 *** organ
 :PROPERTIES:
 :ID:       1910b9a4-39ab-4e6a-a11f-b04c59717fb9
 :END:
 #+begin_src lisp :results output replace :exports results
-  (load "lisp/lib/organ/tests.lisp")
+  (load "lib/organ/tests.lisp")
   (asdf:test-system :organ)
 #+end_src
 
 #+RESULTS:
 #+begin_example
-in suite organ with 3/3 tests:
-#<organ:org-headline {100DDE44D3}>
-  [standard-object]
-
-Slots with :class allocation:
-  kind                           = :org-headline
-Slots with :instance allocation:
-  text                           = "** DONE testing stuff :test:test:"
-  state                          = nil
-  level                          = 2
-  props                          = nil
-  priority                       = nil
-  tags                           = #(#<organ:org-tag {100DDE5693}> #<organ:org-tag {100DDE56D3}>)
-  title                          = "DONE testing stuff"
-#<PASS ORG-HEADLINE-TEST248236> 
-#<PASS ORG-LINES-TEST248235> 
-#<PASS ORG-FILE-TEST248234> 
+in suite ORGAN:
+; with 8/8 tests
+#<PASS #<TEST ORG-MARKUP>> 
+#<PASS #<TEST ORG-MINIMAL>> 
+#<PASS #<TEST ORG-STANDARD>> 
+#<PASS #<TEST ORG-HEADLINE>> 
+#<PASS #<TEST ORG-HEADING>> 
+#<PASS #<TEST ORG-SECTION>> 
+#<PASS #<TEST ORG-DOCUMENT>> 
+#<PASS #<TEST ORG-LINES>> 
 No tests failed.
 #+end_example
 
@@ -1507,7 +906,7 @@ No tests failed.
 :ID:       2ad33de1-6d24-48c0-acbb-10aaa74537a6
 :END:
 #+begin_src lisp :results output replace :exports results
-  (load "lisp/lib/skel/tests.lisp")
+  (load "lib/skel/tests.lisp")
   (asdf:test-system :skel)
 #+end_src
 
@@ -1526,7 +925,7 @@ No tests failed.
 :ID:       e9cd88d5-fd78-4fb5-ad79-67a34619d45c
 :END:
 #+begin_src lisp :results output replace :exports results
-  (load "lisp/lib/packy/tests.lisp")
+  (load "lib/packy/tests.lisp")
   (asdf:test-system :packy)
 #+end_src
 
@@ -1540,7 +939,7 @@ No tests failed.
 :ID:       4d585b8f-aaa8-4779-9a0b-bccebffb8249
 :END:
 #+begin_src lisp :results output replace :exports results
-  (load "lisp/lib/nlp/tests.lisp")
+  (load "lib/nlp/tests.lisp")
   (asdf:test-system :nlp)
 #+end_src
 
@@ -1557,7 +956,7 @@ No tests failed.
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :net)
-  (load "lisp/lib/net/tests.lisp")
+  (load "lib/net/tests.lisp")
   (asdf:test-system :net)
 #+end_src
 
@@ -1584,7 +983,7 @@ No tests failed.
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :log)
-  (load "lisp/lib/log/tests.lisp")
+  (load "lib/log/tests.lisp")
   (asdf:test-system :log)
 #+end_src
 
@@ -1604,7 +1003,7 @@ No tests failed.
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :gui/tests)
-  (load "lisp/lib/gui/tests.lisp")
+  (load "lib/gui/tests.lisp")
   (asdf:test-system :gui)
 #+end_src
 
@@ -1624,7 +1023,7 @@ No tests failed.
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :cli)
-  (load "lisp/lib/cli/tests.lisp")
+  (load "lib/cli/tests.lisp")
   (asdf:test-system :cli)
 #+end_src
 
@@ -1653,7 +1052,7 @@ No tests failed.
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :rt)
-  (load "lisp/lib/rt/tests.lisp")
+  (load "lib/rt/tests.lisp")
   (asdf:test-system :rt)
 #+end_src
 
@@ -1673,7 +1072,7 @@ No tests failed.
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :obj)
-  (load "lisp/lib/obj/tests.lisp")
+  (load "lib/obj/tests.lisp")
   (asdf:test-system :obj)
 #+end_src
 
@@ -1709,7 +1108,7 @@ in suite obj with 12/12 tests:
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :syn)
-  (load "lisp/lib/syn/tests.lisp")
+  (load "lib/syn/tests.lisp")
   (asdf:test-system :syn)
 #+end_src
 
@@ -1729,7 +1128,7 @@ in suite obj with 12/12 tests:
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :doc)
-  (load "lisp/lib/doc/tests.lisp")
+  (load "lib/doc/tests.lisp")
   (asdf:test-system :doc)
 #+end_src
 
@@ -1754,7 +1153,7 @@ No tests failed.
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :vc)
-  (load "lisp/lib/vc/tests.lisp")
+  (load "lib/vc/tests.lisp")
   (asdf:test-system :vc)
 #+end_src
 
@@ -1782,7 +1181,7 @@ No tests failed.
 
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :pod)
-  (load "lisp/lib/pod/tests.lisp")
+  (load "lib/pod/tests.lisp")
   (asdf:test-system :pod)
 #+end_src
 
@@ -1805,7 +1204,7 @@ No tests failed.
 :ID:       a41bcf3f-8e2a-42b5-9e7e-4aba12088710
 :END:
 #+begin_src lisp :results output replace :exports results
-  (load "lisp/ffi/btrfs/tests.lisp")
+  (load "ffi/btrfs/tests.lisp")
   (asdf:test-system :btrfs)
 #+end_src
 
@@ -1818,7 +1217,7 @@ No tests failed.
 :ID:       d3d159f1-23a8-4a0e-9403-2f7a0dc21e04
 :END:
 #+begin_src lisp :results output replace :exports results
-  (load "lisp/ffi/rocksdb/tests.lisp")
+  (load "ffi/rocksdb/tests.lisp")
   (asdf:test-system :rocksdb)
 #+end_src
 
@@ -1834,7 +1233,7 @@ No tests failed.
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :uring)
-  (load "lisp/ffi/uring/tests.lisp")
+  (load "ffi/uring/tests.lisp")
   (asdf:test-system :uring)
 #+end_src
 
@@ -1853,7 +1252,7 @@ No tests failed.
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :tree-sitter)
-  (load "lisp/ffi/tree-sitter/tests.lisp")
+  (load "ffi/tree-sitter/tests.lisp")
   (asdf:test-system :tree-sitter)
 #+end_src
 
@@ -1874,7 +1273,7 @@ No tests failed.
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :blake3)
-  (load "lisp/ffi/blake3/tests.lisp")
+  (load "ffi/blake3/tests.lisp")
   (asdf:test-system :blake3)
 #+end_src
 
@@ -1954,7 +1353,7 @@ No tests failed.
 :END:
 #+begin_src lisp :results output replace :exports results
   (ql:quickload :xkb)
-  (load "lisp/ffi/xkb/tests.lisp")
+  (load "ffi/xkb/tests.lisp")
   (asdf:test-system :xkb)
 #+end_src
 

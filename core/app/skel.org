@@ -83,7 +83,7 @@ Here is a more verbose example, still with only metadata:
 :vc :hg
 :tags ("core")
 :docs ((:org "readme") (:org "install") (:org "tests") (:org "todo"))
-:import ("lisp/lisp.sk" "rust/rust.sk")
+:import ("emacs/emacs.sk")
 #+end_src
 
 Another example with rules and components:
@@ -102,7 +102,7 @@ Another example with rules and components:
 :docs ((:org "readme"))
 :components
 ((:elisp "sk"))
-:stash "~/dev/comp/stash"
+:stash "~/.stash"
 #+end_src
 ** version control
 :PROPERTIES:
@@ -215,8 +215,7 @@ skel
     #<rule build-zstd-alien> #<rule build-tree-sitter-alien>)
    (:run #<rule run-swank>) ... }
 :include
- [ #<project core/rust :components 1 :rules 3>
-   #<project core/emacs :components 0 :rules 2> ]
+ [ #<project core/emacs :components 0 :rules 2> ]
 #+end_example
 
 You can also view specific slots which will print all values without
@@ -229,8 +228,8 @@ skel :rules
 #+RESULTS:
 #+begin_example
 :rules
- [ #<rule all (%stash psl.dat parquet.thrift rgb.txt build-zstd-alien
-               build-tree-sitter-alien build-all-core)>
+ [ #<rule all (%stash psl.dat rgb.txt build-zstd-alien build-tree-sitter-alien
+               build-core)>
    #<rule upstream>  #<rule clean> #<rule update-readme> #<rule run-swank>
    #<rule build-tree-sitter-alien> #<rule install-tree-sitter-alien>
    #<rule build-zstd-alien>  #<rule build-tree-sitter-alien>
@@ -285,10 +284,9 @@ skel :rules
    #<rule compile-tests> #<rule compile-core>  #<rule compile-user>
    #<rule compile-prelude>
    #<rule fasls (compile-core compile-bench compile-user compile-prelude)>
-   #<rule mailman> #<rule alik>  #<rule rust-bin (mailman alik)>
-   #<rule alik-ui> #<rule install (install-core)>  #<rule syms.sxp>
-   #<rule dist>  #<rule dist-source (clean)>
-   #<rule dist-core (clean %stash build-core)> ]
+   #<rule install (install-core)>  #<rule syms.sxp>  #<rule dist>
+   #<rule dist-source> #<rule dist-core (clean %stash build-core)>
+   #<rule deploy (all dist)> ]
 #+end_example
 
 * help
@@ -301,7 +299,7 @@ skel -h
 
 #+RESULTS:
 #+begin_example
-skel v0.1.1:15b26615e8d1 --- The hackable devtool.
+skel v0.1.1:2c9483d1edd0+ --- The hackable devtool.
 
 options:
   -h/--help               print help

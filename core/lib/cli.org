@@ -26,6 +26,7 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 - log
 - dat
 - obj
+- readline
 
 ** dependents
 :PROPERTIES:
@@ -38,16 +39,25 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 #+end_src
 
 #+RESULTS:
-- user
-- prelude
+- gui
 - packy
+- syn
 - box
 - pod
 - net
 - vc
 - skel
 - cli/tests
+- prelude
 - core/lib
+- bin/packy
+- bin/skel
+- bin/vc
+- bin/gen
+- bin/rdb
+- bin/pod
+- bin/homer
+- bin/organ
 
 ** files
 :PROPERTIES:
@@ -74,10 +84,12 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 - tools/tmux.lisp
 - tools/pacman.lisp
 - tools/cc.lisp
-- tools/systemd.lisp
-- tools/wg.lisp
-- tools/cargo.lisp
+- tools/sys.lisp
+- tools/rust.lisp
 - tools/sbcl.lisp
+- tools/net.lisp
+- tools/mail.lisp
+- tools/fs.lisp
 - clap/pkg.lisp
 - clap/ast.lisp
 - clap/vars.lisp
@@ -87,6 +99,8 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 - clap/opt.lisp
 - clap/cmd.lisp
 - clap/cli.lisp
+- multi.lisp
+- tui.lisp
 - cli.lisp
 
 ** packages
@@ -100,28 +114,35 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 
 #+RESULTS:
 - CLI/REPL
+- CLI/TUI
 - CLI/CLAP/UTIL
+- CLI/TOOLS/GO
+- CLI/TOOLS/NET
 - CLI/CLAP/PROTO
+- CLI/TOOLS/MAIL
 - CLI/TOOLS/PACMAN
 - CLI/CLAP/OBJ
 - CLI/ENV
 - CLI/CLAP/MACS
 - CLI/TOOLS/SBCL
-- CLI/TOOLS/WG
-- CLI/TOOLS/SYSTEMD
+- CLI/TOOLS
+- CLI/TOOLS/RUST
 - CLI/PROMPT
+- CLI/TOOLS/FS
 - CLI-USER
 - CLI/PROGRESS
 - CLI/CLAP
+- CLI/TOOLS/PROTO
 - CLI/TOOLS/TMUX
 - CLI/TESTS
 - CLI/ANSI
 - CLI/SPARK
+- CLI/MULTI
 - CLI/TOOLS/TERM
 - CLI/CLAP/AST
 - CLI/CLAP/VARS
 - CLI/ED
-- CLI/TOOLS/CARGO
+- CLI/TOOLS/SYS
 - CLI/CLAP/SIMPLE
 - CLI/TOOLS/CC
 - CLI
@@ -138,26 +159,17 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 #+end_src
 
 #+RESULTS:
-: #<RT:TEST-SUITE CLI [11:11:0:0] {1003038B23}>
+: #<RT:TEST-SUITE CLI [12:12:0:0] {100395B4B3}>
 
 #+begin_src lisp :output replace
   (rt:tests rt:*test-suite*)
 #+end_src
 
 #+RESULTS:
-#+begin_example
-(#<RT:TEST SBCL-TOOLS :fn SBCL-TOOLS-TEST787 {100303C973}>
- #<RT:TEST CLAP-MAIN :fn CLAP-MAIN-TEST786 {100303C8E3}>
- #<RT:TEST CLI-AST :fn CLI-AST-TEST785 {100303C823}>
- #<RT:TEST ENV :fn ENV-TEST784 {100303C793}>
- #<RT:TEST REPL :fn REPL-TEST783 {100303C703}>
- #<RT:TEST SPARK :fn SPARK-TEST782 {100303C673}>
- #<RT:TEST PROGRESS :fn PROGRESS-TEST781 {100303C5E3}>
- #<RT:TEST CLAP-OPTS :fn CLAP-OPTS-TEST780 {100303C553}>
- #<RT:TEST CLAP-BASIC :fn CLAP-BASIC-TEST779 {100303C493}>
- #<RT:TEST CLI-PROMPT :fn CLI-PROMPT-TEST778 {1003038F83}>
- #<RT:TEST ANSI :fn ANSI-TEST777 {1003038D33}>)
-#+end_example
+: (#<RT:TEST SBCL> #<RT:TEST CLAP-OPTS> #<RT:TEST CLAP-MAIN> #<RT:TEST CLI-AST>
+:  #<RT:TEST MIXED-ARGS> #<RT:TEST ANSI> #<RT:TEST SHELL-READER>
+:  #<RT:TEST SBCL-TOOLS> #<RT:TEST ENV> #<RT:TEST REPL> #<RT:TEST SPARK>
+:  #<RT:TEST PROGRESS>)
 * Packages
 :PROPERTIES:
 :ID:       94d0e207-02b0-4289-84e1-19e5b74e819b
@@ -172,7 +184,7 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 Parser. What can I say, it's a good acronym.
 
 Besides the system tests, you can find this package used in our lisp
-applications (=lisp/bin=).
+applications (=bin=).
 
 =clap= provides an object protocol and classes which parse input into
 a simple AST and execute the appropriate option and command handlers.
