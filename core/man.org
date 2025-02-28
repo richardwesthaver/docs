@@ -118,7 +118,7 @@ we may safely ignore it.
 :ID:       2b2485b6-29d1-4ead-aaf5-91e4798c5779
 :END:
 - GNU/Linux, linux-headers
-- GCC
+- C compiler (GCC, MUSL, CLANG)
 - SBCL
 - GNU Emacs
 - Quicklisp
@@ -126,13 +126,14 @@ we may safely ignore it.
 - Zstd
 - Mercurial
 - OpenSSL
+- Treesitter
+- BLAKE3
 **** Optional Requirements
 :PROPERTIES:
 :ID:       3089b83f-1bd1-423e-9e09-48c839fbac07
 :END:
 - Rust
 - X11
-- BLAKE3
 - CUDA
 - Libevdev
 - Libkeyutils
@@ -141,7 +142,6 @@ we may safely ignore it.
 - Libreadline
 - Libssh2
 - Btrfs
-- Treesitter
 - Podman
 - QEMU
 - CUDA
@@ -171,19 +171,20 @@ Then in the SBCL REPL:
   (ql:quickload :skel)
   (in-package :sk-user)
   (init-skel)
-  (sk-make *skel-project* :build-all-core)
+  (sk-make *skel-project* :all)
 #+end_src
 
 #+RESULTS:
-| :BUILD-ALL-CORE |
+| :ALL |
 
 Installation is trivial and can be done from the same REPL session. By
 default the =core= binary will be written to =/usr/local/bin/= and a
 series of symlinks will be created in the same directory - similar to
-Busybox binaries.
+Busybox binaries. Note that this may not work in a =SLIME= repl since
+=sudo= is called and might need input at the terminal.
 
 #+begin_src lisp :dir ~/comp/core/ :package sk-user :eval never
-  (sk-make *skel-project* :install-all-core)
+  (sk-make *skel-project* :install-core)
 #+end_src
 
 You should see some output like the following:
@@ -225,7 +226,6 @@ Emacs configuration using the =skel= command.
   keys.el -> /home/ellis/.emacs.d/keys.el
   util.el -> /home/ellis/.emacs.d/util.el
   c2.el -> /home/ellis/.emacs.d/lib/c2.el
-  corfu-terminal.el -> /home/ellis/.emacs.d/lib/corfu-terminal.el
   exec-path-from-shell.el -> /home/ellis/.emacs.d/lib/exec-path-from-shell.el
   graph.el -> /home/ellis/.emacs.d/lib/graph.el
   inbox.el -> /home/ellis/.emacs.d/lib/inbox.el
