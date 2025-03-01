@@ -10,6 +10,7 @@ sections below.
 * rust
 :PROPERTIES:
 :ID:       aab59686-a82b-4718-a8ed-93d96c2846fe
+:header-args: :exports both
 :END:
 ** lib
 :PROPERTIES:
@@ -19,7 +20,7 @@ sections below.
 :PROPERTIES:
 :ID:       23599c41-ffde-4cb9-86de-018fea66de76
 :END:
-#+begin_src shell :results output replace :exports results
+#+begin_src shell :results output replace
 cd crates/flate
 cargo test
 #+end_src
@@ -152,7 +153,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 :PROPERTIES:
 :ID:       75607e41-c411-4e20-b00b-1a50c900e556
 :END:
-#+begin_src shell :results output replace :exports results
+#+begin_src shell :results output replace
 cd crates/logger
 cargo test
 #+end_src
@@ -176,7 +177,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 :PROPERTIES:
 :ID:       d03bb57a-bb4c-42bb-b121-d398b0ce0815
 :END:
-#+begin_src shell :results output replace :exports results
+#+begin_src shell :results output replace
 cd crates/sxp
 cargo test
 #+end_src
@@ -243,7 +244,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 :PROPERTIES:
 :ID:       5c490df8-7039-4729-bfa3-bfeebfac7533
 :END:
-#+begin_src shell :results output replace :exports results
+#+begin_src shell :results output replace
 cd crates/util
 cargo test
 #+end_src
@@ -266,279 +267,194 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 * lisp
 :PROPERTIES:
 :ID:       6e6c29eb-d206-4f05-9e72-528ba77e373e
+:header-args: :exports both
 :END:
+#+call: user-slime()
 #+name: gen-core-coverage-report
-#+begin_src lisp :results silent :exports code
-  (ql:quickload :prelude)
+#+begin_src lisp :results silent :exports none
+  (ql:quickload :core/tests)
   ;; (require 'sb-cover)
 
   (in-package :std-user)
   (use-package :rt/tracing)
 
-  (defun gen-report (system)
-    (declare (optimize sb-cover:store-coverage-data))
-    (asdf:compile-system system)
-    (asdf:test-system system :force t))
-
   (defun gen-core-coverage-report ()
-    (time
-     (progn
-       (rt/cover:enable-coverage)
-       (gen-report :std)
-       (gen-report :dat)
-       (gen-report :pod)
-       (gen-report :vc)
-       ;; (gen-report :syn)
-       (gen-report :parse)
-       (gen-report :cli)
-       ;; (gen-report :xkb)
-       (gen-report :btrfs)
-       (gen-report :tree-sitter)
-       (gen-report :uring)
-       (gen-report :zstd)
-       (gen-report :blake3)
-       (gen-report :rocksdb)
-       (gen-report :rdb)
-       (gen-report :skel)
-       (gen-report :organ)
-       (gen-report :nlp)
-       (gen-report :obj)
-       (gen-report :log)
-       (gen-report :net)
-       (gen-report :packy))))
+    (declare (optimize sb-cover:store-coverage-data))
+    (rt/cover:enable-coverage)
+    (time (rt:run-all-tests*))
+    (rt/cover:report "/tmp/core/"))
+     
 #+end_src
 
 #+name: gen-trace-report
-#+begin_src lisp :results output :exports code
-  (rt/tracing:start-tracing 
+#+begin_src lisp :results output :exports none :package std-user
+  (rt/tracing:with-tracing
    (list
-    "STD" "PARSE" "SKEL" "ORGAN" ;; "CLI" "NLP"
-    "OBJ" "LOG" "NET" "PACKY" "DAT"
-    "RDB" "BTRFS" "SYN" "ZSTD" "URING"))
-  (rt/tracing:stop-tracing)
-  (gen-core-coverage-report)
-  (rt/tracing:save-report "/tmp/core/core.json")
-  (sb-thread:print-allocator-histogram)
+    "PARSE" "SKEL" "ORGAN" "CLI" "NLP" "OBJ" "STD" "CORE"
+    "LOG" "NET" "PACKY" "DAT"
+    "RDB" "BTRFS" "SYN" "ZSTD" "URING")
+    (gen-core-coverage-report)
+    (rt/tracing:save-report "/tmp/core/core.json"))
+  ;; (sb-thread:print-allocator-histogram)
   ;; (std:dump-thread)
 #+end_src
 
 #+RESULTS: gen-trace-report
 #+begin_example
-in suite STD:
-; with 0/16 tests
-No tests failed.
-in suite CORE:
-; with 0/1 tests
-No tests failed.
-in suite POD:
-; with 0/2 tests
-No tests failed.
 in suite VC:
 ; with 0/4 tests
 No tests failed.
-in suite SYN:
-; with 0/0 tests
+in suite NET:
+; with 0/9 tests
 No tests failed.
-in suite PARSE:
-; with 0/2 tests
+in suite GUI:
+; with 0/1 tests
 No tests failed.
-in suite BTRFS:
-; with 0/2 tests
+in suite IO:
+; with 1/11 tests
+
+#<FAIL THE VALUE
+         NIL
+       IS NOT OF TYPE
+         SB-ALIEN-INTERNALS:ALIEN-TYPE> 
+1 out of 11 total tests failed: #<RT:TEST ZSTD-STREAM>.
+3 unexpected failures: 
+   #<FAIL THE VALUE
+         NIL
+       IS NOT OF TYPE
+         SB-ALIEN-INTERNALS:ALIEN-TYPE>, 
+   #<FAIL THE VALUE
+         NIL
+       IS NOT OF TYPE
+         SB-ALIEN-INTERNALS:ALIEN-TYPE>, 
+   #<FAIL THE VALUE
+         NIL
+       IS NOT OF TYPE
+         SB-ALIEN-INTERNALS:ALIEN-TYPE>.in suite KRYPT:
+; with 0/1 tests
 No tests failed.
-in suite URING:
+in suite CRY:
 ; with 0/8 tests
 No tests failed.
-in suite ZSTD:
-; with 0/6 tests
+in suite DSP:
+; with 0/1 tests
 No tests failed.
 in suite RDB:
 ; with 0/13 tests
 No tests failed.
-in suite SKEL:
-; with 0/5 tests
+in suite POD:
+; with 0/2 tests
 No tests failed.
-in suite ORGAN:
-; with 0/8 tests
+in suite PARSE:
+; with 0/2 tests
+No tests failed.
+in suite UBLK:
+; with 0/1 tests
+No tests failed.
+in suite BLAKE3:
+; with 0/3 tests
+No tests failed.
+in suite ZSTD:
+; with 0/6 tests
+No tests failed.
+in suite SNDFILE:
+; with 0/2 tests
+No tests failed.
+in suite SSH2:
+; with 0/1 tests
+No tests failed.
+in suite XKB:
+; with 0/1 tests
+No tests failed.
+in suite TREE-SITTER:
+; with 0/2 tests
 No tests failed.
 in suite OBJ:
-; with 1/18 tests
-
-#<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION OBJ/STORE::SET-INSTANCE-SCHEMA-ID (1)>
-       WHEN CALLED WITH ARGUMENTS
-         (NIL 2 3676932230077147091).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6> 
-1 out of 18 total tests failed: #<RT:TEST BTREE>.
-3 unexpected failures: 
-   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION OBJ/STORE::SET-INSTANCE-SCHEMA-ID (1)>
-       WHEN CALLED WITH ARGUMENTS
-         (NIL 2 3676932230077147091).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6>, 
-   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION OBJ/STORE::SET-INSTANCE-SCHEMA-ID (1)>
-       WHEN CALLED WITH ARGUMENTS
-         (NIL 1 3676932230077147091).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6>, 
-   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION OBJ/STORE::SET-INSTANCE-SCHEMA-ID (1)>
-       WHEN CALLED WITH ARGUMENTS
-         (NIL 0 3676932230077147091).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6>.in suite LOG:
-; with 3/9 tests
-
-#<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION LOG::QUEUE-LOCK (1)>
-       WHEN CALLED WITH ARGUMENTS
-         (NIL).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6> 
-
-#<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION (COMMON-LISP:SETF STD/PIPE:PIPE) (2)>
-       WHEN CALLED WITH ARGUMENTS
-         (#() NIL).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6> 
-
-#<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION STD/META:STOP (7)>
-       WHEN CALLED WITH ARGUMENTS
-         (NIL).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6> 
-3 out of 9 total tests failed: #<RT:TEST FILE-LOGGER>, 
-   #<RT:TEST ROTATING-FILE-LOGGER>, #<RT:TEST STOP-LOGGER>.
-9 unexpected failures: 
-   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION STD/META:STOP (7)>
-       WHEN CALLED WITH ARGUMENTS
-         (NIL).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6>, 
-   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION (COMMON-LISP:SETF STD/PIPE:PIPE) (2)>
-       WHEN CALLED WITH ARGUMENTS
-         (#() NIL).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6>, 
-   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION LOG::QUEUE-LOCK (1)>
-       WHEN CALLED WITH ARGUMENTS
-         (NIL).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6>, 
-   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION STD/META:STOP (7)>
-       WHEN CALLED WITH ARGUMENTS
-         (NIL).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6>, 
-   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION (COMMON-LISP:SETF STD/PIPE:PIPE) (2)>
-       WHEN CALLED WITH ARGUMENTS
-         (#() NIL).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6>, 
-   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION LOG::QUEUE-LOCK (1)>
-       WHEN CALLED WITH ARGUMENTS
-         (NIL).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6>, 
-   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION STD/META:STOP (7)>
-       WHEN CALLED WITH ARGUMENTS
-         (NIL).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6>, 
-   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION (COMMON-LISP:SETF STD/PIPE:PIPE) (2)>
-       WHEN CALLED WITH ARGUMENTS
-         (#() NIL).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6>, 
-   #<FAIL THERE IS NO APPLICABLE METHOD FOR THE GENERIC FUNCTION
-         #<STANDARD-GENERIC-FUNCTION LOG::QUEUE-LOCK (1)>
-       WHEN CALLED WITH ARGUMENTS
-         (NIL).
-SEE ALSO:
-  THE ANSI STANDARD, SECTION 7.6.6>.in suite NET:
-; with 0/9 tests
+; with 0/17 tests
 No tests failed.
 in suite PACKY:
 ; with 0/2 tests
 No tests failed.
- Bin      Size     Allocated     Count    Cum%
-  0         16             0         0 nil    
-  1         32             0         0 nil    
-  2         48             0         0 nil    
-  3         64             0         0 nil    
-  4         80             0         0 nil    
-  5         96             0         0 nil    
-  6        112             0         0 nil    
-  7        128             0         0 nil    
-  8        144             0         0 nil    
-  9        160             0         0 nil    
- 10        176             0         0 nil    
- 11        192             0         0 nil    
- 12        208             0         0 nil    
- 13        224             0         0 nil    
- 14        240             0         0 nil    
- 15        256             0         0 nil    
- 16        272             0         0 nil    
- 17        288             0         0 nil    
- 18        304             0         0 nil    
- 19        320             0         0 nil    
- 20        336             0         0 nil    
- 21        352             0         0 nil    
- 22        368             0         0 nil    
- 23        384             0         0 nil    
- 24        400             0         0 nil    
- 25        416             0         0 nil    
- 26        432             0         0 nil    
- 27        448             0         0 nil    
- 28        464             0         0 nil    
- 29        480             0         0 nil    
- 30        496             0         0 nil    
- 31        512             0         0 nil    
- 32     < 1024             0         0 nil    
- 33     < 2048             0         0 nil    
- 34     < 4096             0         0 nil    
- 35     < 8192             0         0 nil    
- 36    < 16384             0         0 nil    
- 37    < 32768             0         0 nil    
- 38    < 65536             0         0 nil    
- 39   < 131072             0         0 nil    
- 40   < 262144             0         0 nil    
- 41   < 524288             0         0 nil    
- 42     < 2^20             0         0 nil    
- 43     < 2^21             0         0 nil    
- 44     < 2^22             0         0 nil    
- 45     < 2^23             0         0 nil    
- 46     < 2^24             0         0 nil    
- 47     < 2^25             0         0 nil    
- 48     < 2^26             0         0 nil    
- 49     < 2^27             0         0 nil    
- 50     < 2^28             0         0 nil    
- 51     < 2^29             0         0 nil    
- 52     < 2^30             0         0 nil    
- 53     < 2^31             0         0 nil    
- 54     < 2^32             0         0 nil    
- 55     < 2^33             0         0 nil    
- 56     < 2^34             0         0 nil    
- 57     < 2^35             0         0 nil    
- 58     < 2^36             0         0 nil    
- 59     < 2^37             0         0 nil    
- 60     < 2^38             0         0 nil    
- 61     < 2^39             0         0 nil    
- 62     < 2^40             0         0 nil    
- 63     < 2^41             0         0 nil    
- Tot                       0         0
+in suite ORGAN:
+; with 0/8 tests
+No tests failed.
+in suite SYN/LANG/RS:
+; with 0/1 tests
+No tests failed.
+in suite SYN/LANG/C:
+; with 0/1 tests
+No tests failed.
+in suite SYN/GEN/RS:
+; with 1/1 tests
+#<FAIL THE VARIABLE SYN/GEN/RS/SYM::MAIN IS UNBOUND.> 
+1 out of 1 total tests failed: #<RT:TEST SIMPLE>.
+3 unexpected failures: 
+   #<FAIL THE VARIABLE SYN/GEN/RS/SYM::MAIN IS UNBOUND.>, 
+   #<FAIL THE VARIABLE SYN/GEN/RS/SYM::MAIN IS UNBOUND.>, 
+   #<FAIL THE VARIABLE SYN/GEN/RS/SYM::MAIN IS UNBOUND.>.in suite SYN/GEN/C:
+; with 0/1 tests
+No tests failed.
+in suite SYN/GEN:
+; with 0/10 tests
+No tests failed.
+in suite SYN:
+; with 0/0 tests
+No tests failed.
+in suite SKEL:
+; with 0/5 tests
+No tests failed.
+in suite NLP:
+; with 0/5 tests
+No tests failed.
+in suite ALSA:
+; with 0/1 tests
+No tests failed.
+in suite DOC:
+; with 0/7 tests
+No tests failed.
+in suite URING:
+; with 0/8 tests
+No tests failed.
+in suite BTRFS:
+; with 0/2 tests
+No tests failed.
+in suite ROCKSDB:
+; with 0/17 tests
+No tests failed.
+in suite CLI:
+; with 0/12 tests
+No tests failed.
+in suite RT:
+; with 2/6 tests
+#<PASS #<TEST RT>> 
+
+#<FAIL EXECUTION OF A FORM COMPILED WITH ERRORS.
+FORM:
+  ("RT" "RT/TESTS")
+COMPILE-TIME ERROR:
+  ILLEGAL FUNCTION CALL> 
+1 out of 6 total tests failed: #<RT:TEST TRACING>.
+3 unexpected failures: 
+   #<FAIL EXECUTION OF A FORM COMPILED WITH ERRORS.
+FORM:
+  ("RT" "RT/TESTS")
+COMPILE-TIME ERROR:
+  ILLEGAL FUNCTION CALL>, 
+   #<FAIL EXECUTION OF A FORM COMPILED WITH ERRORS.
+FORM:
+  ("RT" "RT/TESTS")
+COMPILE-TIME ERROR:
+  ILLEGAL FUNCTION CALL>, 
+   #<FAIL EXECUTION OF A FORM COMPILED WITH ERRORS.
+FORM:
+  ("RT" "RT/TESTS")
+COMPILE-TIME ERROR:
+  ILLEGAL FUNCTION CALL>.in suite LOG:
+; with 0/9 tests
+No tests failed.
+in suite STD:
+; with 0/16 tests
+No tests failed.
 #+end_example
 
 ** std

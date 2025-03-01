@@ -159,7 +159,7 @@ documentation for details on that process.
 Bootstrapping from source is quite easy too. All that is needed is to
 get the source, load the project =skelfile= and run =sk-make=.
 
-  #+begin_src shell :eval never
+  #+begin_src shell :eval never :exports code
     # clone the source code from a mirror
     git clone https://codeberg.org/c-c/core
     cd core
@@ -167,7 +167,7 @@ get the source, load the project =skelfile= and run =sk-make=.
   #+end_src
 
 Then in the SBCL REPL:
-#+begin_src lisp :dir ~/comp/core/
+#+begin_src lisp :dir ~/comp/core/ :exports both
   (ql:quickload :skel)
   (in-package :sk-user)
   (init-skel)
@@ -183,7 +183,7 @@ series of symlinks will be created in the same directory - similar to
 Busybox binaries. Note that this may not work in a =SLIME= repl since
 =sudo= is called and might need input at the terminal.
 
-#+begin_src lisp :dir ~/comp/core/ :package sk-user :eval never
+#+begin_src lisp :dir ~/comp/core/ :package sk-user :eval never :exports code
   (sk-make *skel-project* :install-core)
 #+end_src
 
@@ -214,7 +214,7 @@ If you don't have your own Emacs config you can install the default CC
 Emacs configuration using the =skel= command. 
 
 - Warning :: that this will mess with your =~/.emacs.d= directory:
-  #+begin_src shell :dir ~/comp/core/ :results output
+  #+begin_src shell :dir ~/comp/core/ :results output :exports both
   cd emacs && skel install
   #+end_src
 
@@ -258,7 +258,7 @@ for =ellis.el= and load it if it exists in =~/.emacs.d/=.
 The core is a single binary which dispatches on argv[0] from the
 CLI. Each unique symlink to the core binary is treated as a separate
 dispatch to a 'main' function like so:
-#+begin_src lisp
+#+begin_src lisp :exports code
   (define-multi-main dispatch-core
     (progn (in-package :core-lisp)
            ,#+nil ...)
@@ -284,8 +284,6 @@ A skel config in 'canonical' format (plain S-Expression) is written to
 already exist. You may want to adjust the defaults and rewrite in the
 'pretty' format which is easier on the eyes.
 
-#+begin_src skel
-#+end_src
 ***** Homer
 :PROPERTIES:
 :ID:       526513cb-5b7a-4cc0-8d91-739db3e635f6
