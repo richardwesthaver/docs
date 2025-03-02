@@ -247,28 +247,27 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 :PROPERTIES:
 :ID:       7fa7ae69-b3a0-4bdf-907c-dacb25cb3662
 :END:
-#+begin_src lisp :output replace
-  (ql:quickload :cli/tests)
-  (rt:in-suite :cli)
-  (print rt:*test-suite* nil)
-#+end_src
+#+call: lisp-system-tests[:results table :post transpose]('cli)
 
 #+RESULTS:
-: #<RT:TEST-SUITE CLI [12:12:0:0] {100395B4B3}>
+| SBCL         |
+| CLAP-OPTS    |
+| CLAP-MAIN    |
+| CLI-AST      |
+| MIXED-ARGS   |
+| ANSI         |
+| SHELL-READER |
+| SBCL-TOOLS   |
+| ENV          |
+| REPL         |
+| SPARK        |
+| PROGRESS     |
 
-#+begin_src lisp :output replace
-  (rt:tests rt:*test-suite*)
-#+end_src
-
-#+RESULTS:
-: (#<RT:TEST SBCL> #<RT:TEST CLAP-OPTS> #<RT:TEST CLAP-MAIN> #<RT:TEST CLI-AST>
-:  #<RT:TEST MIXED-ARGS> #<RT:TEST ANSI> #<RT:TEST SHELL-READER>
-:  #<RT:TEST SBCL-TOOLS> #<RT:TEST ENV> #<RT:TEST REPL> #<RT:TEST SPARK>
-:  #<RT:TEST PROGRESS>)
 * Packages
 :PROPERTIES:
 :ID:       94d0e207-02b0-4289-84e1-19e5b74e819b
 :END:
+
 ** cli/clap
 :PROPERTIES:
 :ID:       c703a68c-2eb1-4251-8671-d587d550b66a
