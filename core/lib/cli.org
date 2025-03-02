@@ -15,138 +15,233 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 :PROPERTIES:
 :ID:       5d0f369d-5de0-41b1-8288-2633a84c3a42
 :END:
-#+begin_src lisp :results list
-  (ql:quickload :doc)
-  (let ((sys (asdf:find-system :cli)))
-    (asdf:system-depends-on sys))
-#+end_src
+#+call: lisp-system-dependencies[:results table :post transpose]('cli) 
 
 #+RESULTS:
-- std
-- log
-- dat
-- obj
-- readline
+| std      |
+| log      |
+| dat      |
+| obj      |
+| readline |
 
 ** dependents
 :PROPERTIES:
 :ID:       6c86510a-2c59-48a6-91c3-8533ceb0dcda
 :END:
-#+begin_src lisp :results list
-  (ql:quickload :doc)
-  (let ((sys (doc:system-documentation :cli)))
-    (mapcar (lambda (s) (asdf:component-name (doc:doc-system s))) (doc:doc-dependents sys)))
-#+end_src
+#+call: lisp-system-dependents[:results table :post transpose]('cli) 
 
 #+RESULTS:
-- gui
-- packy
-- syn
-- box
-- pod
-- net
-- vc
-- skel
-- cli/tests
-- prelude
-- core/lib
-- bin/packy
-- bin/skel
-- bin/vc
-- bin/gen
-- bin/rdb
-- bin/pod
-- bin/homer
-- bin/organ
+| user      |
+| gui       |
+| packy     |
+| syn       |
+| box       |
+| pod       |
+| net       |
+| vc        |
+| skel      |
+| cli/tests |
+| prelude   |
+| core/lib  |
+| bin/packy |
+| bin/skel  |
+| bin/vc    |
+| bin/gen   |
+| bin/rdb   |
+| bin/pod   |
+| bin/homer |
+| bin/organ |
 
 ** files
 :PROPERTIES:
 :ID:       dc23dd4f-6025-40cb-90c7-982def7ef530
 :END:
-#+begin_src lisp :output replace :results list
-  (mapcar (lambda (p)
-              (enough-namestring p (asdf:system-source-directory :cli)))
-            (doc:doc-files (doc:system-documentation :cli)))
-#+end_src
+#+call: lisp-system-files[:results table :post transpose]('cli) 
 
 #+RESULTS:
-- pkg.lisp
-- ansi.lisp
-- env.lisp
-- progress.lisp
-- spark.lisp
-- repl.lisp
-- shell.lisp
-- prompt.lisp
-- ed.lisp
-- tools/pkg.lisp
-- tools/term.lisp
-- tools/tmux.lisp
-- tools/pacman.lisp
-- tools/cc.lisp
-- tools/sys.lisp
-- tools/rust.lisp
-- tools/sbcl.lisp
-- tools/net.lisp
-- tools/mail.lisp
-- tools/fs.lisp
-- clap/pkg.lisp
-- clap/ast.lisp
-- clap/vars.lisp
-- clap/util.lisp
-- clap/macs.lisp
-- clap/proto.lisp
-- clap/opt.lisp
-- clap/cmd.lisp
-- clap/cli.lisp
-- multi.lisp
-- tui.lisp
-- cli.lisp
+| /home/ellis/comp/core/std/defpkg.lisp               |
+| /home/ellis/comp/core/std/pkg.lisp                  |
+| /home/ellis/comp/core/std/condition.lisp            |
+| /home/ellis/comp/core/std/sym.lisp                  |
+| /home/ellis/comp/core/std/list.lisp                 |
+| /home/ellis/comp/core/std/type.lisp                 |
+| /home/ellis/comp/core/std/num/float.lisp            |
+| /home/ellis/comp/core/std/num/parse.lisp            |
+| /home/ellis/comp/core/std/num/leb128.lisp           |
+| /home/ellis/comp/core/std/num/math.lisp             |
+| /home/ellis/comp/core/std/stream.lisp               |
+| /home/ellis/comp/core/std/curry.lisp                |
+| /home/ellis/comp/core/std/array.lisp                |
+| /home/ellis/comp/core/std/hash-table.lisp           |
+| /home/ellis/comp/core/std/readtable.lisp            |
+| /home/ellis/comp/core/std/macs/ana.lisp             |
+| /home/ellis/comp/core/std/macs/pan.lisp             |
+| /home/ellis/comp/core/std/macs/const.lisp           |
+| /home/ellis/comp/core/std/macs/var.lisp             |
+| /home/ellis/comp/core/std/macs/collecting.lisp      |
+| /home/ellis/comp/core/std/macs/loop.lisp            |
+| /home/ellis/comp/core/std/macs/control.lisp         |
+| /home/ellis/comp/core/std/macs/sugar.lisp           |
+| /home/ellis/comp/core/std/pipe.lisp                 |
+| /home/ellis/comp/core/std/sys.lisp                  |
+| /home/ellis/comp/core/std/serde.lisp                |
+| /home/ellis/comp/core/std/alien.lisp                |
+| /home/ellis/comp/core/std/meta.lisp                 |
+| /home/ellis/comp/core/std/bit.lisp                  |
+| /home/ellis/comp/core/std/thread.lisp               |
+| /home/ellis/comp/core/std/task.lisp                 |
+| /home/ellis/comp/core/std/fmt.lisp                  |
+| /home/ellis/comp/core/std/path.lisp                 |
+| /home/ellis/comp/core/std/os.lisp                   |
+| /home/ellis/comp/core/std/file.lisp                 |
+| /home/ellis/comp/core/std/string.lisp               |
+| /home/ellis/comp/core/std/seq.lisp                  |
+| /home/ellis/comp/core/std/rand.lisp                 |
+| /home/ellis/comp/core/lib/log/pkg.lisp              |
+| /home/ellis/comp/core/lib/log/condition.lisp        |
+| /home/ellis/comp/core/lib/log/log.lisp              |
+| /home/ellis/comp/core/lib/log/db.lisp               |
+| /home/ellis/comp/core/lib/log/stream.lisp           |
+| /home/ellis/comp/core/lib/log/cfg.lisp              |
+| /home/ellis/comp/core/lib/log/sys.lisp              |
+| /home/ellis/comp/core/lib/dat/pkg.lisp              |
+| /home/ellis/comp/core/lib/dat/condition.lisp        |
+| /home/ellis/comp/core/lib/dat/sxp.lisp              |
+| /home/ellis/comp/core/lib/dat/dot.lisp              |
+| /home/ellis/comp/core/lib/dat/csv.lisp              |
+| /home/ellis/comp/core/lib/dat/json.lisp             |
+| /home/ellis/comp/core/lib/dat/id3.lisp              |
+| /home/ellis/comp/core/lib/dat/parquet/gen.lisp      |
+| /home/ellis/comp/core/lib/dat/parquet/pkg.lisp      |
+| /home/ellis/comp/core/lib/dat/parquet/obj.lisp      |
+| /home/ellis/comp/core/lib/dat/parquet/thrift.lisp   |
+| /home/ellis/comp/core/lib/dat/parquet/tcompact.lisp |
+| /home/ellis/comp/core/lib/dat/parquet/io.lisp       |
+| /home/ellis/comp/core/lib/dat/parquet/rle.lisp      |
+| /home/ellis/comp/core/lib/dat/parquet/proto.lisp    |
+| /home/ellis/comp/core/lib/dat/xml/xml.lisp          |
+| /home/ellis/comp/core/lib/dat/xml/pkg.lisp          |
+| /home/ellis/comp/core/lib/dat/xml/svg.lisp          |
+| /home/ellis/comp/core/lib/dat/xml/fixml.lisp        |
+| /home/ellis/comp/core/lib/dat/html/const.lisp       |
+| /home/ellis/comp/core/lib/dat/html/entity.lisp      |
+| /home/ellis/comp/core/lib/dat/html/html.lisp        |
+| /home/ellis/comp/core/lib/dat/handlebars.lisp       |
+| /home/ellis/comp/core/lib/dat/yaml.lisp             |
+| /home/ellis/comp/core/lib/dat/mime.lisp             |
+| /home/ellis/comp/core/lib/dat/ini.lisp              |
+| /home/ellis/comp/core/lib/dat/toml.lisp             |
+| /home/ellis/comp/core/lib/dat/arff.lisp             |
+| /home/ellis/comp/core/lib/dat/tar.lisp              |
+| /home/ellis/comp/core/lib/dat/midi.lisp             |
+| /home/ellis/comp/core/lib/dat/png.lisp              |
+| /home/ellis/comp/core/lib/dat/base64.lisp           |
+| /home/ellis/comp/core/lib/dat/multi/pkg.lisp        |
+| /home/ellis/comp/core/lib/dat/multi/base.lisp       |
+| /home/ellis/comp/core/lib/dat/multi/hash.lisp       |
+| /home/ellis/comp/core/lib/dat/multi/key.lisp        |
+| /home/ellis/comp/core/lib/dat/multi/addr.lisp       |
+| /home/ellis/comp/core/lib/dat/multi/codec.lisp      |
+| /home/ellis/comp/core/lib/dat/dat.lisp              |
+| /home/ellis/comp/core/lib/obj/meta/pkg.lisp         |
+| /home/ellis/comp/core/lib/obj/meta/sealed.lisp      |
+| /home/ellis/comp/core/lib/obj/meta/stealth.lisp     |
+| /home/ellis/comp/core/lib/obj/meta/typed.lisp       |
+| /home/ellis/comp/core/lib/obj/meta/filtered.lisp    |
+| /home/ellis/comp/core/lib/obj/meta/fast.lisp        |
+| /home/ellis/comp/core/lib/obj/meta/lazy.lisp        |
+| /home/ellis/comp/core/lib/obj/meta/overloaded.lisp  |
+| /home/ellis/comp/core/lib/obj/meta/stored.lisp      |
+| /home/ellis/comp/core/lib/obj/meta/dynamic.lisp     |
+| /home/ellis/comp/core/lib/obj/pkg.lisp              |
+| /home/ellis/comp/core/lib/obj/hash/hasher.lisp      |
+| /home/ellis/comp/core/lib/obj/hash/chash.lisp       |
+| /home/ellis/comp/core/lib/obj/hash/map.lisp         |
+| /home/ellis/comp/core/lib/obj/hash/set.lisp         |
+| /home/ellis/comp/core/lib/obj/hash/castable.lisp    |
+| /home/ellis/comp/core/lib/obj/id.lisp               |
+| /home/ellis/comp/core/lib/obj/uri/pkg.lisp          |
+| /home/ellis/comp/core/lib/obj/uri/domain.lisp       |
+| /home/ellis/comp/core/lib/obj/uri/uri.lisp          |
+| /home/ellis/comp/core/lib/obj/uri/mask.lisp         |
+| /home/ellis/comp/core/lib/obj/uri/state.lisp        |
+| /home/ellis/comp/core/lib/obj/uri/parse.lisp        |
+| /home/ellis/comp/core/lib/obj/uri/print.lisp        |
+| /home/ellis/comp/core/lib/obj/uri/path.lisp         |
+| /home/ellis/comp/core/lib/obj/uri/intern.lisp       |
+| /home/ellis/comp/core/lib/obj/url.lisp              |
+| /home/ellis/comp/core/lib/obj/seq.lisp              |
+| /home/ellis/comp/core/lib/obj/tree/node.lisp        |
+| /home/ellis/comp/core/lib/obj/tree/avl.lisp         |
+| /home/ellis/comp/core/lib/obj/tree/redblack.lisp    |
+| /home/ellis/comp/core/lib/obj/tree/brother.lisp     |
+| /home/ellis/comp/core/lib/obj/tree/btree.lisp       |
+| /home/ellis/comp/core/lib/obj/graph/pkg.lisp        |
+| /home/ellis/comp/core/lib/obj/unit.lisp             |
+| /home/ellis/comp/core/lib/obj/equiv.lisp            |
+| /home/ellis/comp/core/lib/obj/color/color.lisp      |
+| /home/ellis/comp/core/lib/obj/color/util.lisp       |
+| /home/ellis/comp/core/lib/obj/color/x11.lisp        |
+| /home/ellis/comp/core/lib/obj/color/palette.lisp    |
+| /home/ellis/comp/core/lib/obj/time/local.lisp       |
+| /home/ellis/comp/core/lib/obj/time/util.lisp        |
+| /home/ellis/comp/core/lib/obj/uuid.lisp             |
+| /home/ellis/comp/core/lib/obj/build.lisp            |
+| /home/ellis/comp/core/lib/obj/ast.lisp              |
+| /home/ellis/comp/core/lib/obj/config.lisp           |
+| /home/ellis/comp/core/lib/obj/plan.lisp             |
+| /home/ellis/comp/core/lib/obj/schema.lisp           |
+| /home/ellis/comp/core/lib/obj/query.lisp            |
+| /home/ellis/comp/core/lib/obj/db.lisp               |
+| /home/ellis/comp/core/lib/obj/secret.lisp           |
+| /home/ellis/comp/core/lib/obj/store.lisp            |
+| /home/ellis/comp/core/lib/obj/srv.lisp              |
+| /home/ellis/comp/core/lib/obj/obj.lisp              |
+| /home/ellis/comp/core/ffi/readline/pkg.lisp         |
+| /home/ellis/comp/core/ffi/readline/constants.lisp   |
+| /home/ellis/comp/core/ffi/readline/readline.lisp    |
 
 ** packages
 :PROPERTIES:
 :ID:       c62cb04c-1c86-4bbe-bd1e-b962c887b008
 :END:
-#+begin_src lisp :output replace :results list
-  (mapcar (lambda (p) (package-name (doc:doc-package p)))
-          (doc:doc-packages (doc:system-documentation :cli)))
-#+end_src
+#+call: lisp-system-packages[:results table :post transpose]('cli) 
 
 #+RESULTS:
-- CLI/REPL
-- CLI/TUI
-- CLI/CLAP/UTIL
-- CLI/TOOLS/GO
-- CLI/TOOLS/NET
-- CLI/CLAP/PROTO
-- CLI/TOOLS/MAIL
-- CLI/TOOLS/PACMAN
-- CLI/CLAP/OBJ
-- CLI/ENV
-- CLI/CLAP/MACS
-- CLI/TOOLS/SBCL
-- CLI/TOOLS
-- CLI/TOOLS/RUST
-- CLI/PROMPT
-- CLI/TOOLS/FS
-- CLI-USER
-- CLI/PROGRESS
-- CLI/CLAP
-- CLI/TOOLS/PROTO
-- CLI/TOOLS/TMUX
-- CLI/TESTS
-- CLI/ANSI
-- CLI/SPARK
-- CLI/MULTI
-- CLI/TOOLS/TERM
-- CLI/CLAP/AST
-- CLI/CLAP/VARS
-- CLI/ED
-- CLI/TOOLS/SYS
-- CLI/CLAP/SIMPLE
-- CLI/TOOLS/CC
-- CLI
-- CLI/SHELL
+| CLI/REPL         |
+| CLI/TUI          |
+| CLI/CLAP/UTIL    |
+| CLI/TOOLS/GO     |
+| CLI/TOOLS/NET    |
+| CLI/CLAP/PROTO   |
+| CLI/TOOLS/MAIL   |
+| CLI/TOOLS/PACMAN |
+| CLI/CLAP/OBJ     |
+| CLI/ENV          |
+| CLI/CLAP/MACS    |
+| CLI/TOOLS/SBCL   |
+| CLI/TOOLS        |
+| CLI/TOOLS/RUST   |
+| CLI/PROMPT       |
+| CLI/TOOLS/FS     |
+| CLI-USER         |
+| CLI/PROGRESS     |
+| CLI/CLAP         |
+| CLI/TOOLS/PROTO  |
+| CLI/TOOLS/TMUX   |
+| CLI/TESTS        |
+| CLI/ANSI         |
+| CLI/SPARK        |
+| CLI/MULTI        |
+| CLI/TOOLS/TERM   |
+| CLI/CLAP/AST     |
+| CLI/CLAP/VARS    |
+| CLI/ED           |
+| CLI/TOOLS/SYS    |
+| CLI/CLAP/SIMPLE  |
+| CLI/TOOLS/CC     |
+| CLI              |
+| CLI/SHELL        |
 
 ** tests
 :PROPERTIES:
