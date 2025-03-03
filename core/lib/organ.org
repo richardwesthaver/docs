@@ -1,7 +1,6 @@
 #+title: organ
 #+author: Richard Westhaver
 #+setupfile: ../../../clean.theme
-* Overview
 =organ= is a library for extracting information from emacs org-mode
 files. It's highly opinionated and only suited for parsing CC
 documents. This means I may introduce syntax which is not supported by
@@ -22,3 +21,226 @@ been hindered by their attempts to clone the functionality as well.
     org-mode nodes
   - interactive :: make org-mode accessible in the REPL possibly with
     read macros
+
+#+BEGIN: lisp-system-info :system organ
+- packages
+#+CALL: lisp-system-packages[:post transpose]("organ")
+
+#+RESULTS:
+| ORGAN       |
+| ORGAN/CLI   |
+| ORGAN/TESTS |
+
+- dependencies
+#+CALL: lisp-system-dependencies[:post transpose]("organ")
+
+#+RESULTS:
+| cl-ppcre |
+| std      |
+| nlp      |
+| parse    |
+
+- dependents
+#+CALL: lisp-system-dependents[:post transpose]("organ")
+
+#+RESULTS:
+| web/dash    |
+| web/index   |
+| web         |
+| user        |
+| skel        |
+| organ/tests |
+| doc         |
+| core/lib    |
+| core        |
+| bin/homer   |
+| bin/organ   |
+
+- files
+#+CALL: lisp-system-files[:post transpose]("organ")
+
+#+RESULTS:
+| pkg.lisp                            |
+| vars.lisp                           |
+| condition.lisp                      |
+| proto.lisp                          |
+| util.lisp                           |
+| macs.lisp                           |
+| object/markup.lisp                  |
+| object/entity.lisp                  |
+| object/citation.lisp                |
+| object/footnote-ref.lisp            |
+| object/inline-babel-call.lisp       |
+| object/inline-source-block.lisp     |
+| object/line-break.lisp              |
+| object/link.lisp                    |
+| object/macro.lisp                   |
+| object/export-snippet.lisp          |
+| object/sscript.lisp                 |
+| object/stat-cookie.lisp             |
+| object/table-cell.lisp              |
+| object/target.lisp                  |
+| object/timestamp.lisp               |
+| element/lesser/paragraph.lisp       |
+| element/lesser/block.lisp           |
+| element/lesser/clock.lisp           |
+| element/lesser/diary-sexp.lisp      |
+| element/lesser/latex-env.lisp       |
+| element/lesser/comment.lisp         |
+| element/lesser/fixed-width.lisp     |
+| element/lesser/horizontal-rule.lisp |
+| element/lesser/keyword.lisp         |
+| element/lesser/planning.lisp        |
+| element/lesser/table-row.lisp       |
+| element/lesser/node-property.lisp   |
+| element/greater/plain-list.lisp     |
+| element/greater/block.lisp          |
+| element/greater/drawer.lisp         |
+| element/greater/footnote-def.lisp   |
+| element/greater/item.lisp           |
+| element/greater/table.lisp          |
+| element/headline.lisp               |
+| section.lisp                        |
+| heading.lisp                        |
+| document.lisp                       |
+
+- tests
+#+CALL: lisp-system-tests[:post transpose]("organ")
+
+#+RESULTS:
+| ORG-LINES    |
+| ORG-DOCUMENT |
+| ORG-SECTION  |
+| ORG-HEADING  |
+| ORG-HEADLINE |
+| ORG-STANDARD |
+| ORG-MINIMAL  |
+| ORG-MARKUP   |
+
+- symbols
+#+CALL: lisp-package-symbols[:post codify-transpose]("ORGAN")
+
+#+RESULTS:
+| ~STATE~                        |
+| ~ORG-PLANNING-LINE~            |
+| ~ORG-STANDARD-TABLE-ROW~       |
+| ~ORG-NODE-PROPERTY~            |
+| ~ORG-TBLFM-RX~                 |
+| ~ORG-RULE-TABLE-ROW~           |
+| ~ORG-COMMENT~                  |
+| ~ORG-PROPERTY-DRAWER~          |
+| ~ORG-PRIORITY~                 |
+| ~ORG-TODO-KEYWORD-RX~          |
+| ~*ORG-TODO-KEYWORDS*~          |
+| ~ORG-BLOCK~                    |
+| ~ORG-PARSE-LINES~              |
+| ~ORG-END-RX~                   |
+| ~DOC-META~                     |
+| ~ORG-TABLE-EL~                 |
+| ~ORG-INSERT-BEFORE~            |
+| ~ORG-TAG-SPLIT~                |
+| ~ORG-ITEM-RX~                  |
+| ~TODO-TYPE~                    |
+| ~ORG-FILE-PROPERTY-RX~         |
+| ~ORG-FOOTNOTE-DEFINITION-RX~   |
+| ~ORG-LINES~                    |
+| ~TAGS~                         |
+| ~TITLE~                        |
+| ~ORG-PLAIN-TEXT~               |
+| ~ORG-TABLE-ANY-BORDER-RX~      |
+| ~ORG-ZEROTH-SECTION~           |
+| ~ORG-LIST~                     |
+| ~ORG-KEYWORD~                  |
+| ~ORG-DOCUMENT~                 |
+| ~ORG-ELEMENT~                  |
+| ~TEXT~                         |
+| ~ORG-DURATION-UNITS~           |
+| ~ORG-INLINE-SOURCE-BLOCK~      |
+| ~ORG-GREATER-BLOCK~            |
+| ~ORG-INACTIVE-TIMESTAMP-RANGE~ |
+| ~ORG-LOGBOOK-START-RX~         |
+| ~ORG-LESSER-BLOCK~             |
+| ~ORG-DRAWER~                   |
+| ~ORG-PARAGRAPH~                |
+| ~DOC-TREE~                     |
+| ~ORG-INLINE-BABEL-CALL~        |
+| ~ORG-STREAM~                   |
+| ~ORG-EMPHASIS-ALIST~           |
+| ~ORG-TAG-RX~                   |
+| ~ORG-GET-ELEMENT~              |
+| ~ORG-PLANNING~                 |
+| ~ORG-PARSE~                    |
+| ~ORG-TABLE~                    |
+| ~ORG-STAT-COOKIE~              |
+| ~ORG-AFFILIATED-KEYWORD~       |
+| ~READ-ORG-LINES-FROM-STRING~   |
+| ~ORG-PROPERTY~                 |
+| ~ORG-CREATE~                   |
+| ~ORG-TABLE-ANY-LINE-RX~        |
+| ~ORG-LINK~                     |
+| ~PROPS~                        |
+| ~ORG-FILE-PROPERTIES~          |
+| ~ORG-ENTITY~                   |
+| ~ORG-SCHEDULED-RX~             |
+| ~ORG-DEADLINE-RX~              |
+| ~ORG-PRIORITY-RX~              |
+| ~*ORG-TODO-KEYWORD-TYPES*~     |
+| ~ORG-WRITE~                    |
+| ~ORG-TARGET~                   |
+| ~*ORG-DURATION-HMMSS-RX*~      |
+| ~ORG-VERBATIM~                 |
+| ~ORG-PUSH~                     |
+| ~*ORG-DURATION-HMM-RX*~        |
+| ~ORG-PROPERTY-RX~              |
+| ~ORG-CONTENTS~                 |
+| ~ORG-LIST-FULL-ITEM-RX~        |
+| ~ORG-PROPERTY-START-RX~        |
+| ~ORG-CITATION-REFERENCE~       |
+| ~ORG-MACRO~                    |
+| ~ORG-CODE~                     |
+| ~ORG-INACTIVE-TIMESTAMP~       |
+| ~ORG-STRIKE-THROUGH~           |
+| ~ORG-FILE-PROPERTY~            |
+| ~ORG-NODE-PROPERTIES~          |
+| ~ORG-UNORDERED-LIST~           |
+| ~ORG-TIMESTAMP-RX~             |
+| ~ORG-LATEX-ENVIRONMENT~        |
+| ~ORG-TODO-KEYWORD~             |
+| ~*ORG-DURATION-MIXED-RX*~      |
+| ~ORG-CITATION~                 |
+| ~ORG-HEADING~                  |
+| ~READ-ORG-FILE~                |
+| ~ORG-SRC-BLOCK-RX~             |
+| ~ORG-ITALIC~                   |
+| ~O-LINES~                      |
+| ~ORG-COLLECTION~               |
+| ~ORG-HEADLINE-RX~              |
+| ~ORG-ELEMENT-OBJECTS~          |
+| ~ORG-DIARY-SEXP~               |
+| ~ORG-BOLD~                     |
+| ~ORG-TABLE-CELL~               |
+| ~READ-ORG-LINES~               |
+| ~ORG-ELEMENT-TYPES~            |
+| ~ORG-HEADLINE~                 |
+| ~ORG-OBJECT-RX~                |
+| ~ORG-HORIZONTAL-RULE~          |
+| ~ORG-UNDERLINE~                |
+| ~ORG-RADIO-TARGET~             |
+| ~ORG-TODO-KEYWORD-P~           |
+| ~ORG-EXPORT-SNIPPET~           |
+| ~ORG-FOOTNOTE-REFERENCE~       |
+| ~ORG-ACTIVE-TIMESTAMP~         |
+| ~ORG-TAG~                      |
+| ~ORG-TS-RX~                    |
+| ~ORG-CLOCK~                    |
+| ~*ORG-DURATION-FULL-RX*~       |
+| ~ORG-TODO-KEYWORD-MAP~         |
+| ~READ-ORG-STRING~              |
+| ~ORG-FOOTNOTE-DEFINITION~      |
+| ~ORG-ACTIVE-TIMESTAMP-RANGE~   |
+| ~ORG-ORDERED-LIST~             |
+| ~ORG-PRIORITY-LEVEL~           |
+| ~ORG-LINE-BREAK~               |
+| ~ORG-DESCRIPTIVE-LIST~         |
+
+#+END:

@@ -8,307 +8,40 @@ This documentation is automatically generated based on the default
 branch of the [[https://vc.compiler.company/core][core]].
 
 #+call: slime()
-#+call: load-user()
+#+call: load-prelude()
 #+call: lisp-stats()
 
 #+RESULTS:
-| :PACKAGES       |  571 |
+| :SYSTEMS        | 5688 |
+| :PACKAGES       |  593 |
 | :SYMBOLS        | 3255 |
 | :FEATURES       |   86 |
 | :SHARED-OBJECTS |   20 |
 | :LINKAGE-INFO   | 2194 |
 | :LOGICAL-HOSTS  |    2 |
 
-* Systems
-- dependencies
-  #+call: lisp-system-dependencies[:results table :post transpose]() 
-  #+RESULTS:
-  | std   |
-  | cli   |
-  | doc   |
-  | nlp   |
-  | obj   |
-  | skel  |
-  | syn   |
-  | organ |
-  | packy |
-  | parse |
-  | pod   |
-  | rdb   |
-  | krypt |
-  | gui   |
-  | dsp   |
-  | net   |
-  | krypt |
-  | rt    |
-  | vc    |
-  | dat   |
-  | q     |
-  | box   |
-  | log   |
-  | gui   |
-  | web   |
-- dependents  
-  #+call: lisp-system-dependents[:results table :post transpose]('core)
-  #+RESULTS:
-  | bin/core |
-* Files
-#+call: lisp-system-files[:results table :post transpose]('user)
+#+BEGIN: lisp-system-info :system core :symbols nil
+- files
+#+CALL: lisp-system-files[:post transpose]("core")
+
 #+RESULTS:
-| std/defpkg.lisp                               |
-| std/pkg.lisp                                  |
-| std/condition.lisp                            |
-| std/sym.lisp                                  |
-| std/list.lisp                                 |
-| std/type.lisp                                 |
-| std/num/float.lisp                            |
-| std/num/parse.lisp                            |
-| std/num/leb128.lisp                           |
-| std/num/math.lisp                             |
-| std/stream.lisp                               |
-| std/curry.lisp                                |
-| std/array.lisp                                |
-| std/hash-table.lisp                           |
-| std/readtable.lisp                            |
-| std/macs/ana.lisp                             |
-| std/macs/pan.lisp                             |
-| std/macs/const.lisp                           |
-| std/macs/var.lisp                             |
-| std/macs/collecting.lisp                      |
-| std/macs/loop.lisp                            |
-| std/macs/control.lisp                         |
-| std/macs/sugar.lisp                           |
-| std/pipe.lisp                                 |
-| std/sys.lisp                                  |
-| std/serde.lisp                                |
-| std/alien.lisp                                |
-| std/meta.lisp                                 |
-| std/bit.lisp                                  |
-| std/thread.lisp                               |
-| std/task.lisp                                 |
-| std/fmt.lisp                                  |
-| std/path.lisp                                 |
-| std/os.lisp                                   |
-| std/file.lisp                                 |
-| std/string.lisp                               |
-| std/seq.lisp                                  |
-| std/rand.lisp                                 |
-| lib/cli/pkg.lisp                              |
-| lib/cli/ansi.lisp                             |
-| lib/cli/env.lisp                              |
-| lib/cli/progress.lisp                         |
-| lib/cli/spark.lisp                            |
-| lib/cli/repl.lisp                             |
-| lib/cli/shell.lisp                            |
-| lib/cli/prompt.lisp                           |
-| lib/cli/ed.lisp                               |
-| lib/cli/tools/pkg.lisp                        |
-| lib/cli/tools/term.lisp                       |
-| lib/cli/tools/tmux.lisp                       |
-| lib/cli/tools/pacman.lisp                     |
-| lib/cli/tools/cc.lisp                         |
-| lib/cli/tools/sys.lisp                        |
-| lib/cli/tools/rust.lisp                       |
-| lib/cli/tools/sbcl.lisp                       |
-| lib/cli/tools/net.lisp                        |
-| lib/cli/tools/mail.lisp                       |
-| lib/cli/tools/fs.lisp                         |
-| lib/cli/clap/pkg.lisp                         |
-| lib/cli/clap/ast.lisp                         |
-| lib/cli/clap/vars.lisp                        |
-| lib/cli/clap/util.lisp                        |
-| lib/cli/clap/macs.lisp                        |
-| lib/cli/clap/proto.lisp                       |
-| lib/cli/clap/opt.lisp                         |
-| lib/cli/clap/cmd.lisp                         |
-| lib/cli/clap/cli.lisp                         |
-| lib/cli/multi.lisp                            |
-| lib/cli/tui.lisp                              |
-| lib/cli/cli.lisp                              |
-| lib/doc/pkg.lisp                              |
-| lib/doc/proto.lisp                            |
-| lib/doc/err.lisp                              |
-| lib/doc/symbol.lisp                           |
-| lib/doc/file.lisp                             |
-| lib/doc/package.lisp                          |
-| lib/doc/system.lisp                           |
-| lib/doc/dist.lisp                             |
-| lib/doc/reprex.lisp                           |
-| lib/doc/explain.lisp                          |
-| lib/doc/image.lisp                            |
-| lib/nlp/pkg.lisp                              |
-| lib/nlp/data.lisp                             |
-| lib/nlp/tokenize.lisp                         |
-| lib/nlp/doc.lisp                              |
-| lib/nlp/stem/porter.lisp                      |
-| lib/nlp/textrank.lisp                         |
-| lib/nlp/dbscan.lisp                           |
-| lib/nlp/section.lisp                          |
-| lib/obj/meta/pkg.lisp                         |
-| lib/obj/meta/sealed.lisp                      |
-| lib/obj/meta/stealth.lisp                     |
-| lib/obj/meta/typed.lisp                       |
-| lib/obj/meta/filtered.lisp                    |
-| lib/obj/meta/fast.lisp                        |
-| lib/obj/meta/lazy.lisp                        |
-| lib/obj/meta/overloaded.lisp                  |
-| lib/obj/meta/stored.lisp                      |
-| lib/obj/meta/dynamic.lisp                     |
-| lib/obj/pkg.lisp                              |
-| lib/obj/hash/hasher.lisp                      |
-| lib/obj/hash/chash.lisp                       |
-| lib/obj/hash/map.lisp                         |
-| lib/obj/hash/set.lisp                         |
-| lib/obj/hash/castable.lisp                    |
-| lib/obj/id.lisp                               |
-| lib/obj/uri/pkg.lisp                          |
-| lib/obj/uri/domain.lisp                       |
-| lib/obj/uri/uri.lisp                          |
-| lib/obj/uri/mask.lisp                         |
-| lib/obj/uri/state.lisp                        |
-| lib/obj/uri/parse.lisp                        |
-| lib/obj/uri/print.lisp                        |
-| lib/obj/uri/path.lisp                         |
-| lib/obj/uri/intern.lisp                       |
-| lib/obj/url.lisp                              |
-| lib/obj/seq.lisp                              |
-| lib/obj/tree/node.lisp                        |
-| lib/obj/tree/avl.lisp                         |
-| lib/obj/tree/redblack.lisp                    |
-| lib/obj/tree/brother.lisp                     |
-| lib/obj/tree/btree.lisp                       |
-| lib/obj/graph/pkg.lisp                        |
-| lib/obj/unit.lisp                             |
-| lib/obj/equiv.lisp                            |
-| lib/obj/color/color.lisp                      |
-| lib/obj/color/util.lisp                       |
-| lib/obj/color/x11.lisp                        |
-| lib/obj/color/palette.lisp                    |
-| lib/obj/time/local.lisp                       |
-| lib/obj/time/util.lisp                        |
-| lib/obj/uuid.lisp                             |
-| lib/obj/build.lisp                            |
-| lib/obj/ast.lisp                              |
-| lib/obj/config.lisp                           |
-| lib/obj/plan.lisp                             |
-| lib/obj/schema.lisp                           |
-| lib/obj/query.lisp                            |
-| lib/obj/db.lisp                               |
-| lib/obj/secret.lisp                           |
-| lib/obj/store.lisp                            |
-| lib/obj/srv.lisp                              |
-| lib/obj/obj.lisp                              |
-| lib/skel/core/pkg.lisp                        |
-| lib/skel/core/condition.lisp                  |
-| lib/skel/core/proto.lisp                      |
-| lib/skel/core/header.lisp                     |
-| lib/skel/core/var.lisp                        |
-| lib/skel/core/obj.lisp                        |
-| lib/skel/core/component.lisp                  |
-| lib/skel/core/rule.lisp                       |
-| lib/skel/core/project.lisp                    |
-| lib/skel/core/print.lisp                      |
-| lib/skel/core/fs.lisp                         |
-| lib/skel/core/schema.lisp                     |
-| lib/skel/core/db.lisp                         |
-| lib/skel/core/log.lisp                        |
-| lib/skel/core/util.lisp                       |
-| lib/skel/core/vm.lisp                         |
-| lib/skel/comp/pkg.lisp                        |
-| lib/skel/comp/asd.lisp                        |
-| lib/skel/comp/cargo.lisp                      |
-| lib/skel/comp/container.lisp                  |
-| lib/skel/comp/org.lisp                        |
-| lib/skel/comp/dir-locals.lisp                 |
-| lib/skel/comp/makefile.lisp                   |
-| lib/skel/pkg.lisp                             |
-| lib/skel/srv.lisp                             |
-| lib/skel/infer.lisp                           |
-| lib/skel/net/var.lisp                         |
-| lib/skel/net/proto.lisp                       |
-| lib/skel/net/server.lisp                      |
-| lib/skel/net/client.lisp                      |
-| lib/skel/tools/pkg.lisp                       |
-| lib/skel/tools/deploy.lisp                    |
-| lib/skel/tools/view.lisp                      |
-| lib/skel/ext/pkg.lisp                         |
-| lib/skel/ext/asdf.lisp                        |
-| lib/skel/ext/krypt.lisp                       |
-| lib/skel/ext/packy.lisp                       |
-| lib/skel/cli.lisp                             |
-| lib/skel/skel.lisp                            |
-| lib/syn/pkg.lisp                              |
-| lib/syn/ts.lisp                               |
-| lib/syn/lang/c.lisp                           |
-| lib/syn/lang/js.lisp                          |
-| lib/syn/lang/rs.lisp                          |
-| lib/syn/lint.lisp                             |
-| lib/syn/gen/pkg.lisp                          |
-| lib/syn/gen/condition.lisp                    |
-| lib/syn/gen/var.lisp                          |
-| lib/syn/gen/proto.lisp                        |
-| lib/syn/gen/util.lisp                         |
-| lib/syn/gen/read.lisp                         |
-| lib/syn/gen/c/pkg.lisp                        |
-| lib/syn/gen/c/read.lisp                       |
-| lib/syn/gen/c/ast.lisp                        |
-| lib/syn/gen/c/sym.lisp                        |
-| lib/syn/gen/c/print.lisp                      |
-| lib/syn/gen/cpp/pkg.lisp                      |
-| lib/syn/gen/cpp/sym.lisp                      |
-| lib/syn/gen/cu/pkg.lisp                       |
-| lib/syn/gen/rs/pkg.lisp                       |
-| lib/syn/gen/rs/read.lisp                      |
-| lib/syn/gen/rs/ast.lisp                       |
-| lib/syn/gen/rs/sym.lisp                       |
-| lib/syn/gen/rs/util.lisp                      |
-| lib/syn/gen/rs/print.lisp                     |
-| lib/syn/gen/py/pkg.lisp                       |
-| lib/syn/gen/js/pkg.lisp                       |
-| lib/syn/cli.lisp                              |
-| lib/organ/pkg.lisp                            |
-| lib/organ/vars.lisp                           |
-| lib/organ/condition.lisp                      |
-| lib/organ/proto.lisp                          |
-| lib/organ/util.lisp                           |
-| lib/organ/macs.lisp                           |
-| lib/organ/object/markup.lisp                  |
-| lib/organ/object/entity.lisp                  |
-| lib/organ/object/citation.lisp                |
-| lib/organ/object/footnote-ref.lisp            |
-| lib/organ/object/inline-babel-call.lisp       |
-| lib/organ/object/inline-source-block.lisp     |
-| lib/organ/object/line-break.lisp              |
-| lib/organ/object/link.lisp                    |
-| lib/organ/object/macro.lisp                   |
-| lib/organ/object/export-snippet.lisp          |
-| lib/organ/object/sscript.lisp                 |
-| lib/organ/object/stat-cookie.lisp             |
-| lib/organ/object/table-cell.lisp              |
-| lib/organ/object/target.lisp                  |
-| lib/organ/object/timestamp.lisp               |
-| lib/organ/element/lesser/paragraph.lisp       |
-| lib/organ/element/lesser/block.lisp           |
-| lib/organ/element/lesser/clock.lisp           |
-| lib/organ/element/lesser/diary-sexp.lisp      |
-| lib/organ/element/lesser/latex-env.lisp       |
-| lib/organ/element/lesser/comment.lisp         |
-| lib/organ/element/lesser/fixed-width.lisp     |
-| lib/organ/element/lesser/horizontal-rule.lisp |
-| lib/organ/element/lesser/keyword.lisp         |
-| lib/organ/element/lesser/planning.lisp        |
-| lib/organ/element/lesser/table-row.lisp       |
-| lib/organ/element/lesser/node-property.lisp   |
-| lib/organ/element/greater/plain-list.lisp     |
-| lib/organ/element/greater/block.lisp          |
-| lib/organ/element/greater/drawer.lisp         |
-| lib/organ/element/greater/footnote-def.lisp   |
-| lib/organ/element/greater/item.lisp           |
-| lib/organ/element/greater/table.lisp          |
-| lib/organ/element/headline.lisp               |
-| lib/organ/section.lisp                        |
-| lib/organ/heading.lisp                        |
-| lib/organ/document.lisp                       |
-| lib/packy/pkg.lisp                            |
-| lib/packy/var.lisp                            |
-| ...                                           |
+| core.lisp |
+
+- packages
+#+CALL: lisp-system-packages[:post transpose]("core")
+
+#+RESULTS:
+| CORE-LISP        |
+| CORE/BENCH/ARRAY |
+| CORE/BENCH/ALIEN |
+| CORE/BENCH/SIMD  |
+| CORE/TESTS       |
+| CORE/BENCH       |
+| CORE/BENCH/HASH  |
+| CORE/BENCH/JSON  |
+| CORE/BENCH/TPC-H |
+| CORE             |
+
+#+END:
+
+

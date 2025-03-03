@@ -22,3 +22,73 @@ Speed is the priority.
 - testing:
   - use NET/CODEC/TLV:TLV for passing simple messages from SQ->CQ
   - use IO-OP-NOP for estimating throughput and comparing implementations (rust/tokio)
+
+#+BEGIN: lisp-system-info :system io
+- files
+#+CALL: lisp-system-files[:post transpose]("io")
+
+#+RESULTS:
+| pkg.lisp          |
+| socket.lisp       |
+| stream.lisp       |
+| static.lisp       |
+| fast.lisp         |
+| xsubseq.lisp      |
+| smart-buffer.lisp |
+| uring.lisp        |
+| proto.lisp        |
+| chunky.lisp       |
+| flate.lisp        |
+| zstd.lisp         |
+| disk/pkg.lisp     |
+| disk/util.lisp    |
+| disk/proto.lisp   |
+| disk/btrfs.lisp   |
+| kbd.lisp          |
+| io.lisp           |
+
+- packages
+#+CALL: lisp-system-packages[:post transpose]("io")
+
+#+RESULTS:
+| IO/ZSTD         |
+| IO/XSUBSEQ      |
+| IO/CHUNKY       |
+| IO/TESTS        |
+| IO/SOCKET       |
+| IO-USER         |
+| IO/PROTO        |
+| IO/FAST         |
+| IO/STATIC       |
+| IO/STREAM       |
+| IO/DISK/BTRFS   |
+| IO/SMART-BUFFER |
+| IO/DISK         |
+| IO              |
+| IO/URING        |
+| IO/FLATE        |
+| IO/KBD          |
+
+- symbols
+#+CALL: lisp-package-symbols[]('io)
+
+#+RESULTS:
+| (#<DOC:SYMBOL-DOCUMENTATION IO/XSUBSEQ:NULL-CONCATENATED-XSUBSEQS (CLASS TYPE)> |
+
+- tests
+#+CALL: lisp-system-tests[:post transpose]("io")
+
+#+RESULTS:
+| DISK-BTRFS    |
+| DISK-GENERIC  |
+| XSUBSEQ       |
+| SMART-BUFFER  |
+| STATIC-VECTOR |
+| ZSTD-STREAM   |
+| ZSTD-SIMPLE   |
+| CHUNKY        |
+| STREAMS       |
+| SERVE-EVENT   |
+| SANITY        |
+
+#+END:

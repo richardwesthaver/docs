@@ -7,6 +7,312 @@ extensible software library designed for managing /projects/.
 The [[https://compiler.company/docs/core/app/skel.html][cli]] is the main entry point for typical users. This documentation
 is for library developers and internal use.
 
+#+BEGIN: lisp-system-info :system skel
+- packages
+#+CALL: lisp-system-packages[:post transpose]("skel")
+
+#+RESULTS:
+| SKEL/CORE            |
+| SKEL/COMP/DIR-LOCALS |
+| SKEL/CORE/INT        |
+| SKEL/COMP            |
+| SKEL/NET/CLIENT      |
+| SKEL/COMP/CONTAINER  |
+| SKEL/INFER           |
+| SKEL/CORE/PLAN       |
+| SKEL/COMP/ORG        |
+| SKEL/CORE/HEADER     |
+| SKEL/CORE/SCHEMA     |
+| SKEL/CORE/OBJ        |
+| SKEL/COMP/CARGO      |
+| SKEL/TESTS           |
+| SKEL/CORE/LOG        |
+| SKEL                 |
+| SKEL/NET/CORE        |
+| SKEL/CLI             |
+| SKEL/CORE/PROTO      |
+| SKEL/NET             |
+| SKEL/CORE/UTIL       |
+| SKEL/TOOLS/VIEW      |
+| SKEL/COMP/MAKEFILE   |
+| SKEL/TOOLS/DEPLOY    |
+| SKEL/SRV             |
+| SKEL/CORE/DB         |
+| SKEL/NET/SERVER      |
+| SKEL/COMP/ASD        |
+| SKEL/CORE/VM         |
+| SKEL/CORE/PRINT      |
+
+- dependencies
+#+CALL: lisp-system-dependencies[:post transpose]("skel")
+
+#+RESULTS:
+| uiop           |
+| asdf           |
+| sb-posix       |
+| sb-bsd-sockets |
+| sb-concurrency |
+| cl-ppcre       |
+| std            |
+| obj            |
+| dat            |
+| cli            |
+| organ          |
+| doc            |
+| vc             |
+| pod            |
+| net            |
+| box            |
+| rdb            |
+| NIL            |
+| NIL            |
+| NIL            |
+| NIL            |
+
+- dependents
+#+CALL: lisp-system-dependents[:post transpose]("skel")
+
+#+RESULTS:
+| user       |
+| homer      |
+| skel/tests |
+| core/lib   |
+| core       |
+| bin/skc    |
+| bin/skel   |
+| bin/homer  |
+
+- files
+#+CALL: lisp-system-files[:post transpose]("skel")
+
+#+RESULTS:
+| core/pkg.lisp        |
+| core/condition.lisp  |
+| core/proto.lisp      |
+| core/header.lisp     |
+| core/var.lisp        |
+| core/obj.lisp        |
+| core/component.lisp  |
+| core/rule.lisp       |
+| core/project.lisp    |
+| core/print.lisp      |
+| core/fs.lisp         |
+| core/schema.lisp     |
+| core/db.lisp         |
+| core/log.lisp        |
+| core/util.lisp       |
+| core/vm.lisp         |
+| comp/pkg.lisp        |
+| comp/asd.lisp        |
+| comp/cargo.lisp      |
+| comp/container.lisp  |
+| comp/org.lisp        |
+| comp/dir-locals.lisp |
+| comp/makefile.lisp   |
+| pkg.lisp             |
+| srv.lisp             |
+| infer.lisp           |
+| net/var.lisp         |
+| net/proto.lisp       |
+| net/server.lisp      |
+| net/client.lisp      |
+| tools/pkg.lisp       |
+| tools/deploy.lisp    |
+| tools/view.lisp      |
+| ext/pkg.lisp         |
+| ext/asdf.lisp        |
+| ext/krypt.lisp       |
+| ext/packy.lisp       |
+| cli.lisp             |
+| skel.lisp            |
+
+- tests
+#+CALL: lisp-system-tests[:post transpose]("skel")
+
+#+RESULTS:
+| ASD             |
+| MAKEFILE        |
+| SKELRC          |
+| SKELFILE        |
+| HEADER-COMMENTS |
+
+- symbols
+#+CALL: lisp-package-symbols[:post codify-transpose]("SKEL")
+
+#+RESULTS:
+| ~MK-VAL-DESIGNATOR~          |
+| ~*DEFAULT-MAKEFILE*~         |
+| ~SK-PROJECT~                 |
+| ~WITH-PROJECT~               |
+| ~MAKEFILE~                   |
+| ~INIT-SKEL-LOGGER~           |
+| ~SK-COMPILE~                 |
+| ~SK-WRITE-ASD-COMPONENTS~    |
+| ~SKEL-SIMPLE-ERROR~          |
+| ~SK-PULL~                    |
+| ~*SKEL-PROJECT*~             |
+| ~LIST-ALL-PROJECTS~          |
+| ~SKEL-CONDITION~             |
+| ~LOAD-SKELFILE~              |
+| ~SK-USER~                    |
+| ~SKEL~                       |
+| ~*SKEL-LOG-SCHEMA*~          |
+| ~SK-SNIPPETS~                |
+| ~MAKE-SHEBANG-COMMENT~       |
+| ~SK-LOG-REPAIR~              |
+| ~*SKEL-USER-CONFIG*~         |
+| ~SK-FIND*~                   |
+| ~SK-INSTALL~                 |
+| ~SK-VC~                      |
+| ~*SKELFILE-EXTENSION*~       |
+| ~SK-STASH~                   |
+| ~SK-VERSION~                 |
+| ~FIND-SK-FILE~               |
+| ~SK-BUNDLE~                  |
+| ~PUSH-MK-RULE~               |
+| ~SK-CONFIG~                  |
+| ~SK-MOD~                     |
+| ~SK-SCRIPT~                  |
+| ~*SKEL-CLI*~                 |
+| ~SK-COMPONENTS~              |
+| ~*SKEL-INIT-HOOK*~           |
+| ~SK-WRITELN~                 |
+| ~SK-CALL~                    |
+| ~PARSE-SK-RUST-SYSTEM~       |
+| ~SK-AUTHOR~                  |
+| ~SK-UNPACK~                  |
+| ~SK-META~                    |
+| ~INIT-SKELRC~                |
+| ~SK-PRINT~                   |
+| ~*MAKEFILE-EXTENSION*~       |
+| ~*MK-COMMAND-PREFIXES*~      |
+| ~SK-TARGET~                  |
+| ~SK-ABBREV~                  |
+| ~LOAD-SYSTEM-SKELRC~         |
+| ~SK-PUSH~                    |
+| ~SKEL-STORE~                 |
+| ~DIR-LOCAL-VAR-DESIGNATOR~   |
+| ~SK-DEPLOY~                  |
+| ~SK-RULE-SOURCE~             |
+| ~INIT-SKELFILE~              |
+| ~SKEL-SYNTAX-ERROR~          |
+| ~SK-PACK~                    |
+| ~SK-KIND~                    |
+| ~*SKEL-SYSTEM-CONFIG*~       |
+| ~MAKE-SOURCE-FILE-HEADER~    |
+| ~SK-LOG-LIST~                |
+| ~SK-PROJECT-SLOT~            |
+| ~SK-BIND~                    |
+| ~SK-RUN~                     |
+| ~SCRIPT-DESIGNATOR~          |
+| ~SK-READ-FILE~               |
+| ~*MK-MAGIC-VARS*~            |
+| ~SK-UNBUNDLE~                |
+| ~SK-LOAD-COMPONENT~          |
+| ~SK-TRANSFORM~               |
+| ~SK-INCLUDE~                 |
+| ~*SKEL-LOGGER*~              |
+| ~SK-CONFIG-SLOT~             |
+| ~SK-CONVERT~                 |
+| ~LICENSE-DESIGNATOR~         |
+| ~MAKE-SOURCE-HEADER-COMMENT~ |
+| ~SK-FIND~                    |
+| ~SK-CALL*~                   |
+| ~MAKE-SHEBANG-FILE-HEADER~   |
+| ~FILE-HEADER-KIND~           |
+| ~SK-TEST~                    |
+| ~SK-TANGLE~                  |
+| ~SK-COMMAND~                 |
+| ~SK-RULE-TARGET~             |
+| ~SYSTEM-SKELRC~              |
+| ~SK-USER-CONFIG~             |
+| ~SK-TAGS~                    |
+| ~PUSH-MK-VAR~                |
+| ~EDIT-SKELRC~                |
+| ~SK-SAVE~                    |
+| ~SK-DESCRIPTION~             |
+| ~SK-RULE~                    |
+| ~FILE-HEADER~                |
+| ~READ-SYSTEM-DEFINITIONS~    |
+| ~*SKELFILE-BOUNDARY*~        |
+| ~SKEL-DB-LOGGER~             |
+| ~SK-LOG-SCHEMA~              |
+| ~SK-ORG-FILE~                |
+| ~MK-VAR~                     |
+| ~SK-COMPONENT~               |
+| ~SK-SHELL~                   |
+| ~*DEFAULT-SKEL-USER*~        |
+| ~*DEFAULT-SKELFILE*~         |
+| ~*DEFAULT-SKEL-VC-KIND*~     |
+| ~SK-CACHE~                   |
+| ~SK-SNIPPET~                 |
+| ~SKEL-STASH~                 |
+| ~SK-STORE~                   |
+| ~SKEL-CACHE~                 |
+| ~SK-FETCH~                   |
+| ~SK-LICENSE~                 |
+| ~SK-ABBREVS~                 |
+| ~SKEL-ERROR~                 |
+| ~SK-PHASES~                  |
+| ~SKEL-DB-SINK~               |
+| ~CONTACT-DESIGNATOR~         |
+| ~SK-WRITE~                   |
+| ~SK-WRITE-FILE~              |
+| ~MAKE-FILE-HEADER~           |
+| ~LOAD-SKELRC~                |
+| ~SK-LOG-SHUTDOWN~            |
+| ~SK-READ~                    |
+| ~SK-NEW~                     |
+| ~MAKE-SK-RULE~               |
+| ~*SKEL-LOGGER-CONFIG*~       |
+| ~*DEFAULT-SKEL-CACHE*~       |
+| ~SK-RUST-SYSTEM~             |
+| ~SK-REGISTER~                |
+| ~SK-WEAVE~                   |
+| ~PUSH-MK-DIRECTIVE~          |
+| ~SK-SCRIPTS~                 |
+| ~USER-SKELRC~                |
+| ~SKEL-REGISTRY~              |
+| ~SK-MAKE~                    |
+| ~MK-VAL~                     |
+| ~LOAD-USER-SKELRC~           |
+| ~FIND-PROJECT-ROOT~          |
+| ~*DEFAULT-SKELRC*~           |
+| ~SK-INSTALL-USER-CONFIG~     |
+| ~SK-LISP-SYSTEM~             |
+| ~SKEL-IO-ERROR~              |
+| ~SK-WRITE-STRING~            |
+| ~SETF-SKEL-VARS~             |
+| ~INIT-SYSTEM-SKELRC~         |
+| ~SK-CONTAINERFILE~           |
+| ~SK-RULE-RECIPE~             |
+| ~SKEL-PATH~                  |
+| ~PARSE-SK-LISP-SYSTEM~       |
+| ~INVALID-SKEL-AST~           |
+| ~DEF-SK-CLASS~               |
+| ~INIT-USER-SKELRC~           |
+| ~SK-LOG-CLOSE~               |
+| ~SKEL-COMPILE-ERROR~         |
+| ~SKEL-DB~                    |
+| ~SK-RULES~                   |
+| ~SK-SYSTEM-CONFIG~           |
+| ~*DIR-LOCALS-FILE*~          |
+| ~SK-SOURCE~                  |
+| ~SK-PARENT~                  |
+| ~INIT-SKEL~                  |
+| ~*SKEL-ENV*~                 |
+| ~SK-SRC~                     |
+| ~SK-ENV~                     |
+| ~FIND-SKELFILE~              |
+| ~SK-BUILD~                   |
+| ~SK-DIR-LOCALS~              |
+| ~SK-LOAD~                    |
+| ~SK-SEARCH-PROJECT~          |
+| ~SKEL-DB-PATH~               |
+| ~SK-REGISTRY~                |
+
+#+END:
+
 * Overview
 :PROPERTIES:
 :ID:       daebd915-628a-4792-8653-8a01c690a329

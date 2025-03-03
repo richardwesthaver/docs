@@ -1,39 +1,433 @@
 #+title: obj
 #+author: Richard Westhaver
 #+setupfile: ../../../clean.theme
-* Packages
-:PROPERTIES:
-:ID:       94200add-bff8-4ba0-8071-4a7d7e956bb8
-:END:
-** hash
-:PROPERTIES:
-:ID:       07d47665-e19b-4c53-91ba-bb9ca215062d
-:END:
-** id
-:PROPERTIES:
-:ID:       6258990e-d188-4993-b9fc-d03459e37f2c
-:END:
-** seq
-:PROPERTIES:
-:ID:       d5133c9d-2268-42c9-b86c-ab2c2763ed9b
-:END:
-** tree
-:PROPERTIES:
-:ID:       a5f9925e-5c4d-4a36-ae41-493530892400
-:END:
-** graph
-:PROPERTIES:
-:ID:       1227d95c-f5da-43c9-be55-67fad5c67384
-:END:
-** color
-:PROPERTIES:
-:ID:       f741da6e-4485-48ad-a10d-64f082bc66bf
-:END:
-** tbl
-:PROPERTIES:
-:ID:       fb48ac57-c9ee-4a27-a76b-6131a6a70fba
-:END:
-** uri
-:PROPERTIES:
-:ID:       20f6e279-9622-49eb-982b-010426286848
-:END:
+#+BEGIN: lisp-system-info :system obj
+- packages
+#+CALL: lisp-system-packages[:post transpose]("obj")
+
+#+RESULTS:
+| OBJ/HASH            |
+| OBJ/AST             |
+| OBJ/TIME            |
+| OBJ/SCHEMA          |
+| OBJ/BUILD           |
+| OBJ/TESTS           |
+| OBJ/LIST            |
+| OBJ/UNIT            |
+| OBJ/PLAN            |
+| OBJ/CONFIG          |
+| OBJ                 |
+| OBJ/META/STEALTH    |
+| OBJ/COLOR           |
+| OBJ/SRV             |
+| OBJ/UUID            |
+| OBJ/URL             |
+| OBJ/META/SEALED     |
+| OBJ/URI             |
+| OBJ/STORE           |
+| OBJ/ID              |
+| OBJ/QUERY           |
+| OBJ/GRAPH           |
+| OBJ/TREE            |
+| OBJ/META/TYPED      |
+| OBJ/TREE/REDBLACK   |
+| OBJ/META/OVERLOADED |
+| OBJ/META/STORED     |
+| OBJ/EQUIV           |
+| OBJ/META/DYNAMIC    |
+| OBJ/SECRET          |
+| OBJ/META            |
+| OBJ/DB              |
+| OBJ/SEQ             |
+| OBJ/META/FAST       |
+| OBJ/META/FILTERED   |
+| OBJ/META/LAZY       |
+| OBJ/TREE/CURSOR     |
+| OBJ/TREE/BROTHER    |
+| OBJ/TREE/AVL        |
+| OBJ/TREE/BTREE      |
+
+- dependencies
+#+CALL: lisp-system-dependencies[:post transpose]("obj")
+
+#+RESULTS:
+| std  |
+| quri |
+
+- dependents
+#+CALL: lisp-system-dependents[:post transpose]("obj")
+
+#+RESULTS:
+| web        |
+| user       |
+| homer      |
+| dsp        |
+| krypt      |
+| gui        |
+| packy      |
+| syn        |
+| box        |
+| pod        |
+| cry        |
+| net        |
+| vc         |
+| skel       |
+| q          |
+| rdb/tests  |
+| rdb        |
+| doc/tests  |
+| doc        |
+| dat        |
+| obj/tests  |
+| uring      |
+| log        |
+| cli        |
+| core/lib   |
+| core/bench |
+| core       |
+| bin/vc     |
+
+- files
+#+CALL: lisp-system-files[:post transpose]("obj")
+
+#+RESULTS:
+| meta/pkg.lisp        |
+| meta/sealed.lisp     |
+| meta/stealth.lisp    |
+| meta/typed.lisp      |
+| meta/filtered.lisp   |
+| meta/fast.lisp       |
+| meta/lazy.lisp       |
+| meta/overloaded.lisp |
+| meta/stored.lisp     |
+| meta/dynamic.lisp    |
+| pkg.lisp             |
+| hash/hasher.lisp     |
+| hash/chash.lisp      |
+| hash/map.lisp        |
+| hash/set.lisp        |
+| hash/castable.lisp   |
+| id.lisp              |
+| uri/pkg.lisp         |
+| uri/domain.lisp      |
+| uri/uri.lisp         |
+| uri/mask.lisp        |
+| uri/state.lisp       |
+| uri/parse.lisp       |
+| uri/print.lisp       |
+| uri/path.lisp        |
+| uri/intern.lisp      |
+| url.lisp             |
+| seq.lisp             |
+| tree/node.lisp       |
+| tree/avl.lisp        |
+| tree/redblack.lisp   |
+| tree/brother.lisp    |
+| tree/btree.lisp      |
+| graph/pkg.lisp       |
+| unit.lisp            |
+| equiv.lisp           |
+| color/color.lisp     |
+| color/util.lisp      |
+| color/x11.lisp       |
+| color/palette.lisp   |
+| time/local.lisp      |
+| time/util.lisp       |
+| uuid.lisp            |
+| build.lisp           |
+| ast.lisp             |
+| config.lisp          |
+| plan.lisp            |
+| schema.lisp          |
+| query.lisp           |
+| db.lisp              |
+| secret.lisp          |
+| store.lisp           |
+| srv.lisp             |
+| obj.lisp             |
+
+- tests
+#+CALL: lisp-system-tests[:post transpose]("obj")
+
+#+RESULTS:
+| FILTERED-FUNCTION |
+| STEALTH-MIXIN     |
+| DYNAMIC-CLASS     |
+| QUERY-BASIC       |
+| URL               |
+| URIS              |
+| BASIC-GRAPH       |
+| AVL-TREE          |
+| RB-TREE           |
+| BRO-TREE          |
+| GENERIC-TREE      |
+| CASTABLE-SOLO     |
+| DEF-SEQ           |
+| DEF-ITER          |
+| UUIDS             |
+| IDS               |
+| COLORS            |
+
+- symbols
+#+CALL: lisp-package-symbols[:post codify-transpose]("OBJ")
+
+#+RESULTS:
+| ~+GRAY51+~                       |
+| ~+GRAY71+~                       |
+| ~ENCODE-UNIVERSAL-TIME-WITH-TZ~  |
+| ~+GRAY63+~                       |
+| ~QUERY-OPTIMIZER~                |
+| ~*DEFAULT-TIMEZONE*~             |
+| ~+GOLD3+~                        |
+| ~+VIOLETRED+~                    |
+| ~+DEEPPINK4+~                    |
+| ~+KHAKI4+~                       |
+| ~WITH-DECODED-TIMESTAMP~         |
+| ~+LAVENDER+~                     |
+| ~+GRAY34+~                       |
+| ~+GRAY49+~                       |
+| ~TIMESTAMP-MONTH~                |
+| ~*AST-DISPATCH-TABLE*~           |
+| ~+GREY100+~                      |
+| ~DB-STATS~                       |
+| ~SET-DATABASE-BACKEND-OPTIONS~   |
+| ~SECONDARY-DB~                   |
+| ~REGISTER-DF~                    |
+| ~URI-IPV6~                       |
+| ~+DARKSEAGREEN4+~                |
+| ~+OLIVEDRAB2+~                   |
+| ~AGGREGATE-FUNCTION~             |
+| ~+ISO-8601-FORMAT+~              |
+| ~DELETE-KEY-RANGE~               |
+| ~MAX-PHYSICAL-EXPRESSION~        |
+| ~EDGE-VALUE~                     |
+| ~ADJUST-TIMESTAMP!~              |
+| ~CURSOR-NEXT-DUP~                |
+| ~+RED4+~                         |
+| ~TIMESTAMP-CENTURY~              |
+| ~+SPRINGGREEN3+~                 |
+| ~CLRCHASH~                       |
+| ~COLUMN-LITERAL-VALUE~           |
+| ~+GRAY40+~                       |
+| ~ROW-COUNT~                      |
+| ~+HONEYDEW3+~                    |
+| ~+SLATEBLUE+~                    |
+| ~TRANSACTION-OBJECT~             |
+| ~+GRAY9+~                        |
+| ~+MISTYROSE+~                    |
+| ~+MEDIUMORCHID4+~                |
+| ~+OLDLACE+~                      |
+| ~+PALEGREEN+~                    |
+| ~+CHOCOLATE2+~                   |
+| ~DELETE-KEY~                     |
+| ~QUERY~                          |
+| ~+GREY57+~                       |
+| ~CURSOR~                         |
+| ~UPGRADABLE-SCHEMA~              |
+| ~SCHEMA-METADATA~                |
+| ~MAP-INDEX-VALUES~               |
+| ~+MAGENTA3+~                     |
+| ~DF-SELECT~                      |
+| ~LEAP-SECOND-ADJUSTED~           |
+| ~+THISTLE4+~                     |
+| ~+SHORT-DAY-NAMES+~              |
+| ~FORMAT-DATE-SIMPLE~             |
+| ~+AQUAMARINE4+~                  |
+| ~MATCH-SCHEMAS~                  |
+| ~LT-EXPRESSION~                  |
+| ~REGISTER-FILE~                  |
+| ~+GRAY54+~                       |
+| ~SYNC-DB~                        |
+| ~WITH-MAP-INDEX-COLLECTOR~       |
+| ~+LIGHTSEAGREEN+~                |
+| ~+GREY93+~                       |
+| ~+FIREBRICK+~                    |
+| ~+GREY95+~                       |
+| ~AGGREGATE-EXPRESSION-P~         |
+| ~SCAN-DATA~                      |
+| ~NEXT~                           |
+| ~MAKE-AVL-NODE~                  |
+| ~STMT~                           |
+| ~+IVORY4+~                       |
+| ~REMOVE-KV~                      |
+| ~+GRAY7+~                        |
+| ~*X11-COLORS*~                   |
+| ~DB-CONDITION~                   |
+| ~+INDIANRED4+~                   |
+| ~+GRAY89+~                       |
+| ~TIMESTAMP-MINUTE~               |
+| ~+GRAY42+~                       |
+| ~OPTIMIZE-QUERY~                 |
+| ~+GRAY10+~                       |
+| ~DECODE-TIMESTAMP~               |
+| ~SUB-EXPRESSION~                 |
+| ~URI-DOMAIN~                     |
+| ~+PALEGREEN4+~                   |
+| ~TIMESTAMP-MINIMUM~              |
+| ~+PEACHPUFF1+~                   |
+| ~+GREY56+~                       |
+| ~SCHEMA-DIFF~                    |
+| ~DB-OPEN-P~                      |
+| ~+GREY19+~                       |
+| ~NORTH~                          |
+| ~PUT-IF-ABSENT~                  |
+| ~+SEAGREEN2+~                    |
+| ~FIELD-VECTOR~                   |
+| ~DUMB-STRING-HASH~               |
+| ~PUT-IF-PRESENT~                 |
+| ~+SLATEBLUE2+~                   |
+| ~ALL-TIMEZONES-MATCHING-SUBZONE~ |
+| ~DIRECTED-EDGE~                  |
+| ~+FIREBRICK2+~                   |
+| ~+GRAY65+~                       |
+| ~GET-VALUE~                      |
+| ~+MISTYROSE2+~                   |
+| ~URI-PARSE-ERROR~                |
+| ~TIMESTAMP-MICROSECOND~          |
+| ~+GREY76+~                       |
+| ~+GREY4+~                        |
+| ~ITERATOR~                       |
+| ~RESET-ID~                       |
+| ~+LIGHTSTEELBLUE2+~              |
+| ~DESTROY-COLUMNS~                |
+| ~ACCUMULATE~                     |
+| ~PRINT-HEX-RGB~                  |
+| ~+GRAY88+~                       |
+| ~MATH-PHYSICAL-EXPRESSION~       |
+| ~OP~                             |
+| ~+LIGHTSTEELBLUE1+~              |
+| ~OCTETS-TO-TIMESTAMP~            |
+| ~TIMESTAMP-TO-UNIX~              |
+| ~LOAD-SCHEMA~                    |
+| ~+DARKKHAKI+~                    |
+| ~+ANTIQUEWHITE3+~                |
+| ~+GRAY59+~                       |
+| ~INDEXED-BTREE~                  |
+| ~+GRAY3+~                        |
+| ~NSEC-OF~                        |
+| ~+GRAY15+~                       |
+| ~TRAVERSE~                       |
+| ~+GREY61+~                       |
+| ~*GLOBAL-HASHER*~                |
+| ~+DODGERBLUE1+~                  |
+| ~AGGREGATE-PHYSICAL-EXPRESSION~  |
+| ~OPEN-DB~                        |
+| ~FLUSH-COLUMN~                   |
+| ~GET-PRIMARY-KEY~                |
+| ~+DEEPPINK3+~                    |
+| ~SEEK-FOR-PREV~                  |
+| ~DROP-INSTANCE~                  |
+| ~COPY-TRAVERSER~                 |
+| ~MAKE-KEY~                       |
+| ~+GRAY86+~                       |
+| ~MAKE-BINARY-NODE~               |
+| ~RECORD-BATCH-P~                 |
+| ~OPTIMIZE-LAYOUT~                |
+| ~BINARY-EXPRESSION-OP~           |
+| ~MAKE-UNARY-NODE~                |
+| ~COUNT-EXPRESSION~               |
+| ~MAKE-CONFIG~                    |
+| ~MAKE-EDGE~                      |
+| ~UNWRAP-OBJECT~                  |
+| ~+BURLYWOOD+~                    |
+| ~GET-VAL~                        |
+| ~+GREY7+~                        |
+| ~+MEDIUMBLUE+~                   |
+| ~ZONE-NAME~                      |
+| ~+PINK2+~                        |
+| ~+DIMGRAY+~                      |
+| ~+GREY35+~                       |
+| ~DYNAMIC-SCHEMA~                 |
+| ~RGB-GREEN~                      |
+| ~RIGHT~                          |
+| ~TRANSACTION-OPTS~               |
+| ~+OLIVEDRAB4+~                   |
+| ~+PALEVIOLETRED4+~               |
+| ~+DODGERBLUE4+~                  |
+| ~DROP-INSTANCE-SLOTS~            |
+| ~DAYS-IN-MONTH~                  |
+| ~+GREY54+~                       |
+| ~+LIGHTGOLDENROD1+~              |
+| ~FIELD-NAME~                     |
+| ~EDGES~                          |
+| ~FORMP~                          |
+| ~+SNOW3+~                        |
+| ~+PEACHPUFF4+~                   |
+| ~+DARKOLIVEGREEN2+~              |
+| ~TIMESTAMP<=~                    |
+| ~ISO-TIME~                       |
+| ~+GRAY61+~                       |
+| ~SIGNAL-CROSS-STORE-ERROR~       |
+| ~+BROWN3+~                       |
+| ~+YELLOW3+~                      |
+| ~DATABASE-VERSION~               |
+| ~+CORNFLOWERBLUE+~               |
+| ~URI-PARSED-PATH~                |
+| ~WITH-BATCH-TRANSACTION~         |
+| ~+GREY23+~                       |
+| ~+ANTIQUEWHITE2+~                |
+| ~SELECTION-EXEC~                 |
+| ~+PALEVIOLETRED2+~               |
+| ~MAKE-TERNARY-NODE~              |
+| ~+SKYBLUE+~                      |
+| ~WRITE-DB~                       |
+| ~+FIREBRICK3+~                   |
+| ~+GREY98+~                       |
+| ~SET-DATABASE-LOADERS~           |
+| ~SOUTH-EAST~                     |
+| ~PARSE-URI-STRING-RFC3986~       |
+| ~+GRAY24+~                       |
+| ~+GRAY39+~                       |
+| ~+MAROON4+~                      |
+| ~+THISTLE1+~                     |
+| ~SIMPLE-SCHEMA~                  |
+| ~+GRAY0+~                        |
+| ~TIMESTAMP~                      |
+| ~+WHITESMOKE+~                   |
+| ~TIMESTAMP-MAXIMUM~              |
+| ~+LIGHTCYAN3+~                   |
+| ~URI~                            |
+| ~+WHEAT1+~                       |
+| ~+LIGHTYELLOW2+~                 |
+| ~ASTRONOMICAL-JULIAN-DATE~       |
+| ~COLOR-PALETTE-P~                |
+| ~DF-AGGREGATE~                   |
+| ~+PINK3+~                        |
+| ~+GREY25+~                       |
+| ~+SEASHELL2+~                    |
+| ~+SNOW1+~                        |
+| ~+MEDIUMAQUAMARINE+~             |
+| ~+GREY89+~                       |
+| ~DF-COL~                         |
+| ~DATA-SOURCE~                    |
+| ~+GRAY74+~                       |
+| ~+MINUTES-PER-HOUR+~             |
+| ~+CYAN4+~                        |
+| ~SCHEMA~                         |
+| ~+GOLD4+~                        |
+| ~+INDIANRED3+~                   |
+| ~+GREY55+~                       |
+| ~NORTH-WEST~                     |
+| ~+LIGHTGOLDENROD4+~              |
+| ~+MAGENTA4+~                     |
+| ~TIMESTAMP>=~                    |
+| ~LIST-TO-FIELDS~                 |
+| ~+DARKORANGE4+~                  |
+| ~+GREY53+~                       |
+| ~+SEASHELL3+~                    |
+| ~+BISQUE1+~                      |
+| ~+DEEPPINK1+~                    |
+| ~+ALICEBLUE+~                    |
+| ~DEFEXPR~                        |
+| ~IP-ADDR=~                       |
+| ~+DARKGOLDENROD1+~               |
+| ~+SLATEGRAY1+~                   |
+| ~SYNTAX-CONDITION~               |
+| ~+PALETURQUOISE4+~               |
+| ~+BURLYWOOD3+~                   |
+| ~+TURQUOISE3+~                   |
+| ~MAKE-COLOR-PALETTE~             |
+| ~TIMESTAMP-DECADE~               |
+| ~...~                            |
+
+#+END:

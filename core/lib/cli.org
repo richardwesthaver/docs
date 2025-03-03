@@ -5,207 +5,50 @@
 #+filetags: lisp cli
 #+property: header-args :dir ~/comp/core/ :exports both
 #+setupfile: ../../../clean.theme
-* Overview
-:PROPERTIES:
-:ID:       fb7c1b49-e293-41b7-863c-f38eaa361080
-:END:
+
 The =cli= library is a fully-featured toolkit for working with and
 building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
-** dependencies
-:PROPERTIES:
-:ID:       5d0f369d-5de0-41b1-8288-2633a84c3a42
-:END:
-#+call: lisp-system-dependencies[:results table :post transpose]('cli) 
+
+#+BEGIN: lisp-system-info :system cli
+- files
+#+CALL: lisp-system-files[:post transpose]("cli")
 
 #+RESULTS:
-| std      |
-| log      |
-| dat      |
-| obj      |
-| readline |
+| pkg.lisp          |
+| ansi.lisp         |
+| env.lisp          |
+| progress.lisp     |
+| spark.lisp        |
+| repl.lisp         |
+| shell.lisp        |
+| prompt.lisp       |
+| ed.lisp           |
+| tools/pkg.lisp    |
+| tools/term.lisp   |
+| tools/tmux.lisp   |
+| tools/pacman.lisp |
+| tools/cc.lisp     |
+| tools/sys.lisp    |
+| tools/rust.lisp   |
+| tools/sbcl.lisp   |
+| tools/net.lisp    |
+| tools/mail.lisp   |
+| tools/fs.lisp     |
+| clap/pkg.lisp     |
+| clap/ast.lisp     |
+| clap/vars.lisp    |
+| clap/util.lisp    |
+| clap/macs.lisp    |
+| clap/proto.lisp   |
+| clap/opt.lisp     |
+| clap/cmd.lisp     |
+| clap/cli.lisp     |
+| multi.lisp        |
+| tui.lisp          |
+| cli.lisp          |
 
-** dependents
-:PROPERTIES:
-:ID:       6c86510a-2c59-48a6-91c3-8533ceb0dcda
-:END:
-#+call: lisp-system-dependents[:results table :post transpose]('cli) 
-
-#+RESULTS:
-| user      |
-| gui       |
-| packy     |
-| syn       |
-| box       |
-| pod       |
-| net       |
-| vc        |
-| skel      |
-| cli/tests |
-| prelude   |
-| core/lib  |
-| bin/packy |
-| bin/skel  |
-| bin/vc    |
-| bin/gen   |
-| bin/rdb   |
-| bin/pod   |
-| bin/homer |
-| bin/organ |
-
-** files
-:PROPERTIES:
-:ID:       dc23dd4f-6025-40cb-90c7-982def7ef530
-:END:
-#+call: lisp-system-files[:results table :post transpose]('cli) 
-
-#+RESULTS:
-| /home/ellis/comp/core/std/defpkg.lisp               |
-| /home/ellis/comp/core/std/pkg.lisp                  |
-| /home/ellis/comp/core/std/condition.lisp            |
-| /home/ellis/comp/core/std/sym.lisp                  |
-| /home/ellis/comp/core/std/list.lisp                 |
-| /home/ellis/comp/core/std/type.lisp                 |
-| /home/ellis/comp/core/std/num/float.lisp            |
-| /home/ellis/comp/core/std/num/parse.lisp            |
-| /home/ellis/comp/core/std/num/leb128.lisp           |
-| /home/ellis/comp/core/std/num/math.lisp             |
-| /home/ellis/comp/core/std/stream.lisp               |
-| /home/ellis/comp/core/std/curry.lisp                |
-| /home/ellis/comp/core/std/array.lisp                |
-| /home/ellis/comp/core/std/hash-table.lisp           |
-| /home/ellis/comp/core/std/readtable.lisp            |
-| /home/ellis/comp/core/std/macs/ana.lisp             |
-| /home/ellis/comp/core/std/macs/pan.lisp             |
-| /home/ellis/comp/core/std/macs/const.lisp           |
-| /home/ellis/comp/core/std/macs/var.lisp             |
-| /home/ellis/comp/core/std/macs/collecting.lisp      |
-| /home/ellis/comp/core/std/macs/loop.lisp            |
-| /home/ellis/comp/core/std/macs/control.lisp         |
-| /home/ellis/comp/core/std/macs/sugar.lisp           |
-| /home/ellis/comp/core/std/pipe.lisp                 |
-| /home/ellis/comp/core/std/sys.lisp                  |
-| /home/ellis/comp/core/std/serde.lisp                |
-| /home/ellis/comp/core/std/alien.lisp                |
-| /home/ellis/comp/core/std/meta.lisp                 |
-| /home/ellis/comp/core/std/bit.lisp                  |
-| /home/ellis/comp/core/std/thread.lisp               |
-| /home/ellis/comp/core/std/task.lisp                 |
-| /home/ellis/comp/core/std/fmt.lisp                  |
-| /home/ellis/comp/core/std/path.lisp                 |
-| /home/ellis/comp/core/std/os.lisp                   |
-| /home/ellis/comp/core/std/file.lisp                 |
-| /home/ellis/comp/core/std/string.lisp               |
-| /home/ellis/comp/core/std/seq.lisp                  |
-| /home/ellis/comp/core/std/rand.lisp                 |
-| /home/ellis/comp/core/lib/log/pkg.lisp              |
-| /home/ellis/comp/core/lib/log/condition.lisp        |
-| /home/ellis/comp/core/lib/log/log.lisp              |
-| /home/ellis/comp/core/lib/log/db.lisp               |
-| /home/ellis/comp/core/lib/log/stream.lisp           |
-| /home/ellis/comp/core/lib/log/cfg.lisp              |
-| /home/ellis/comp/core/lib/log/sys.lisp              |
-| /home/ellis/comp/core/lib/dat/pkg.lisp              |
-| /home/ellis/comp/core/lib/dat/condition.lisp        |
-| /home/ellis/comp/core/lib/dat/sxp.lisp              |
-| /home/ellis/comp/core/lib/dat/dot.lisp              |
-| /home/ellis/comp/core/lib/dat/csv.lisp              |
-| /home/ellis/comp/core/lib/dat/json.lisp             |
-| /home/ellis/comp/core/lib/dat/id3.lisp              |
-| /home/ellis/comp/core/lib/dat/parquet/gen.lisp      |
-| /home/ellis/comp/core/lib/dat/parquet/pkg.lisp      |
-| /home/ellis/comp/core/lib/dat/parquet/obj.lisp      |
-| /home/ellis/comp/core/lib/dat/parquet/thrift.lisp   |
-| /home/ellis/comp/core/lib/dat/parquet/tcompact.lisp |
-| /home/ellis/comp/core/lib/dat/parquet/io.lisp       |
-| /home/ellis/comp/core/lib/dat/parquet/rle.lisp      |
-| /home/ellis/comp/core/lib/dat/parquet/proto.lisp    |
-| /home/ellis/comp/core/lib/dat/xml/xml.lisp          |
-| /home/ellis/comp/core/lib/dat/xml/pkg.lisp          |
-| /home/ellis/comp/core/lib/dat/xml/svg.lisp          |
-| /home/ellis/comp/core/lib/dat/xml/fixml.lisp        |
-| /home/ellis/comp/core/lib/dat/html/const.lisp       |
-| /home/ellis/comp/core/lib/dat/html/entity.lisp      |
-| /home/ellis/comp/core/lib/dat/html/html.lisp        |
-| /home/ellis/comp/core/lib/dat/handlebars.lisp       |
-| /home/ellis/comp/core/lib/dat/yaml.lisp             |
-| /home/ellis/comp/core/lib/dat/mime.lisp             |
-| /home/ellis/comp/core/lib/dat/ini.lisp              |
-| /home/ellis/comp/core/lib/dat/toml.lisp             |
-| /home/ellis/comp/core/lib/dat/arff.lisp             |
-| /home/ellis/comp/core/lib/dat/tar.lisp              |
-| /home/ellis/comp/core/lib/dat/midi.lisp             |
-| /home/ellis/comp/core/lib/dat/png.lisp              |
-| /home/ellis/comp/core/lib/dat/base64.lisp           |
-| /home/ellis/comp/core/lib/dat/multi/pkg.lisp        |
-| /home/ellis/comp/core/lib/dat/multi/base.lisp       |
-| /home/ellis/comp/core/lib/dat/multi/hash.lisp       |
-| /home/ellis/comp/core/lib/dat/multi/key.lisp        |
-| /home/ellis/comp/core/lib/dat/multi/addr.lisp       |
-| /home/ellis/comp/core/lib/dat/multi/codec.lisp      |
-| /home/ellis/comp/core/lib/dat/dat.lisp              |
-| /home/ellis/comp/core/lib/obj/meta/pkg.lisp         |
-| /home/ellis/comp/core/lib/obj/meta/sealed.lisp      |
-| /home/ellis/comp/core/lib/obj/meta/stealth.lisp     |
-| /home/ellis/comp/core/lib/obj/meta/typed.lisp       |
-| /home/ellis/comp/core/lib/obj/meta/filtered.lisp    |
-| /home/ellis/comp/core/lib/obj/meta/fast.lisp        |
-| /home/ellis/comp/core/lib/obj/meta/lazy.lisp        |
-| /home/ellis/comp/core/lib/obj/meta/overloaded.lisp  |
-| /home/ellis/comp/core/lib/obj/meta/stored.lisp      |
-| /home/ellis/comp/core/lib/obj/meta/dynamic.lisp     |
-| /home/ellis/comp/core/lib/obj/pkg.lisp              |
-| /home/ellis/comp/core/lib/obj/hash/hasher.lisp      |
-| /home/ellis/comp/core/lib/obj/hash/chash.lisp       |
-| /home/ellis/comp/core/lib/obj/hash/map.lisp         |
-| /home/ellis/comp/core/lib/obj/hash/set.lisp         |
-| /home/ellis/comp/core/lib/obj/hash/castable.lisp    |
-| /home/ellis/comp/core/lib/obj/id.lisp               |
-| /home/ellis/comp/core/lib/obj/uri/pkg.lisp          |
-| /home/ellis/comp/core/lib/obj/uri/domain.lisp       |
-| /home/ellis/comp/core/lib/obj/uri/uri.lisp          |
-| /home/ellis/comp/core/lib/obj/uri/mask.lisp         |
-| /home/ellis/comp/core/lib/obj/uri/state.lisp        |
-| /home/ellis/comp/core/lib/obj/uri/parse.lisp        |
-| /home/ellis/comp/core/lib/obj/uri/print.lisp        |
-| /home/ellis/comp/core/lib/obj/uri/path.lisp         |
-| /home/ellis/comp/core/lib/obj/uri/intern.lisp       |
-| /home/ellis/comp/core/lib/obj/url.lisp              |
-| /home/ellis/comp/core/lib/obj/seq.lisp              |
-| /home/ellis/comp/core/lib/obj/tree/node.lisp        |
-| /home/ellis/comp/core/lib/obj/tree/avl.lisp         |
-| /home/ellis/comp/core/lib/obj/tree/redblack.lisp    |
-| /home/ellis/comp/core/lib/obj/tree/brother.lisp     |
-| /home/ellis/comp/core/lib/obj/tree/btree.lisp       |
-| /home/ellis/comp/core/lib/obj/graph/pkg.lisp        |
-| /home/ellis/comp/core/lib/obj/unit.lisp             |
-| /home/ellis/comp/core/lib/obj/equiv.lisp            |
-| /home/ellis/comp/core/lib/obj/color/color.lisp      |
-| /home/ellis/comp/core/lib/obj/color/util.lisp       |
-| /home/ellis/comp/core/lib/obj/color/x11.lisp        |
-| /home/ellis/comp/core/lib/obj/color/palette.lisp    |
-| /home/ellis/comp/core/lib/obj/time/local.lisp       |
-| /home/ellis/comp/core/lib/obj/time/util.lisp        |
-| /home/ellis/comp/core/lib/obj/uuid.lisp             |
-| /home/ellis/comp/core/lib/obj/build.lisp            |
-| /home/ellis/comp/core/lib/obj/ast.lisp              |
-| /home/ellis/comp/core/lib/obj/config.lisp           |
-| /home/ellis/comp/core/lib/obj/plan.lisp             |
-| /home/ellis/comp/core/lib/obj/schema.lisp           |
-| /home/ellis/comp/core/lib/obj/query.lisp            |
-| /home/ellis/comp/core/lib/obj/db.lisp               |
-| /home/ellis/comp/core/lib/obj/secret.lisp           |
-| /home/ellis/comp/core/lib/obj/store.lisp            |
-| /home/ellis/comp/core/lib/obj/srv.lisp              |
-| /home/ellis/comp/core/lib/obj/obj.lisp              |
-| /home/ellis/comp/core/ffi/readline/pkg.lisp         |
-| /home/ellis/comp/core/ffi/readline/constants.lisp   |
-| /home/ellis/comp/core/ffi/readline/readline.lisp    |
-
-** packages
-:PROPERTIES:
-:ID:       c62cb04c-1c86-4bbe-bd1e-b962c887b008
-:END:
-#+call: lisp-system-packages[:results table :post transpose]('cli) 
+- packages
+#+CALL: lisp-system-packages[:post transpose]("cli")
 
 #+RESULTS:
 | CLI/REPL         |
@@ -243,11 +86,227 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | CLI              |
 | CLI/SHELL        |
 
-** tests
-:PROPERTIES:
-:ID:       7fa7ae69-b3a0-4bdf-907c-dacb25cb3662
-:END:
-#+call: lisp-system-tests[:results table :post transpose]('cli)
+- symbols
+#+CALL: lisp-package-symbols[:post codify-transpose]("CLI")
+
+#+RESULTS:
+| ~*SUDO*~                         |
+| ~*NO-EXIT*~                      |
+| ~CLAP-MISSING-ARGUMENT~          |
+| ~DO-OPTS~                        |
+| ~RUN-EMACS~                      |
+| ~LONG-OPT-HAS-EQ-P~              |
+| ~MAKE-ENV-VAR~                   |
+| ~MAKE-CMDS~                      |
+| ~CURSOR-HORIZONTAL-ABSOLUTE~     |
+| ~FIND-SHORT-OPTS~                |
+| ~CLI-NODE-KIND~                  |
+| ~PUSH-CMD~                       |
+| ~IF-SUDO~                        |
+| ~DEFOPT~                         |
+| ~MAKE-CLI~                       |
+| ~FIND-EXE~                       |
+| ~PRINT-HELP~                     |
+| ~CLAP-ERROR~                     |
+| ~SET-PACKAGE-CLI~                |
+| ~ACTIVE-OPTS~                    |
+| ~SPARK~                          |
+| ~CURSOR-FORWARD~                 |
+| ~.DSR~                           |
+| ~*DEFAULT-LOCAL-ENV-VAR-NAMES*~  |
+| ~.CNL~                           |
+| ~.SGR~                           |
+| ~CLAP-INVALID-ARGUMENT~          |
+| ~CURSOR-DOWN~                    |
+| ~PACKAGE-CLI~                    |
+| ~WITH-SUDO~                      |
+| ~CLI-CMD~                        |
+| ~DEFAULT-OPT-THUNK~              |
+| ~UNCERTAIN-SIZE-PROGRESS-BAR~    |
+| ~EXEC-PATH-LIST~                 |
+| ~LOAD-ENV~                       |
+| ~OPT-KEYWORD-P~                  |
+| ~USE-NORMAL-SCREEN-BUFFER~       |
+| ~CMDS~                           |
+| ~PROGRAM-LIST~                   |
+| ~CLAP-SIMPLE-ERROR~              |
+| ~CLI-OPT-KIND-P~                 |
+| ~*TICKS*~                        |
+| ~PASRE-NUM-OP~                   |
+| ~WITH-PROGRESS-MAYBE~            |
+| ~PRINT-USAGE~                    |
+| ~.CHA~                           |
+| ~WITH-CLI-ARGS~                  |
+| ~DEC-PRIVATE-MODE-RESET~         |
+| ~KEEP-AST-OPT~                   |
+| ~.CPL~                           |
+| ~.DECSET~                        |
+| ~PARSE-FILE-OP~                  |
+| ~*CLI*~                          |
+| ~DEFAULT-TOPLEVEL-INIT~          |
+| ~CLI-LOCK-P~                     |
+| ~CLAP-UNKNOWN-ARGUMENT~          |
+| ~WITH-CLI~                       |
+| ~*DEFAULT-GLOBAL-ENV-VAR-NAMES*~ |
+| ~CURSOR-PRECEDING-LINE~          |
+| ~*ARGS*~                         |
+| ~.SCORC~                         |
+| ~CLI-CD~                         |
+| ~WHEN-SUDO~                      |
+| ~.ED~                            |
+| ~ERASE-IN-DISPLAY~               |
+| ~PARSE-ARGS~                     |
+| ~PARSE-SYM-OP~                   |
+| ~SHORT-OPT-HAS-EQ-P~             |
+| ~LOAD-ACL-REPL~                  |
+| ~MAKE-SYMLINKS~                  |
+| ~COMPLETING-READ~                |
+| ~*CLI-GROUP-SEPARATOR*~          |
+| ~ADD-PACKAGE-CMDS~               |
+| ~CALL-OPT~                       |
+| ~.VPA~                           |
+| ~CLEAR~                          |
+| ~PARSE-CLI-LAMBDA-LIST~          |
+| ~SLIME~                          |
+| ~MAKE-CLI-NODE~                  |
+| ~.VPR~                           |
+| ~SUDO?~                          |
+| ~CLI-ARGS~                       |
+| ~ADD-PACKAGE-OPT~                |
+| ~%COMPOSE-KEYWORD-OPT~           |
+| ~START-RL-REPL~                  |
+| ~SHOW-CURSOR~                    |
+| ~DO-CMDS~                        |
+| ~.CUF~                           |
+| ~HOME~                           |
+| ~.SCOSC~                         |
+| ~PARSE-STRING-OPT~               |
+| ~ERASE~                          |
+| ~DEFPROMPT~                      |
+| ~ARG0~                           |
+| ~*ARG*~                          |
+| ~LONG-OPT-P~                     |
+| ~PARSE-DIR-OP~                   |
+| ~SELECT-GRAPHIC-RENDITION~       |
+| ~LEVEL-OPT~                      |
+| ~ACTIVATE-CMD~                   |
+| ~PARSE-BOOL-OPT~                 |
+| ~SUDO-PROMPT~                    |
+| ~VERSION-OPT~                    |
+| ~PACKAGE-CMDS~                   |
+| ~CURSOR-NEXT-LINE~               |
+| ~PACKAGE-OPTS~                   |
+| ~CLI-NODE-FORM~                  |
+| ~*SHELL-DIRECTORY*~              |
+| ~ERASE-IN-LINE~                  |
+| ~OPT-STRING-PREFIX-EQ~           |
+| ~*SHELL-INPUT*~                  |
+| ~EMACS-CONFIG~                   |
+| ~MAKE-OPT-PARSER~                |
+| ~MAKE-CLI-AST~                   |
+| ~CURSOR-UP~                      |
+| ~RESET-TO-INITIAL-STATE~         |
+| ~RUN-EMACSCLIENT~                |
+| ~DEBUG-OPTS~                     |
+| ~ERASE-LINE~                     |
+| ~CLI-AST~                        |
+| ~ERASE-ABOVE~                    |
+| ~CLI-OPT-NAME~                   |
+| ~CLI-NODE~                       |
+| ~ACTIVE-CMDS~                    |
+| ~FINISH-PROGRESS-DISPLAY~        |
+| ~LD-LIBRARY-PATH-LIST~           |
+| ~GROUP-OPT-P~                    |
+| ~IELM~                           |
+| ~CLI-CMD-ARGS~                   |
+| ~*PROGRESS-BAR-ENABLED*~         |
+| ~VSPARK~                         |
+| ~PARSE-KEY-OP~                   |
+| ~MAKE-SHORTY~                    |
+| ~CURSOR-POSITION~                |
+| ~*OPTC*~                         |
+| ~CLI-NAME~                       |
+| ~PARSE-FORM-OPT~                 |
+| ~PROGRESS-MUTEX~                 |
+| ~PROC-ARGS~                      |
+| ~FIND-OPTS~                      |
+| ~*CLI-OPT-KINDS*~                |
+| ~PARSE-LIST-OP~                  |
+| ~OPTS~                           |
+| ~START-PROGRESS-DISPLAY~         |
+| ~USE-ALTERNATE-SCREEN-BUFFER~    |
+| ~CLI-EQUAL~                      |
+| ~CLI~                            |
+| ~.CUU~                           |
+| ~WITH-EMACS~                     |
+| ~.RIS~                           |
+| ~VERTICAL-POSITION-ABSOLUTE~     |
+| ~SAVE-CURSOR-POSITION~           |
+| ~CLI-OPT~                        |
+| ~EDITOR-CONFIG~                  |
+| ~DEC-PRIVATE-MODE-SET~           |
+| ~*ARGC*~                         |
+| ~WITH-CLI-HANDLERS~              |
+| ~.CUD~                           |
+| ~EVAL-EMACS~                     |
+| ~UPDATE-PROGRESS~                |
+| ~DEFAULT-CMD-THUNK~              |
+| ~PROGRESS-BAR~                   |
+| ~*OPTS*~                         |
+| ~DO-OPT~                         |
+| ~.EL~                            |
+| ~*DEFAULT-CLI-CLASS*~            |
+| ~DEFINE-CLI~                     |
+| ~RESTORE-CURSOR-POSITION~        |
+| ~CLI-OPT-LOCK~                   |
+| ~ADD-PACKAGE-CMD~                |
+| ~ADD-PACKAGE-OPTS~               |
+| ~ERASE-SAVED-LINES~              |
+| ~PUSH-OPT~                       |
+| ~ORG-STORE-LINK~                 |
+| ~CONCAT-ENV-TABLE~               |
+| ~DEFMAIN~                        |
+| ~*VTICKS*~                       |
+| ~.DECRST~                        |
+| ~SHORT-OPT-P~                    |
+| ~HIDE-CURSOR~                    |
+| ~.CUP~                           |
+| ~*SHELL*~                        |
+| ~MAKE-OPTS~                      |
+| ~ERASE-LEFT~                     |
+| ~ERASE-RIGHT~                    |
+| ~.CUB~                           |
+| ~.VPB~                           |
+| ~VERTICAL-POSITION-BACKWARD~     |
+| ~CURSOR-BACKWARD~                |
+| ~SETOPT~                         |
+| ~LOAD-PACKAGE-CLI~               |
+| ~DEFCMD~                         |
+| ~ERASE-BELOW~                    |
+| ~ARGP~                           |
+| ~DO-CMD~                         |
+| ~ACTIVATE-OPT~                   |
+| ~ARGS~                           |
+| ~FIND-OPT~                       |
+| ~PRINT-VERSION~                  |
+| ~VERTICAL-POSITION-RELATIVE~     |
+| ~*PROGRESS-BAR*~                 |
+| ~DEVICE-STATUS-REPORT~           |
+| ~DEFINE-MULTI-MAIN~              |
+| ~*DEFAULT-CLI-DEF*~              |
+| ~*ENV-TABLE*~                    |
+| ~HELP-OPT~                       |
+| ~FIND-CMD~                       |
+| ~*CLI-PACKAGE-TABLE*~            |
+| ~GETOPT~                         |
+| ~CLI-OPT-VAL~                    |
+| ~CLAP-WARNING~                   |
+| ~SET-TTY-MODE~                   |
+| ~CLAP-SIMPLE-WARNING~            |
+| ~WITH-PROGRESS-BAR~              |
+
+- tests
+#+CALL: lisp-system-tests[:post transpose]("cli")
 
 #+RESULTS:
 | SBCL         |
@@ -263,12 +322,9 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | SPARK        |
 | PROGRESS     |
 
-* Packages
-:PROPERTIES:
-:ID:       94d0e207-02b0-4289-84e1-19e5b74e819b
-:END:
+#+END:
 
-** cli/clap
+* cli/clap
 :PROPERTIES:
 :ID:       c703a68c-2eb1-4251-8671-d587d550b66a
 :END:

@@ -205,7 +205,6 @@ swm -> core -> /usr/local/bin/
 :ID:       d9a1f958-c43e-4465-9916-3526f7a27268
 :END:
 The next think you'll want to take care of is user configuration.
-
 **** Emacs
 :PROPERTIES:
 :ID:       6c87dbd0-0a4b-4395-bc70-fff94b680787
@@ -242,6 +241,7 @@ Emacs configuration using the =skel= command.
   ulang.el -> /home/ellis/.emacs.d/lib/ulang.el
   uml-mode.el -> /home/ellis/.emacs.d/lib/uml-mode.el
   #+end_example
+
 The default config supports user customizations in a file with the
 same name as the current user, so when =$USER = ellis= then we check
 for =ellis.el= and load it if it exists in =~/.emacs.d/=.
@@ -273,25 +273,38 @@ The current apps that read a configuration file on startup are:
 - homer - home management: =.homerc=
 - mpk - media production kit: =.mpkrc=
 
-These apps all use the same /configuration protocol/.
+These apps all use the same /configuration object protocol/ from the
+=OBJ/CONFIG= package and are serialized to various S-Expression
+interpretations. Most commonly the 'pretty' format is used which
+is simply a plist with implied outer parentheses:
+#+begin_src lisp :eval never
+  :key1 val1
+  :key2 val2
+#+end_src
 
+Canonically that would be:
+#+begin_src lisp :eval never
+  (:key1 val1
+   :key2 val2)
+#+end_src
 ***** Skel
 :PROPERTIES:
 :ID:       d666962c-e15e-430c-8997-bf5a80bb9632
 :END:
 A skel config in 'canonical' format (plain S-Expression) is written to
 =~/.skelrc= the first time you run it from the CLI, if it does not
-already exist. You may want to adjust the defaults and rewrite in the
-'pretty' format which is easier on the eyes.
+already exist.
 
 ***** Homer
 :PROPERTIES:
 :ID:       526513cb-5b7a-4cc0-8d91-739db3e635f6
 :END:
+
 ***** Mpk
 :PROPERTIES:
 :ID:       1acfa6a4-41df-4ab7-84dd-72656cff0889
 :END:
+
 * Testing
 :PROPERTIES:
 :ID:       c074e53b-846d-45ed-8ddc-70e559ed6f0c

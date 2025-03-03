@@ -2,33 +2,386 @@
 #+author: Richard Westhaver
 #+setupfile: ../../../clean.theme
 depends on:
+- swank :: https://github.com/slime/slime
 - swank-client :: https://github.com/brown/swank-client
-* Packages
-:PROPERTIES:
-:ID:       ece0e4fe-cce1-43d7-99e7-32b1ed272244
-:END:
 
-* net/core
-:PROPERTIES:
-:ID:       2e3bca67-d655-44af-a546-d58646b4c9ab
-:END:
+#+BEGIN: lisp-system-info :system net
+- packages
+#+CALL: lisp-system-packages[:post transpose]("net")
 
-* net/udp
-:PROPERTIES:
-:ID:       1777bc15-95d3-4b4c-b5b8-1217d25a0a77
-:END:
+#+RESULTS:
+| NET/COOKIE         |
+| NET/UTIL           |
+| NET/PROTO/CREW     |
+| NET/CODEC/HTTP     |
+| NET/SRV/HTTP       |
+| NET/SRV/OAUTH      |
+| NET/PROTO/DNS      |
+| NET/REQ            |
+| NET-USER           |
+| NET/CORE           |
+| NET/PROTO/WHOIS    |
+| NET/CODEC/DNS      |
+| NET/TESTS          |
+| NET/PROTO/SSH      |
+| NET/PROTO/HTTP     |
+| NET                |
+| NET/SRV            |
+| NET/PROTO/SWANK    |
+| NET/TCP            |
+| NET/UDP            |
+| NET/CODEC/OSC      |
+| NET/CODEC/TLV      |
+| NET/SRV/UDP        |
+| NET/SRV/EXT        |
+| NET/CODEC/PUNYCODE |
 
-* net/tcp
-:PROPERTIES:
-:ID:       59e9224f-2d56-4842-a30b-e676bb1144b5
-:END:
+- dependencies
+#+CALL: lisp-system-dependencies[:post transpose]("net")
 
-* net/codec/tlv
-:PROPERTIES:
-:ID:       8e0bcf34-1d1e-495c-8758-ed9d3b2c92de
-:END:
+#+RESULTS:
+| sb-concurrency |
+| sb-posix       |
+| sb-bsd-sockets |
+| cl-ppcre       |
+| dat            |
+| obj            |
+| io             |
+| parse          |
+| chipz          |
+| babel          |
+| rt             |
+| std            |
+| cli            |
+| log            |
+| cry            |
+| swank          |
+| swank-client   |
+| swank-crew     |
 
-* net/proto/crew
-:PROPERTIES:
-:ID:       08b174f1-c1a7-4d2b-8e3c-0ccc1b0bd6fc
-:END:
+- dependents
+#+CALL: lisp-system-dependents[:post transpose]("net")
+
+#+RESULTS:
+| web/tests |
+| web       |
+| user      |
+| homer     |
+| dsp       |
+| packy     |
+| box       |
+| pod       |
+| net/tests |
+| vc        |
+| skel      |
+| core/lib  |
+| core      |
+
+- files
+#+CALL: lisp-system-files[:post transpose]("net")
+
+#+RESULTS:
+| pkg.lisp            |
+| condition.lisp      |
+| obj.lisp            |
+| util.lisp           |
+| udp.lisp            |
+| tcp.lisp            |
+| endpoint.lisp       |
+| transport.lisp      |
+| codec/punycode.lisp |
+| codec/dns.lisp      |
+| codec/tlv.lisp      |
+| codec/osc.lisp      |
+| codec/http.lisp     |
+| proto/swank.lisp    |
+| proto/crew.lisp     |
+| proto/http.lisp     |
+| proto/dns.lisp      |
+| proto/whois.lisp    |
+| proto/ssh.lisp      |
+| cookie.lisp         |
+| req.lisp            |
+| srv/pkg.lisp        |
+| srv/udp.lisp        |
+| srv/http.lisp       |
+| srv/oauth.lisp      |
+| srv/ext.lisp        |
+| net.lisp            |
+
+- tests
+#+CALL: lisp-system-tests[:post transpose]("net")
+
+#+RESULTS:
+| SRV     |
+| COOKIES |
+| REQ     |
+| HTTP    |
+| OSC     |
+| TLV     |
+| UDP     |
+| TCP     |
+| DNS     |
+
+- symbols
+#+CALL: lisp-package-symbols[:post codify-transpose]("NET")
+
+#+RESULTS:
+| ~TRANSPORT~                         |
+| ~SESSION~                           |
+| ~WITH-UDP-SERVER~                   |
+| ~SERVICE-TIMEOUT~                   |
+| ~INVALID-URL~                       |
+| ~SESSION-VERIFY~                    |
+| ~HTTP-CONTENT-LENGTH~               |
+| ~HTTP-ERROR~                        |
+| ~MAKE-HTTP-RESPONSE~                |
+| ~HTTP-REQUEST~                      |
+| ~INCREMENT-THREAD-COUNT~            |
+| ~DELETE-ROUTE~                      |
+| ~DISCONNECT~                        |
+| ~HTTP-CHUNKED-P~                    |
+| ~TCP-SERVER~                        |
+| ~SERVER~                            |
+| ~HTTP~                              |
+| ~MAKE-MULTIPART-PARSER~             |
+| ~REMOTE-PORT*~                      |
+| ~ACCEPT~                            |
+| ~CB-MESSAGE-BEGIN~                  |
+| ~MAKE-SERVER~                       |
+| ~TIMETAG->UNIX-TIME~                |
+| ~UNIX-TIME->TIMETAG~                |
+| ~*SESSION-SECRET*~                  |
+| ~RESET-SESSIONS~                    |
+| ~WAIT-FOR-FREE-CONNECTION~          |
+| ~CODEC-ERROR~                       |
+| ~*DEFAULT-MAX-ACCEPT-COUNT*~        |
+| ~INVALID-PARAMETER-KEY~             |
+| ~HTTP-REQUEST-P~                    |
+| ~+KNOWN-HTTP-VERSIONS+~             |
+| ~CREATE-REQUEST-WORKER-THREAD~      |
+| ~PROTOCOL-CONDITION~                |
+| ~*SESSION-DB*~                      |
+| ~WITH-DNS-ERROR-HANDLING~           |
+| ~PROTOCOL-WARNING~                  |
+| ~DNS-PORT~                          |
+| ~NEXT-SESSION-ID~                   |
+| ~HANDLE-CONNECTION~                 |
+| ~DEFAULT-WEB-DIRECTORY~             |
+| ~HTTP-RESOURCE~                     |
+| ~DETACH-SOCKET~                     |
+| ~UDP-RECEIVE-PING~                  |
+| ~HTTP-STATUS-MESSAGE~               |
+| ~DECODE-RECORD~                     |
+| ~CODEC~                             |
+| ~TUNNEL~                            |
+| ~DECODE-MESSAGE~                    |
+| ~+KNOWN-HTTP-WORDS+~                |
+| ~WITH-OPEN-SOCKET~                  |
+| ~MULTIPART-PARSING-ERROR~           |
+| ~NET-ERROR~                         |
+| ~+KNOWN-HTTP-METHODS+~              |
+| ~TIMETAG~                           |
+| ~DP-REMOVE~                         |
+| ~DO-WITH-REQUEST-COUNT-INCF~        |
+| ~ENCODE-HEADER~                     |
+| ~HTTP-METHOD~                       |
+| ~TOO-MANY-ENGINE-REQUESTS~          |
+| ~MAKE-TLV~                          |
+| ~INVALID-CONTENT-LENGTH~            |
+| ~SEND-SERVICE-UNAVAILABLE-RESPONSE~ |
+| ~HTTP-MINOR-VERSION~                |
+| ~*DEFAULT-OSC-BUFFER-SIZE*~         |
+| ~UDP-SERVER~                        |
+| ~INVALID-FRAGMENT~                  |
+| ~CLOSED-CONNECTION~                 |
+| ~LOCAL-PORT*~                       |
+| ~UDP-ECHO~                          |
+| ~HOSTNAME~                          |
+| ~CB-HEADER-FIELD~                   |
+| ~REMOVE-SESSION~                    |
+| ~ID-RECORD-TYPE~                    |
+| ~MAKE-HTTP-PARSER~                  |
+| ~MAKE-BUNDLE~                       |
+| ~PROCESS-CONNECTION~                |
+| ~NET-REQUEST~                       |
+| ~RESPONSE-CODE~                     |
+| ~LF-EXPECTED~                       |
+| ~*DEFAULT-SESSION-TIMEOUT*~         |
+| ~MAKE-CALLBACKS~                    |
+| ~SESSION-DATABASE~                  |
+| ~INVALID-QUERY-STRING~              |
+| ~*DEFAULT-CONNECTION-TIMEOUT*~      |
+| ~DECODE-DATA~                       |
+| ~INVALID-METHOD~                    |
+| ~GET-CURRENT-TIMETAG~               |
+| ~DECREMENT-THREAD-COUNT~            |
+| ~SESSION-DB~                        |
+| ~*HTTP-STATUS-MESSAGE-MAP*~         |
+| ~*DEFAULT-SERVICE-PORT*~            |
+| ~*ROUTER*~                          |
+| ~INVALID-INTERNAL-STATE~            |
+| ~HTTP-VERSION~                      |
+| ~HEADER-VALUE-PARSING-ERROR~        |
+| ~WITH-SESSION-DB-LOCK~              |
+| ~INVALID-MULTIPART-BODY~            |
+| ~*GOOGLE-SERVERS*~                  |
+| ~THREAD-PER-CONNECTION-ENGINE~      |
+| ~TLV~                               |
+| ~HTTP-KEYWORD~                      |
+| ~TIMETAG+~                          |
+| ~CLIENT~                            |
+| ~DEFROUTE~                          |
+| ~INVALID-HEADER-TOKEN~              |
+| ~*TCP-PING-SIZE*~                   |
+| ~SESSION-GC~                        |
+| ~TCP-PING-SERVER~                   |
+| ~RESOLVE~                           |
+| ~SESSION-CREATED~                   |
+| ~*OPENDNS-SERVERS*~                 |
+| ~*HEADERS-SENT*~                    |
+| ~DECODE-QUERY~                      |
+| ~DECODE-RESPONSE~                   |
+| ~DECREMENT-ACCEPT-COUNT~            |
+| ~*MESSAGE-LOG-LOCK*~                |
+| ~FIND-ROUTE~                        |
+| ~WITH-REQUEST-COUNT-INCF~           |
+| ~INVALID-CONSTANT~                  |
+| ~TLV-TYPE~                          |
+| ~MAKE-OSC-MESSAGE~                  |
+| ~DP-REGISTER~                       |
+| ~%HANDLE-CONNECTION~                |
+| ~*CLOUDFLARE-SERVERS*~              |
+| ~INVALID-EOF-STATE~                 |
+| ~COMMAND~                           |
+| ~DNS-CONDITION~                     |
+| ~MAKE-CLIENT~                       |
+| ~ADD-ROUTE~                         |
+| ~*RECORD-TYPE-TABLE*~               |
+| ~SECURE-SERVICE-P~                  |
+| ~SESSION-EXPIRED-P~                 |
+| ~RESET-SESSION-SECRET~              |
+| ~DNS-QUERY~                         |
+| ~PROTOCOL~                          |
+| ~CB-MESSAGE-COMPLETE~               |
+| ~SHUTDOWN-P~                        |
+| ~GET-UNIX-TIME~                     |
+| ~REMOVE-SESSION-HOOK~               |
+| ~PROXY~                             |
+| ~CODEC-WARNING~                     |
+| ~CONNECT~                           |
+| ~TLV-VALUE~                         |
+| ~NET-CONDITION~                     |
+| ~WITH-UDP-CLIENT~                   |
+| ~*SESSION-GC-FREQUENCY*~            |
+| ~SERVICE-CONFIG~                    |
+| ~START-LISTENING~                   |
+| ~STRICT-ERROR~                      |
+| ~UDP-SOCKET~                        |
+| ~DELETE-SESSION-VALUE~              |
+| ~MAKE-HTTP~                         |
+| ~RESPONSE-CODE-NAME~                |
+| ~INVALID-BOUNDARY~                  |
+| ~*QUAD9-SERVERS*~                   |
+| ~CB-HEADERS-COMPLETE~               |
+| ~OSC-MESSAGE~                       |
+| ~SERVICE-LOG-ACCESS~                |
+| ~HTTP-STATUS-TEXT~                  |
+| ~DECODE-HOST~                       |
+| ~SESSION-VALUE~                     |
+| ~*FINISH-PROCESSING-SOCKET*~        |
+| ~FORMAT-OSC-DATA~                   |
+| ~SESSION-TIMEOUT~                   |
+| ~MULTI-THREADED-ENGINE~             |
+| ~*GLOBAL-SESSION-DB-LOCK*~          |
+| ~MAKE-LL-MULTIPART-PARSER~          |
+| ~INVALID-PORT~                      |
+| ~HTTP-UPGRADE-P~                    |
+| ~CB-URL~                            |
+| ~NET-RESPONSE~                      |
+| ~ENCODE-BUNDLE~                     |
+| ~INVALID-VERSION~                   |
+| ~CALLBACK-ERROR~                    |
+| ~*SERVICES*~                        |
+| ~DNS-SERVERS-EXHAUSTED~             |
+| ~HTTP-HEADERS~                      |
+| ~*DEFAULT-CONNECTION-MAX*~          |
+| ~LOCAL-ADDR*~                       |
+| ~*LOG-SERVICE-ERRORS*~              |
+| ~PEER~                              |
+| ~INVALID-HOST~                      |
+| ~ELEMENTS~                          |
+| ~PAUSED-ERROR~                      |
+| ~CB-STATUS~                         |
+| ~PROTOCOL-ERROR~                    |
+| ~LL-MULTIPART-PARSER~               |
+| ~HTTP-P~                            |
+| ~*CLOSE-SERVICE-STREAM*~            |
+| ~DNS-SERVER-FAILURE~                |
+| ~HTTP-RESPONSE~                     |
+| ~SERVICE-MAKE-REQUEST~              |
+| ~BUNDLE~                            |
+| ~TCP-RECEIVE-PING~                  |
+| ~DECODE-BUNDLE~                     |
+| ~DECODE-HEADER~                     |
+| ~MAKE-HTTP-REQUEST~                 |
+| ~HTTP-SERVICE-RESPONSE~             |
+| ~*DEFAULT-MAX-THREAD-COUNT*~        |
+| ~SERVICE-LOG~                       |
+| ~CB-HEADER-VALUE~                   |
+| ~MESSAGE-LOG-OUTPUT~                |
+| ~SINGLE-THREADED-ENGINE~            |
+| ~WITH-TCP-CLIENT~                   |
+| ~INVALID-CHUNK-SIZE~                |
+| ~DEFSERVICE~                        |
+| ~REMOTE-ADDR*~                      |
+| ~HEADER-OVERFLOW~                   |
+| ~INCREMENT-ACCEPT-COUNT~            |
+| ~HTTP-STATUS~                       |
+| ~INVALID-HEADER-VALUE~              |
+| ~*ACCESS-LOG-LOCK*~                 |
+| ~RESET-CONNECTION-STREAM~           |
+| ~INITIALIZE-CONNECTION-HOOK~        |
+| ~NET-SERVICE~                       |
+| ~CB-FIRST-LINE~                     |
+| ~*DNS-SERVERS*~                     |
+| ~INVALID-STATUS~                    |
+| ~UNKNOWN-ERROR~                     |
+| ~*DEFAULT-SSL-SERVICE-PORT*~        |
+| ~PARSE-REQUEST~                     |
+| ~*SERVICE-STREAM*~                  |
+| ~TLV-LENGTH~                        |
+| ~HTTP-RESPONSE-P~                   |
+| ~HTTP-MULTIPART-PARSE~              |
+| ~PARSING-ERROR~                     |
+| ~DP-MATCH~                          |
+| ~RECORD-TYPE-ID~                    |
+| ~ENCODE-MESSAGE~                    |
+| ~ENCODE-QUERY~                      |
+| ~EXECUTE-SERVICE~                   |
+| ~INVALID-PARAMETER-VALUE~           |
+| ~START-SESSION~                     |
+| ~SERVICE-LOG-MESSAGE~               |
+| ~CB-BODY~                           |
+| ~PRINT-AS-DOUBLE~                   |
+| ~CODEC-CONDITION~                   |
+| ~HTTP-MAJOR-VERSION~                |
+| ~UDP-CLIENT~                        |
+| ~SERVICE-LOGGER~                    |
+| ~ACCESS-LOG-OUTPUT~                 |
+| ~*SESSION*~                         |
+| ~MAKE-OSC-TREE~                     |
+| ~SERVICE-STATUS-MESSAGE~            |
+| ~WAKE-SERVICE-FOR-SHUTDOWN~         |
+| ~INVALID-PATH~                      |
+| ~*HANDLERS*~                        |
+| ~QUERY-DATA~                        |
+| ~REQUEST-PROTOCOL*~                 |
+| ~*DNSWATCH-SERVERS*~                |
+| ~ENCODE-HOST~                       |
+| ~PARSE-RESPONSE~                    |
+| ~INITIALIZE-INSTANCE~               |
+| ~TCP-ECHO~                          |
+
+#+END:
+
