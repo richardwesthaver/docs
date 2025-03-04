@@ -1,15 +1,12 @@
 #+title: Infra Manual
-#+description: CC Infra Manual
+#+description: CC Infrastructure Manual
 #+property: header-args :dir /home/ellis/comp/infra/
 #+property: header-args:dot :dir /tmp/ :file bootstrap.svg
 #+setupfile: ../../clean.theme
 #+infojs_opt: toc:nil home:https://compiler.company up:./ view:overview
 #+property: header-args :eval no-export* Overview
-:PROPERTIES:
-:ID:       bbb86596-4be5-4f5e-8854-9ea28b077879
-:END:
 - *Host Requirements*
-  - x86_64 4 core CPU
+  - x86_64 >4 core CPU
   - 8G RAM
   - 32G Disk Space
   - Linux kernel
@@ -18,29 +15,32 @@
   - git
   - zstd
 
-
 * bootstrap.sh
 :PROPERTIES:
 :ID:       b906e6ea-71c2-41ae-9c29-c911582f054e
 :END:
-#+begin_src lisp :results none :exports none
-    (ql:quickload '(:dat :cli))
-    (in-package :dat/dot)
-    (let ((g (make-instance 'directed-graph)))
-      (add-node g :check)
-      (add-node g :bootstrap)
-      (add-node g :autogen)
-      (add-node g "profile.sxp")
-      (add-node g "host.sxp")
-      (add-edge g '(:check "host.sxp"))
-      (add-edge g '(:bootstrap :check))
-      (add-edge g '(:bootstrap :autogen))
-      (add-edge g '("profile.sxp" :autogen))
-      (add-edge g '("host.sxp" :autogen))
-      (to-dot-file g #p"/tmp/bootstrap.dot")
-      ;; (sb-ext:run-program (cli:find-exe "dot") (list "-Tsvg" "/tmp/bootstrap.dot" "-o" "/tmp/bootstrap.svg"))
-      )
+#+begin_src lisp :results replace :exports code
+  (ql:quickload '(:dat :cli))
+  (in-package :dat/dot)
+  (let ((g (make-instance 'directed-graph)))
+    (add-node g :check)
+    (add-node g :bootstrap)
+    (add-node g :autogen)
+    (add-node g "profile.sxp")
+    (add-node g "host.sxp")
+    (add-edge g '(:check "host.sxp"))
+    (add-edge g '(:bootstrap :check))
+    (add-edge g '(:bootstrap :autogen))
+    (add-edge g '("profile.sxp" :autogen))
+    (add-edge g '("host.sxp" :autogen))
+    (to-dot-file g #p"/tmp/bootstrap.dot")
+    (sb-ext:run-program (cli:find-exe "dot") (list "-Tascii" "/tmp/bootstrap.dot" "-o" "/tmp/bootstrap.txt"))
+    (with-open-file (f "/tmp/bootstrap.txt")
+      (copy-stream f t)))
 #+end_src
+
+#+RESULTS:
+: /tmp/bootstrap.svg
 
 [[cdn:media/img/bootstrap.svg]]
 
