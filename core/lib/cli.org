@@ -10,6 +10,81 @@ The =cli= library is a fully-featured toolkit for working with and
 building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 
 #+BEGIN: lisp-system-info :system cli
+- packages
+#+CALL: lisp-system-packages[:post transpose]("cli")
+
+#+RESULTS:
+| CLI/REPL         |
+| CLI/TUI          |
+| CLI/CLAP/UTIL    |
+| CLI/TOOLS/GO     |
+| CLI/TOOLS/NET    |
+| CLI/CLAP/PROTO   |
+| CLI/TOOLS/MAIL   |
+| CLI/TOOLS/PACMAN |
+| CLI/CLAP/OBJ     |
+| CLI/ENV          |
+| CLI/CLAP/MACS    |
+| CLI/TOOLS/MEDIA  |
+| CLI/TOOLS/SBCL   |
+| CLI/TOOLS        |
+| CLI/TOOLS/RUST   |
+| CLI/PROMPT       |
+| CLI/TOOLS/FS     |
+| CLI-USER         |
+| CLI/PROGRESS     |
+| CLI/CLAP         |
+| CLI/TOOLS/PROTO  |
+| CLI/TOOLS/TMUX   |
+| CLI/TESTS        |
+| CLI/ANSI         |
+| CLI/SPARK        |
+| CLI/MULTI        |
+| CLI/TOOLS/TERM   |
+| CLI/CLAP/AST     |
+| CLI/CLAP/VARS    |
+| CLI/ED           |
+| CLI/TOOLS/SYS    |
+| CLI/CLAP/SIMPLE  |
+| CLI/TOOLS/CC     |
+| CLI              |
+| CLI/SHELL        |
+
+- dependencies
+#+CALL: lisp-system-dependencies[:post transpose]("cli")
+
+#+RESULTS:
+| std      |
+| log      |
+| dat      |
+| obj      |
+| readline |
+
+- dependents
+#+CALL: lisp-system-dependents[:post transpose]("cli")
+
+#+RESULTS:
+| user      |
+| gui       |
+| packy     |
+| syn       |
+| box       |
+| pod       |
+| net       |
+| vc        |
+| skel      |
+| cli/tests |
+| core/lib  |
+| core      |
+| bin/packy |
+| bin/skel  |
+| bin/vc    |
+| bin/gen   |
+| bin/rdb   |
+| bin/pod   |
+| bin/homer |
+| bin/organ |
+
 - files
 #+CALL: lisp-system-files[:post transpose]("cli")
 
@@ -47,44 +122,22 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | tui.lisp          |
 | cli.lisp          |
 
-- packages
-#+CALL: lisp-system-packages[:post transpose]("cli")
+- tests
+#+CALL: lisp-system-tests[:post transpose]("cli")
 
 #+RESULTS:
-| CLI/REPL         |
-| CLI/TUI          |
-| CLI/CLAP/UTIL    |
-| CLI/TOOLS/GO     |
-| CLI/TOOLS/NET    |
-| CLI/CLAP/PROTO   |
-| CLI/TOOLS/MAIL   |
-| CLI/TOOLS/PACMAN |
-| CLI/CLAP/OBJ     |
-| CLI/ENV          |
-| CLI/CLAP/MACS    |
-| CLI/TOOLS/SBCL   |
-| CLI/TOOLS        |
-| CLI/TOOLS/RUST   |
-| CLI/PROMPT       |
-| CLI/TOOLS/FS     |
-| CLI-USER         |
-| CLI/PROGRESS     |
-| CLI/CLAP         |
-| CLI/TOOLS/PROTO  |
-| CLI/TOOLS/TMUX   |
-| CLI/TESTS        |
-| CLI/ANSI         |
-| CLI/SPARK        |
-| CLI/MULTI        |
-| CLI/TOOLS/TERM   |
-| CLI/CLAP/AST     |
-| CLI/CLAP/VARS    |
-| CLI/ED           |
-| CLI/TOOLS/SYS    |
-| CLI/CLAP/SIMPLE  |
-| CLI/TOOLS/CC     |
-| CLI              |
-| CLI/SHELL        |
+| SBCL         |
+| CLAP-OPTS    |
+| CLAP-MAIN    |
+| CLI-AST      |
+| MIXED-ARGS   |
+| ANSI         |
+| SHELL-READER |
+| SBCL-TOOLS   |
+| ENV          |
+| REPL         |
+| SPARK        |
+| PROGRESS     |
 
 - symbols
 #+CALL: lisp-package-symbols[:post codify-transpose]("CLI")
@@ -304,23 +357,6 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | ~SET-TTY-MODE~                   |
 | ~CLAP-SIMPLE-WARNING~            |
 | ~WITH-PROGRESS-BAR~              |
-
-- tests
-#+CALL: lisp-system-tests[:post transpose]("cli")
-
-#+RESULTS:
-| SBCL         |
-| CLAP-OPTS    |
-| CLAP-MAIN    |
-| CLI-AST      |
-| MIXED-ARGS   |
-| ANSI         |
-| SHELL-READER |
-| SBCL-TOOLS   |
-| ENV          |
-| REPL         |
-| SPARK        |
-| PROGRESS     |
 
 #+END:
 

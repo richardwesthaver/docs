@@ -24,6 +24,61 @@ Speed is the priority.
   - use IO-OP-NOP for estimating throughput and comparing implementations (rust/tokio)
 
 #+BEGIN: lisp-system-info :system io
+- packages
+#+CALL: lisp-system-packages[:post transpose]("io")
+
+#+RESULTS:
+| IO/ZSTD         |
+| IO/XSUBSEQ      |
+| IO/CHUNKY       |
+| IO/TESTS        |
+| IO/SOCKET       |
+| IO-USER         |
+| IO/PROTO        |
+| IO/FAST         |
+| IO/STATIC       |
+| IO/STREAM       |
+| IO/DISK/BTRFS   |
+| IO/SMART-BUFFER |
+| IO/DISK         |
+| IO              |
+| IO/URING        |
+| IO/FLATE        |
+| IO/KBD          |
+
+- dependencies
+#+CALL: lisp-system-dependencies[:post transpose]("io")
+
+#+RESULTS:
+| cl-ppcre       |
+| std            |
+| uring          |
+| xkb            |
+| evdev          |
+| btrfs          |
+| sb-bsd-sockets |
+| zstd           |
+| flexi-streams  |
+
+- dependents
+#+CALL: lisp-system-dependents[:post transpose]("io")
+
+#+RESULTS:
+| homer     |
+| gui       |
+| dsp       |
+| packy     |
+| pod       |
+| net       |
+| vc/tests  |
+| cry       |
+| dat       |
+| io/tests  |
+| log/tests |
+| log       |
+| core/lib  |
+| core      |
+
 - files
 #+CALL: lisp-system-files[:post transpose]("io")
 
@@ -47,34 +102,6 @@ Speed is the priority.
 | kbd.lisp          |
 | io.lisp           |
 
-- packages
-#+CALL: lisp-system-packages[:post transpose]("io")
-
-#+RESULTS:
-| IO/ZSTD         |
-| IO/XSUBSEQ      |
-| IO/CHUNKY       |
-| IO/TESTS        |
-| IO/SOCKET       |
-| IO-USER         |
-| IO/PROTO        |
-| IO/FAST         |
-| IO/STATIC       |
-| IO/STREAM       |
-| IO/DISK/BTRFS   |
-| IO/SMART-BUFFER |
-| IO/DISK         |
-| IO              |
-| IO/URING        |
-| IO/FLATE        |
-| IO/KBD          |
-
-- symbols
-#+CALL: lisp-package-symbols[]('io)
-
-#+RESULTS:
-| (#<DOC:SYMBOL-DOCUMENTATION IO/XSUBSEQ:NULL-CONCATENATED-XSUBSEQS (CLASS TYPE)> |
-
 - tests
 #+CALL: lisp-system-tests[:post transpose]("io")
 
@@ -90,5 +117,140 @@ Speed is the priority.
 | STREAMS       |
 | SERVE-EVENT   |
 | SANITY        |
+
+- symbols
+#+CALL: lisp-package-symbols[:post codify-transpose]("IO")
+
+#+RESULTS:
+| ~NULL-CONCATENATED-XSUBSEQS~      |
+| ~DECOMPRESSION-BUFFER-SIZE*~      |
+| ~PEEK-CHAR*~                      |
+| ~HEADER-LENGTH~                   |
+| ~WITH-ZSTD-INPUT~                 |
+| ~*DEFAULT-DISK-LIMIT*~            |
+| ~UNREAD-CHAR*~                    |
+| ~SOCKOPT-PEERCRED~                |
+| ~FLATE-ERROR~                     |
+| ~FILL-BUFFER~                     |
+| ~IO-SOCKET-ERROR~                 |
+| ~BUFFER-ON-MEMORY-P~              |
+| ~WITH-ZSTD-STREAM~                |
+| ~INPUT-CHUNKING-P~                |
+| ~MAKE-STATIC-VECTOR~              |
+| ~ASSERT-CHAR~                     |
+| ~WITH-STATIC-STREAMS~             |
+| ~XNCONC~                          |
+| ~XLENGTH~                         |
+| ~COMPRESSING-STREAM~              |
+| ~INPUT-SIZE~                      |
+| ~COMPRESS-WITH~                   |
+| ~OUTPUT-AVAILABLE-P~              |
+| ~MAKE-SMART-BUFFER~               |
+| ~ENSURE-FILE-POSITION~            |
+| ~OUTPUT-BUFFER~                   |
+| ~FINISH-COMPRESSION~              |
+| ~XNCONCF~                         |
+| ~SOCKOPT-RECEIVE-TIMEOUT~         |
+| ~COMPRESSION-LEVEL~               |
+| ~+DEFAULT-CHUNKED-OUTPUT-SIZE+~   |
+| ~WITH-ZSTD-OUTPUT~                |
+| ~PEEKED-SIZE~                     |
+| ~ASSERT-CRLF~                     |
+| ~WITH-XSUBSEQS~                   |
+| ~COMPRESS~                        |
+| ~SIMPLE-CHUNKED-INPUT-STREAM~     |
+| ~OUTPUT~                          |
+| ~SOCKOPT-REUSE-PORT~              |
+| ~INPUT-AVAILABLE-P~               |
+| ~DELETE-STREAM-FILE~              |
+| ~*DEFAULT-MEMORY-LIMIT*~          |
+| ~WRITE-TO-BUFFER~                 |
+| ~SMART-BUFFER~                    |
+| ~DECOMPRESSION-ERROR~             |
+| ~COERCE-TO-SEQUENCE~              |
+| ~*COMPRESSION-BUFFER-SIZE*~       |
+| ~FILL-FOREIGN-MEMORY~             |
+| ~SOCKOPT-PEER-CRED~               |
+| ~INPUT-POSITION~                  |
+| ~DECOMPRESS~                      |
+| ~STATIC-STREAM~                   |
+| ~DECOMPRESS-OBJECT~               |
+| ~MAKE-CONCATENATED-XSUBSEQS~      |
+| ~*DECOMPRESSION-BUFFER-SIZE*~     |
+| ~WITH-SMART-BUFFER~               |
+| ~PEEKED-BYTES~                    |
+| ~OCTET-XSUBSEQ~                   |
+| ~CHUNKED-IO-STREAM~               |
+| ~REPLACE-FOREIGN-MEMORY~          |
+| ~DECOMPRESSOR~                    |
+| ~COERCE-TO-STRING~                |
+| ~SNAPSHOT~                        |
+| ~IO-STREAM~                       |
+| ~COMPRESSOR~                      |
+| ~SOCKOPT-LINGER~                  |
+| ~DECOMPRESS-WITH~                 |
+| ~BUFFER-LIMIT-EXCEEDED~           |
+| ~CHUNKED-INPUT-STREAM-TRAILERS~   |
+| ~IO-ERROR~                        |
+| ~MAKE-BOUND-STREAM~               |
+| ~BLOCKED-INPUT-STREAM~            |
+| ~*DECOMPRESSOR*~                  |
+| ~MAKE-COMPRESSING-STREAM~         |
+| ~FREE-STATIC-VECTOR~              |
+| ~CHUNKED-INPUT-STREAM~            |
+| ~ZSTD-DECOMPRESSOR~               |
+| ~CHUNKED-OUTPUT-STREAM~           |
+| ~ZSTD-ERROR~                      |
+| ~*COMPRESSION-TYPES*~             |
+| ~OUTPUT-SIZE~                     |
+| ~INPUT-BUFFER~                    |
+| ~INPUT~                           |
+| ~WITH-STATIC-VECTORS~             |
+| ~*COMPRESSION-LEVEL*~             |
+| ~OCTET-CONCATENATED-XSUBSEQS~     |
+| ~CONCATENATED-XSUBSEQS~           |
+| ~BLOCKED-STREAM~                  |
+| ~PEEKED-COUNT~                    |
+| ~PEEKING-INPUT-STREAM~            |
+| ~COMPRESSION-ERROR~               |
+| ~DECOMPRESSING-STREAM~            |
+| ~FINISH-DECOMPRESSION~            |
+| ~BLOCKED-OUTPUT-STREAM~           |
+| ~RESET-COMPRESSOR~                |
+| ~HEADER-TYPE~                     |
+| ~OUTPUT-CHUNKING-P~               |
+| ~OFFSET~                          |
+| ~SIGNAL-EOF~                      |
+| ~CHUNKED-INPUT-STREAM-EXTENSIONS~ |
+| ~WITH-STATIC-VECTOR~              |
+| ~WITH-ZSTD-BUFFER~                |
+| ~COMPRESS-OBJECT~                 |
+| ~WITH-STATIC-STREAM~              |
+| ~CHUNKED-STREAM~                  |
+| ~SYNC~                            |
+| ~DELETE-TEMPORARY-FILES~          |
+| ~BOUND-INPUT-STREAM~              |
+| ~STRING-XSUBSEQ~                  |
+| ~STRING-CONCATENATED-XSUBSEQS~    |
+| ~*DEFAULT-STATIC-STREAM-SIZE*~    |
+| ~IO-SOCKET~                       |
+| ~SOCKOPT-SEND-TIMEOUT~            |
+| ~ZSTD-COMPRESSOR~                 |
+| ~*COMPRESSOR*~                    |
+| ~*COMPRESSION-TYPE*~              |
+| ~FINALIZE-BUFFER~                 |
+| ~HEADER~                          |
+| ~MAKE-CHUNKED-STREAM~             |
+| ~XSUBSEQ~                         |
+| ~MAKE-DECOMPRESSING-STREAM~       |
+| ~OUTPUT-POSITION~                 |
+| ~STATIC-VECTOR~                   |
+| ~RESET-DECOMPRESSOR~              |
+| ~BLOCKED-IO-STREAM~               |
+| ~IO-STREAM-ERROR~                 |
+| ~STATIC-VECTOR-POINTER~           |
+| ~READ-CHAR*~                      |
+| ~EXPECTING-CRLF-P~                |
+| ~WITH-CHARACTER-STREAM-SEMANTICS~ |
 
 #+END:
