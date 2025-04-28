@@ -113,41 +113,33 @@ we may safely ignore it.
 :PROPERTIES:
 :ID:       22b763b9-c781-4061-b5ef-fc4f19720cf0
 :END:
-**** Minimum Requirements
-:PROPERTIES:
-:ID:       2b2485b6-29d1-4ead-aaf5-91e4798c5779
-:END:
-- GNU/Linux, linux-headers
-- C compiler (GCC, MUSL, CLANG)
-- SBCL
-- GNU Emacs
-- Quicklisp
-- RocksDB
-- Zstd
-- Mercurial
-- OpenSSL
-- Treesitter
-- BLAKE3
-**** Optional Requirements
-:PROPERTIES:
-:ID:       3089b83f-1bd1-423e-9e09-48c839fbac07
-:END:
-- Rust
-- X11
-- CUDA
-- Libevdev
-- Libkeyutils
-- Wasmer
-- Libsndfile
-- Libreadline
-- Libssh2
-- Btrfs
-- Podman
-- QEMU
-- CUDA
-- Readline
-- GStreamer
-- Rustls
+- Required
+  - GNU/Linux, linux-headers
+  - C compiler (GCC, MUSL, CLANG)
+  - SBCL
+  - GNU Emacs
+  - Quicklisp
+  - RocksDB
+  - Zstd
+  - Mercurial
+  - OpenSSL
+  - Treesitter
+  - BLAKE3
+- Optional
+  - Rust
+  - X11
+  - CUDA
+  - Libevdev
+  - Libkeyutils
+  - Wasmer
+  - Libsndfile
+  - Libssh2
+  - Btrfs
+  - Podman
+  - QEMU
+  - CUDA
+  - GStreamer
+  - Rustls
 *** Bootstrap
 :PROPERTIES:
 :ID:       dcb3ffff-5388-4387-8a46-553ae0309d70
@@ -258,6 +250,7 @@ for =ellis.el= and load it if it exists in =~/.emacs.d/=.
 The core is a single binary which dispatches on argv[0] from the
 CLI. Each unique symlink to the core binary is treated as a separate
 dispatch to a 'main' function like so:
+
 #+begin_src lisp :exports code
   (define-multi-main dispatch-core
     (progn (in-package :core-lisp)
@@ -277,6 +270,7 @@ These apps all use the same /configuration object protocol/ from the
 =OBJ/CONFIG= package and are serialized to various S-Expression
 interpretations. Most commonly the 'pretty' format is used which
 is simply a plist with implied outer parentheses:
+
 #+begin_src lisp :eval never
   :key1 val1
   :key2 val2
@@ -287,6 +281,7 @@ Canonically that would be:
   (:key1 val1
    :key2 val2)
 #+end_src
+
 ***** Skel
 :PROPERTIES:
 :ID:       d666962c-e15e-430c-8997-bf5a80bb9632
@@ -310,3 +305,10 @@ already exist.
 :ID:       c074e53b-846d-45ed-8ddc-70e559ed6f0c
 :END:
 
+** Regression Tests
+
+** Benchmarks
+
+** Coverage
+
+** Profiling

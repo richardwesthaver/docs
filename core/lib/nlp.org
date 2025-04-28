@@ -19,6 +19,7 @@ Much of this code is from the Nyxt analysis library [[https://github.com/atlas-e
 #+CALL: lisp-system-packages[:post transpose]("nlp")
 
 #+RESULTS:
+| NLP/STRING      |
 | NLP/STEM/PORTER |
 | NLP/TESTS       |
 | NLP/DATA        |
@@ -38,7 +39,7 @@ Much of this code is from the Nyxt analysis library [[https://github.com/atlas-e
 | rdb      |
 | cl-ppcre |
 | parse    |
-| nlp/pkg  |
+| obj      |
 
 - dependents
 #+CALL: lisp-system-dependents[:post transpose]("nlp")
@@ -46,12 +47,12 @@ Much of this code is from the Nyxt analysis library [[https://github.com/atlas-e
 #+RESULTS:
 | web       |
 | user      |
+| bin/homer |
+| bin/organ |
 | nlp/tests |
 | organ     |
 | core/lib  |
 | core      |
-| bin/homer |
-| bin/organ |
 
 - files
 #+CALL: lisp-system-files[:post transpose]("nlp")
@@ -65,11 +66,14 @@ Much of this code is from the Nyxt analysis library [[https://github.com/atlas-e
 | textrank.lisp    |
 | dbscan.lisp      |
 | section.lisp     |
+| string.lisp      |
+| fuzzy.lisp       |
 
 - tests
 #+CALL: lisp-system-tests[:post transpose]("nlp")
 
 #+RESULTS:
+| DBSCAN      |
 | TEXTRANK    |
 | DOCS        |
 | PORTER-STEM |
@@ -103,6 +107,7 @@ Much of this code is from the Nyxt analysis library [[https://github.com/atlas-e
 | ~NEIGHBORS~                          |
 | ~WORD-TOKENIZE~                      |
 | ~SENTENCE-TOKENIZE~                  |
+| ~FUZZY-MATCH~                        |
 | ~TERM-FREQUENCY~                     |
 | ~ADD-DOCUMENT~                       |
 | ~TF-VECTORIZE-DOCUMENTS~             |

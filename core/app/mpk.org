@@ -1,5 +1,6 @@
 #+title: MPK
 #+description: Media Production Kit
+#+setupfile: ../../../clean.theme
 MPK is a Media Production Kit in Lisp.
 
 - provide a shared client for popular audio/video tools and
@@ -15,6 +16,43 @@ MPK is a Media Production Kit in Lisp.
 
 - implements STD/PIPE protocol
 
+* system
+#+BEGIN: lisp-system-info :system mpk :symbols nil
+- packages
+#+CALL: lisp-system-packages[:post transpose]("mpk")
+
+#+RESULTS:
+| MPK/CLI  |
+| MPK/GUI  |
+| MPK/DB   |
+| MPK      |
+| MPK-USER |
+| MPK/MPD  |
+
+- dependencies
+#+CALL: lisp-system-dependencies[:post transpose]("mpk")
+
+#+RESULTS:
+| prelude |
+| dsp     |
+
+- files
+#+CALL: lisp-system-files[:post transpose]("mpk")
+
+#+RESULTS:
+| pkg.lisp   |
+| mpd.lisp   |
+| proto.lisp |
+| var.lisp   |
+| util.lisp  |
+| db.lisp    |
+| cfg.lisp   |
+| net.lisp   |
+| cli.lisp   |
+| gui.lisp   |
+
+#+END:
+
 * help
 #+begin_src shell :results output :exports both
 mpk -h
@@ -22,28 +60,23 @@ mpk -h
 
 #+RESULTS:
 #+begin_example
-mpk 0.1.0
-ellis <ellis@rwest.io>
-media programming kit
+mpk v0.1.0 --- Media Production Kit
 
-USAGE:
-    mpk [OPTIONS] <SUBCOMMAND>
+options:
+  -h/--help               print help
+    :doc Print help and exit.
+  -m/--mpd                include MPD stats
 
-OPTIONS:
-    -c, --cfg <CFG>    [default: ~/mpk/mpk.toml]
-        --trace        Enable DB tracing
-        --profile      Enable DB profiling
-    -h, --help         Print help information
-    -V, --version      Print version information
-
-SUBCOMMANDS:
-    init      Initialize MPK
-    sesh      Interact with sessions
-    play      Play an audio file
-    run       Run a service
-    db        Interact with the database
-    info      Print info
-    pack      Package resources [.tar.zst]
-    unpack    Unpackage resources [.tar.zst]
-    help      Print this message or the help of the given subcommand(s)
+commands:
+  play                    
+  toggle                  
+  pause                   
+  stop                    
+  next                    
+  prev                    
+  shuffle                 
+  mpc                     
+  get                     
+  stats*                  
+    -m/--mpd                include MPD stats
 #+end_example

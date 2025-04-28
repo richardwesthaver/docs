@@ -14,6 +14,7 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 #+CALL: lisp-system-packages[:post transpose]("cli")
 
 #+RESULTS:
+| CLI/TERMINFO     |
 | CLI/REPL         |
 | CLI/TUI          |
 | CLI/CLAP/UTIL    |
@@ -27,6 +28,7 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | CLI/CLAP/MACS    |
 | CLI/TOOLS/MEDIA  |
 | CLI/TOOLS/SBCL   |
+| CLI/LINEDIT      |
 | CLI/TOOLS        |
 | CLI/TOOLS/RUST   |
 | CLI/PROMPT       |
@@ -44,6 +46,7 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | CLI/CLAP/AST     |
 | CLI/CLAP/VARS    |
 | CLI/ED           |
+| CLI/TOOLS/VIRT   |
 | CLI/TOOLS/SYS    |
 | CLI/CLAP/SIMPLE  |
 | CLI/TOOLS/CC     |
@@ -54,17 +57,25 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 #+CALL: lisp-system-dependencies[:post transpose]("cli")
 
 #+RESULTS:
-| std      |
-| log      |
-| dat      |
-| obj      |
-| readline |
+| std |
+| log |
+| dat |
+| obj |
 
 - dependents
 #+CALL: lisp-system-dependents[:post transpose]("cli")
 
 #+RESULTS:
 | user      |
+| bin/packy |
+| bin/skel  |
+| bin/vc    |
+| bin/gen   |
+| bin/rdb   |
+| bin/pod   |
+| bin/mpk   |
+| bin/homer |
+| bin/organ |
 | gui       |
 | packy     |
 | syn       |
@@ -76,14 +87,6 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | cli/tests |
 | core/lib  |
 | core      |
-| bin/packy |
-| bin/skel  |
-| bin/vc    |
-| bin/gen   |
-| bin/rdb   |
-| bin/pod   |
-| bin/homer |
-| bin/organ |
 
 - files
 #+CALL: lisp-system-files[:post transpose]("cli")
@@ -94,6 +97,8 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | env.lisp          |
 | progress.lisp     |
 | spark.lisp        |
+| terminfo.lisp     |
+| linedit.lisp      |
 | repl.lisp         |
 | shell.lisp        |
 | prompt.lisp       |
@@ -107,6 +112,7 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | tools/rust.lisp   |
 | tools/sbcl.lisp   |
 | tools/net.lisp    |
+| tools/media.lisp  |
 | tools/mail.lisp   |
 | tools/fs.lisp     |
 | clap/pkg.lisp     |
@@ -143,7 +149,7 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 #+CALL: lisp-package-symbols[:post codify-transpose]("CLI")
 
 #+RESULTS:
-| ~*SUDO*~                         |
+| ~PUSH-CMD~                       |
 | ~*NO-EXIT*~                      |
 | ~CLAP-MISSING-ARGUMENT~          |
 | ~DO-OPTS~                        |
@@ -154,30 +160,28 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | ~CURSOR-HORIZONTAL-ABSOLUTE~     |
 | ~FIND-SHORT-OPTS~                |
 | ~CLI-NODE-KIND~                  |
-| ~PUSH-CMD~                       |
+| ~DEFINE-CLI~                     |
 | ~IF-SUDO~                        |
 | ~DEFOPT~                         |
 | ~MAKE-CLI~                       |
 | ~FIND-EXE~                       |
 | ~PRINT-HELP~                     |
-| ~CLAP-ERROR~                     |
+| ~DEFAULT-OPT-THUNK~              |
 | ~SET-PACKAGE-CLI~                |
 | ~ACTIVE-OPTS~                    |
 | ~SPARK~                          |
 | ~CURSOR-FORWARD~                 |
 | ~.DSR~                           |
 | ~*DEFAULT-LOCAL-ENV-VAR-NAMES*~  |
-| ~.CNL~                           |
+| ~FIND-OPT~                       |
 | ~.SGR~                           |
-| ~CLAP-INVALID-ARGUMENT~          |
 | ~CURSOR-DOWN~                    |
 | ~PACKAGE-CLI~                    |
 | ~WITH-SUDO~                      |
 | ~CLI-CMD~                        |
-| ~DEFAULT-OPT-THUNK~              |
+| ~.CUP~                           |
 | ~UNCERTAIN-SIZE-PROGRESS-BAR~    |
 | ~EXEC-PATH-LIST~                 |
-| ~LOAD-ENV~                       |
 | ~OPT-KEYWORD-P~                  |
 | ~USE-NORMAL-SCREEN-BUFFER~       |
 | ~CMDS~                           |
@@ -186,23 +190,23 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | ~CLI-OPT-KIND-P~                 |
 | ~*TICKS*~                        |
 | ~PASRE-NUM-OP~                   |
+| ~DEC-PRIVATE-MODE-RESET~         |
 | ~WITH-PROGRESS-MAYBE~            |
 | ~PRINT-USAGE~                    |
 | ~.CHA~                           |
 | ~WITH-CLI-ARGS~                  |
-| ~DEC-PRIVATE-MODE-RESET~         |
+| ~CLAP-INVALID-ARGUMENT~          |
 | ~KEEP-AST-OPT~                   |
 | ~.CPL~                           |
 | ~.DECSET~                        |
 | ~PARSE-FILE-OP~                  |
-| ~*CLI*~                          |
 | ~DEFAULT-TOPLEVEL-INIT~          |
 | ~CLI-LOCK-P~                     |
 | ~CLAP-UNKNOWN-ARGUMENT~          |
 | ~WITH-CLI~                       |
 | ~*DEFAULT-GLOBAL-ENV-VAR-NAMES*~ |
 | ~CURSOR-PRECEDING-LINE~          |
-| ~*ARGS*~                         |
+| ~PACKAGE-CMDS~                   |
 | ~.SCORC~                         |
 | ~CLI-CD~                         |
 | ~WHEN-SUDO~                      |
@@ -222,10 +226,10 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | ~PARSE-CLI-LAMBDA-LIST~          |
 | ~SLIME~                          |
 | ~MAKE-CLI-NODE~                  |
-| ~.VPR~                           |
+| ~ADD-PACKAGE-OPT~                |
 | ~SUDO?~                          |
 | ~CLI-ARGS~                       |
-| ~ADD-PACKAGE-OPT~                |
+| ~FIND-OPTS~                      |
 | ~%COMPOSE-KEYWORD-OPT~           |
 | ~START-RL-REPL~                  |
 | ~SHOW-CURSOR~                    |
@@ -246,7 +250,7 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | ~PARSE-BOOL-OPT~                 |
 | ~SUDO-PROMPT~                    |
 | ~VERSION-OPT~                    |
-| ~PACKAGE-CMDS~                   |
+| ~*CLI*~                          |
 | ~CURSOR-NEXT-LINE~               |
 | ~PACKAGE-OPTS~                   |
 | ~CLI-NODE-FORM~                  |
@@ -257,6 +261,7 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | ~EMACS-CONFIG~                   |
 | ~MAKE-OPT-PARSER~                |
 | ~MAKE-CLI-AST~                   |
+| ~VERTICAL-POSITION-RELATIVE~     |
 | ~CURSOR-UP~                      |
 | ~RESET-TO-INITIAL-STATE~         |
 | ~RUN-EMACSCLIENT~                |
@@ -279,10 +284,11 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | ~CURSOR-POSITION~                |
 | ~*OPTC*~                         |
 | ~CLI-NAME~                       |
+| ~*NO-DEBUG*~                     |
 | ~PARSE-FORM-OPT~                 |
 | ~PROGRESS-MUTEX~                 |
 | ~PROC-ARGS~                      |
-| ~FIND-OPTS~                      |
+| ~*ARGS*~                         |
 | ~*CLI-OPT-KINDS*~                |
 | ~PARSE-LIST-OP~                  |
 | ~OPTS~                           |
@@ -309,7 +315,7 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | ~DO-OPT~                         |
 | ~.EL~                            |
 | ~*DEFAULT-CLI-CLASS*~            |
-| ~DEFINE-CLI~                     |
+| ~CLAP-ERROR~                     |
 | ~RESTORE-CURSOR-POSITION~        |
 | ~CLI-OPT-LOCK~                   |
 | ~ADD-PACKAGE-CMD~                |
@@ -323,8 +329,8 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | ~.DECRST~                        |
 | ~SHORT-OPT-P~                    |
 | ~HIDE-CURSOR~                    |
-| ~.CUP~                           |
-| ~*SHELL*~                        |
+| ~LOAD-ENV~                       |
+| ~*SUDO*~                         |
 | ~MAKE-OPTS~                      |
 | ~ERASE-LEFT~                     |
 | ~ERASE-RIGHT~                    |
@@ -338,11 +344,11 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | ~ERASE-BELOW~                    |
 | ~ARGP~                           |
 | ~DO-CMD~                         |
-| ~ACTIVATE-OPT~                   |
+| ~.CNL~                           |
 | ~ARGS~                           |
-| ~FIND-OPT~                       |
+| ~*SHELL*~                        |
 | ~PRINT-VERSION~                  |
-| ~VERTICAL-POSITION-RELATIVE~     |
+| ~.VPR~                           |
 | ~*PROGRESS-BAR*~                 |
 | ~DEVICE-STATUS-REPORT~           |
 | ~DEFINE-MULTI-MAIN~              |
@@ -351,6 +357,7 @@ building [[https://en.wikipedia.org/wiki/Command-line_interface][CLI]] programs.
 | ~HELP-OPT~                       |
 | ~FIND-CMD~                       |
 | ~*CLI-PACKAGE-TABLE*~            |
+| ~ACTIVATE-OPT~                   |
 | ~GETOPT~                         |
 | ~CLI-OPT-VAL~                    |
 | ~CLAP-WARNING~                   |

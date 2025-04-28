@@ -20,6 +20,7 @@ is for library developers and internal use.
 | SKEL/COMP/CONTAINER  |
 | SKEL/INFER           |
 | SKEL/CORE/PLAN       |
+| SKEL/COMP/IGNITION   |
 | SKEL/COMP/ORG        |
 | SKEL/CORE/HEADER     |
 | SKEL/CORE/SCHEMA     |
@@ -66,8 +67,8 @@ is for library developers and internal use.
 | rdb            |
 | NIL            |
 | NIL            |
-| gui            |
-| clouseau       |
+| NIL            |
+| NIL            |
 
 - dependents
 #+CALL: lisp-system-dependents[:post transpose]("skel")
@@ -75,12 +76,12 @@ is for library developers and internal use.
 #+RESULTS:
 | user       |
 | homer      |
-| skel/tests |
-| core/lib   |
-| core       |
 | bin/skc    |
 | bin/skel   |
 | bin/homer  |
+| skel/tests |
+| core/lib   |
+| core       |
 
 - files
 #+CALL: lisp-system-files[:post transpose]("skel")
@@ -179,7 +180,8 @@ is for library developers and internal use.
 | ~SK-WRITELN~                 |
 | ~SK-CALL~                    |
 | ~PARSE-SK-RUST-SYSTEM~       |
-| ~SK-AUTHOR~                  |
+| ~INIT-SYSTEM-SKELRC~         |
+| ~SK-DATA~                    |
 | ~SK-UNPACK~                  |
 | ~SK-META~                    |
 | ~INIT-SKELRC~                |
@@ -231,6 +233,7 @@ is for library developers and internal use.
 | ~EDIT-SKELRC~                |
 | ~SK-SAVE~                    |
 | ~SK-DESCRIPTION~             |
+| ~SK-SEARCH-PROJECT~          |
 | ~SK-RULE~                    |
 | ~FILE-HEADER~                |
 | ~READ-SYSTEM-DEFINITIONS~    |
@@ -243,7 +246,6 @@ is for library developers and internal use.
 | ~SK-SHELL~                   |
 | ~*DEFAULT-SKEL-USER*~        |
 | ~*DEFAULT-SKELFILE*~         |
-| ~*DEFAULT-SKEL-VC-KIND*~     |
 | ~SK-CACHE~                   |
 | ~SK-SNIPPET~                 |
 | ~SKEL-STASH~                 |
@@ -264,7 +266,7 @@ is for library developers and internal use.
 | ~SK-READ~                    |
 | ~SK-NEW~                     |
 | ~MAKE-SK-RULE~               |
-| ~*SKEL-LOGGER-CONFIG*~       |
+| ~SKEL-DATA~                  |
 | ~*DEFAULT-SKEL-CACHE*~       |
 | ~SK-RUST-SYSTEM~             |
 | ~SK-REGISTER~                |
@@ -272,7 +274,7 @@ is for library developers and internal use.
 | ~PUSH-MK-DIRECTIVE~          |
 | ~SK-SCRIPTS~                 |
 | ~USER-SKELRC~                |
-| ~SKEL-REGISTRY~              |
+| ~SK-AUTHOR~                  |
 | ~SK-MAKE~                    |
 | ~MK-VAL~                     |
 | ~LOAD-USER-SKELRC~           |
@@ -283,7 +285,7 @@ is for library developers and internal use.
 | ~SKEL-IO-ERROR~              |
 | ~SK-WRITE-STRING~            |
 | ~SETF-SKEL-VARS~             |
-| ~INIT-SYSTEM-SKELRC~         |
+| ~*SKEL-LOGGER-CONFIG*~       |
 | ~SK-CONTAINERFILE~           |
 | ~SK-RULE-RECIPE~             |
 | ~SKEL-PATH~                  |
@@ -307,9 +309,8 @@ is for library developers and internal use.
 | ~SK-BUILD~                   |
 | ~SK-DIR-LOCALS~              |
 | ~SK-LOAD~                    |
-| ~SK-SEARCH-PROJECT~          |
+| ~*DEFAULT-SKEL-VC-KIND*~     |
 | ~SKEL-DB-PATH~               |
-| ~SK-REGISTRY~                |
 
 #+END:
 
