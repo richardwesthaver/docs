@@ -8,10 +8,9 @@
 #+texinfo_dir_title: Core: (core)
 #+texinfo_dir_desc: CC Software Development Ecosystem
 
-This manual documents the [[comp:][CC]] [[vc:core][core]] software. The core is a
-multi-language library and framework used to build novel
-applications. It is composed of language-specific collections of
-interconnected libraries providing an exceptionally powerful
+This manual documents the [[comp:][CC]] [[vc:core][core]] software. The core is a Lisp
+development system used to build next-gen applications. It is composed
+of interconnected modules providing an exceptionally powerful
 development ecosystem.
 
 * Introduction
@@ -21,89 +20,139 @@ development ecosystem.
 Welcome to the *core*, the primary software development ecosystem of
 [[comp:][CC]].
 
-Here you will find a large collection of interconnected modules and
-tools which forms the foundation of all applications we produce. The
-core is designed to be the best toolkit for rapid development of
-next-gen applications.
+The core provides the foundation of all applications we produce. It is
+optimized for rapid development of next-gen applications.
 
-To achieve this end we narrow the scope of our work in many ways and
-have some hard-coded opinions worth mentioning.
+The core is highly opinionated - and these opinions are consistently
+hard-coded into our development practices.
 
-For example, we make no efforts to support cross-compilation or
-porting of our software to devices or operating systems the developer
-can't fully control such as Windows/MacOS/iOS/Android. We always
-assume the developer is running a GNU/Linux host.
-
-We also don't obey any rules regarding backward-compatibility. APIs
-change fast and breaking changes may be introduced without notice.
-
-We track the development branches and host mirrors of all of our major
-dependencies including SBCL and Emacs as well as
-libraries including RocksDB and Zstd so that we can incorporate
-pre-release APIs and our own custom patches as needed. Internally we
-do not test against public release binaries and only support binaries
-built from our own mirrors.
-
-** COMMENT bleh
-:PROPERTIES:
-:ID:       0cb05ffe-b06c-4f89-b2a2-b5f87faf04bd
-:END:
-The idea of a =core= is one that is quite common in software
-design. It implies something that is fundamental - the machine behind
-the machine, whatever the machine may be.
-
-The =core= is often the most important part of your application - the
-one you want to get right. Where things get tricky is when you have
-many different applications, all which have a =core=, which you also
-need to get right.
-
-The natural evolution is to start abstracting away the commonalities
-between your application core, refactoring them into a new project. As
-your applications grow, new patterns appear. You keep searching for
-common patterns and refactoring. This pattern repeats and all is good
-and dandy.
-
-That is, until your applications start to die. No matter the manner or
-pace of death, there is a symbiotic link with the =core= that is
-broken when your application is no longer useful, or there is another
-application that takes its place. As a result, the parts of your
-=core= that were heavily influenced by the deceased application start
-to become less useful too. If left unchecked, your core will turn into
-bloat.
-
-This is *not* how the CC core is developed. Our core does not inherit
-from applications and is not dependent on them. We are not building a
-'top-down' system. Instead, we build 'bottom-up' from scratch and keep
-our core insulated (but not completely isolated) from applications.
+For example:
+- *Linux is the only platform worth supporting*
+  - We make no efforts to support cross-compilation or porting of our
+    software to devices or operating systems the developer can't fully
+    control such as Windows/MacOS/iOS/Android. We always assume the
+    developer is running a GNU/Linux host.
+- *Portability is over-rated*
+  - CL implementations (lisps) share a base language but many
+    parts of the ANSI CL spec are left up to interpretation: threads,
+    OS, GC, MOP, etc
+  - Many lisp packages attempt to account for as many lisps as
+    possible via conditional compilation and wrappers - this clutters
+    up the code base, is difficult to test, and is error-prone.
+  - Instead of accounting for multiple compilers, we realize that we
+    only need one - SBCL currently. The core does not contain any
+    support for alternate lisps.
+  - 'One true lisp' is all we need, and we're only concerned with
+    /internal/ consistency - we are never bound by the choices in
+    implementation made by other lisps (although there is much to
+    learn from them).
+- *Introspection is under-rated*
+  - Black boxes (proprietary codes) are disrespectful to
+    developers. Computer systems should be transparent by nature and
+    make minimal efforts to 'hide' internal representations of data
+    and code.
+  - Never hide a part of the system, unless you have a very good
+    reason for doing so.
+- *Follow the Bleeding Edge*
+  - We pull and rebuild the latest changes for all of our dependencies
+    frequently
+  - We host mirrors of all our major dependencies
+  - Core development is always based on latest changes, can optionally
+    downgrade for release builds where stability is valued
+  - incorporate pre-release APIs and our own custom patches as needed.
 
 * Overview
 :PROPERTIES:
 :ID:       ceb67759-c656-411d-a0c0-df19b18732e5
 :END:
-The Core itself is not an application but is complex enough that it
+The core itself is not an application but is complex enough that it
 merits its own dedicated manual. There are dedicated manuals for the
 applications which are part of the core, so what we are concerned with
-here is managing and hacking on the source code itself. We are
-directing our attention inwards, towards the core instead of extending
-our gaze away from it to see where it leads.
+here is exploring, managing, and hacking on the source code itself. We
+are directing our attention inwards, towards the core instead of
+extending our gaze away from it to see where it leads.
 
 This manual is often technical, but occassionally theoretical in
-nature and intended for software developers with experience in Linux,
-Lisp, and Emacs.
+nature and intended for software developers with expertise in Common
+Lisp, the Linux kernel, and Emacs.
 
-The Core is primarily a Lisp code base. Common Lisp is our language of
-choice and there is a significant amount of Emacs Lisp code too. Other
-languages which are present include C as well as Rust.
+The Core is a Lisp system. Common Lisp is our language of choice and
+there is a significant amount of Emacs Lisp code too. The only other
+language present at this time is C (0.1%).
 
-A solid understanding of C is recommended for developing on the Core,
-but is not a hard requirement. We make heavy use of FFI to communicate
-with the OS as well as C libraries but we provide high-level Lispy
-bindings in most cases.
+** Modules
+:PROPERTIES:
+:ID:       13a2689e-6d57-44b0-a8e0-fad145832871
+:CREATED:  <2025-06-02 Mon 20:23>
+:END:
+*Core modules* loosely equate to a lisp system and its 'sub-systems' -
+for example the ~CORE~ module contains the ~CORE~ system and
+~CORE/TESTS~, ~CORE/USER~, etc sub-systems. They are merely a unit of
+organization. Developers may import ASDF systems provided by a module
+and use the packages it contains, or use the compiled lisp /images/
+directly.
 
-The Rust portions of the code base are currently under construction
-and isolated from the rest of the Core. In the future we may
-incorporate it into this manual, but for the purpose of the following
-we may safely ignore it.
+** Images
+:PROPERTIES:
+:ID:       346fbc32-b1d2-489b-9091-3767ba372281
+:CREATED:  <2025-06-02 Mon 20:35>
+:END:
+*Core Images* refer to the binary file resulting from a call to
+ =SAVE-LISP-AND-DIE=. According to SBCL this file contains
+#+begin_quote
+enough information to restart a Lisp process later in the same state,
+in the file of the specified name.
+#+end_quote
+
+See the function docs for details - there are many options available
+which determine how the image can be used directly or dynamically from
+other programs.
+
+The images we produce are most often executable and contain the full
+SBCL runtime at their disposal. Note that these images can be quite
+large - multiple gigabytes in some cases, and so care should be taken
+when enabling additional build-time features.
+
+** Phases
+:PROPERTIES:
+:ID:       e556ce14-d575-4945-9c92-ef913156b203
+:CREATED:  <2025-06-02 Mon 20:44>
+:END:
+During the development lifecycle of the core and its modules we make
+reference to various _phases_ - many of which you may already be
+familiar with from other software projects.
+
+*** Compilation Phases
+:PROPERTIES:
+:ID:       53a221d0-9f93-466f-9034-187a79365cd5
+:CREATED:  <2025-06-02 Mon 20:51>
+:END:
+- build-time
+- run-time
+- compile-time
+
+*** Development Stages
+:PROPERTIES:
+:ID:       1e1d7953-9236-4a91-8b99-ddb72cf66030
+:CREATED:  <2025-06-02 Mon 20:52>
+:END:
+- research
+- plan
+- impl(ementation)
+- test
+- doc(umentation)
+- release
+
+** Source Code
+:PROPERTIES:
+:ID:       66163a74-dc41-4679-bf83-a2c7598bb316
+:CREATED:  <2025-06-02 Mon 20:54>
+:END:
+Each _module_ hash its own directory. The =STD= module lives under the
+=std/= directory, FFI modules such as =ROCKSDB= under the =ffi/=
+directory and library modules like =RDB= under the =lib/=
+directory. The top-level directory is dedicated to the =CORE= module
+itself.
 
 * Getting Started
 :PROPERTIES:
@@ -113,33 +162,41 @@ we may safely ignore it.
 :PROPERTIES:
 :ID:       22b763b9-c781-4061-b5ef-fc4f19720cf0
 :END:
-- Required
-  - GNU/Linux, linux-headers
-  - C compiler (GCC, MUSL, CLANG)
-  - SBCL
-  - GNU Emacs
-  - Quicklisp
-  - RocksDB
-  - Zstd
-  - Mercurial
-  - OpenSSL
-  - Treesitter
-  - BLAKE3
-- Optional
-  - Rust
-  - X11
-  - CUDA
-  - Libevdev
-  - Libkeyutils
-  - Wasmer
-  - Libsndfile
-  - Libssh2
-  - Btrfs
-  - Podman
-  - QEMU
-  - CUDA
-  - GStreamer
-  - Rustls
+- *Required*
+  - linux-headers
+  - gcc
+  - sbcl
+  - emacs
+  - quicklisp
+  - rocksdb
+  - zstd
+  - mercurial
+  - openssl
+- /Optional/
+  - cuda
+  - evdev
+  - jack
+  - libjpeg-turbo
+  - xkbcommon
+  - ublksrv
+  - keyutils
+  - wasmer
+  - sndfile
+  - libssh2
+  - btrfsutils
+  - podman
+  - qemu
+  - gstreamer
+  - rustls
+  - tree-sitter
+  - blake3
+  - liburing
+  - alsa
+  - ffmpeg
+  - glib
+  - chromaprint
+  - openblas (blas/lapack)
+
 *** Bootstrap
 :PROPERTIES:
 :ID:       dcb3ffff-5388-4387-8a46-553ae0309d70
@@ -148,7 +205,7 @@ Bootstrapping the core can be done via an existing core image or the
 =skel= binary in a 'self-bootstrapping' fashion. See the [[comp:docs/infra][infra]] project
 documentation for details on that process.
 
-Bootstrapping from source is quite easy too. All that is needed is to
+Bootstrapping from SBCL is quite easy too. All that is needed is to
 get the source, load the project =skelfile= and run =sk-make=.
 
   #+begin_src shell :eval never :exports code
@@ -169,11 +226,11 @@ Then in the SBCL REPL:
 #+RESULTS:
 | :ALL |
 
-Installation is trivial and can be done from the same REPL session. By
-default the =core= binary will be written to =/usr/local/bin/= and a
-series of symlinks will be created in the same directory - similar to
-Busybox binaries. Note that this may not work in a =SLIME= repl since
-=sudo= is called and might need input at the terminal.
+Installation can be done from the same REPL session. By default the
+=core= binary will be written to =/usr/local/bin/= and a series of
+symlinks will be created in the same directory - similar to Busybox
+binaries. Note that this may not work in a =SLIME= repl since =sudo=
+is called and might need input at the terminal.
 
 #+begin_src lisp :dir ~/comp/core/ :package sk-user :eval never :exports code
   (sk-make *skel-project* :install-core)
@@ -204,7 +261,7 @@ The next think you'll want to take care of is user configuration.
 If you don't have your own Emacs config you can install the default CC
 Emacs configuration using the =skel= command. 
 
-- Warning :: that this will mess with your =~/.emacs.d= directory:
+- Warning :: this will overwrite files in your =~/.emacs.d= directory:
   #+begin_src shell :dir ~/comp/core/ :results output :exports both
   cd emacs && skel install
   #+end_src
@@ -235,8 +292,8 @@ Emacs configuration using the =skel= command.
   #+end_example
 
 The default config supports user customizations in a file with the
-same name as the current user, so when =$USER = ellis= then we check
-for =ellis.el= and load it if it exists in =~/.emacs.d/=.
+same name as the current user, so when the current =$USER= is ~ellis~
+then we check for the file =ellis.el= and load it if it exists.
 
 **** SBCL
 :PROPERTIES:
@@ -304,11 +361,177 @@ already exist.
 :PROPERTIES:
 :ID:       c074e53b-846d-45ed-8ddc-70e559ed6f0c
 :END:
+Each module in the core contains its own test suite located in the
+=tests.lisp= file or =tests= directory and isolated to its own ASDF
+system. The ASDF system is always the module name prefixed by
+=/tests= - for example the =IO/TESTS= system is responsible for
+testing the =IO= module system.
+
+In addition to the test suite we have a set of experimental
+benchmarks. These are kept in the top-level =bench= directory.
 
 ** Regression Tests
+:PROPERTIES:
+:ID:       74af2f86-9025-44c8-83de-d41816d623bf
+:CREATED:  <2025-06-02 Mon 18:26>
+:END:
+Testing the core can be done from the CLI using =skel=:
+
+#+begin_src sh :dir ~/comp/core/ :eval never
+  # skel compile tests
+  skel run tests
+#+end_src
+
+or from lisp:
+
+#+begin_src lisp :eval never
+  (ql:quickload :core/tests)
+  (rt:run-all-tests)
+#+end_src
 
 ** Benchmarks
+:PROPERTIES:
+:ID:       d2b45403-cec0-4b17-9295-d2ae7f19a1df
+:CREATED:  <2025-06-02 Mon 18:26>
+:END:
 
-** Coverage
+using =skel=:
 
-** Profiling
+#+begin_src sh :dir ~/comp/core/ :eval never
+  # skel compile bench
+  skel run bench db-stress
+#+end_src
+
+or from lisp:
+
+#+begin_src lisp :eval never
+  (ql:quickload :core/bench)
+  (use-package :core/bench)
+  (run-benchmark :db-stress)
+#+end_src
+
+#+RESULTS:
+: #<PACKAGE "CORE/BENCH/DB/STRESS">
+
+* Features
+:PROPERTIES:
+:ID:       25ecd39d-e6ea-4e26-8818-438df27cd253
+:CREATED:  <2025-06-02 Mon 19:55>
+:END:
+The core contains /many/ features which are included in the compiled
+image by default. 
+
+All of these features can be added or removed _at build-time_ by
+modifying the =*FEATURES*= variable. The following keywords indicate a
+compile-time feature:
+
+#+begin_src lisp :eval never
+  :std     ; the STD library - always required
+  :prelude ; the PRELUDE library - on by default
+  :gui     ; the GUI module - optional
+  :web     ; the WEB module - optional
+#+end_src
+
+#+begin_src lisp :post transpose
+  ,*features*
+  ;; *ffi-features*
+  ;; *core-features*
+#+end_src
+
+#+RESULTS:
+| :KEYUTILS                       |
+| :UBLKSRV                        |
+| :SNDFILE                        |
+| :SSH2                           |
+| :TREE-SITTER-JSON               |
+| :PRELUDE                        |
+| :USER                           |
+| :TREE-SITTER-RUST               |
+| :TREE-SITTER-JAVASCRIPT         |
+| :TREE-SITTER-C                  |
+| :TREE-SITTER-ALIEN              |
+| :TREE-SITTER                    |
+| :SWANK                          |
+| :SKEL                           |
+| :CORE                           |
+| :BLAKE3                         |
+| :RDB                            |
+| :ROCKSDB                        |
+| :RFC3912                        |
+| :RFC3492                        |
+| :NET                            |
+| CFFI-FEATURES:FLAT-NAMESPACE    |
+| CFFI-FEATURES:X86-64            |
+| CFFI-FEATURES:UNIX              |
+| :CFFI                           |
+| CFFI-SYS::FLAT-NAMESPACE        |
+| :CLI                            |
+| :IO                             |
+| :KBD                            |
+| :EVDEV                          |
+| :XKBCOMMON                      |
+| :BTRFSUTIL                      |
+| :BTRFS                          |
+| :ZSTD                           |
+| :URING                          |
+| :FLEXI-STREAMS                  |
+| :RFC8141                        |
+| :RFC6874                        |
+| :RFC3986                        |
+| :SPLIT-SEQUENCE                 |
+| :IRONCLAD-ASSEMBLY              |
+| :IRONCLAD-SB-VM-EA              |
+| :IRONCLAD-FAST-MOD64-ARITHMETIC |
+| :IRONCLAD-FAST-MOD32-ARITHMETIC |
+| :BORDEAUX-THREADS               |
+| :GLOBAL-VARS                    |
+| ALEXANDRIA::SEQUENCE-EMPTYP     |
+| :NAMED-READTABLES               |
+| CHIPZ-SYSTEM:GRAY-STREAMS       |
+| :SBCL-USES-SB-ROTATE-BYTE       |
+| :THREAD-SUPPORT                 |
+| :CL-PPCRE                       |
+| :STD                            |
+| :QUICKLISP                      |
+| :ASDF3.3                        |
+| :ASDF3.2                        |
+| :ASDF3.1                        |
+| :ASDF3                          |
+| :ASDF2                          |
+| :ASDF                           |
+| :OS-UNIX                        |
+| :NON-BASE-CHARS-EXIST-P         |
+| :ASDF-UNICODE                   |
+| :ARENA-ALLOCATOR                |
+| :X86-64                         |
+| :MARK-REGION-GC                 |
+| :64-BIT                         |
+| :ANSI-CL                        |
+| :COMMON-LISP                    |
+| :ELF                            |
+| :IEEE-FLOATING-POINT            |
+| :LINUX                          |
+| :LITTLE-ENDIAN                  |
+| :PACKAGE-LOCAL-NICKNAMES        |
+| :SB-CORE-COMPRESSION            |
+| :SB-LDB                         |
+| :SB-PACKAGE-LOCKS               |
+| :SB-THREAD                      |
+| :SB-UNICODE                     |
+| :SBCL                           |
+| :UNIX                           |
+
+* Contributing
+:PROPERTIES:
+:ID:       e0657c76-395c-47b5-b5a6-1dcebd59ce7c
+:CREATED:  <2025-06-02 Mon 19:36>
+:END:
+The core is currently a solo project and I don't plan on accepting
+contributions in the near future. The core is its own private island,
+isolated from the rest of the Common Lisp ecosystem and in almost all
+cases contributions would be better directed towards other
+packages.
+
+See [[https://awesome-cl.com/][Awesome CL]] for a list of projects which could use additional
+support, and take note the comments scattered throughout the core
+source code which often reference popular packages from the ecosystem.
