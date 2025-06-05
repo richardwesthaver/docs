@@ -53,14 +53,11 @@ been hindered by their attempts to clone the functionality as well.
 | web/dash    |
 | web/index   |
 | web         |
-| user        |
+| skel        |
 | bin/homer   |
 | bin/organ   |
-| skel        |
 | organ/tests |
 | doc         |
-| core/lib    |
-| core        |
 
 - files
 #+CALL: lisp-system-files[:post transpose]("organ")
@@ -130,8 +127,8 @@ been hindered by their attempts to clone the functionality as well.
 #+CALL: lisp-package-symbols[:post codify-transpose]("ORGAN")
 
 #+RESULTS:
-| ~STATE~                        |
-| ~ORG-PLANNING-LINE~            |
+| ~ORG-FILE-PROPERTY~            |
+| ~ORG-INACTIVE-TIMESTAMP~       |
 | ~ORG-STANDARD-TABLE-ROW~       |
 | ~ORG-NODE-PROPERTY~            |
 | ~ORG-TBLFM-RX~                 |
@@ -142,11 +139,11 @@ been hindered by their attempts to clone the functionality as well.
 | ~ORG-TODO-KEYWORD-RX~          |
 | ~*ORG-TODO-KEYWORDS*~          |
 | ~ORG-BLOCK~                    |
-| ~ORG-PARSE-LINES~              |
+| ~ORG-ITALIC~                   |
 | ~ORG-END-RX~                   |
-| ~DOC-META~                     |
-| ~ORG-TABLE-EL~                 |
-| ~ORG-INSERT-BEFORE~            |
+| ~*ORG-DURATION-MIXED-RX*~      |
+| ~ORG-COLLECTION~               |
+| ~ORG-OBJECT-RX~                |
 | ~ORG-TAG-SPLIT~                |
 | ~ORG-ITEM-RX~                  |
 | ~TODO-TYPE~                    |
@@ -158,30 +155,29 @@ been hindered by their attempts to clone the functionality as well.
 | ~ORG-PLAIN-TEXT~               |
 | ~ORG-TABLE-ANY-BORDER-RX~      |
 | ~ORG-ZEROTH-SECTION~           |
-| ~ORG-LIST~                     |
+| ~ORG-INLINE-BABEL-CALL~        |
 | ~ORG-KEYWORD~                  |
-| ~ORG-DOCUMENT~                 |
+| ~ORG-UNORDERED-LIST~           |
 | ~ORG-ELEMENT~                  |
 | ~TEXT~                         |
-| ~ORG-DURATION-UNITS~           |
 | ~ORG-INLINE-SOURCE-BLOCK~      |
 | ~ORG-GREATER-BLOCK~            |
-| ~ORG-INACTIVE-TIMESTAMP-RANGE~ |
+| ~ORG-CODE~                     |
 | ~*ORG-DURATION-HMMSS-RX*~      |
-| ~ORG-LOGBOOK-START-RX~         |
+| ~ORG-TABLE-EL~                 |
 | ~ORG-LESSER-BLOCK~             |
 | ~ORG-DRAWER~                   |
 | ~ORG-PARAGRAPH~                |
 | ~DOC-TREE~                     |
-| ~ORG-INLINE-BABEL-CALL~        |
+| ~STATE~                        |
 | ~ORG-STREAM~                   |
-| ~ORG-EMPHASIS-ALIST~           |
+| ~ORG-RADIO-TARGET~             |
 | ~ORG-TAG-RX~                   |
 | ~ORG-GET-ELEMENT~              |
 | ~ORG-PLANNING~                 |
-| ~ORG-PARSE~                    |
+| ~ORG-PROPERTY-START-RX~        |
 | ~ORG-TABLE~                    |
-| ~ORG-STAT-COOKIE~              |
+| ~DOC-META~                     |
 | ~ORG-AFFILIATED-KEYWORD~       |
 | ~READ-ORG-LINES-FROM-STRING~   |
 | ~ORG-PROPERTY~                 |
@@ -202,55 +198,86 @@ been hindered by their attempts to clone the functionality as well.
 | ~ORG-PUSH~                     |
 | ~*ORG-DURATION-HMM-RX*~        |
 | ~ORG-PROPERTY-RX~              |
-| ~ORG-CONTENTS~                 |
+| ~ORG-PARSE-LINES~              |
 | ~ORG-LIST-FULL-ITEM-RX~        |
-| ~ORG-PROPERTY-START-RX~        |
+| ~READ-ORG-LINES~               |
 | ~ORG-CITATION-REFERENCE~       |
+| ~ORG-DOCUMENT~                 |
+| ~ORG-INSERT-BEFORE~            |
 | ~ORG-MACRO~                    |
-| ~ORG-CODE~                     |
-| ~ORG-INACTIVE-TIMESTAMP~       |
+| ~ORG-PLANNING-LINE~            |
+| ~ORG-PARSE~                    |
 | ~ORG-STRIKE-THROUGH~           |
-| ~ORG-FILE-PROPERTY~            |
-| ~ORG-NODE-PROPERTIES~          |
-| ~ORG-UNORDERED-LIST~           |
+| ~ORG-LIST~                     |
+| ~ORG-PRIORITY-LEVEL~           |
+| ~ORG-LOGBOOK-START-RX~         |
 | ~ORG-TIMESTAMP-RX~             |
 | ~ORG-LATEX-ENVIRONMENT~        |
-| ~ORG-TODO-KEYWORD~             |
-| ~*ORG-DURATION-MIXED-RX*~      |
 | ~ORG-CITATION~                 |
 | ~ORG-HEADING~                  |
 | ~READ-ORG-FILE~                |
 | ~ORG-SRC-BLOCK-RX~             |
-| ~ORG-ITALIC~                   |
+| ~ORG-INACTIVE-TIMESTAMP-RANGE~ |
 | ~O-LINES~                      |
-| ~ORG-COLLECTION~               |
+| ~ORG-EMPHASIS-ALIST~           |
 | ~ORG-HEADLINE-RX~              |
 | ~ORG-ELEMENT-OBJECTS~          |
 | ~ORG-DIARY-SEXP~               |
 | ~ORG-BOLD~                     |
 | ~ORG-TABLE-CELL~               |
-| ~READ-ORG-LINES~               |
+| ~ORG-NODE-PROPERTIES~          |
 | ~ORG-ELEMENT-TYPES~            |
 | ~ORG-HEADLINE~                 |
-| ~ORG-OBJECT-RX~                |
+| ~ORG-CONTENTS~                 |
+| ~ORG-DURATION-UNITS~           |
 | ~ORG-HORIZONTAL-RULE~          |
 | ~ORG-UNDERLINE~                |
-| ~ORG-RADIO-TARGET~             |
+| ~ORG-TODO-KEYWORD~             |
 | ~ORG-TODO-KEYWORD-P~           |
 | ~ORG-EXPORT-SNIPPET~           |
 | ~ORG-FOOTNOTE-REFERENCE~       |
 | ~ORG-ACTIVE-TIMESTAMP~         |
-| ~ORG-TAG~                      |
 | ~ORG-TS-RX~                    |
 | ~ORG-CLOCK~                    |
 | ~*ORG-DURATION-FULL-RX*~       |
 | ~ORG-TODO-KEYWORD-MAP~         |
+| ~ORG-STAT-COOKIE~              |
 | ~READ-ORG-STRING~              |
 | ~ORG-FOOTNOTE-DEFINITION~      |
 | ~ORG-ACTIVE-TIMESTAMP-RANGE~   |
 | ~ORG-ORDERED-LIST~             |
-| ~ORG-PRIORITY-LEVEL~           |
+| ~ORG-TAG~                      |
 | ~ORG-LINE-BREAK~               |
 | ~ORG-DESCRIPTIVE-LIST~         |
 
 #+END:
+
+* bin/organ
+:PROPERTIES:
+:ID:       4d08edd8-5a98-4b2f-b443-792a4022b198
+:CREATED:  <2025-06-04 Wed 20:43>
+:END:
+** help
+:PROPERTIES:
+:ID:       36603658-8f85-435c-b6b3-f8da47237f5c
+:END:
+#+begin_src shell :results pp replace :exports both
+organ -h
+#+end_src
+
+#+RESULTS:
+#+begin_example
+organ v0.0.1 --- org-mode toolbox
+
+options:
+  -h/--help               print help
+    :doc Print help and exit.
+  -l/--level              set the log level
+  -v/--version            print version
+
+commands:
+  inspect                 inspect an org file
+  show                    display local org info
+  describe*               describe local org info
+  parse                   
+#+end_example

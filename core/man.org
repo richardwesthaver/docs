@@ -80,6 +80,17 @@ The Core is a Lisp system. Common Lisp is our language of choice and
 there is a significant amount of Emacs Lisp code too. The only other
 language present at this time is C (0.1%).
 
+** Source Code
+:PROPERTIES:
+:ID:       66163a74-dc41-4679-bf83-a2c7598bb316
+:CREATED:  <2025-06-02 Mon 20:54>
+:END:
+The source for each _module_ is located in its own directory. The
+=STD= module lives under the =std/= directory, FFI modules such as
+=ROCKSDB= under the =ffi/= directory and library modules like =RDB=
+under the =lib/= directory. The top-level directory is dedicated to
+the =CORE= module itself.
+
 ** Modules
 :PROPERTIES:
 :ID:       13a2689e-6d57-44b0-a8e0-fad145832871
@@ -87,333 +98,17 @@ language present at this time is C (0.1%).
 :END:
 *Core modules* loosely equate to a lisp system and its 'sub-systems' -
 for example the ~CORE~ module contains the ~CORE~ system and
-~CORE/TESTS~, ~CORE/USER~, etc sub-systems. They are merely a unit of
-organization. Developers may import ASDF systems provided by a module
-and use the packages it contains, or use the compiled lisp /images/
-directly.
+~CORE/TESTS~, ~CORE/USER~, etc sub-systems. They are effectively a
+container of one or more systems. 
 
-** Images
-:PROPERTIES:
-:ID:       346fbc32-b1d2-489b-9091-3767ba372281
-:CREATED:  <2025-06-02 Mon 20:35>
-:END:
-*Core Images* refer to the binary file resulting from a call to
- =SAVE-LISP-AND-DIE=. According to SBCL this file contains
-#+begin_quote
-enough information to restart a Lisp process later in the same state,
-in the file of the specified name.
-#+end_quote
+Developers may import ASDF systems provided by a module and use the
+packages it contains, or use the compiled lisp /images/ directly.
 
-See the function docs for details - there are many options available
-which determine how the image can be used directly or dynamically from
-other programs.
+A full module system is planned which leverages the =*MODULES*=
+variable, in a similar fashion to ASDF with support for more direct
+usage of modules in day-to-day programming.
 
-The images we produce are most often executable and contain the full
-SBCL runtime at their disposal. Note that these images can be quite
-large - multiple gigabytes in some cases, and so care should be taken
-when enabling additional build-time features.
-
-** Phases
-:PROPERTIES:
-:ID:       e556ce14-d575-4945-9c92-ef913156b203
-:CREATED:  <2025-06-02 Mon 20:44>
-:END:
-During the development lifecycle of the core and its modules we make
-reference to various _phases_ - many of which you may already be
-familiar with from other software projects.
-
-*** Compilation Phases
-:PROPERTIES:
-:ID:       53a221d0-9f93-466f-9034-187a79365cd5
-:CREATED:  <2025-06-02 Mon 20:51>
-:END:
-- build-time
-- run-time
-- compile-time
-
-*** Development Stages
-:PROPERTIES:
-:ID:       1e1d7953-9236-4a91-8b99-ddb72cf66030
-:CREATED:  <2025-06-02 Mon 20:52>
-:END:
-- research
-- plan
-- impl(ementation)
-- test
-- doc(umentation)
-- release
-
-** Source Code
-:PROPERTIES:
-:ID:       66163a74-dc41-4679-bf83-a2c7598bb316
-:CREATED:  <2025-06-02 Mon 20:54>
-:END:
-Each _module_ hash its own directory. The =STD= module lives under the
-=std/= directory, FFI modules such as =ROCKSDB= under the =ffi/=
-directory and library modules like =RDB= under the =lib/=
-directory. The top-level directory is dedicated to the =CORE= module
-itself.
-
-* Getting Started
-:PROPERTIES:
-:ID:       636ffa98-c39a-4f2a-9a49-aa82497a8ca8
-:END:
-*** Dependencies
-:PROPERTIES:
-:ID:       22b763b9-c781-4061-b5ef-fc4f19720cf0
-:END:
-- *Required*
-  - linux-headers
-  - gcc
-  - sbcl
-  - emacs
-  - quicklisp
-  - rocksdb
-  - zstd
-  - mercurial
-  - openssl
-- /Optional/
-  - cuda
-  - evdev
-  - jack
-  - libjpeg-turbo
-  - xkbcommon
-  - ublksrv
-  - keyutils
-  - wasmer
-  - sndfile
-  - libssh2
-  - btrfsutils
-  - podman
-  - qemu
-  - gstreamer
-  - rustls
-  - tree-sitter
-  - blake3
-  - liburing
-  - alsa
-  - ffmpeg
-  - glib
-  - chromaprint
-  - openblas (blas/lapack)
-
-*** Bootstrap
-:PROPERTIES:
-:ID:       dcb3ffff-5388-4387-8a46-553ae0309d70
-:END:
-Bootstrapping the core can be done via an existing core image or the
-=skel= binary in a 'self-bootstrapping' fashion. See the [[comp:docs/infra][infra]] project
-documentation for details on that process.
-
-Bootstrapping from SBCL is quite easy too. All that is needed is to
-get the source, load the project =skelfile= and run =sk-make=.
-
-  #+begin_src shell :eval never :exports code
-    # clone the source code from a mirror
-    git clone https://codeberg.org/c-c/core
-    cd core
-    sbcl
-  #+end_src
-
-Then in the SBCL REPL:
-#+begin_src lisp :dir ~/comp/core/ :exports both
-  (ql:quickload :skel)
-  (in-package :sk-user)
-  (init-skel)
-  (sk-make *skel-project* :all)
-#+end_src
-
-#+RESULTS:
-| :ALL |
-
-Installation can be done from the same REPL session. By default the
-=core= binary will be written to =/usr/local/bin/= and a series of
-symlinks will be created in the same directory - similar to Busybox
-binaries. Note that this may not work in a =SLIME= repl since =sudo=
-is called and might need input at the terminal.
-
-#+begin_src lisp :dir ~/comp/core/ :package sk-user :eval never :exports code
-  (sk-make *skel-project* :install-core)
-#+end_src
-
-You should see some output like the following:
-
-#+begin_src 
-skel -> core -> /usr/local/bin/
-homer -> core -> /usr/local/bin/
-packy -> core -> /usr/local/bin/
-rdb -> core -> /usr/local/bin/
-organ -> core -> /usr/local/bin/
-vc -> core -> /usr/local/bin/
-gen -> core -> /usr/local/bin/
-swm -> core -> /usr/local/bin/
-#+end_src
-
-*** Configuration
-:PROPERTIES:
-:ID:       d9a1f958-c43e-4465-9916-3526f7a27268
-:END:
-The next think you'll want to take care of is user configuration.
-**** Emacs
-:PROPERTIES:
-:ID:       6c87dbd0-0a4b-4395-bc70-fff94b680787
-:END:
-If you don't have your own Emacs config you can install the default CC
-Emacs configuration using the =skel= command. 
-
-- Warning :: this will overwrite files in your =~/.emacs.d= directory:
-  #+begin_src shell :dir ~/comp/core/ :results output :exports both
-  cd emacs && skel install
-  #+end_src
-
-  #+RESULTS:
-  #+begin_example
-  default.el -> /home/ellis/.emacs.d/default.el
-  early-init.el -> /home/ellis/.emacs.d/early-init.el
-  init.el -> /home/ellis/.emacs.d/init.el
-  keys.el -> /home/ellis/.emacs.d/keys.el
-  util.el -> /home/ellis/.emacs.d/util.el
-  c2.el -> /home/ellis/.emacs.d/lib/c2.el
-  exec-path-from-shell.el -> /home/ellis/.emacs.d/lib/exec-path-from-shell.el
-  graph.el -> /home/ellis/.emacs.d/lib/graph.el
-  inbox.el -> /home/ellis/.emacs.d/lib/inbox.el
-  mpk.el -> /home/ellis/.emacs.d/lib/mpk.el
-  org-expiry.el -> /home/ellis/.emacs.d/lib/org-expiry.el
-  publish.el -> /home/ellis/.emacs.d/lib/publish.el
-  scrum.el -> /home/ellis/.emacs.d/lib/scrum.el
-  sk.el -> /home/ellis/.emacs.d/lib/sk.el
-  skt.el -> /home/ellis/.emacs.d/lib/skt.el
-  slime-cape.el -> /home/ellis/.emacs.d/lib/slime-cape.el
-  slime-company.el -> /home/ellis/.emacs.d/lib/slime-company.el
-  slime-repl-ansi-color.el -> /home/ellis/.emacs.d/lib/slime-repl-ansi-color.el
-  sxp.el -> /home/ellis/.emacs.d/lib/sxp.el
-  ulang.el -> /home/ellis/.emacs.d/lib/ulang.el
-  uml-mode.el -> /home/ellis/.emacs.d/lib/uml-mode.el
-  #+end_example
-
-The default config supports user customizations in a file with the
-same name as the current user, so when the current =$USER= is ~ellis~
-then we check for the file =ellis.el= and load it if it exists.
-
-**** SBCL
-:PROPERTIES:
-:ID:       52a44b82-d5e8-4926-83e9-2944b1df8e62
-:END:
-
-**** Core Apps
-:PROPERTIES:
-:ID:       db2ee1f1-846f-433c-9747-83ec18d47e40
-:END:
-The core is a single binary which dispatches on argv[0] from the
-CLI. Each unique symlink to the core binary is treated as a separate
-dispatch to a 'main' function like so:
-
-#+begin_src lisp :exports code
-  (define-multi-main dispatch-core
-    (progn (in-package :core-lisp)
-           ,#+nil ...)
-    (:skel (bin/skel::start-skel))
-    (:homer (bin/homer::start-homer))
-    (:mpk (bin/mpk::start-mpk))
-    ,#+nil ...)
-#+end_src
-
-The current apps that read a configuration file on startup are:
-- skel - project management: =.skelrc=
-- homer - home management: =.homerc=
-- mpk - media production kit: =.mpkrc=
-
-These apps all use the same /configuration object protocol/ from the
-=OBJ/CONFIG= package and are serialized to various S-Expression
-interpretations. Most commonly the 'pretty' format is used which
-is simply a plist with implied outer parentheses:
-
-#+begin_src lisp :eval never
-  :key1 val1
-  :key2 val2
-#+end_src
-
-Canonically that would be:
-#+begin_src lisp :eval never
-  (:key1 val1
-   :key2 val2)
-#+end_src
-
-***** Skel
-:PROPERTIES:
-:ID:       d666962c-e15e-430c-8997-bf5a80bb9632
-:END:
-A skel config in 'canonical' format (plain S-Expression) is written to
-=~/.skelrc= the first time you run it from the CLI, if it does not
-already exist.
-
-***** Homer
-:PROPERTIES:
-:ID:       526513cb-5b7a-4cc0-8d91-739db3e635f6
-:END:
-
-***** Mpk
-:PROPERTIES:
-:ID:       1acfa6a4-41df-4ab7-84dd-72656cff0889
-:END:
-
-* Testing
-:PROPERTIES:
-:ID:       c074e53b-846d-45ed-8ddc-70e559ed6f0c
-:END:
-Each module in the core contains its own test suite located in the
-=tests.lisp= file or =tests= directory and isolated to its own ASDF
-system. The ASDF system is always the module name prefixed by
-=/tests= - for example the =IO/TESTS= system is responsible for
-testing the =IO= module system.
-
-In addition to the test suite we have a set of experimental
-benchmarks. These are kept in the top-level =bench= directory.
-
-** Regression Tests
-:PROPERTIES:
-:ID:       74af2f86-9025-44c8-83de-d41816d623bf
-:CREATED:  <2025-06-02 Mon 18:26>
-:END:
-Testing the core can be done from the CLI using =skel=:
-
-#+begin_src sh :dir ~/comp/core/ :eval never
-  # skel compile tests
-  skel run tests
-#+end_src
-
-or from lisp:
-
-#+begin_src lisp :eval never
-  (ql:quickload :core/tests)
-  (rt:run-all-tests)
-#+end_src
-
-** Benchmarks
-:PROPERTIES:
-:ID:       d2b45403-cec0-4b17-9295-d2ae7f19a1df
-:CREATED:  <2025-06-02 Mon 18:26>
-:END:
-
-using =skel=:
-
-#+begin_src sh :dir ~/comp/core/ :eval never
-  # skel compile bench
-  skel run bench db-stress
-#+end_src
-
-or from lisp:
-
-#+begin_src lisp :eval never
-  (ql:quickload :core/bench)
-  (use-package :core/bench)
-  (run-benchmark :db-stress)
-#+end_src
-
-#+RESULTS:
-: #<PACKAGE "CORE/BENCH/DB/STRESS">
-
-* Features
+** Features
 :PROPERTIES:
 :ID:       25ecd39d-e6ea-4e26-8818-438df27cd253
 :CREATED:  <2025-06-02 Mon 19:55>
@@ -421,16 +116,19 @@ or from lisp:
 The core contains /many/ features which are included in the compiled
 image by default. 
 
-All of these features can be added or removed _at build-time_ by
-modifying the =*FEATURES*= variable. The following keywords indicate a
-compile-time feature:
+The following features have special meaning at _build-time_ where they
+determine which modules get loaded into the resulting core image.
 
 #+begin_src lisp :eval never
   :std     ; the STD library - always required
   :prelude ; the PRELUDE library - on by default
   :gui     ; the GUI module - optional
   :web     ; the WEB module - optional
+  :full    ; ALL modules
 #+end_src
+
+The rest of the features provided by the car are also tracked in the
+=*FEATURES*= list but should not need to be updated manually.
 
 #+begin_src lisp :post transpose
   ,*features*
@@ -520,6 +218,274 @@ compile-time feature:
 | :SB-UNICODE                     |
 | :SBCL                           |
 | :UNIX                           |
+
+** Images
+:PROPERTIES:
+:ID:       346fbc32-b1d2-489b-9091-3767ba372281
+:CREATED:  <2025-06-02 Mon 20:35>
+:END:
+*Core Images* refer to the binary file resulting from a call to
+ =SAVE-LISP-AND-DIE=. According to SBCL this file contains
+#+begin_quote
+enough information to restart a Lisp process later in the same state,
+in the file of the specified name.
+#+end_quote
+
+See the function docs for details - there are many options available
+which determine how the image can be used directly or dynamically from
+other programs.
+
+The images we produce are most often executable and contain the full
+SBCL runtime at their disposal. Note that these images can be quite
+large - multiple gigabytes in some cases, and so care should be taken
+when enabling additional build-time features.
+
+* Getting Started
+:PROPERTIES:
+:ID:       636ffa98-c39a-4f2a-9a49-aa82497a8ca8
+:END:
+*** Bootstrap
+:PROPERTIES:
+:ID:       dcb3ffff-5388-4387-8a46-553ae0309d70
+:END:
+Bootstrapping the core can be done via an existing core image or the
+=skel= binary in a 'self-bootstrapping' fashion. See the [[comp:docs/infra][infra]] project
+documentation for details on that process.
+
+Bootstrapping from SBCL is quite easy too. All that is needed is to
+get the source, load the project =skelfile= and run =sk-make=.
+
+  #+begin_src shell :eval never :exports code
+    # clone the source code from a mirror
+    git clone https://codeberg.org/c-c/core
+    cd core
+    sbcl
+  #+end_src
+
+Then in the SBCL REPL:
+#+begin_src lisp :dir ~/comp/core/ :exports both
+  (ql:quickload :skel)
+  (in-package :sk-user)
+  (init-skel)
+  (sk-make *skel-project* :all)
+#+end_src
+
+#+RESULTS:
+| :ALL |
+
+Installation can be done from the same REPL session. By default the
+=core= binary will be written to =/usr/local/bin/= and a series of
+symlinks will be created in the same directory - similar to Busybox
+binaries. Note that this may not work in a =SLIME= repl since =sudo=
+is called and might need input at the terminal.
+
+#+begin_src lisp :dir ~/comp/core/ :package sk-user :eval never :exports code
+  (sk-make *skel-project* :install-core)
+#+end_src
+
+You should see some output like the following:
+
+#+begin_src 
+skel -> core -> /usr/local/bin/
+homer -> core -> /usr/local/bin/
+packy -> core -> /usr/local/bin/
+rdb -> core -> /usr/local/bin/
+organ -> core -> /usr/local/bin/
+vc -> core -> /usr/local/bin/
+gen -> core -> /usr/local/bin/
+swm -> core -> /usr/local/bin/
+#+end_src
+
+**** Dependencies
+:PROPERTIES:
+:ID:       22b763b9-c781-4061-b5ef-fc4f19720cf0
+:END:
+If you do choose to build yourself without using =infra=, make sure
+you're on GNU/Linux and have the required packages installed.
+
+- *Required*
+  - linux-headers
+  - gcc
+  - sbcl
+  - emacs
+  - quicklisp
+  - rocksdb
+  - zstd
+  - mercurial
+  - openssl
+
+- /Optional/
+  - cuda
+  - evdev
+  - jack
+  - libjpeg-turbo
+  - xkbcommon
+  - ublksrv
+  - keyutils
+  - wasmer
+  - sndfile
+  - libssh2
+  - btrfsutils
+  - podman
+  - qemu
+  - gstreamer
+  - rustls
+  - tree-sitter
+  - blake3
+  - liburing
+  - alsa
+  - ffmpeg
+  - glib
+  - chromaprint
+  - openblas (blas/lapack)
+*** Configuration
+:PROPERTIES:
+:ID:       d9a1f958-c43e-4465-9916-3526f7a27268
+:END:
+The next thing you'll want to take care of is user configuration. You
+can run any of the core apps without a configuration and it will
+install a default one for you.
+
+The only other /required/ development dependency which needs
+configuring is Emacs.
+**** Core
+:PROPERTIES:
+:ID:       db2ee1f1-846f-433c-9747-83ec18d47e40
+:END:
+The core is a single binary which dispatches on argv[0] from the
+CLI. Each unique symlink to the core binary is treated as a separate
+dispatch to a 'main' function like so:
+
+#+begin_src lisp :exports code
+  (define-multi-main dispatch-core
+    (progn (in-package :core-lisp)
+           ,#+nil ...)
+    (:skel (bin/skel::start-skel))
+    (:homer (bin/homer::start-homer))
+    (:mpk (bin/mpk::start-mpk))
+    ,#+nil ...)
+#+end_src
+
+The current apps that read a configuration file on startup are:
+- skel - project management: =.skelrc=
+- homer - home management: =.homerc=
+- mpk - media production kit: =.mpkrc=
+
+These apps all use the same /configuration object protocol/ from the
+=OBJ/CONFIG= package and are printed to various S-Expression. Most
+commonly the 'pretty' format is used which is simply a plist with
+implied outer parentheses:
+
+#+begin_src lisp :eval never
+  :key1 val1
+  :key2 val2
+#+end_src
+
+Canonically that would be:
+#+begin_src lisp :eval never
+  (:key1 val1
+   :key2 val2)
+#+end_src
+
+**** Emacs
+:PROPERTIES:
+:ID:       6c87dbd0-0a4b-4395-bc70-fff94b680787
+:END:
+If you don't have your own Emacs config you can install the default CC
+Emacs configuration using the =skel= command. 
+
+- Warning :: this will overwrite files in your =~/.emacs.d= directory:
+  #+begin_src shell :dir ~/comp/core/ :results output :exports both
+  cd emacs && skel install
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  default.el -> /home/ellis/.emacs.d/default.el
+  early-init.el -> /home/ellis/.emacs.d/early-init.el
+  init.el -> /home/ellis/.emacs.d/init.el
+  keys.el -> /home/ellis/.emacs.d/keys.el
+  util.el -> /home/ellis/.emacs.d/util.el
+  bar.el -> /home/ellis/.emacs.d/lib/bar.el
+  c2.el -> /home/ellis/.emacs.d/lib/c2.el
+  exec-path-from-shell.el -> /home/ellis/.emacs.d/lib/exec-path-from-shell.el
+  graph.el -> /home/ellis/.emacs.d/lib/graph.el
+  inbox.el -> /home/ellis/.emacs.d/lib/inbox.el
+  mpk.el -> /home/ellis/.emacs.d/lib/mpk.el
+  org-expiry.el -> /home/ellis/.emacs.d/lib/org-expiry.el
+  publish-init.el -> /home/ellis/.emacs.d/lib/publish-init.el
+  publish.el -> /home/ellis/.emacs.d/lib/publish.el
+  scrum.el -> /home/ellis/.emacs.d/lib/scrum.el
+  skel.el -> /home/ellis/.emacs.d/lib/skel.el
+  skt.el -> /home/ellis/.emacs.d/lib/skt.el
+  slime-cape.el -> /home/ellis/.emacs.d/lib/slime-cape.el
+  slime-company.el -> /home/ellis/.emacs.d/lib/slime-company.el
+  slime-repl-ansi-color.el -> /home/ellis/.emacs.d/lib/slime-repl-ansi-color.el
+  sxp.el -> /home/ellis/.emacs.d/lib/sxp.el
+  ulang.el -> /home/ellis/.emacs.d/lib/ulang.el
+  uml-mode.el -> /home/ellis/.emacs.d/lib/uml-mode.el
+  x86-lookup.el -> /home/ellis/.emacs.d/lib/x86-lookup.el
+  #+end_example
+
+The default config supports user customizations in a file with the
+same name as the current user, so when the current =$USER= is ~ellis~
+then we check for the file =ellis.el= and load it if it exists.
+
+* Testing
+:PROPERTIES:
+:ID:       c074e53b-846d-45ed-8ddc-70e559ed6f0c
+:END:
+Each module in the core contains its own test suite located in the
+=tests.lisp= file or =tests= directory and isolated to its own ASDF
+system. The ASDF system is always the module name prefixed by
+=/tests= - for example the =IO/TESTS= system is responsible for
+testing the =IO= module system.
+
+In addition to the test suite we have a set of experimental
+benchmarks. These are kept in the top-level =bench= directory.
+
+** Regression Tests
+:PROPERTIES:
+:ID:       74af2f86-9025-44c8-83de-d41816d623bf
+:CREATED:  <2025-06-02 Mon 18:26>
+:END:
+Testing the core can be done from the CLI using =skel=:
+
+#+begin_src sh :dir ~/comp/core/ :eval never
+  # skel compile tests
+  skel run tests
+#+end_src
+
+or from lisp:
+
+#+begin_src lisp :eval never
+  (ql:quickload :core/tests)
+  (rt:run-all-tests)
+#+end_src
+
+** Benchmarks
+:PROPERTIES:
+:ID:       d2b45403-cec0-4b17-9295-d2ae7f19a1df
+:CREATED:  <2025-06-02 Mon 18:26>
+:END:
+
+using =skel=:
+
+#+begin_src sh :dir ~/comp/core/ :eval never
+  # skel compile bench
+  skel run bench db-stress
+#+end_src
+
+or from lisp:
+
+#+begin_src lisp :eval never
+  (ql:quickload :core/bench)
+  (use-package :core/bench)
+  (run-benchmark :db-stress)
+#+end_src
+
+#+RESULTS:
+: #<PACKAGE "CORE/BENCH/DB/STRESS">
 
 * Contributing
 :PROPERTIES:

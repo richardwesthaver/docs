@@ -33,6 +33,7 @@ Speed is the priority.
 | IO/CHUNKY       |
 | IO/TESTS        |
 | IO/SOCKET       |
+| IO/ZLIB         |
 | IO-USER         |
 | IO/PROTO        |
 | IO/FAST         |
@@ -52,6 +53,7 @@ Speed is the priority.
 #+RESULTS:
 | cl-ppcre       |
 | std            |
+| ironclad       |
 | uring          |
 | xkb            |
 | evdev          |
@@ -64,20 +66,19 @@ Speed is the priority.
 #+CALL: lisp-system-dependents[:post transpose]("io")
 
 #+RESULTS:
-| homer     |
-| gui       |
-| dsp       |
-| packy     |
-| pod       |
-| net       |
-| vc/tests  |
-| cry       |
-| dat       |
-| io/tests  |
-| log/tests |
-| log       |
-| core/lib  |
-| core      |
+| gui        |
+| homer      |
+| packy      |
+| pod        |
+| vc/tests   |
+| blas/tests |
+| dsp        |
+| net        |
+| dat        |
+| io/tests   |
+| log/tests  |
+| log        |
+| core       |
 
 - files
 #+CALL: lisp-system-files[:post transpose]("io")
@@ -95,6 +96,7 @@ Speed is the priority.
 | chunky.lisp       |
 | flate.lisp        |
 | zstd.lisp         |
+| zlib.lisp         |
 | disk/pkg.lisp     |
 | disk/util.lisp    |
 | disk/proto.lisp   |

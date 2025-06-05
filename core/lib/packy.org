@@ -44,12 +44,10 @@ The universal package manager
 #+CALL: lisp-system-dependents[:post transpose]("packy")
 
 #+RESULTS:
-| user        |
+| packy/tests |
 | bin/packy   |
 | bin/skel    |
-| packy/tests |
-| core/lib    |
-| core        |
+| core/user   |
 
 - files
 #+CALL: lisp-system-files[:post transpose]("packy")
@@ -118,6 +116,30 @@ The universal package manager
 | ~PUSH-PACKAGE~                 |
 
 #+END:
+
+* bin/packy
+** help
+:PROPERTIES:
+:ID:       167ef450-85d0-449d-8ef1-4a8699678610
+:END:
+#+begin_src shell :results pp replace :exports both
+packy -h
+#+end_src
+
+#+RESULTS:
+#+begin_example
+packy v0.1.0 --- Universal Package Manager
+
+options:
+  -h/--help               print help
+    :doc Print help and exit.
+  -l/--level              set the log level
+  -v/--version            print version
+
+commands:
+  show*                   
+    -t/--target             
+#+end_example
 
 * Notes
 :PROPERTIES:

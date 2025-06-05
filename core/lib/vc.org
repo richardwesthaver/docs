@@ -1,0 +1,157 @@
+#+title: vc
+#+author: Richard Westhaver
+#+setupfile: ../../../clean.theme
+#+OPTIONS: num:nil
+Version Controller
+#+BEGIN: lisp-system-info :system vc
+- packages
+#+CALL: lisp-system-packages[:post transpose]("vc")
+
+#+RESULTS:
+| VC/GIT   |
+| VC/HG    |
+| VC/CLI   |
+| VC/TESTS |
+| VC/PROTO |
+| VC       |
+| VC/UTIL  |
+
+- dependencies
+#+CALL: lisp-system-dependencies[:post transpose]("vc")
+
+#+RESULTS:
+| std   |
+| cli   |
+| obj   |
+| net   |
+| log   |
+| parse |
+
+- dependents
+#+CALL: lisp-system-dependents[:post transpose]("vc")
+
+#+RESULTS:
+| vc/tests  |
+| skel      |
+| bin/vc    |
+| core/user |
+
+- files
+#+CALL: lisp-system-files[:post transpose]("vc")
+
+#+RESULTS:
+| pkg.lisp   |
+| proto.lisp |
+| hg.lisp    |
+| git.lisp   |
+| util.lisp  |
+| cli.lisp   |
+| vc.lisp    |
+
+- tests
+#+CALL: lisp-system-tests[:post transpose]("vc")
+
+#+RESULTS:
+| VC-BUNDLE  |
+| VC-SIMPLE  |
+| HG-SIMPLE  |
+| GIT-SIMPLE |
+
+- symbols
+#+CALL: lisp-package-symbols[:post codify-transpose]("VC")
+
+#+RESULTS:
+| ~HG-CONFIG~               |
+| ~VC-INIT~                 |
+| ~GITIGNORE~               |
+| ~REGISTER-REPO~           |
+| ~*GIT-PROGRAM*~           |
+| ~HG-ERROR~                |
+| ~MAKE-REPO~               |
+| ~WITH-CURRENT-VC-ROOT~    |
+| ~FIND-REPO-ROOT~          |
+| ~HG-FAST-EXPORT~          |
+| ~VC-BUNDLE~               |
+| ~MAKE-HG-CLIENT~          |
+| ~HG-META~                 |
+| ~*REPO-AUTO-REGISTER*~    |
+| ~VC-PULL~                 |
+| ~VC-PUSH~                 |
+| ~REPO~                    |
+| ~GIT-ERROR~               |
+| ~VC-EXPORT~               |
+| ~VC-ADDREMOVE~            |
+| ~VC-BRANCH~               |
+| ~VC-CLONE~                |
+| ~VC-ERROR~                |
+| ~HG-BUNDLE-TYPE~          |
+| ~VC-REPO~                 |
+| ~*HG-BUNDLESPEC-OPTIONS*~ |
+| ~*REPO-REGISTRY*~         |
+| ~VC-PATH~                 |
+| ~MAKE-VC-REMOTE~          |
+| ~*VC-CLI*~                |
+| ~*REPO-ROOTS*~            |
+| ~VC-TYPE~                 |
+| ~MAKE-GIT-REPO~           |
+| ~VC-REMOTES~              |
+| ~VC-DESIGNATOR~           |
+| ~*HG-PROGRAM*~            |
+| ~MAKE-HG-REPO~            |
+| ~FIND-REPO~               |
+| ~RUN-GIT-COMMAND~         |
+| ~*REPO*~                  |
+| ~VC-STATUS~               |
+| ~RUN-HG-COMMAND~          |
+| ~VC-RUN~                  |
+| ~VC-DIFF~                 |
+| ~VC-UNBUNDLE~             |
+| ~GIT-META~                |
+| ~HGIGNORE~                |
+| ~HG-BUNDLESPEC-STRING-P~  |
+| ~VC-UPDATE~               |
+| ~VC-ADD~                  |
+| ~VC-NAME~                 |
+| ~*HG-FAST-EXPORT-SCRIPT*~ |
+| ~HG-CLIENT~               |
+| ~VC-COMMIT~               |
+| ~VC-ID~                   |
+| ~WITH-REPO~               |
+| ~VC-IGNORE~               |
+| ~VC-REMOVE~               |
+| ~HG-REPO~                 |
+| ~HG-COMPRESSION-ENGINE~   |
+| ~GIT-REPO~                |
+| ~VC-HEAD~                 |
+| ~VC-META~                 |
+| ~*DEFAULT-VC-KIND*~       |
+
+#+END:
+* bin/vc
+** help
+#+begin_src shell :results output :exports both
+vc -h
+#+end_src
+
+#+RESULTS:
+#+begin_example
+vc v0 --- Version Controller
+
+options:
+  -h/--help               print help
+    :doc Print help and exit.
+  -v/--version            
+    :doc Print version and exit.
+
+commands:
+  status*                 Print the status of the current repo
+  push                    Push the current repo to a remote
+  diff                    Perform a diff
+  pull                    Pull the current repo from a remote
+  clone                   Clone a repo from a remote
+  commit                  Commit the working set to the revision tree
+  addremove               Add/remove files
+  fast-export             Run the hg-fast-export script
+  bundle                  Bundle a repo
+  unbundle                Unbundle a repo-bundle file
+#+end_example
