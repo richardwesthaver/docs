@@ -3,3 +3,592 @@
 #+setupfile: ../../../clean.theme
 #+OPTIONS: num:nil
 
+=skel= is /a hacker's project compiler and build tool/. It is an
+extensible software library designed for managing /projects/.
+
+The [[https://compiler.company/docs/core/app/skel.html][cli]] is the main entry point for typical users. This documentation
+is for library developers and internal use.
+
+#+BEGIN: lisp-system-info :system skel
+- packages
+#+CALL: lisp-system-packages[:post transpose]("skel")
+
+#+RESULTS:
+| SKEL/CORE            |
+| SKEL/COMP/DIR-LOCALS |
+| SKEL/CORE/INT        |
+| SKEL/COMP            |
+| SKEL/NET/CLIENT      |
+| SKEL/COMP/CONTAINER  |
+| SKEL/INFER           |
+| SKEL/CORE/PLAN       |
+| SKEL/COMP/IGNITION   |
+| SKEL/COMP/ORG        |
+| SKEL/CORE/HEADER     |
+| SKEL/CORE/SCHEMA     |
+| SKEL/CORE/OBJ        |
+| SKEL/COMP/CARGO      |
+| SKEL/TESTS           |
+| SKEL/CORE/LOG        |
+| SKEL                 |
+| SKEL/NET/CORE        |
+| SKEL/CLI             |
+| SKEL/CORE/PROTO      |
+| SKEL/NET             |
+| SKEL/CORE/UTIL       |
+| SKEL/TOOLS/VIEW      |
+| SKEL/COMP/MAKEFILE   |
+| SKEL/TOOLS/DEPLOY    |
+| SKEL/SRV             |
+| SKEL/CORE/DB         |
+| SKEL/NET/SERVER      |
+| SKEL/COMP/ASD        |
+| SKEL/CORE/VM         |
+| SKEL/CORE/PRINT      |
+
+- dependencies
+#+CALL: lisp-system-dependencies[:post transpose]("skel")
+
+#+RESULTS:
+| uiop           |
+| asdf           |
+| sb-posix       |
+| sb-bsd-sockets |
+| sb-concurrency |
+| cl-ppcre       |
+| std            |
+| obj            |
+| dat            |
+| cli            |
+| organ          |
+| doc            |
+| vc             |
+| pod            |
+| net            |
+| box            |
+| rdb            |
+| NIL            |
+| NIL            |
+| NIL            |
+| NIL            |
+
+- dependents
+#+CALL: lisp-system-dependents[:post transpose]("skel")
+
+#+RESULTS:
+| homer      |
+| skel/tests |
+| bin/skc    |
+| bin/skel   |
+| bin/homer  |
+
+- files
+#+CALL: lisp-system-files[:post transpose]("skel")
+
+#+RESULTS:
+| core/pkg.lisp        |
+| core/condition.lisp  |
+| core/proto.lisp      |
+| core/header.lisp     |
+| core/var.lisp        |
+| core/obj.lisp        |
+| core/component.lisp  |
+| core/rule.lisp       |
+| core/project.lisp    |
+| core/print.lisp      |
+| core/fs.lisp         |
+| core/schema.lisp     |
+| core/db.lisp         |
+| core/log.lisp        |
+| core/util.lisp       |
+| core/vm.lisp         |
+| comp/pkg.lisp        |
+| comp/asd.lisp        |
+| comp/cargo.lisp      |
+| comp/container.lisp  |
+| comp/org.lisp        |
+| comp/dir-locals.lisp |
+| comp/makefile.lisp   |
+| pkg.lisp             |
+| srv.lisp             |
+| infer.lisp           |
+| net/var.lisp         |
+| net/proto.lisp       |
+| net/server.lisp      |
+| net/client.lisp      |
+| tools/pkg.lisp       |
+| tools/deploy.lisp    |
+| tools/view.lisp      |
+| ext/pkg.lisp         |
+| ext/asdf.lisp        |
+| ext/krypt.lisp       |
+| ext/packy.lisp       |
+| cli.lisp             |
+| skel.lisp            |
+
+- tests
+#+CALL: lisp-system-tests[:post transpose]("skel")
+
+#+RESULTS:
+| ASD             |
+| MAKEFILE        |
+| SKELRC          |
+| SKELFILE        |
+| HEADER-COMMENTS |
+
+- symbols
+#+CALL: lisp-package-symbols[:post codify-transpose]("SKEL")
+
+#+RESULTS:
+| ~SKEL-SIMPLE-ERROR~            |
+| ~*DEFAULT-MAKEFILE*~           |
+| ~SK-PROJECT~                   |
+| ~WITH-PROJECT~                 |
+| ~MAKEFILE~                     |
+| ~SKEL-COMPILE-ERROR~           |
+| ~SK-COMPILE~                   |
+| ~SK-FIND~                      |
+| ~SK-FIND*~                     |
+| ~SK-PULL~                      |
+| ~*SKEL-PROJECT-MACROS*~        |
+| ~*DEFAULT-SKEL-BINDINGS*~      |
+| ~LIST-ALL-PROJECTS~            |
+| ~SKEL-CONDITION~               |
+| ~SK-WRITE-ASD-COMPONENTS~      |
+| ~SK-USER~                      |
+| ~SK-COMMAND~                   |
+| ~*SKEL-LOG-SCHEMA*~            |
+| ~SK-SNIPPETS~                  |
+| ~MAKE-FILE-HEADER~             |
+| ~*SKEL-INIT-HOOK*~             |
+| ~SK-LOG-REPAIR~                |
+| ~*SKEL-USER-CONFIG*~           |
+| ~LOAD-SKELFILE~                |
+| ~SK-INSTALL~                   |
+| ~SK-VC~                        |
+| ~*SKEL-PROJECT-SYMBOL-MACROS*~ |
+| ~SK-STASH~                     |
+| ~SK-VERSION~                   |
+| ~FIND-SK-FILE~                 |
+| ~SK-BUNDLE~                    |
+| ~SK-UNBUNDLE~                  |
+| ~PUSH-MK-RULE~                 |
+| ~SK-CONFIG~                    |
+| ~SK-PACK~                      |
+| ~SK-SCRIPT~                    |
+| ~*SKEL-CLI*~                   |
+| ~SK-COMPONENTS~                |
+| ~DEF-SK-CLASS~                 |
+| ~SK-WRITELN~                   |
+| ~SK-CALL~                      |
+| ~PARSE-SK-RUST-SYSTEM~         |
+| ~INIT-SYSTEM-SKELRC~           |
+| ~SK-DATA~                      |
+| ~MAKE-SK-RULE~                 |
+| ~SK-META~                      |
+| ~INIT-SKELRC~                  |
+| ~SK-PRINT~                     |
+| ~*MAKEFILE-EXTENSION*~         |
+| ~*SKEL-PROJECT-FUNCTIONS*~     |
+| ~SYSTEM-SKELRC~                |
+| ~PARSE-SK-LISP-SYSTEM~         |
+| ~LOAD-SYSTEM-SKELRC~           |
+| ~SK-PUSH~                      |
+| ~SKEL-STORE~                   |
+| ~DIR-LOCAL-VAR-DESIGNATOR~     |
+| ~*MK-COMMAND-PREFIXES*~        |
+| ~SK-RULE-SOURCE~               |
+| ~INIT-SKELFILE~                |
+| ~MAKE-SOURCE-FILE-HEADER~      |
+| ~SKEL-SYNTAX-ERROR~            |
+| ~SK-TAGS~                      |
+| ~USER-SKELRC~                  |
+| ~SK-KIND~                      |
+| ~SK-SCRIPTS~                   |
+| ~SKEL-PATH~                    |
+| ~SK-LOG-LIST~                  |
+| ~MK-VAL~                       |
+| ~SK-BIND~                      |
+| ~SK-RUN~                       |
+| ~SCRIPT-DESIGNATOR~            |
+| ~SK-READ-FILE~                 |
+| ~*MK-MAGIC-VARS*~              |
+| ~*SKELFILE-BOUNDARY*~          |
+| ~SK-LOAD-COMPONENT~            |
+| ~SK-TRANSFORM~                 |
+| ~*SKEL-SYSTEM-CONFIG*~         |
+| ~*SKEL-LOGGER*~                |
+| ~SK-CONFIG-SLOT~               |
+| ~SK-CONVERT~                   |
+| ~LICENSE-DESIGNATOR~           |
+| ~SK-DEPLOY~                    |
+| ~SK-CALL*~                     |
+| ~MAKE-SHEBANG-FILE-HEADER~     |
+| ~SK-UNPACK~                    |
+| ~SK-TEST~                      |
+| ~SK-TANGLE~                    |
+| ~INIT-SKEL-LOGGER~             |
+| ~SK-RULE-TARGET~               |
+| ~SK-PROJECT-SLOT~              |
+| ~SK-USER-CONFIG~               |
+| ~*SKELFILE-EXTENSION*~         |
+| ~PUSH-MK-VAR~                  |
+| ~EDIT-SKELRC~                  |
+| ~SK-SAVE~                      |
+| ~SK-DESCRIPTION~               |
+| ~CONTACT-DESIGNATOR~           |
+| ~SK-RULE~                      |
+| ~FILE-HEADER~                  |
+| ~READ-SYSTEM-DEFINITIONS~      |
+| ~MAKE-SHEBANG-COMMENT~         |
+| ~SK-LOG-SCHEMA~                |
+| ~SK-ORG-FILE~                  |
+| ~MK-VAR~                       |
+| ~SK-COMPONENT~                 |
+| ~SK-SHELL~                     |
+| ~*DEFAULT-SKEL-USER*~          |
+| ~*DEFAULT-SKELFILE*~           |
+| ~SK-CACHE~                     |
+| ~SK-SNIPPET~                   |
+| ~SK-MOD~                       |
+| ~SK-STORE~                     |
+| ~SKEL-CACHE~                   |
+| ~SK-FETCH~                     |
+| ~SK-LICENSE~                   |
+| ~SK-ABBREVS~                   |
+| ~SKEL-ERROR~                   |
+| ~SK-PHASES~                    |
+| ~SKEL-DB-SINK~                 |
+| ~SK-SYSTEM-CONFIG~             |
+| ~SK-WRITE~                     |
+| ~SK-WRITE-FILE~                |
+| ~SK-NEW~                       |
+| ~LOAD-SKELRC~                  |
+| ~SK-LOG-SHUTDOWN~              |
+| ~SK-READ~                      |
+| ~MK-VAL-DESIGNATOR~            |
+| ~SKEL-DB-LOGGER~               |
+| ~SKEL-DATA~                    |
+| ~*DEFAULT-SKEL-CACHE*~         |
+| ~SKEL~                         |
+| ~SK-REGISTER~                  |
+| ~*SKEL-PROJECT*~               |
+| ~PUSH-MK-DIRECTIVE~            |
+| ~SK-SEARCH-PROJECT~            |
+| ~FILE-HEADER-KIND~             |
+| ~SK-AUTHOR~                    |
+| ~SK-RUST-SYSTEM~               |
+| ~SK-MAKE~                      |
+| ~SK-RULES~                     |
+| ~LOAD-USER-SKELRC~             |
+| ~FIND-PROJECT-ROOT~            |
+| ~*DEFAULT-SKELRC*~             |
+| ~MAKE-SOURCE-HEADER-COMMENT~   |
+| ~SK-LISP-SYSTEM~               |
+| ~SKEL-IO-ERROR~                |
+| ~SK-WRITE-STRING~              |
+| ~SETF-SKEL-VARS~               |
+| ~*SKEL-LOGGER-CONFIG*~         |
+| ~SK-CONTAINERFILE~             |
+| ~SK-RULE-RECIPE~               |
+| ~SK-TARGET~                    |
+| ~SKEL-STASH~                   |
+| ~INVALID-SKEL-AST~             |
+| ~SK-INSTALL-USER-CONFIG~       |
+| ~INIT-USER-SKELRC~             |
+| ~SK-LOG-CLOSE~                 |
+| ~SK-WEAVE~                     |
+| ~SKEL-DB~                      |
+| ~SK-ABBREV~                    |
+| ~SK-INCLUDE~                   |
+| ~*DIR-LOCALS-FILE*~            |
+| ~SK-SOURCE~                    |
+| ~SK-PARENT~                    |
+| ~INIT-SKEL~                    |
+| ~*SKEL-ENV*~                   |
+| ~SK-SRC~                       |
+| ~SK-ENV~                       |
+| ~FIND-SKELFILE~                |
+| ~SK-BUILD~                     |
+| ~SK-DIR-LOCALS~                |
+| ~SK-LOAD~                      |
+| ~*DEFAULT-SKEL-VC-KIND*~       |
+| ~SKEL-DB-PATH~                 |
+
+#+END:
+
+* Overview
+:PROPERTIES:
+:ID:       daebd915-628a-4792-8653-8a01c690a329
+:END:
+This library started as a Rust crate but was re-written in Lisp as the
+purpose of the library grew from managing a small collection of
+user-space libraries (also written in Rust) to managing large
+collections in many different langs.
+
+It is obvious in hindsight, that this project needs Lisp. Today,
+=skel= built on [[https://en.wikipedia.org/wiki/Common_Lisp_Object_System][CLOS]] with classes and methods exposing the core API.
+
+** Architecture
+:PROPERTIES:
+:ID:       4fd2d7eb-e738-4e2f-8de1-3b8f5671d488
+:END:
+The library core is built on CLOS. Most important data structures are
+represented with classes, slots, and methods such as the ~sk-project~
+class which has a slot named ~:components~ and a method specialized on
+it called ~load-ast~.
+
+We make use of mixins defined within the library like ~sk-meta~ as
+well as classes defined downstream - the ~sxp~ class for example
+provides a default method for AST functions (~load-ast~ ~build-ast~)
+and is defined in the ~std/sxp~ package.
+
+On top of the core we build our compilers or 'translators' which
+convert core objects to a corresponding external representation. For
+example the ~makefile~ and ~mk-*~ classes defined in ~skel/comp/make~
+can be built from a ~sk-project~ and ~sk-*~ instances. Once built, the
+~sk-compile~ method can be used to actually generate the GNU Make
+output as a stream of bytes.
+
+The remainder of the ~skel~ system is dedicated to extensions. These
+are all optional. There are built-in extension called ~tools~ which
+run within the ~skel~ system and external extensions (~ext~) which
+integrate with a particular external system.
+
+The ~tools~ we provide are similar to Cargo's [[https://doc.rust-lang.org/book/ch14-05-extending-cargo.html][custom commands]], but
+they don't need to be a separate binary - they can be compiled into
+the core image. The downside is that this requires re-compiling ~skel~
+every time you want to add a new tool. However since this is Lisp not
+Rust, we can compile anywhere - including from within ~skel~
+itself.
+
+~ext~ contains extensions for external systems. These modules are the
+'edges' of the system and provide support to programs which need to be
+able to access ~skel~ data at runtime. These modules always compiled
+separately and aren't built into the default core image.
+
+* features
+:PROPERTIES:
+:ID:       90d78420-e6d9-4f18-8222-89c4670633b4
+:END:
+
+** configuration
+:PROPERTIES:
+:ID:       2658a3d1-cfa5-436e-b2b0-9cf42a6f66c6
+:END:
+The ~skel~ tool can be configured at runtime using the CLI flags, or
+via local configuration files. The configuration files are in the
+~skelfile~ format and are assigned the following locations by default:
+- ~*default-user-skelrc*~ :: =$HOME/.skelrc=
+- ~*default-system-skelrc*~ :: =/etc/skel/skelrc=
+
+Both files are optional and the user skelrc takes precedence over
+system.
+
+Example =~/.skelrc=:
+#+begin_src shell :results output :exports both
+cat ~/.skelrc
+#+end_src
+
+#+RESULTS:
+#+begin_example
+;;; .skelrc @ 2023-10-12.02:58:08 -*- mode: skel; -*-
+:name "Richard Westhaver"
+:email "richard.westhaver@gmail.com"
+:version "0.1.0"
+:tags ("auto")
+:fmt :pretty
+:vc :hg
+:auto-insert t
+:license :mpl2
+:log-level :info
+:stash ".stash"
+:cache "/opt/stash/cache/skel"
+:data "/opt/stash/data/skel"
+:scripts ("/usr/local/share/stash/scripts" "~/.stash/scripts")
+#+end_example
+
+** projects
+:PROPERTIES:
+:ID:       359441da-1b61-4d73-8563-605ea7262b58
+:END:
+Projects are the highest-level objects int the ~skel~ system. A project
+consists of a list of slots which are populated automatically or by
+the user. Once a project is initialized the slots can be accessed and
+a set of high-level operations can be performed.
+
+The easiest way to initialize a project is with a ~skelfile~. These
+files are parsed as a simplified Lisp dialect and generate
+~sk-project~ objects based on their contents.
+
+The simplest project looks like this:
+
+#+begin_src skel :noeval t
+:name hello-world
+#+end_src
+
+Don't worry, this is still lisp - the parentheses are implied. All we
+actually need is a name to generate an object, and we can fill in the
+blanks later as the project develops.
+
+Here is a more verbose example, still with only metadata:
+
+#+begin_src skel :noeval t
+;;; skelfile --- core skelfile -*- mode: skel; -*-
+:name "core"
+:author "Richard Westhaver <ellis@rwest.io>"
+:version "0.1.0"
+:license "MPL"
+:description "The Compiler Company Core"
+:vc :hg
+:tags ("core")
+:docs ((:org "readme") (:org "install") (:org "tests") (:org "todo"))
+:import ("emacs/emacs.sk")
+#+end_src
+
+Another example with rules and components:
+
+#+begin_src skel :noeval t
+;;; skelfile @ 2023-10-08.02:37:25 -*- mode: skel; -*-
+:name skel
+:author "ellis"
+:version "0.1.0"
+:description "a hacker's project compiler"
+:license "MPL"
+:vc :hg
+:tags ("lisp")
+:rules ((build () (print (asdf:make :skel/cli)))
+        (clean () #$rm -rf */*.fasl$#))
+:docs ((:org "readme"))
+:components
+((:elisp "sk"))
+:stash "~/.stash"
+#+end_src
+
+** version control
+:PROPERTIES:
+:ID:       c15f58b5-d55e-425b-acf5-7001ef4591e4
+:END:
+=skel= integrates closely with our Version Control System which
+is built on [[https://www.mercurial-scm.org/][Mercurial]], but we also interact with and host many [[https://git-scm.com/][Git]]
+repositories.
+
+The =skel= tool helps us abstract away the differences between git/hg
+and make maximum use of their utility. When you run a =skel vc=
+command the currently active ~sk-project~ and configuration are used
+to determine the appropriate VC backend to call. New backends can of
+course be added as extensions.
+
+** TODO compilers
+:PROPERTIES:
+:ID:       5ec3ae9d-8846-4374-a42b-5701606ad119
+:END:
+- State "TODO"       from              [2023-12-09 Sat 19:28]
+One of the most unusual features of =skel= is the compiler set. With
+the =skel= CLI you can compile the following types of files for your
+project directly from a ~skelfile~:
+- Makefile (.mk)
+- Lisp system defs (.asd)
+- Cargo.toml
+- Containerfile
+- .hgignore/.gitignore
+
+We treat skelfiles as the mother of all build formats and consolidate
+different formats into our own project DSL. This helps reduce
+complexity while increasing capability and portability.
+
+Project compilation occurs on demand with the =sk compile= command.
+
+** TODO virtualization
+:PROPERTIES:
+:ID:       fea87861-30c2-4739-b964-1ecb87d3ddff
+:END:
+- State "TODO"       from              [2023-12-09 Sat 18:55]
+
+  =skel= offers a mechanism for generating and running Virtual
+  Machines (VMs) and Containers. Under the hood we depend on [[https://podman.io/][podman]]
+  for our container runtime as well as [[https://www.qemu.org/][QEMU]] for some functionality.
+
+** TODO emacs integration
+:PROPERTIES:
+:ID:       3df22a04-3f6b-4738-bd5f-3eb91977d3af
+:END:
+- State "TODO"       from              [2023-12-09 Sat 19:30]
+=sk.el= is the Emacs support package for skel. It contains a
+=skel-mode= for working with skelfiles and will soon contain
+additional built-in integrations for =project.el=, =vc.el=, and more.
+
+** TODO deployment
+:PROPERTIES:
+:ID:       7e66bdf6-304e-423e-8db4-783e7f6ccfd7
+:END:
+- State "TODO"       from              [2023-12-09 Sat 19:37]
+
+** TODO visualization
+:PROPERTIES:
+:ID:       efa22675-70d6-453f-b377-8e76875e5f1f
+:END:
+- State "TODO"       from              [2023-12-09 Sat 19:37]
+
+* bin/skel
+** help
+:PROPERTIES:
+:ID:       f8e9fab4-67dc-4e7f-b172-7e0fc21047ad
+:END:
+#+begin_src shell :results pp replace :exports both
+skel -h
+#+end_src
+
+#+RESULTS:
+#+begin_example
+skel v0.1.1:81d4740b4c4e+ --- The hackable devtool.
+
+options:
+  -h/--help               print help
+    :doc Print help and exit.
+  -v/--version            print version
+    :doc Print version and exit.
+  -a/--ast                save the intermediate skel AST
+    :doc Set the *KEEP-AST* variable.
+  -l/--level              set log level (warn,info,debug,trace)
+    :doc Set the *LOG-LEVEL* for this CLI session.
+  -c/--config             set a custom skel user config
+  -i/--interactive        enter the lisp image after running commands
+
+commands:
+  init                    initialize a skelfile in the current directory
+    -n/--name               project name
+  id                      print the current project id
+  inspect                 inspect the project skelfile
+    -f/--file               path to skelfile
+  new                     make a new skel project
+    -n/--name               project name
+  describe                describe a skelfile
+  edit                    edit a project file in emacs.
+  show*                   show skel objects slots
+    -f/--file               path to skelfile
+  list                    list skel objects
+  make                    build project targets
+  search                  search the current project
+    :doc Search the current project and return a date-frame of results.
+  run                     run a script or command
+  compile                 compile source code
+  build                   build programs and libraries
+  update                  update components
+  save                    save a file
+  dist                    distribute build artifacts
+  install                 install stuff
+  pack                    pack stuff
+  unpack                  unpack stuff
+  bundle                  bundle source code
+  unbundle                unbundle source code
+  clean                   clean up the project
+  test                    run tests
+  bench                   run benchmark
+  shell                   open the sk-shell interpreter
+  db                      interact with the skel database
+  net                     communicate with skel clients and servers
+  vc                      version control
+  pk                      packages
+  kr                      cryptography
+#+end_example
