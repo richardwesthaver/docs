@@ -4,7 +4,7 @@
 #+description: High-level Digital Signal Processing Library
 #+filetags: lisp media audio dsp
 #+setupfile: ../../../clean.theme
-#+BEGIN: lisp-system-info :system dsp :symbols nil
+#+BEGIN: lisp-system-info :system dsp :symbols t
 - packages
 #+CALL: lisp-system-packages[:post transpose]("dsp")
 
@@ -36,6 +36,13 @@
 | alsa        |
 | ffmpeg      |
 
+- dependents
+#+CALL: lisp-system-dependents[:post transpose]("dsp")
+
+#+RESULTS:
+| dsp/tests |
+| core      |
+
 - files
 #+CALL: lisp-system-files[:post transpose]("dsp")
 
@@ -50,5 +57,58 @@
 | vid/pkg.lisp    |
 | gst.lisp        |
 | dsp.lisp        |
+
+- tests
+#+CALL: lisp-system-tests[:post transpose]("dsp")
+
+#+RESULTS:
+| SANITY |
+
+- symbols
+#+CALL: lisp-package-symbols[:post codify-transpose]("DSP")
+
+#+RESULTS:
+| ~JACK-PLAY-SOUND~             |
+| ~VIDEO-CODEC~                 |
+| ~VIDEO-FILE~                  |
+| ~AUDIO-CODEC~                 |
+| ~WITH-AV-CODEC-CONTEXT~       |
+| ~*DAC-FOLDING*~               |
+| ~MEDIA-FILE-CODECS~           |
+| ~*JACK-SOUNDS*~               |
+| ~AV-CONTEXT-METADATA~         |
+| ~DSP-CONDITION~               |
+| ~MEDIA-META~                  |
+| ~N-SOUNDS-PAUSING-NOW~        |
+| ~MEDIA-FILE-METADATA~         |
+| ~LOAD-GST~                    |
+| ~*DEFAULT-MEDIA-PROBE*~       |
+| ~WITH-AV-FORMAT-CONTEXT~      |
+| ~AV-DICTIONARY-ALIST~         |
+| ~MEDIA-FILE-STREAM-COUNT~     |
+| ~N-SOUNDS-PLAYING-NOW~        |
+| ~MEDIA-CODEC~                 |
+| ~MEDIA-FILE~                  |
+| ~*JACK-SND*~                  |
+| ~MEDIA-FILE-FORMAT~           |
+| ~JACK-SND~                    |
+| ~GST-PIPE~                    |
+| ~LOAD-AV~                     |
+| ~CHROMAPRINT~                 |
+| ~GST-CONDITION~               |
+| ~JACK-CLOSE-SOUND~            |
+| ~+SAMPLE-SIZE+~               |
+| ~IMAGE-FILE~                  |
+| ~WITH-AV-PARSER~              |
+| ~AUDIO-FILE~                  |
+| ~JACK-OPEN-SOUND~             |
+| ~DSP-ERROR~                   |
+| ~AV-DICTIONARY-TO-HASH-TABLE~ |
+| ~AV-META~                     |
+| ~JACK-SOUNDS-PLAYING-NOW~     |
+| ~JACK-CLOSE-ALL-SOUNDS~       |
+| ~AV-ERROR~                    |
+| ~GST-ERROR~                   |
+| ~*MEDIA-DIRECTORY*~           |
 
 #+END:
