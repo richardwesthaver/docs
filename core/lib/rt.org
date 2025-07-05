@@ -1,0 +1,209 @@
+#+title: rt
+#+author: Richard Westhaver
+#+description: Core Regression Testing Library
+#+setupfile: ../../../clean.theme
+
+#+BEGIN: lisp-system-info :system rt
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("rt")
+
+  #+RESULTS:
+  | RT/TESTS      |
+  | RT/COVER      |
+  | RT            |
+  | RT/BENCH      |
+  | RT/TRACING    |
+  | RT/FUZZ       |
+  | RT/FLAMEGRAPH |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("rt")
+
+  #+RESULTS:
+  | std      |
+  | log      |
+  | dat      |
+  | sb-sprof |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("rt")
+
+  #+RESULTS:
+  | ublk/tests            |
+  | ssh2/tests            |
+  | wasmer/tests          |
+  | web/tests             |
+  | gui/tests             |
+  | krypt/tests           |
+  | packy/tests           |
+  | tree-sitter/tests     |
+  | syn/tests             |
+  | box/tests             |
+  | pod/tests             |
+  | vc/tests              |
+  | skel/tests            |
+  | ffmpeg/tests          |
+  | alsa/tests            |
+  | chromaprint/tests     |
+  | glib/tests            |
+  | gstreamer/tests       |
+  | cuda/tests            |
+  | blas/tests            |
+  | math/tests            |
+  | sndfile/tests         |
+  | dsp/tests             |
+  | organ/tests           |
+  | doc/tests             |
+  | q/tests               |
+  | rocksdb/tests         |
+  | rdb/tests             |
+  | nlp/tests             |
+  | trivial-garbage/tests |
+  | rustls/tests          |
+  | keyutils/tests        |
+  | blake3/tests          |
+  | cry/tests             |
+  | rt/tests              |
+  | parse/tests           |
+  | net/tests             |
+  | net                   |
+  | aws-lc/tests          |
+  | dat/tests             |
+  | zstd/tests            |
+  | btrfs/tests           |
+  | evdev/tests           |
+  | xkb/tests             |
+  | obj/tests             |
+  | uring/tests           |
+  | ironclad/tests        |
+  | io/tests              |
+  | log/tests             |
+  | cli/tests             |
+  | std/tests             |
+  | cl-ppcre/test         |
+  | core/bench            |
+  | core/tests            |
+  | core/user             |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("rt")
+
+  #+RESULTS:
+  | pkg.lisp        |
+  | var.lisp        |
+  | condition.lisp  |
+  | util.lisp       |
+  | proto.lisp      |
+  | obj.lisp        |
+  | rt.lisp         |
+  | bench.lisp      |
+  | tracing.lisp    |
+  | flamegraph.lisp |
+  | cover.lisp      |
+  | fuzz.lisp       |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("rt")
+
+  #+RESULTS:
+  | FUZZ       |
+  | TMP        |
+  | FIXTURE    |
+  | TRACING    |
+  | FLAMEGRAPH |
+  | RT         |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("RT")
+
+  #+RESULTS:
+  | *FIXTURES*                |
+  | TESTS                     |
+  | DEFTEST                   |
+  | RESET-TESTS               |
+  | ISOR                      |
+  | ISAND                     |
+  | WITH-TMP-FILE             |
+  | FIND-TEST                 |
+  | TEST-FIXTURES             |
+  | ENSURE-SUITE              |
+  | IS<                       |
+  | *FX*                      |
+  | IS<=                      |
+  | ISEQUALP                  |
+  | TEST-RESULTS              |
+  | DELETE-TEST               |
+  | TEST-SUITE                |
+  | TEST-FORM                 |
+  | *DEFAULT-TMP-DIRECTORY*   |
+  | TEST-SKIP-P               |
+  | *TESTING*                 |
+  | TEST-FIXTURE              |
+  | TEST-FAIL-P               |
+  | MAKE-TEST-RESULT          |
+  | MAKE-TEST                 |
+  | *TEST-POLICY*             |
+  | COMPILE-TEST              |
+  | WITH-FIXTURE              |
+  | MAKE-FIXTURE-PROTOTYPE    |
+  | MAKE-FIXTURE              |
+  | TEST-FAILED               |
+  | *TEST-SUITE-LIST*         |
+  | ISSOME                    |
+  | DO-SUITE                  |
+  | TEST-SUITE-DESIGNATOR     |
+  | CONTINUE-TESTING          |
+  | TEST-NAME=                |
+  | TEST-DECLARE              |
+  | ISEQUAL                   |
+  | ISLIST                    |
+  | FAIL!                     |
+  | *TEST-SUFFIX*             |
+  | TEST-OBJECT               |
+  | %TEST-RESULT              |
+  | ISZERO                    |
+  | %TEST-BAIL                |
+  | CHECK-SUITE-DESIGNATOR    |
+  | IS>                       |
+  | TEST-FN                   |
+  | SIGNALS                   |
+  | LOCKED-TESTS              |
+  | ISTYPE                    |
+  | RUN-ALL-TESTS*            |
+  | ISSUBTYPE                 |
+  | DO-TESTS                  |
+  | ISEQ                      |
+  | RUN-ALL-TESTS             |
+  | FIXTURE                   |
+  | TMP-FIXTURE               |
+  | *TMP*                     |
+  | WITH-TEST-ENV             |
+  | TEST                      |
+  | ISEVERY                   |
+  | ISEQL                     |
+  | *COMPILE-TESTS*           |
+  | WITH-TMP-DIRECTORY        |
+  | IS                        |
+  | *CATCH-TEST-ERRORS*       |
+  | ISNT                      |
+  | MAKE-SUITE                |
+  | ISEMPTY                   |
+  | DEFSUITE                  |
+  | TEST-POLICY               |
+  | IS>=                      |
+  | IN-SUITE                  |
+  | TEST-PASS-P               |
+  | *DEFAULT-TEST-SUITE-NAME* |
+  | TEST-ERROR                |
+  | IS=                       |
+  | *TEST-SUITE*              |
+  | FIXTURE-PROTOTYPE         |
+  | POP-TEST                  |
+  | EVAL-TEST                 |
+  | PUSH-TEST                 |
+  | TEST-RESULT               |
+  | DO-TEST                   |
+  | FIND-SUITE                |
+  | ISSUBCLASS                |
+
+#+END

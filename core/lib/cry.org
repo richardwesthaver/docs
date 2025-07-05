@@ -1,0 +1,101 @@
+#+title: cry
+#+author: Richard Westhaver
+#+setupfile: ../../../clean.theme
+#+OPTIONS: num:nil
+
+#+BEGIN: lisp-system-info :system cry
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("cry")
+
+  #+RESULTS:
+  | CRY/DRM      |
+  | CRY/TESTS    |
+  | CRY/SSL      |
+  | CRY/PASSWORD |
+  | CRY/B3       |
+  | CRY/TOTP     |
+  | CRY/KEYRING  |
+  | CRY/JWT      |
+  | CRY          |
+  | CRY/HOTP     |
+  | CRY/AUTHINFO |
+  | CRY/CRC64    |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("cry")
+
+  #+RESULTS:
+  | ironclad       |
+  | sb-concurrency |
+  | sb-posix       |
+  | sb-bsd-sockets |
+  | std            |
+  | log            |
+  | obj            |
+  | dat            |
+  | blake3         |
+  | keyutils       |
+  | rustls         |
+  | cl+ssl         |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("cry")
+
+  #+RESULTS:
+  | web       |
+  | krypt     |
+  | packy     |
+  | organ     |
+  | cry/tests |
+  | net       |
+  | core      |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("cry")
+
+  #+RESULTS:
+  | pkg.lisp        |
+  | condition.lisp  |
+  | crc64.lisp      |
+  | ssl/pkg.lisp    |
+  | ssl/rls.lisp    |
+  | ssl/stream.lisp |
+  | b3.lisp         |
+  | password.lisp   |
+  | authinfo.lisp   |
+  | keyring.lisp    |
+  | jwt.lisp        |
+  | hotp.lisp       |
+  | totp.lisp       |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("cry")
+
+  #+RESULTS:
+  | PASSWORD |
+  | AUTHINFO |
+  | KEYRING  |
+  | JWT      |
+  | B3       |
+  | CRC64    |
+  | TOTP     |
+  | HOTP     |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("CRY")
+
+  #+RESULTS:
+  | PASSWORD-DB               |
+  | CRYPTO-ERROR              |
+  | *DEFAULT-PASSWORD-PEPPER* |
+  | CRYPTO-TOKEN-EXPIRED      |
+  | CRYPTO-KEY                |
+  | CRYPTO-CONDITION          |
+  | *DEFAULT-PASSWORD-DB*     |
+  | *DEFAULT-PASSWORD-STORE*  |
+  | TOKEN                     |
+  | *DEFAULT-PASSWORD-HASHER* |
+  | CRYPTO-TOKEN              |
+  | CRYPTO-TOKEN-INVALID      |
+
+#+END
