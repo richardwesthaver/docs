@@ -5,58 +5,53 @@
 This doc is about the [[https://en.wikipedia.org/wiki/Foreign_function_interface][Foreign Function Interface]] (FFI) features of the
 =core=. 
 
-Besides accessing system, OS, and external libraries via binding code
-(dynamically in Lisp, statically in Rust), we also expose parts of the
-core in a C-compatible fashion. In Lisp, we use the SB-ALIEN interface
-to load (with dlopen) and call foreign symbols. In Rust we mostly use
-rust-bindgen and the built-in rustc features.
-
-#+BEGIN: lisp-system-info :system ffi :symbols nil :files nil
+#+BEGIN: lisp-system-info :system ffi :symbols nil :files nil :dependents nil :tests nil
 - packages
-#+CALL: lisp-system-packages[:post transpose]("ffi")
+  #+CALL: lisp-system-packages[:post transpose]("ffi")
 
-#+RESULTS:
-| FFI/PRELUDE |
+  #+RESULTS:
+  | FFI/PRELUDE |
+  | FFI/TESTS   |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("ffi")
+  #+CALL: lisp-system-dependencies[:post transpose]("ffi")
 
-#+RESULTS:
-| sb-grovel   |
-| arrow       |
-| blake3      |
-| btrfs       |
-| alsa        |
-| jack        |
-| matroska    |
-| cuda        |
-| evdev       |
-| glib        |
-| gstreamer   |
-| keyutils    |
-| rocksdb     |
-| rustls      |
-| sndfile     |
-| ssh2        |
-| tree-sitter |
-| ublk        |
-| uring       |
-| xkb         |
-| zstd        |
-| jpeg        |
-| chromaprint |
-| blas        |
-| aws-lc      |
+  #+RESULTS:
+  | sb-grovel   |
+  | arrow       |
+  | blake3      |
+  | btrfs       |
+  | alsa        |
+  | jack        |
+  | matroska    |
+  | cuda        |
+  | evdev       |
+  | glib        |
+  | gstreamer   |
+  | keyutils    |
+  | rocksdb     |
+  | rustls      |
+  | sndfile     |
+  | ssh2        |
+  | tree-sitter |
+  | ublk        |
+  | uring       |
+  | xkb         |
+  | zstd        |
+  | jpeg        |
+  | chromaprint |
+  | blas        |
+  | aws-lc      |
+  | ffmpeg      |
 
 #+END:
-* Libraries
+
+* Systems
 :PROPERTIES:
 :ID:       1eb797dc-d617-46cc-89e8-7b6103e526d2
 :END:
-The following binding libraries are provided with supporting
-code. There is some cross-over between the Lisp and Rust bindings
-depending on what library features we need and where. Some of the
-bindings are very minimal or for experimental-use only only.
+The following core /ffi systems/ are provided with supporting
+code.
 ** xkb
 :PROPERTIES:
 :ID:       79b3a686-efe9-411e-9d1e-358113622949
@@ -65,25 +60,41 @@ These bindings are actually directed at libxkbcommon instead of
 x11/xkb directly.
 #+BEGIN: lisp-system-info :system xkb :symbols nil
 - packages
-#+CALL: lisp-system-packages[:post transpose]("xkb")
+  #+CALL: lisp-system-packages[:post transpose]("xkb")
 
-#+RESULTS:
-| XKB/TESTS |
-| XKB       |
+  #+RESULTS:
+  | XKB/TESTS |
+  | XKB       |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("xkb")
+  #+CALL: lisp-system-dependencies[:post transpose]("xkb")
 
-#+RESULTS:
-| std |
+  #+RESULTS:
+  | std |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("xkb")
+
+  #+RESULTS:
+  | ffi         |
+  | gui         |
+  | evdev/tests |
+  | xkb/tests   |
+  | io          |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("xkb")
+  #+CALL: lisp-system-files[:post transpose]("xkb")
 
-#+RESULTS:
-| pkg.lisp       |
-| constants.lisp |
-| x11.lisp       |
+  #+RESULTS:
+  | pkg.lisp       |
+  | constants.lisp |
+  | x11.lisp       |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("xkb")
+
+  #+RESULTS:
+  | XKB-BASIC |
 
 #+END:
 *** xkbcommon
@@ -97,43 +108,335 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
 :END:
 [[https://github.com/facebook/rocksdb/wiki][RocksDB Wiki]]
 
-#+BEGIN: lisp-system-info :system rocksdb :symbols nil
+#+BEGIN: lisp-system-info :system rocksdb
 - packages
-#+CALL: lisp-system-packages[:post transpose]("rocksdb")
+  #+CALL: lisp-system-packages[:post transpose]("rocksdb")
 
-#+RESULTS:
-| ROCKSDB       |
-| ROCKSDB/TESTS |
+  #+RESULTS:
+  | ROCKSDB       |
+  | ROCKSDB/TESTS |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("rocksdb")
+  #+CALL: lisp-system-dependencies[:post transpose]("rocksdb")
 
-#+RESULTS:
-| std |
-| log |
+  #+RESULTS:
+  | std |
+  | log |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("rocksdb")
+
+  #+RESULTS:
+  | ffi           |
+  | rocksdb/tests |
+  | rdb/tests     |
+  | rdb           |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("rocksdb")
+  #+CALL: lisp-system-files[:post transpose]("rocksdb")
 
-#+RESULTS:
-| pkg.lisp            |
-| prim.lisp           |
-| types.lisp          |
-| opts.lisp           |
-| env.lisp            |
-| sst.lisp            |
-| db.lisp             |
-| checkpoint.lisp     |
-| metadata.lisp       |
-| merge.lisp          |
-| compaction.lisp     |
-| comparator.lisp     |
-| slicetransform.lisp |
-| writebatch.lisp     |
-| logger.lisp         |
-| stats.lisp          |
-| vars.lisp           |
-| macs.lisp           |
+  #+RESULTS:
+  | pkg.lisp            |
+  | prim.lisp           |
+  | types.lisp          |
+  | opts.lisp           |
+  | env.lisp            |
+  | sst.lisp            |
+  | db.lisp             |
+  | metadata.lisp       |
+  | merge.lisp          |
+  | compaction.lisp     |
+  | comparator.lisp     |
+  | slicetransform.lisp |
+  | writebatch.lisp     |
+  | logger.lisp         |
+  | stats.lisp          |
+  | vars.lisp           |
+  | macs.lisp           |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("rocksdb")
+
+  #+RESULTS:
+  | WBWI                     |
+  | SLICETRANSFORM           |
+  | WRITEBATCH               |
+  | LOGGER                   |
+  | COMPACTION               |
+  | COMPARATOR               |
+  | MERGE                    |
+  | PROPERTIES               |
+  | METADATA                 |
+  | OPTIMISTIC-TRANSACTIONDB |
+  | TRANSACTIONDB            |
+  | BLOB                     |
+  | STATS                    |
+  | SSTFILES                 |
+  | DB-BASIC                 |
+  | OPTS                     |
+  | ERRPTR                   |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("ROCKSDB")
+
+  #+RESULTS:
+  | ROCKSDB-TRANSACTION-OPTIONS-DESTROY                                     |
+  | ROCKSDB-COLUMN-FAMILY-METADATA-GET-LEVEL-COUNT                          |
+  | ROCKSDB-OPTIONS-GET-MAX-OPEN-FILES                                      |
+  | ROCKSDB-WRITEOPTIONS-GET-LOW-PRI                                        |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-BLOCK-SIZE-DEVIATION                    |
+  | ROCKSDB-PINNABLESLICE                                                   |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-DESTROY                                     |
+  | ROCKSDB-TRANSACTION-GET-FOR-UPDATE                                      |
+  | ROCKSDB-OPTIMISTICTRANSACTIONDB                                         |
+  | ROCKSDB-ENV-GET-BACKGROUND-THREADS                                      |
+  | ROCKSDB-READOPTIONS-SET-SKIPPABLE-INTERNAL-KEYS                         |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-BLOCK-CACHE                             |
+  | ROCKSDB-HYPER-CLOCK-CACHE-OPTIONS-SET-ESTIMATED-ENTRY-CHARGE            |
+  | ROCKSDB-TRANSACTION-MERGE                                               |
+  | ROCKSDB-COLUMN-FAMILY-METADATA-GET-FILE-COUNT                           |
+  | ROCKSDB-READOPTIONS-SET-TOTAL-ORDER-SEEK                                |
+  | ROCKSDB-READOPTIONS-GET-TOTAL-ORDER-SEEK                                |
+  | ROCKSDB-PUT-CF                                                          |
+  | ROCKSDB-OPTIONS-GET-BLOB-COMPRESSION-TYPE                               |
+  | ROCKSDB-COMPACTOPTIONS-DESTROY                                          |
+  | ROCKSDB-WRITEBATCH-PUTV                                                 |
+  | *ROCKSDB-COMPRESSION-BACKENDS*                                          |
+  | ROCKSDB-MERGEOPERATOR-CREATE                                            |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-METADATA-BLOCK-SIZE                     |
+  | ROCKSDB-SLICETRANSFORM                                                  |
+  | ROCKSDB-OPTIONS-GET-ERROR-IF-EXISTS                                     |
+  | ROCKSDB-WRITEOPTIONS-GET-SYNC                                           |
+  | ROCKSDB-OPTIONS-GET-MAX-TOTAL-WAL-SIZE                                  |
+  | ROCKSDB-OPEN                                                            |
+  | ROCKSDB-SET-PERF-LEVEL                                                  |
+  | ROCKSDB-OPTIONS-GET-COMPRESSION                                         |
+  | ROCKSDB-OPTIONS-SET-NUM-LEVELS                                          |
+  | ROCKSDB-WRITEBATCH-WI-CREATE-FROM                                       |
+  | ROCKSDB-COMPACTION-LEVEL                                                |
+  | ROCKSDB-BACKUP-ENGINE-OPTIONS-SET-SHARED-FILES-WITH-CHECKSUM-NAMING     |
+  | ROCKSDB-WAL-ITER-VALID                                                  |
+  | ROCKSDB-OPTIMISTICTRANSACTIONDB-WRITE                                   |
+  | ROCKSDB-SSTFILEWRITER-CREATE-WITH-COMPARATOR                            |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-PIN-TOP-LEVEL-INDEX-AND-FILTER          |
+  | ROCKSDB-ENV-DESTROY                                                     |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-NO-BLOCK-CACHE                          |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-BLOCK-RESTART-INTERVAL                  |
+  | ROCKSDB-OPTIONS-GET-PREPOPULATE-BLOB-CACHE                              |
+  | ROCKSDB-READOPTIONS-SET-FILL-CACHE                                      |
+  | ROCKSDB-COLUMN-FAMILY-METADATA-GET-LEVEL-METADATA                       |
+  | ROCKSDB-TRANSACTIONDB-WRITE                                             |
+  | ROCKSDB-PERF-LEVEL                                                      |
+  | ROCKSDB-OPTIONS-SET-DISABLE-AUTO-COMPACTIONS                            |
+  | ROCKSDB-OPTIONS-GET-WAL-SIZE-LIMIT-MB                                   |
+  | ROCKSDB-OPTIONS-GET-TARGET-FILE-SIZE-MULTIPLIER                         |
+  | ROCKSDB-OPTIONS-SET-ATOMIC-FLUSH                                        |
+  | ROCKSDB-LEVEL-METADATA-DESTROY                                          |
+  | ROCKSDB-DBPATH-DESTROY                                                  |
+  | ROCKSDB-TRANSACTION                                                     |
+  | ROCKSDB-ITER-GET-ERROR                                                  |
+  | ROCKSDB-TRANSACTION-COMMIT                                              |
+  | ROCKSDB-COMPACTOPTIONS-GET-TARGET-PATH-ID                               |
+  | ROCKSDB-CHECKPOINT                                                      |
+  | ROCKSDB-OPTIONS-SET-STATS-DUMP-PERIOD-SEC                               |
+  | ROCKSDB-TRANSACTION-GET-CF                                              |
+  | ROCKSDB-TRANSACTIONDB                                                   |
+  | ROCKSDB-OPTIONS-SET-AVOID-UNNECESSARY-BLOCKING-IO                       |
+  | ROCKSDB-OPTIONS-GET-SKIP-STATS-UPDATE-ON-DB-OPEN                        |
+  | ROCKSDB-WRITEOPTIONS                                                    |
+  | ROCKSDB-NAME-FUNCTION                                                   |
+  | ROCKSDB-TRANSACTIONDB-FLUSH                                             |
+  | ROCKSDB-OPTIONS-SET-MANUAL-WAL-FLUSH                                    |
+  | ROCKSDB-FLUSHOPTIONS-DESTROY                                            |
+  | ROCKSDB-WRITE-WRITEBATCH-WI                                             |
+  | ROCKSDB-OPTIONS-GET-MAX-FILE-OPENING-THREADS                            |
+  | ROCKSDB-READOPTIONS-CREATE                                              |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-DATA-BLOCK-INDEX-TYPE                   |
+  | ROCKSDB-SSTFILEWRITER-DELETE                                            |
+  | ROCKSDB-OPTIONS-GET-MANIFEST-PREALLOCATION-SIZE                         |
+  | ROCKSDB-APPROXIMATE-MEMORY-USAGE-CREATE                                 |
+  | ROCKSDB-STATISTICS-HISTOGRAM-DATA-GET-MAX                               |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-USE-DELTA-ENCODING                      |
+  | ROCKSDB-WRITEOPTIONS-GET-IGNORE-MISSING-COLUMN-FAMILIES                 |
+  | ROCKSDB-WRITEBATCH                                                      |
+  | ROCKSDB-PERFCONTEXT-REPORT                                              |
+  | ROCKSDB-WRITEBATCH-WI-SINGLEDELETE                                      |
+  | ROCKSDB-COMPACTOPTIONS-CREATE                                           |
+  | ROCKSDB-OPTIONS-SET-MAX-MANIFEST-FILE-SIZE                              |
+  | ROCKSDB-WRITEBATCH-SINGLEDELETE-CF-WITH-TS                              |
+  | DEFINE-PARTIAL-MERGE-OP                                                 |
+  | *ROCKSDB-PERF-METRICS*                                                  |
+  | ROCKSDB-WRITEBATCH-PUTV-CF                                              |
+  | ROCKSDB-OPTIONS-SET-LEVEL-COMPACTION-DYNAMIC-LEVEL-BYTES                |
+  | ROCKSDB-BACKUP-ENGINE-OPTIONS-SET-DESTROY-OLD-DATA                      |
+  | ROCKSDB-OPTIONS-GET-BLOB-COMPACTION-READAHEAD-SIZE                      |
+  | ROCKSDB-PERFCONTEXT-RESET                                               |
+  | ROCKSDB-OPTIONS-SET-LOG-FILE-TIME-TO-ROLL                               |
+  | ROCKSDB-OPTIONS-SET-BLOB-FILE-STARTING-LEVEL                            |
+  | ROCKSDB-TRANSACTION-OPTIONS                                             |
+  | ROCKSDB-TRANSACTION-DELETE-CF                                           |
+  | ROCKSDB-SST-FILE-METADATA                                               |
+  | ROCKSDB-OPTIONS-SET-INFO-LOG-LEVEL                                      |
+  | ROCKSDB-KEY-MAY-EXIST                                                   |
+  | ROCKSDB-WRITEBATCH-WI-CREATE-ITERATOR-WITH-BASE-CF                      |
+  | ROCKSDB-CACHE                                                           |
+  | ROCKSDB-WRITEBATCH-WI-PUT                                               |
+  | ROCKSDB-SST-FILE-METADATA-GET-DIRECTORY                                 |
+  | ROCKSDB-COMPACTOPTIONS-SET-EXCLUSIVE-MANUAL-COMPACTION                  |
+  | ROCKSDB-SST-FILE-METADATA-GET-LARGESTKEY                                |
+  | ROCKSDB-IN-RANGE-DEFAULT                                                |
+  | ROCKSDB-LIVEFILES                                                       |
+  | ROCKSDB-LOGGER-DESTROY                                                  |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-PIN-L0-FILTER-AND-INDEX-BLOCKS-IN-CACHE |
+  | ROCKSDB-OPTIONS-SET-MIN-BLOB-SIZE                                       |
+  | *ROCKSDB-PARTIAL-MERGE-LAMBDA-LIST*                                     |
+  | ROCKSDB-LOG-FUNCTION                                                    |
+  | ROCKSDB-WRITEBATCH-ITERATE                                              |
+  | ROCKSDB-COMPACTOPTIONS-GET-TARGET-LEVEL                                 |
+  | ROCKSDB-TRANSACTIONDB-MERGE                                             |
+  | ROCKSDB-WRITEBATCH-WI                                                   |
+  | ROCKSDB-READOPTIONS-GET-IO-TIMEOUT                                      |
+  | ROCKSDB-OPTIONS-GET-ADVISE-RANDOM-ON-OPEN                               |
+  | ROCKSDB-READOPTIONS-GET-TAILING                                         |
+  | ROCKSDB-BACKUP-ENGINE-OPTIONS-GET-BACKUP-LOG-FILES                      |
+  | ROCKSDB-OPTIMISTICTRANSACTION-OPTIONS-CREATE                            |
+  | ROCKSDB-DESTRUCTOR-FUNCTION                                             |
+  | ROCKSDB-CONCAT-FULL-MERGE                                               |
+  | ROCKSDB-PUT-FUNCTION                                                    |
+  | ROCKSDB-OPTIONS-GET-SOFT-PENDING-COMPACTION-BYTES-LIMIT                 |
+  | ROCKSDB-SST-FILE-METADATA-GET-RELATIVE-FILENAME                         |
+  | ROCKSDB-CREATE-COLUMN-FAMILIES-DESTROY                                  |
+  | ROCKSDB-WRITE                                                           |
+  | ROCKSDB-COMPACTIONFILTER-CREATE                                         |
+  | ROCKSDB-MULTI-GET-WITH-TS                                               |
+  | ROCKSDB-OPTIONS-SET-LEVEL0-STOP-WRITES-TRIGGER                          |
+  | ROCKSDB-SSTFILEWRITER-PUT                                               |
+  | ROCKSDB-OPTIONS-SET-MAX-BACKGROUND-JOBS                                 |
+  | ROCKSDB-SSTFILEWRITER-DESTROY                                           |
+  | ROCKSDB-GET-FULL-HISTORY-TS-LOW                                         |
+  | ROCKSDB-WRITEBATCH-CREATE                                               |
+  | ROCKSDB-ITER-DESTROY                                                    |
+  | ROCKSDB-OPTIONS-GET-MAX-COMPACTION-BYTES                                |
+  | ROCKSDB-OPTIONS-GET-IS-FD-CLOSE-ON-EXEC                                 |
+  | ROCKSDB-READOPTIONS-SET-SNAPSHOT                                        |
+  | ROCKSDB-TRANSACTION-ROLLBACK                                            |
+  | ROCKSDB-LOG-DEFAULT                                                     |
+  | ROCKSDB-OPTIONS-GET-LOG-FILE-TIME-TO-ROLL                               |
+  | ROCKSDB-CREATE-ITERATOR                                                 |
+  | ROCKSDB-READOPTIONS-GET-SKIPPABLE-INTERNAL-KEYS                         |
+  | ROCKSDB-WRITEBATCH-WI-DELETE-RANGE-CF                                   |
+  | ROCKSDB-OPTIONS-SET-INFO-LOG                                            |
+  | ROCKSDB-OPTIONS-GET-ARENA-BLOCK-SIZE                                    |
+  | ROCKSDB-OPTIONS-GET-STATS-PERSIST-PERIOD-SEC                            |
+  | ROCKSDB-READOPTIONS-SET-AUTO-READAHEAD-SIZE                             |
+  | ROCKSDB-WRITEBATCH-WI-DELETE                                            |
+  | ROCKSDB-FLUSH-CFS                                                       |
+  | ROCKSDB-INGESTEXTERNALFILEOPTIONS                                       |
+  | ROCKSDB-TRANSACTIONDB-PUT                                               |
+  | ROCKSDB-OPTIONS-SET-BLOB-CACHE                                          |
+  | ROCKSDB-ITERATOR                                                        |
+  | ROCKSDB-READOPTIONS-GET-DEADLINE                                        |
+  | ROCKSDB-SST-FILE-METADATA-GET-SIZE                                      |
+  | ROCKSDB-OPTIONS-GET-ENABLE-BLOB-FILES                                   |
+  | ROCKSDB-OPTIONS-SET-ENABLE-STATISTICS                                   |
+  | ROCKSDB-SLICETRANSFORM-CREATE-FIXED-PREFIX                              |
+  | ROCKSDB-FIFO-COMPACTION-OPTIONS-CREATE                                  |
+  | ROCKSDB-WRITEBATCH-CLEAR                                                |
+  | ROCKSDB-DELETE-CF-WITH-TS                                               |
+  | ROCKSDB-TRANSFORM-FUNCTION                                              |
+  | ROCKSDB-TRANSACTION-OPTIONS-CREATE                                      |
+  | ROCKSDB-WRITEBATCH-DELETE-CF                                            |
+  | ROCKSDB-PERFCONTEXT-DESTROY                                             |
+  | ROCKSDB-COMPACTOPTIONS-GET-CHANGE-LEVEL                                 |
+  | ROCKSDB-IN-DOMAIN-DEFAULT                                               |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-DATA-BLOCK-HASH-RATIO                   |
+  | ROCKSDB-OPTIONS-SET-PARALLELISM                                         |
+  | ROCKSDB-SST-FILE-MANAGER                                                |
+  | ROCKSDB-OPTIONS-SET-COMPRESSION-OPTIONS-USE-ZSTD-DICT-TRAINER           |
+  | ROCKSDB-OPTIONS-STATISTICS-GET-STRING                                   |
+  | ROCKSDB-WRITEBATCH-WI-GET-FROM-BATCH                                    |
+  | ROCKSDB-WRITEBATCH-SINGLEDELETE                                         |
+  | ROCKSDB-TRANSACTIONDB-FLUSH-WAL                                         |
+  | ROCKSDB-BACKUP-ENGINE-OPTIONS-GET-CALLBACK-TRIGGER-INTERVAL-SIZE        |
+  | ROCKSDB-C-ERROR                                                         |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-PARTITION-PINNING-TIER                  |
+  | ROCKSDB-OPTIONS-SET-WAL-BYTES-PER-SYNC                                  |
+  | ROCKSDB-FILTERPOLICY-CREATE-BLOOM                                       |
+  | ROCKSDB-TRANSACTIONDB-MULTI-GET-CF                                      |
+  | ROCKSDB-WRITEBATCH-WI-DELETE-RANGEV-CF                                  |
+  | ROCKSDB-OPTIONS-SET-MAX-SUCCESSIVE-MERGES                               |
+  | ROCKSDB-GET-COLUMN-FAMILY-METADATA-CF                                   |
+  | *ROCKSDB-SST-FILE-METADATA*                                             |
+  | *ROCKSDB-OPTIONS*                                                       |
+  | ROCKSDB-COMPARATOR                                                      |
+  | ROCKSDB-OPTIMISTICTRANSACTIONDB-CLOSE-BASE-DB                           |
+  | ROCKSDB-OPTIONS-SET-WAL-TTL-SECONDS                                     |
+  | ROCKSDB-SNAPSHOT                                                        |
+  | ROCKSDB-TRANSFORM-DEFAULT                                               |
+  | ROCKSDB-SSTFILEWRITER-CREATE                                            |
+  | ROCKSDB-CONDITION                                                       |
+  | ROCKSDB-MERGEOPERATOR                                                   |
+  | ROCKSDB-BACKUP-ENGINE-GET-BACKUP-INFO                                   |
+  | ROCKSDB-OPTIONS-SET-USE-FSYNC                                           |
+  | ROCKSDB-ENV-SET-BACKGROUND-THREADS                                      |
+  | ROCKSDB-OPTIONS-SET-WAL-COMPRESSION                                     |
+  | ROCKSDB-OPTIONS-GET-PARANOID-CHECKS                                     |
+  | ROCKSDB-FILTER-NEVER                                                    |
+  | ROCKSDB-OPTIONS-SET-SOFT-PENDING-COMPACTION-BYTES-LIMIT                 |
+  | ROCKSDB-SINGLEDELETE-CF-WITH-TS                                         |
+  | ROCKSDB-WAL-READOPTIONS                                                 |
+  | ROCKSDB-OPTIONS-SET-ROW-CACHE                                           |
+  | ROCKSDB-GET-UPDATES-SINCE                                               |
+  | ROCKSDB-COMPARATOR-CREATE                                               |
+  | ROCKSDB-PUT-CF-WITH-TS                                                  |
+  | ROCKSDB-INGESTEXTERNALFILEOPTIONS-SET-MOVE-FILES                        |
+  | ROCKSDB-OPTIONS-SET-UNORDERED-WRITE                                     |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-CACHE-INDEX-AND-FILTER-BLOCKS           |
+  | ROCKSDB-FILTERPOLICY-CREATE-RIBBON-HYBRID                               |
+  | ROCKSDB-WRITEBATCH-WI-DELETEV-CF                                        |
+  | ROCKSDB-FILTERPOLICY                                                    |
+  | ROCKSDB-READOPTIONS-SET-TIMESTAMP                                       |
+  | ROCKSDB-WRITEBATCH-DATA                                                 |
+  | ROCKSDB-WRITEBATCH-WI-DELETE-CF                                         |
+  | ROCKSDB-DROP-COLUMN-FAMILY                                              |
+  | ROCKSDB-COMPACTION-PRI                                                  |
+  | ROCKSDB-RESTORE-OPTIONS-CREATE                                          |
+  | ROCKSDB-OPTIONS-SET-MANIFEST-PREALLOCATION-SIZE                         |
+  | ROCKSDB-GET-LATEST-SEQUENCE-NUMBER                                      |
+  | ROCKSDB-OPTIONS-SET-BLOB-FILE-SIZE                                      |
+  | ROCKSDB-BACKUP-ENGINE-RESTORE-DB-FROM-LATEST-BACKUP                     |
+  | ROCKSDB-DELETE-FUNCTION                                                 |
+  | ROCKSDB-SLICETRANSFORM-CREATE                                           |
+  | ROCKSDB-SINGLEDELETE-CF                                                 |
+  | ROCKSDB-OPTIMISTICTRANSACTION-OPTIONS                                   |
+  | ROCKSDB-INGESTEXTERNALFILEOPTIONS-SET-ALLOW-GLOBAL-SEQNO                |
+  | ROCKSDB-OPTIONS-GET-USE-DIRECT-READS                                    |
+  | ROCKSDB-OPTIONS-SET-COMPRESSION-OPTIONS-PARALLEL-THREADS                |
+  | ROCKSDB-OPTIONS-SET-BLOB-COMPRESSION-TYPE                               |
+  | WITH-ERRPTR                                                             |
+  | ROCKSDB-TRANSACTIONDB-GET                                               |
+  | ROCKSDB-OPTIONS-SET-BLOOM-LOCALITY                                      |
+  | ROCKSDB-READOPTIONS-GET-VERIFY-CHECKSUMS                                |
+  | ROCKSDB-WRITEOPTIONS-DESTROY                                            |
+  | ROCKSDB-SSTFILEWRITER-DELETE-RANGE                                      |
+  | ROCKSDB-DELETE-VALUE                                                    |
+  | ROCKSDB-OPTIONS-GET-CREATE-IF-MISSING                                   |
+  | ROCKSDB-BACKUP-ENGINE-CLOSE                                             |
+  | ROCKSDB-OPTIONS-INCREASE-PARALLELISM                                    |
+  | ROCKSDB-OPTIONS-SET-WAL-SIZE-LIMIT-MB                                   |
+  | ROCKSDB-WRITEBATCH-WI-MERGEV                                            |
+  | ROCKSDB-ITER-VALUE                                                      |
+  | ROCKSDB-WRITEBATCH-WI-MERGE                                             |
+  | *ROCKSDB-IN-RANGE-LAMBDA-LIST*                                          |
+  | ROCKSDB-INGESTEXTERNALFILEOPTIONS-SET-INGEST-BEHIND                     |
+  | *ROCKSDB-DESTRUCTOR-CALLBACK*                                           |
+  | ROCKSDB-INCREASE-FULL-HISTORY-TS-LOW                                    |
+  | ROCKSDB-OPTIONS-SET-WAL-DIR                                             |
+  | ROCKSDB-OPTIONS-GET-MAX-LOG-FILE-SIZE                                   |
+  | ROCKSDB-PUT                                                             |
+  | ROCKSDB-PERFCONTEXT                                                     |
+  | ROCKSDB-OPTIONS-SET-TARGET-FILE-SIZE-MULTIPLIER                         |
+  | ...                                                                     |
 
 #+END:
 
@@ -143,28 +446,110 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
 :END:
 The kernel headers btrfs and btrfs_tree will be wrapped at some point
 in addition to the userspace library (btrfsutil) documented below.
-#+BEGIN: lisp-system-info :system btrfs :symbols nil
+#+BEGIN: lisp-system-info :system btrfs
 - packages
-#+CALL: lisp-system-packages[:post transpose]("btrfs")
+  #+CALL: lisp-system-packages[:post transpose]("btrfs")
 
-#+RESULTS:
-| BTRFS       |
-| BTRFS/TESTS |
+  #+RESULTS:
+  | BTRFS       |
+  | BTRFS/TESTS |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("btrfs")
+  #+CALL: lisp-system-dependencies[:post transpose]("btrfs")
 
-#+RESULTS:
-| sb-grovel |
-| std       |
+  #+RESULTS:
+  | sb-grovel |
+  | std       |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("btrfs")
+
+  #+RESULTS:
+  | ffi         |
+  | btrfs/tests |
+  | io          |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("btrfs")
+  #+CALL: lisp-system-files[:post transpose]("btrfs")
 
-#+RESULTS:
-| pkg.lisp       |
-| constants.lisp |
-| util.lisp      |
+  #+RESULTS:
+  | pkg.lisp       |
+  | constants.lisp |
+  | util.lisp      |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("btrfs")
+
+  #+RESULTS:
+  | BASIC  |
+  | SANITY |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("BTRFS")
+
+  #+RESULTS:
+  | +BTRFS-QGROUP-INHERIT-SET-LIMITS+     |
+  | BTRFS-QGROUP-LIMIT                    |
+  | BTRFS-UTIL-SUBVOLUME-SNAPSHOT         |
+  | BTRFS-UTIL-SUBVOLUME-GET-INFO-FD      |
+  | BTRFS-UTIL-SUBVOLUME-CREATE           |
+  | BTRFS-UTIL-ERROR*                     |
+  | BTRFS-UTIL-SUBVOLUME-INFO             |
+  | BTRFS-UTIL-FS-WAIT-SYNC               |
+  | BTRFS-UTIL-SUBVOLUME-ITERATOR-GET-FD  |
+  | +BTRFS-DEVICE-SPEC-BY-ID+             |
+  | BTRFS-UTIL-SUBVOLUME-ITER-NEXT        |
+  | BTRFS-UTIL-QGROUP-INHERIT             |
+  | BTRFS-UTIL-SUBVOLUME-GET-READ-ONLY-FD |
+  | BTRFS-UTIL-SUBVOLUME-GET-READ-ONLY    |
+  | BTRFS-UTIL-QGROUP-INHERIT-ADD-GROUP   |
+  | BTRFS-UTIL-QGROUP-INHERIT-DESTROY     |
+  | BTRFS-UTIL-SUBVOLUME-LIST-DELETED     |
+  | BTRFS-UTIL-SUBVOLUME-GET-ID           |
+  | BTRFS-UTIL-SUBVOLUME-DELETE-BY-ID-FD  |
+  | +BTRFS-LIB-PATCHLEVEL+                |
+  | BTRFS-UTIL-SUBVOLUME-ITER-DESTROY     |
+  | BTRFS-UTIL-SUBVOLUME-ITER-NEXT-INFO   |
+  | BTRFS-UTIL-FS-WAIT-SYNC-FD            |
+  | +BTRFS-LIB-MAJOR+                     |
+  | BTRFS-UTIL-SUBVOLUME-ITER-CREATE      |
+  | BTRFS-UTIL-FS-START-SYNC              |
+  | LOAD-BTRFSUTIL                        |
+  | BTRFS-UTIL-ERROR                      |
+  | BTRFS-UTIL-SUBVOLUME-LIST-DELETED-FD  |
+  | BTRFS-UTIL-SUBVOLUME-SNAPSHOT-FD      |
+  | +BTRFS-LIB-VERSION+                   |
+  | BTRFS-UTIL-SUBVOLUME-GET-INFO         |
+  | LOAD-BTRFS                            |
+  | BTRFS-UTIL-SUBVOLUME-ITER-CREATE-FD   |
+  | BTRFS-UTIL-SUBVOLUME-GET-DEFAULT-FD   |
+  | BTRFS-UTIL-FS-START-SYNC-FD           |
+  | +BTRFS-VOL-ARG-V2-FLAGS-SUPPORTED+    |
+  | BTRFS-UTIL-SUBVOLUME-IS-VALID         |
+  | BTRFS-UTIL-SUBVOLUME-SET-READ-ONLY    |
+  | +BTRFS-FSIZE-SIZE+                    |
+  | BTRFS-UTIL-QGROUP-INHERIT-CREATE      |
+  | BTRFS-UTIL-FS-SYNC                    |
+  | BTRFS-UTIL-SUBVOLUME-DELETE-FD        |
+  | BTRFS-UTIL-SUBVOLUME-DELETE           |
+  | BTRFS-UTIL-SUBVOLUME-SNAPSHOT-FD2     |
+  | BTRFS-UTIL-SUBVOLUME-SET-READ-ONLY-FD |
+  | BTRFS-UTIL-SUBVOLUME-ITERATOR         |
+  | BTRFS-UTIL-QGROUP-INHERIT-GET-GROUPS  |
+  | BTRFS-UTIL-FS-SYNC-FD                 |
+  | +BTRFS-SUBVOL-SPEC-BY-ID+             |
+  | BTRFS-UTIL-SUBVOLUME-IS-VALID-FD      |
+  | +BTRFS-SUBVOL-QGROUP-INHERIT+         |
+  | +BTRFS-LIB-MINOR+                     |
+  | BTRFS-UTIL-SUBVOLUME-GET-PATH         |
+  | BTRFS-UTIL-SUBVOLUME-GET-ID-FD        |
+  | BTRFS-UTIL-SUBVOLUME-GET-PATH-FD      |
+  | BTRFS-UTIL-SUBVOLUME-SET-DEFAULT-FD   |
+  | BTRFS-UTIL-STRERROR                   |
+  | BTRFS-UTIL-SUBVOLUME-CREATE-FD        |
+  | BTRFS-UTIL-SUBVOLUME-GET-DEFAULT      |
+  | +BTRFS-SUBVOL-RDONLY+                 |
+  | BTRFS-UTIL-SUBVOLUME-SET-DEFAULT      |
 
 #+END:
 
@@ -179,38 +564,323 @@ https://github.com/kdave/btrfs-progs
 :END:
 https://man.archlinux.org/man/io_uring.7.en
 
-#+BEGIN: lisp-system-info :system uring :symbols nil
+#+BEGIN: lisp-system-info :system uring
 - packages
-#+CALL: lisp-system-packages[:post transpose]("uring")
+  #+CALL: lisp-system-packages[:post transpose]("uring")
 
-#+RESULTS:
-| URING       |
-| URING/TESTS |
+  #+RESULTS:
+  | URING       |
+  | URING/TESTS |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("uring")
+  #+CALL: lisp-system-dependencies[:post transpose]("uring")
 
-#+RESULTS:
-| sb-grovel |
-| std       |
-| obj       |
+  #+RESULTS:
+  | sb-grovel |
+  | std       |
+  | obj       |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("uring")
+
+  #+RESULTS:
+  | ffi         |
+  | ublk        |
+  | uring/tests |
+  | io/tests    |
+  | io          |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("uring")
+  #+CALL: lisp-system-files[:post transpose]("uring")
 
-#+RESULTS:
-| pkg.lisp       |
-| constants.lisp |
-| util.lisp      |
-| macs.lisp      |
-| alien.lisp     |
-| opcode.lisp    |
-| prim.lisp      |
-| register.lisp  |
-| submit.lisp    |
-| sq.lisp        |
-| cq.lisp        |
-| uring.lisp     |
+  #+RESULTS:
+  | pkg.lisp       |
+  | constants.lisp |
+  | util.lisp      |
+  | macs.lisp      |
+  | alien.lisp     |
+  | opcode.lisp    |
+  | prim.lisp      |
+  | register.lisp  |
+  | submit.lisp    |
+  | sq.lisp        |
+  | cq.lisp        |
+  | uring.lisp     |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("uring")
+
+  #+RESULTS:
+  | REGISTER        |
+  | SUBMIT          |
+  | INIT1           |
+  | SIMPLE-VECTORED |
+  | NOP-SQE         |
+  | SETUP           |
+  | PARAMS          |
+  | SANITY          |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("URING")
+
+  #+RESULTS:
+  | IO-OP-POLL-REMOVE                   |
+  | MAKE-IO-OP-POLL-ADD                 |
+  | IORING-OP-LINK-TIMEOUT              |
+  | WITH-IO-SQE                         |
+  | IO-RESTRICTION-P                    |
+  | COMPLETION-QUEUE-OFFSETS            |
+  | IO-URING-WAIT-CQES                  |
+  | +IO-LAST+                           |
+  | URING-BUILDER                       |
+  | IO-MEMORY-MAP                       |
+  | +IO-FILES-UPDATE+                   |
+  | MAKE-IO-OP-FILES-UPDATE             |
+  | IO-OP-TIMEOUT                       |
+  | MAKE-IO-OP-SENDMSG-ZC               |
+  | IO-URING-UNREGISTER-BUFFERS         |
+  | IO-URING-REGISTER-RING-FD           |
+  | IORING-OP-FSETXATTR                 |
+  | +IO-RECVMSG+                        |
+  | +IO-URING-CMD+                      |
+  | IORING-OP-POLL-REMOVE               |
+  | IORING-OP-FILES-UPDATE              |
+  | IORING-OP-EPOLL-CTL                 |
+  | IORING-OP-LAST                      |
+  | IORING-OP-READV                     |
+  | IO-URING-SQE*                       |
+  | +IO-SYNC-FILE-RANGE+                |
+  | IORING-OP-MSG-RING                  |
+  | IORING-OP-REMOVE-BUFFERS            |
+  | WITH-NEW-IO-SQE                     |
+  | IO-OP-FSETXATTR                     |
+  | IO-URING-UNREGISTER-PERSONALITY     |
+  | IO-URING-REGISTER                   |
+  | IORING-OP-MADVISE                   |
+  | IO-URING-UNREGISTER-RING-FD         |
+  | IO-URING-REGISTER-FILE-ALLOC-RANGE  |
+  | MAKE-IO-OP-URING-CMD                |
+  | IO-OP-UNLINKAT                      |
+  | MAKE-IO-OP-OPENAT                   |
+  | MAKE-IO-OP-CONNECT                  |
+  | IO-OP-TIMEOUT-REMOVE                |
+  | IO-OP-SYMLINKAT                     |
+  | IO-OP-URING-CMD                     |
+  | SUBMISSION-QUEUE-OFFSETS            |
+  | IORING-OP-CONNECT                   |
+  | MAKE-IO-OP-WRITE-FIXED              |
+  | MAKE-IO-OP-UNLINKAT                 |
+  | +IO-SYMLINKAT+                      |
+  | MAKE-IO-OP-RECV                     |
+  | IO-OP-SETXATTR                      |
+  | IO-OP-FADVISE                       |
+  | IO-URING-ENTER2                     |
+  | IO-URING-SUBMIT                     |
+  | CANCEL-BUILDER                      |
+  | IO-OP-CLOSE                         |
+  | IO-OP-STATX                         |
+  | +IO-EPOLL-CTL+                      |
+  | +IO-PROVIDE-BUFFERS+                |
+  | IO-OP-RECV                          |
+  | IORING-OP-OPENAT2                   |
+  | IO-URING-REGISTER-EVENTFD           |
+  | IORING-OP-NOP                       |
+  | IORING-OP-STATX                     |
+  | IO-OP-WRITE                         |
+  | +IO-WRITEV+                         |
+  | IO-URING-ENABLE-RINGS               |
+  | +IO-TEE+                            |
+  | +IO-NOP+                            |
+  | BUILD-SUBMITTER                     |
+  | IORING-OP-READ-FIXED                |
+  | MAKE-IO-OP-WRITEV                   |
+  | MAKE-IO-OP-LAST                     |
+  | IO-OP-ACCEPT                        |
+  | IO-OP-LAST                          |
+  | MAKE-IO-OP-TIMEOUT                  |
+  | MAKE-IO-SUBMITTER                   |
+  | IO-OP-READV                         |
+  | IORING-OP-WRITE-FIXED               |
+  | IORING-OP-FADVISE                   |
+  | WITH-IO-CQE                         |
+  | +IO-MADVISE+                        |
+  | IO-URING-RING-DONTFORK              |
+  | SUBMISSION-QUEUE-ENTRY-128          |
+  | IO-URING-UNREGISTER-BUF-RING        |
+  | IO-URING-REGISTER-FILES-UPDATE      |
+  | +IO-FSETXATTR+                      |
+  | IORING-OP-SYNC-FILE-RANGE           |
+  | +IO-CLOSE+                          |
+  | MAKE-IO-OP-EPOLL-CTL                |
+  | MAKE-IO-OP-FADVISE                  |
+  | IO-URING-SQ*                        |
+  | +IO-LINK-TIMEOUT+                   |
+  | IO-PARAMS                           |
+  | IO-OP-SOCKET                        |
+  | IO-URING-CLOSE-RING-FD              |
+  | IORING-OP-MKDIRAT                   |
+  | IO-URING-CQ                         |
+  | IORING-OP-RECV                      |
+  | +IO-FGETXATTR+                      |
+  | MAKE-IO-OP-FALLOCATE                |
+  | IORING-OP-FALLOCATE                 |
+  | IO-URING-SETUP                      |
+  | +IO-OPENAT+                         |
+  | MAKE-IO-OP-LINK-TIMEOUT             |
+  | CPU-MASK-T                          |
+  | +IO-TIMEOUT-REMOVE+                 |
+  | IORING-OP-SPLICE                    |
+  | IO-URING-REGISTER-BUFFER-TAGS       |
+  | IO-URING                            |
+  | +IO-RENAMEAT+                       |
+  | *DEFAULT-IO-PARAMS*                 |
+  | IO-OP-GETXATTR                      |
+  | IO-URING-REGISTER-FILES             |
+  | MAKE-IO-OP-READ-FIXED               |
+  | IO-OP-POLL-ADD                      |
+  | CPU-SET-T                           |
+  | IO-URING-REGISTER-FILES-SPARSE      |
+  | IO-URING-REGISTER-BUFFER-SPARSE     |
+  | IO-URING-QUEUE-EXIT                 |
+  | SIGSET-T                            |
+  | MAKE-IO-OP-CLOSE                    |
+  | MAKE-IO-OP-STATX                    |
+  | IO-OP-MADVISE                       |
+  | COMPLETION-QUEUE-ENTRY-32           |
+  | MAKE-IO-OP-SYNC-FILE-RANGE          |
+  | IORING-OP-SOCKET                    |
+  | PARSE-IO-URING-PARAMS               |
+  | IORING-OP-TIMEOUT                   |
+  | MAKE-IO-OP-TEE                      |
+  | IO-OP-RECVMSG                       |
+  | MAKE-IO-OP-ASYNC-CANCEL             |
+  | IO-URING-SQE-SET-FLAGS              |
+  | IO-URING-CQ*                        |
+  | IO-URING-REGISTER-IOWQ-AFF          |
+  | IO-URING-GET-SQE                    |
+  | MAKE-IO-OP-SETXATTR                 |
+  | +IO-MSG-RING+                       |
+  | IORING-OP-FGETXATTR                 |
+  | IORING-OP-ASYNC-CANCEL              |
+  | +IO-READ+                           |
+  | IO-OP-MKDIRAT                       |
+  | URING                               |
+  | MAKE-IO-OP-RENAMEAT                 |
+  | IO-SUBMITTER                        |
+  | IO-URING-UNREGISTER-EVENTFD         |
+  | IORING-OP-SYMLINKAT                 |
+  | IO-URING-PREP-RW                    |
+  | IO-RESTRICTION                      |
+  | IO-OP-WRITE-FIXED                   |
+  | MAKE-IO-OP-SYMLINKAT                |
+  | IO-OP-FSYNC                         |
+  | +IO-POLL-REMOVE+                    |
+  | MAKE-IO-OP-SEND-ZC                  |
+  | IO-OP-MSG-RING                      |
+  | IORING-OP-WRITE                     |
+  | IORING-OP-SEND                      |
+  | +IO-OPENAT2+                        |
+  | IO-OP-PROVIDE-BUFFERS               |
+  | +IO-REMOVE-BUFFERS+                 |
+  | COMPLETION-QUEUE                    |
+  | IO-URING-QUEUE-INIT                 |
+  | IO-URING-MINOR-VERSION              |
+  | IO-OP-FGETXATTR                     |
+  | IO-URING-REGISTER-BUFFER-UPDATE-TAG |
+  | IO-OP-SENDMSG-ZC                    |
+  | IO-URING-FREE-BUF-RING              |
+  | +IO-WRITE-FIXED+                    |
+  | IORING-OP-SHUTDOWN                  |
+  | IO-URING-GET-EVENTS                 |
+  | IO-URING-SUBMIT-AND-WAIT-TIMEOUT    |
+  | IO-OP-NOP                           |
+  | IO-URING-REGISTER-FILES-TAGS        |
+  | +IO-SETXATTR+                       |
+  | IO-OP-REMOVE-BUFFERS                |
+  | WITH-NEW-IO-URING                   |
+  | IO-URING-QUEUE-INIT-MEM             |
+  | +IO-READV+                          |
+  | IO-OP-OPENAT2                       |
+  | IO-URING-REGISTER-RESTRICTIONS      |
+  | MAKE-IO-OP-READ                     |
+  | IORING-OP-WRITEV                    |
+  | +IO-CONNECT+                        |
+  | IORING-OP-ACCEPT                    |
+  | IO-URING-SQE                        |
+  | SETUP-URING-QUEUE                   |
+  | IO-URING-REGISTER-FILES-UPDATE-TAG  |
+  | IORING-OP-POLL-ADD                  |
+  | +IO-ACCEPT+                         |
+  | IO-URING-UNREGISTER-IOWQ-AFF        |
+  | IORING-OP-TEE                       |
+  | +IO-GETXATTR+                       |
+  | MAKE-IO-OP-REMOVE-BUFFERS           |
+  | IORING-OP-SETXATTR                  |
+  | +IO-SPLICE+                         |
+  | IO-URING-REGISTER-SYNC-CANCEL       |
+  | IORING-OP-SEND-ZC                   |
+  | IO-URING-REGISTER-PROBE             |
+  | SUBMISSION-QUEUE                    |
+  | IO-OP-RENAMEAT                      |
+  | IO-OP-READ                          |
+  | MAKE-IO-OP-POLL-REMOVE              |
+  | MAKE-IO-OP-RECVMSG                  |
+  | IO-URING-REGISTER-PERSONALITY       |
+  | IO-OP-READ-FIXED                    |
+  | +IO-SENDMSG-ZC+                     |
+  | +IO-TIMEOUT+                        |
+  | IORING-OP-READ                      |
+  | MAKE-IO-OP-TIMEOUT-REMOVE           |
+  | IO-URING*                           |
+  | MAKE-IO-OP-SEND                     |
+  | IO-OP-FILES-UPDATE                  |
+  | +IO-SOCKET+                         |
+  | MAKE-IO-OP-MADVISE                  |
+  | +IO-UNLINKAT+                       |
+  | MAKE-IO-OP-READV                    |
+  | MAKE-IO-OP-WRITE                    |
+  | +IO-SEND+                           |
+  | IO-URING-MAJOR-VERSION              |
+  | IO-OP-WRITEV                        |
+  | IORING-OP-FSYNC                     |
+  | IORING-OP-CLOSE                     |
+  | IO-URING-CQE*                       |
+  | IO-URING-CQE                        |
+  | MAKE-IO-OP-PROVIDE-BUFFERS          |
+  | IO-OP-LINK-TIMEOUT                  |
+  | +IO-SHUTDOWN+                       |
+  | IO-URING-SUBMIT-AND-WAIT            |
+  | WITH-NEW-IO-CQE                     |
+  | IO-URING-REGISTER-EVENTFD-ASYNC     |
+  | +IO-STATX+                          |
+  | IORING-OP-OPENAT                    |
+  | MAKE-IO-OP-MKDIRAT                  |
+  | IO-URING-PEEK-BATCH-CQE             |
+  | IO-URING-QUEUE-MMAP                 |
+  | IO-OP-EPOLL-CTL                     |
+  | MAKE-IO-OP-FSETXATTR                |
+  | IORING-OP-PROVIDE-BUFFERS           |
+  | MAKE-IO-OP-GETXATTR                 |
+  | MAKE-IO-OP-NOP                      |
+  | IO-OP-SENDMSG                       |
+  | MAKE-IO-OP-FSYNC                    |
+  | IORING-OP-RECVMSG                   |
+  | IO-OP-SEND-ZC                       |
+  | IO-URING-ENTER                      |
+  | MAKE-IO-OP-OPENAT2                  |
+  | MAKE-URING-QUEUE                    |
+  | IO-URING-SQ                         |
+  | IORING-OP-SENDMSG-ZC                |
+  | +IO-FADVISE+                        |
+  | +IO-POLL-ADD+                       |
+  | MMAPPED-REGION                      |
+  | +IO-SEND-ZC+                        |
+  | __IO-URING-SQRING-WAIT              |
+  | IO-OP-SYNC-FILE-RANGE               |
+  | IO-OP-SEND                          |
+  | MAKE-IO-OP-FGETXATTR                |
+  | MAKE-IO-OP-ACCEPT                   |
+  | ...                                 |
 
 #+END:
 
@@ -220,31 +890,100 @@ https://man.archlinux.org/man/io_uring.7.en
 :END:
 zstd compression bindings: https://github.com/facebook/zstd
 
-#+BEGIN: lisp-system-info :system zstd :symbols nil
+#+BEGIN: lisp-system-info :system zstd
 - packages
-#+CALL: lisp-system-packages[:post transpose]("zstd")
+  #+CALL: lisp-system-packages[:post transpose]("zstd")
 
-#+RESULTS:
-| ZSTD       |
-| ZSTD/TESTS |
+  #+RESULTS:
+  | ZSTD       |
+  | ZSTD/TESTS |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("zstd")
+  #+CALL: lisp-system-dependencies[:post transpose]("zstd")
 
-#+RESULTS:
-| sb-grovel |
-| std       |
+  #+RESULTS:
+  | sb-grovel |
+  | std       |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("zstd")
+
+  #+RESULTS:
+  | ffi        |
+  | zstd/tests |
+  | io         |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("zstd")
+  #+CALL: lisp-system-files[:post transpose]("zstd")
 
-#+RESULTS:
-| pkg.lisp       |
-| constants.lisp |
-| simple.lisp    |
-| stream.lisp    |
-| dict.lisp      |
-| util.lisp      |
+  #+RESULTS:
+  | pkg.lisp       |
+  | constants.lisp |
+  | simple.lisp    |
+  | stream.lisp    |
+  | dict.lisp      |
+  | util.lisp      |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("zstd")
+
+  #+RESULTS:
+  | BULK-DICTIONARY   |
+  | SIMPLE-DICTIONARY |
+  | STREAMING2        |
+  | STREAMING         |
+  | SIMPLE            |
+  | SANITY            |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("ZSTD")
+
+  #+RESULTS:
+  | +ZSTD-BLOCKSIZE-MAX+         |
+  | +ZSTD-VERSION-NUMBER+        |
+  | ZSTD-GETERRORCODE            |
+  | WITH-ZSTD-INBUFFER           |
+  | ZSTD-CSTREAM-ERROR           |
+  | ZSTD-CSTREAM                 |
+  | +ZSTD-VERSION-MINOR+         |
+  | ZSTD-ALIEN-ERROR             |
+  | LOAD-ZSTD-ALIEN              |
+  | WITH-ZSTD-OUTBUFFER          |
+  | +ZSTD-VERSION-MAJOR+         |
+  | ZSTD-GETERRORNAME            |
+  | ZSTD-ISERROR                 |
+  | ZSTD-CSTREAMINSIZE           |
+  | WITH-ZSTD-BUFFERS            |
+  | WITH-ZSTD-STREAMS            |
+  | +ZSTD-CONTENTSIZE-UNKNOWN+   |
+  | +ZSTD-MAGICNUMBER+           |
+  | ZSTD-DSTREAM-ERROR           |
+  | ZSTD-DEFAULTCLEVEL           |
+  | ZSTDC                        |
+  | ZSTD-INBUFFER                |
+  | ZSTD-DSTREAM                 |
+  | ZSTD-VERSIONNUMBER           |
+  | +ZSTD-VERSION-RELEASE+       |
+  | +ZSTD-MAGIC-SKIPPABLE-START+ |
+  | ZSTD-CSTREAMOUTSIZE          |
+  | ZSTD-DECOMPRESS              |
+  | WITH-ZSTD-CSTREAM            |
+  | ZDICT-PARAMS                 |
+  | +ZSTD-CLEVEL-DEFAULT+        |
+  | ZSTD-DECOMPRESSSTREAM        |
+  | +ZSTD-MAX-INPUT-SIZE+        |
+  | +ZSTD-MAGIC-DICTIONARY+      |
+  | +ZSTD-BLOCKSIZELOG-MAX+      |
+  | ZSTD-COMPRESSSTREAM2         |
+  | ZSTD-COMPRESSSTREAM          |
+  | +ZSTD-CONTENTSIZE-ERROR+     |
+  | LOAD-ZSTD                    |
+  | WITH-ZSTD-DSTREAM            |
+  | ZSTD-OUTBUFFER               |
+  | ZSTDD                        |
+  | WITH-ZSTD-DDICT              |
+  | WITH-ZSTD-CDICT              |
+  | ZSTD-COMPRESS                |
 
 #+END:
 
@@ -254,91 +993,1909 @@ zstd compression bindings: https://github.com/facebook/zstd
 :END:
 bindings to tree-sitter parser generator and language libraries: https://github.com/tree-sitter/tree-sitter
 
-#+BEGIN: lisp-system-info :system tree-sitter :symbols nil
+#+BEGIN: lisp-system-info :system tree-sitter
 - packages
-#+CALL: lisp-system-packages[:post transpose]("tree-sitter")
+  #+CALL: lisp-system-packages[:post transpose]("tree-sitter")
 
-#+RESULTS:
-| TREE-SITTER/TESTS |
-| TREE-SITTER       |
+  #+RESULTS:
+  | TREE-SITTER/TESTS |
+  | TREE-SITTER       |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("tree-sitter")
+  #+CALL: lisp-system-dependencies[:post transpose]("tree-sitter")
 
-#+RESULTS:
-| sb-grovel |
-| std       |
+  #+RESULTS:
+  | sb-grovel |
+  | std       |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("tree-sitter")
+
+  #+RESULTS:
+  | ffi               |
+  | tree-sitter/tests |
+  | syn               |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("tree-sitter")
+  #+CALL: lisp-system-files[:post transpose]("tree-sitter")
 
-#+RESULTS:
-| pkg.lisp       |
-| ffi.lisp       |
-| lang.lisp      |
-| api.lisp       |
-| constants.lisp |
+  #+RESULTS:
+  | pkg.lisp       |
+  | ffi.lisp       |
+  | lang.lisp      |
+  | api.lisp       |
+  | constants.lisp |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("tree-sitter")
+
+  #+RESULTS:
+  | TS-RUST |
+  | TS-JSON |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("TREE-SITTER")
+
+  #+RESULTS:
+  | TREE-SITTER-PYTHON                            |
+  | TS-NODE-NAMED-CHILD                           |
+  | TS-TREE-LANGUAGE                              |
+  | TS-LANGUAGE-SYMBOL-TYPE                       |
+  | TS-PARSER-RESET                               |
+  | LOAD-TREE-SITTER-PYTHON                       |
+  | LOAD-TREE-SITTER                              |
+  | CONVERT-FOREIGN-TREE-TO-LIST                  |
+  | TS-LANGUAGE-SYMBOL-COUNT                      |
+  | LIST-TS-LANGS                                 |
+  | TS-NODE-GRAMMAR-SYMBOL                        |
+  | TS-NODE-LANGUAGE                              |
+  | WITH-TS-QUERY                                 |
+  | TS-PARSER-PRINT-DOT-GRAPHS                    |
+  | TS-NODE                                       |
+  | TS-TREE-COPY                                  |
+  | TREE-SITTER-CSS                               |
+  | TREE-SITTER-JAVASCRIPT                        |
+  | TS-PARSER-PARSE                               |
+  | +TREE-SITTER-LANGUAGE-VERSION+                |
+  | TS-PARSER-LANGUAGE                            |
+  | TREE-SITTER-HTML                              |
+  | TS-QUERY                                      |
+  | TREE-SITTER-REGEX                             |
+  | TS-NODE-END-POINT                             |
+  | TREE-SITTER-BASH                              |
+  | WITH-TS-NODE                                  |
+  | TS-LANGUAGE-FIELD-NAME-FOR-ID                 |
+  | WITH-TS-QUERY-CURSOR                          |
+  | LOAD-TREE-SITTER-RUST                         |
+  | TS-NODE-TYPE                                  |
+  | TREE-SITTER-TYPESCRIPT-TYPESCRIPT             |
+  | *TREE-SITTER-LANGUAGE-DIRECTORY*              |
+  | TS-STATE-ID                                   |
+  | TS-LOOKAHEAD-ITERATOR                         |
+  | WITH-TS-CURSOR                                |
+  | TS-NODE-EQ                                    |
+  | TREE-SITTER-ERROR                             |
+  | TS-TREE-CURSOR-DELETE                         |
+  | TS-NODE-IS-NULL                               |
+  | TS-TREE-ROOT-NODE-POINTER                     |
+  | PARSE-STRING                                  |
+  | TS-PARSER-SET-LOGGER                          |
+  | TS-PARSER                                     |
+  | TS-FIELD-ID                                   |
+  | TS-TREE-CURSOR-GOTO-PARENT                    |
+  | TREE-SITTER-GO                                |
+  | LOAD-TREE-SITTER-COMMONLISP                   |
+  | LOAD-TREE-SITTER-CSS                          |
+  | TS-NODE-STRING                                |
+  | TS-LOGGER                                     |
+  | LOAD-TREE-SITTER-YAML                         |
+  | TS-NODE-START-BYTE                            |
+  | TS-TREE-CURSOR-GOTO-FIRST-CHILD               |
+  | TS-QUERY-CURSOR-DELETE                        |
+  | TS-TREE-CURSOR-CURRENT-NODE-POINTER           |
+  | TREE-SITTER-COMMONLISP                        |
+  | TS-TREE-CURSOR-CURRENT-FIELD-NAME             |
+  | TS-QUERY-CURSOR                               |
+  | LOAD-TREE-SITTER-ALIEN                        |
+  | TS-LANGUAGE                                   |
+  | TS-NODE-GRAMMAR-TYPE                          |
+  | TS-TREE-EDIT                                  |
+  | TS-NODE-IS-NAMED-POINTER                      |
+  | LOAD-TREE-SITTER-C                            |
+  | +TREE-SITTER-MIN-COMPATIBLE-LANGUAGE-VERSION+ |
+  | *TS-LANGS*                                    |
+  | TS-TREE-ROOT-NODE                             |
+  | LOAD-TREE-SITTER-TYPESCRIPT-TYPESCRIPT        |
+  | TREE-SITTER-TYPESCRIPT-TSX                    |
+  | TREE-SITTER-YAML                              |
+  | TS-NODE-START-POINT                           |
+  | TREE-SITTER-LANGUAGE-FILES                    |
+  | TS-LANGUAGE-FIELD-ID-FOR-NAME                 |
+  | WITH-TS-PARSER                                |
+  | TREE-SITTER-C                                 |
+  | TREE-SITTER-RUST                              |
+  | LOAD-TREE-SITTER-CPP                          |
+  | TS-TREE-CURSOR                                |
+  | TS-LANGUAGE-SYMBOL-NAME                       |
+  | TS-PARSER-LOGGER                              |
+  | TS-POINT                                      |
+  | TS-TREE-CURSOR-NEW-POINTER                    |
+  | TS-TREE-PRINT-DOT-GRAPH                       |
+  | LOAD-TREE-SITTER-JAVASCRIPT                   |
+  | TREE-SITTER-JSON                              |
+  | LANGUAGE-MODULE                               |
+  | TREE-SITTER-CPP                               |
+  | TS-TREE                                       |
+  | TS-QUERY-ERROR                                |
+  | LOAD-TREE-SITTER-JSON                         |
+  | LOAD-TREE-SITTER-GO                           |
+  | TS-PARSER-SET-LANGUAGE                        |
+  | TS-SYMBOL                                     |
+  | LOAD-TREE-SITTER-HTML                         |
+  | TS-NODE-END-BYTE                              |
+  | TS-LANGUAGE-VERSION                           |
+  | TS-NODE-START-POINT-POINTER                   |
+  | LOAD-TREE-SITTER-TYPESCRIPT-TSX               |
+  | TREE-SITTER-JSDOC                             |
+  | PARSE-STRING-WITH-LANGUAGE                    |
+  | TS-LANGUAGE-FIELD-COUNT                       |
+  | TS-PARSER-NEW                                 |
+  | LOAD-TREE-SITTER-BASH                         |
+  | LOAD-TREE-SITTER-JSDOC                        |
+  | WITH-TS-LANG                                  |
+  | TS-NODE-TYPE-POINTER                          |
+  | TS-LANGUAGE-NEXT-STATE                        |
+  | LOAD-TREE-SITTER-REGEX                        |
+  | TS-QUERY-NEW                                  |
+  | TS-NODE-SYMBOL                                |
+  | TS-PARSER-PARSE-STRING                        |
+  | TS-PARSER-DELETE                              |
+  | TS-TREE-DELETE                                |
+  | TS-TREE-CURSOR-GOTO-NEXT-SIBLING              |
+  | TS-QUERY-DELETE                               |
+  | CHECK-TS-QUERY-ERROR                          |
+  | TS-NODE-END-POINT-POINTER                     |
 
 #+END:
 
-** COMMENT blake3
+** blake3
 :PROPERTIES:
 :ID:       a1807b79-9811-49f0-9524-cbf5e88c1a66
 :END:
 temporary package for CL implementation of Blake3 SHA. Wraps C
 implementation (libblake3).
 
-#+BEGIN: lisp-system-info :system blake3 :symbols nil
+#+BEGIN: lisp-system-info :system blake3
 - packages
-#+CALL: lisp-system-packages[:post transpose]("blake3")
+  #+CALL: lisp-system-packages[:post transpose]("blake3")
 
-#+RESULTS:
-| BLAKE3/TESTS |
-| BLAKE3/PKG   |
+  #+RESULTS:
+  | BLAKE3/TESTS |
+  | BLAKE3/PKG   |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("blake3")
+  #+CALL: lisp-system-dependencies[:post transpose]("blake3")
 
-#+RESULTS:
-| sb-grovel |
-| std       |
+  #+RESULTS:
+  | sb-grovel |
+  | std       |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("blake3")
+
+  #+RESULTS:
+  | ffi          |
+  | blake3/tests |
+  | cry          |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("blake3")
+  #+CALL: lisp-system-files[:post transpose]("blake3")
 
-#+RESULTS:
-| pkg.lisp       |
-| constants.lisp |
+  #+RESULTS:
+  | pkg.lisp       |
+  | constants.lisp |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("blake3")
+
+  #+RESULTS:
+  | LESS-COMMON |
+  | COMMON      |
+  | VERSION     |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("BLAKE3")
+
+  #+RESULTS:
+  | BLAKE3-VERSION                    |
+  | BLAKE3-HASHER-INIT-KEYED          |
+  | BLAKE3-HASHER-FINALIZE-SEEK       |
+  | +BLAKE3-BLOCK-LEN+                |
+  | +BLAKE3-MAX-DEPTH+                |
+  | +BLAKE3-CHUNK-LEN+                |
+  | WITH-BLAKE3-HASHER                |
+  | BLAKE3-HASHER-RESET               |
+  | BLAKE3-HASHER-UPDATE              |
+  | BLAKE3-HASHER-FINALIZE            |
+  | BLAKE3-HASHER                     |
+  | BLAKE3-HASHER-INIT                |
+  | +BLAKE3-OUT-LEN+                  |
+  | BLAKE3-CHUNK-STATE                |
+  | BLAKE3-HASHER-INIT-DERIVE-KEY-RAW |
+  | LOAD-BLAKE3                       |
+  | +BLAKE3-KEY-LEN+                  |
+  | BLAKE3-HASHER-INIT-DERIVE-KEY     |
 
 #+END:
 
-** COMMENT alpm
-:PROPERTIES:
-:ID:       cdd1682c-39b0-450e-a979-a5637cd15f43
-:END:
-https://man.archlinux.org/man/core/pacman/libalpm.3.en
-https://github.com/archlinux/alpm.rs/tree/382af70cdbff8e1f65c0bf8df79693786f44429c/alpm/examples
-
-#+BEGIN: lisp-system-info :system alpm :symbols nil
-#+END:
-
-** COMMENT bqn
-:PROPERTIES:
-:ID:       5014f979-5b3a-4dfc-89e3-5a5a23462a29
-:END:
-These bindings are for libcbqn which can be build from CBQN:
-https://github.com/dzaima/CBQN
-** COMMENT k
-:PROPERTIES:
-:ID:       47a60640-e387-4ac7-ab45-4f7a763e9611
-:END:
-https://codeberg.org/ngn/k
-bindings for ngn/k (libk).
-** COMMENT nuklear
-:PROPERTIES:
-:ID:       e1e942b2-ebe0-48e9-bdd3-f4e27b7fed7c
-:END:
-** COMMENT ssh2
+** ssh2
 :PROPERTIES:
 :ID:       3c9e02d8-2c59-4ef5-8232-8422fd9e8ed3
 :END:
+
+#+BEGIN: lisp-system-info :system ssh2
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("ssh2")
+
+  #+RESULTS:
+  | SSH2       |
+  | SSH2/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("ssh2")
+
+  #+RESULTS:
+  | sb-grovel |
+  | std       |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("ssh2")
+
+  #+RESULTS:
+  | ffi        |
+  | ssh2/tests |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("ssh2")
+
+  #+RESULTS:
+  | pkg.lisp       |
+  | constants.lisp |
+  | ssh2.lisp      |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("ssh2")
+
+  #+RESULTS:
+  | SESSION-INIT |
+  | SANITY       |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("SSH2")
+
+  #+RESULTS:
+  | LIBSSH2-ERROR                  |
+  | LIBSSH2-FREE                   |
+  | SSH-DISCONNECT*                |
+  | LIBSSH2-SESSION-SUPPORTED-ALGS |
+  | LIBSSH2-EXIT                   |
+  | LIBSSH2-ERROR*                 |
+  | LIBSSH2-SESSION-INIT-EX        |
+  | LIBSSH2-INIT                   |
+  | SSH-DISCONNECT                 |
+  | LOAD-SSH2                      |
+
+#+END
+
+** blas
+:PROPERTIES:
+:ID:       0d5c9396-ad3a-425f-8b86-89d09653bc1a
+:CREATED:  <2025-07-05 Sat 17:17>
+:END:
+#+BEGIN: lisp-system-info :system blas
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("blas")
+
+  #+RESULTS:
+  | BLAS/TESTS |
+  | BLAS       |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("blas")
+
+  #+RESULTS:
+  | std |
+  | log |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("blas")
+
+  #+RESULTS:
+  | ffi        |
+  | blas/tests |
+  | math       |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("blas")
+
+  #+RESULTS:
+  | blas.lisp |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("blas")
+
+  #+RESULTS:
+  | DGEMM         |
+  | STATIC-VECTOR |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("BLAS")
+
+  #+RESULTS:
+  | COMPLEX-FLOAT   |
+  | LOAD-CBLAS      |
+  | DGEMM           |
+  | LOAD-OPENBLAS   |
+  | XDOUBLE         |
+  | LOAD-LAPACK     |
+  | LOAD-LAPACKE    |
+  | LOAD-BLAS       |
+  | COMPLEX-DOUBLE  |
+  | COMPLEX-XDOUBLE |
+
+#+END
+*** lapack
+:PROPERTIES:
+:ID:       ffde3ac1-3a53-4d12-94df-89735d7ecbce
+:CREATED:  <2025-07-05 Sat 17:17>
+:END:
+
+** jack
+:PROPERTIES:
+:ID:       98c624b7-8b68-4c6c-8cf9-1c7ee57c73e7
+:CREATED:  <2025-07-05 Sat 17:19>
+:END:
+#+BEGIN: lisp-system-info :system jack
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("jack")
+
+  #+RESULTS:
+  | JACK/TESTS |
+  | JACK       |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("jack")
+
+  #+RESULTS:
+  | std |
+  | log |
+  | dat |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("jack")
+
+  #+RESULTS:
+  | jack/tests |
+  | ffi        |
+  | dsp        |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("jack")
+
+  #+RESULTS:
+  | pkg.lisp |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("jack")
+
+  #+RESULTS:
+  | BASIC  |
+  | SANITY |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("JACK")
+
+  #+RESULTS:
+  | *JACK-AUDIO-OUTPUT-PORTS*                  |
+  | *JACK-SEQ*                                 |
+  | +JACK-DEFAULT-MIDI-TYPE+                   |
+  | LOAD-JACK                                  |
+  | MS->FRAME                                  |
+  | RB-DATA-LEN-P                              |
+  | JACK-RINGBUFFER-WRITE-ADVANCE              |
+  | FRAME->PERIOD-OFFSET                       |
+  | JACK-GET-BUFFER-SIZE                       |
+  | JACK-PLAY-EVENT                            |
+  | JACK-SEQ-HUSH-ALL-SEQS                     |
+  | *JACK-PLAYING*                             |
+  | JACK-RINGBUFFER-WRITE-SPACE                |
+  | RB-DATA-BUF                                |
+  | SEQHASH-CLEAR-NOTE-OFFS                    |
+  | *JACK-MIDI-OUTPUT-PORT*                    |
+  | JACK-RESET                                 |
+  | JACK-FRAME-NOW                             |
+  | JACK-RINGBUFFER-WRITE                      |
+  | JACK-GET-CLIENT-NAME                       |
+  | +JACK-DEFAULT-AUDIO-TYPE+                  |
+  | RB-DATA-LEN                                |
+  | JACK-PORT-TYPE-GET-BUFFER-SIZE             |
+  | JACK-MIDI-CLEAR-BUFFER                     |
+  | JACK-PORT-NAME                             |
+  | JACK-ALL-NOTES-OFF                         |
+  | SEQHASH-MIDI-EVENT                         |
+  | JACK-HANDLE-EVENT-SEQS                     |
+  | JACK-PORT-REGISTER                         |
+  | JACK-FRAMES-TO-TIME                        |
+  | JACK-TIME-TO-FRAMES                        |
+  | JACK-CONNECT-AUDIO-CLIENT-TO-SYSTEM-OUTPUT |
+  | JACK-START-DUR-TO-FRAMES                   |
+  | JACK-LAST-FRAME-TIME                       |
+  | JACK-INIT-AUDIO                            |
+  | JACK-RINGBUFFER-FREE                       |
+  | JACK-CLIENT-NAME-SIZE                      |
+  | JACKOPTIONS                                |
+  | *JACK-AUDIO-INPUT-PORTS*                   |
+  | JACK-RINGBUFFER-READ                       |
+  | JACK-INIT-MIDI                             |
+  | JACK-PROCESS-CALLBACK-SILENCE              |
+  | JACK-RESET-CHANNELS                        |
+  | JACK-PORT-GET-BUFFER                       |
+  | JACK-SET-PROCESS-CALLBACK                  |
+  | JACK-RINGBUFFER-DATA                       |
+  | *JACK-SEQS*                                |
+  | *JACK-MIDI-INPUT-PORT*                     |
+  | JACK-GET-TIME                              |
+  | *JACK-CLIENT*                              |
+  | JACK-RINGBUFFER-GET-READ-VECTOR            |
+  | JACK-RINGBUFFER-GET-WRITE-VECTOR           |
+  | SEQHASH-MIDI-PROGRAM-CHANGE                |
+  | JACK-GET-SAMPLE-RATE                       |
+  | JACK-ADD-EVENT-THIS-FRAME                  |
+  | JACK-CLIENT-OPEN                           |
+  | JACK-GET-PORTS                             |
+  | SEQHASH-MIDI-NOTE-ON                       |
+  | JACK-CLIENT-CLOSE                          |
+  | PLAY-FROM-SEQ                              |
+  | JACK-RINGBUFFER-RESET                      |
+  | JACK-CONNECT                               |
+  | JACK-RINGBUFFER                            |
+  | JACK-ACTIVATE                              |
+  | MAKE-JACK-SEQ                              |
+  | JACK-ALL-NOTES-OFF-AND-KILL-SEQ            |
+  | JACK-RINGBUFFER-READ-SPACE                 |
+  | JACK-GET-VERSION-STRING                    |
+  | JACK-FRAME-TIME                            |
+  | JACK-PERIOD-NOW                            |
+  | JACK-PLAY-NOTE                             |
+  | SEQHASH-MIDI-NOTE-OFF                      |
+  | JACK-MIDI-EVENT-RESERVE                    |
+  | JACK-DEACTIVATE                            |
+  | *JACK-AUDIO-OUTPUT-CHANNELS*               |
+  | MAKE-JACK-SEQS                             |
+  | JACK-DISCONNECT                            |
+  | SEQHASH-MIDI-CONTROL-CHANGE                |
+  | SEC->FRAME                                 |
+  | JACK-ADD-EVENT-THIS-PERIOD                 |
+  | JACKPORTFLAGS                              |
+  | JACK-SEQ-HUSH-THIS-SEQ                     |
+  | *JACK-AUDIO-INPUT-CHANNELS*                |
+  | JACK-RINGBUFFER-CREATE                     |
+  | SEQHASH-MIDI-PITCH-WHEEL-MSG               |
+
+#+END
+** alsa
+:PROPERTIES:
+:ID:       22cb34e4-4b97-48c2-ba9a-a1326e512f84
+:CREATED:  <2025-07-05 Sat 17:19>
+:END:
+#+BEGIN: lisp-system-info :system alsa
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("alsa")
+
+  #+RESULTS:
+  | ALSA       |
+  | ALSA/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("alsa")
+
+  #+RESULTS:
+  | std |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("alsa")
+
+  #+RESULTS:
+  | ffi        |
+  | alsa/tests |
+  | dsp        |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("alsa")
+
+  #+RESULTS:
+  | pkg.lisp |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("alsa")
+
+  #+RESULTS:
+  | SANITY |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("ALSA")
+
+  #+RESULTS:
+  | SND-STRERROR       |
+  | SND-PCM-FORMAT     |
+  | SND-PCM-DUMP       |
+  | SND-PCM-ACCESS     |
+  | SND-PCM-OPEN       |
+  | SND-PCM-RECOVER    |
+  | SND-PCM-SET-PARAMS |
+  | SND-PCM-STATE      |
+  | SND-PCM-CLOSE      |
+  | ALSA-FORMAT-TYPE   |
+  | LOAD-ASOUND        |
+  | SND-PCM-STREAM     |
+  | SND-PCM-WRITEI     |
+  | ALSA-ELEMENT-TYPE  |
+
+#+END
+** aws-lc
+:PROPERTIES:
+:ID:       c7e41e81-3293-46e0-9adc-d9e7e056847e
+:CREATED:  <2025-07-05 Sat 17:19>
+:END:
+#+BEGIN: lisp-system-info :system aws-lc
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("aws-lc")
+
+  #+RESULTS:
+  | AWS-LC/TESTS |
+  | AWS-LC       |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("aws-lc")
+
+  #+RESULTS:
+  | std |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("aws-lc")
+
+  #+RESULTS:
+  | ffi          |
+  | aws-lc/tests |
+  | dat          |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("aws-lc")
+
+  #+RESULTS:
+  | pkg.lisp       |
+  | types.lisp     |
+  | condition.lisp |
+  | aws-lc.lisp    |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("aws-lc")
+
+  #+RESULTS:
+  | SANITY |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("AWS-LC")
+
+  #+RESULTS:
+  | V-ASN1*                 |
+  | ASN1-STRING-DATA        |
+  | ASN1-TIME-CHECK         |
+  | AWS-LC-C-ERROR          |
+  | AWS-LC-CONDITION        |
+  | READ-AWS-LC-ERROR-QUEUE |
+  | LOAD-CRYPTO             |
+  | D2I-X509                |
+  | V-ASN1                  |
+  | ASN1-STRING             |
+  | ASN1-STRING-TYPE        |
+  | ASN1-STRING-FREE        |
+  | AWS-LC-ERROR-CALL       |
+  | ASN1-UTCTIME-CHECK      |
+  | LOAD-SSL                |
+  | ASN1-STRING-LENGTH      |
+
+#+END
+** chromaprint
+:PROPERTIES:
+:ID:       827989c1-f5f5-462b-9e4e-411e103084dc
+:CREATED:  <2025-07-05 Sat 17:19>
+:END:
+#+BEGIN: lisp-system-info :system chromaprint
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("chromaprint")
+
+  #+RESULTS:
+  | CHROMAPRINT       |
+  | CHROMAPRINT/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("chromaprint")
+
+  #+RESULTS:
+  | std |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("chromaprint")
+
+  #+RESULTS:
+  | ffi               |
+  | chromaprint/tests |
+  | dsp               |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("chromaprint")
+
+  #+RESULTS:
+  | pkg.lisp |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("chromaprint")
+
+  #+RESULTS:
+  | CHROMA-RANDOM |
+  | CHROMA-NULL   |
+  | SANITY        |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("CHROMAPRINT")
+
+  #+RESULTS:
+  | CHROMAPRINT-GET-ALGORITHM            |
+  | CHROMAPRINT-GET-NUM-CHANNELS         |
+  | CHROMAPRINT-DEALLOC                  |
+  | CHROMAPRINT-GET-DELAY-MS             |
+  | CHROMAPRINT-NEW                      |
+  | CHROMAPRINT-FINISH                   |
+  | CHROMAPRINT-GET-RAW-FINGERPRINT-SIZE |
+  | CHROMAPRINT-CLEAR-FINGERPRINT        |
+  | CHROMAPRINT-DECODE-FINGERPRINT       |
+  | WITH-CHROMAPRINT-CTX                 |
+  | CHROMAPRINT-SET-OPTION               |
+  | CHROMAPRINT-GET-ITEM-DURATION-MS     |
+  | CHROMAPRINT-ENCODE-FINGERPRINT       |
+  | CHROMAPRINT-GET-FINGERPRINT          |
+  | CHROMAPRINT-GET-FINGERPRINT-HASH     |
+  | CHROMAPRINT-FREE                     |
+  | CHROMAPRINT-ALGORITHM                |
+  | LOAD-CHROMAPRINT                     |
+  | CHROMAPRINT-CONTEXT                  |
+  | CHROMAPRINT-GET-ITEM-DURATION        |
+  | CHROMAPRINT-GET-RAW-FINGERPRINT      |
+  | CHROMAPRINT-HASH-FINGERPRINT         |
+  | CHROMAPRINT-GET-VERSION              |
+  | CHROMAPRINT-GET-SAMPLE-RATE          |
+  | CHROMAPRINT-START                    |
+  | CHROMAPRINT-GET-DELAY                |
+  | CHROMAPRINT-FEED                     |
+
+#+END
+** glib
+:PROPERTIES:
+:ID:       f87bc559-a62e-432d-84ae-dd4f136eb5d5
+:CREATED:  <2025-07-05 Sat 17:19>
+:END:
+#+BEGIN: lisp-system-info :system glib
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("glib")
+
+  #+RESULTS:
+  | GLIB/TESTS |
+  | GLIB       |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("glib")
+
+  #+RESULTS:
+  | std |
+  | log |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("glib")
+
+  #+RESULTS:
+  | ffi             |
+  | glib/tests      |
+  | gstreamer/tests |
+  | gstreamer       |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("glib")
+
+  #+RESULTS:
+  | pkg.lisp |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("glib")
+
+  #+RESULTS:
+  | SANITY |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("GLIB")
+
+  #+RESULTS:
+  | GLIST          |
+  | GOBJECTGROUP   |
+  | GMAINLOOP      |
+  | GOBJECT        |
+  | GOPTIONGROUP   |
+  | GOPTIONCONTEXT |
+  | GVALUE         |
+  | GOPTIONENTRY   |
+  | G-OBJECT-GETV  |
+  | GMAINCONTEXT   |
+  | LOAD-GLIB      |
+
+#+END
+** gstreamer
+:PROPERTIES:
+:ID:       7ee4b2d1-3294-46e7-bef5-954d0a874e6d
+:CREATED:  <2025-07-05 Sat 17:19>
+:END:
+#+BEGIN: lisp-system-info :system gstreamer
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("gstreamer")
+
+  #+RESULTS:
+  | GSTREAMER       |
+  | GSTREAMER/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("gstreamer")
+
+  #+RESULTS:
+  | std  |
+  | log  |
+  | glib |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("gstreamer")
+
+  #+RESULTS:
+  | ffi             |
+  | gstreamer/tests |
+  | dsp             |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("gstreamer")
+
+  #+RESULTS:
+  | pkg.lisp             |
+  | object.lisp          |
+  | clock.lisp           |
+  | mini-object.lisp     |
+  | caps.lisp            |
+  | context.lisp         |
+  | task.lisp            |
+  | iterator.lisp        |
+  | message.lisp         |
+  | bus.lisp             |
+  | pad.lisp             |
+  | element.lisp         |
+  | parse.lisp           |
+  | element-factory.lisp |
+  | bin.lisp             |
+  | pipeline.lisp        |
+  | debug.lisp           |
+  | play.lisp            |
+  | ges.lisp             |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("gstreamer")
+
+  #+RESULTS:
+  | BASIC            |
+  | GOBJECT-ELEMENTS |
+  | ELEMENT-FACTORY  |
+  | SANITY           |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("GSTREAMER")
+
+  #+RESULTS:
+  | GST-ELEMENT-FACTORY-CREATE        |
+  | GST-PLAY-STATE-GET-NAME           |
+  | GST-STATE-CHANGE-RETURN*          |
+  | GST-OBJECT-UNREF                  |
+  | GST-BIN-CLASS                     |
+  | GST-MESSAGE-CODE                  |
+  | GST-MINI-OBJECT                   |
+  | GST-PLAY-MESSAGE-GET-NAME         |
+  | GST-PLAY-VIDEO-RENDERER-INTERFACE |
+  | GES-IS-INITIALIZED                |
+  | LOAD-GST-PLAY                     |
+  | GST-ELEMENT-FACTORY-GET-TYPE      |
+  | GST-OBJECT-REF                    |
+  | GST-TASK                          |
+  | GST-BIN                           |
+  | GST-PLAY-MESSAGE                  |
+  | GST-BUS-TIMED-POP-FILTERED        |
+  | GST-PLAY                          |
+  | GST-ELEMENT-GET-BUS               |
+  | GST-ELEMENT                       |
+  | GES-INIT                          |
+  | GST-PIPELINE-GET-BUS              |
+  | LOAD-GES                          |
+  | GST-ELEMENT-GET-STATE             |
+  | GST-CLOCK-PRIVATE                 |
+  | GST-ELEMENT-FACTORY               |
+  | GST-PLAY-CLASS                    |
+  | GST-BUS                           |
+  | GST-ELEMENT-CLASS                 |
+  | GST-VERSION                       |
+  | GST-PLAY-GET-TYPE                 |
+  | GST-MESSAGE-TYPE-GET-NAME         |
+  | GST-TASK-STATE                    |
+  | GST-BIN-PRIVATE                   |
+  | GST-MESSAGE-TYPE                  |
+  | GST-DEINIT                        |
+  | GST-MESSAGE-REF                   |
+  | GST-TASK-PRIVATE                  |
+  | GST-OBJECT-FLAGS                  |
+  | GST-IS-INITIALIZED                |
+  | GST-STATE-CHANGE-RETURN           |
+  | GST-PIPELINE                      |
+  | GST-PLAY-STATE                    |
+  | GST-BUS-CLASS                     |
+  | GST-PLAY-SIGNAL-ADAPTER           |
+  | GST-VERSION-STRING                |
+  | WITH-GST-INIT                     |
+  | GST-PIPELINE-GET-TYPE             |
+  | GST-PAD-TEMPLATE                  |
+  | GST-MESSAGE-UNREF                 |
+  | GST-BUS-PRIVATE                   |
+  | GST-CAPS                          |
+  | GST-PIPELINE-NEW                  |
+  | GST-ELEMENT-SET-CONTEXT           |
+  | GST-PLAY-SIGNAL-ADAPTER-CLASS     |
+  | GST-MESSAGE                       |
+  | GST-PLAY-ERROR                    |
+  | GST-OBJECT-GET-PATH-STRING        |
+  | GST-ELEMENT-SET-STATE             |
+  | GST-CLOCK-TIME                    |
+  | GST-OBJECT-REF-SINK               |
+  | GES-DEINIT                        |
+  | GST-OBJECT-REPLACE                |
+  | GST-ELEMENT-GET-CONTEXT           |
+  | LOAD-GSTREAMER                    |
+  | GST-PLAY-NEW                      |
+  | GST-ELEMENT-SET-BUS               |
+  | GST-ELEMENT-FACTORY-FIND          |
+  | GST-PAD                           |
+  | GST-ITERATOR                      |
+  | GST-OBJECT                        |
+  | GST-MESSAGE-GET-TYPE              |
+  | GST-INIT                          |
+  | GST-ELEMENT-FACTORY-MAKE          |
+  | GES-INIT-CHECK                    |
+  | GST-OBJECT-CLASS                  |
+  | GST-PARSE-LAUNCH                  |
+  | GST-STATE                         |
+  | GST-TASK-CLASS                    |
+  | GST-OBJECT-CHECK-UNIQUENESS       |
+  | GST-INIT-CHECK                    |
+  | GST-PLAY-VIDEO-RENDERER           |
+
+#+END
+** jpeg
+:PROPERTIES:
+:ID:       e13ffef8-f2fb-4e54-89d6-fb0bd3cb271e
+:CREATED:  <2025-07-05 Sat 17:20>
+:END:
+#+BEGIN: lisp-system-info :system jpeg
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("jpeg")
+
+  #+RESULTS:
+  | JPEG       |
+  | JPEG/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("jpeg")
+
+  #+RESULTS:
+  | std       |
+  | log       |
+  | sb-grovel |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("jpeg")
+
+  #+RESULTS:
+  | jpeg/tests |
+  | ffi        |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("jpeg")
+
+  #+RESULTS:
+  | pkg.lisp       |
+  | constants.lisp |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("jpeg")
+
+  #+RESULTS:
+  | SANITY |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("JPEG")
+
+  #+RESULTS:
+  | LOAD-JPEG |
+
+#+END
+** keyutils
+:PROPERTIES:
+:ID:       0e1972c6-ec37-44ac-8fa0-c674c2d46330
+:CREATED:  <2025-07-05 Sat 17:20>
+:END:
+#+BEGIN: lisp-system-info :system keyutils
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("keyutils")
+
+  #+RESULTS:
+  | KEYUTILS       |
+  | KEYUTILS/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("keyutils")
+
+  #+RESULTS:
+  | sb-grovel |
+  | std       |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("keyutils")
+
+  #+RESULTS:
+  | ffi            |
+  | keyutils/tests |
+  | cry            |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("keyutils")
+
+  #+RESULTS:
+  | pkg.lisp       |
+  | constants.lisp |
+  | keyutils.lisp  |
+  | keyctl.lisp    |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("keyutils")
+
+  #+RESULTS:
+  | THREAD-KEY         |
+  | PERSISTENT-KEYRING |
+  | KEYUTILS           |
+  | SANITY             |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("KEYUTILS")
+
+  #+RESULTS:
+  | +KEYCTL-NEGATE+                        |
+  | +KEYCTL-GET-SECURITY+                  |
+  | +KEY-SPEC-THREAD-KEYRING+              |
+  | +KEY-GRP-SETATTR+                      |
+  | +KEYCTL-DH-COMPUTE+                    |
+  | +KEYCTL-PKEY-ENCRYPT+                  |
+  | KEYCTL-CLEAR                           |
+  | +KEY-POS-VIEW+                         |
+  | +KEY-POS-READ+                         |
+  | +KEY-POS-SETATTR+                      |
+  | KEYCTL-DESCRIBE-ALLOC                  |
+  | +KEYCTL-JOIN-SESSION-KEYRING+          |
+  | +KEYCTL-MOVE-EXCL+                     |
+  | +KEY-GRP-ALL+                          |
+  | +KEYCTL-MOVE+                          |
+  | +KEY-USR-READ+                         |
+  | +KEYCTL-GET-PERSISTENT+                |
+  | +KEYCTL-CAPS0-BIG-KEY+                 |
+  | +KEY-GRP-VIEW+                         |
+  | +KEYCTL-UPDATE+                        |
+  | KEYUTILS-VERSION-STRING                |
+  | +KEYCTL-SETPERM+                       |
+  | KEYCTL-UPDATE                          |
+  | +KEY-USR-SETATTR+                      |
+  | +KEYCTL-CAPS1-NS-KEY-TAG+              |
+  | +KEY-POS-SEARCH+                       |
+  | KEYCTL-CAPABILITIES                    |
+  | +KEYCTL-SUPPORTS-SIGN+                 |
+  | +KEYCTL-GET-KEYRING-ID+                |
+  | KEYCTL-MOVE                            |
+  | +KEYCTL-SEARCH+                        |
+  | +KEY-POS-WRITE+                        |
+  | +KEYCTL-UNLINK+                        |
+  | +KEYCTL-REVOKE+                        |
+  | KEYCTL-SETPERM                         |
+  | KEYCTL-ASSUME-AUTHORITY                |
+  | +KEY-REQKEY-DEFL-NO-CHANGE+            |
+  | +KEYCTL-ASSUME-AUTHORITY+              |
+  | KEYCTL-REVOKE                          |
+  | +KEYCTL-CAPS0-DIFFIE-HELLMAN+          |
+  | +KEYCTL-INVALIDATE+                    |
+  | KEYCTL-DESCRIBE                        |
+  | KEYCTL-READ-ALLOC                      |
+  | +KEYCTL-CHOWN+                         |
+  | +KEY-OTH-VIEW+                         |
+  | KEYCTL-DH-COMPUTE-ALLOC                |
+  | KEYCTL-SET-REQKEY-KEYRING              |
+  | +KEY-GRP-SEARCH+                       |
+  | KEYCTL                                 |
+  | +KEY-GRP-READ+                         |
+  | KEY-SPEC                               |
+  | +KEY-SPEC-SESSION-KEYRING+             |
+  | +KEYCTL-CAPS0-INVALIDATE+              |
+  | +KEYCTL-RESTRICT-KEYRING+              |
+  | +KEY-SPEC-GROUP-KEYRING+               |
+  | +KEY-USR-VIEW+                         |
+  | +KEYCTL-CAPS1-NS-KEYRING-NAME+         |
+  | +KEY-OTH-SETATTR+                      |
+  | +KEYCTL-CAPS0-MOVE+                    |
+  | +KEYCTL-PKEY-DECRYPT+                  |
+  | KEYCTL-PKEY-VERIFY                     |
+  | KEYCTL-READ                            |
+  | LOAD-KEYUTILS                          |
+  | +KEYCTL-CAPS0-PERSISTENT-KEYRINGS+     |
+  | KEYCTL-GET-SECURITY                    |
+  | +KEYCTL-LINK+                          |
+  | KEYCTL-NEGATE                          |
+  | +KEY-POS-LINK+                         |
+  | +KEYCTL-INSTANTIATE-IOV+               |
+  | KEYCTL-PKEY-DECRYPT                    |
+  | +KEY-OTH-ALL+                          |
+  | +KEYCTL-CAPS0-PUBLIC-KEY+              |
+  | +KEYCTL-REJECT+                        |
+  | KEYCTL-CHOWN                           |
+  | ADD-KEY                                |
+  | KEYCTL-JOIN-SESSION-KEYRING            |
+  | KEYCTL-GET-KEYRING-ID                  |
+  | KEYCTL-PKEY-QUERY                      |
+  | +KEY-REQKEY-DEFL-DEFAULT+              |
+  | +KEY-SPEC-REQKEY-AUTH-KEY+             |
+  | KEYCTL-GET-SECURITY-ALLOC              |
+  | +KEY-OTH-SEARCH+                       |
+  | +KEY-USR-SEARCH+                       |
+  | KEYCTL-SESSION-TO-PARENT               |
+  | +KEY-SPEC-PROCESS-KEYRING+             |
+  | +KEY-REQKEY-DEFL-PROCESS-KEYRING+      |
+  | KEYCTL-SEARCH                          |
+  | KEYCTL-INSTANTIATE-IOV                 |
+  | +KEY-GRP-LINK+                         |
+  | +KEYCTL-PKEY-VERIFY+                   |
+  | +KEY-USR-LINK+                         |
+  | REQUEST-KEY                            |
+  | KEYCTL-SET-TIMEOUT                     |
+  | +KEYCTL-CAPS1-NOTIFICATIONS+           |
+  | KEYCTL-WATCH-KEY                       |
+  | +KEY-REQKEY-DEFL-USER-SESSION-KEYRING+ |
+  | KEYCTL-DH-COMPUTE                      |
+  | +KEY-GRP-WRITE+                        |
+  | +KEY-REQKEY-DEFL-USER-KEYRING+         |
+  | +KEYCTL-READ+                          |
+  | +KEY-REQKEY-DEFL-THREAD-KEYRING+       |
+  | +KEY-OTH-READ+                         |
+  | +KEYCTL-SUPPORTS-VERIFY+               |
+  | +KEYCTL-SUPPORTS-ENCRYPT+              |
+  | +KEY-SPEC-USER-SESSION-KEYRING+        |
+  | KEYCTL-LINK                            |
+  | KEYCTL-UNLINK                          |
+  | KEYCTL-KDF-PARAMS                      |
+  | KEYCTL-INVALIDATE                      |
+  | +KEYCTL-CAPS0-CAPABILITIES+            |
+  | +KEYCTL-SET-REQKEY-KEYRING+            |
+  | +KEYCTL-CAPABILITIES+                  |
+  | +KEYCTL-DESCRIBE+                      |
+  | +KEYCTL-PKEY-QUERY+                    |
+  | KEYUTILS-BUILD-STRING                  |
+  | +KEY-USR-ALL+                          |
+  | KEYCTL-DH-COMPUTE-KDF                  |
+  | +KEY-POS-ALL+                          |
+  | +KEY-SPEC-USER-KEYRING+                |
+  | KEYCTL-REJECT                          |
+  | +KEYCTL-WATCH-KEY+                     |
+  | KEY-SPEC*                              |
+  | +KEYCTL-PKEY-SIGN+                     |
+  | +KEYCTL-SUPPORTS-DECRYPT+              |
+  | +KEYCTL-SESSION-TO-PARENT+             |
+  | KEYCTL-INSTANTIATE                     |
+  | +KEY-USR-WRITE+                        |
+  | KEYCTL-GET-PERSISTENT                  |
+  | +KEY-OTH-WRITE+                        |
+  | +KEYCTL-INSTANTIATE+                   |
+  | +KEYCTL-CAPS0-RESTRICT-KEYRING+        |
+  | +KEY-OTH-LINK+                         |
+  | +KEYCTL-CLEAR+                         |
+  | +KEY-REQKEY-DEFL-GROUP-KEYRING+        |
+  | +KEYCTL-SET-TIMEOUT+                   |
+  | KEYCTL-PKEY-SIGN                       |
+  | KEYCTL-PKEY-ENCRYPT                    |
+  | +KEY-REQKEY-DEFL-SESSION-KEYRING+      |
+  | FIND-KEY-BY-TYPE-AND-DESC              |
+
+#+END
+** sndfile
+:PROPERTIES:
+:ID:       ad868137-13db-4d55-a70d-cbb20c1c7a21
+:CREATED:  <2025-07-05 Sat 17:20>
+:END:
+#+BEGIN: lisp-system-info :system sndfile
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("sndfile")
+
+  #+RESULTS:
+  | SNDFILE       |
+  | SNDFILE/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("sndfile")
+
+  #+RESULTS:
+  | sb-grovel |
+  | std       |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("sndfile")
+
+  #+RESULTS:
+  | ffi           |
+  | sndfile/tests |
+  | dsp           |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("sndfile")
+
+  #+RESULTS:
+  | pkg.lisp       |
+  | constants.lisp |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("sndfile")
+
+  #+RESULTS:
+  | OPEN-WAV |
+  | SANITY   |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("SNDFILE")
+
+  #+RESULTS:
+  | EXTENSION              |
+  | SF-SET-CHUNK           |
+  | SF-LOOP-INFO           |
+  | SF-FORMAT-SUBTYPE      |
+  | SF-FORMAT-INFO         |
+  | SF-INFO                |
+  | SF-LOOP                |
+  | SF-ERR*                |
+  | SEEKABLE               |
+  | SECTIONS               |
+  | SF-CURRENT-BYTERATE    |
+  | SF-WRITEF-SHORT        |
+  | SF-FORMAT              |
+  | SF-DITHER              |
+  | SF-FLAG*               |
+  | SF-ERR                 |
+  | SF-COMMAND-OP          |
+  | SF-WRITE-RAW           |
+  | DECODE-SF-FORMAT       |
+  | SF-PERROR              |
+  | SF-SEEK-MODE           |
+  | WITH-SF-INFO           |
+  | FRAMES                 |
+  | SF-ERROR-NUMBER        |
+  | SF-FORMAT-MASK         |
+  | SF-SEEK                |
+  | SF-ERROR-STR           |
+  | SF-SET-STRING          |
+  | SF-WRITEF-DOUBLE       |
+  | SF-FORMAT-CHECK        |
+  | ENCODE-SF-FORMAT       |
+  | SF-READF-SHORT         |
+  | SF-GET-CHUNK-DATA      |
+  | SF-INSTRUMENT          |
+  | SF-GET-CHUNK-ITERATOR  |
+  | SF-WRITE-SYNC          |
+  | SF-OPEN-FD             |
+  | SF-CUE-POINT           |
+  | SF-COMMAND             |
+  | SF-NEXT-CHUNK-ITERATOR |
+  | CHANNELS               |
+  | SF-READF-FLOAT         |
+  | LOAD-SNDFILE           |
+  | SAMPLERATE             |
+  | SF-READ-RAW            |
+  | SF-STRERROR            |
+  | SF-GET-STRING          |
+  | WITH-SNDFILE           |
+  | SF-ERROR               |
+  | SF-VERSION-STRING      |
+  | SF-READF-DOUBLE        |
+  | SF-CLOSE               |
+  | SF-CHUNK-INFO          |
+  | SF-CHUNK-ITERATOR      |
+  | SF-OPEN                |
+  | SF-WRITEF-FLOAT        |
+  | FORMAT                 |
+  | SF-STR                 |
+  | SF-GET-CHUNK-SIZE      |
+  | SF-FLAG                |
+  | SNDFILE                |
+
+#+END
+** ffmpeg
+:PROPERTIES:
+:ID:       90e9a3c6-ba0f-45dd-afb7-cbf6bf4e117e
+:CREATED:  <2025-07-05 Sat 17:20>
+:END:
+#+BEGIN: lisp-system-info :system ffmpeg
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("ffmpeg")
+
+  #+RESULTS:
+  | FFMPEG/TESTS |
+  | FFMPEG       |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("ffmpeg")
+
+  #+RESULTS:
+  | std |
+  | log |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("ffmpeg")
+
+  #+RESULTS:
+  | ffi          |
+  | ffmpeg/tests |
+  | dsp          |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("ffmpeg")
+
+  #+RESULTS:
+  | pkg.lisp |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("ffmpeg")
+
+  #+RESULTS:
+  | DECODE-AUDIO |
+  | METADATA     |
+  | SANITY       |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("FFMPEG")
+
+  #+RESULTS:
+  | AVFORMAT-OPEN-INPUT              |
+  | +AV-TIME-BASE+                   |
+  | AV-GUESS-CODEC                   |
+  | AVFORMAT-INIT-OUTPUT             |
+  | AV-CLASS-CATEGORY                |
+  | AV-SAMPLE-FORMAT                 |
+  | AVFORMAT-FREE-CONTEXT            |
+  | AV-DUMP-FORMAT                   |
+  | AV-GET-EXACT-BITS-PER-SAMPLE     |
+  | AV-CHROMA-LOCATION               |
+  | AV-COLOR-PRIMARIES               |
+  | AV-CHANNEL-LAYOUT                |
+  | AV-BUFFER-REF                    |
+  | AVCODEC-DESCRIPTOR-GET           |
+  | AVERROR                          |
+  | AVFORMAT-GET-RIFF-AUDIO-TAGS     |
+  | AV-GET-PROFILE-NAME              |
+  | AV-FRAME-FREE                    |
+  | AV-PARSER-PARSE2                 |
+  | AV-FIND-DEFAULT-STREAM-INDEX     |
+  | AVCODEC-VERSION                  |
+  | AVCODEC-FIND-ENCODER-BY-NAME     |
+  | AV-OUTPUT-FORMAT                 |
+  | LOAD-SWSCALE                     |
+  | AV-FRAME                         |
+  | AVFORMAT-CLOSE-INPUT             |
+  | AV-FORMAT-CONTEXT                |
+  | AV-CODEC-ITERATE                 |
+  | AV-DICTIONARY                    |
+  | +AV-ERROR-MAX-STRING-SIZE+       |
+  | AV-CODEC-IS-ENCODER              |
+  | AV-INPUT-FORMAT                  |
+  | AV-READ-PLAY                     |
+  | AVFORMAT-GET-MOV-AUDIO-TAGS      |
+  | AVCODEC-PROFILE-NAME             |
+  | AV-GET-PCM-CODEC                 |
+  | +AV-NOPTS-VALUE+                 |
+  | AVFORMAT-VERSION                 |
+  | AV-OPTION-TYPE                   |
+  | AV-PIXEL-FORMAT                  |
+  | AV-CLASS                         |
+  | AV-PARSER-INIT                   |
+  | AV-CODEC-IS-DECODER              |
+  | AV-BUFFER                        |
+  | AVFORMAT-ALLOC-CONTEXT           |
+  | AVCODEC-CLOSE                    |
+  | AVCODEC-DESCRIPTOR-GET-BY-NAME   |
+  | AV-CODEC-PARSER-CONTEXT          |
+  | AV-OPTION-ARRAY-DEF              |
+  | AVFORMAT-NETWORK-DEINIT          |
+  | AVFORMAT-WRITE-HEADER            |
+  | LOAD-SWRESAMPLE                  |
+  | AV-OPTION                        |
+  | AVCODEC-RECEIVE-FRAME            |
+  | AVFORMAT-GET-RIFF-VIDEO-TAGS     |
+  | AVSUBTITLE-FREE                  |
+  | AV-CODEC-GET-ID                  |
+  | AVFORMAT-GET-MOV-VIDEO-TAGS      |
+  | AVCODEC-RECEIVE-PACKET           |
+  | AV-CODEC-ID                      |
+  | LOAD-AVFORMAT                    |
+  | AVCODEC-FIND-ENCODER             |
+  | AV-GUESS-FORMAT                  |
+  | AVCODEC-GET-NAME                 |
+  | AVFORMAT-GET-CLASS               |
+  | AV-DICT-SET-INT                  |
+  | AV-CODEC                         |
+  | AV-OPT-FLAG                      |
+  | AV-COLOR-RANGE                   |
+  | AVCODEC-OPEN2                    |
+  | AV-COLOR-SPACE                   |
+  | AV-DICT-GET                      |
+  | AV-OPTION-RANGES                 |
+  | AV-CODEC-GET-TAG                 |
+  | AVCODEC-GET-TYPE                 |
+  | AV-LOG-GET-LEVEL                 |
+  | LOAD-AVFILTER                    |
+  | AV-GET-BITS-PER-SAMPLE           |
+  | AVCODEC-ALLOC-CONTEXT3           |
+  | AV-SUBTITLE                      |
+  | AV-FRAME-ALLOC                   |
+  | AV-DICT-COUNT                    |
+  | AVFILTER-VERSION                 |
+  | AV-READ-PAUSE                    |
+  | AV-WRITE-FRAME                   |
+  | AV-CODEC-PARSER                  |
+  | AVFORMAT-STREAM-GROUP-GET-CLASS  |
+  | AVCODEC-FIND-DECODER             |
+  | AV-LOG-SET-LEVEL                 |
+  | AV-CHANNEL-LAYOUT-DEFAULT        |
+  | AV-PARSER-CLOSE                  |
+  | AV-PACKET                        |
+  | LOAD-AVUTIL                      |
+  | AVCODEC-DESCRIPTOR-NEXT          |
+  | AVCODEC-GET-CLASS                |
+  | AV-RATIONAL                      |
+  | AV-CODEC-TAG                     |
+  | AVCODEC-FREE-CONTEXT             |
+  | AVFORMAT-FIND-STREAM-INFO        |
+  | AV-DICTIONARY-ENTRY              |
+  | AVCODEC-SEND-PACKET              |
+  | AV-PACKET-FREE                   |
+  | AVERROR*                         |
+  | AV-GET-BYTES-PER-SAMPLE          |
+  | AV-PARSER-ITERATE                |
+  | AVFORMAT-NETWORK-INIT            |
+  | AVUTIL-VERSION                   |
+  | AVCODEC-FIND-DECODER-BY-NAME     |
+  | AV-DICT-SET                      |
+  | AV-DICT-ITERATE                  |
+  | AVCODEC-GET-SUBTITLE-RECT-CLASS  |
+  | AVFORMAT-FLUSH                   |
+  | AV-STRERROR                      |
+  | AV-COLOR-TRANSFER-CHARACTERISTIC |
+  | AV-CODEC-CONTEXT                 |
+  | +AV-INPUT-BUFFER-PADDING-SIZE+   |
+  | AV-CODEC-ID*                     |
+  | AVCODEC-SEND-FRAME               |
+  | AV-PACKET-ALLOC                  |
+  | AV-GET-OUTPUT-TIMESTAMP          |
+  | LOAD-AVCODEC                     |
+  | AV-MAKE-ERROR-STRING             |
+
+#+END
+** rustls
+:PROPERTIES:
+:ID:       df5941d7-da34-4064-b6dd-64bf7aadfbd4
+:CREATED:  <2025-07-05 Sat 17:20>
+:END:
+#+BEGIN: lisp-system-info :system rustls
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("rustls")
+
+  #+RESULTS:
+  | RUSTLS       |
+  | RUSTLS/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("rustls")
+
+  #+RESULTS:
+  | std |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("rustls")
+
+  #+RESULTS:
+  | ffi          |
+  | rustls/tests |
+  | cry          |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("rustls")
+
+  #+RESULTS:
+  | pkg.lisp       |
+  | types.lisp     |
+  | condition.lisp |
+  | rustls.lisp    |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("rustls")
+
+  #+RESULTS:
+  | BASIC  |
+  | SANITY |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("RUSTLS")
+
+  #+RESULTS:
+  | RUSTLS-CLIENT-CONFIG                                 |
+  | RUSTLS-SLICE-BYTES                                   |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-SET-SERVER-VERIFIER     |
+  | RUSTLS-SUPPORTED-CIPHERSUITE                         |
+  | RUSTLS-CRYPTO-PROVIDER-BUILDER-BUILD-AS-DEFAULT      |
+  | RUSTLS-CERTIFICATE-GET-DER                           |
+  | RUSTLS-CLIENT-CERT-VERIFIER-FREE                     |
+  | RUSTLS-CRYPTO-PROVIDER                               |
+  | RUSTLS-SERVER-CONFIG-BUILDER-SET-KEY-LOG             |
+  | RUSTLS-SERVER-CONNECTION-NEW                         |
+  | RUSTLS-RESULT*                                       |
+  | RUSTLS-SERVER-CONFIG-BUILDER-SET-IGNORE-CLIENT-ORDER |
+  | RUSTLS-ROOT-CERT-STORE-BUILDER-BUILD                 |
+  | RUSTLS-ROOT-CERT-STORE-BUILDER-ADD-PEM               |
+  | RUSTLS-HANDSHAKE-KIND                                |
+  | RUSTLS-ROOT-CERT-STORE-BUILDER-FREE                  |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-BUILD                   |
+  | RUSTLS-SERVER-CONFIG-FREE                            |
+  | RUSTLS-ACCEPTED-FREE                                 |
+  | RUSTLS-SERVER-CONFIG-BUILDER-SET-PERSISTENCE         |
+  | RUSTLS-ALL-CIPHERSUITES-LEN                          |
+  | RUSTLS-SERVER-CERT-VERIFIER                          |
+  | RUSTLS-SUPPORTED-CIPHERSUITE-GET-SUITE               |
+  | RUSTLS-SERVER-CONFIG                                 |
+  | RUSTLS-ALL-CIPHERSUITES-GET-ENTRY                    |
+  | RUSTLS-CERTIFIED-KEY-BUILD                           |
+  | RUSTLS-CERTIFIED-KEY-FREE                            |
+  | RUSTLS-DEFAULT-CIPHERSUITES-LEN                      |
+  | RUSTLS-ACCEPTOR-ACCEPT                               |
+  | RUSTLS-TLS-VERSION*                                  |
+  | RUSTLS-SERVER-CONFIG-BUILDER-SET-HELLO-CALLBACK      |
+  | RUSTLS-ROOT-CERT-STORE-FREE                          |
+  | RUSTLS-ACCEPTOR-NEW                                  |
+  | RUSTLS-SERVER-CONFIG-BUILDER-SET-KEY-LOG-FILE        |
+  | RUSTLS-AWS-LC-RS-CRYPTO-PROVIDER                     |
+  | RUSTLS-ACCEPTED-CIPHER-SCHEME                        |
+  | RUSTLS-CLIENT-HELLO-USERDATA                         |
+  | RUSTLS-CRYPTO-PROVIDER-BUILDER-BUILD                 |
+  | RUSTLS-KEYLOG-WILL-LOG-CALLBACK                      |
+  | RUSTLS-CLIENT-HELLO-SELECT-CERTIFIED-KEY             |
+  | RUSTLS-CLIENT-CERT-VERIFIER                          |
+  | RUSTLS-CRYPTO-PROVIDER-BUILDER-SET-CIPHER-SUITES     |
+  | RUSTLS-C-ERROR                                       |
+  | RUSTLS-DEFAULT-CIPHERSUITES-GET-ENTRY                |
+  | RUSTLS-SERVER-CONFIG-BUILDER-SET-CLIENT-VERIFIER     |
+  | RUSTLS-SERVER-CONFIG-BUILDER-FREE                    |
+  | RUSTLS-CLIENT-HELLO                                  |
+  | RUSTLS-SERVER-CONFIG-BUILDER-NEW                     |
+  | RUSTLS-WEB-PKI-CLIENT-CERT-VERIFIER                  |
+  | RUSTLS-CONDITION                                     |
+  | LOAD-RUSTLS                                          |
+  | RUSTLS-CERTIFIED-KEY-GET-CERTIFICATE                 |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-NEW                     |
+  | RUSTLS-CLIENT-CONNECTION-NEW                         |
+  | RUSTLS-SIGNING-KEY                                   |
+  | RUSTLS-ACCEPTED-SERVER-NAME                          |
+  | RUSTLS-HANDSHAKE-KIND*                               |
+  | RUSTLS-SUPPORTED-CIPHERSUITE-GET-NAME                |
+  | RUSTLS-CERTIFICATE                                   |
+  | RUSTLS-CRYPTO-PROVIDER-DEFAULT                       |
+  | RUSTLS-ROOT-CERT-STORE-BUILDER-NEW                   |
+  | RUSTLS-TLS-VERSION                                   |
+  | RUSTLS-SERVER-CONFIG-BUILDER-BUILD                   |
+  | RUSTLS-CERTIFIED-KEY                                 |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-SET-ENABLE-SNI          |
+  | RUSTLS-ACCEPTOR-FREE                                 |
+  | RUSTLS-ACCEPTOR                                      |
+  | RUSTLS-CRYPTO-PROVIDER-BUILDER-NEW-FROM-DEFAULT      |
+  | RUSTLS-SERVER-CONNECTION-GET-SERVER-NAME             |
+  | RUSTLS-VERSION                                       |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-FREE                    |
+  | RUSTLS-KEYLOG-LOG-CALLBACK                           |
+  | RUSTLS-ACCEPTED-INTO-CONNECTION                      |
+  | RUSTLS-CLIENT-CONFIG-FREE                            |
+  | RUSTLS-ACCEPTOR-READ-TLS                             |
+  | RUSTLS-CRYPTO-PROVIDER-BUILDER-FREE                  |
+  | RUSTLS-RESULT                                        |
+  | RUSTLS-ACCEPTED                                      |
+  | RUSTLS-SESSION-STORE-USERDATA                        |
+  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER                  |
+  | RUSTLS-CRYPTO-PROVIDER-CIPHERSUITES-GET              |
+  | RUSTLS-ROOT-CERT-STORE-BUILDER-LOAD-ROOTS-FROM-FILE  |
+  | RUSTLS-CRYPTO-PROVIDER-BUILDER-NEW-WITH-BASE         |
+  | RUSTLS-CRYPTO-PROVIDER-CIPHERSUITES-LEN              |
+  | RUSTLS-ACCEPTED-SIGNATURE-SCHEME                     |
+  | RUSTLS-CRYPTO-PROVIDER-LOAD-KEY                      |
+
+#+END
+** ublk
+:PROPERTIES:
+:ID:       df572895-fa1e-4e0a-8df7-0e1eaf917192
+:CREATED:  <2025-07-05 Sat 17:20>
+:END:
+#+BEGIN: lisp-system-info :system ublk
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("ublk")
+
+  #+RESULTS:
+  | UBLK/TESTS |
+  | UBLK       |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("ublk")
+
+  #+RESULTS:
+  | sb-grovel |
+  | std       |
+  | uring     |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("ublk")
+
+  #+RESULTS:
+  | ffi        |
+  | ublk/tests |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("ublk")
+
+  #+RESULTS:
+  | pkg.lisp       |
+  | constants.lisp |
+  | cmd.lisp       |
+  | srv.lisp       |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("ublk")
+
+  #+RESULTS:
+  | SANITY |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("UBLK")
+
+  #+RESULTS:
+  | +UBLK-IO-BUF-BITS-MASK+          |
+  | +UBLKSRV-IO-BUF-OFFSET+          |
+  | +UBLKSRV-QUEUE-IOCTL-OP+         |
+  | +UBLKSRV-TGT-NAME-MAX-LEN+       |
+  | +UBLK-IO-F-FAILFAST-TRANSPORT+   |
+  | +UBLK-IO-F-NOUNMAP+              |
+  | +UBLK-IO-COMMIT-AND-FETCH-REQ+   |
+  | +UBLK-IO-OP-WRITE-ZEROES+        |
+  | +UBLK-CMD-STOP-DEV+              |
+  | +UBLK-IO-OP-FLUSH+               |
+  | +UBLK-CMD-SET-PARAMS+            |
+  | +UBLK-ATTR-READ-ONLY+            |
+  | +UBLK-QID-BITS+                  |
+  | +UBLK-CMD-GET-PARAMS+            |
+  | +UBLK-IO-F-META+                 |
+  | +UBLK-IO-OP-WRITE+               |
+  | +UBLKSRV-USER-COPY+              |
+  | +UBLK-F-USER-COPY+               |
+  | +UBLK-FEATURES-LEN+              |
+  | +UBLK-IO-F-FAILFAST-DRIVER+      |
+  | +UBLK-U-IO-NEED-GET-DATA+        |
+  | +UBLK-TAG-BITS-MASK+             |
+  | +UBLK-F-SUPPORT-ZERO-COPY+       |
+  | +UBLKSRV-CMD-BUF-OFFSET+         |
+  | +UBLK-IO-F-FAILFAST-DEV+         |
+  | +DEF-BUF-SIZE+                   |
+  | +UBLKSRV-F-NEED-EVENTFD+         |
+  | +UBLK-PARAM-TYPE-DEVT+           |
+  | +DEF-QD+                         |
+  | +UBLK-F-URING-CMD-COMP-IN-TASK+  |
+  | +UBLK-IO-OP-DISCARD+             |
+  | +UBLKSRV-QUEUE-IDLE+             |
+  | +MAX-NR-HW-QUEUES+               |
+  | +UBLK-U-IO-COMMIT-AND-FETCH-REQ+ |
+  | +UBLKSRV-QUEUE-STOPPING+         |
+  | +DEF-NR-HW-QUEUES+               |
+  | UBLK-CMD-GET-QUEUE-AFFINITY      |
+  | LOAD-UBLKSRV                     |
+  | +UBLK-IO-RES-ABORT+              |
+  | +UBLK-TAG-OFF+                   |
+  | +UBLK-PARAM-TYPE-DISCARD+        |
+  | +MAX-BUF-SIZE+                   |
+  | +UBLK-CMD-START-USER-RECOVERY+   |
+  | +UBLK-CMD-DEL-DEV+               |
+  | +UBLK-F-USER-RECOVERY-REISSUE+   |
+  | +UBLK-CMD-GET-DEV-INFO2+         |
+  | +UBLK-PARAM-TYPE-BASIC+          |
+  | +UBLK-IO-OP-WRITE-SAME+          |
+  | +UBLK-MAX-NR-QUEUES+             |
+  | +UBLK-CMD-START-DEV+             |
+  | +UBLK-F-UNPRIVILEGED-DEV+        |
+  | +UBLK-CMD-END-USER-RECOVERY+     |
+  | +UBLK-U-IO-FETCH-REQ+            |
+  | +UBLK-ATTR-FUA+                  |
+  | +UBLK-ATTR-VOLATILE-CACHE+       |
+  | +UBLK-IO-FETCH-REQ+              |
+  | +UBLK-QID-OFF+                   |
+  | +UBLK-IO-RES-NEED-GET-DATA+      |
+  | +UBLK-IO-BUF-OFF+                |
+  | +UBLK-F-CMD-IOCTL-ENCODE+        |
+  | +UBLK-S-DEV-LIVE+                |
+  | +UBLKSRV-TGT-MAX-FDS+            |
+  | +UBLKSRV-IO-BUF-TOTAL-BITS+      |
+  | +MAX-QD+                         |
+  | +UBLK-MAX-QUEUE-DEPTH+           |
+  | +UBLK-IO-F-FUA+                  |
+  | +UBLK-TAG-BITS+                  |
+  | +UBLK-ATTR-ROTATIONAL+           |
+  | +UBLK-IO-RES-OK+                 |
+  | +UBLK-CMD-ADD-DEV+               |
+  | +UBLK-F-NEED-GET-DATA+           |
+  | +UBLK-QID-BITS-MASK+             |
+  | +UBLK-IO-NEED-GET-DATA+          |
+  | +UBLK-CMD-GET-DEV-INFO+          |
+  | +UBLK-IO-F-SWAP+                 |
+  | +UBLK-S-DEV-QUIESCED+            |
+  | +UBLKSRV-IO-BUF-TOTAL-SIZE+      |
+  | +UBLK-IO-BUF-BITS+               |
+  | +UBLK-S-DEV-DEAD+                |
+  | +UBLK-F-USER-RECOVERY+           |
+  | +UBLK-IO-OP-READ+                |
+
+#+END
+** wasmer
+:PROPERTIES:
+:ID:       8c9b1e06-4234-4ea6-b819-b46a47b71a00
+:CREATED:  <2025-07-05 Sat 17:20>
+:END:
+#+BEGIN: lisp-system-info :system wasmer
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("wasmer")
+
+  #+RESULTS:
+  | WASMER       |
+  | WASMER/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("wasmer")
+
+  #+RESULTS:
+  | std |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("wasmer")
+
+  #+RESULTS:
+  | wasmer/tests |
+  | web          |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("wasmer")
+
+  #+RESULTS:
+  | pkg.lisp    |
+  | types.lisp  |
+  | wasmer.lisp |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("wasmer")
+
+  #+RESULTS:
+  | BASIC  |
+  | SANITY |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("WASMER")
+
+  #+RESULTS:
+  | LOAD-WASMER |
+
+#+END
+** cuda
+:PROPERTIES:
+:ID:       f58e5bfe-f84c-4420-9b7f-c7d3bc053329
+:CREATED:  <2025-07-05 Sat 17:21>
+:END:
+#+BEGIN: lisp-system-info :system cuda
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("cuda")
+
+  #+RESULTS:
+  | CUDA       |
+  | CUDA/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("cuda")
+
+  #+RESULTS:
+  | std |
+  | log |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("cuda")
+
+  #+RESULTS:
+  | ffi        |
+  | cuda/tests |
+  | math       |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("cuda")
+
+  #+RESULTS:
+  | pkg.lisp       |
+  | constants.lisp |
+  | type.lisp      |
+  | alien.lisp     |
+  | cuda.lisp      |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("cuda")
+
+  #+RESULTS:
+  | INIT |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("CUDA")
+
+  #+RESULTS:
+  | +CU-GRAPH-KERNEL-NODE-PORT-PROGRAMMATIC+    |
+  | +CU-GRAPH-KERNEL-NODE-PORT-LAUNCH-ORDER+    |
+  | +CU-MEMHOSTALLOC-DEVICEMAP+                 |
+  | +CU-MEMHOSTREGISTER-IOMEMORY+               |
+  | LOAD-CUDA                                   |
+  | +CUDNN-MINOR+                               |
+  | +CU-GRAPH-KERNEL-NODE-PORT-DEFAULT+         |
+  | +CU-MEMHOSTALLOC-PORTABLE+                  |
+  | +CU-GRAPH-COND-ASSIGN-DEFAULT+              |
+  | +CU-MEMHOSTREGISTER-DEVICEMAP+              |
+  | +CUDNN-VERSION+                             |
+  | +CU-MEMHOSTALLOC-WRITECOMBINED+             |
+  | +CUDA-VERSION+                              |
+  | +CUDNN-MAX-DEVICE-VERSION+                  |
+  | +CU-TENSOR-MAP-NUM-QWORDS+                  |
+  | +CUDNN-MAJOR+                               |
+  | +CU-MEMHOSTREGISTER-PORTABLE+               |
+  | +CUDNN-MAX-SM-MINOR-NUMBER+                 |
+  | +CU-IPC-HANDLE-SIZE+                        |
+  | +CUDNN-MAX-SM-MAJOR-NUMBER+                 |
+  | +CU-COMPUTE-ACCELERATED-TARGET-BASE+        |
+  | LOAD-CUDNN                                  |
+  | DEVICE-COMPUTE-CAPABILITY                   |
+  | +CUDNN-PATCHLEVEL+                          |
+  | +CU-ARRAY-SPARSE-PROPERTIES-SINGLE-MIPTAIL+ |
+  | +CU-MEMHOSTREGISTER-READ-ONLY+              |
+
+#+END
+** evdev
+:PROPERTIES:
+:ID:       69541759-5d6c-47f2-9cee-78995a3d36ea
+:CREATED:  <2025-07-05 Sat 17:21>
+:END:
+#+BEGIN: lisp-system-info :system evdev
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("evdev")
+
+  #+RESULTS:
+  | EVDEV/INPUT |
+  | EVDEV       |
+  | EVDEV/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("evdev")
+
+  #+RESULTS:
+  | std       |
+  | sb-grovel |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("evdev")
+
+  #+RESULTS:
+  | ffi         |
+  | evdev/tests |
+  | io          |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("evdev")
+
+  #+RESULTS:
+  | pkg.lisp       |
+  | constants.lisp |
+  | input.lisp     |
+  | dev.lisp       |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("evdev")
+
+  #+RESULTS:
+  | BASIC  |
+  | SANITY |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("EVDEV")
+
+  #+RESULTS:
+  | LIBEVDEV-SET-FD      |
+  | LIBEVDEV-READ-FLAG   |
+  | LIBEVDEV             |
+  | LOAD-EVDEV           |
+  | LIBEVDEV-NEW         |
+  | LIBEVDEV-FREE        |
+  | LIBEVDEV-NEW-FROM-FD |
+
+#+END
+** arrow
+:PROPERTIES:
+:ID:       75e412af-4706-42a1-96da-a916c49e03f4
+:CREATED:  <2025-07-05 Sat 17:21>
+:END:
+#+BEGIN: lisp-system-info :system arrow
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("arrow")
+
+  #+RESULTS:
+  | ARROW       |
+  | ARROW/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("arrow")
+
+  #+RESULTS:
+  | std |
+  | log |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("arrow")
+
+  #+RESULTS:
+  | arrow/tests |
+  | ffi         |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("arrow")
+
+  #+RESULTS:
+  | pkg.lisp |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("arrow")
+
+  #+RESULTS:
+  | SANITY |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("ARROW")
+
+  #+RESULTS:
+  | LOAD-ARROW |
+
+#+END

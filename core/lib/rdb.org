@@ -3,255 +3,257 @@
 #+setupfile: ../../../clean.theme
 #+BEGIN: lisp-system-info :system rdb
 - packages
-#+CALL: lisp-system-packages[:post transpose]("rdb")
+  #+CALL: lisp-system-packages[:post transpose]("rdb")
 
-#+RESULTS:
-| RDB/TESTS |
-| RDB/CLI   |
-| RDB       |
+  #+RESULTS:
+  | RDB/TESTS |
+  | RDB/CLI   |
+  | RDB       |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("rdb")
+  #+CALL: lisp-system-dependencies[:post transpose]("rdb")
 
-#+RESULTS:
-| std     |
-| rocksdb |
-| obj     |
-| log     |
-| q       |
-| dat     |
-| cli     |
+  #+RESULTS:
+  | std     |
+  | rocksdb |
+  | obj     |
+  | log     |
+  | q       |
+  | dat     |
+  | cli     |
 
 - dependents
-#+CALL: lisp-system-dependents[:post transpose]("rdb")
+  #+CALL: lisp-system-dependents[:post transpose]("rdb")
 
-#+RESULTS:
-| web/dash  |
-| web/index |
-| krypt     |
-| packy     |
-| skel      |
-| organ     |
-| doc/tests |
-| doc       |
-| rdb/tests |
-| nlp       |
-| core      |
-| bin/packy |
-| bin/rdb   |
-| bin/homer |
+  #+RESULTS:
+  | web/dash  |
+  | web/index |
+  | krypt     |
+  | packy     |
+  | skel      |
+  | organ     |
+  | doc/tests |
+  | doc       |
+  | rdb/tests |
+  | nlp       |
+  | core      |
+  | bin/packy |
+  | bin/rdb   |
+  | bin/homer |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("rdb")
+  #+CALL: lisp-system-files[:post transpose]("rdb")
 
-#+RESULTS:
-| pkg.lisp       |
-| condition.lisp |
-| macs.lisp      |
-| rocksdb.lisp   |
-| proto.lisp     |
-| obj.lisp       |
-| schema.lisp    |
-| db.lisp        |
-| log.lisp       |
-| query.lisp     |
-| store.lisp     |
-| cli.lisp       |
-| rdb.lisp       |
+  #+RESULTS:
+  | pkg.lisp       |
+  | condition.lisp |
+  | macs.lisp      |
+  | rocksdb.lisp   |
+  | proto.lisp     |
+  | obj.lisp       |
+  | schema.lisp    |
+  | db.lisp        |
+  | log.lisp       |
+  | query.lisp     |
+  | store.lisp     |
+  | cfg.lisp       |
+  | cli.lisp       |
+  | rdb.lisp       |
 
 - tests
-#+CALL: lisp-system-tests[:post transpose]("rdb")
+  #+CALL: lisp-system-tests[:post transpose]("rdb")
 
-#+RESULTS:
-| WBWI        |
-| LOGGER      |
-| STORE       |
-| PREFIX-OP   |
-| MERGE-OP    |
-| TRANSACTION |
-| SCHEMA      |
-| SST         |
-| METADATA    |
-| TEMP-DB     |
-| RAW         |
-| OPTS        |
-| MINIMAL     |
+  #+RESULTS:
+  | WBWI        |
+  | LOGGER      |
+  | STORE       |
+  | PREFIX-OP   |
+  | MERGE-OP    |
+  | TRANSACTION |
+  | SCHEMA      |
+  | SST         |
+  | METADATA    |
+  | TEMP-DB     |
+  | RAW         |
+  | OPTS        |
+  | MINIMAL     |
 
 - symbols
-#+CALL: lisp-package-symbols[:post codify-transpose]("RDB")
+  #+CALL: lisp-package-symbols[:post transpose]("RDB")
 
-#+RESULTS:
-| ~PUT-KV-CF-ERROR~                 |
-| ~CLOSE-TRANSACTION-DB~            |
-| ~WITH-KV-RAW~                     |
-| ~CLOSE-CFS~                       |
-| ~MULTI-GET~                       |
-| ~TRANSACTIONDB-GET-KV-RAW~        |
-| ~RESTORE-DB~                      |
-| ~OPEN-BACKUP-DB~                  |
-| ~RDB-CF-METADATA-P~               |
-| ~PULL-SAP~                        |
-| ~WITH-LATEST-OPTS~                |
-| ~PUT-KEY-TS~                      |
-| ~DELETE-KEY-TS~                   |
-| ~CF-ERROR~                        |
-| ~RDB-TRANSACTION~                 |
-| ~RDB-OPTS-SAP~                    |
-| ~RDB-WRITE~                       |
-| ~CLOSE-SECONDARY-DB~              |
-| ~WRITE-OPTS~                      |
-| ~RDB-CF-METADATA-NAME~            |
-| ~RDB-BYTES-BUFFER~                |
-| ~INGEST-DB~                       |
-| ~INDEX-MERGE-OP~                  |
-| ~WITH-OPEN-RDB-RAW~               |
-| ~WITH-RDB~                        |
-| ~SNAPSHOT-DB~                     |
-| ~OPEN-SECONDARY-DB~               |
-| ~RDB-SST-FILE-METADATA-P~         |
-| ~CREATE-CF~                       |
-| ~COPY-RDB-CF~                     |
-| ~MAKE-RDB~                        |
-| ~COMMIT-TRANSACTION~              |
-| ~DELETE-TRANSACTION~              |
-| ~PULL-SAP*~                       |
-| ~FIND-CF~                         |
-| ~RDB-CF-OPTS~                     |
-| ~CLOSE-BACKUP-ENGINE~             |
-| ~RDB-WBWI-SAVE~                   |
-| ~CREATE-FIXED-PREFIX-OP~          |
-| ~OPEN-DB-SECONDARY-RAW~           |
-| ~RDB-ITER-P~                      |
-| ~METADATA-MISSING~                |
-| ~OPEN-BACKUP-ENGINE~              |
-| ~BACKFILL-OPTS~                   |
-| ~CREATE-CONCAT-MERGE-OP~          |
-| ~CONCAT-MERGE-OP~                 |
-| ~BACKUP-DB~                       |
-| ~PUSH-OPTS~                       |
-| ~FINISH-SST~                      |
-| ~ROLLBACK-TRANSACTION~            |
-| ~OPEN-BACKUP-ENGINE-ERROR~        |
-| ~DB-MISSING~                      |
-| ~MAKE-RDB-OPTS~                   |
-| ~RDB-ITER~                        |
-| ~RDB-USER-ERROR~                  |
-| ~OPEN-DB-ERROR~                   |
-| ~OPEN-CHECKPOINT-DB~              |
-| ~WITH-TXN-RAW~                    |
-| ~RDB-ERROR~                       |
-| ~DO-CFS~                          |
-| ~RDB-WBWI-DATA~                   |
-| ~CREATE-CHECKPOINT-RAW~           |
-| ~RDB-OBJECT-SCHEMA~               |
-| ~TXN-ERROR~                       |
-| ~PUT-CF-KEY~                      |
-| ~RDB-CF-P~                        |
-| ~SET-OPT~                         |
-| ~HANDLE-ERRPTR~                   |
-| ~PUSH-CF~                         |
-| ~RDB-CF-VAL-TYPE~                 |
-| ~CREATE-DEFAULT-LOGGER-CALLBACK~  |
-| ~RDB-LOG-DEFAULT~                 |
-| ~GET-CF-KEY~                      |
-| ~OPEN-SST~                        |
-| ~WITH-SST~                        |
-| ~RDB-SCHEMA~                      |
-| ~RDB-WBWI-TS~                     |
-| ~OPEN-CFS~                        |
-| ~*TEMP-DB-DESTROY*~               |
-| ~RDB-LEVEL-METADATA-P~            |
-| ~RDB-BACKUP-ENGINE~               |
-| ~DO-CF~                           |
-| ~MAKE-SST-FILE-WRITER~            |
-| ~RDB-BACKUP-ENGINE-INFO~          |
-| ~OPEN-CFS-SECONDARY-RAW~          |
-| ~MAKE-RDB-CF-METADATA~            |
-| ~DESTROY-SST~                     |
-| ~RDB-ALIEN-ERROR~                 |
-| ~RDB-DATA-SOURCE~                 |
-| ~RDB-LEVEL-METADATA~              |
-| ~OPEN-TRANSACTION-DB~             |
-| ~LOAD-OPTS~                       |
-| ~GET-STATS~                       |
-| ~CREATE-WBWI~                     |
-| ~RDB-SINK~                        |
-| ~PUSH-SAP*~                       |
-| ~DESTROY-BACKUP-ENGINE-ERROR~     |
-| ~RDB-CF-KEY-TYPE~                 |
-| ~TRANSACTIONDB-PUT-KV-RAW~        |
-| ~RDB~                             |
-| ~MAKE-RDB-ITER~                   |
-| ~CURSOR-HANDLE~                   |
-| ~RDB-CHECKPOINT~                  |
-| ~DO-COLUMNS~                      |
-| ~RDB-OPTS~                        |
-| ~RDB-NAME~                        |
-| ~MAKE-RDB-SST-FILE-METADATA~      |
-| ~OPEN-TRANSACTIONDB-RAW~          |
-| ~MAKE-RDB-CF~                     |
-| ~DELETE-KEY-RANGE~                |
-| ~RDB-SAP~                         |
-| ~REPAIR-DB~                       |
-| ~WITH-CF~                         |
-| ~RDB-WBWI-COUNT~                  |
-| ~DO-KVS~                          |
-| ~KV-ERROR~                        |
-| ~MAKE-RDB-OPTS*~                  |
-| ~RDB-WBWI-CLEAR~                  |
-| ~CLOSE-BACKUP-DB~                 |
-| ~WRITE-DB~                        |
-| ~WITH-KV~                         |
-| ~RDB-CF-METADATA~                 |
-| ~GET-OPT~                         |
-| ~MAKE-RDB-LEVEL-METADATA~         |
-| ~RDB-CF-METADATA-SIZE~            |
-| ~SST-FILE-WRITER~                 |
-| ~RDB-LOGGER~                      |
-| ~WITH-ERRPTR*~                    |
-| ~WITH-TEMP-RDB~                   |
-| ~SHUTDOWN-DB~                     |
-| ~RDB-CFS~                         |
-| ~CF~                              |
-| ~RDB-LOG-SCHEMA~                  |
-| ~RDB-SECONDARY-DB~                |
-| ~SCHEMA-FROM-RDB-COLUMN-FAMILIES~ |
-| ~RDB-COLUMN-FAMILY~               |
-| ~CLOSE-CHECKPOINT-DB~             |
-| ~CREATE-RDB~                      |
-| ~DELETE-KEY~                      |
-| ~CLOSE-CF~                        |
-| ~PREPARE-TRANSACTION~             |
-| ~CREATE-CFS~                      |
-| ~SIMPLE-RDB-WARNING~              |
-| ~DESTROY-DB-ERROR~                |
-| ~PUT-KV-ERROR~                    |
-| ~FLUSH-CF~                        |
-| ~RDB-CF~                          |
-| ~DEFAULT-RDB-OPTS~                |
-| ~WBWI-PUT-KV-CF~                  |
-| ~GET-KV-CF-ERROR~                 |
-| ~CREATE-INDEX-MERGE-OP~           |
-| ~RDB-BYTES~                       |
-| ~READ-OPTS~                       |
-| ~MAKE-TRANSACTION~                |
-| ~RDB-CONFIG~                      |
-| ~PRINT-STATS~                     |
-| ~WITH-COLUMN~                     |
-| ~FLUSH-DB~                        |
-| ~GET-KV-ERROR~                    |
-| ~PUSH-SAP~                        |
-| ~DO-DB~                           |
-| ~SST-FILE-SIZE~                   |
-| ~RDB-CF-SAP~                      |
-| ~BEGIN-TRANSACTION~               |
-| ~RDB-WBWI~                        |
-| ~RDB-CF-NAME~                     |
-| ~RDB-SST-FILE-METADATA~           |
-| ~RDB-DATABASE~                    |
-| ~RDB-TRANSACTION-DB~              |
-| ~WITH-WBWI~                       |
-| ~RDB-COLUMN~                      |
-| ~NIL~                             |
+  #+RESULTS:
+  | PUT-KV-CF-ERROR                 |
+  | CLOSE-TRANSACTION-DB            |
+  | READ-OPTS                       |
+  | WITH-OPEN-RDB-RAW               |
+  | MULTI-GET                       |
+  | MAKE-RDB-OPTS                   |
+  | RDB-BYTES-BUFFER                |
+  | OPEN-BACKUP-DB                  |
+  | OPEN-DB-SECONDARY-RAW           |
+  | PULL-SAP                        |
+  | RDB-NAME                        |
+  | PUT-KEY-TS                      |
+  | DELETE-KEY-TS                   |
+  | CF-ERROR                        |
+  | RDB-CF-KEY-TYPE                 |
+  | RESTORE-DB                      |
+  | CLOSE-SECONDARY-DB              |
+  | CF                              |
+  | CLOSE-CFS                       |
+  | DO-COLUMNS                      |
+  | INGEST-DB                       |
+  | CREATE-CONCAT-MERGE-OP          |
+  | DESTROY-BACKUP-ENGINE-ERROR     |
+  | WITH-RDB                        |
+  | CLOSE-CF                        |
+  | RDB-LOGGER                      |
+  | RDB-SST-FILE-METADATA-P         |
+  | CREATE-CF                       |
+  | MAKE-RDB-CF                     |
+  | CONCAT-MERGE-OP                 |
+  | COMMIT-TRANSACTION              |
+  | RDB-WRITE                       |
+  | RDB-CF-METADATA                 |
+  | PULL-SAP*                       |
+  | FIND-CF                         |
+  | CLOSE-BACKUP-ENGINE             |
+  | RDB-CF-OPTS                     |
+  | INDEX-MERGE-OP                  |
+  | RDB-WBWI-SAVE                   |
+  | CREATE-FIXED-PREFIX-OP          |
+  | DO-DB                           |
+  | RDB-ITER-P                      |
+  | METADATA-MISSING                |
+  | RDB-CONFIG                      |
+  | WRITE-DB                        |
+  | RDB-SST-FILE-METADATA           |
+  | RDB-CF-METADATA-NAME            |
+  | PUSH-OPTS                       |
+  | FINISH-SST                      |
+  | RDB-OPTS-SAP                    |
+  | WRITE-OPTS                      |
+  | DB-MISSING                      |
+  | SET-OPT                         |
+  | RDB-ITER                        |
+  | OPEN-DB-ERROR                   |
+  | RDB-USER-ERROR                  |
+  | WITH-TEMP-RDB                   |
+  | OPEN-CHECKPOINT-DB              |
+  | RDB-BYTES                       |
+  | RDB-ERROR                       |
+  | DO-CFS                          |
+  | SNAPSHOT-DB                     |
+  | CREATE-CHECKPOINT-RAW           |
+  | RDB-OBJECT-SCHEMA               |
+  | WBWI-PUT-KV-CF                  |
+  | PUT-KV-ERROR                    |
+  | PRINT-STATS                     |
+  | OPEN-SECONDARY-DB               |
+  | FLUSH-CF                        |
+  | HANDLE-ERRPTR                   |
+  | PUSH-CF                         |
+  | OPEN-CFS                        |
+  | RDB-CHECKPOINT                  |
+  | CREATE-DEFAULT-LOGGER-CALLBACK  |
+  | RDB-LOG-DEFAULT                 |
+  | PUSH-SAP*                       |
+  | GET-CF-KEY                      |
+  | OPEN-SST                        |
+  | WITH-SST                        |
+  | RDB-SCHEMA                      |
+  | RDB-CF-P                        |
+  | SST-FILE-SIZE                   |
+  | RDB-TRANSACTION                 |
+  | RDB-LEVEL-METADATA-P            |
+  | DO-CF                           |
+  | MAKE-SST-FILE-WRITER            |
+  | RDB-BACKUP-ENGINE-INFO          |
+  | OPEN-CFS-SECONDARY-RAW          |
+  | CLOSE-BACKUP-DB                 |
+  | DESTROY-SST                     |
+  | RDB-DATA-SOURCE                 |
+  | RDB-LEVEL-METADATA              |
+  | LOAD-OPTS                       |
+  | GET-STATS                       |
+  | CREATE-WBWI                     |
+  | RDB-SINK                        |
+  | RDB-WBWI-TS                     |
+  | RDB-OPTS                        |
+  | RDB-CF-VAL-TYPE                 |
+  | TRANSACTIONDB-PUT-KV-RAW        |
+  | WITH-KV-RAW                     |
+  | RDB-ALIEN-ERROR                 |
+  | CURSOR-HANDLE                   |
+  | OPEN-BACKUP-ENGINE              |
+  | RDB-COLUMN                      |
+  | DESTROY-DB-ERROR                |
+  | RDB-CF                          |
+  | WITH-KV                         |
+  | SHUTDOWN-DB                     |
+  | MAKE-RDB-SST-FILE-METADATA      |
+  | OPEN-TRANSACTIONDB-RAW          |
+  | RDB-CF-METADATA-SIZE            |
+  | RDB-CF-METADATA-P               |
+  | RDB-SAP                         |
+  | REPAIR-DB                       |
+  | WITH-CF                         |
+  | RDB-WBWI-COUNT                  |
+  | DO-KVS                          |
+  | KV-ERROR                        |
+  | MAKE-RDB-OPTS*                  |
+  | RDB                             |
+  | OPEN-BACKUP-ENGINE-ERROR        |
+  | WITH-ERRPTR*                    |
+  | BACKFILL-OPTS                   |
+  | GET-OPT                         |
+  | TXN-ERROR                       |
+  | BACKUP-DB                       |
+  | PUT-CF-KEY                      |
+  | WITH-LATEST-OPTS                |
+  | RDB-CFS                         |
+  | RDB-WBWI-DATA                   |
+  | OPEN-TRANSACTION-DB             |
+  | DELETE-TRANSACTION              |
+  | RDB-DATABASE                    |
+  | RDB-LOG-SCHEMA                  |
+  | RDB-SECONDARY-DB                |
+  | SCHEMA-FROM-RDB-COLUMN-FAMILIES |
+  | MAKE-RDB-CF-METADATA            |
+  | CLOSE-CHECKPOINT-DB             |
+  | CREATE-RDB                      |
+  | WITH-WBWI                       |
+  | DELETE-KEY                      |
+  | *TEMP-DB-DESTROY*               |
+  | PREPARE-TRANSACTION             |
+  | SIMPLE-RDB-WARNING              |
+  | INIT-RDBRC                      |
+  | DEFAULT-RDB-OPTS                |
+  | RDB-BACKUP-ENGINE               |
+  | SST-FILE-WRITER                 |
+  | GET-KV-ERROR                    |
+  | COPY-RDB-CF                     |
+  | GET-KV-CF-ERROR                 |
+  | MAKE-RDB                        |
+  | RDB-CF-SAP                      |
+  | DELETE-KEY-RANGE                |
+  | MAKE-TRANSACTION                |
+  | CREATE-INDEX-MERGE-OP           |
+  | ROLLBACK-TRANSACTION            |
+  | WITH-COLUMN                     |
+  | FLUSH-DB                        |
+  | WITH-TXN-RAW                    |
+  | PUSH-SAP                        |
+  | CREATE-CFS                      |
+  | MAKE-RDB-LEVEL-METADATA         |
+  | BEGIN-TRANSACTION               |
+  | RDB-WBWI                        |
+  | MAKE-RDB-ITER                   |
+  | RDB-WBWI-CLEAR                  |
+  | RDB-COLUMN-FAMILY               |
+  | RDB-TRANSACTION-DB              |
+  | NIL                             |
+  | RDB-CF-NAME                     |
+  | TRANSACTIONDB-GET-KV-RAW        |
 
 #+END:
