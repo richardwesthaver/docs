@@ -2,166 +2,144 @@
 #+author: Richard Westhaver
 #+setupfile: ../../../clean.theme
 #+OPTIONS: num:nil
-Version Controller
+
+=vc= is our interface to Version Control Systems (Mercurial and
+Git). Mercurial is the default and preferred backend, as can be seen
+in all CC code repos. But there is a high level of support for working
+with Git repositories using a shared /vc protocol/ as well as
+mirroring and converting between both backends.
+
 #+BEGIN: lisp-system-info :system vc
 - packages
-#+CALL: lisp-system-packages[:post transpose]("vc")
+  #+CALL: lisp-system-packages[:post transpose]("vc")
 
-#+RESULTS:
-| VC/GIT   |
-| VC/HG    |
-| VC/CLI   |
-| VC/TESTS |
-| VC/PROTO |
-| VC       |
-| VC/UTIL  |
+  #+RESULTS:
+  | VC/GIT   |
+  | VC/HG    |
+  | VC/CLI   |
+  | VC/TESTS |
+  | VC/PROTO |
+  | VC       |
+  | VC/UTIL  |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("vc")
+  #+CALL: lisp-system-dependencies[:post transpose]("vc")
 
-#+RESULTS:
-| std   |
-| cli   |
-| obj   |
-| net   |
-| log   |
-| parse |
+  #+RESULTS:
+  | std   |
+  | cli   |
+  | obj   |
+  | net   |
+  | log   |
+  | parse |
 
 - dependents
-#+CALL: lisp-system-dependents[:post transpose]("vc")
+  #+CALL: lisp-system-dependents[:post transpose]("vc")
 
-#+RESULTS:
-| vc/tests  |
-| skel      |
-| core/user |
-| bin/vc    |
+  #+RESULTS:
+  | vc/tests  |
+  | skel      |
+  | core/user |
+  | bin/vc    |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("vc")
+  #+CALL: lisp-system-files[:post transpose]("vc")
 
-#+RESULTS:
-| pkg.lisp   |
-| proto.lisp |
-| git.lisp   |
-| hg.lisp    |
-| util.lisp  |
-| cli.lisp   |
+  #+RESULTS:
+  | pkg.lisp   |
+  | proto.lisp |
+  | git.lisp   |
+  | hg.lisp    |
+  | util.lisp  |
+  | cli.lisp   |
 
 - tests
-#+CALL: lisp-system-tests[:post transpose]("vc")
+  #+CALL: lisp-system-tests[:post transpose]("vc")
 
-#+RESULTS:
-| VC-BUNDLE  |
-| VC-SIMPLE  |
-| HG-SIMPLE  |
-| GIT-SIMPLE |
+  #+RESULTS:
+  | VC-BUNDLE  |
+  | VC-SIMPLE  |
+  | HG-SIMPLE  |
+  | GIT-SIMPLE |
 
 - symbols
-#+CALL: lisp-package-symbols[:post codify-transpose]("VC")
+  #+CALL: lisp-package-symbols[:post transpose]("VC")
 
-#+RESULTS:
-| ~HG-BUNDLESPEC-STRING-P~  |
-| ~FIND-REPO~               |
-| ~VC-SUBMODULES~           |
-| ~RUN-HG-COMMAND~          |
-| ~VC-RUN~                  |
-| ~HG-ERROR~                |
-| ~VC-META~                 |
-| ~REPO~                    |
-| ~VC-DESIGNATOR~           |
-| ~*REPO-REGISTRY*~         |
-| ~VC-ID~                   |
-| ~VC-ERROR~                |
-| ~VC-HEAD~                 |
-| ~MAKE-VC-REMOTE~          |
-| ~VC-UPDATE~               |
-| ~VC-NAME~                 |
-| ~WITH-REPO~               |
-| ~FIND-HGRC~               |
-| ~MAKE-REPO~               |
-| ~VC-REMOTE~               |
-| ~GIT-ERROR~               |
-| ~MAKE-HG-CLIENT~          |
-| ~*HG-PROGRAM*~            |
-| ~HGIGNORE~                |
-| ~VC-INIT~                 |
-| ~GIT-META~                |
-| ~DIRECTORY-REPOS~         |
-| ~VC-CLONE~                |
-| ~VC-CONFIG~               |
-| ~BUNDLE-REPO~             |
-| ~VC-ADDREMOVE~            |
-| ~HG-REPO~                 |
-| ~*REPO-ROOTS*~            |
-| ~*HG-BUNDLESPEC-OPTIONS*~ |
-| ~VC-REPO~                 |
-| ~VC-TYPE~                 |
-| ~*DEFAULT-VC-KIND*~       |
-| ~VC-REMOTES~              |
-| ~VC-SUBMODULE~            |
-| ~VC-UNBUNDLE~             |
-| ~FIND-HG-BOOKMARKS~       |
-| ~HG-FAST-EXPORT~          |
-| ~HG-COMPRESSION-ENGINE~   |
-| ~GIT-REPO~                |
-| ~HG-CONFIG~               |
-| ~MAKE-HG-REPO~            |
-| ~UPDATE-REPOS~            |
-| ~VC-ADD~                  |
-| ~VC-IGNORE~               |
-| ~VC-STATUS~               |
-| ~VC-REMOVE~               |
-| ~*GIT-PROGRAM*~           |
-| ~VC-BRANCH~               |
-| ~VC-EXPORT~               |
-| ~*REPO*~                  |
-| ~HG-CLIENT~               |
-| ~FIND-REPO-ROOT~          |
-| ~VC-DIFF~                 |
-| ~REGISTER-REPO~           |
-| ~WITH-CURRENT-VC-ROOT~    |
-| ~VC-BUNDLE~               |
-| ~*VC-CLI*~                |
-| ~HG-BUNDLE-TYPE~          |
-| ~*HG-FAST-EXPORT-SCRIPT*~ |
-| ~VC-COMMIT~               |
-| ~*REPO-AUTO-REGISTER*~    |
-| ~GITIGNORE~               |
-| ~BUNDLE-REPOS~            |
-| ~VC-PUSH~                 |
-| ~UPDATE-REPO~             |
-| ~MAKE-GIT-REPO~           |
-| ~VC-PULL~                 |
-| ~VC-PATH~                 |
-| ~RUN-GIT-COMMAND~         |
-| ~HG-META~                 |
+  #+RESULTS:
+  | HG-BUNDLESPEC-STRING-P  |
+  | FIND-REPO               |
+  | VC-SUBMODULES           |
+  | RUN-HG-COMMAND          |
+  | VC-RUN                  |
+  | HG-ERROR                |
+  | VC-META                 |
+  | REPO                    |
+  | VC-DESIGNATOR           |
+  | *REPO-REGISTRY*         |
+  | VC-ID                   |
+  | VC-ERROR                |
+  | VC-HEAD                 |
+  | MAKE-VC-REMOTE          |
+  | VC-UPDATE               |
+  | VC-NAME                 |
+  | WITH-REPO               |
+  | FIND-HGRC               |
+  | MAKE-REPO               |
+  | VC-REMOTE               |
+  | GIT-ERROR               |
+  | MAKE-HG-CLIENT          |
+  | *HG-PROGRAM*            |
+  | HGIGNORE                |
+  | VC-INIT                 |
+  | GIT-META                |
+  | DIRECTORY-REPOS         |
+  | VC-CLONE                |
+  | VC-CONFIG               |
+  | BUNDLE-REPO             |
+  | VC-ADDREMOVE            |
+  | HG-REPO                 |
+  | *REPO-ROOTS*            |
+  | *HG-BUNDLESPEC-OPTIONS* |
+  | VC-REPO                 |
+  | VC-TYPE                 |
+  | *DEFAULT-VC-KIND*       |
+  | VC-REMOTES              |
+  | VC-SUBMODULE            |
+  | VC-UNBUNDLE             |
+  | FIND-HG-BOOKMARKS       |
+  | HG-FAST-EXPORT          |
+  | HG-COMPRESSION-ENGINE   |
+  | GIT-REPO                |
+  | HG-CONFIG               |
+  | MAKE-HG-REPO            |
+  | UPDATE-REPOS            |
+  | VC-ADD                  |
+  | VC-IGNORE               |
+  | VC-STATUS               |
+  | VC-REMOVE               |
+  | *GIT-PROGRAM*           |
+  | VC-BRANCH               |
+  | VC-EXPORT               |
+  | *REPO*                  |
+  | HG-CLIENT               |
+  | FIND-REPO-ROOT          |
+  | VC-DIFF                 |
+  | REGISTER-REPO           |
+  | WITH-CURRENT-VC-ROOT    |
+  | VC-BUNDLE               |
+  | *VC-CLI*                |
+  | HG-BUNDLE-TYPE          |
+  | *HG-FAST-EXPORT-SCRIPT* |
+  | VC-COMMIT               |
+  | *REPO-AUTO-REGISTER*    |
+  | GITIGNORE               |
+  | BUNDLE-REPOS            |
+  | VC-PUSH                 |
+  | UPDATE-REPO             |
+  | MAKE-GIT-REPO           |
+  | VC-PULL                 |
+  | VC-PATH                 |
+  | RUN-GIT-COMMAND         |
+  | HG-META                 |
 
 #+END:
-* bin/vc
-** help
-#+begin_src shell :results output :exports both
-vc -h
-#+end_src
-
-#+RESULTS:
-#+begin_example
-vc v0 --- Version Controller
-
-options:
-  -h/--help               print help
-    :doc Print help and exit.
-  -v/--version            
-    :doc Print version and exit.
-
-commands:
-  status*                 Print the status of the current repo
-  push                    Push the current repo to a remote
-  diff                    Perform a diff
-  pull                    Pull the current repo from a remote
-  clone                   Clone a repo from a remote
-  commit                  Commit the working set to the revision tree
-  addremove               Add/remove files
-  fast-export             Run the hg-fast-export script
-  bundle                  Bundle a repo
-  unbundle                Unbundle a repo-bundle file
-#+end_example

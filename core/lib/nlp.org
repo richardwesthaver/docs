@@ -2,6 +2,7 @@
 #+author: Richard Westhaver
 #+email: richard.westhaver@gmail.com
 #+setupfile: ../../../clean.theme
+
 This library is a small set of algorithms and data processing
 utilities for [[https://en.wikipedia.org/wiki/Natural_language][Natural Languages]].
 
@@ -16,108 +17,141 @@ Much of this code is from the Nyxt analysis library [[https://github.com/atlas-e
 
 #+BEGIN: lisp-system-info :system nlp
 - packages
-#+CALL: lisp-system-packages[:post transpose]("nlp")
+  #+CALL: lisp-system-packages[:post transpose]("nlp")
 
-#+RESULTS:
-| NLP/STRING      |
-| NLP/STEM/PORTER |
-| NLP/TESTS       |
-| NLP/DATA        |
-| NLP/DOC         |
-| NLP/TEXTRANK    |
-| NLP/DBSCAN      |
-| NLP/PKG         |
-| NLP/FUZZY       |
-| NLP/TOKENIZE    |
-| NLP/SECTION     |
+  #+RESULTS:
+  | NLP/STRING      |
+  | NLP/STEM/PORTER |
+  | NLP/TESTS       |
+  | NLP/DATA        |
+  | NLP/DOC         |
+  | NLP/TEXTRANK    |
+  | NLP/DBSCAN      |
+  | NLP             |
+  | NLP/FUZZY       |
+  | NLP/TOKENIZE    |
+  | NLP/SECTION     |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("nlp")
+  #+CALL: lisp-system-dependencies[:post transpose]("nlp")
 
-#+RESULTS:
-| std      |
-| rdb      |
-| cl-ppcre |
-| parse    |
-| obj      |
+  #+RESULTS:
+  | std      |
+  | rdb      |
+  | cl-ppcre |
+  | parse    |
+  | obj      |
 
 - dependents
-#+CALL: lisp-system-dependents[:post transpose]("nlp")
+  #+CALL: lisp-system-dependents[:post transpose]("nlp")
 
-#+RESULTS:
-| web       |
-| organ     |
-| nlp/tests |
-| core      |
-| bin/homer |
-| bin/organ |
+  #+RESULTS:
+  | web       |
+  | organ     |
+  | nlp/tests |
+  | core      |
+  | bin/homer |
+  | bin/organ |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("nlp")
+  #+CALL: lisp-system-files[:post transpose]("nlp")
 
-#+RESULTS:
-| pkg.lisp         |
-| data.lisp        |
-| tokenize.lisp    |
-| doc.lisp         |
-| stem/porter.lisp |
-| textrank.lisp    |
-| dbscan.lisp      |
-| section.lisp     |
-| string.lisp      |
-| fuzzy.lisp       |
+  #+RESULTS:
+  | pkg.lisp         |
+  | data.lisp        |
+  | tokenize.lisp    |
+  | doc.lisp         |
+  | stem/porter.lisp |
+  | textrank.lisp    |
+  | dbscan.lisp      |
+  | section.lisp     |
+  | string.lisp      |
+  | fuzzy.lisp       |
 
 - tests
-#+CALL: lisp-system-tests[:post transpose]("nlp")
+  #+CALL: lisp-system-tests[:post transpose]("nlp")
 
-#+RESULTS:
-| DBSCAN      |
-| TEXTRANK    |
-| DOCS        |
-| PORTER-STEM |
-| SECTIONS    |
-| TOKENIZE    |
+  #+RESULTS:
+  | DBSCAN      |
+  | TEXTRANK    |
+  | DOCS        |
+  | PORTER-STEM |
+  | SECTIONS    |
+  | TOKENIZE    |
 
 - symbols
-#+CALL: lisp-package-symbols[:post codify-transpose]("NLP")
+  #+CALL: lisp-package-symbols[:post transpose]("NLP")
 
-#+RESULTS:
-| ~DICTIONARY~                         |
-| ~INVERSE-DOCUMENT-FREQUENCY~         |
-| ~DOCUMENT-COLLECTION~                |
-| ~VECTOR-DATA~                        |
-| ~STOP-WORDS~                         |
-| ~DBSCAN~                             |
-| ~DOCUMENT~                           |
-| ~DOCUMENT-VERTEX~                    |
-| ~STRING-CONTENTS~                    |
-| ~EXTRACT-SECTIONS~                   |
-| ~DOCUMENT-CLUSTER~                   |
-| ~CLUSTER~                            |
-| ~EXTRACT-KEYWORDS~                   |
-| ~DISTANCE~                           |
-| ~TF-IDF-VECTORIZE-DOCUMENTS~         |
-| ~*LANGUAGE-DATA*~                    |
-| ~TERMP~                              |
-| ~DOCUMENT-FREQUENCY~                 |
-| ~EDGES~                              |
-| ~GENERATE-DOCUMENT-DISTANCE-VECTORS~ |
-| ~NEIGHBORS~                          |
-| ~WORD-TOKENIZE~                      |
-| ~SENTENCE-TOKENIZE~                  |
-| ~FUZZY-MATCH~                        |
-| ~TERM-FREQUENCY~                     |
-| ~ADD-DOCUMENT~                       |
-| ~TF-VECTORIZE-DOCUMENTS~             |
-| ~CLUSTERS~                           |
-| ~KEYWORDS~                           |
-| ~DOCUMENTS~                          |
-| ~SUMMARIZE-TEXT~                     |
-| ~STEM~                               |
-| ~RANK~                               |
-| ~GET-CLUSTER~                        |
-| ~LANGUAGE-DATA~                      |
-| ~TERM-COUNT~                         |
-| ~STOP-WORDS-LOOKUP~                  |
+  #+RESULTS:
+  | DICTIONARY                         |
+  | INVERSE-DOCUMENT-FREQUENCY         |
+  | DOCUMENT-COLLECTION                |
+  | VECTOR-DATA                        |
+  | STOP-WORDS                         |
+  | DBSCAN                             |
+  | DOCUMENT                           |
+  | DOCUMENT-VERTEX                    |
+  | STRING-CONTENTS                    |
+  | EXTRACT-SECTIONS                   |
+  | DOCUMENT-CLUSTER                   |
+  | CLUSTER                            |
+  | EXTRACT-KEYWORDS                   |
+  | DISTANCE                           |
+  | TF-IDF-VECTORIZE-DOCUMENTS         |
+  | *LANGUAGE-DATA*                    |
+  | TERMP                              |
+  | DOCUMENT-FREQUENCY                 |
+  | EDGES                              |
+  | GENERATE-DOCUMENT-DISTANCE-VECTORS |
+  | NEIGHBORS                          |
+  | WORD-TOKENIZE                      |
+  | SENTENCE-TOKENIZE                  |
+  | FUZZY-MATCH                        |
+  | TERM-FREQUENCY                     |
+  | ADD-DOCUMENT                       |
+  | TF-VECTORIZE-DOCUMENTS             |
+  | CLUSTERS                           |
+  | KEYWORDS                           |
+  | DOCUMENTS                          |
+  | SUMMARIZE-TEXT                     |
+  | STEM                               |
+  | RANK                               |
+  | GET-CLUSTER                        |
+  | LANGUAGE-DATA                      |
+  | TERM-COUNT                         |
+  | STOP-WORDS-LOOKUP                  |
 
 #+END:
+* Fuzzy
+:PROPERTIES:
+:ID:       359542f1-c149-4c88-839b-0e3fa38d716a
+:CREATED:  <2025-07-06 Sun 21:43>
+:END:
+The =nlp/fuzzy= package contains a fuzzy matching algorithm extracted
+from Nyxt.
+
+#+begin_src lisp :results output
+  (describe 'nlp/fuzzy:fuzzy-match)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+NLP/FUZZY:FUZZY-MATCH
+  [symbol]
+
+FUZZY-MATCH names a compiled function:
+  Lambda-list: (INPUT SUGGESTIONS &KEY SUGGESTIONS-DISPLAY
+                (SCORE-SUGGESTION (QUOTE SCORE-SUGGESTION)))
+  Derived type: (FUNCTION
+                 (T T &KEY (:SUGGESTIONS-DISPLAY T)
+                  (:SCORE-SUGGESTION T))
+                 (VALUES T &OPTIONAL))
+  Documentation:
+    From the user input and a list of suggestions, return a filtered list of
+    suggestions that have all the input words in them, and sort this list to have the
+    'most relevant' first.
+    The match is case-sensitive if INPUT contains at least one uppercase character.
+    SUGGESTIONS-DISPLAY can be used to pass the pre-computed display strings of the
+    suggestions; otherwise `object-display' is used.
+  Source file: /home/ellis/comp/core/lib/nlp/fuzzy.lisp
+#+end_example

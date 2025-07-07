@@ -8,111 +8,111 @@ The universal package manager
 
 #+BEGIN: lisp-system-info :system packy
 - packages
-#+CALL: lisp-system-packages[:post transpose]("packy")
+  #+CALL: lisp-system-packages[:post transpose]("packy")
 
-#+RESULTS:
-| PACKY/CLI      |
-| PACKY/CLIENT   |
-| PACKY/SERVER   |
-| PACKY          |
-| PACKY/DB       |
-| PACKY/APKBUILD |
-| PACKY/PKGBUILD |
-| PACKY/TESTS    |
-| PACKY/CORE     |
+  #+RESULTS:
+  | PACKY/CLI      |
+  | PACKY/CLIENT   |
+  | PACKY/SERVER   |
+  | PACKY          |
+  | PACKY/DB       |
+  | PACKY/APKBUILD |
+  | PACKY/PKGBUILD |
+  | PACKY/TESTS    |
+  | PACKY/CORE     |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("packy")
+  #+CALL: lisp-system-dependencies[:post transpose]("packy")
 
-#+RESULTS:
-| uiop           |
-| asdf           |
-| sb-posix       |
-| sb-bsd-sockets |
-| sb-concurrency |
-| std            |
-| cl-ppcre       |
-| rdb            |
-| obj            |
-| net            |
-| cli            |
-| io             |
-| cry            |
-| dat            |
+  #+RESULTS:
+  | uiop           |
+  | asdf           |
+  | sb-posix       |
+  | sb-bsd-sockets |
+  | sb-concurrency |
+  | std            |
+  | cl-ppcre       |
+  | rdb            |
+  | obj            |
+  | net            |
+  | cli            |
+  | io             |
+  | cry            |
+  | dat            |
 
 - dependents
-#+CALL: lisp-system-dependents[:post transpose]("packy")
+  #+CALL: lisp-system-dependents[:post transpose]("packy")
 
-#+RESULTS:
-| packy/tests |
-| bin/packy   |
-| bin/skel    |
+  #+RESULTS:
+  | packy/tests |
+  | bin/packy   |
+  | bin/skel    |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("packy")
+  #+CALL: lisp-system-files[:post transpose]("packy")
 
-#+RESULTS:
-| pkg.lisp      |
-| var.lisp      |
-| proto.lisp    |
-| pkgbuild.lisp |
-| apkbuild.lisp |
-| db.lisp       |
-| client.lisp   |
-| server.lisp   |
-| cfg.lisp      |
-| cli.lisp      |
-| packy.lisp    |
+  #+RESULTS:
+  | pkg.lisp      |
+  | var.lisp      |
+  | proto.lisp    |
+  | pkgbuild.lisp |
+  | apkbuild.lisp |
+  | db.lisp       |
+  | client.lisp   |
+  | server.lisp   |
+  | cfg.lisp      |
+  | cli.lisp      |
+  | packy.lisp    |
 
 - tests
-#+CALL: lisp-system-tests[:post transpose]("packy")
+  #+CALL: lisp-system-tests[:post transpose]("packy")
 
-#+RESULTS:
-| PACKY-OBJECTS |
-| PACKY-DB      |
+  #+RESULTS:
+  | PACKY-OBJECTS |
+  | PACKY-DB      |
 
 - symbols
-#+CALL: lisp-package-symbols[:post codify-transpose]("PACKY")
+  #+CALL: lisp-package-symbols[:post transpose]("PACKY")
 
-#+RESULTS:
-| ~*PACKY-URL*~                  |
-| ~PACKY-ERROR~                  |
-| ~PACKAGE-DEPENDENCY~           |
-| ~PACKAGE-VERSION~              |
-| ~PACKY-SERVICE~                |
-| ~*PACKY-DB*~                   |
-| ~SYNC-PACKAGE~                 |
-| ~*PACKY-HOME*~                 |
-| ~PULL-PACKAGE~                 |
-| ~BUILD-PACKAGE~                |
-| ~PREPARE-PACKAGE~              |
-| ~UPDATE-PACKAGE~               |
-| ~PACKY-CONDITION~              |
-| ~PACKY-SERVER~                 |
-| ~UNPACK~                       |
-| ~LIST-PACKAGES~                |
-| ~*DEFAULT-PACKY-DIST-TARGETS*~ |
-| ~*PACKY-DIST-TARGETS*~         |
-| ~UNINSTALL-PACKAGE~            |
-| ~*PACKY-CLI*~                  |
-| ~PACKY-USER-CONFIG~            |
-| ~*PACKY-LOGGER*~               |
-| ~PK-INDEX~                     |
-| ~PACKY-CONFIG~                 |
-| ~INIT-PACKY~                   |
-| ~*PACK*~                       |
-| ~CHECK-PACKAGE~                |
-| ~PACKAGE-SOURCE~               |
-| ~*PACKY-COMPRESSOR*~           |
-| ~PACKAGE-REGISTRY~             |
-| ~PACKY-CLIENT~                 |
-| ~*PACKY-DECOMPRESSOR*~         |
-| ~*PACKY-REGISTRY*~             |
-| ~QUERY-PACKAGE~                |
-| ~PACK~                         |
-| ~INSTALL-PACKAGE~              |
-| ~BUNDLE-PACKAGE~               |
-| ~PUSH-PACKAGE~                 |
+  #+RESULTS:
+  | *PACKY-URL*                  |
+  | PACKY-ERROR                  |
+  | PACKAGE-DEPENDENCY           |
+  | PACKAGE-VERSION              |
+  | PACKY-SERVICE                |
+  | *PACKY-DB*                   |
+  | SYNC-PACKAGE                 |
+  | *PACKY-HOME*                 |
+  | PULL-PACKAGE                 |
+  | BUILD-PACKAGE                |
+  | PREPARE-PACKAGE              |
+  | UPDATE-PACKAGE               |
+  | PACKY-CONDITION              |
+  | PACKY-SERVER                 |
+  | UNPACK                       |
+  | LIST-PACKAGES                |
+  | *DEFAULT-PACKY-DIST-TARGETS* |
+  | *PACKY-DIST-TARGETS*         |
+  | UNINSTALL-PACKAGE            |
+  | *PACKY-CLI*                  |
+  | PACKY-USER-CONFIG            |
+  | *PACKY-LOGGER*               |
+  | PK-INDEX                     |
+  | PACKY-CONFIG                 |
+  | INIT-PACKY                   |
+  | *PACK*                       |
+  | CHECK-PACKAGE                |
+  | PACKAGE-SOURCE               |
+  | *PACKY-COMPRESSOR*           |
+  | PACKAGE-REGISTRY             |
+  | PACKY-CLIENT                 |
+  | *PACKY-DECOMPRESSOR*         |
+  | *PACKY-REGISTRY*             |
+  | QUERY-PACKAGE                |
+  | PACK                         |
+  | INSTALL-PACKAGE              |
+  | BUNDLE-PACKAGE               |
+  | PUSH-PACKAGE                 |
 
 #+END:
 

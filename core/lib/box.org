@@ -1,0 +1,61 @@
+#+title: box
+#+author: Richard Westhaver
+#+setupfile: ../../../clean.theme
+#+OPTIONS: num:nil
+#+BEGIN: lisp-system-info :system box
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("box")
+
+  #+RESULTS:
+  | BOX          |
+  | BOX/ARCHISO  |
+  | BOX/QMP      |
+  | BOX/TESTS    |
+  | BOX/QEMU     |
+  | BOX/QGA      |
+  | BOX/IGNITION |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("box")
+
+  #+RESULTS:
+  | std |
+  | cli |
+  | obj |
+  | dat |
+  | net |
+  | log |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("box")
+
+  #+RESULTS:
+  | homer     |
+  | box/tests |
+  | skel      |
+  | core/user |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("box")
+
+  #+RESULTS:
+  | pkg.lisp      |
+  | proto.lisp    |
+  | archiso.lisp  |
+  | ignition.lisp |
+  | qmp.lisp      |
+  | qga.lisp      |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("box")
+
+  #+RESULTS:
+  | ARCHISO |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("BOX")
+
+  #+RESULTS:
+  | BOX-CONFIG |
+
+#+END

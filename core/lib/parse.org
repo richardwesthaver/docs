@@ -1,0 +1,147 @@
+#+title: parse
+#+author: Richard Westhaver
+#+description: Parser Library
+#+setupfile: ../../../clean.theme
+#+filetags: lisp cli
+#+property: header-args :dir ~/comp/core/ :exports both
+#+setupfile: ../../../clean.theme
+
+The =parse= library provides support for designing various flavors of
+parsers.
+
+#+BEGIN: lisp-system-info :system parse
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("parse")
+
+  #+RESULTS:
+  | PARSE/TESTS |
+  | PARSE/PROTO |
+  | PARSE/LEX   |
+  | PARSE/BYTES |
+  | PARSE/YACC  |
+  | PARSE/PRATT |
+  | PARSE       |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("parse")
+
+  #+RESULTS:
+  | cl-ppcre |
+  | std      |
+  | sb-cltl2 |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("parse")
+
+  #+RESULTS:
+  | web         |
+  | gui         |
+  | syn         |
+  | vc          |
+  | organ       |
+  | doc         |
+  | q           |
+  | nlp         |
+  | parse/tests |
+  | net         |
+  | core        |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("parse")
+
+  #+RESULTS:
+  | pkg.lisp   |
+  | bytes.lisp |
+  | lex.lisp   |
+  | pratt.lisp |
+  | yacc.lisp  |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("parse")
+
+  #+RESULTS:
+  | YACC |
+  | LEX  |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("PARSE")
+
+  #+RESULTS:
+  | PRATT-PARSER                        |
+  | UNREAD-N                            |
+  | MATCHER-ANY                         |
+  | MATCHER-STRING                      |
+  | *LENGTH*                            |
+  | MATCHER-FIND                        |
+  | YACC-PARSE-ERROR                    |
+  | PARSE                               |
+  | YACC-RUNTIME-ERROR                  |
+  | DEFINE-PARSER                       |
+  | MAKE-MATCHER                        |
+  | MAKE-GRAMMAR                        |
+  | PARSE-INFIX                         |
+  | MATCHER-NEXT                        |
+  | DEFINE-GRAMMAR                      |
+  | MATCHER-CHARACTER                   |
+  | MATCHER-RANGE                       |
+  | YACC-COMPILE-WARNING                |
+  | PARSER-ERROR                        |
+  | ADVANCE                             |
+  | UNREAD                              |
+  | *STRING*                            |
+  | CONFLICT-SUMMARY-WARNING            |
+  | MAKE-PRODUCTION                     |
+  | MATCHER-PREV                        |
+  | CONFLICT-WARNING                    |
+  | MATCHER-NOT                         |
+  | SIMPLE-PARSER-ERROR                 |
+  | WITH-LEXER-ENVIRONMENT              |
+  | PARSE-WITH-LEXER                    |
+  | CONSUME-UNTIL                       |
+  | PARSE-PREFIX                        |
+  | YACC-PARSE-ERROR-EXPECTED-TERMINALS |
+  | YACC-PARSE-ERROR-TERMINAL           |
+  | CONSUME                             |
+  | PARSER-CONDITION                    |
+  | YACC-PARSE-ERROR-VALUE              |
+  | NEXT-PRECEDENCE                     |
+  | MATCHER-AND                         |
+  | DEFINE-MATCHER                      |
+  | ADVANCE-N                           |
+  | *INDEX*                             |
+  | PEEK                                |
+  | MAKE-PARSER                         |
+  | MATCHER-OR                          |
+
+#+END:
+
+* Packages
+:PROPERTIES:
+:ID:       6dd6e281-6482-43ae-a7e3-acdf610ddfd1
+:CREATED:  <2025-07-06 Sun 21:36>
+:END:
+
+** Lex
+:PROPERTIES:
+:ID:       7634b753-0e9b-4ce6-a20a-2af6bb24bb15
+:CREATED:  <2025-07-06 Sun 21:39>
+:END:
+
+** YACC
+:PROPERTIES:
+:ID:       cd65310b-a60e-444c-bf2b-f5a0e9ac86eb
+:CREATED:  <2025-07-06 Sun 21:39>
+:END:
+
+** Pratt
+:PROPERTIES:
+:ID:       6c98b158-a574-4742-b73e-d3257ae2b22d
+:CREATED:  <2025-07-06 Sun 21:39>
+:END:
+
+
+** Bytes
+:PROPERTIES:
+:ID:       e105a40b-0804-48e3-915a-b81b2efe4554
+:CREATED:  <2025-07-06 Sun 21:39>
+:END:

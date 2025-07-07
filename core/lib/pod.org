@@ -1,0 +1,110 @@
+#+title: pod
+#+author: Richard Westhaver
+#+setupfile: ../../../clean.theme
+#+OPTIONS: num:nil
+#+BEGIN: lisp-system-info :system pod
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("pod")
+
+  #+RESULTS:
+  | POD/TESTS |
+  | POD       |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("pod")
+
+  #+RESULTS:
+  | std |
+  | cli |
+  | obj |
+  | dat |
+  | net |
+  | io  |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("pod")
+
+  #+RESULTS:
+  | homer     |
+  | pod/tests |
+  | skel      |
+  | core/user |
+  | bin/pod   |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("pod")
+
+  #+RESULTS:
+  | pkg.lisp           |
+  | condition.lisp     |
+  | obj/system.lisp    |
+  | obj/secret.lisp    |
+  | obj/network.lisp   |
+  | obj/exec.lisp      |
+  | obj/volume.lisp    |
+  | obj/image.lisp     |
+  | obj/container.lisp |
+  | obj/pod.lisp       |
+  | containerfile.lisp |
+  | api.lisp           |
+  | podman.lisp        |
+  | buildah.lisp       |
+  | cfg.lisp           |
+  | client.lisp        |
+  | util.lisp          |
+  | cli.lisp           |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("pod")
+
+  #+RESULTS:
+  | CONTAINERFILE |
+  | PODMAN-API    |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("POD")
+
+  #+RESULTS:
+  | BUILDAH                         |
+  | *CONTAINERFILE-PREDEFINED-ARGS* |
+  | PODMAN-RUN                      |
+  | *DEFAULT-CONTAINERFILE*         |
+  | WITH-LIBPOD-CLIENT              |
+  | PODMAN                          |
+  | BUILDAH-FROM                    |
+  | LOAD-PODMAN-CONFIG              |
+  | PODMAN-BUILD                    |
+  | POD-ERROR                       |
+  | DEFAULT-PODMAN-CONFIG           |
+  | PODMAN-LOCAL-USER-SOCKET        |
+  | WITH-CONTAINER                  |
+  | PODMAN-ERROR                    |
+  | DECODE-PODMAN-RESPONSE          |
+  | ENCODE-PODMAN-REQUEST           |
+  | WITH-BUILDAH                    |
+  | CONTAINERFILE-STEPS             |
+  | BUILDAH-CONFIG                  |
+  | BUILDAH-ADD                     |
+  | PODMAN-REQUEST                  |
+  | *BUILDAH-CONTAINER*             |
+  | PODMAN-CP                       |
+  | BUILDAH-COPY                    |
+  | LIBPOD-CLIENT                   |
+  | LIBPOD-REQUEST                  |
+  | BUILDAH-RUN                     |
+  | CONTAINERFILE-ARGS              |
+  | *PODMAN-API-VERSION*            |
+  | LIBPOD-REQUEST-JSON             |
+  | CONTAINERFILE                   |
+  | POD-CONFIG                      |
+  | PODMAN-STOP                     |
+  | PODMAN-RESPONSE                 |
+  | *CONTAINER*                     |
+  | LIBPOD-ERROR                    |
+  | START-PODMAN-SERVICE            |
+  | CONTAINERFILE-BASE              |
+  | PODMAN-CONFIG                   |
+  | *PODMAN-CONFIG-DIRECTORY*       |
+  | PODMAN-EXEC                     |
+
+#+END

@@ -17,39 +17,93 @@ MPK is a Media Production Kit in Lisp.
 - implements STD/PIPE protocol
 
 * system
-#+BEGIN: lisp-system-info :system mpk :symbols nil
+#+BEGIN: lisp-system-info :system mpk :tests nil
 - packages
-#+CALL: lisp-system-packages[:post transpose]("mpk")
+  #+CALL: lisp-system-packages[:post transpose]("mpk")
 
-#+RESULTS:
-| MPK/CLI  |
-| MPK/GUI  |
-| MPK/DB   |
-| MPK      |
-| MPK-USER |
-| MPK/MPD  |
+  #+RESULTS:
+  | MPK/CLI  |
+  | MPK/GUI  |
+  | MPK/DB   |
+  | MPK      |
+  | MPK-USER |
+  | MPK/MPD  |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("mpk")
+  #+CALL: lisp-system-dependencies[:post transpose]("mpk")
 
-#+RESULTS:
-| core/user |
+  #+RESULTS:
+  | core/user |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("mpk")
+
+  #+RESULTS:
+  | homer   |
+  | bin/mpk |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("mpk")
+  #+CALL: lisp-system-files[:post transpose]("mpk")
 
-#+RESULTS:
-| pkg.lisp   |
-| mpd.lisp   |
-| var.lisp   |
-| proto.lisp |
-| util.lisp  |
-| db.lisp    |
-| cfg.lisp   |
-| net.lisp   |
-| mpk.lisp   |
-| cli.lisp   |
-| gui.lisp   |
+  #+RESULTS:
+  | pkg.lisp   |
+  | mpd.lisp   |
+  | var.lisp   |
+  | proto.lisp |
+  | util.lisp  |
+  | db.lisp    |
+  | cfg.lisp   |
+  | net.lisp   |
+  | mpk.lisp   |
+  | cli.lisp   |
+  | gui.lisp   |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("MPK")
+
+  #+RESULTS:
+  | MPK-PATH                |
+  | MPK-CONFIG              |
+  | MPK-MEDIA-PATH          |
+  | MPK-PREV                |
+  | *MPK-DIRECTORY*         |
+  | MPK-MEDIA-COLLECTION    |
+  | MPK-MUSIC-PATH          |
+  | MPK-USER-PATH           |
+  | *MPK-DB-DIRECTORY*      |
+  | *MPK-CACHE-DIRECTORY*   |
+  | MPK-STOP                |
+  | MPK-PAUSE               |
+  | GET-MUSIC-METADATA*     |
+  | MPK-TOGGLE              |
+  | *MPK-MEDIA-DIRECTORY*   |
+  | *USER-MPKRC*            |
+  | *MPK-MEDIA-COLLECTIONS* |
+  | MPK-PREVIOUS            |
+  | GET-MUSIC-METADATA      |
+  | LOAD-MPKRC              |
+  | METADATA-SCAN-DIRECTORY |
+  | MPK-ENSURE-DIRECTORIES  |
+  | MPK-SHUFFLE             |
+  | FIND-MPK-SYMBOL         |
+  | *MPK-DATA-DIRECTORY*    |
+  | MPK-NEXT                |
+  | *MUSIC-METADATA*        |
+  | MPK-DB-PATH             |
+  | MPK-CACHE-PATH          |
+  | *KNOWN-MEDIA-TYPES*     |
+  | *MPK-DB-META-DIRECTORY* |
+  | *MPK-USER-DIRECTORY*    |
+  | *MOVIES-METADATA*       |
+  | INIT-MPKRC              |
+  | MPK-DATA-PATH           |
+  | MPK-PLAY                |
+  | *MPK-MEDIA-SOURCES*     |
+  | *MPK-MEDIA-TYPES*       |
+  | *MPK-DB-ID-SEED*        |
+  | MPK-COMPONENT           |
+  | *MPC*                   |
+  | MPK-INIT                |
 
 #+END:
 

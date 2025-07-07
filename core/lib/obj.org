@@ -1,168 +1,256 @@
 #+title: obj
 #+author: Richard Westhaver
 #+setupfile: ../../../clean.theme
+
+=obj= is a collection of CLOS-based protocols and MOP-based
+meta-protocols used throughout core libraries.
+
 #+BEGIN: lisp-system-info :system obj
 - packages
-#+CALL: lisp-system-packages[:post transpose]("obj")
+  #+CALL: lisp-system-packages[:post transpose]("obj")
 
-#+RESULTS:
-| OBJ/AST             |
-| OBJ/TIME            |
-| OBJ/SCHEMA          |
-| OBJ/BUILD           |
-| OBJ/TESTS           |
-| OBJ/PLAN            |
-| OBJ/CONFIG          |
-| OBJ                 |
-| OBJ/URI/PUNYCODE    |
-| OBJ/META/STEALTH    |
-| OBJ/COLOR           |
-| OBJ/SRV             |
-| OBJ/UUID            |
-| OBJ/URL             |
-| OBJ/META/SEALED     |
-| OBJ/URI             |
-| OBJ/STORE           |
-| OBJ/ID              |
-| OBJ/GRAPH           |
-| OBJ/TREE            |
-| OBJ/META/TYPED      |
-| OBJ/TREE/REDBLACK   |
-| OBJ/META/OVERLOADED |
-| OBJ/META/STORED     |
-| OBJ/TENSOR          |
-| OBJ/EQUIV           |
-| OBJ/META/DYNAMIC    |
-| OBJ/SECRET          |
-| OBJ/META            |
-| OBJ/DB              |
-| OBJ/META/FAST       |
-| OBJ/INT             |
-| OBJ/META/FILTERED   |
-| OBJ/META/LAZY       |
-| OBJ/TREE/BROTHER    |
-| OBJ/TREE/AVL        |
-| OBJ/TREE/BTREE      |
+  #+RESULTS:
+  | OBJ/AST             |
+  | OBJ/TIME            |
+  | OBJ/SCHEMA          |
+  | OBJ/BUILD           |
+  | OBJ/TESTS           |
+  | OBJ/PLAN            |
+  | OBJ/CONFIG          |
+  | OBJ                 |
+  | OBJ/URI/PUNYCODE    |
+  | OBJ/META/STEALTH    |
+  | OBJ/COLOR           |
+  | OBJ/SRV             |
+  | OBJ/CACHE           |
+  | OBJ/UUID            |
+  | OBJ/URL             |
+  | OBJ/META/SEALED     |
+  | OBJ/URI             |
+  | OBJ/STORE           |
+  | OBJ/ID              |
+  | OBJ/GRAPH           |
+  | OBJ/TREE            |
+  | OBJ/META/TYPED      |
+  | OBJ/TREE/REDBLACK   |
+  | OBJ/META/OVERLOADED |
+  | OBJ/META/STORED     |
+  | OBJ/TENSOR          |
+  | OBJ/EQUIV           |
+  | OBJ/META/DYNAMIC    |
+  | OBJ/SECRET          |
+  | OBJ/META            |
+  | OBJ/DB              |
+  | OBJ/META/FAST       |
+  | OBJ/INT             |
+  | OBJ/META/FILTERED   |
+  | OBJ/META/LAZY       |
+  | OBJ/META/MIXIN      |
+  | OBJ/TREE/BROTHER    |
+  | OBJ/TREE/AVL        |
+  | OBJ/TREE/BTREE      |
 
 - dependencies
-#+CALL: lisp-system-dependencies[:post transpose]("obj")
+  #+CALL: lisp-system-dependencies[:post transpose]("obj")
 
-#+RESULTS:
-| std |
+  #+RESULTS:
+  | std |
 
 - dependents
-#+CALL: lisp-system-dependents[:post transpose]("obj")
+  #+CALL: lisp-system-dependents[:post transpose]("obj")
 
-#+RESULTS:
-| web        |
-| gui        |
-| homer      |
-| krypt      |
-| packy      |
-| syn        |
-| box        |
-| pod        |
-| vc         |
-| skel       |
-| math/tests |
-| math       |
-| dsp        |
-| organ      |
-| doc/tests  |
-| doc        |
-| q          |
-| rdb/tests  |
-| rdb        |
-| nlp        |
-| cry        |
-| net        |
-| dat        |
-| obj/tests  |
-| uring      |
-| log        |
-| cli        |
-| core       |
-| bin/vc     |
+  #+RESULTS:
+  | web        |
+  | gui        |
+  | homer      |
+  | krypt      |
+  | packy      |
+  | syn        |
+  | box        |
+  | pod        |
+  | vc         |
+  | skel       |
+  | math/tests |
+  | math       |
+  | dsp        |
+  | organ      |
+  | doc/tests  |
+  | doc        |
+  | q          |
+  | rdb/tests  |
+  | rdb        |
+  | nlp        |
+  | cry        |
+  | net        |
+  | dat        |
+  | obj/tests  |
+  | uring      |
+  | log        |
+  | cli        |
+  | core       |
+  | bin/vc     |
 
 - files
-#+CALL: lisp-system-files[:post transpose]("obj")
+  #+CALL: lisp-system-files[:post transpose]("obj")
 
-#+RESULTS:
-| meta/pkg.lisp         |
-| meta/sealed.lisp      |
-| meta/stealth.lisp     |
-| meta/typed.lisp       |
-| meta/filtered.lisp    |
-| meta/fast.lisp        |
-| meta/lazy.lisp        |
-| meta/overloaded.lisp  |
-| meta/stored.lisp      |
-| meta/dynamic.lisp     |
-| pkg.lisp              |
-| id.lisp               |
-| uri/punycode.lisp     |
-| uri/domain.lisp       |
-| uri/uri.lisp          |
-| uri/mask.lisp         |
-| uri/state.lisp        |
-| uri/parse.lisp        |
-| uri/print.lisp        |
-| uri/path.lisp         |
-| uri/intern.lisp       |
-| url.lisp              |
-| tensor/proto.lisp     |
-| tensor/base.lisp      |
-| tensor/loop.lisp      |
-| tensor/print.lisp     |
-| tensor/copy.lisp      |
-| tensor/util.lisp      |
-| tensor/class.lisp     |
-| tensor/readtable.lisp |
-| tree/node.lisp        |
-| tree/avl.lisp         |
-| tree/redblack.lisp    |
-| tree/brother.lisp     |
-| tree/btree.lisp       |
-| equiv.lisp            |
-| color/color.lisp      |
-| color/util.lisp       |
-| color/x11.lisp        |
-| color/palette.lisp    |
-| time/local.lisp       |
-| time/util.lisp        |
-| uuid.lisp             |
-| build.lisp            |
-| ast.lisp              |
-| graph.lisp            |
-| config.lisp           |
-| plan.lisp             |
-| schema.lisp           |
-| db.lisp               |
-| secret.lisp           |
-| store.lisp            |
-| srv.lisp              |
+  #+RESULTS:
+  | meta/pkg.lisp         |
+  | meta/sealed.lisp      |
+  | meta/stealth.lisp     |
+  | meta/typed.lisp       |
+  | meta/filtered.lisp    |
+  | meta/fast.lisp        |
+  | meta/lazy.lisp        |
+  | meta/overloaded.lisp  |
+  | meta/stored.lisp      |
+  | meta/dynamic.lisp     |
+  | meta/mixin.lisp       |
+  | pkg.lisp              |
+  | id.lisp               |
+  | uri/punycode.lisp     |
+  | uri/domain.lisp       |
+  | uri/uri.lisp          |
+  | uri/mask.lisp         |
+  | uri/state.lisp        |
+  | uri/parse.lisp        |
+  | uri/print.lisp        |
+  | uri/path.lisp         |
+  | uri/intern.lisp       |
+  | url.lisp              |
+  | tensor/proto.lisp     |
+  | tensor/base.lisp      |
+  | tensor/loop.lisp      |
+  | tensor/print.lisp     |
+  | tensor/copy.lisp      |
+  | tensor/util.lisp      |
+  | tensor/class.lisp     |
+  | tensor/readtable.lisp |
+  | tree/node.lisp        |
+  | tree/avl.lisp         |
+  | tree/redblack.lisp    |
+  | tree/brother.lisp     |
+  | tree/btree.lisp       |
+  | equiv.lisp            |
+  | color/color.lisp      |
+  | color/util.lisp       |
+  | color/x11.lisp        |
+  | color/palette.lisp    |
+  | time/local.lisp       |
+  | time/util.lisp        |
+  | uuid.lisp             |
+  | build.lisp            |
+  | ast.lisp              |
+  | graph.lisp            |
+  | config.lisp           |
+  | plan.lisp             |
+  | schema.lisp           |
+  | db.lisp               |
+  | secret.lisp           |
+  | store.lisp            |
+  | cache.lisp            |
+  | srv.lisp              |
 
 - tests
-#+CALL: lisp-system-tests[:post transpose]("obj")
+  #+CALL: lisp-system-tests[:post transpose]("obj")
 
-#+RESULTS:
-| FILTERED-FUNCTION |
-| STEALTH-MIXIN     |
-| DYNAMIC-CLASS     |
-| URL               |
-| URIS              |
-| BASIC-GRAPH       |
-| AVL-TREE          |
-| RB-TREE           |
-| BRO-TREE          |
-| GENERIC-TREE      |
-| DEF-SEQ           |
-| DEF-ITER          |
-| UUIDS             |
-| IDS               |
-| COLORS            |
+  #+RESULTS:
+  | FILTERED-FUNCTION |
+  | STEALTH-MIXIN     |
+  | DYNAMIC-CLASS     |
+  | URL               |
+  | URIS              |
+  | BASIC-GRAPH       |
+  | AVL-TREE          |
+  | RB-TREE           |
+  | BRO-TREE          |
+  | GENERIC-TREE      |
+  | DEF-SEQ           |
+  | DEF-ITER          |
+  | UUIDS             |
+  | IDS               |
+  | COLORS            |
 
 - symbols
-#+CALL: lisp-package-symbols[:post codify-transpose]("OBJ")
+  #+CALL: lisp-package-symbols[:post transpose]("OBJ")
+
+  #+RESULTS:
 
 #+END:
+
+* Packages
+:PROPERTIES:
+:ID:       2eaa6668-87e4-4033-b804-0e2de359df8c
+:CREATED:  <2025-07-05 Sat 20:55>
+:END:
+Each package in the =obj= system is loosely speaking its own
+'protocol', providing various classes and generic functions.
+
+There is a special category of package prefixed with =obj/meta/= -
+these packages operate on the level of the Meta-Object Protocol and
+provide special classes called /metaclasses/.
+
+** Meta Packages
+:PROPERTIES:
+:ID:       4441fd36-a1e0-4475-84e9-e8ded08e76a5
+:CREATED:  <2025-07-05 Sat 21:04>
+:END:
+
+*** sealed
+:PROPERTIES:
+:ID:       fa2620fb-bff7-44ce-95b2-26bf9996539a
+:CREATED:  <2025-07-05 Sat 21:04>
+:END:
+
+*** stealth
+:PROPERTIES:
+:ID:       e1b6ff26-9604-426a-a6f7-961f607d332b
+:CREATED:  <2025-07-05 Sat 21:04>
+:END:
+
+*** typed
+:PROPERTIES:
+:ID:       3e85dba6-0c50-4d0a-a60c-ad2676adcca1
+:CREATED:  <2025-07-05 Sat 21:04>
+:END:
+
+*** filtered
+:PROPERTIES:
+:ID:       8d716f94-da08-4a99-ac59-177293e69bc4
+:CREATED:  <2025-07-05 Sat 21:04>
+:END:
+
+*** stored
+:PROPERTIES:
+:ID:       6a2a31cc-6336-4a25-97dc-0e9bf3d31475
+:CREATED:  <2025-07-05 Sat 21:04>
+:END:
+
+*** fast
+:PROPERTIES:
+:ID:       7f796891-5bcd-41d2-9b75-ad1ea7b93e0b
+:CREATED:  <2025-07-05 Sat 21:04>
+:END:
+
+*** lazy
+:PROPERTIES:
+:ID:       68ddc033-89b1-41b7-b04a-df555cfe5e82
+:CREATED:  <2025-07-05 Sat 21:04>
+:END:
+
+*** overloaded
+:PROPERTIES:
+:ID:       66076aa1-db67-49c0-9fbe-9c65f25d6e03
+:CREATED:  <2025-07-05 Sat 21:04>
+:END:
+
+*** dynamic
+:PROPERTIES:
+:ID:       e537a12f-23fe-40fb-954f-58e282eba360
+:CREATED:  <2025-07-05 Sat 21:04>
+:END:
+
+*** mixed
+:PROPERTIES:
+:ID:       c1d953dd-c965-4b22-b8e4-18623a401b19
+:CREATED:  <2025-07-05 Sat 21:05>
+:END:

@@ -1,0 +1,103 @@
+#+title: doc
+#+author: Richard Westhaver
+#+description: Documentation Framework
+#+setupfile: ../../../clean.theme
+#+filetags: lisp doc
+#+property: header-args :dir ~/comp/core/ :exports both
+#+setupfile: ../../../clean.theme
+
+#+BEGIN: lisp-system-info :system doc
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("doc")
+
+  #+RESULTS:
+  | DOC       |
+  | DOC/TESTS |
+
+- dependencies
+  #+CALL: lisp-system-dependencies[:post transpose]("doc")
+
+  #+RESULTS:
+  | std   |
+  | organ |
+  | parse |
+  | obj   |
+  | rdb   |
+  | log   |
+
+- dependents
+  #+CALL: lisp-system-dependents[:post transpose]("doc")
+
+  #+RESULTS:
+  | web       |
+  | syn       |
+  | skel      |
+  | doc/tests |
+  | core      |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("doc")
+
+  #+RESULTS:
+  | pkg.lisp     |
+  | proto.lisp   |
+  | err.lisp     |
+  | symbol.lisp  |
+  | file.lisp    |
+  | package.lisp |
+  | system.lisp  |
+  | dist.lisp    |
+  | reprex.lisp  |
+  | image.lisp   |
+
+- tests
+  #+CALL: lisp-system-tests[:post transpose]("doc")
+
+  #+RESULTS:
+  | DOC-DB              |
+  | IMAGE-DOCUMENTATION |
+  | DOC-DIST            |
+  | DOC-FILE            |
+  | DOC-SYSTEM          |
+  | DOC-PACKAGE         |
+  | DOC-SYMBOL          |
+
+- symbols
+  #+CALL: lisp-package-symbols[:post transpose]("DOC")
+
+  #+RESULTS:
+  | DEFINITION-SPECIFIER         |
+  | DOC-PACKAGES                 |
+  | DOC-SYMBOL                   |
+  | DOC-SYMBOLS                  |
+  | FILE-HEADLINE                |
+  | DOC-PACKAGE                  |
+  | FIND-DEFINITIONS             |
+  | +MIN-HEADING-LEVEL+          |
+  | DOC-PARSE                    |
+  | DOC-DIRECTORIES              |
+  | FILE-DOCUMENTATION           |
+  | DOC-DIST                     |
+  | DO-SYMBOL*                   |
+  | IMAGE-DOCUMENTATION          |
+  | DOC-SYSTEM                   |
+  | SYMBOL-DOCUMENTATION         |
+  | SYMBOL-CLASSIFICATION-STRING |
+  | DOC-FILES                    |
+  | +MAX-HEADING-LEVEL+          |
+  | DOC-FILE                     |
+  | DEFINE-SOURCE-FILE*          |
+  | PACKAGE-DOCUMENTATION        |
+  | DOC-ERROR                    |
+  | FILE-HEADER                  |
+  | DOC-DEPENDENTS               |
+  | *SOURCE-FILE-TYPES*          |
+  | DOC-PATHNAMES                |
+  | CLASSIFY-SYMBOL              |
+  | SYSTEM-DOCUMENTATION         |
+  | DOC-DEPENDENCIES             |
+  | READ-FILE-HEADER             |
+  | DIST-DOCUMENTATION           |
+  | FILE-HEADING                 |
+
+#+END
