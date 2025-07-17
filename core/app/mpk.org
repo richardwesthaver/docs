@@ -1,22 +1,27 @@
 #+title: MPK
 #+description: Media Production Kit
 #+setupfile: ../../../clean.theme
-MPK is a Media Production Kit in Lisp.
+=mpk= is our Media Production Kit. It is optimized for processing and
+maintaining mid-sized collections of mixed media (10-100TB).
 
-- provide a shared client for popular audio/video tools and
-  applications
-  - GStreamer
+- codecs
   - MIDI
   - OSC
+- interfaces
   - mpd
   - ytdl
-  - musicbrainz/freesound
-  - (maybe) pipewire,jack
-  - (todo) library management
+  - GStreamer
+  - sndfile
+  - chromaprint
+  - transmission
+  - ffmpeg
+  - picard
+- features
+  - mlm (library manager)
+  - metro (MIDI/OSC client/server)
+  - STASH/SESH client/servers
+  - players (audio/video, streaming, DRM)
 
-- implements STD/PIPE protocol
-
-* system
 #+BEGIN: lisp-system-info :system mpk :tests nil
 - packages
   #+CALL: lisp-system-packages[:post transpose]("mpk")
@@ -107,31 +112,75 @@ MPK is a Media Production Kit in Lisp.
 
 #+END:
 
-* help
-#+begin_src shell :results output :exports both
-mpk -h
+* Protocol
+:PROPERTIES:
+:ID:       4c8790ef-ca92-472b-b0ff-5f00c1752f62
+:CREATED:  <2025-07-08 Tue 17:40>
+:END:
+The protocol provided by the =mpk= package can be thought of as a
+cross between =skel= and =dsp=. =mpk-project= and =mpk-component=
+inherit directly from =sk-project= and =sk-component=. Many of the
+generic methods provided operate on =media-file= objects and use =dsp=
+internals.
+
+* Configuration
+:PROPERTIES:
+:ID:       6168e56a-694b-4eb8-9a36-d2167390ce48
+:CREATED:  <2025-07-08 Tue 16:56>
+:END:
+=mpk= supports configuration in the standard s-expression
+format. Where possible we also support the default file formats used
+by the tools we rely on (picard, transmission, mpd).
+
+#+begin_src lisp :results output :package mpk
+  (describe 'mpk-config)
 #+end_src
 
 #+RESULTS:
 #+begin_example
-mpk v0.1.0 --- Media Production Kit
+MPK:MPK-CONFIG
+  [symbol]
 
-options:
-  -h/--help               print help
-    :doc Print help and exit.
-  -m/--mpd                include MPD stats
-
-commands:
-  play                    
-  toggle                  
-  pause                   
-  stop                    
-  next                    
-  prev                    
-  shuffle                 
-  mpc                     
-  get                     
-  daemon                  
-  stats*                  
-    -m/--mpd                include MPD stats
+MPK-CONFIG names the standard-class #<STANDARD-CLASS MPK:MPK-CONFIG>:
+  Direct superclasses: AST, ID, CONFIG
+  No subclasses.
+  Not yet finalized.
+  Direct slots:
+    PATH
+      Type: (OR PATHNAME NULL)
+      Initargs: :PATH
+    LOGGER
+      Type: (OR NULL LOG:LOGGER-CONFIG)
+      Initargs: :LOGGER
+      Initform: (DEFAULT-LOGGER-CONFIG)
+      Readers: LOGGER
+      Writers: (SETF LOGGER)
+    MPD
+      Type: MPK/MPD:MPD-CONFIG
+      Initargs: :MPD
+    JACK
+      Initargs: :JACK
+    PIPEWIRE
+      Initargs: :PIPEWIRE
+    ALSA
+      Initargs: :ALSA
+    GSTREAMER
+      Initargs: :GSTREAMER
+    METRO
+      Initargs: :METRO
+    PICARD
+      Type: CLI/TOOLS/MEDIA:PICARD-CONFIG
+      Initargs: :PICARD
+    TRANSMISSION
+      Type: CLI/TOOLS/NET::TRANSMISSION-CONFIG
+      Initargs: :TRANSMISSION
+    YTDL
+      Initargs: :YTDL
 #+end_example
+
+* CLI
+:PROPERTIES:
+:ID:       096c8cf3-925a-4f03-b030-a3417ed8ea27
+:CREATED:  <2025-07-08 Tue 16:41>
+:END:
+=mpk= provides a CLI application of the same name.

@@ -140,55 +140,51 @@ The rest of the features provided by the core are also tracked in the
 | :UBLKSRV                        |
 | :SNDFILE                        |
 | :SSH2                           |
+| :XKBCOMMON                      |
 | :TREE-SITTER-JSON               |
-| :PRELUDE                        |
+| :BTRFSUTIL                      |
+| :BTRFS                          |
 | :USER                           |
+| :SWANK                          |
+| :SKEL                           |
 | :TREE-SITTER-RUST               |
 | :TREE-SITTER-JAVASCRIPT         |
 | :TREE-SITTER-C                  |
 | :TREE-SITTER-ALIEN              |
 | :TREE-SITTER                    |
-| :SWANK                          |
-| :SKEL                           |
 | :CORE                           |
 | :BLAKE3                         |
 | :RDB                            |
 | :ROCKSDB                        |
 | :RFC3912                        |
-| :RFC3492                        |
 | :NET                            |
+| :SPLIT-SEQUENCE                 |
+| :BORDEAUX-THREADS               |
+| :GLOBAL-VARS                    |
+| :FLEXI-STREAMS                  |
 | CFFI-FEATURES:FLAT-NAMESPACE    |
 | CFFI-FEATURES:X86-64            |
 | CFFI-FEATURES:UNIX              |
 | :CFFI                           |
 | CFFI-SYS::FLAT-NAMESPACE        |
-| :CLI                            |
+| ALEXANDRIA::SEQUENCE-EMPTYP     |
 | :IO                             |
 | :KBD                            |
-| :EVDEV                          |
-| :XKBCOMMON                      |
-| :BTRFSUTIL                      |
-| :BTRFS                          |
 | :ZSTD                           |
 | :URING                          |
-| :FLEXI-STREAMS                  |
 | :RFC8141                        |
 | :RFC6874                        |
 | :RFC3986                        |
-| :SPLIT-SEQUENCE                 |
+| :RFC3492                        |
 | :IRONCLAD-ASSEMBLY              |
 | :IRONCLAD-SB-VM-EA              |
 | :IRONCLAD-FAST-MOD64-ARITHMETIC |
 | :IRONCLAD-FAST-MOD32-ARITHMETIC |
-| :BORDEAUX-THREADS               |
-| :GLOBAL-VARS                    |
-| ALEXANDRIA::SEQUENCE-EMPTYP     |
+| :STD                            |
 | :NAMED-READTABLES               |
-| CHIPZ-SYSTEM:GRAY-STREAMS       |
-| :SBCL-USES-SB-ROTATE-BYTE       |
 | :THREAD-SUPPORT                 |
 | :CL-PPCRE                       |
-| :STD                            |
+| :CLI                            |
 | :QUICKLISP                      |
 | :ASDF3.3                        |
 | :ASDF3.2                        |
@@ -263,7 +259,7 @@ get the source, load the project =skelfile= and run =sk-make=.
   #+end_src
 
 Then in the SBCL REPL:
-#+begin_src lisp :dir ~/comp/core/ :exports both
+#+begin_src lisp :dir ~/comp/core/ :exports both :eval never
   (ql:quickload :skel)
   (in-package :sk-user)
   (init-skel)
@@ -285,7 +281,7 @@ is called and might need input at the terminal.
 
 You should see some output like the following:
 
-#+begin_src 
+#+begin_example
 skel -> core -> /usr/local/bin/
 homer -> core -> /usr/local/bin/
 packy -> core -> /usr/local/bin/
@@ -294,7 +290,7 @@ organ -> core -> /usr/local/bin/
 vc -> core -> /usr/local/bin/
 gen -> core -> /usr/local/bin/
 swm -> core -> /usr/local/bin/
-#+end_src
+#+end_example
 
 **** Dependencies
 :PROPERTIES:
@@ -356,7 +352,7 @@ The core is a single binary which dispatches on argv[0] from the
 CLI. Each unique symlink to the core binary is treated as a separate
 dispatch to a 'main' function like so:
 
-#+begin_src lisp :exports code
+#+begin_src lisp :exports code :eval never
   (define-multi-main dispatch-core
     (progn (in-package :core-lisp)
            ,#+nil ...)
@@ -430,6 +426,19 @@ Emacs configuration using the =skel= command.
 The default config supports user customizations in a file with the
 same name as the current user, so when the current =$USER= is ~ellis~
 then we check for the file =ellis.el= and load it if it exists.
+
+* Demo
+:PROPERTIES:
+:ID:       ec5dca14-eb23-4dac-962a-34f1a5d4fd1f
+:CREATED:  <2025-07-07 Mon 14:11>
+:END:
+Core demo applications, examples, and tutorials can be found in the
+[[gh:richardwesthaver/demo][demo repository]].
+** Examples
+:PROPERTIES:
+:ID:       152b1e3d-d1ee-4098-bd98-38ebb0e14667
+:CREATED:  <2025-07-07 Mon 14:10>
+:END:
 
 * Testing
 :PROPERTIES:
