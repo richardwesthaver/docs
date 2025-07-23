@@ -6,7 +6,7 @@
 #+property: header-args :dir ~/comp/core/ :exports both
 #+setupfile: ../../../clean.theme
 
-#+BEGIN: lisp-system-info :system dat
+#+BEGIN: lisp-system-info :system dat :tests nil
 - packages
   #+CALL: lisp-system-packages[:post transpose]("dat")
 
@@ -19,7 +19,6 @@
   | DAT/DOT         |
   | DAT/INI         |
   | DAT/CSV         |
-  | DAT/FIXML       |
   | DAT/GIF         |
   | DAT/XML         |
   | DAT/HTML        |
@@ -55,23 +54,24 @@
   #+CALL: lisp-system-dependents[:post transpose]("dat")
 
   #+RESULTS:
-  | web       |
-  | homer     |
-  | krypt     |
-  | packy     |
-  | box       |
-  | pod       |
-  | skel      |
-  | jack      |
-  | dsp       |
-  | q         |
-  | rdb       |
-  | cry       |
-  | rt        |
-  | net       |
-  | dat/tests |
-  | cli       |
-  | core      |
+  | clx/truetype |
+  | web          |
+  | homer        |
+  | krypt        |
+  | packy        |
+  | box          |
+  | pod          |
+  | skel         |
+  | jack         |
+  | dsp          |
+  | q            |
+  | rdb          |
+  | cry          |
+  | rt           |
+  | net          |
+  | dat/tests    |
+  | cli          |
+  | core         |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("dat")
@@ -96,7 +96,6 @@
   | parquet/proto.lisp    |
   | xml/xml.lisp          |
   | xml/svg.lisp          |
-  | xml/fixml.lisp        |
   | html/const.lisp       |
   | html/entity.lisp      |
   | html/html.lisp        |
@@ -113,10 +112,10 @@
   | base64.lisp           |
   | qrcode.lisp           |
 
-- tests
-  #+CALL: lisp-system-tests[:post transpose]("dat")
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("DAT")
+
+  #+RESULTS:
 
 #+END:
 
