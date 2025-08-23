@@ -37,7 +37,7 @@ guide]] and further enriched or optimized based on our own expectations.
   | STD/PIPE             |
   | STD/ASYNC            |
   | STD/BIT              |
-  | STD/HASH-TABLE       |
+  | STD/HASH             |
   | STD/DEFSYS           |
   | STD/LIST             |
   | STD/SERDE            |
@@ -249,8 +249,8 @@ std-int:*std-packages*
 - STD/FMT
 - STD/RAND
 - STD/PAR
-- STD/ASYNC
 - STD/TASK
+- STD/ASYNC
 - STD/THREAD
 - STD/PIPE
 - STD/FILE
@@ -259,18 +259,18 @@ std-int:*std-packages*
 - STD/META
 - STD/ALIEN
 - STD/SERDE
-- STD/COMP
 - STD/BIT
 - STD/SYS
 - STD/MACS
 - STD/READTABLE
 - STD/CURRY
-- STD/HASH-TABLE
+- STD/HASH
 - STD/ARRAY
 - STD/STREAM
 - STD/NUM
 - STD/STRING
 - STD/TYPE
+- STD/COMP
 - STD/CONDITION
 - STD/PRIM
 - STD/LIST
@@ -798,7 +798,7 @@ spans multiple files covering specific features.
 
 - implementation re-exports including =with-array-data=
 
-** hash-table
+** hash
 :PROPERTIES:
 :ID:       2c8b3513-b8df-4f74-8ff7-9c2a5d30a7a8
 :CREATED:  <2025-07-05 Sat 00:26>
@@ -806,10 +806,10 @@ spans multiple files covering specific features.
 Hash-tables in Lisp are the O(1) older brother of alists and
 plists. Sometimes it is convenient to use the cons-based siblings, but
 for most instance of key -> value pairs you're better off with a
-hash-table. =std/hash-table= provides some utilities for working with
+hash-table. =std/hash= provides some utilities for working with
 them.
 
-#+CALL: lisp-package-symbols[:post transpose]("STD/HASH-TABLE")
+#+CALL: lisp-package-symbols[:post transpose]("STD/HASH")
 
 #+RESULTS:
 | HASH-TABLE-KEYS     |
@@ -2359,9 +2359,3 @@ ascii art
 | UNICODE<=                          |
 | COLLAPSE-WHITESPACES               |
 | CHARACTER-ENCODING-ERROR           |
-
-* Tests
-:PROPERTIES:
-:ID:       10eacb4e-d147-48e4-8989-49f48b6253e9
-:CREATED:  <2025-07-04 Fri 22:44>
-:END:

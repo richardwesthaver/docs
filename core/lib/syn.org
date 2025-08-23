@@ -7,36 +7,34 @@
   #+CALL: lisp-system-packages[:post transpose]("syn")
 
   #+RESULTS:
-  | SYN/TESTS/GEN/RS  |
-  | SYN/TESTS/GEN     |
-  | SYN/GEN/PY        |
-  | SYN/GEN/RS/SWAP   |
-  | SYN/GEN/CPP/SWAP  |
-  | SYN/GEN/RS        |
-  | SYN/TS            |
-  | SYN/LANG          |
-  | SYN/TESTS         |
-  | SYN/TEMPO         |
-  | SYN/TESTS/LANG/RS |
-  | SYN/GEN/CPP/SYM   |
-  | SYN/GEN/RS/SYM    |
-  | SYN/GEN/CPP       |
-  | SYN               |
-  | SYN/LANG/JS       |
-  | SYN/TESTS/GEN/C   |
-  | SYN/LINT          |
-  | SYN/GEN           |
-  | SYN/GEN/CU/SYM    |
-  | SYN/GEN/C         |
-  | SYN/GEN/JS        |
-  | SYN/CLI           |
-  | SYN/GEN/CU        |
-  | SYN/GEN/C/SWAP    |
-  | SYN/LANG/RS       |
-  | SYN/TESTS/LANG    |
-  | SYN/LANG/C        |
-  | SYN/GEN/C/SYM     |
-  | SYN/TESTS/LANG/C  |
+  | SYN/TESTS/GEN    |
+  | SYN/GEN/PY       |
+  | SYN/LANG/PY      |
+  | SYN/GEN/RS/SWAP  |
+  | SYN/GEN/CPP/SWAP |
+  | SYN/GEN/RS       |
+  | SYN/TS           |
+  | SYN/LANG         |
+  | SYN/TESTS        |
+  | SYN/TEMPO        |
+  | SYN/GEN/CPP/SYM  |
+  | SYN/GEN/RS/SYM   |
+  | SYN/GEN/CPP      |
+  | SYN              |
+  | SYN/LANG/JS      |
+  | SYN/LINT         |
+  | SYN/GEN          |
+  | SYN/GEN/CU/SYM   |
+  | SYN/GEN/C        |
+  | SYN/GEN/JS       |
+  | SYN/GROVEL       |
+  | SYN/CLI          |
+  | SYN/GEN/CU       |
+  | SYN/GEN/C/SWAP   |
+  | SYN/LANG/RS      |
+  | SYN/TESTS/LANG   |
+  | SYN/LANG/C       |
+  | SYN/GEN/C/SYM    |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("syn")
@@ -57,7 +55,6 @@
   | syn/tests |
   | skel      |
   | core/user |
-  | bin/gen   |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("syn")
@@ -68,6 +65,7 @@
   | lang/c.lisp        |
   | lang/js.lisp       |
   | lang/rs.lisp       |
+  | lang/py.lisp       |
   | gen/pkg.lisp       |
   | gen/condition.lisp |
   | gen/var.lisp       |
@@ -92,12 +90,17 @@
   | gen/js/pkg.lisp    |
   | lint.lisp          |
   | tempo.lisp         |
+  | grovel.lisp        |
   | cli.lisp           |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("syn")
 
   #+RESULTS:
+  | PY-SRC   |
+  | JS-SRC   |
+  | RUST-SRC |
+  | C-SRC    |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("SYN")
@@ -105,15 +108,15 @@
   #+RESULTS:
   | DELETE-CODE-PRINTER    |
   | TOP-INFO               |
-  | *BACKUP-READTABLE*     |
+  | SRC-LOCATION           |
   | PUSH-INFO              |
   | *INDENT*               |
   | --INDENT               |
-  | LANG                   |
+  | INDENT                 |
   | MAKE-PROXY             |
   | LANGUAGE               |
   | %SELF                  |
-  | INDENT                 |
+  | PARSE-STRING           |
   | DEFINE-CODE-SWITCH     |
   | WITH-CODE-PRINTER      |
   | EMPTY                  |
@@ -128,12 +131,15 @@
   | IDENT                  |
   | *CODE-DISPATCH-TABLE*  |
   | TOP-SIGN               |
-  | GEN-PACKAGE            |
+  | MAKE-NODE              |
+  | DEFINE-CODE-SWITCHES   |
   | GEN-CONDITION          |
   | DEFINE-CODE-READER     |
   | LANG-COUNTS            |
+  | MAKE-NODES             |
+  | GEN-PACKAGE            |
   | GEN-DESIGNATOR         |
-  | QUOTY                  |
+  | ++INDENT               |
   | STREAM                 |
   | CODE-PRINTER           |
   | *LANGUAGE*             |
@@ -141,11 +147,12 @@
   | *GEN-DESIGNATORS*      |
   | CHAR-LITERAL           |
   | GEN-READER             |
-  | SRC-LOCATION           |
+  | INIT-GEN               |
+  | LANG                   |
   | STR-LITERAL            |
   | GEN                    |
   | LOAD-GEN               |
-  | DEFINE-CODE-SWITCHES   |
+  | *BACKUP-READTABLE*     |
   | WRITE-CODE             |
   | DEL-PROXY              |
   | NODE-SLOT              |
@@ -154,22 +161,57 @@
   | NODE                   |
   | *CODE-READER*          |
   | FIND-INFO              |
-  | INIT-GEN               |
+  | QUOTY                  |
   | *GEN*                  |
   | TAG                    |
   | PARSE-FILE             |
   | POP-SIGN               |
   | FUNCTION-CALL          |
   | PUSH-SIGN              |
-  | GEN-READER-SWITCH      |
   | DEFINE-CODE-PRINTER    |
   | SIMPLE-GEN-ERROR       |
   | %LEVEL                 |
   | WITH-CODEGEN           |
   | *CL-SYMBOLS*           |
-  | ++INDENT               |
+  | GEN-READER-SWITCH      |
   | INFO-SIZE              |
   | LISP                   |
   | BUILD-SWAP-PACKAGE     |
 
 #+END
+
+* Packages
+:PROPERTIES:
+:ID:       2ec0ef2a-dfa2-44b6-9707-6f6732c934f1
+:CREATED:  <2025-08-20 Wed 22:58>
+:END:
+
+** TS
+:PROPERTIES:
+:ID:       524ef5b4-036a-415c-ad3b-1ebcd8d12e49
+:CREATED:  <2025-08-20 Wed 22:59>
+:END:
+High-level TreeSitter bindings.
+
+** Lang
+:PROPERTIES:
+:ID:       7825063e-cc37-414e-ab69-abdba437c036
+:CREATED:  <2025-08-20 Wed 22:59>
+:END:
+The lang subsystem contains Language-specific packages. Loading these
+packages will ensure the environment is capable of parsing and
+generating the designated lang to and from =AST= objects.
+
+** Gen
+:PROPERTIES:
+:ID:       81f76022-dce6-4a0a-84cc-4a35b5858fa1
+:CREATED:  <2025-08-20 Wed 22:58>
+:END:
+Our Lisp code generator.
+
+** Lint
+:PROPERTIES:
+:ID:       026f0c1c-d3fd-421f-a546-49ca39e7be64
+:CREATED:  <2025-08-20 Wed 22:59>
+:END:
+Our Lisp code linter.
