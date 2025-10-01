@@ -238,7 +238,7 @@ when enabling additional build-time features.
 :PROPERTIES:
 :ID:       636ffa98-c39a-4f2a-9a49-aa82497a8ca8
 :END:
-*** Bootstrap
+** Bootstrap
 :PROPERTIES:
 :ID:       dcb3ffff-5388-4387-8a46-553ae0309d70
 :END:
@@ -290,7 +290,7 @@ gen -> core -> /usr/local/bin/
 swm -> core -> /usr/local/bin/
 #+end_example
 
-**** Dependencies
+*** Dependencies
 :PROPERTIES:
 :ID:       22b763b9-c781-4061-b5ef-fc4f19720cf0
 :END:
@@ -332,7 +332,7 @@ you're on GNU/Linux and have the required packages installed.
   - glib
   - chromaprint
   - openblas (blas/lapack)
-*** Configuration
+** Configuration
 :PROPERTIES:
 :ID:       d9a1f958-c43e-4465-9916-3526f7a27268
 :END:
@@ -342,7 +342,7 @@ install a default one for you.
 
 The only other /required/ development dependency which needs
 configuring is Emacs.
-**** Core
+*** Core
 :PROPERTIES:
 :ID:       db2ee1f1-846f-433c-9747-83ec18d47e40
 :END:
@@ -381,7 +381,7 @@ Canonically that would be:
    :key2 val2)
 #+end_src
 
-**** Emacs
+*** Emacs
 :PROPERTIES:
 :ID:       6c87dbd0-0a4b-4395-bc70-fff94b680787
 :END:
@@ -403,6 +403,7 @@ Emacs configuration using the =skel= command.
   bar.el -> /home/ellis/.emacs.d/lib/bar.el
   c2.el -> /home/ellis/.emacs.d/lib/c2.el
   exec-path-from-shell.el -> /home/ellis/.emacs.d/lib/exec-path-from-shell.el
+  gen.el -> /home/ellis/.emacs.d/lib/gen.el
   graph.el -> /home/ellis/.emacs.d/lib/graph.el
   inbox.el -> /home/ellis/.emacs.d/lib/inbox.el
   mpk.el -> /home/ellis/.emacs.d/lib/mpk.el
@@ -425,20 +426,14 @@ The default config supports user customizations in a file with the
 same name as the current user, so when the current =$USER= is ~ellis~
 then we check for the file =ellis.el= and load it if it exists.
 
-* Demo
+** Demo
 :PROPERTIES:
 :ID:       ec5dca14-eb23-4dac-962a-34f1a5d4fd1f
 :CREATED:  <2025-07-07 Mon 14:11>
 :END:
 Core demo applications, examples, and tutorials can be found in the
-[[gh:richardwesthaver/demo][demo repository]].
-** Examples
-:PROPERTIES:
-:ID:       152b1e3d-d1ee-4098-bd98-38ebb0e14667
-:CREATED:  <2025-07-07 Mon 14:10>
-:END:
-
-* Testing
+[[gh:richardwesthaver/demo][demo repository]] with documentation [[comp:docs/demo][here]].
+** Testing
 :PROPERTIES:
 :ID:       c074e53b-846d-45ed-8ddc-70e559ed6f0c
 :END:
@@ -451,7 +446,7 @@ testing the =IO= module system.
 In addition to the test suite we have a set of experimental
 benchmarks. These are kept in the top-level =bench= directory.
 
-** Regression Tests
+*** Regression Tests
 :PROPERTIES:
 :ID:       74af2f86-9025-44c8-83de-d41816d623bf
 :CREATED:  <2025-06-02 Mon 18:26>
@@ -470,7 +465,7 @@ or from lisp:
   (rt:run-all-tests)
 #+end_src
 
-** Benchmarks
+*** Benchmarks
 :PROPERTIES:
 :ID:       d2b45403-cec0-4b17-9295-d2ae7f19a1df
 :CREATED:  <2025-06-02 Mon 18:26>
@@ -494,7 +489,12 @@ or from lisp:
 #+RESULTS:
 : #<PACKAGE "CORE/BENCH/DB/STRESS">
 
-* Contributing
+** Documentation
+:PROPERTIES:
+:ID:       2634e0bd-29b2-4191-9892-766abfa7435e
+:CREATED:  <2025-09-30 Tue 21:48>
+:END:
+** Contributing
 :PROPERTIES:
 :ID:       e0657c76-395c-47b5-b5a6-1dcebd59ce7c
 :CREATED:  <2025-06-02 Mon 19:36>
@@ -508,3 +508,119 @@ packages.
 See [[https://awesome-cl.com/][Awesome CL]] for a list of projects which could use additional
 support, and take note the comments scattered throughout the core
 source code which often reference popular packages from the ecosystem.
+
+*** TODO Style Guide
+:PROPERTIES:
+:ID:       40fc3406-0280-49e9-93b0-57faeb595d36
+:CREATED:  <2025-09-30 Tue 21:45>
+:END:
+:LOGBOOK:
+- State "TODO"       from              [2025-09-30 Tue 21:49]
+:END:
+
+* Concepts
+:PROPERTIES:
+:ID:       8e379ae7-5eca-4ccb-8603-e32a20ef2d37
+:CREATED:  <2025-09-30 Tue 21:49>
+:END:
+** ULang
+:PROPERTIES:
+:ID:       17f9cf38-c7a3-42f7-9b48-58c9999d1b71
+:CREATED:  <2025-09-30 Tue 21:49>
+:END:
+*** Babel
+:PROPERTIES:
+:ID:       5dacc810-e6c2-49c3-ba62-c85f536c44e4
+:CREATED:  <2025-09-30 Tue 21:49>
+:END:
+*** Style
+:PROPERTIES:
+:ID:       63185a8a-cd68-4697-b5c8-eaa49eff514e
+:CREATED:  <2025-09-30 Tue 21:51>
+:END:
+*** Workflows
+:PROPERTIES:
+:ID:       0fdb6ac8-baa0-4130-9ce2-c0fc38b38475
+:CREATED:  <2025-09-30 Tue 21:51>
+:END:
+*** Glossary
+:PROPERTIES:
+:ID:       9e9b92ed-4ae7-4253-b41c-b1a862c9a538
+:CREATED:  <2025-09-30 Tue 21:52>
+:END:
+** Lisp
+:PROPERTIES:
+:ID:       da4bc7cd-8b7f-4969-9dd5-a0c10a5c41b0
+:CREATED:  <2025-09-30 Tue 21:50>
+:END:
+*** Macros
+:PROPERTIES:
+:ID:       1fdb7040-d003-4734-b3d3-7453782f8a63
+:CREATED:  <2025-09-30 Tue 21:51>
+:END:
+*** Images
+:PROPERTIES:
+:ID:       0883806d-7660-4dba-8b23-1a9c43b303b3
+:CREATED:  <2025-09-30 Tue 21:50>
+:END:
+*** Compilers
+:PROPERTIES:
+:ID:       861a913e-f575-4f7d-8664-b11ff4d43b8d
+:CREATED:  <2025-09-30 Tue 21:50>
+:END:
+*** Modules
+:PROPERTIES:
+:ID:       f81af189-def0-4433-8da3-a9817a663245
+:CREATED:  <2025-09-30 Tue 21:50>
+:END:
+*** DSLs
+:PROPERTIES:
+:ID:       b9f18978-82e5-46bd-a5f2-1aee430103bd
+:CREATED:  <2025-09-30 Tue 21:53>
+:AKA: Domain Specific Languages
+:END:
+**** Systems
+:PROPERTIES:
+:ID:       236ba44b-dd4a-4625-af74-cabfc208537b
+:CREATED:  <2025-09-30 Tue 21:50>
+:END:
+** Control
+:PROPERTIES:
+:ID:       fe2c5b29-2953-4f45-ad05-64eb097f99b5
+:CREATED:  <2025-09-30 Tue 21:54>
+:END:
+*** Source
+:PROPERTIES:
+:ID:       1ec074bf-4769-4cbf-91f8-95b2d32f0e1f
+:CREATED:  <2025-09-30 Tue 21:54>
+:END:
+*** Compute
+:PROPERTIES:
+:ID:       cc8a17af-e01f-4004-98a3-546e3d2397ce
+:CREATED:  <2025-09-30 Tue 21:54>
+:END:
+*** Data
+:PROPERTIES:
+:ID:       380fbb96-b625-4165-aea1-b9afdef0db0f
+:CREATED:  <2025-09-30 Tue 21:54>
+:END:
+* Features
+:PROPERTIES:
+:ID:       06954eeb-7ed8-4a81-ae8b-730b4c89e40e
+:CREATED:  <2025-09-30 Tue 21:55>
+:END:
+* Protocols
+:PROPERTIES:
+:ID:       bc25aea1-1375-405e-b091-6660e21e9916
+:CREATED:  <2025-09-30 Tue 21:56>
+:END:
+* Applications
+:PROPERTIES:
+:ID:       01613601-0dc2-4d4d-9354-7ffcc0a1eaed
+:CREATED:  <2025-09-30 Tue 21:58>
+:END:
+* Hacking
+:PROPERTIES:
+:ID:       a2797272-550f-4b96-a0c5-c0660af57d05
+:CREATED:  <2025-09-30 Tue 21:56>
+:END:
