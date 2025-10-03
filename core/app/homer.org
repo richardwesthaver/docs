@@ -9,90 +9,6 @@
   - maintains user configs, repos, services, applications
   - other lispy endpoints
 
-* system
-#+BEGIN: lisp-system-info :system homer :tests nil
-- packages
-  #+CALL: lisp-system-packages[:post transpose]("homer")
-
-  #+RESULTS:
-  | HOMER/CORE |
-  | HOMER/CLI  |
-  | HOMER      |
-
-- dependencies
-  #+CALL: lisp-system-dependencies[:post transpose]("homer")
-
-  #+RESULTS:
-  | core  |
-  | NIL   |
-  | cli   |
-  | krypt |
-  | skel  |
-  | io    |
-  | pod   |
-  | box   |
-  | net   |
-  | obj   |
-  | dat   |
-  | mpk   |
-
-- dependents
-  #+CALL: lisp-system-dependents[:post transpose]("homer")
-
-  #+RESULTS:
-  | bin/homer |
-
-- files
-  #+CALL: lisp-system-files[:post transpose]("homer")
-
-  #+RESULTS:
-  | pkg.lisp   |
-  | var.lisp   |
-  | log.lisp   |
-  | util.lisp  |
-  | task.lisp  |
-  | cfg.lisp   |
-  | srv.lisp   |
-  | gui.lisp   |
-  | cli.lisp   |
-  | homer.lisp |
-
-- symbols
-  #+CALL: lisp-package-symbols[:post transpose]("HOMER")
-
-  #+RESULTS:
-  | HOMER-STATUS               |
-  | HOME-CONFIG-SLOT           |
-  | COMPARE-HOME-FILE          |
-  | *HOMER-FORCE*              |
-  | HOME-CONFIG                |
-  | HOMER-SERVICE-CONFIG       |
-  | *HOMER-CLI*                |
-  | *USER-HOMERC*              |
-  | SYSTEMD-STATUS             |
-  | *HOMER-TASK-POOL*          |
-  | *HOMER-LOGGER*             |
-  | HOMER-JOB                  |
-  | HOMER-TASK                 |
-  | HOMER-MAYBE-PUSH           |
-  | *HOME-CONFIG*              |
-  | SYSTEMD-RESTART            |
-  | HOMER-MAYBE-INSTALL        |
-  | SYSTEMD-START              |
-  | HOMER-MAYBE-PULL           |
-  | SYSTEMD-SERVICE-CONFIG     |
-  | HOMER-USER-INIT            |
-  | HOMER-SERVICE-START        |
-  | *SYSTEMD-CONFIG-DIRECTORY* |
-  | SYSTEMD-STOP               |
-  | HOMER-COPY                 |
-  | *HOME-HIDDEN-PATHS*        |
-  | HOMER-SERVICE-RESTART      |
-  | LOAD-HOMERC                |
-  | *USER-HOMEDIR*             |
-
-#+END:
-
 * help
 :PROPERTIES:
 :ID:       c7d8f1e6-cbcf-4736-b48b-d76f70c3a745
@@ -118,13 +34,23 @@ options:
 
 commands:
   show                    
+
   check*                  
+
   push                    
+
   pull                    
+
   install                 
+
   run                     
+
   start                   
+
   restart                 
+
   stop                    
+
   status                  
+
 #+end_example

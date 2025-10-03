@@ -17,19 +17,24 @@ libraries and apps.
   #+CALL: lisp-system-dependencies[:post transpose]("log")
 
   #+RESULTS:
-  | std |
-  | io  |
-  | obj |
+  | std    |
+  | io     |
+  | obj    |
+  | syslog |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("log")
 
   #+RESULTS:
-  | gui             |
-  | krypt           |
+  | jpeg/tests      |
+  | jpeg            |
+  | matroska/tests  |
+  | matroska        |
+  | arrow/tests     |
+  | arrow           |
+  | vc              |
   | box/tests       |
   | box             |
-  | vc              |
   | ffmpeg/tests    |
   | ffmpeg          |
   | jack            |
@@ -75,7 +80,7 @@ libraries and apps.
   #+CALL: lisp-system-tests[:post transpose]("log")
 
   #+RESULTS:
-  | DATABASE-LOGGER      |
+  | DB-LOGGER            |
   | STOP-LOGGER          |
   | FAST-STREAM          |
   | STREAM               |
@@ -89,80 +94,77 @@ libraries and apps.
   #+CALL: lisp-package-symbols[:post transpose]("LOG")
 
   #+RESULTS:
-  | *LOG-TIMESTAMP-FORMAT*         |
-  | *LOG-INDENT*                   |
-  | LOG-P                          |
-  | TRACE!                         |
-  | LOG-CONFIG                     |
-  | ROTATING-FILE-SINK             |
-  | DEFAULT-LOGGER                 |
-  | ERROR-P                        |
-  | FATAL-DESCRIBE                 |
-  | LOG-TIMESTAMP-SOURCE           |
-  | *LOG-LEVELS*                   |
-  | LOG-ROUTER-P                   |
-  | ALIEN-SOURCE                   |
-  | RESTART-LOGGER                 |
-  | WARN!                          |
-  | SIMPLE-LOG-MESSAGE             |
-  | LEVEL-FILTER                   |
-  | %LOG-OBJECT                    |
-  | *LOG-TIMESTAMP*                |
-  | LOG!                           |
-  | DATABASE-LOGGER                |
-  | LOG-MESSAGE                    |
-  | REMOVE-LOGGER                  |
-  | DB-SINK                        |
-  | GET-REAL-TIME-SINCE            |
-  | DB-SOURCE                      |
-  | MAKE-LOGGER                    |
-  | FATAL-P                        |
   | LOGGER                         |
-  | LOG-DESCRIBE                   |
-  | ILEVEL                         |
   | *LOG-MESSAGE-CLASS*            |
-  | DEFINE-LOG-LEVEL               |
-  | TAG-FILTER                     |
-  | TRACE-DESCRIBE                 |
-  | LOG-PIPE                       |
-  | WARN-DESCRIBE                  |
-  | ALIEN-SINK                     |
-  | INFO!                          |
-  | *SIMPLE-LOG-MESSAGE-FORMATTER* |
-  | LOGGER-CONFIG                  |
-  | ERROR-DESCRIBE                 |
-  | TRACE-P                        |
-  | OCTETS-TO-LOG-MESSAGE          |
-  | LEVEL                          |
-  | LOG-OBJECT                     |
-  | INFO-DESCRIBE                  |
-  | DEBUG-DESCRIBE                 |
-  | LOG-ROTATE                     |
-  | FATAL!                         |
-  | LOG-ERROR                      |
-  | WITH-LOGGER                    |
-  | *LOGGER*                       |
-  | DEFAULT-LOGGER-CONFIG          |
-  | DEBUG-P                        |
-  | LOGGER-P                       |
-  | MESSAGE-THREAD                 |
-  | WITH-LOG-STREAM                |
-  | *LOG-LEVEL*                    |
-  | LOG-ROUTER                     |
-  | *TAG-SEPARATOR*                |
-  | INIT-LOG-TIMESTAMP             |
-  | TAG-TREE-FILTER                |
-  | LOG-MESSAGE-TO-OCTETS          |
-  | LOG-LEVEL-DESIGNATOR           |
-  | MATCHING-TREE-TAG              |
+  | REMOVE-LOGGER                  |
   | ALIEN-LOGGER                   |
+  | LOG-ROTATE                     |
+  | LOG-LEVEL-DESIGNATOR           |
+  | TRACE!                         |
+  | LEVEL                          |
+  | TAG-TREE-FILTER                |
+  | LOG-OBJECT                     |
+  | DEBUG-DESCRIBE                 |
+  | LOG-ERROR                      |
+  | INFO-DESCRIBE                  |
+  | DEFAULT-LOGGER-CONFIG          |
+  | LOG-P                          |
+  | LOGGER-CONFIG                  |
+  | *LOGGER*                       |
+  | ERROR-DESCRIBE                 |
+  | *LOG-SHOW-BACKTRACE*           |
   | WITH-FAST-LOG-STREAM           |
   | INFO-P                         |
-  | DEBUG!                         |
-  | *LOG-SHOW-BACKTRACE*           |
-  | MAKE-LOG-ROUTER                |
-  | ERROR!                         |
+  | *LOG-LEVEL*                    |
+  | MATCHING-TREE-TAG              |
+  | DB-SOURCE                      |
+  | *LOG-LEVELS*                   |
+  | LOG-TIMESTAMP-SOURCE           |
+  | LOG-DESCRIBE                   |
+  | LOG-MESSAGE                    |
   | WARN-P                         |
+  | ALIEN-SINK                     |
+  | WITH-LOG-STREAM                |
+  | *TAG-SEPARATOR*                |
+  | LOG-PIPE                       |
+  | ROTATE-FILE-SINK               |
+  | INIT-LOG-TIMESTAMP             |
+  | FATAL-DESCRIBE                 |
+  | DATABASE-LOGGER                |
+  | *LOG-INDENT*                   |
+  | DB-SINK                        |
+  | SIMPLE-LOG-MESSAGE             |
+  | INFO!                          |
+  | TRACE-DESCRIBE                 |
+  | MESSAGE-THREAD                 |
+  | ERROR!                         |
+  | LOGGER-P                       |
+  | WITH-LOGGER                    |
+  | DEBUG!                         |
+  | DEBUG-P                        |
+  | *LOG-TIMESTAMP*                |
+  | GET-REAL-TIME-SINCE            |
+  | LEVEL-FILTER                   |
+  | OCTETS-TO-LOG-MESSAGE          |
+  | *SIMPLE-LOG-MESSAGE-FORMATTER* |
+  | WARN-DESCRIBE                  |
+  | WARN!                          |
+  | TAG-FILTER                     |
+  | DEFINE-LOG-LEVEL               |
+  | RESTART-LOGGER                 |
+  | ROTATING-FILE-SINK             |
+  | %LOG-OBJECT                    |
+  | LOG-MESSAGE-TO-OCTETS          |
+  | FATAL!                         |
+  | ILEVEL                         |
+  | DEFAULT-LOGGER                 |
+  | TRACE-P                        |
+  | *LOG-TIMESTAMP-FORMAT*         |
+  | LOG!                           |
+  | ERROR-P                        |
+  | FATAL-P                        |
+  | ALIEN-SOURCE                   |
+  | LOG-CONFIG                     |
 
 #+END
 
@@ -178,7 +180,7 @@ verbosity.
 All possible values of =*log-level*= are stored in the =*log-levels*=
 variable:
 
-#+begin_src lisp
+#+begin_src lisp :package log
   *log-levels*
 #+end_src
 
@@ -200,7 +202,7 @@ precence and will /always/ be printed unless =*log-level*= is eql to
 The =logger= class implements the multi-threaded object-based logging
 protocol which is built atop the =std/pipe= protocol.
 
-#+begin_src lisp
+#+begin_src lisp :package log
   (documentation 'logger 'type)
 #+end_src
 
@@ -209,7 +211,7 @@ protocol which is built atop the =std/pipe= protocol.
 : be designated as the 'global' logger by setting the value of *LOGGER*, or may
 : be implemented for a specific application.
 
-#+begin_src lisp
+#+begin_src lisp :package log
   (sb-mop:class-direct-superclasses (find-class 'logger))
 #+end_src
 
@@ -230,12 +232,12 @@ When setting up logging for your application, it is recommended to
 subclass the =logger-config= class, which implements the =obj/config=
 protocol.
 
-#+begin_src lisp :results output
+#+begin_src lisp :results output :package log
   (describe (default-logger-config))
 #+end_src
 
 #+RESULTS:
-: #<LOG:LOGGER-CONFIG {121AC915E3}>
+: #<LOGGER-CONFIG {1234789573}>
 :   [standard-object]
 : 
 : Slots with :INSTANCE allocation:
@@ -246,16 +248,14 @@ protocol.
 The =ast= slot stores an unevaluated =pipe= used to initialized the
 logger resulting from the =build= method.
 
-#+begin_src lisp :results code output replace
+#+begin_src lisp :results replace :package log
   (ast (default-logger-config))
 #+end_src
 
 #+RESULTS:
-#+begin_src lisp
-
-((LEVEL-FILTER :ID :LEVEL-FILTER :LEVEL :INFO)
- (TAG-TREE-FILTER :ID :TAG-FILTER) (STREAM-SINK :ID :SINK))
-#+end_src
+| LEVEL-FILTER    | :ID | :LEVEL-FILTER | :LEVEL | :INFO |
+| TAG-TREE-FILTER | :ID | :TAG-FILTER   |        |       |
+| STREAM-SINK     | :ID | :SINK         |        |       |
 
 * Logging Functions
 :PROPERTIES:

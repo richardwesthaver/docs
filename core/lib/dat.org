@@ -39,39 +39,35 @@
   | DAT/TAR         |
   | DAT/PNG         |
   | DAT/MIME        |
-  | DAT/SXP         |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("dat")
 
   #+RESULTS:
-  | obj    |
-  | io     |
-  | log    |
-  | aws-lc |
+  | obj     |
+  | io      |
+  | log     |
+  | openssl |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("dat")
 
   #+RESULTS:
-  | clx/truetype |
-  | web          |
-  | homer        |
-  | krypt        |
-  | packy        |
-  | box          |
-  | pod          |
-  | skel         |
-  | jack         |
-  | dsp          |
-  | q            |
-  | rdb          |
-  | cry          |
-  | rt           |
-  | net          |
-  | dat/tests    |
-  | cli          |
-  | core         |
+  | skel      |
+  | syn       |
+  | web       |
+  | box       |
+  | pod       |
+  | jack      |
+  | dsp       |
+  | q         |
+  | rdb       |
+  | cry       |
+  | rt        |
+  | net       |
+  | dat/tests |
+  | cli       |
+  | core      |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("dat")
@@ -80,12 +76,12 @@
   | pkg.lisp              |
   | condition.lisp        |
   | asn1.lisp             |
-  | sxp.lisp              |
   | dot.lisp              |
   | csv.lisp              |
   | json.lisp             |
   | m3u.lisp              |
   | id3.lisp              |
+  | css.lisp              |
   | parquet/gen.lisp      |
   | parquet/pkg.lisp      |
   | parquet/obj.lisp      |
@@ -98,7 +94,8 @@
   | xml/svg.lisp          |
   | html/const.lisp       |
   | html/entity.lisp      |
-  | html/html.lisp        |
+  | html/parse.lisp       |
+  | html/macs.lisp        |
   | yaml.lisp             |
   | mime.lisp             |
   | ini.lisp              |
@@ -134,34 +131,45 @@
 
 #+RESULTS:
 | ELEMENT-MAP-ATTRIBUTES* |
-| NODE-TYPE               |
-| NODE-NEXT-SIBLING       |
-| NODE-PUBLIC-ID          |
-| NODE-PARENT             |
-| NODE-LAST-CHILD         |
-| MAKE-DOCUMENT           |
-| NODE-VALUE              |
-| MAKE-TEXT-NODE          |
-| ELEMENT-ATTRIBUTE       |
-| MAKE-COMMENT            |
-| ELEMENT-MAP-ATTRIBUTES  |
-| XML-ESCAPE-NAME         |
-| NODE-APPEND-CHILD       |
-| ELEMENT-MAP-CHILDREN    |
-| NODE-PREVIOUS-SIBLING   |
-| NODE-INSERT-BEFORE      |
-| TRANSFORM-HTML5-DOM     |
-| NODE-REMOVE-CHILD       |
-| MAKE-FRAGMENT           |
-| XML-UNESCAPE-NAME       |
-| PARSE-HTML5-FRAGMENT    |
-| NODE-SYSTEM-ID          |
-| NODE-NAMESPACE          |
-| NODE-FIRST-CHILD        |
-| PARSE-HTML5             |
-| NODE-NAME               |
 | MAKE-ELEMENT            |
+| NODE-FIRST-CHILD        |
+| *HTML-INDENT*           |
+| PARSE-HTML5             |
+| MAKE-COMMENT            |
+| WITH-HTML-STRING        |
+| NODE-PARENT             |
+| PARSE-HTML5-FRAGMENT    |
+| WITH-HTML               |
+| MAKE-TEXT-NODE          |
+| ESC                     |
+| NODE-NAMESPACE          |
+| NODE-LAST-CHILD         |
+| *HTML-LANG*             |
+| TRANSFORM-HTML5-DOM     |
+| NODE-APPEND-CHILD       |
+| *HTML-CHARSET*          |
+| NODE-NAME               |
 | MAKE-DOCTYPE            |
+| NODE-SYSTEM-ID          |
+| NODE-PREVIOUS-SIBLING   |
+| HTM                     |
+| NODE-PUBLIC-ID          |
+| NODE-TYPE               |
+| MAKE-FRAGMENT           |
+| FMT                     |
+| STR                     |
+| NODE-REMOVE-CHILD       |
+| MAKE-DOCUMENT           |
+| ELEMENT-MAP-CHILDREN    |
+| NODE-VALUE              |
+| ELEMENT-MAP-ATTRIBUTES  |
+| NODE-INSERT-BEFORE      |
+| XML-UNESCAPE-NAME       |
+| XML-ESCAPE-NAME         |
+| ELEMENT-ATTRIBUTE       |
+| *HTML-OUTPUT*           |
+| HTML-OUTPUT-STREAM      |
+| NODE-NEXT-SIBLING       |
 
 ** CSS
 :PROPERTIES:
@@ -171,15 +179,14 @@
 #+call: lisp-package-symbols("DAT/CSS") :post transpose
 
 #+RESULTS:
-| PARSE-CSS            |
-| PARSE-CSS-SELECTOR   |
-| GENERATE-CSS         |
-| *CSS-INDENT-OFFSET*  |
-| PARSE-CSS-FRAGMENT   |
-| *MINIFY-CSS*         |
-| COMPILE-CSS-BLOCK    |
-| COMPILE-CSS-SELECTOR |
-| COMPILE-CSS          |
+| PARSE-CSS-SELECTOR |
+| COMPILE-CSS        |
+| PARSE-CSS-FRAGMENT |
+| PARSE-CSS          |
+| CSS                |
+| *MINIFY-CSS*       |
+| COMPILE-CSS-FILE   |
+| INLINE-CSS         |
 
 ** TOML
 :PROPERTIES:

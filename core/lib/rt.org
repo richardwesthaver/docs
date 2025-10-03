@@ -14,9 +14,7 @@ shenanigans.
 
   #+RESULTS:
   | RT/TESTS      |
-  | RT/COVER      |
   | RT            |
-  | RT/BENCH      |
   | RT/TRACING    |
   | RT/FUZZ       |
   | RT/FLAMEGRAPH |
@@ -34,17 +32,19 @@ shenanigans.
   #+CALL: lisp-system-dependents[:post transpose]("rt")
 
   #+RESULTS:
+  | jpeg/tests            |
+  | matroska/tests        |
+  | arrow/tests           |
+  | ublk/tests            |
+  | ssh2/tests            |
+  | skel/tests            |
+  | vc/tests              |
   | wasmer/tests          |
-  | web/tests             |
-  | gui/tests             |
-  | krypt/tests           |
-  | packy/tests           |
   | tree-sitter/tests     |
   | syn/tests             |
+  | web/tests             |
   | box/tests             |
   | pod/tests             |
-  | vc/tests              |
-  | skel/tests            |
   | ffmpeg/tests          |
   | alsa/tests            |
   | chromaprint/tests     |
@@ -71,8 +71,9 @@ shenanigans.
   | parse/tests           |
   | net/tests             |
   | net                   |
-  | aws-lc/tests          |
+  | openssl/tests         |
   | dat/tests             |
+  | syslog/tests          |
   | zstd/tests            |
   | btrfs/tests           |
   | evdev/tests           |
@@ -85,9 +86,7 @@ shenanigans.
   | cli/tests             |
   | std/tests             |
   | cl-ppcre/test         |
-  | core/bench            |
-  | core/tests            |
-  | core/user             |
+  | core                  |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("rt")
@@ -99,11 +98,10 @@ shenanigans.
   | util.lisp       |
   | proto.lisp      |
   | obj.lisp        |
+  | cfg.lisp        |
   | rt.lisp         |
-  | bench.lisp      |
   | tracing.lisp    |
   | flamegraph.lisp |
-  | cover.lisp      |
   | fuzz.lisp       |
 
 - tests
@@ -116,99 +114,103 @@ shenanigans.
   | TRACING    |
   | FLAMEGRAPH |
   | RT         |
+  | SANITY     |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("RT")
 
   #+RESULTS:
-  | *FIXTURES*                |
-  | TESTS                     |
-  | DEFTEST                   |
-  | RESET-TESTS               |
-  | ISOR                      |
-  | ISAND                     |
-  | WITH-TMP-FILE             |
-  | FIND-TEST                 |
-  | TEST-FIXTURES             |
-  | ENSURE-SUITE              |
-  | IS<                       |
-  | *FX*                      |
-  | IS<=                      |
-  | ISEQUALP                  |
-  | TEST-RESULTS              |
-  | DELETE-TEST               |
-  | TEST-SUITE                |
-  | TEST-FORM                 |
-  | *DEFAULT-TMP-DIRECTORY*   |
-  | TEST-SKIP-P               |
-  | *TESTING*                 |
+  | FIND-SUITE                |
+  | IS                        |
   | TEST-FIXTURE              |
-  | TEST-FAIL-P               |
+  | ENSURE-SUITE              |
+  | ISAND                     |
+  | TEST-NAME=                |
+  | *DEFAULT-TEST-SUITE-NAME* |
+  | ISEQUALP                  |
+  | *TMP*                     |
+  | IS>                       |
+  | RESET-TESTS               |
+  | TEST-FIXTURES             |
+  | FAIL!                     |
+  | ISSOME                    |
+  | TEST-RESULT               |
+  | ISTYPE                    |
+  | ISSUBTYPE                 |
+  | TEST-FN                   |
+  | COMPILE-TEST              |
+  | ISEQUAL                   |
+  | ISZERO                    |
+  | TEST-RESULTS              |
+  | *COMPILE-TESTS*           |
+  | DELETE-TEST               |
+  | *COVERAGE-DIRECTORY*      |
+  | SIGNALS                   |
   | MAKE-TEST-RESULT          |
   | MAKE-TEST                 |
-  | *TEST-POLICY*             |
-  | COMPILE-TEST              |
-  | WITH-FIXTURE              |
-  | MAKE-FIXTURE-PROTOTYPE    |
-  | MAKE-FIXTURE              |
-  | TEST-FAILED               |
-  | *TEST-SUITE-LIST*         |
-  | ISSOME                    |
-  | DO-SUITE                  |
-  | TEST-SUITE-DESIGNATOR     |
+  | *CATCH-TEST-ERRORS*       |
   | CONTINUE-TESTING          |
-  | TEST-NAME=                |
-  | TEST-DECLARE              |
-  | ISEQUAL                   |
+  | TEST-FAILED               |
+  | WITH-FIXTURE              |
+  | ISEQ                      |
+  | TEST-ERROR                |
+  | ISSUBCLASS                |
+  | COMPILE-SUITE             |
+  | PUSH-TEST                 |
+  | *TEST-SUITE-LIST*         |
+  | DEFTEST                   |
+  | *TESTING*                 |
+  | TEST-SUITE-DESIGNATOR     |
+  | IN-SUITE                  |
+  | %TEST-RESULT              |
+  | CHECK-SUITE-DESIGNATOR    |
+  | *TEST-POLICY*             |
   | ISLIST                    |
-  | FAIL!                     |
+  | +TEST-TAG+                |
+  | ISOR                      |
   | *TEST-SUFFIX*             |
   | TEST-OBJECT               |
-  | %TEST-RESULT              |
-  | ISZERO                    |
-  | %TEST-BAIL                |
-  | CHECK-SUITE-DESIGNATOR    |
-  | IS>                       |
-  | TEST-FN                   |
-  | SIGNALS                   |
-  | LOCKED-TESTS              |
-  | ISTYPE                    |
-  | RUN-ALL-TESTS*            |
-  | ISSUBTYPE                 |
-  | DO-TESTS                  |
-  | ISEQ                      |
-  | RUN-ALL-TESTS             |
-  | FIXTURE                   |
-  | TMP-FIXTURE               |
-  | *TMP*                     |
-  | WITH-TEST-ENV             |
-  | TEST                      |
-  | ISEVERY                   |
-  | ISEQL                     |
-  | *COMPILE-TESTS*           |
-  | WITH-TMP-DIRECTORY        |
-  | IS                        |
-  | *CATCH-TEST-ERRORS*       |
-  | ISNT                      |
-  | MAKE-SUITE                |
-  | ISEMPTY                   |
-  | DEFSUITE                  |
-  | TEST-POLICY               |
-  | IS>=                      |
-  | IN-SUITE                  |
-  | TEST-PASS-P               |
-  | *DEFAULT-TEST-SUITE-NAME* |
-  | TEST-ERROR                |
-  | IS=                       |
-  | *TEST-SUITE*              |
   | FIXTURE-PROTOTYPE         |
-  | POP-TEST                  |
+  | *TEST-ON-DEF*             |
+  | IS>=                      |
+  | ISNT                      |
   | EVAL-TEST                 |
-  | PUSH-TEST                 |
-  | TEST-RESULT               |
+  | IS=                       |
+  | WITH-TMP-FILE             |
+  | %TEST-BAIL                |
+  | WITH-TMP-DIRECTORY        |
+  | POP-TEST                  |
   | DO-TEST                   |
-  | FIND-SUITE                |
-  | ISSUBCLASS                |
+  | RUN-ALL-TESTS             |
+  | *TEST-SUITE*              |
+  | MAKE-SUITE                |
+  | *FX*                      |
+  | IS<                       |
+  | DO-TESTS                  |
+  | TEST-PASS-P               |
+  | ISEQL                     |
+  | FIND-TEST                 |
+  | ISEVERY                   |
+  | TIME-TOTAL                |
+  | TEST-SUITE                |
+  | DEFSUITE                  |
+  | DO-SUITE                  |
+  | TEST-FORM                 |
+  | IS<=                      |
+  | TESTS                     |
+  | MAKE-FIXTURE              |
+  | TEST-SKIP-P               |
+  | FIXTURE                   |
+  | MAKE-FIXTURE-PROTOTYPE    |
+  | TEST-FAIL-P               |
+  | TEST                      |
+  | *DEFAULT-TMP-DIRECTORY*   |
+  | TMP-FIXTURE               |
+  | TEST-POLICY               |
+  | ISEMPTY                   |
+  | TEST-DECLARE              |
+  | WITH-TEST-ENV             |
+  | *FIXTURES*                |
 
 #+END
 

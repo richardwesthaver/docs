@@ -27,12 +27,11 @@ meta-protocols used throughout core libraries.
   | OBJ/URL             |
   | OBJ/META/SEALED     |
   | OBJ/URI             |
+  | OBJ/PROJECT         |
   | OBJ/STORE           |
   | OBJ/ID              |
   | OBJ/GRAPH           |
   | OBJ/TREE            |
-  | OBJ/META/TYPED      |
-  | OBJ/TREE/REDBLACK   |
   | OBJ/META/OVERLOADED |
   | OBJ/META/STORED     |
   | OBJ/TENSOR          |
@@ -45,9 +44,7 @@ meta-protocols used throughout core libraries.
   | OBJ/INT             |
   | OBJ/META/FILTERED   |
   | OBJ/META/LAZY       |
-  | OBJ/META/MIXIN      |
-  | OBJ/TREE/BROTHER    |
-  | OBJ/TREE/AVL        |
+  | OBJ/META/MIX        |
   | OBJ/TREE/BTREE      |
 
 - dependencies
@@ -60,16 +57,12 @@ meta-protocols used throughout core libraries.
   #+CALL: lisp-system-dependents[:post transpose]("obj")
 
   #+RESULTS:
-  | web        |
-  | gui        |
-  | homer      |
-  | krypt      |
-  | packy      |
+  | skel       |
+  | vc         |
   | syn        |
+  | web        |
   | box        |
   | pod        |
-  | vc         |
-  | skel       |
   | math/tests |
   | math       |
   | dsp        |
@@ -97,14 +90,13 @@ meta-protocols used throughout core libraries.
   | meta/pkg.lisp         |
   | meta/sealed.lisp      |
   | meta/stealth.lisp     |
-  | meta/typed.lisp       |
   | meta/filtered.lisp    |
   | meta/fast.lisp        |
   | meta/lazy.lisp        |
   | meta/overloaded.lisp  |
   | meta/stored.lisp      |
   | meta/dynamic.lisp     |
-  | meta/mixin.lisp       |
+  | meta/mix.lisp         |
   | pkg.lisp              |
   | id.lisp               |
   | uri/punycode.lisp     |
@@ -126,15 +118,13 @@ meta-protocols used throughout core libraries.
   | tensor/class.lisp     |
   | tensor/readtable.lisp |
   | tree/node.lisp        |
-  | tree/avl.lisp         |
-  | tree/redblack.lisp    |
-  | tree/brother.lisp     |
   | tree/btree.lisp       |
   | equiv.lisp            |
   | color/color.lisp      |
-  | color/util.lisp       |
-  | color/x11.lisp        |
   | color/palette.lisp    |
+  | color/x11.lisp        |
+  | color/base16.lisp     |
+  | color/theme.lisp      |
   | time/local.lisp       |
   | time/util.lisp        |
   | uuid.lisp             |
@@ -144,11 +134,13 @@ meta-protocols used throughout core libraries.
   | config.lisp           |
   | plan.lisp             |
   | schema.lisp           |
+  | project.lisp          |
   | db.lisp               |
   | secret.lisp           |
   | store.lisp            |
   | cache.lisp            |
   | srv.lisp              |
+  | obj.lisp              |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("obj")
@@ -157,15 +149,14 @@ meta-protocols used throughout core libraries.
   | FILTERED-FUNCTION |
   | STEALTH-MIXIN     |
   | DYNAMIC-CLASS     |
+  | FAST              |
+  | SIMPLE-CACHE      |
+  | SIMPLE-TENSORS    |
+  | STORE             |
   | URL               |
   | URIS              |
   | BASIC-GRAPH       |
-  | AVL-TREE          |
-  | RB-TREE           |
-  | BRO-TREE          |
   | GENERIC-TREE      |
-  | DEF-SEQ           |
-  | DEF-ITER          |
   | UUIDS             |
   | IDS               |
   | COLORS            |
@@ -174,6 +165,263 @@ meta-protocols used throughout core libraries.
   #+CALL: lisp-package-symbols[:post transpose]("OBJ")
 
   #+RESULTS:
+  | PRINT-ELEMENT                     |
+  | MAKE-SIMPLE-SCHEMA                |
+  | PROJECT                           |
+  | +NAMESPACE-X500+                  |
+  | DELETE-KEY-RANGE                  |
+  | URI-DOMAIN                        |
+  | EQUALS                            |
+  | ADD-COLUMN                        |
+  | GRAY                              |
+  | CLOSE-COLUMN                      |
+  | *KEEP-AST*                        |
+  | CACHE-ENTRY                       |
+  | TIMESTAMP-TO-UNIX                 |
+  | CURSOR-DUPLICATE                  |
+  | BUILD-BTREE                       |
+  | AVL-NODE                          |
+  | CURSOR-NEXT                       |
+  | IPV6-ADDR-P                       |
+  | *PALETTE*                         |
+  | URL-ENCODE-PARAMS                 |
+  | PLANNER                           |
+  | BAD-REQUEST                       |
+  | COLUMNS                           |
+  | CURSOR-PSET-RANGE                 |
+  | REPAIR-DB                         |
+  | TIMESTAMP-SUBTIMEZONE             |
+  | SIMPLE-SCHEMA                     |
+  | DF-COL                            |
+  | TIMESTAMP-SECOND                  |
+  | APPLY-SCHEMA                      |
+  | CURSOR-PREV                       |
+  | FIND-COLUMN                       |
+  | BTREE-KEYS                        |
+  | RENDER-URI                        |
+  | +SECONDS-PER-DAY+                 |
+  | COMPLEX-BLAS-TENSOR               |
+  | NROWS                             |
+  | DESTROY-DB                        |
+  | +MINUTES-PER-DAY+                 |
+  | EQV                               |
+  | NEXT-OID                          |
+  | DATABASE-VERSION                  |
+  | .KEY                              |
+  | WITH-TEMP-DB                      |
+  | ENCODE-PUNYCODE                   |
+  | EDGE-VALUE                        |
+  | RESPONSE-OK-P                     |
+  | REQUEST-PROTOCOL                  |
+  | FORMAT-TIMESTRING                 |
+  | RHS                               |
+  | .VALUE                            |
+  | DYNAMIC-SCHEMA                    |
+  | +SHORT-DAY-NAMES+                 |
+  | CLONE-TIMESTAMP                   |
+  | DATA-SOURCE                       |
+  | DEFAULT-CLASS-ID                  |
+  | BINARY-EXPR                       |
+  | REAL-BLAS-TENSOR                  |
+  | EDGE-IN                           |
+  | ADD-DATABASE-BACKEND-OPTION       |
+  | DEFAULT-CLASS-ID-TYPE             |
+  | CURRENT-TRANSACTION               |
+  | TIMESTAMP<                        |
+  | MAGENTA                           |
+  | WITH-STORE                        |
+  | CURSOR-GET-BOTH                   |
+  | SIGNAL-CROSS-STORE-ERROR          |
+  | BUILD-AST                         |
+  | MAKE-TRANSACTION                  |
+  | ADD-NODE                          |
+  | UNWRAP                            |
+  | LOAD-CONFIG                       |
+  | BASE-TENSOR                       |
+  | WITH-MAP-INDEX-COLLECTOR          |
+  | MAKE-CONFIG                       |
+  | SIMPLE-SERVICE-WARNING            |
+  | URN-NSS                           |
+  | CACHE-FLUSH                       |
+  | UUID                              |
+  | ENOUGH-URI                        |
+  | PUT-KV                            |
+  | SHUTDOWN-DB                       |
+  | UUID=                             |
+  | TRAVERSE                          |
+  | ENCODE-TIMESTAMP                  |
+  | GET-VAL                           |
+  | SYNTAX-ERROR                      |
+  | MAKE-V4-UUID                      |
+  | TIMESTAMP-MINIMUM                 |
+  | TIMESTAMP-MINIMIZE-PART           |
+  | QUERY-DB                          |
+  | PRINT-TENSOR                      |
+  | MAKE-V5-UUID                      |
+  | LITERAL-EXPR                      |
+  | SYNTAX-CONDITION                  |
+  | IN-RESPONSE-P                     |
+  | KEYTYPE                           |
+  | TENSOR-SQUARE-MATRIXP             |
+  | IN-REQUEST-P                      |
+  | MAKE-RECORD-BATCH                 |
+  | AS-RGB                            |
+  | TIMESTAMP-MILLISECOND             |
+  | COMPLEX-TENSOR                    |
+  | RECEIVE-RESPONSE                  |
+  | OPEN-WITH-COLUMNS                 |
+  | DEFEXPR                           |
+  | WRAP                              |
+  | SLOT-FIELD-NAME                   |
+  | RESPONSE-STATUS                   |
+  | COMPRESSED-SPARSE-MATRIX          |
+  | DECODE-PUNYCODE                   |
+  | ENCODE-DOMAIN                     |
+  | SEC-OF                            |
+  | UPDATE-ID                         |
+  | *PRINT-TENSOR-MAX-ARGS*           |
+  | URL-DECODE                        |
+  | DAYS-IN-MONTH                     |
+  | *GLOBAL-ID-TABLE*                 |
+  | UPDATE-GLOBAL-ID                  |
+  | PARSE-URI-STRING-RFC3986          |
+  | *DEFAULT-STRIDE-ORDERING*         |
+  | GREEN                             |
+  | +MINUTES-PER-HOUR+                |
+  | ROW-COUNT                         |
+  | PARSE-URI                         |
+  | DIFF-TYPE                         |
+  | +SECONDS-PER-MINUTE+              |
+  | URN-R-COMPONENT                   |
+  | MAKE-SCHEMA                       |
+  | CONTENT-STREAM                    |
+  | MAKE-ID                           |
+  | CURSOR-PPREV                      |
+  | SLOT-FIELD-TYPE                   |
+  | FIXNUM-TENSOR                     |
+  | +RFC-1123-FORMAT+                 |
+  | TIMESTAMP-DIFFERENCE              |
+  | SERVICE-CONFIG                    |
+  | TIMESTAMP-MAXIMIZE-PART           |
+  | TIME-OF-DAY                       |
+  | SECONDARY-CURSOR                  |
+  | LOAD-AST                          |
+  | PRINT-INDEX-ENTRY                 |
+  | ENSURE-REVEALED                   |
+  | .Z                                |
+  | OP                                |
+  | DERIVE-SCHEMA                     |
+  | EQUIV                             |
+  | ITERATE-MAP-INDEX                 |
+  | THEME                             |
+  | RECEIVE-REQUEST                   |
+  | ZONE-NAME                         |
+  | TIMESTAMP-DECADE                  |
+  | MAKE-BINARY-NODE                  |
+  | +MONTH-NAMES+                     |
+  | +GMT-ZONE+                        |
+  | BTREE                             |
+  | SESSION                           |
+  | SET-DATABASE-BACKEND              |
+  | BLUE                              |
+  | BTREE-DIFFER-P                    |
+  | ENSURE-TRANSACTION                |
+  | SCHEMA-DIFF                       |
+  | *MAX-SPARSE-SIZE*                 |
+  | URI-SCHEME                        |
+  | SLOT-FIELD-EQ                     |
+  | REAL-NUMERIC-TENSOR               |
+  | DIFF-RECS                         |
+  | TIMESTAMP-MAXIMUM                 |
+  | HANDLE-REQUEST                    |
+  | CURSOR-CURRENT                    |
+  | DELETE-SPEC                       |
+  | URI=                              |
+  | NODES                             |
+  | MAKE-FIELD                        |
+  | URI-ERROR                         |
+  | FIELD-VECTOR                      |
+  | LOGICAL-PLAN                      |
+  | CURSOR-PNEXT-NODUP                |
+  | ALPHA                             |
+  | OPEN-COLUMN                       |
+  | RECORD-BATCH-SCHEMA               |
+  | *SERVICE-TABLE*                   |
+  | +UTC-ZONE+                        |
+  | DELETE-KEY                        |
+  | LEAP-SECOND-ADJUSTED              |
+  | CLASS-INSTANCE-SCHEMA             |
+  | ZEROS                             |
+  | FORM                              |
+  | FORMAT-RFC1123-TIMESTRING         |
+  | NOW                               |
+  | .B                                |
+  | EXPR                              |
+  | COMPUTE-TRANSIENT-SCHEMA          |
+  | SCHEMA                            |
+  | *DATABASE-COLLECTION-TYPE*        |
+  | OPEN-COLUMNS*                     |
+  | MAP-INDEX-VALUES                  |
+  | DESTROY-COLUMNS                   |
+  | EXECUTE-TRANSACTION               |
+  | INSERT-KEY                        |
+  | DB-OPTS                           |
+  | IRI-P                             |
+  | WRITE-DB                          |
+  | +HOURS-PER-DAY+                   |
+  | CURSOR-NEXT-DUP                   |
+  | RESET-GLOBAL-ID                   |
+  | OCTET-VECTOR-TO-UUID              |
+  | STANDARD-TENSOR                   |
+  | *TXN*                             |
+  | *PRINT-TENSOR-MAX-LEN*            |
+  | +NAMESPACE-OID+                   |
+  | SEND-REQUEST                      |
+  | *COLOR-PALETTES*                  |
+  | LOAD-SCHEMA                       |
+  | SYNC-DB                           |
+  | VERTEX                            |
+  | URI-CONDITION                     |
+  | CALL-WITH-AST                     |
+  | SERVICE-CONDITION                 |
+  | STRING-TO-URI                     |
+  | SCHEMA-SUCCESSOR                  |
+  | GET-DB                            |
+  | BOOLEAN-TENSOR                    |
+  | URI-PARSE-ERROR                   |
+  | URI-QUERY                         |
+  | +DAYS-PER-WEEK+                   |
+  | EDGE-WEIGHT                       |
+  | TERNARY-NODE                      |
+  | *DEFAULT-SPARSITY*                |
+  | NUMERIC-TENSOR                    |
+  | UNIX-TO-TIMESTAMP                 |
+  | MAKE-EDGE                         |
+  | MERGE-KV                          |
+  | DISPATCH-REQUEST                  |
+  | MODIFIED-JULIAN-DATE              |
+  | CLOSE-DB                          |
+  | CACHE-SIZE                        |
+  | CONCEAL                           |
+  | SIMPLE-TRANSACTION                |
+  | *DEFAULT-TIMEZONE*                |
+  | DROP-INSTANCE                     |
+  | REAL-COMPRESSED-SPARSE-MATRIX     |
+  | +ISO-8601-DATE-FORMAT+            |
+  | COMPLEX-NUMERIC-TENSOR            |
+  | DB-BACKUP                         |
+  | TRANSACTION-PRIOR                 |
+  | DO-DATABASE-BACKEND-CLOSE-OPTIONS |
+  | DUMP-SCHEMA                       |
+  | FIND-DB                           |
+  | HSV                               |
+  | OID->SCHEMA-ID                    |
+  | TIMESTAMP>                        |
+  | LHS                               |
+  | UUID-TO-OCTET-VECTOR              |
+  | TRANSACTION-DB                    |
+  | BUILD-BTREE-INDEX                 |
+  | ...                               |
 
 #+END:
 

@@ -27,24 +27,23 @@ maintaining mid-sized collections of mixed media (10-100TB).
   #+CALL: lisp-system-packages[:post transpose]("mpk")
 
   #+RESULTS:
-  | MPK/CLI  |
-  | MPK/GUI  |
-  | MPK/DB   |
-  | MPK      |
-  | MPK-USER |
-  | MPK/MPD  |
+  | MPK/CLI   |
+  | MPK/DB    |
+  | MPK/METRO |
+  | MPK       |
+  | MPK-USER  |
+  | MPK/MPD   |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("mpk")
 
   #+RESULTS:
-  | core/user |
+  | core |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("mpk")
 
   #+RESULTS:
-  | homer   |
   | bin/mpk |
 
 - files
@@ -57,11 +56,11 @@ maintaining mid-sized collections of mixed media (10-100TB).
   | proto.lisp |
   | util.lisp  |
   | db.lisp    |
+  | metro.lisp |
   | cfg.lisp   |
   | net.lisp   |
   | mpk.lisp   |
   | cli.lisp   |
-  | gui.lisp   |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("MPK")
@@ -72,7 +71,7 @@ maintaining mid-sized collections of mixed media (10-100TB).
   | MPK-MEDIA-PATH          |
   | MPK-PREV                |
   | *MPK-DIRECTORY*         |
-  | MPK-MEDIA-COLLECTION    |
+  | INIT-MPK                |
   | MPK-MUSIC-PATH          |
   | MPK-USER-PATH           |
   | *MPK-DB-DIRECTORY*      |
@@ -81,10 +80,10 @@ maintaining mid-sized collections of mixed media (10-100TB).
   | MPK-PAUSE               |
   | GET-MUSIC-METADATA*     |
   | MPK-TOGGLE              |
-  | *MPK-MEDIA-DIRECTORY*   |
+  | MPK-COMPONENT           |
   | *USER-MPKRC*            |
   | *MPK-MEDIA-COLLECTIONS* |
-  | MPK-PREVIOUS            |
+  | *MPK-MEDIA-DIRECTORY*   |
   | GET-MUSIC-METADATA      |
   | LOAD-MPKRC              |
   | METADATA-SCAN-DIRECTORY |
@@ -106,9 +105,9 @@ maintaining mid-sized collections of mixed media (10-100TB).
   | *MPK-MEDIA-SOURCES*     |
   | *MPK-MEDIA-TYPES*       |
   | *MPK-DB-ID-SEED*        |
-  | MPK-COMPONENT           |
+  | MPK-MEDIA-COLLECTION    |
   | *MPC*                   |
-  | MPK-INIT                |
+  | MPK-PREVIOUS            |
 
 #+END:
 
@@ -158,24 +157,31 @@ MPK-CONFIG names the standard-class #<STANDARD-CLASS MPK:MPK-CONFIG>:
     MPD
       Type: MPK/MPD:MPD-CONFIG
       Initargs: :MPD
-    JACK
-      Initargs: :JACK
-    PIPEWIRE
-      Initargs: :PIPEWIRE
-    ALSA
-      Initargs: :ALSA
-    GSTREAMER
-      Initargs: :GSTREAMER
+      Initform: (MPK/MPD::LOAD-MPD-CONFIG)
+    AUDIO
+      Type: DSP/CORE:AUDIO-SYSTEM-CONFIG
+      Initargs: :AUDIO
+    VIDEO
+      Type: DSP/CORE:VIDEO-SYSTEM-CONFIG
+      Initargs: :VIDEO
     METRO
+      Type: MPK/METRO:METRO-CONFIG
       Initargs: :METRO
+    DB
+      Type: MPK/DB:MPK-DB-CONFIG
+      Initargs: :DB
     PICARD
       Type: CLI/TOOLS/MEDIA:PICARD-CONFIG
       Initargs: :PICARD
+      Initform: (LOAD-PICARD-CONFIG)
     TRANSMISSION
       Type: CLI/TOOLS/NET::TRANSMISSION-CONFIG
       Initargs: :TRANSMISSION
+      Initform: (CLI/TOOLS/NET::LOAD-TRANSMISSION-CONFIG)
     YTDL
+      Type: CLI/TOOLS/NET:YTDL-CONFIG
       Initargs: :YTDL
+      Initform: (CLI/TOOLS/NET::LOAD-YTDL-CONFIG)
 #+end_example
 
 * CLI

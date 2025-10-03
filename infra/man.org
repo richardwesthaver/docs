@@ -19,7 +19,7 @@
 :PROPERTIES:
 :ID:       b906e6ea-71c2-41ae-9c29-c911582f054e
 :END:
-#+begin_src lisp :results replace :exports code
+#+begin_src lisp :results silent :exports code
   (ql:quickload '(:dat :cli))
   (in-package :dat/dot)
   (let ((g (make-instance 'directed-graph)))
@@ -33,14 +33,9 @@
     (add-edge g '(:bootstrap :autogen))
     (add-edge g '("profile.sxp" :autogen))
     (add-edge g '("host.sxp" :autogen))
-    (to-dot-file g #p"/tmp/bootstrap.dot")
-    (sb-ext:run-program (cli:find-exe "dot") (list "-Tascii" "/tmp/bootstrap.dot" "-o" "/tmp/bootstrap.txt"))
-    (with-open-file (f "/tmp/bootstrap.txt")
-      (copy-stream f t)))
+    (serialize g :dot :path #p"/tmp/bootstrap.dot")
+    (sb-ext:run-program (cli:find-exe "dot") (list "-Tsvg" "/tmp/bootstrap.dot" "-o" "/tmp/bootstrap.svg")))
 #+end_src
-
-#+RESULTS:
-: /tmp/bootstrap.svg
 
 [[cdn:media/img/bootstrap.svg]]
 
@@ -85,7 +80,6 @@ system's package manager.
 #+end_src
 
 #+RESULTS:
-: zor.sxp
 
 ** autogen.lisp
 :PROPERTIES:

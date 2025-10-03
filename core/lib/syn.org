@@ -19,6 +19,7 @@
   | SYN/TEMPO        |
   | SYN/GEN/CPP/SYM  |
   | SYN/GEN/RS/SYM   |
+  | SYN/FMT          |
   | SYN/GEN/CPP      |
   | SYN              |
   | SYN/LANG/JS      |
@@ -35,6 +36,7 @@
   | SYN/TESTS/LANG   |
   | SYN/LANG/C       |
   | SYN/GEN/C/SYM    |
+  | SYN/GEN/JS/SYM   |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("syn")
@@ -46,15 +48,17 @@
   | tree-sitter |
   | doc         |
   | cli         |
+  | io          |
+  | dat         |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("syn")
 
   #+RESULTS:
-  | web       |
-  | syn/tests |
   | skel      |
-  | core/user |
+  | syn/tests |
+  | web       |
+  | core      |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("syn")
@@ -66,7 +70,6 @@
   | lang/js.lisp       |
   | lang/rs.lisp       |
   | lang/py.lisp       |
-  | gen/pkg.lisp       |
   | gen/condition.lisp |
   | gen/var.lisp       |
   | gen/proto.lisp     |
@@ -88,6 +91,12 @@
   | gen/rs/print.lisp  |
   | gen/py/pkg.lisp    |
   | gen/js/pkg.lisp    |
+  | gen/js/read.lisp   |
+  | gen/js/ast.lisp    |
+  | gen/js/sym.lisp    |
+  | gen/js/print.lisp  |
+  | gen/js/macs.lisp   |
+  | fmt.lisp           |
   | lint.lisp          |
   | tempo.lisp         |
   | grovel.lisp        |
@@ -106,77 +115,82 @@
   #+CALL: lisp-package-symbols[:post transpose]("SYN")
 
   #+RESULTS:
-  | DELETE-CODE-PRINTER    |
-  | TOP-INFO               |
-  | SRC-LOCATION           |
-  | PUSH-INFO              |
-  | *INDENT*               |
-  | --INDENT               |
-  | INDENT                 |
-  | MAKE-PROXY             |
-  | LANGUAGE               |
-  | %SELF                  |
-  | PARSE-STRING           |
-  | DEFINE-CODE-SWITCH     |
-  | WITH-CODE-PRINTER      |
-  | EMPTY                  |
-  | DEFSYNTAX              |
-  | POP-INFO               |
-  | AST-TRAVERSER          |
-  | LINT                   |
-  | FIND-SIGN              |
-  | BUILD-CONTEXT-SWITCHES |
-  | *GEN-WARNINGS*         |
-  | UNLOAD-GEN             |
   | IDENT                  |
-  | *CODE-DISPATCH-TABLE*  |
-  | TOP-SIGN               |
-  | MAKE-NODE              |
-  | DEFINE-CODE-SWITCHES   |
-  | GEN-CONDITION          |
-  | DEFINE-CODE-READER     |
-  | LANG-COUNTS            |
-  | MAKE-NODES             |
-  | GEN-PACKAGE            |
-  | GEN-DESIGNATOR         |
-  | ++INDENT               |
-  | STREAM                 |
-  | CODE-PRINTER           |
-  | *LANGUAGE*             |
-  | NUM-LITERAL            |
-  | *GEN-DESIGNATORS*      |
-  | CHAR-LITERAL           |
-  | GEN-READER             |
-  | INIT-GEN               |
-  | LANG                   |
-  | STR-LITERAL            |
-  | GEN                    |
-  | LOAD-GEN               |
-  | *BACKUP-READTABLE*     |
-  | WRITE-CODE             |
-  | DEL-PROXY              |
-  | NODE-SLOT              |
-  | DEFINE-CODE-PROCESSOR  |
-  | PRINT-CODE             |
-  | NODE                   |
   | *CODE-READER*          |
-  | FIND-INFO              |
-  | QUOTY                  |
-  | *GEN*                  |
+  | *GEN-WARNINGS*         |
+  | POP-SIGN               |
+  | %LEVEL                 |
+  | *GEN-DESIGNATORS*      |
+  | TOP-SIGN               |
+  | EMPTY                  |
+  | %SELF                  |
+  | PRINT-CODE             |
+  | LINT                   |
+  | *BACKUP-READTABLE*     |
   | TAG                    |
   | PARSE-FILE             |
-  | POP-SIGN               |
-  | FUNCTION-CALL          |
-  | PUSH-SIGN              |
-  | DEFINE-CODE-PRINTER    |
+  | LANG                   |
+  | FIND-INFO              |
+  | SRC-LOCATION           |
+  | BUILD-CONTEXT-SWITCHES |
+  | GEN-CONDITION          |
+  | NUM-LITERAL            |
+  | DEFINE-CODE-PROCESSOR  |
+  | CHAR-LITERAL           |
   | SIMPLE-GEN-ERROR       |
-  | %LEVEL                 |
-  | WITH-CODEGEN           |
-  | *CL-SYMBOLS*           |
-  | GEN-READER-SWITCH      |
-  | INFO-SIZE              |
-  | LISP                   |
   | BUILD-SWAP-PACKAGE     |
+  | TOP-INFO               |
+  | DELETE-CODE-PRINTER    |
+  | NODE-SLOT              |
+  | DEFINE-CODE-SWITCH     |
+  | UNLOAD-GEN             |
+  | FUNCTION-CALL          |
+  | DEFSYNTAX              |
+  | MAKE-NODE              |
+  | DEL-PROXY              |
+  | INFO-SIZE              |
+  | PUSH-INFO              |
+  | CODE-PRINT             |
+  | *CODE-DISPATCH-TABLE*  |
+  | FIND-SIGN              |
+  | WITH-CODE-PRINTER      |
+  | GEN-DESIGNATOR         |
+  | LANG-COUNTS            |
+  | WRITE-CODE             |
+  | DEFINE-CODE-PRINTER    |
+  | DEFINE-CODE-READER     |
+  | DEFINE-CODE-SWITCHES   |
+  | *GEN*                  |
+  | GEN-BACKEND            |
+  | STR-LITERAL            |
+  | CL-READER              |
+  | LISP                   |
+  | WITH-CODEGEN           |
+  | INDENT                 |
+  | GEN-READER             |
+  | *GEN-BACKEND-TABLE*    |
+  | PARSE-STRING           |
+  | STREAM                 |
+  | POP-INFO               |
+  | AST-TRAVERSER          |
+  | LANGUAGE               |
+  | *INDENT*               |
+  | DEFINE-GEN-BACKEND     |
+  | MAKE-PROXY             |
+  | INIT-GEN               |
+  | LOAD-GEN               |
+  | --INDENT               |
+  | *CL-SYMBOLS*           |
+  | ++INDENT               |
+  | GEN-READER-SWITCH      |
+  | GEN                    |
+  | CODE-PRINTER           |
+  | NODE                   |
+  | MAKE-NODES             |
+  | GEN-PACKAGE            |
+  | *LANGUAGE*             |
+  | QUOTY                  |
+  | PUSH-SIGN              |
 
 #+END
 

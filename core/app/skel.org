@@ -15,12 +15,14 @@ is for library developers and internal use.
 
   #+RESULTS:
   | SKEL/CORE            |
+  | SKEL/PACKY/PKGBUILD  |
   | SKEL/COMP/DIR-LOCALS |
   | SKEL/CORE/INT        |
   | SKEL/COMP/LISP       |
   | SKEL/COMP            |
   | SKEL/NET/CLIENT      |
   | SKEL/COMP/CONTAINER  |
+  | SKEL/HOMER/CORE      |
   | SKEL/INFER           |
   | SKEL/CORE/PLAN       |
   | SKEL/COMP/IGNITION   |
@@ -28,6 +30,7 @@ is for library developers and internal use.
   | SKEL/CORE/HEADER     |
   | SKEL/CORE/SCHEMA     |
   | SKEL/CORE/OBJ        |
+  | SKEL/HOMER           |
   | SKEL/COMP/CARGO      |
   | SKEL/TESTS           |
   | SKEL/CORE/LOG        |
@@ -35,49 +38,43 @@ is for library developers and internal use.
   | SKEL/NET/CORE        |
   | SKEL/CLI             |
   | SKEL/CORE/PROTO      |
+  | SKEL/HOMER/CLI       |
   | SKEL/NET             |
+  | SKEL/PACKY/CLI       |
   | SKEL/CORE/UTIL       |
-  | SKEL/TOOLS/VIEW      |
   | SKEL/COMP/MAKEFILE   |
-  | SKEL/TOOLS/DEPLOY    |
+  | SKEL/PACKY           |
+  | SKEL/PACKY/APKBUILD  |
   | SKEL/COMP/SYS        |
   | SKEL/SRV             |
   | SKEL/CORE/DB         |
   | SKEL/NET/SERVER      |
+  | SKEL/KRYPT           |
   | SKEL/COMP/ASD        |
-  | SKEL/CORE/VM         |
   | SKEL/CORE/PRINT      |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("skel")
 
   #+RESULTS:
-  | uiop           |
-  | asdf           |
-  | sb-posix       |
-  | sb-bsd-sockets |
-  | sb-concurrency |
-  | cl-ppcre       |
-  | std            |
-  | obj            |
-  | dat            |
-  | cli            |
-  | organ          |
-  | doc            |
-  | vc             |
-  | pod            |
-  | net            |
-  | box            |
-  | rdb            |
-  | syn            |
-  | NIL            |
-  | NIL            |
+  | std   |
+  | obj   |
+  | dat   |
+  | cli   |
+  | organ |
+  | doc   |
+  | vc    |
+  | pod   |
+  | net   |
+  | box   |
+  | rdb   |
+  | syn   |
+  | NIL   |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("skel")
 
   #+RESULTS:
-  | homer      |
   | skel/tests |
   | bin/skc    |
   | bin/skel   |
@@ -96,13 +93,12 @@ is for library developers and internal use.
   | core/component.lisp  |
   | core/rule.lisp       |
   | core/project.lisp    |
+  | core/pack.lisp       |
   | core/print.lisp      |
-  | core/fs.lisp         |
   | core/schema.lisp     |
   | core/db.lisp         |
   | core/log.lisp        |
   | core/util.lisp       |
-  | core/vm.lisp         |
   | comp/pkg.lisp        |
   | comp/lisp.lisp       |
   | comp/asd.lisp        |
@@ -111,16 +107,38 @@ is for library developers and internal use.
   | comp/org.lisp        |
   | comp/dir-locals.lisp |
   | comp/makefile.lisp   |
+  | comp/sys.lisp        |
+  | packy/pkg.lisp       |
+  | packy/var.lisp       |
+  | packy/proto.lisp     |
+  | packy/pkgbuild.lisp  |
+  | packy/apkbuild.lisp  |
+  | packy/db.lisp        |
+  | packy/client.lisp    |
+  | packy/srv.lisp       |
+  | packy/cfg.lisp       |
+  | packy/cli.lisp       |
+  | packy/packy.lisp     |
+  | krypt/pkg.lisp       |
+  | krypt/condition.lisp |
+  | krypt/krypt.lisp     |
+  | krypt/cli.lisp       |
   | pkg.lisp             |
+  | homer/pkg.lisp       |
+  | homer/var.lisp       |
+  | homer/log.lisp       |
+  | homer/util.lisp      |
+  | homer/task.lisp      |
+  | homer/cfg.lisp       |
+  | homer/srv.lisp       |
+  | homer/cli.lisp       |
+  | homer/homer.lisp     |
   | srv.lisp             |
   | infer.lisp           |
   | net/var.lisp         |
-  | net/proto.lisp       |
   | net/server.lisp      |
   | net/client.lisp      |
-  | tools/pkg.lisp       |
-  | tools/deploy.lisp    |
-  | tools/view.lisp      |
+  | net/endpoint.lisp    |
   | cli.lisp             |
   | skel.lisp            |
 
@@ -128,6 +146,7 @@ is for library developers and internal use.
   #+CALL: lisp-system-tests[:post transpose]("skel")
 
   #+RESULTS:
+  | PACKY-DB        |
   | ASD             |
   | MAKEFILE        |
   | SKELRC          |
@@ -138,30 +157,31 @@ is for library developers and internal use.
   #+CALL: lisp-package-symbols[:post transpose]("SKEL")
 
   #+RESULTS:
-  | SKEL-SIMPLE-ERROR            |
-  | *DEFAULT-MAKEFILE*           |
+  | MK-VAL-DESIGNATOR            |
+  | SK-SCRIPT                    |
   | SK-PROJECT                   |
   | WITH-PROJECT                 |
   | MAKEFILE                     |
-  | SKEL-COMPILE-ERROR           |
+  | INIT-SKEL-LOGGER             |
   | SK-COMPILE                   |
-  | SK-FIND                      |
-  | SK-FIND*                     |
+  | SK-WRITE-ASD-COMPONENTS      |
+  | SKEL-SIMPLE-ERROR            |
   | SK-PULL                      |
   | *SKEL-PROJECT-MACROS*        |
-  | *DEFAULT-SKEL-BINDINGS*      |
-  | LIST-ALL-PROJECTS            |
+  | *SKEL-CACHE*                 |
+  | SKEL-DB-PATH                 |
   | SKEL-CONDITION               |
-  | SK-WRITE-ASD-COMPONENTS      |
+  | LOAD-SKELFILE                |
   | SK-USER                      |
-  | SK-COMMAND                   |
+  | SKEL                         |
   | *SKEL-LOG-SCHEMA*            |
   | SK-SNIPPETS                  |
-  | MAKE-FILE-HEADER             |
+  | SK-SERVER                    |
+  | SKEL-STORE                   |
   | *SKEL-INIT-HOOK*             |
   | SK-LOG-REPAIR                |
   | *SKEL-USER-CONFIG*           |
-  | LOAD-SKELFILE                |
+  | SK-FIND*                     |
   | SK-INSTALL                   |
   | SK-VC                        |
   | *SKEL-PROJECT-SYMBOL-MACROS* |
@@ -170,75 +190,73 @@ is for library developers and internal use.
   | FIND-SK-FILE                 |
   | SK-BUNDLE                    |
   | SK-UNBUNDLE                  |
-  | PUSH-MK-RULE                 |
+  | *SKEL-PATH*                  |
+  | SK-WRITELN                   |
   | SK-CONFIG                    |
   | SK-PACK                      |
-  | SK-SCRIPT                    |
+  | SK-RUN                       |
   | *SKEL-CLI*                   |
   | SK-COMPONENTS                |
   | DEF-SK-CLASS                 |
-  | SK-WRITELN                   |
+  | DIR-LOCAL-VAR-DESIGNATOR     |
   | SK-CALL                      |
-  | PARSE-SK-RUST-SYSTEM         |
+  | LIST-ALL-PROJECTS            |
   | INIT-SYSTEM-SKELRC           |
   | SK-DATA                      |
-  | MAKE-SK-RULE                 |
+  | SK-UNPACK                    |
   | SK-META                      |
   | INIT-SKELRC                  |
   | SK-PRINT                     |
   | *MAKEFILE-EXTENSION*         |
-  | *SKEL-PROJECT-FUNCTIONS*     |
-  | SYSTEM-SKELRC                |
-  | PARSE-SK-LISP-SYSTEM         |
-  | LOAD-SYSTEM-SKELRC           |
-  | SK-PUSH                      |
-  | SKEL-STORE                   |
-  | DIR-LOCAL-VAR-DESIGNATOR     |
   | *MK-COMMAND-PREFIXES*        |
+  | *SKEL-PROJECT-FUNCTIONS*     |
+  | SK-TARGET                    |
+  | SK-ABBREV                    |
+  | SK-COMMAND                   |
+  | SETF-SKEL-VARS               |
+  | *SYSTEM-SKELRC*              |
+  | SK-CONVERT                   |
+  | SK-BIND                      |
   | SK-RULE-SOURCE               |
   | INIT-SKELFILE                |
-  | MAKE-SOURCE-FILE-HEADER      |
   | SKEL-SYNTAX-ERROR            |
   | SK-TAGS                      |
-  | USER-SKELRC                  |
-  | SK-KIND                      |
-  | SK-SCRIPTS                   |
-  | SKEL-PATH                    |
+  | *SKEL-PROJECT*               |
+  | SK-DESCRIPTION               |
+  | MAKE-SOURCE-FILE-HEADER      |
+  | *SKEL-STASH*                 |
   | SK-LOG-LIST                  |
-  | MK-VAL                       |
-  | SK-BIND                      |
-  | SK-RUN                       |
-  | SCRIPT-DESIGNATOR            |
+  | SK-PROJECT-SLOT              |
+  | LOAD-SKELRC                  |
+  | *SKEL-STORE*                 |
   | SK-READ-FILE                 |
   | *MK-MAGIC-VARS*              |
   | *SKELFILE-BOUNDARY*          |
   | SK-LOAD-COMPONENT            |
-  | SK-TRANSFORM                 |
+  | *DIR-LOCALS-FILE*            |
   | *SKEL-SYSTEM-CONFIG*         |
   | *SKEL-LOGGER*                |
   | SK-CONFIG-SLOT               |
-  | SK-CONVERT                   |
-  | LICENSE-DESIGNATOR           |
+  | SK-VERSION                   |
+  | WITH-SKEL-AST                |
   | SK-DEPLOY                    |
-  | SK-CALL*                     |
-  | MAKE-SHEBANG-FILE-HEADER     |
-  | SK-UNPACK                    |
+  | SK-BUILD                     |
+  | FILE-HEADER-KIND             |
   | SK-TEST                      |
   | SK-TANGLE                    |
-  | INIT-SKEL-LOGGER             |
+  | *SKEL-DATA*                  |
   | SK-RULE-TARGET               |
-  | SK-PROJECT-SLOT              |
+  | SK-PUSH                      |
   | SK-USER-CONFIG               |
   | *SKELFILE-EXTENSION*         |
   | PUSH-MK-VAR                  |
   | EDIT-SKELRC                  |
   | SK-SAVE                      |
-  | SK-DESCRIPTION               |
-  | CONTACT-DESIGNATOR           |
   | SK-RULE                      |
   | FILE-HEADER                  |
   | READ-SYSTEM-DEFINITIONS      |
   | MAKE-SHEBANG-COMMENT         |
+  | SKEL-DB-LOGGER               |
   | SK-LOG-SCHEMA                |
   | SK-ORG-FILE                  |
   | MK-VAR                       |
@@ -246,13 +264,15 @@ is for library developers and internal use.
   | SK-SHELL                     |
   | *DEFAULT-SKEL-USER*          |
   | *DEFAULT-SKELFILE*           |
+  | *DEFAULT-SKEL-VC-KIND*       |
   | SK-CACHE                     |
+  | *USER-SKELRC*                |
   | SK-SNIPPET                   |
   | SK-MOD                       |
-  | SKEL-DATA                    |
+  | *DEFAULT-MAKEFILE*           |
   | SK-STORE                     |
-  | SKEL-CACHE                   |
-  | SK-FETCH                     |
+  | SK-FIND                      |
+  | SK-SCRIPTS                   |
   | SK-LICENSE                   |
   | SK-ABBREVS                   |
   | SKEL-ERROR                   |
@@ -261,24 +281,25 @@ is for library developers and internal use.
   | SK-SYSTEM-CONFIG             |
   | SK-WRITE                     |
   | SK-WRITE-FILE                |
-  | SK-NEW                       |
-  | LOAD-SKELRC                  |
+  | MAKE-FILE-HEADER             |
+  | SK-FETCH                     |
   | SK-LOG-SHUTDOWN              |
   | SK-READ                      |
-  | MK-VAL-DESIGNATOR            |
-  | SKEL-DB-LOGGER               |
-  | *SKEL-LOGGER-CONFIG*         |
+  | SK-NEW                       |
+  | MAKE-SK-RULE                 |
   | *DEFAULT-SKEL-CACHE*         |
-  | SKEL                         |
+  | SK-TRANSFORM                 |
   | SK-REGISTER                  |
-  | *SKEL-PROJECT*               |
+  | SK-WEAVE                     |
   | PUSH-MK-DIRECTIVE            |
-  | SK-SEARCH-PROJECT            |
-  | FILE-HEADER-KIND             |
+  | PROJECT-ROOT                 |
+  | SK-KIND                      |
+  | MAKE-SHEBANG-FILE-HEADER     |
   | SK-AUTHOR                    |
   | SK-RUST-SYSTEM               |
   | SK-MAKE                      |
-  | SK-RULES                     |
+  | MK-VAL                       |
+  | *DEFAULT-SKEL-BINDINGS*      |
   | LOAD-USER-SKELRC             |
   | FIND-PROJECT-ROOT            |
   | *DEFAULT-SKELRC*             |
@@ -286,33 +307,29 @@ is for library developers and internal use.
   | SK-LISP-SYSTEM               |
   | SKEL-IO-ERROR                |
   | SK-WRITE-STRING              |
-  | SETF-SKEL-VARS               |
-  | SK-VERSION                   |
+  | LOAD-SYSTEM-SKELRC           |
   | SK-CONTAINERFILE             |
   | SK-RULE-RECIPE               |
-  | SK-TARGET                    |
-  | SKEL-STASH                   |
-  | INVALID-SKEL-AST             |
+  | PARSE-SK-LISP-SYSTEM         |
+  | PARSE-SK-RUST-SYSTEM         |
   | SK-INSTALL-USER-CONFIG       |
   | INIT-USER-SKELRC             |
   | SK-LOG-CLOSE                 |
-  | SK-WEAVE                     |
+  | SKEL-COMPILE-ERROR           |
   | SKEL-DB                      |
-  | SK-ABBREV                    |
+  | SK-RULES                     |
   | SK-INCLUDE                   |
-  | *DIR-LOCALS-FILE*            |
   | SK-SOURCE                    |
   | SK-PARENT                    |
   | INIT-SKEL                    |
   | *SKEL-ENV*                   |
   | SK-SRC                       |
   | SK-ENV                       |
-  | PROJECT-ROOT                 |
-  | SK-BUILD                     |
+  | PUSH-MK-RULE                 |
+  | *SKEL-LOGGER-CONFIG*         |
   | SK-DIR-LOCALS                |
   | SK-LOAD                      |
-  | *DEFAULT-SKEL-VC-KIND*       |
-  | SKEL-DB-PATH                 |
+  | SK-SEARCH-PROJECT            |
 
 #+END:
 
@@ -385,7 +402,7 @@ cat ~/.skelrc
 :vc :hg
 :auto-insert t
 :license :mpl2
-:log-level :info
+:log-level :trace
 :stash ".stash"
 :cache "/opt/stash/cache/skel"
 :data "/opt/stash/data/skel"
@@ -407,7 +424,7 @@ files are parsed as a simplified Lisp dialect and generate
 
 The simplest project looks like this:
 
-#+begin_src skel :noeval t
+#+begin_src lisp :eval never
 :name hello-world
 #+end_src
 
@@ -417,7 +434,7 @@ blanks later as the project develops.
 
 Here is a more verbose example, still with only metadata:
 
-#+begin_src skel :noeval t
+#+begin_src lisp :eval never
 ;;; skelfile --- core skelfile -*- mode: skel; -*-
 :name "core"
 :author "Richard Westhaver <ellis@rwest.io>"
@@ -432,7 +449,7 @@ Here is a more verbose example, still with only metadata:
 
 Another example with rules and components:
 
-#+begin_src skel :noeval t
+#+begin_src lisp :eval never
 ;;; skelfile @ 2023-10-08.02:37:25 -*- mode: skel; -*-
 :name skel
 :author "ellis"
@@ -525,7 +542,7 @@ skel -h
 
 #+RESULTS:
 #+begin_example
-skel v0.1.1:8cf017006940+ --- The hackable devtool.
+skel v0.1.1:11a5a8ce574a+ --- The hackable devtool.
 
 options:
   -h/--help               print help
@@ -542,38 +559,68 @@ options:
 commands:
   init                    initialize a skelfile in the current directory
     -n/--name               project name
+
   id                      print the current project id
+
   inspect                 inspect the project skelfile
     -f/--file               path to skelfile
+
   new                     make a new skel project
     -n/--name               project name
+
   describe                describe a skelfile
+
   edit                    edit a project file in emacs.
+
   show*                   show skel objects slots
     -f/--file               path to skelfile
+
   status                  show the current project status
+
   list                    list skel objects
+
   make                    build project targets
+
   search                  search the current project
-    :doc Search the current project and return a date-frame of results.
+
   run                     run a script or command
+
   compile                 compile source code
+
   build                   build programs and libraries
+
   update                  update components
+
   save                    save a file
+
   dist                    distribute build artifacts
+
   install                 install stuff
+
   pack                    pack stuff
+
   unpack                  unpack stuff
+
   bundle                  bundle source code
+
   unbundle                unbundle source code
+
   clean                   clean up the project
+
   test                    run tests
+
   bench                   run benchmark
+
   shell                   open the sk-shell interpreter
+
   db                      interact with the skel database
+
   net                     communicate with skel clients and servers
+
   vc                      version control
+
   pk                      packages
+
   kr                      cryptography
+
 #+end_example

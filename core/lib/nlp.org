@@ -72,6 +72,7 @@ Much of this code is from the Nyxt analysis library [[https://github.com/atlas-e
   #+CALL: lisp-system-tests[:post transpose]("nlp")
 
   #+RESULTS:
+  | FUZZY       |
   | DBSCAN      |
   | TEXTRANK    |
   | DOCS        |
@@ -83,43 +84,44 @@ Much of this code is from the Nyxt analysis library [[https://github.com/atlas-e
   #+CALL: lisp-package-symbols[:post transpose]("NLP")
 
   #+RESULTS:
-  | DICTIONARY                         |
-  | INVERSE-DOCUMENT-FREQUENCY         |
-  | DOCUMENT-COLLECTION                |
-  | VECTOR-DATA                        |
-  | STOP-WORDS                         |
-  | DBSCAN                             |
-  | DOCUMENT                           |
-  | DOCUMENT-VERTEX                    |
-  | STRING-CONTENTS                    |
-  | EXTRACT-SECTIONS                   |
-  | DOCUMENT-CLUSTER                   |
-  | CLUSTER                            |
-  | EXTRACT-KEYWORDS                   |
-  | DISTANCE                           |
-  | TF-IDF-VECTORIZE-DOCUMENTS         |
-  | *LANGUAGE-DATA*                    |
-  | TERMP                              |
-  | DOCUMENT-FREQUENCY                 |
-  | EDGES                              |
-  | GENERATE-DOCUMENT-DISTANCE-VECTORS |
-  | NEIGHBORS                          |
-  | WORD-TOKENIZE                      |
-  | SENTENCE-TOKENIZE                  |
-  | FUZZY-MATCH                        |
-  | TERM-FREQUENCY                     |
-  | ADD-DOCUMENT                       |
-  | TF-VECTORIZE-DOCUMENTS             |
-  | CLUSTERS                           |
-  | KEYWORDS                           |
-  | DOCUMENTS                          |
-  | SUMMARIZE-TEXT                     |
-  | STEM                               |
-  | RANK                               |
-  | GET-CLUSTER                        |
   | LANGUAGE-DATA                      |
-  | TERM-COUNT                         |
+  | NEIGHBORS                          |
+  | CLUSTER                            |
+  | TERM-FREQUENCY                     |
+  | DICTIONARY                         |
   | STOP-WORDS-LOOKUP                  |
+  | SUMMARIZE-TEXT                     |
+  | TERM-COUNT                         |
+  | EXTRACT-SECTIONS                   |
+  | DOCUMENT-FREQUENCY                 |
+  | DOCUMENT-COLLECTION                |
+  | EDGES                              |
+  | TF-VECTORIZE-DOCUMENTS             |
+  | SENTENCE-TOKENIZE                  |
+  | RANK                               |
+  | FILE-MATCH                         |
+  | EXTRACT-KEYWORDS                   |
+  | DOCUMENT-CLUSTER                   |
+  | STOP-WORDS                         |
+  | VECTOR-DATA                        |
+  | *LANGUAGE-DATA*                    |
+  | DISTANCE                           |
+  | CLUSTERS                           |
+  | DOCUMENTS                          |
+  | DOCUMENT-VERTEX                    |
+  | KEYWORDS                           |
+  | GENERATE-DOCUMENT-DISTANCE-VECTORS |
+  | FUZZY-MATCH                        |
+  | ADD-DOCUMENT                       |
+  | TERMP                              |
+  | STRING-CONTENTS                    |
+  | TF-IDF-VECTORIZE-DOCUMENTS         |
+  | WORD-TOKENIZE                      |
+  | INVERSE-DOCUMENT-FREQUENCY         |
+  | DOCUMENT                           |
+  | STEM                               |
+  | GET-CLUSTER                        |
+  | DBSCAN                             |
 
 #+END:
 * Fuzzy
@@ -148,10 +150,11 @@ FUZZY-MATCH names a compiled function:
                  (VALUES T &OPTIONAL))
   Documentation:
     From the user input and a list of suggestions, return a filtered list of
-    suggestions that have all the input words in them, and sort this list to have the
-    'most relevant' first.
-    The match is case-sensitive if INPUT contains at least one uppercase character.
-    SUGGESTIONS-DISPLAY can be used to pass the pre-computed display strings of the
-    suggestions; otherwise `object-display' is used.
+    suggestions that have all the input words in them, and sort this list to have
+    the 'most relevant' first.
+    
+    The match is case-sensitive if INPUT contains at least one uppercase
+    character.  SUGGESTIONS-DISPLAY can be used to pass the pre-computed display
+    strings of the suggestions; otherwise `object-display' is used.
   Source file: /home/ellis/comp/core/lib/nlp/fuzzy.lisp
 #+end_example

@@ -21,23 +21,21 @@
   | q       |
   | dat     |
   | cli     |
+  | net     |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("rdb")
 
   #+RESULTS:
+  | skel      |
   | web/dash  |
   | web/index |
-  | krypt     |
-  | packy     |
-  | skel      |
   | organ     |
   | doc/tests |
   | doc       |
   | rdb/tests |
   | nlp       |
   | core      |
-  | bin/packy |
   | bin/rdb   |
   | bin/homer |
 
@@ -50,15 +48,15 @@
   | macs.lisp      |
   | rocksdb.lisp   |
   | proto.lisp     |
-  | obj.lisp       |
+  | rdb.lisp       |
   | schema.lisp    |
   | db.lisp        |
   | log.lisp       |
   | query.lisp     |
   | store.lisp     |
   | cfg.lisp       |
+  | srv.lisp       |
   | cli.lisp       |
-  | rdb.lisp       |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("rdb")
@@ -84,8 +82,8 @@
   #+RESULTS:
   | PUT-KV-CF-ERROR                 |
   | CLOSE-TRANSACTION-DB            |
-  | READ-OPTS                       |
-  | WITH-OPEN-RDB-RAW               |
+  | WITH-KV-RAW                     |
+  | CLOSE-CFS                       |
   | MULTI-GET                       |
   | MAKE-RDB-OPTS                   |
   | RDB-BYTES-BUFFER                |
@@ -96,11 +94,11 @@
   | PUT-KEY-TS                      |
   | DELETE-KEY-TS                   |
   | CF-ERROR                        |
-  | RDB-CF-KEY-TYPE                 |
+  | PUT-CF-KEY                      |
   | RESTORE-DB                      |
-  | CLOSE-SECONDARY-DB              |
+  | DESTROY-DB-ERROR                |
   | CF                              |
-  | CLOSE-CFS                       |
+  | CLOSE-SECONDARY-DB              |
   | DO-COLUMNS                      |
   | INGEST-DB                       |
   | CREATE-CONCAT-MERGE-OP          |
@@ -144,7 +142,7 @@
   | RDB-ERROR                       |
   | DO-CFS                          |
   | SNAPSHOT-DB                     |
-  | CREATE-CHECKPOINT-RAW           |
+  | OPEN-CFS                        |
   | RDB-OBJECT-SCHEMA               |
   | WBWI-PUT-KV-CF                  |
   | PUT-KV-ERROR                    |
@@ -153,7 +151,7 @@
   | FLUSH-CF                        |
   | HANDLE-ERRPTR                   |
   | PUSH-CF                         |
-  | OPEN-CFS                        |
+  | RDB-CF-VAL-TYPE                 |
   | RDB-CHECKPOINT                  |
   | CREATE-DEFAULT-LOGGER-CALLBACK  |
   | RDB-LOG-DEFAULT                 |
@@ -172,22 +170,22 @@
   | OPEN-CFS-SECONDARY-RAW          |
   | CLOSE-BACKUP-DB                 |
   | DESTROY-SST                     |
-  | RDB-DATA-SOURCE                 |
+  | RDB-ALIEN-ERROR                 |
   | RDB-LEVEL-METADATA              |
   | LOAD-OPTS                       |
   | GET-STATS                       |
   | CREATE-WBWI                     |
   | RDB-SINK                        |
   | RDB-WBWI-TS                     |
-  | RDB-OPTS                        |
-  | RDB-CF-VAL-TYPE                 |
+  | RDB-DATA-SOURCE                 |
+  | RDB-CF-KEY-TYPE                 |
   | TRANSACTIONDB-PUT-KV-RAW        |
-  | WITH-KV-RAW                     |
-  | RDB-ALIEN-ERROR                 |
+  | WITH-OPEN-RDB-RAW               |
+  | MAKE-RDB-ITER                   |
   | CURSOR-HANDLE                   |
   | OPEN-BACKUP-ENGINE              |
   | RDB-COLUMN                      |
-  | DESTROY-DB-ERROR                |
+  | RDB-OPTS                        |
   | RDB-CF                          |
   | WITH-KV                         |
   | SHUTDOWN-DB                     |
@@ -195,6 +193,7 @@
   | OPEN-TRANSACTIONDB-RAW          |
   | RDB-CF-METADATA-SIZE            |
   | RDB-CF-METADATA-P               |
+  | DELETE-KEY-RANGE                |
   | RDB-SAP                         |
   | REPAIR-DB                       |
   | WITH-CF                         |
@@ -209,7 +208,6 @@
   | GET-OPT                         |
   | TXN-ERROR                       |
   | BACKUP-DB                       |
-  | PUT-CF-KEY                      |
   | WITH-LATEST-OPTS                |
   | RDB-CFS                         |
   | RDB-WBWI-DATA                   |
@@ -236,7 +234,7 @@
   | GET-KV-CF-ERROR                 |
   | MAKE-RDB                        |
   | RDB-CF-SAP                      |
-  | DELETE-KEY-RANGE                |
+  | READ-OPTS                       |
   | MAKE-TRANSACTION                |
   | CREATE-INDEX-MERGE-OP           |
   | ROLLBACK-TRANSACTION            |
@@ -246,9 +244,10 @@
   | PUSH-SAP                        |
   | CREATE-CFS                      |
   | MAKE-RDB-LEVEL-METADATA         |
+  | CREATE-CHECKPOINT-RAW           |
   | BEGIN-TRANSACTION               |
   | RDB-WBWI                        |
-  | MAKE-RDB-ITER                   |
+  | RDB-SERVICE                     |
   | RDB-WBWI-CLEAR                  |
   | RDB-COLUMN-FAMILY               |
   | RDB-TRANSACTION-DB              |

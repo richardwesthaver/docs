@@ -5,12 +5,12 @@
 This doc is about the [[https://en.wikipedia.org/wiki/Foreign_function_interface][Foreign Function Interface]] (FFI) features of the
 =core=. 
 
-#+BEGIN: lisp-system-info :system ffi :symbols nil :files nil :dependents nil :tests nil
+#+BEGIN: lisp-system-info :system ffi :symbols nil :files nil :dependents nil
 - packages
   #+CALL: lisp-system-packages[:post transpose]("ffi")
 
   #+RESULTS:
-  | FFI/PRELUDE |
+  | FFI/TESTS |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("ffi")
@@ -40,8 +40,9 @@ This doc is about the [[https://en.wikipedia.org/wiki/Foreign_function_interface
   | jpeg        |
   | chromaprint |
   | blas        |
-  | aws-lc      |
+  | openssl     |
   | ffmpeg      |
+  | syslog      |
 
 #+END:
 
@@ -76,7 +77,6 @@ x11/xkb directly.
 
   #+RESULTS:
   | ffi         |
-  | gui         |
   | evdev/tests |
   | xkb/tests   |
   | io          |
@@ -149,6 +149,7 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
   | slicetransform.lisp |
   | writebatch.lisp     |
   | logger.lisp         |
+  | listener.lisp       |
   | stats.lisp          |
   | vars.lisp           |
   | macs.lisp           |
@@ -157,6 +158,7 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
   #+CALL: lisp-system-tests[:post transpose]("rocksdb")
 
   #+RESULTS:
+  | EVENT-LISTENER           |
   | WBWI                     |
   | SLICETRANSFORM           |
   | WRITEBATCH               |
@@ -179,262 +181,262 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
   #+CALL: lisp-package-symbols[:post transpose]("ROCKSDB")
 
   #+RESULTS:
-  | ROCKSDB-TRANSACTION-OPTIONS-DESTROY                                     |
-  | ROCKSDB-COLUMN-FAMILY-METADATA-GET-LEVEL-COUNT                          |
-  | ROCKSDB-OPTIONS-GET-MAX-OPEN-FILES                                      |
-  | ROCKSDB-WRITEOPTIONS-GET-LOW-PRI                                        |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-BLOCK-SIZE-DEVIATION                    |
-  | ROCKSDB-PINNABLESLICE                                                   |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-DESTROY                                     |
-  | ROCKSDB-TRANSACTION-GET-FOR-UPDATE                                      |
-  | ROCKSDB-OPTIMISTICTRANSACTIONDB                                         |
-  | ROCKSDB-ENV-GET-BACKGROUND-THREADS                                      |
-  | ROCKSDB-READOPTIONS-SET-SKIPPABLE-INTERNAL-KEYS                         |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-BLOCK-CACHE                             |
-  | ROCKSDB-HYPER-CLOCK-CACHE-OPTIONS-SET-ESTIMATED-ENTRY-CHARGE            |
-  | ROCKSDB-TRANSACTION-MERGE                                               |
-  | ROCKSDB-COLUMN-FAMILY-METADATA-GET-FILE-COUNT                           |
-  | ROCKSDB-READOPTIONS-SET-TOTAL-ORDER-SEEK                                |
-  | ROCKSDB-READOPTIONS-GET-TOTAL-ORDER-SEEK                                |
-  | ROCKSDB-PUT-CF                                                          |
-  | ROCKSDB-OPTIONS-GET-BLOB-COMPRESSION-TYPE                               |
-  | ROCKSDB-COMPACTOPTIONS-DESTROY                                          |
-  | ROCKSDB-WRITEBATCH-PUTV                                                 |
-  | *ROCKSDB-COMPRESSION-BACKENDS*                                          |
-  | ROCKSDB-MERGEOPERATOR-CREATE                                            |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-METADATA-BLOCK-SIZE                     |
-  | ROCKSDB-SLICETRANSFORM                                                  |
-  | ROCKSDB-OPTIONS-GET-ERROR-IF-EXISTS                                     |
-  | ROCKSDB-WRITEOPTIONS-GET-SYNC                                           |
-  | ROCKSDB-OPTIONS-GET-MAX-TOTAL-WAL-SIZE                                  |
-  | ROCKSDB-OPEN                                                            |
-  | ROCKSDB-SET-PERF-LEVEL                                                  |
-  | ROCKSDB-OPTIONS-GET-COMPRESSION                                         |
-  | ROCKSDB-OPTIONS-SET-NUM-LEVELS                                          |
-  | ROCKSDB-WRITEBATCH-WI-CREATE-FROM                                       |
-  | ROCKSDB-COMPACTION-LEVEL                                                |
-  | ROCKSDB-BACKUP-ENGINE-OPTIONS-SET-SHARED-FILES-WITH-CHECKSUM-NAMING     |
-  | ROCKSDB-WAL-ITER-VALID                                                  |
-  | ROCKSDB-OPTIMISTICTRANSACTIONDB-WRITE                                   |
-  | ROCKSDB-SSTFILEWRITER-CREATE-WITH-COMPARATOR                            |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-PIN-TOP-LEVEL-INDEX-AND-FILTER          |
-  | ROCKSDB-ENV-DESTROY                                                     |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-NO-BLOCK-CACHE                          |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-BLOCK-RESTART-INTERVAL                  |
-  | ROCKSDB-OPTIONS-GET-PREPOPULATE-BLOB-CACHE                              |
-  | ROCKSDB-READOPTIONS-SET-FILL-CACHE                                      |
-  | ROCKSDB-COLUMN-FAMILY-METADATA-GET-LEVEL-METADATA                       |
-  | ROCKSDB-TRANSACTIONDB-WRITE                                             |
-  | ROCKSDB-PERF-LEVEL                                                      |
-  | ROCKSDB-OPTIONS-SET-DISABLE-AUTO-COMPACTIONS                            |
-  | ROCKSDB-OPTIONS-GET-WAL-SIZE-LIMIT-MB                                   |
+  | ROCKSDB-PERFCONTEXT-DESTROY                                             |
+  | ON-COMPACTION-COMPLETED-CB                                              |
+  | ROCKSDB-OPTIONS-SET-ALLOW-INGEST-BEHIND                                 |
+  | ROCKSDB-DESTRUCTOR                                                      |
+  | ROCKSDB-OPTIONS-SET-ENABLE-WRITE-THREAD-ADAPTIVE-YIELD                  |
+  | ROCKSDB-OPTIONS-GET-EXPERIMENTAL-MEMPURGE-THRESHOLD                     |
+  | ROCKSDB-SUBCOMPACTIONJOBINFO-OUTPUT-LEVEL                               |
+  | ROCKSDB-STATISTICS-HISTOGRAM-DATA-GET-MEDIAN                            |
+  | ROCKSDB-OPTIONS-GET-MAX-SUBCOMPACTIONS                                  |
+  | ROCKSDB-OPTIONS-SET-MAX-WRITE-BUFFER-NUMBER                             |
+  | ROCKSDB-WRITEBATCH-WI-DELETE                                            |
+  | ROCKSDB-TRANSACTION-GET-PINNED-CF                                       |
+  | ROCKSDB-WRITEBATCH-WI-UPDATE-TIMESTAMPS                                 |
+  | ROCKSDB-TRANSACTIONDB-OPEN-COLUMN-FAMILIES                              |
   | ROCKSDB-OPTIONS-GET-TARGET-FILE-SIZE-MULTIPLIER                         |
-  | ROCKSDB-OPTIONS-SET-ATOMIC-FLUSH                                        |
-  | ROCKSDB-LEVEL-METADATA-DESTROY                                          |
-  | ROCKSDB-DBPATH-DESTROY                                                  |
-  | ROCKSDB-TRANSACTION                                                     |
-  | ROCKSDB-ITER-GET-ERROR                                                  |
-  | ROCKSDB-TRANSACTION-COMMIT                                              |
-  | ROCKSDB-COMPACTOPTIONS-GET-TARGET-PATH-ID                               |
-  | ROCKSDB-CHECKPOINT                                                      |
-  | ROCKSDB-OPTIONS-SET-STATS-DUMP-PERIOD-SEC                               |
-  | ROCKSDB-TRANSACTION-GET-CF                                              |
-  | ROCKSDB-TRANSACTIONDB                                                   |
-  | ROCKSDB-OPTIONS-SET-AVOID-UNNECESSARY-BLOCKING-IO                       |
-  | ROCKSDB-OPTIONS-GET-SKIP-STATS-UPDATE-ON-DB-OPEN                        |
-  | ROCKSDB-WRITEOPTIONS                                                    |
-  | ROCKSDB-NAME-FUNCTION                                                   |
-  | ROCKSDB-TRANSACTIONDB-FLUSH                                             |
-  | ROCKSDB-OPTIONS-SET-MANUAL-WAL-FLUSH                                    |
-  | ROCKSDB-FLUSHOPTIONS-DESTROY                                            |
-  | ROCKSDB-WRITE-WRITEBATCH-WI                                             |
-  | ROCKSDB-OPTIONS-GET-MAX-FILE-OPENING-THREADS                            |
-  | ROCKSDB-READOPTIONS-CREATE                                              |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-DATA-BLOCK-INDEX-TYPE                   |
-  | ROCKSDB-SSTFILEWRITER-DELETE                                            |
-  | ROCKSDB-OPTIONS-GET-MANIFEST-PREALLOCATION-SIZE                         |
-  | ROCKSDB-APPROXIMATE-MEMORY-USAGE-CREATE                                 |
-  | ROCKSDB-STATISTICS-HISTOGRAM-DATA-GET-MAX                               |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-USE-DELTA-ENCODING                      |
+  | ROCKSDB-COMPACTOPTIONS-GET-EXCLUSIVE-MANUAL-COMPACTION                  |
+  | ROCKSDB-OPTIONS-SET-COMPRESSION-OPTIONS-ZSTD-MAX-TRAIN-BYTES            |
   | ROCKSDB-WRITEOPTIONS-GET-IGNORE-MISSING-COLUMN-FAMILIES                 |
-  | ROCKSDB-WRITEBATCH                                                      |
-  | ROCKSDB-PERFCONTEXT-REPORT                                              |
-  | ROCKSDB-WRITEBATCH-WI-SINGLEDELETE                                      |
-  | ROCKSDB-COMPACTOPTIONS-CREATE                                           |
-  | ROCKSDB-OPTIONS-SET-MAX-MANIFEST-FILE-SIZE                              |
-  | ROCKSDB-WRITEBATCH-SINGLEDELETE-CF-WITH-TS                              |
-  | DEFINE-PARTIAL-MERGE-OP                                                 |
-  | *ROCKSDB-PERF-METRICS*                                                  |
-  | ROCKSDB-WRITEBATCH-PUTV-CF                                              |
-  | ROCKSDB-OPTIONS-SET-LEVEL-COMPACTION-DYNAMIC-LEVEL-BYTES                |
-  | ROCKSDB-BACKUP-ENGINE-OPTIONS-SET-DESTROY-OLD-DATA                      |
-  | ROCKSDB-OPTIONS-GET-BLOB-COMPACTION-READAHEAD-SIZE                      |
-  | ROCKSDB-PERFCONTEXT-RESET                                               |
-  | ROCKSDB-OPTIONS-SET-LOG-FILE-TIME-TO-ROLL                               |
-  | ROCKSDB-OPTIONS-SET-BLOB-FILE-STARTING-LEVEL                            |
-  | ROCKSDB-TRANSACTION-OPTIONS                                             |
-  | ROCKSDB-TRANSACTION-DELETE-CF                                           |
-  | ROCKSDB-SST-FILE-METADATA                                               |
-  | ROCKSDB-OPTIONS-SET-INFO-LOG-LEVEL                                      |
-  | ROCKSDB-KEY-MAY-EXIST                                                   |
-  | ROCKSDB-WRITEBATCH-WI-CREATE-ITERATOR-WITH-BASE-CF                      |
-  | ROCKSDB-CACHE                                                           |
-  | ROCKSDB-WRITEBATCH-WI-PUT                                               |
-  | ROCKSDB-SST-FILE-METADATA-GET-DIRECTORY                                 |
-  | ROCKSDB-COMPACTOPTIONS-SET-EXCLUSIVE-MANUAL-COMPACTION                  |
-  | ROCKSDB-SST-FILE-METADATA-GET-LARGESTKEY                                |
-  | ROCKSDB-IN-RANGE-DEFAULT                                                |
-  | ROCKSDB-LIVEFILES                                                       |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-INDEX-TYPE                              |
+  | ROCKSDB-LRU-CACHE-OPTIONS-DESTROY                                       |
+  | ROCKSDB-COMPACTIONJOBINFO-OUTPUT-FILES-COUNT                            |
+  | ROCKSDB-UNIVERSAL-COMPACTION-OPTIONS-SET-MAX-SIZE-AMPLIFICATION-PERCENT |
+  | ROCKSDB-CREATE-COLUMN-FAMILIES                                          |
+  | ROCKSDB-ITER-KEY                                                        |
+  | ROCKSDB-OPTIMISTICTRANSACTIONDB-OPEN-COLUMN-FAMILIES                    |
+  | ROCKSDB-LIVEFILES-LARGEST-KEY                                           |
+  | ROCKSDB-OPTIONS-SET-USE-ADAPTIVE-MUTEX                                  |
+  | ROCKSDB-DELETE-CF-FUNCTION                                              |
+  | ROCKSDB-OPTIONS-SET-ENABLE-BLOB-GC                                      |
+  | ROCKSDB-DBPATH-DESTROY                                                  |
+  | ROCKSDB-FILTER-NEVER                                                    |
+  | ROCKSDB-SSTFILEWRITER-DELETE-WITH-TS                                    |
+  | ROCKSDB-OPTIONS-SET-UNORDERED-WRITE                                     |
+  | ROCKSDB-MERGE                                                           |
+  | ROCKSDB-DBPATH                                                          |
+  | ROCKSDB-BACKUP-ENGINE-INFO-SIZE                                         |
+  | ROCKSDB-OPTIONS-GET-ATOMIC-FLUSH                                        |
+  | ROCKSDB-WRITEBATCH-COUNT                                                |
+  | ROCKSDB-STATISTICS-HISTOGRAM-DATA-GET-STD-DEV                           |
+  | ROCKSDB-TRANSACTIONDB-DELETE                                            |
+  | ROCKSDB-LIVEFILES-COLUMN-FAMILY-NAME                                    |
+  | ROCKSDB-TRANSACTION-ROLLBACK-TO-SAVEPOINT                               |
+  | ROCKSDB-WRITEOPTIONS                                                    |
+  | ROCKSDB-OPTIONS-GET-LEVEL0-STOP-WRITES-TRIGGER                          |
+  | ROCKSDB-LEVEL-METADATA-GET-SIZE                                         |
+  | ROCKSDB-ITER-VALID                                                      |
+  | ROCKSDB-OPTIONS-GET-ENABLE-PIPELINED-WRITE                              |
+  | ROCKSDB-OPEN-FOR-READ-ONLY-COLUMN-FAMILIES                              |
+  | ROCKSDB-WRITEBATCH-WI-MERGE-CF                                          |
+  | ROCKSDB-TRANSACTION-ROLLBACK                                            |
+  | ROCKSDB-COMPACTIONJOBINFO-OUTPUT-RECORDS                                |
+  | ROCKSDB-WRITEBATCH-WI-PUT-LOG-DATA                                      |
+  | ROCKSDB-OPTIONS-GET-STATS-DUMP-PERIOD-SEC                               |
+  | ROCKSDB-OPTIONS-GET-DISABLE-AUTO-COMPACTIONS                            |
+  | ROCKSDB-GET-TS-SIZE-FUNCTION                                            |
+  | ROCKSDB-WRITEABLEFILE                                                   |
+  | ROCKSDB-OPTIMISTICTRANSACTION-BEGIN                                     |
+  | ROCKSDB-UNIVERSAL-COMPACTION-OPTIONS-GET-MIN-MERGE-WIDTH                |
+  | ROCKSDB-OPTIONS-SET-DELETE-OBSOLETE-FILES-PERIOD-MICROS                 |
+  | ROCKSDB-ENV-SET-BACKGROUND-THREADS                                      |
+  | ROCKSDB-OPTIMISTICTRANSACTIONDB-CLOSE-BASE-DB                           |
+  | ROCKSDB-COMPACTOPTIONS-DESTROY                                          |
+  | ROCKSDB-WRITEBATCH-WI-GET-FROM-BATCH-AND-DB-CF                          |
+  | ROCKSDB-WAL-ITERATOR                                                    |
+  | ROCKSDB-COLUMN-FAMILY-HANDLE-GET-ID                                     |
+  | DEFAULT-ON-FLUSH-BEGIN-CB                                               |
+  | ROCKSDB-UNIVERSAL-COMPACTION-OPTIONS-DESTROY                            |
+  | ROCKSDB-WRITEBATCH-SET-SAVEPOINT                                        |
+  | ROCKSDB-OPTIONS-INCREASE-PARALLELISM                                    |
+  | ROCKSDB-ITER-GET-ERROR                                                  |
+  | ROCKSDB-ITER-SEEK-TO-LAST                                               |
+  | ROCKSDB-STATISTICS-LEVEL                                                |
+  | ROCKSDB-READOPTIONS-SET-TIMESTAMP                                       |
+  | ROCKSDB-COMPACTION-LEVEL                                                |
+  | ROCKSDB-WRITEOPTIONS-GET-DISABLE-WAL                                    |
+  | ROCKSDB-OPTIONS-SET-IS-FD-CLOSE-ON-EXEC                                 |
+  | ROCKSDB-LRU-CACHE-OPTIONS-GET-MEMORY-ALLOCATOR                          |
   | ROCKSDB-LOGGER-DESTROY                                                  |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-PIN-L0-FILTER-AND-INDEX-BLOCKS-IN-CACHE |
-  | ROCKSDB-OPTIONS-SET-MIN-BLOB-SIZE                                       |
-  | *ROCKSDB-PARTIAL-MERGE-LAMBDA-LIST*                                     |
-  | ROCKSDB-LOG-FUNCTION                                                    |
+  | ROCKSDB-WRITEBATCH-WI-MERGEV                                            |
+  | ROCKSDB-GET                                                             |
+  | ROCKSDB-OPTIONS-GET-MAX-MANIFEST-FILE-SIZE                              |
+  | ROCKSDB-BACKUP-ENGINE-INFO-BACKUP-ID                                    |
+  | ROCKSDB-SST-FILE-METADATA-DESTROY                                       |
+  | ROCKSDB-READOPTIONS-SET-PREFIX-SAME-AS-START                            |
+  | ROCKSDB-OPTIMISTICTRANSACTIONDB-OPEN                                    |
+  | ROCKSDB-MEMTABLEINFO-CF-NAME                                            |
+  | ROCKSDB-BACKUP-ENGINE-OPTIONS-SET-ENV                                   |
+  | ROCKSDB-COLUMN-FAMILY-METADATA-GET-SIZE                                 |
+  | ROCKSDB-INCREASE-FULL-HISTORY-TS-LOW                                    |
+  | ROCKSDB-WRITEBATCH-WI-GET-FROM-BATCH                                    |
+  | ROCKSDB-FIFO-COMPACTION-OPTIONS                                         |
+  | ROCKSDB-WRITEBATCH-WI-MERGE                                             |
+  | ROCKSDB-WRITEBATCH-PUTV                                                 |
+  | ROCKSDB-COMPACTOPTIONS-SET-ALLOW-WRITE-STALL                            |
+  | ROCKSDB-TRANSACTION-PUT                                                 |
+  | ROCKSDB-WRITEOPTIONS-GET-NO-SLOWDOWN                                    |
+  | ROCKSDB-WRITEBATCH-MERGEV                                               |
+  | ROCKSDB-ENABLE-FILE-DELETIONS                                           |
+  | ROCKSDB-C-ERROR                                                         |
+  | ROCKSDB-FLUSHJOBINFO-TRIGGERED-WRITES-SLOWDOWN                          |
+  | ROCKSDB-ITER-SEEK-FOR-PREV                                              |
+  | ROCKSDB-OPTIONS-SET-DB-WRITE-BUFFER-SIZE                                |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-USE-DELTA-ENCODING                      |
+  | ROCKSDB-READOPTIONS-SET-IGNORE-RANGE-DELETIONS                          |
+  | ROCKSDB-SSTFILEWRITER-PUT-WITH-TS                                       |
+  | ROCKSDB-SSTFILEWRITER-CREATE-WITH-COMPARATOR                            |
+  | ROCKSDB-TRANSACTIONDB-FLUSH-CFS                                         |
+  | ROCKSDB-OPTIONS-SET-BLOB-COMPACTION-READAHEAD-SIZE                      |
+  | ROCKSDB-KEY-MAY-EXIST-CF                                                |
+  | ROCKSDB-COMPACTIONJOBINFO-INPUT-RECORDS                                 |
+  | ROCKSDB-OPTIONS-SET-PREPARE-FOR-BULK-LOAD                               |
+  | ROCKSDB-FULL-MERGE-FUNCTION                                             |
+  | ROCKSDB-OPTIONS-GET-TABLE-CACHE-NUMSHARDBITS                            |
+  | ROCKSDB-PERF-LEVEL                                                      |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-DATA-BLOCK-HASH-RATIO                   |
+  | ROCKSDB-COLUMN-FAMILY-HANDLE-GET-NAME                                   |
+  | ROCKSDB-BATCHED-MULTI-GET-CF                                            |
+  | ROCKSDB-MERGEOPERATOR-FUNCTION                                          |
+  | ROCKSDB-OPTIONS-SET-RATELIMITER                                         |
+  | ROCKSDB-OPTIONS-CREATE                                                  |
+  | WITH-ROCKSDB-WBWI                                                       |
+  | ROCKSDB-OPTIONS-GET-COMPRESSION-OPTIONS-MAX-DICT-BUFFER-BYTES           |
+  | ROCKSDB-PROPERTY-INT-CF                                                 |
+  | ROCKSDB-TRANSACTIONDB-CREATE-ITERATOR                                   |
+  | ROCKSDB-LOAD-LATEST-OPTIONS-DESTROY                                     |
+  | ROCKSDB-TRANSACTIONDB-GET                                               |
+  | ROCKSDB-OPTIONS-GET-ENABLE-WRITE-THREAD-ADAPTIVE-YIELD                  |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-PARTITION-FILTERS                       |
+  | ROCKSDB-TRANSACTION-MULTI-GET                                           |
+  | ROCKSDB-OPTIONS-GET-WAL-BYTES-PER-SYNC                                  |
+  | ROCKSDB-COLUMN-FAMILY-METADATA-GET-LEVEL-METADATA                       |
+  | ROCKSDB-OPTIONS-PREPARE-FOR-BULK-LOAD                                   |
+  | ROCKSDB-BACKUP-ENGINE-GET-BACKUP-INFO                                   |
+  | ROCKSDB-TRANSACTION-GET                                                 |
+  | DEFAULT-ON-COMPACTION-BEGIN-CB                                          |
+  | ROCKSDB-COMPACTIONJOBINFO-CF-NAME                                       |
+  | ROCKSDB-READOPTIONS-GET-SKIPPABLE-INTERNAL-KEYS                         |
+  | ROCKSDB-READOPTIONS-DESTROY                                             |
+  | ROCKSDB-WRITEBATCH-WI-CREATE-ITERATOR-WITH-BASE-READOPTS                |
+  | ROCKSDB-OPTIONS-GET-MEMTABLE-PREFIX-BLOOM-SIZE-RATIO                    |
+  | ROCKSDB-IN-RANGE-DEFAULT                                                |
+  | ROCKSDB-MULTI-GET                                                       |
+  | WITH-ERRPTR                                                             |
+  | ROCKSDB-BACKUP-ENGINE-OPTIONS-SET-DESTROY-OLD-DATA                      |
+  | ROCKSDB-PUT                                                             |
+  | ROCKSDB-INGEST-EXTERNAL-FILE-CF                                         |
+  | ROCKSDB-LOAD-LATEST-OPTIONS                                             |
+  | ROCKSDB-CONDITION                                                       |
+  | ROCKSDB-OPTIONS-SET-BLOB-FILE-SIZE                                      |
+  | ROCKSDB-OPTIONS-GET-KEEP-LOG-FILE-NUM                                   |
+  | ROCKSDB-SSTFILEWRITER-PUT                                               |
+  | ROCKSDB-OPTIONS-SET-SKIP-CHECKING-SST-FILE-SIZES-ON-DB-OPEN             |
+  | ROCKSDB-OPTIONS-SET-UINT64ADD-MERGE-OPERATOR                            |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-BLOCK-SIZE-DEVIATION                    |
+  | ROCKSDB-TRANSACTIONDB                                                   |
+  | ROCKSDB-OPTIONS-SET-MAX-COMPACTION-BYTES                                |
+  | ROCKSDB-READOPTIONS-SET-READ-TIER                                       |
+  | ROCKSDB-OPEN-COLUMN-FAMILIES                                            |
+  | ROCKSDB-TRANSACTION                                                     |
+  | ROCKSDB-OPTIONS-GET-ALLOW-MMAP-READS                                    |
+  | ROCKSDB-HYPER-CLOCK-CACHE-OPTIONS-SET-CAPACITY                          |
+  | ROCKSDB-LRU-CACHE-OPTIONS                                               |
+  | ROCKSDB-SINGLEDELETE-CF-WITH-TS                                         |
+  | ROCKSDB-COMPACTIONJOBINFO-NUM-INPUT-FILES-AT-OUTPUT-LEVEL               |
+  | ROCKSDB-RESTORE-OPTIONS-SET-KEEP-LOG-FILES                              |
+  | ROCKSDB-EVENTLISTENER-DESTROY                                           |
+  | ROCKSDB-WRITEOPTIONS-SET-LOW-PRI                                        |
+  | ROCKSDB-COMPACTIONJOBINFO-OUTPUT-LEVEL                                  |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-NO-BLOCK-CACHE                          |
+  | ROCKSDB-OPTIONS-SET-TARGET-FILE-SIZE-BASE                               |
+  | ROCKSDB-STATISTICS-HISTOGRAM-DATA-GET-MIN                               |
+  | ROCKSDB-GET-WITH-TS                                                     |
+  | ROCKSDB-FLUSH                                                           |
+  | ROCKSDB-CHECKPOINT-OBJECT-CREATE                                        |
+  | ROCKSDB-OPTIONS-GET-INFO-LOG-LEVEL                                      |
+  | ROCKSDB-COMPACTIONFILTER-FUNCTION                                       |
+  | ROCKSDB-COMPACTOPTIONS-SET-MAX-SUBCOMPACTIONS                           |
+  | ROCKSDB-COMPACTIONFILTER-SET-IGNORE-SNAPSHOTS                           |
+  | ROCKSDB-OPTIONS-GET-CREATE-MISSING-COLUMN-FAMILIES                      |
+  | ROCKSDB-TRANSACTIONDB-PUT-CF                                            |
+  | ROCKSDB-WRITEOPTIONS-DESTROY                                            |
+  | ROCKSDB-CONCAT-MERGE-NAME                                               |
+  | *ROCKSDB-WRITEOPTIONS*                                                  |
+  | ROCKSDB-OPTIONS-GET-WRITE-BUFFER-SIZE                                   |
+  | *ROCKSDB-LEVEL-METADATA*                                                |
+  | ROCKSDB-OPTIONS-GET-WAL-TTL-SECONDS                                     |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-CACHE-INDEX-AND-FILTER-BLOCKS           |
+  | ROCKSDB-ENVOPTIONS-DESTROY                                              |
+  | ROCKSDB-TRANSACTIONDB-RELEASE-SNAPSHOT                                  |
+  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-DATA-BLOCK-INDEX-TYPE                   |
+  | ROCKSDB-FIFO-COMPACTION-OPTIONS-DESTROY                                 |
+  | ROCKSDB-TRANSACTIONDB-FLUSH-WAL                                         |
+  | ROCKSDB-NUM-FILES-AT-LEVEL                                              |
+  | ROCKSDB-OPTIONS-SET-WAL-TTL-SECONDS                                     |
+  | ROCKSDB-TRANSACTION-DESTROY                                             |
+  | ROCKSDB-CACHE                                                           |
+  | ROCKSDB-CREATE-SNAPSHOT                                                 |
+  | ROCKSDB-COMPACTIONJOBINFO-INPUT-FILES-COUNT                             |
+  | ROCKSDB-LOG-DEFAULT                                                     |
+  | ROCKSDB-TRANSACTIONDB-CREATE-COLUMN-FAMILY                              |
+  | ROCKSDB-COMPACTOPTIONS-GET-BOTTOMMOST-LEVEL-COMPACTION                  |
+  | ROCKSDB-OPTIONS-SET-AVOID-UNNECESSARY-BLOCKING-IO                       |
+  | ROCKSDB-TRANSACTION-CREATE-ITERATOR-CF                                  |
+  | ROCKSDB-LEVEL-METADATA-GET-SST-FILE-METADATA                            |
+  | ROCKSDB-OPTIONS                                                         |
+  | ROCKSDB-COLUMN-FAMILY-HANDLE-DESTROY                                    |
+  | ROCKSDB-OPTIONS-GET-BLOB-GC-AGE-CUTOFF                                  |
+  | ROCKSDB-TRANSACTION-SET-NAME                                            |
   | ROCKSDB-WRITEBATCH-ITERATE                                              |
   | ROCKSDB-COMPACTOPTIONS-GET-TARGET-LEVEL                                 |
-  | ROCKSDB-TRANSACTIONDB-MERGE                                             |
-  | ROCKSDB-WRITEBATCH-WI                                                   |
-  | ROCKSDB-READOPTIONS-GET-IO-TIMEOUT                                      |
-  | ROCKSDB-OPTIONS-GET-ADVISE-RANDOM-ON-OPEN                               |
-  | ROCKSDB-READOPTIONS-GET-TAILING                                         |
-  | ROCKSDB-BACKUP-ENGINE-OPTIONS-GET-BACKUP-LOG-FILES                      |
-  | ROCKSDB-OPTIMISTICTRANSACTION-OPTIONS-CREATE                            |
-  | ROCKSDB-DESTRUCTOR-FUNCTION                                             |
-  | ROCKSDB-CONCAT-FULL-MERGE                                               |
-  | ROCKSDB-PUT-FUNCTION                                                    |
-  | ROCKSDB-OPTIONS-GET-SOFT-PENDING-COMPACTION-BYTES-LIMIT                 |
-  | ROCKSDB-SST-FILE-METADATA-GET-RELATIVE-FILENAME                         |
-  | ROCKSDB-CREATE-COLUMN-FAMILIES-DESTROY                                  |
-  | ROCKSDB-WRITE                                                           |
-  | ROCKSDB-COMPACTIONFILTER-CREATE                                         |
-  | ROCKSDB-MULTI-GET-WITH-TS                                               |
-  | ROCKSDB-OPTIONS-SET-LEVEL0-STOP-WRITES-TRIGGER                          |
-  | ROCKSDB-SSTFILEWRITER-PUT                                               |
-  | ROCKSDB-OPTIONS-SET-MAX-BACKGROUND-JOBS                                 |
-  | ROCKSDB-SSTFILEWRITER-DESTROY                                           |
-  | ROCKSDB-GET-FULL-HISTORY-TS-LOW                                         |
-  | ROCKSDB-WRITEBATCH-CREATE                                               |
-  | ROCKSDB-ITER-DESTROY                                                    |
-  | ROCKSDB-OPTIONS-GET-MAX-COMPACTION-BYTES                                |
-  | ROCKSDB-OPTIONS-GET-IS-FD-CLOSE-ON-EXEC                                 |
-  | ROCKSDB-READOPTIONS-SET-SNAPSHOT                                        |
-  | ROCKSDB-TRANSACTION-ROLLBACK                                            |
-  | ROCKSDB-LOG-DEFAULT                                                     |
-  | ROCKSDB-OPTIONS-GET-LOG-FILE-TIME-TO-ROLL                               |
-  | ROCKSDB-CREATE-ITERATOR                                                 |
-  | ROCKSDB-READOPTIONS-GET-SKIPPABLE-INTERNAL-KEYS                         |
-  | ROCKSDB-WRITEBATCH-WI-DELETE-RANGE-CF                                   |
-  | ROCKSDB-OPTIONS-SET-INFO-LOG                                            |
-  | ROCKSDB-OPTIONS-GET-ARENA-BLOCK-SIZE                                    |
-  | ROCKSDB-OPTIONS-GET-STATS-PERSIST-PERIOD-SEC                            |
-  | ROCKSDB-READOPTIONS-SET-AUTO-READAHEAD-SIZE                             |
-  | ROCKSDB-WRITEBATCH-WI-DELETE                                            |
-  | ROCKSDB-FLUSH-CFS                                                       |
-  | ROCKSDB-INGESTEXTERNALFILEOPTIONS                                       |
-  | ROCKSDB-TRANSACTIONDB-PUT                                               |
-  | ROCKSDB-OPTIONS-SET-BLOB-CACHE                                          |
-  | ROCKSDB-ITERATOR                                                        |
-  | ROCKSDB-READOPTIONS-GET-DEADLINE                                        |
-  | ROCKSDB-SST-FILE-METADATA-GET-SIZE                                      |
-  | ROCKSDB-OPTIONS-GET-ENABLE-BLOB-FILES                                   |
-  | ROCKSDB-OPTIONS-SET-ENABLE-STATISTICS                                   |
-  | ROCKSDB-SLICETRANSFORM-CREATE-FIXED-PREFIX                              |
-  | ROCKSDB-FIFO-COMPACTION-OPTIONS-CREATE                                  |
-  | ROCKSDB-WRITEBATCH-CLEAR                                                |
-  | ROCKSDB-DELETE-CF-WITH-TS                                               |
-  | ROCKSDB-TRANSFORM-FUNCTION                                              |
-  | ROCKSDB-TRANSACTION-OPTIONS-CREATE                                      |
-  | ROCKSDB-WRITEBATCH-DELETE-CF                                            |
-  | ROCKSDB-PERFCONTEXT-DESTROY                                             |
-  | ROCKSDB-COMPACTOPTIONS-GET-CHANGE-LEVEL                                 |
-  | ROCKSDB-IN-DOMAIN-DEFAULT                                               |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-GET-DATA-BLOCK-HASH-RATIO                   |
-  | ROCKSDB-OPTIONS-SET-PARALLELISM                                         |
-  | ROCKSDB-SST-FILE-MANAGER                                                |
+  | ROCKSDB-LEVEL-METADATA-GET-LEVEL                                        |
   | ROCKSDB-OPTIONS-SET-COMPRESSION-OPTIONS-USE-ZSTD-DICT-TRAINER           |
-  | ROCKSDB-OPTIONS-STATISTICS-GET-STRING                                   |
-  | ROCKSDB-WRITEBATCH-WI-GET-FROM-BATCH                                    |
-  | ROCKSDB-WRITEBATCH-SINGLEDELETE                                         |
-  | ROCKSDB-TRANSACTIONDB-FLUSH-WAL                                         |
-  | ROCKSDB-BACKUP-ENGINE-OPTIONS-GET-CALLBACK-TRIGGER-INTERVAL-SIZE        |
-  | ROCKSDB-C-ERROR                                                         |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-PARTITION-PINNING-TIER                  |
-  | ROCKSDB-OPTIONS-SET-WAL-BYTES-PER-SYNC                                  |
-  | ROCKSDB-FILTERPOLICY-CREATE-BLOOM                                       |
-  | ROCKSDB-TRANSACTIONDB-MULTI-GET-CF                                      |
-  | ROCKSDB-WRITEBATCH-WI-DELETE-RANGEV-CF                                  |
-  | ROCKSDB-OPTIONS-SET-MAX-SUCCESSIVE-MERGES                               |
-  | ROCKSDB-GET-COLUMN-FAMILY-METADATA-CF                                   |
-  | *ROCKSDB-SST-FILE-METADATA*                                             |
-  | *ROCKSDB-OPTIONS*                                                       |
-  | ROCKSDB-COMPARATOR                                                      |
-  | ROCKSDB-OPTIMISTICTRANSACTIONDB-CLOSE-BASE-DB                           |
-  | ROCKSDB-OPTIONS-SET-WAL-TTL-SECONDS                                     |
-  | ROCKSDB-SNAPSHOT                                                        |
-  | ROCKSDB-TRANSFORM-DEFAULT                                               |
-  | ROCKSDB-SSTFILEWRITER-CREATE                                            |
-  | ROCKSDB-CONDITION                                                       |
-  | ROCKSDB-MERGEOPERATOR                                                   |
-  | ROCKSDB-BACKUP-ENGINE-GET-BACKUP-INFO                                   |
-  | ROCKSDB-OPTIONS-SET-USE-FSYNC                                           |
-  | ROCKSDB-ENV-SET-BACKGROUND-THREADS                                      |
-  | ROCKSDB-OPTIONS-SET-WAL-COMPRESSION                                     |
-  | ROCKSDB-OPTIONS-GET-PARANOID-CHECKS                                     |
-  | ROCKSDB-FILTER-NEVER                                                    |
-  | ROCKSDB-OPTIONS-SET-SOFT-PENDING-COMPACTION-BYTES-LIMIT                 |
-  | ROCKSDB-SINGLEDELETE-CF-WITH-TS                                         |
-  | ROCKSDB-WAL-READOPTIONS                                                 |
-  | ROCKSDB-OPTIONS-SET-ROW-CACHE                                           |
-  | ROCKSDB-GET-UPDATES-SINCE                                               |
-  | ROCKSDB-COMPARATOR-CREATE                                               |
-  | ROCKSDB-PUT-CF-WITH-TS                                                  |
-  | ROCKSDB-INGESTEXTERNALFILEOPTIONS-SET-MOVE-FILES                        |
-  | ROCKSDB-OPTIONS-SET-UNORDERED-WRITE                                     |
-  | ROCKSDB-BLOCK-BASED-OPTIONS-SET-CACHE-INDEX-AND-FILTER-BLOCKS           |
-  | ROCKSDB-FILTERPOLICY-CREATE-RIBBON-HYBRID                               |
-  | ROCKSDB-WRITEBATCH-WI-DELETEV-CF                                        |
+  | ROCKSDB-MEMTABLEINFO-NUM-DELETES                                        |
+  | ROCKSDB-SUBCOMPACTIONJOBINFO-BASE-INPUT-LEVEL                           |
+  | ROCKSDB-WRITEBATCH-WI-DESTROY                                           |
+  | ROCKSDB-OPTIONS-GET-INPLACE-UPDATE-NUM-LOCKS                            |
+  | ROCKSDB-OPTIONS-GET-MAX-WRITE-BUFFER-NUMBER                             |
+  | ROCKSDB-SSTFILEWRITER                                                   |
+  | ROCKSDB-WRITEBATCH-SINGLEDELETE-CF-WITH-TS                              |
+  | ROCKSDB-OPTIONS-GET-MAX-BACKGROUND-COMPACTIONS                          |
+  | ROCKSDB-LOGGER-FUNCTION                                                 |
+  | ROCKSDB-OPTIONS-GET-MAX-SEQUENTIAL-SKIP-IN-ITERATIONS                   |
+  | ROCKSDB-BACKUP-ENGINE                                                   |
+  | ROCKSDB-BACKUP-ENGINE-OPTIONS-GET-SHARED-FILES-WITH-CHECKSUM-NAMING     |
+  | ROCKSDB-COLUMN-FAMILY-METADATA-GET-FILE-COUNT                           |
+  | ROCKSDB-WRITEOPTIONS-SET-NO-SLOWDOWN                                    |
+  | ROCKSDB-CREATE-COMPACTION-FILTER                                        |
+  | ROCKSDB-EXTERNALFILEINGESTIONINFO-CF-NAME                               |
   | ROCKSDB-FILTERPOLICY                                                    |
-  | ROCKSDB-READOPTIONS-SET-TIMESTAMP                                       |
-  | ROCKSDB-WRITEBATCH-DATA                                                 |
-  | ROCKSDB-WRITEBATCH-WI-DELETE-CF                                         |
-  | ROCKSDB-DROP-COLUMN-FAMILY                                              |
-  | ROCKSDB-COMPACTION-PRI                                                  |
-  | ROCKSDB-RESTORE-OPTIONS-CREATE                                          |
-  | ROCKSDB-OPTIONS-SET-MANIFEST-PREALLOCATION-SIZE                         |
-  | ROCKSDB-GET-LATEST-SEQUENCE-NUMBER                                      |
-  | ROCKSDB-OPTIONS-SET-BLOB-FILE-SIZE                                      |
-  | ROCKSDB-BACKUP-ENGINE-RESTORE-DB-FROM-LATEST-BACKUP                     |
+  | ON-STALL-CONDITIONS-CHANGED-CB                                          |
   | ROCKSDB-DELETE-FUNCTION                                                 |
-  | ROCKSDB-SLICETRANSFORM-CREATE                                           |
-  | ROCKSDB-SINGLEDELETE-CF                                                 |
-  | ROCKSDB-OPTIMISTICTRANSACTION-OPTIONS                                   |
-  | ROCKSDB-INGESTEXTERNALFILEOPTIONS-SET-ALLOW-GLOBAL-SEQNO                |
-  | ROCKSDB-OPTIONS-GET-USE-DIRECT-READS                                    |
-  | ROCKSDB-OPTIONS-SET-COMPRESSION-OPTIONS-PARALLEL-THREADS                |
-  | ROCKSDB-OPTIONS-SET-BLOB-COMPRESSION-TYPE                               |
-  | WITH-ERRPTR                                                             |
-  | ROCKSDB-TRANSACTIONDB-GET                                               |
-  | ROCKSDB-OPTIONS-SET-BLOOM-LOCALITY                                      |
-  | ROCKSDB-READOPTIONS-GET-VERIFY-CHECKSUMS                                |
-  | ROCKSDB-WRITEOPTIONS-DESTROY                                            |
-  | ROCKSDB-SSTFILEWRITER-DELETE-RANGE                                      |
-  | ROCKSDB-DELETE-VALUE                                                    |
-  | ROCKSDB-OPTIONS-GET-CREATE-IF-MISSING                                   |
-  | ROCKSDB-BACKUP-ENGINE-CLOSE                                             |
-  | ROCKSDB-OPTIONS-INCREASE-PARALLELISM                                    |
-  | ROCKSDB-OPTIONS-SET-WAL-SIZE-LIMIT-MB                                   |
-  | ROCKSDB-WRITEBATCH-WI-MERGEV                                            |
-  | ROCKSDB-ITER-VALUE                                                      |
-  | ROCKSDB-WRITEBATCH-WI-MERGE                                             |
-  | *ROCKSDB-IN-RANGE-LAMBDA-LIST*                                          |
-  | ROCKSDB-INGESTEXTERNALFILEOPTIONS-SET-INGEST-BEHIND                     |
-  | *ROCKSDB-DESTRUCTOR-CALLBACK*                                           |
-  | ROCKSDB-INCREASE-FULL-HISTORY-TS-LOW                                    |
-  | ROCKSDB-OPTIONS-SET-WAL-DIR                                             |
-  | ROCKSDB-OPTIONS-GET-MAX-LOG-FILE-SIZE                                   |
-  | ROCKSDB-PUT                                                             |
-  | ROCKSDB-PERFCONTEXT                                                     |
+  | ROCKSDB-COMPARE-TS-FUNCTION                                             |
+  | ROCKSDB-OPTIONS-SET-MAX-WRITE-BUFFER-SIZE-TO-MAINTAIN                   |
+  | ROCKSDB-COMPACTOPTIONS-SET-BOTTOMMOST-LEVEL-COMPACTION                  |
+  | ROCKSDB-FILELOCK                                                        |
+  | ROCKSDB-LIST-COLUMN-FAMILIES-DESTROY                                    |
   | ROCKSDB-OPTIONS-SET-TARGET-FILE-SIZE-MULTIPLIER                         |
+  | ROCKSDB-HYPER-CLOCK-CACHE-OPTIONS-SET-MEMORY-ALLOCATOR                  |
+  | ROCKSDB-WRITEBATCH-WI-PUT                                               |
+  | ROCKSDB-FLUSHJOBINFO-SMALLEST-SEQNO                                     |
+  | ROCKSDB-READOPTIONS-SET-AUTO-READAHEAD-SIZE                             |
+  | ROCKSDB-TRANSACTION-MULTI-GET-FOR-UPDATE                                |
+  | ROCKSDB-OPTIONS-GET-LEVEL0-SLOWDOWN-WRITES-TRIGGER                      |
+  | ON-SUBCOMPACTION-COMPLETED-CB                                           |
+  | ROCKSDB-SINGLEDELETE-WITH-TS                                            |
+  | ON-EXTERNAL-FILE-INGESTED-CB                                            |
+  | ROCKSDB-FLUSH-CF                                                        |
+  | ROCKSDB-BACKUP-ENGINE-OPTIONS-SET-CALLBACK-TRIGGER-INTERVAL-SIZE        |
+  | ROCKSDB-COMPARE-FUNCTION                                                |
+  | ROCKSDB-COLUMN-FAMILY-METADATA                                          |
+  | ROCKSDB-WRITEOPTIONS-SET-MEMTABLE-INSERT-HINT-PER-BATCH                 |
+  | ROCKSDB-OPTIONS-GET-ALLOW-CONCURRENT-MEMTABLE-WRITE                     |
+  | ROCKSDB-BACKUP-ENGINE-OPTIONS-GET-CALLBACK-TRIGGER-INTERVAL-SIZE        |
+  | *ROCKSDB-COMPRESSION-BACKENDS*                                          |
+  | ROCKSDB-OPTIONS-GET-COMPACTION-STYLE                                    |
+  | DEFAULT-ON-MEMTABLE-SEALED-CB                                           |
   | ...                                                                     |
 
 #+END:
@@ -1029,8 +1031,9 @@ bindings to tree-sitter parser generator and language libraries: https://github.
   #+CALL: lisp-system-tests[:post transpose]("tree-sitter")
 
   #+RESULTS:
-  | TS-RUST |
-  | TS-JSON |
+  | TS-QUERY-C |
+  | TS-RUST    |
+  | TS-JSON    |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("TREE-SITTER")
@@ -1296,7 +1299,8 @@ implementation (libblake3).
   #+CALL: lisp-system-packages[:post transpose]("blas")
 
   #+RESULTS:
-  | BLAS |
+  | BLAS/TESTS |
+  | BLAS       |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("blas")
@@ -1373,8 +1377,8 @@ implementation (libblake3).
   #+CALL: lisp-system-dependents[:post transpose]("jack")
 
   #+RESULTS:
-  | jack/tests |
   | ffi        |
+  | jack/tests |
   | dsp        |
 
 - files
@@ -1382,13 +1386,6 @@ implementation (libblake3).
 
   #+RESULTS:
   | pkg.lisp |
-
-- tests
-  #+CALL: lisp-system-tests[:post transpose]("jack")
-
-  #+RESULTS:
-  | BASIC  |
-  | SANITY |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("JACK")
@@ -1514,12 +1511,6 @@ implementation (libblake3).
   #+RESULTS:
   | pkg.lisp |
 
-- tests
-  #+CALL: lisp-system-tests[:post transpose]("alsa")
-
-  #+RESULTS:
-  | SANITY |
-
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("ALSA")
 
@@ -1540,68 +1531,66 @@ implementation (libblake3).
   | ALSA-ELEMENT-TYPE  |
 
 #+END
-** aws-lc
+** openssl
 :PROPERTIES:
 :ID:       c7e41e81-3293-46e0-9adc-d9e7e056847e
 :CREATED:  <2025-07-05 Sat 17:19>
 :END:
-#+BEGIN: lisp-system-info :system aws-lc
+#+BEGIN: lisp-system-info :system openssl
 - packages
-  #+CALL: lisp-system-packages[:post transpose]("aws-lc")
+  #+CALL: lisp-system-packages[:post transpose]("openssl")
 
   #+RESULTS:
-  | AWS-LC/TESTS |
-  | AWS-LC       |
+  | OPENSSL/TESTS |
+  | OPENSSL       |
 
 - dependencies
-  #+CALL: lisp-system-dependencies[:post transpose]("aws-lc")
+  #+CALL: lisp-system-dependencies[:post transpose]("openssl")
 
   #+RESULTS:
   | std |
 
 - dependents
-  #+CALL: lisp-system-dependents[:post transpose]("aws-lc")
+  #+CALL: lisp-system-dependents[:post transpose]("openssl")
 
   #+RESULTS:
-  | ffi          |
-  | aws-lc/tests |
-  | dat          |
+  | ffi           |
+  | openssl/tests |
+  | dat           |
 
 - files
-  #+CALL: lisp-system-files[:post transpose]("aws-lc")
+  #+CALL: lisp-system-files[:post transpose]("openssl")
 
   #+RESULTS:
   | pkg.lisp       |
   | types.lisp     |
   | condition.lisp |
-  | aws-lc.lisp    |
-
-- tests
-  #+CALL: lisp-system-tests[:post transpose]("aws-lc")
-
-  #+RESULTS:
-  | SANITY |
+  | openssl.lisp   |
 
 - symbols
-  #+CALL: lisp-package-symbols[:post transpose]("AWS-LC")
+  #+CALL: lisp-package-symbols[:post transpose]("OPENSSL")
 
   #+RESULTS:
-  | V-ASN1*                 |
-  | ASN1-STRING-DATA        |
-  | ASN1-TIME-CHECK         |
-  | AWS-LC-C-ERROR          |
-  | AWS-LC-CONDITION        |
-  | READ-AWS-LC-ERROR-QUEUE |
-  | LOAD-CRYPTO             |
-  | D2I-X509                |
-  | V-ASN1                  |
-  | ASN1-STRING             |
-  | ASN1-STRING-TYPE        |
-  | ASN1-STRING-FREE        |
-  | AWS-LC-ERROR-CALL       |
-  | ASN1-UTCTIME-CHECK      |
-  | LOAD-SSL                |
-  | ASN1-STRING-LENGTH      |
+  | D2I-X509                   |
+  | OPENSSL-ADD-ALL-ALGORITHMS |
+  | PEM-WRITE                  |
+  | ASN1-UTCTIME-CHECK         |
+  | ASN1-STRING-LENGTH         |
+  | AWS-LC-C-ERROR             |
+  | AWS-LC-ERROR-CALL          |
+  | ASN1-STRING-FREE           |
+  | ASN1-STRING                |
+  | V-ASN1*                    |
+  | AWS-LC-CONDITION           |
+  | ASN1-STRING-TYPE           |
+  | READ-AWS-LC-ERROR-QUEUE    |
+  | OPENSSL-CONFIG             |
+  | V-ASN1                     |
+  | ASN1-TIME-CHECK            |
+  | LOAD-SSL                   |
+  | ASN1-STRING-DATA           |
+  | LOAD-CRYPTO                |
+  | PEM-READ                   |
 
 #+END
 ** chromaprint
@@ -1897,15 +1886,15 @@ implementation (libblake3).
 
   #+RESULTS:
   | JPEG       |
+  | JPEG-SYS   |
   | JPEG/TESTS |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("jpeg")
 
   #+RESULTS:
-  | std       |
-  | log       |
-  | sb-grovel |
+  | std |
+  | log |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("jpeg")
@@ -1920,18 +1909,37 @@ implementation (libblake3).
   #+RESULTS:
   | pkg.lisp       |
   | constants.lisp |
+  | jpeg.lisp      |
+  | turbo.lisp     |
+  | api.lisp       |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("jpeg")
 
   #+RESULTS:
-  | SANITY |
+  | SAVE-IMAGE |
+  | LOAD-IMAGE |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("JPEG")
 
   #+RESULTS:
-  | LOAD-JPEG |
+  | LOAD-TURBOJPEG         |
+  | SAVE-JPEG-IMAGE        |
+  | JPEG-DECOMPRESSOR      |
+  | WITH-JPEG-DECOMPRESSOR |
+  | JPEG-WARNING           |
+  | WITH-JPEG-COMPRESSOR   |
+  | JPEG                   |
+  | JPEG-COMPRESSOR        |
+  | TRANSFORM-JPEG-IMAGE   |
+  | LOAD-JPEG              |
+  | LOAD-JPEG-IMAGE        |
+  | JPEG-ERROR             |
+  | JPEG-SET               |
+  | JPEG-TRANSFORMER       |
+  | JPEG-GET               |
+  | WITH-JPEG-TRANSFORMER  |
 
 #+END
 ** keyutils
@@ -2451,92 +2459,107 @@ implementation (libblake3).
   #+CALL: lisp-package-symbols[:post transpose]("RUSTLS")
 
   #+RESULTS:
-  | RUSTLS-CLIENT-CONFIG                                 |
-  | RUSTLS-SLICE-BYTES                                   |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-SET-SERVER-VERIFIER     |
-  | RUSTLS-SUPPORTED-CIPHERSUITE                         |
-  | RUSTLS-CRYPTO-PROVIDER-BUILDER-BUILD-AS-DEFAULT      |
-  | RUSTLS-CERTIFICATE-GET-DER                           |
-  | RUSTLS-CLIENT-CERT-VERIFIER-FREE                     |
-  | RUSTLS-CRYPTO-PROVIDER                               |
-  | RUSTLS-SERVER-CONFIG-BUILDER-SET-KEY-LOG             |
-  | RUSTLS-SERVER-CONNECTION-NEW                         |
-  | RUSTLS-RESULT*                                       |
-  | RUSTLS-SERVER-CONFIG-BUILDER-SET-IGNORE-CLIENT-ORDER |
-  | RUSTLS-ROOT-CERT-STORE-BUILDER-BUILD                 |
-  | RUSTLS-ROOT-CERT-STORE-BUILDER-ADD-PEM               |
-  | RUSTLS-HANDSHAKE-KIND                                |
-  | RUSTLS-ROOT-CERT-STORE-BUILDER-FREE                  |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-BUILD                   |
-  | RUSTLS-SERVER-CONFIG-FREE                            |
-  | RUSTLS-ACCEPTED-FREE                                 |
-  | RUSTLS-SERVER-CONFIG-BUILDER-SET-PERSISTENCE         |
-  | RUSTLS-ALL-CIPHERSUITES-LEN                          |
-  | RUSTLS-SERVER-CERT-VERIFIER                          |
-  | RUSTLS-SUPPORTED-CIPHERSUITE-GET-SUITE               |
-  | RUSTLS-SERVER-CONFIG                                 |
-  | RUSTLS-ALL-CIPHERSUITES-GET-ENTRY                    |
-  | RUSTLS-CERTIFIED-KEY-BUILD                           |
-  | RUSTLS-CERTIFIED-KEY-FREE                            |
-  | RUSTLS-DEFAULT-CIPHERSUITES-LEN                      |
-  | RUSTLS-ACCEPTOR-ACCEPT                               |
-  | RUSTLS-TLS-VERSION*                                  |
-  | RUSTLS-SERVER-CONFIG-BUILDER-SET-HELLO-CALLBACK      |
-  | RUSTLS-ROOT-CERT-STORE-FREE                          |
-  | RUSTLS-ACCEPTOR-NEW                                  |
-  | RUSTLS-SERVER-CONFIG-BUILDER-SET-KEY-LOG-FILE        |
-  | RUSTLS-AWS-LC-RS-CRYPTO-PROVIDER                     |
-  | RUSTLS-ACCEPTED-CIPHER-SCHEME                        |
-  | RUSTLS-CLIENT-HELLO-USERDATA                         |
-  | RUSTLS-CRYPTO-PROVIDER-BUILDER-BUILD                 |
-  | RUSTLS-KEYLOG-WILL-LOG-CALLBACK                      |
-  | RUSTLS-CLIENT-HELLO-SELECT-CERTIFIED-KEY             |
-  | RUSTLS-CLIENT-CERT-VERIFIER                          |
-  | RUSTLS-CRYPTO-PROVIDER-BUILDER-SET-CIPHER-SUITES     |
-  | RUSTLS-C-ERROR                                       |
-  | RUSTLS-DEFAULT-CIPHERSUITES-GET-ENTRY                |
-  | RUSTLS-SERVER-CONFIG-BUILDER-SET-CLIENT-VERIFIER     |
-  | RUSTLS-SERVER-CONFIG-BUILDER-FREE                    |
-  | RUSTLS-CLIENT-HELLO                                  |
-  | RUSTLS-SERVER-CONFIG-BUILDER-NEW                     |
-  | RUSTLS-WEB-PKI-CLIENT-CERT-VERIFIER                  |
-  | RUSTLS-CONDITION                                     |
-  | LOAD-RUSTLS                                          |
-  | RUSTLS-CERTIFIED-KEY-GET-CERTIFICATE                 |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-NEW                     |
-  | RUSTLS-CLIENT-CONNECTION-NEW                         |
-  | RUSTLS-SIGNING-KEY                                   |
-  | RUSTLS-ACCEPTED-SERVER-NAME                          |
-  | RUSTLS-HANDSHAKE-KIND*                               |
-  | RUSTLS-SUPPORTED-CIPHERSUITE-GET-NAME                |
-  | RUSTLS-CERTIFICATE                                   |
-  | RUSTLS-CRYPTO-PROVIDER-DEFAULT                       |
-  | RUSTLS-ROOT-CERT-STORE-BUILDER-NEW                   |
-  | RUSTLS-TLS-VERSION                                   |
-  | RUSTLS-SERVER-CONFIG-BUILDER-BUILD                   |
-  | RUSTLS-CERTIFIED-KEY                                 |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-SET-ENABLE-SNI          |
-  | RUSTLS-ACCEPTOR-FREE                                 |
-  | RUSTLS-ACCEPTOR                                      |
-  | RUSTLS-CRYPTO-PROVIDER-BUILDER-NEW-FROM-DEFAULT      |
-  | RUSTLS-SERVER-CONNECTION-GET-SERVER-NAME             |
-  | RUSTLS-VERSION                                       |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-FREE                    |
-  | RUSTLS-KEYLOG-LOG-CALLBACK                           |
-  | RUSTLS-ACCEPTED-INTO-CONNECTION                      |
-  | RUSTLS-CLIENT-CONFIG-FREE                            |
-  | RUSTLS-ACCEPTOR-READ-TLS                             |
-  | RUSTLS-CRYPTO-PROVIDER-BUILDER-FREE                  |
-  | RUSTLS-RESULT                                        |
-  | RUSTLS-ACCEPTED                                      |
-  | RUSTLS-SESSION-STORE-USERDATA                        |
-  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER                  |
-  | RUSTLS-CRYPTO-PROVIDER-CIPHERSUITES-GET              |
-  | RUSTLS-ROOT-CERT-STORE-BUILDER-LOAD-ROOTS-FROM-FILE  |
-  | RUSTLS-CRYPTO-PROVIDER-BUILDER-NEW-WITH-BASE         |
-  | RUSTLS-CRYPTO-PROVIDER-CIPHERSUITES-LEN              |
-  | RUSTLS-ACCEPTED-SIGNATURE-SCHEME                     |
-  | RUSTLS-CRYPTO-PROVIDER-LOAD-KEY                      |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-FREE                                    |
+  | RUSTLS-CRYPTO-PROVIDER-BUILDER-BUILD                                 |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-SET-KEY-LOG-FILE                        |
+  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER                                  |
+  | RUSTLS-HANDSHAKE-KIND                                                |
+  | RUSTLS-SERVER-CONFIG-BUILDER-FREE                                    |
+  | RUSTLS-ROOT-CERT-STORE-BUILDER-LOAD-ROOTS-FROM-FILE                  |
+  | RUSTLS-CERTIFIED-KEY-GET-CERTIFICATE                                 |
+  | RUSTLS-CERTIFIED-KEY-BUILD                                           |
+  | RUSTLS-ACCEPTOR                                                      |
+  | RUSTLS-SERVER-CONNECTION-NEW                                         |
+  | RUSTLS-VERSION                                                       |
+  | RUSTLS-ACCEPTED                                                      |
+  | RUSTLS-SERVER-CONFIG                                                 |
+  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-BUILDER-NEW                      |
+  | RUSTLS-RESULT*                                                       |
+  | RUSTLS-PLATFORM-SERVER-CERT-VERIFIER                                 |
+  | RUSTLS-CERTIFICATE                                                   |
+  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-BUILDER-ADD-CRL                  |
+  | RUSTLS-SERVER-CONFIG-BUILDER-NEW                                     |
+  | RUSTLS-SERVER-CONFIG-BUILDER-SET-PERSISTENCE                         |
+  | RUSTLS-ROOT-CERT-STORE-BUILDER-BUILD                                 |
+  | RUSTLS-CLIENT-CERT-VERIFIER-FREE                                     |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-NEW                                     |
+  | RUSTLS-KEYLOG-WILL-LOG-CALLBACK                                      |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-SET-ENABLE-SNI                          |
+  | RUSTLS-CRYPTO-PROVIDER-BUILDER-NEW-WITH-BASE                         |
+  | RUSTLS-CLIENT-CONFIG                                                 |
+  | RUSTLS-CRYPTO-PROVIDER-BUILDER-NEW-FROM-DEFAULT                      |
+  | RUSTLS-SERVER-CONFIG-BUILDER-SET-CLIENT-VERIFIER                     |
+  | RUSTLS-CLIENT-HELLO-SELECT-CERTIFIED-KEY                             |
+  | RUSTLS-SERVER-CONFIG-BUILDER-BUILD                                   |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-SET-KEY-LOG                             |
+  | RUSTLS-ACCEPTED-FREE                                                 |
+  | RUSTLS-CRYPTO-PROVIDER-CIPHERSUITES-GET                              |
+  | RUSTLS-CRYPTO-PROVIDER-BUILDER-BUILD-AS-DEFAULT                      |
+  | RUSTLS-ACCEPTOR-NEW                                                  |
+  | RUSTLS-CLIENT-CONFIG-FIPS                                            |
+  | RUSTLS-CRYPTO-PROVIDER-LOAD-KEY                                      |
+  | RUSTLS-CLIENT-CONNECTION-NEW                                         |
+  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-ENFORCE-REVOCATION-EXPIR         |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-ENABLE-ECH-GREASE                       |
+  | RUSTLS-SERVER-CONFIG-BUILDER-SET-HELLO-CALLBACK                      |
+  | RUSTLS-CERTIFIED-KEY-FREE                                            |
+  | RUSTLS-SERVER-CONFIG-BUILDER-SET-IGNORE-CLIENT-ORDER                 |
+  | RUSTLS-CRYPTO-PROVIDER-CIPHERSUITES-LEN                              |
+  | RUSTLS-SERVER-CONFIG-FREE                                            |
+  | RUSTLS-DEFAULT-CIPHERSUITES-GET-ENTRY                                |
+  | RUSTLS-SUPPORTED-CIPHERSUITE-GET-SUITE                               |
+  | RUSTLS-CLIENT-CONFIG-FREE                                            |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-BUILD                                   |
+  | RUSTLS-SERVER-CONFIG-BUILDER-SET-KEY-LOG-FILE                        |
+  | RUSTLS-SUPPORTED-CIPHERSUITE-GET-NAME                                |
+  | RUSTLS-ACCEPTOR-ACCEPT                                               |
+  | RUSTLS-ACCEPTED-INTO-CONNECTION                                      |
+  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-BUILDER-NEW-WITH-PROVIDER        |
+  | RUSTLS-SERVER-CONFIG-BUILDER-SET-KEY-LOG                             |
+  | RUSTLS-ROOT-CERT-STORE-BUILDER-FREE                                  |
+  | RUSTLS-SESSION-STORE-USERDATA                                        |
+  | RUSTLS-SERVER-CERT-VERIFIER                                          |
+  | RUSTLS-CLIENT-CERT-VERIFIER                                          |
+  | RUSTLS-SIGNING-KEY                                                   |
+  | RUSTLS-RESULT                                                        |
+  | RUSTLS-CLIENT-HELLO-USERDATA                                         |
+  | RUSTLS-SERVER-CONNECTION-GET-SERVER-NAME                             |
+  | RUSTLS-WEB-PKI-CLIENT-CERT-VERIFIER                                  |
+  | RUSTLS-CLIENT-HELLO                                                  |
+  | RUSTLS-ROOT-CERT-STORE-FREE                                          |
+  | RUSTLS-CONDITION                                                     |
+  | RUSTLS-ACCEPTOR-READ-TLS                                             |
+  | RUSTLS-ROOT-CERT-STORE-BUILDER-ADD-PEM                               |
+  | RUSTLS-ACCEPTED-CIPHER-SCHEME                                        |
+  | RUSTLS-ACCEPTOR-FREE                                                 |
+  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-ONLY-CHECK-END-ENTITY-REVOCATION |
+  | RUSTLS-CRYPTO-PROVIDER-DEFAULT                                       |
+  | RUSTLS-CRYPTO-PROVIDER                                               |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-ENABLE-ECH                              |
+  | RUSTLS-CERTIFICATE-GET-DER                                           |
+  | RUSTLS-ALL-CIPHERSUITES-GET-ENTRY                                    |
+  | RUSTLS-CRYPTO-PROVIDER-BUILDER-FREE                                  |
+  | RUSTLS-ALL-CIPHERSUITES-LEN                                          |
+  | RUSTLS-ROOT-CERT-STORE-BUILDER-NEW                                   |
+  | RUSTLS-SUPPORTED-CIPHERSUITE                                         |
+  | RUSTLS-TLS-VERSION*                                                  |
+  | RUSTLS-CRYPTO-PROVIDER-BUILDER-SET-CIPHER-SUITES                     |
+  | RUSTLS-TLS-VERSION                                                   |
+  | RUSTLS-ACCEPTED-SIGNATURE-SCHEME                                     |
+  | RUSTLS-DEFAULT-CIPHERSUITES-LEN                                      |
+  | RUSTLS-CLIENT-CONFIG-BUILDER-SET-SERVER-VERIFIER                     |
+  | RUSTLS-SERVER-CERT-VERIFIER-FREE                                     |
+  | RUSTLS-SLICE-BYTES                                                   |
+  | RUSTLS-KEYLOG-LOG-CALLBACK                                           |
+  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-BUILDER-FREE                     |
+  | RUSTLS-AWS-LC-RS-CRYPTO-PROVIDER                                     |
+  | RUSTLS-HANDSHAKE-KIND*                                               |
+  | RUSTLS-C-ERROR                                                       |
+  | RUSTLS-ACCEPTED-SERVER-NAME                                          |
+  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-BUILDER-BUILD                    |
+  | LOAD-RUSTLS                                                          |
+  | RUSTLS-CERTIFIED-KEY                                                 |
+  | RUSTLS-PLATFORM-SERVER-CERT-VERIFIER-WITH-PROVIDER                   |
 
 #+END
 ** ublk
