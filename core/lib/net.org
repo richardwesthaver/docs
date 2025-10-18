@@ -1,11 +1,16 @@
 #+title: net
 #+author: Richard Westhaver
 #+setupfile: ../../../clean.theme
-=net= is the core networking library.
+=net= is the core networking library. Various Protocols and
+network-specific codecs are supported in the =NET/PROTO= and
+=NET/CODEC= mods respectively including =SWANK=, =DNS=, =OSC=, and
+=HTTP=. The =NET/SRV= mod provides network-backed services based on
+the =OBJ/SRV= protocol.
 
-optional dependencies:
-- swank :: https://github.com/slime/slime
-- swank-client :: https://github.com/brown/swank-client
+In general we /prefer/ UDP sockets, especially for internal
+communications, but the most common modules used are likely =NET/REQ=
+which provides http/s client support and =NET/SRV/HTTP= which provides
+http/s server support.
 
 #+BEGIN: lisp-system-info :system net
 - packages
@@ -388,11 +393,85 @@ optional dependencies:
 :ID:       ba7e1e86-b56f-439f-a8f6-7c90af0b4f7f
 :CREATED:  <2025-07-06 Sun 21:57>
 :END:
+#+begin_src lisp :post transpose :results list
+net-int:*net-packages*
+#+end_src
+
+#+RESULTS:
+- NET/SRV/EXT
+- NET/SRV/OPENAPI
+- NET/SRV/OAUTH
+- NET/SRV/UDP
+- NET/SRV/HTTP
+- NET/SRV
+- NET/REQ
+- NET/PROTO/CREW
+- NET/PROTO/SWANK
+- NET/COOKIE
+- NET/PROTO/NSM
+- NET/PROTO/SESH
+- NET/PROTO/DM
+- NET/PROTO/TRANSMISSION
+- NET/PROTO/HTTP
+- NET/PROTO/SSH
+- NET/PROTO/DNS
+- NET/PROTO/DICT
+- NET/PROTO/WHOIS
+- NET/CODEC/HTTP
+- NET/CODEC/OSC
+- NET/CODEC/TLV
+- NET/CODEC/DNS
+- NET/TCP
+- NET/UDP
+- NET/CORE
+
 ** core
 :PROPERTIES:
 :ID:       040f67f5-901e-4686-a9c6-54aa245eeacf
 :CREATED:  <2025-07-06 Sun 21:58>
 :END:
+The core network package provides base protocol definitions including
+conditions, generic functions, and classes. In general our approach is
+to extend =SB-BSD-SOCKETS=, not replace it, and to mix in a very
+minimal API which resembles that of =USOCKET=. Most objects (including
+sockets) can be configured via the =OBJ/CONFIG= protocol.
+
+Similar to =IO/STREAM= and in the case of =STREAM-SOCKET= actually
+subclassing it, we provide a =WRAPPED-SOCKET= class which contains the
+underlying =SB-BSD-SOCKETS= class - either =INET-SOCKET= or
+=INET6-SOCKET=.
+
+#+CALL: lisp-package-symbols[:post transpose]("NET/CORE")
+
+#+RESULTS:
+| DISCONNECT           |
+| *WILDCARD-HOST*      |
+| *DEFAULT-MTU*        |
+| GET-ADDRESS-BY-NAME  |
+| PROXY                |
+| MAKE-SERVER-RESPONSE |
+| SOCKET-CONFIG        |
+| MAKE-SERVER          |
+| MAKE-CLIENT          |
+| NET-CONFIG           |
+| CLIENT-CONFIG        |
+| WITH-OPEN-SOCKET     |
+| NET-WARNING          |
+| SERVER               |
+| FIND-PORT            |
+| *WILDCARD-PORT*      |
+| TUNNEL               |
+| CONNECTION           |
+| NET-CONDITION        |
+| SERVER-CONFIG        |
+| CLIENT               |
+| NET-ERROR            |
+| WITH-CLIENT-SERVER   |
+| MAKE-CLIENT-REQUEST  |
+| PEER                 |
+| *LOCALHOST*          |
+| CONNECT              |
+
 ** codec
 :PROPERTIES:
 :ID:       ff7b9d7c-d2b3-40ae-abca-9daafd16129f
@@ -413,8 +492,66 @@ optional dependencies:
 :ID:       70182aad-ae4c-40d2-b674-0a238b23d625
 :CREATED:  <2025-07-06 Sun 21:58>
 :END:
+
+#+CALL: lisp-package-symbols[:post transpose]("NET/COOKIE")
+
+#+RESULTS:
+| COOKIE-EQUAL              |
+| PARSE-SET-COOKIE-HEADER   |
+| COOKIE-EXPIRES            |
+| COOKIE-JAR-HOST-COOKIES   |
+| COOKIE-CREATION-TIMESTAMP |
+| COPY-COOKIE               |
+| COOKIE-JAR-COOKIES        |
+| COOKIE-MAX-AGE            |
+| COOKIE-DOMAIN             |
+| STRINGIFY-COOKIE          |
+| COOKIE-VALUE              |
+| COOKIE-ORIGIN-HOST        |
+| WRITE-SET-COOKIE-HEADER   |
+| COOKIE                    |
+| COOKIE-P                  |
+| WRITE-COOKIE-HEADER       |
+| COOKIE-SAME-SITE          |
+| COOKIE-PATH               |
+| MERGE-COOKIES             |
+| MAKE-COOKIE               |
+| COOKIE-HTTPONLY-P         |
+| COOKIE-JAR                |
+| COOKIE-PARTITIONED        |
+| MAKE-COOKIE-JAR           |
+| COOKIE-DATE               |
+| COOKIE-NAME               |
+| COOKIE=                   |
+| COOKIE-SECURE-P           |
+
 ** req
 :PROPERTIES:
 :ID:       866c84fd-e8b2-4ea5-ac6c-dfdaa0cc583f
 :CREATED:  <2025-07-06 Sun 21:58>
 :END:
+
+#+CALL: lisp-package-symbols[:post transpose]("NET/REQ")
+
+#+RESULTS:
+| REQUEST                   |
+| *CONNECTION-POOL*         |
+| *DEFAULT-READ-TIMEOUT*    |
+| DELETE                    |
+| GET                       |
+| *USE-CONNECTION-POOL*     |
+| MAKE-CONNECTION-POOL      |
+| PUT                       |
+| *DEFAULT-CONNECT-TIMEOUT* |
+| +SOCKS5-VERSION+          |
+| POST                      |
+| FETCH                     |
+| IGNORE-AND-CONTINUE       |
+| CLEAR-CONNECTION-POOL     |
+| *DEFAULT-PROXY*           |
+| DECODING-STREAM-OF        |
+| PATCH                     |
+| RETRY-REQUEST             |
+| HEAD                      |
+| HTTP-CLIENT               |
+| *VERBOSE*                 |
