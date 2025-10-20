@@ -2,8 +2,8 @@
 #+author: Richard Westhaver
 #+setupfile: ../../../clean.theme
 
-=obj= is a collection of CLOS-based protocols and MOP-based
-meta-protocols used throughout core libraries.
+=obj= is a collection of [[id:8bc4ff14-f001-4515-ac1f-fd59ef8ef506][CLOS]]-based protocols throughout core
+libraries.
 
 #+BEGIN: lisp-system-info :system obj
 - packages
@@ -434,8 +434,163 @@ Each package in the =obj= system is loosely speaking its own
 'protocol', providing various classes and generic functions.
 
 There is a special category of package prefixed with =obj/meta/= -
-these packages operate on the level of the Meta-Object Protocol and
+these packages operate on the level of the [[id:f9d8eead-51ab-4589-a5c2-2569ea1b7abd][Meta-Object Protocol]] and
 provide special classes called /metaclasses/.
+
+#+begin_src lisp :results list
+  obj/int:*obj-packages*
+#+end_src
+
+#+RESULTS:
+- OBJ/STORE
+- OBJ/CACHE
+- OBJ/SRV
+- OBJ/SECRET
+- OBJ/TREE/BTREE
+- OBJ/TREE
+- OBJ/DB
+- OBJ/PROJECT
+- OBJ/SCHEMA
+- OBJ/PLAN
+- OBJ/CONFIG
+- OBJ/GRAPH
+- OBJ/AST
+- OBJ/BUILD
+- OBJ/UUID
+- OBJ/TIME
+- OBJ/COLOR
+- OBJ/TENSOR
+- OBJ/URL
+- OBJ/URI
+- OBJ/URI/PUNYCODE
+- OBJ/EQUIV
+- OBJ/ID
+
+** Protocol Packages
+:PROPERTIES:
+:ID:       fb16b6cb-77db-4a15-9c74-bf9996c518ec
+:CREATED:  <2025-10-19 Sun 19:55>
+:END:
+
+*** ast
+:PROPERTIES:
+:ID:       22c67d1a-e697-409d-9c48-7b906ba3c7a3
+:CREATED:  <2025-10-19 Sun 20:16>
+:END:
+
+*** config
+:PROPERTIES:
+:ID:       1f24773d-1b23-4f35-85cb-03aae7a7256f
+:CREATED:  <2025-10-19 Sun 20:16>
+:END:
+
+*** id
+:PROPERTIES:
+:ID:       7bf4e975-9e3f-482a-8f68-8e718ab3ffdd
+:CREATED:  <2025-10-19 Sun 20:15>
+:END:
+
+*** uuid
+:PROPERTIES:
+:ID:       7750b378-a07e-4838-bf71-e2f3980feedd
+:CREATED:  <2025-10-19 Sun 20:16>
+:END:
+
+*** uri
+:PROPERTIES:
+:ID:       784b3d37-2a99-4e96-bffe-b8a033522a52
+:CREATED:  <2025-10-19 Sun 20:16>
+:END:
+
+*** url
+:PROPERTIES:
+:ID:       16e3e1ee-06db-4530-82cb-20abc0f96063
+:CREATED:  <2025-10-19 Sun 20:16>
+:END:
+
+*** time
+:PROPERTIES:
+:ID:       c89cf418-313b-4875-aea6-41d26bc4cd87
+:CREATED:  <2025-10-19 Sun 20:17>
+:END:
+
+*** color
+:PROPERTIES:
+:ID:       e13bb9bf-9286-47a3-a8ec-5175d6f64433
+:CREATED:  <2025-10-19 Sun 20:17>
+:END:
+
+*** equiv
+:PROPERTIES:
+:ID:       6729e68c-6ff0-413d-8c67-274f00cf0e23
+:CREATED:  <2025-10-19 Sun 20:15>
+:END:
+
+*** cache
+:PROPERTIES:
+:ID:       32d49415-8d68-489c-8012-744e86bf47ab
+:CREATED:  <2025-10-19 Sun 20:17>
+:END:
+
+*** db
+:PROPERTIES:
+:ID:       dd1c12e7-7d72-4ac4-a9c5-b820a8b4cab3
+:CREATED:  <2025-10-19 Sun 20:15>
+:END:
+
+*** plan
+:PROPERTIES:
+:ID:       775fe949-df31-4de8-ba17-397ec2bfc5de
+:CREATED:  <2025-10-19 Sun 20:15>
+:END:
+
+*** build
+:PROPERTIES:
+:ID:       5275243c-7424-4dac-acd4-5b8d30bae9b1
+:CREATED:  <2025-10-19 Sun 20:17>
+:END:
+
+*** project
+:PROPERTIES:
+:ID:       ef9a558f-59e1-45a6-9138-cc49443353a9
+:CREATED:  <2025-10-19 Sun 20:15>
+:END:
+
+*** schema
+:PROPERTIES:
+:ID:       9999800d-7d6c-4ba1-9bb7-64b6b827337c
+:CREATED:  <2025-10-19 Sun 20:16>
+:END:
+
+*** secret
+:PROPERTIES:
+:ID:       2aab384b-4712-417f-97b3-c2026cb40308
+:CREATED:  <2025-10-19 Sun 20:16>
+:END:
+
+*** srv
+:PROPERTIES:
+:ID:       0428d80c-4d61-40b6-85a8-d63a738525de
+:CREATED:  <2025-10-19 Sun 20:16>
+:END:
+
+*** graph
+:PROPERTIES:
+:ID:       c7054ddf-2972-4b5e-bb81-22b26b5dbedc
+:CREATED:  <2025-10-19 Sun 19:55>
+:END:
+
+*** store
+:PROPERTIES:
+:ID:       4498318b-9d20-464a-99ef-5b24596c6298
+:CREATED:  <2025-10-19 Sun 20:16>
+:END:
+
+*** tensor
+:PROPERTIES:
+:ID:       f028974f-71e2-4a6b-92db-3373085ecae2
+:CREATED:  <2025-10-19 Sun 20:17>
+:END:
 
 ** Meta Packages
 :PROPERTIES:
