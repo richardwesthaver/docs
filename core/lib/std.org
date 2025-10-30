@@ -380,12 +380,43 @@ DEFPKG names a macro:
 :ID:       9831687d-15bd-4b60-ae0d-bcf4cd8b45bf
 :CREATED:  <2025-07-04 Fri 23:20>
 :END:
-The =std/defsys= package is the last package defined in the =std=
-system, which itself uses the much more popular =ASDF=.
+#+call:file-description("~/comp/core/std/defsys.lisp")
 
-Similarly to =std/defpkg=, our goal is to provide a similar interface
-to =asdf:defsystem=. As of [2025-07-04 Fri] however this interface is
-mostly unwritten. At some point we will take another stab at it.
+#+RESULTS:
+: The Core System Definition facility.
+
+#+call:file-commentary("~/comp/core/std/defsys.lisp")
+
+#+RESULTS:
+#+begin_example
+replacement/wrapper for ASDF
+
+goals:
+- dynamic asdf compatibility
+- replace quicklisp (will need to be in lib/sys)
+- share resources between system and dependency manager
+- integrate with skel/packy (package distributor)
+- multi-threaded by default
+- parallel compilation (completely short-circuiting asdf)
+- LISP ONLY -- multi-lang systems are handled by skel
+notes:
+
+operations we care about:
+- read
+- load
+- compile
+#+end_example
+
+The =std/defsys= package is the last package defined in the =std=
+system, which is compatible the more popular =ASDF=.
+
+Once the =std/defsys= package is loaded the /general preference/
+across the =core= is to use =std/defsys= instead of =ASDF=, although
+both are supported.
+
+Defsys is designed in such a way as to be directly integrated with the
+host Lisp compiler. System definitions (=defsys= forms) may be
+compiled to a FASL just like any other lisp file.
 
 ** sym
 :PROPERTIES:

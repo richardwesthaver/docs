@@ -477,12 +477,47 @@ provide special classes called /metaclasses/.
 :ID:       22c67d1a-e697-409d-9c48-7b906ba3c7a3
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/ast.lisp")
+
+#+RESULTS:
+#+begin_example
+This package was initially isolated to the OBJ/QUERY AST machinery, but as
+we are getting into codegen for C/CUDA/etc we now have a need to generalize
+it into a unique package.
+
+The objects in this package are probably not that useful in a Lisp-only
+context, or even a Lisp -> Lisp transpiler where we can leverage
+homoiconicity.
+
+These objects are best suited for a Lisp <-> Non-Lisp environment - where
+we want to be able to parse some Non-Lisp target language and write Lisp
+that emits code in that language.
+
+This package is depended on by OBJ/QUERY and Q for SQL and the like, as
+well as SYN/GEN which contains support for our Non-Lisp programming
+languages.
+#+end_example
 
 *** config
 :PROPERTIES:
 :ID:       1f24773d-1b23-4f35-85cb-03aae7a7256f
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/config.lisp")
+
+#+RESULTS:
+#+begin_example
+The goal of this package is to make it easy to map an object in
+memory to a 'user config interface' - which could be a
+configuration file, a datagram, CLI flags, etc.
+
+This package only provides the config protocol, for other packages to
+consume.
+
+Usage: 
+#|
+|#
+#+end_example
 
 *** id
 :PROPERTIES:
@@ -507,6 +542,11 @@ provide special classes called /metaclasses/.
 :ID:       16e3e1ee-06db-4530-82cb-20abc0f96063
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/url.lisp")
+
+#+RESULTS:
+: This package mostly just implements the bare-minimum provided by QURI:
+: URL-ENCODE and URL-DECODE
 
 *** time
 :PROPERTIES:
@@ -525,12 +565,96 @@ provide special classes called /metaclasses/.
 :ID:       6729e68c-6ff0-413d-8c67-274f00cf0e23
 :CREATED:  <2025-10-19 Sun 20:15>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/equiv.lisp")
+
+#+RESULTS:
+#+begin_example
+A valid complaint of Common Lisp is the lack of an intuitive
+equality mechanism. We have the following symbols in the
+standard. If you want to write CL you need to have a very firm
+grasp on these:
+
+#|
+= EQ EQL EQUAL EQUALP TREE-EQUAL
+|#
+
+EQUALP is the most flexible, but it is still explicitly conforming
+to the spec. It does handle STRUCTURE objects as one might expect,
+but it will not handle CLASSes. 
+
+As a rule, don't mess with these (i.e. redefine them, or anything
+in the standard for that matter) and use them wherever
+possible. Anything that is testing equality between two lisp
+objects is very likely to boil down to one of the symbols above,
+and the compiler handles the rest.
+
+For simplicity, let us consider these symbols provided by the
+standard to be of the EQUALITY category.
+
+This package in essence provides a superset of this, called the
+EQUIVALENCE category. These functions are generic and designed to
+be implemented on user-defined objects with support for highly
+complex relationships, partial equality, and more.
+
+Here are some things to keep in mind for this potion of code:
+
+- I'm not as familiar with Clojure (which has equiv) and JVM
+semantics as much as I'd like to be on this topic.
+
+- I believe that Rust got it right for the most part. PartialEq and
+Eq are the two equality traits, with PartialOrd and Ord being the
+ordering traits which are a natural extension to equality. In
+turn the MAX and MIN functions build off of Ord (total
+order). The APIs that follow (order.lisp,limit.lisp) will be
+designed with these relationships in mind.
+
+Refs:
+
+https://en.wikipedia.org/wiki/E-graph
+
+https://en.wikipedia.org/wiki/Equivalence_relation
+
+https://doc.rust-lang.org/std/cmp/index.html
+
+https://gitlab.com/fstamour/catchall/-/tree/master/egraph
+
+https://en.wikipedia.org/wiki/Disjoint-set_data_structure
+
+https://clojure.org/guides/equality
+#+end_example
 
 *** cache
 :PROPERTIES:
 :ID:       32d49415-8d68-489c-8012-744e86bf47ab
 :CREATED:  <2025-10-19 Sun 20:17>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/cache.lisp")
+
+#+RESULTS:
+#+begin_example
+based on CACLE: https://github.com/jlahd/cacle
+
+CACLE provides a similar object, CACHE which obtains a block of data from a
+provider function, given the block's key. The key is a user-defined value
+that is used in an EQL hash-table, which provides storage for the cache
+itself.
+
+CACLE supports a variety of replacement policies which we also support. The
+only major interface change is that we use keywords to indicate the policy
+instead of objects and the :LFUDA policy is inferred simply from fixnums.
+
+#| Cache Replacement
+- First In First Out (:fifo): Data that has been in the cache for the longest time is discarded
+- Last In First Out (:lifo): Most recently added data is discarded
+- Least Recently Used (:lru): Data that has gone unused for the longest time is discarded
+- Most Recently Used (:mru): Most recently used data is discarded
+- Random (:random): A randomly selected piece of data is discarded
+- Least Frequently Used (:lfu): Data with the lowest number of fetches is discarded
+- Least Frequently Used with Dynamic Aging (:lfuda): An aging variable is
+introduced to LFU to prefer discarding data that has been used a lot in the
+history but less often recently.
+|#
+#+end_example
 
 *** db
 :PROPERTIES:
@@ -543,48 +667,278 @@ provide special classes called /metaclasses/.
 :ID:       775fe949-df31-4de8-ba17-397ec2bfc5de
 :CREATED:  <2025-10-19 Sun 20:15>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/plan.lisp")
+
+#+RESULTS:
+#+begin_example
+ref: https://github.com/postgres/postgres/tree/master/src/backend/executor
+
+#| postgres query processing
+
+Query Processing Control Flow
+-----------------------------
+
+This is a sketch of control flow for full query processing:
+
+	CreateQueryDesc
+
+	ExecutorStart
+		CreateExecutorState
+			creates per-query context
+		switch to per-query context to run ExecInitNode
+		AfterTriggerBeginQuery
+		ExecInitNode --- recursively scans plan tree
+			ExecInitNode
+				recurse into subsidiary nodes
+			CreateExprContext
+				creates per-tuple context
+			ExecInitExpr
+
+	ExecutorRun
+		ExecProcNode --- recursively called in per-query context
+			ExecEvalExpr --- called in per-tuple context
+			ResetExprContext --- to free memory
+
+	ExecutorFinish
+		ExecPostprocessPlan --- run any unfinished ModifyTable nodes
+		AfterTriggerEndQuery
+
+	ExecutorEnd
+		ExecEndNode --- recursively releases resources
+		FreeExecutorState
+			frees per-query context and child contexts
+
+	FreeQueryDesc
+|#
+
+#| ASDF:PLAN
+
+ASDF systems depend on a PLAN object which specifies the order of execution of
+a set of actions - the default ordering is sequential. This plan is used to
+build the system.
+
+ASDF actions may refer to an associated ACTION-STATUS object which stores the
+current state of an action's progress:
+
+STAMP   KEEP-P DONE-P NEED-P     symbol bitmap  previously   currently
+not-nil   T      T      T     =>  GOOD     7    up-to-date   done (e.g. file previously loaded)
+not-nil   T      T     NIL    =>  HERE     6    up-to-date   unplanned yet done
+not-nil   T     NIL     T     =>  REDO     5    up-to-date   planned (e.g. file to load)
+not-nil   T     NIL    NIL    =>  SKIP     4    up-to-date   unplanned (e.g. file compiled)
+not-nil  NIL     T      T     =>  DONE     3    out-of-date  done
+not-nil  NIL     T     NIL    =>  WHAT     2    out-of-date  unplanned yet done(?)
+NIL     NIL    NIL     T     =>  TODO     1    out-of-date  planned
+NIL     NIL    NIL    NIL    =>  VOID     0    out-of-date  unplanned
+
+Note that a VOID status cannot happen as part of a transitive dependency of a wanted node
+while traversing a node with TRAVERSE-ACTION; it can only happen while checking whether an
+action is up-to-date with ACTION-UP-TO-DATE-P.
+
+When calling TRAVERSE-ACTION, the +need-bit+ is set,
+unless the action is up-to-date and not needed-in-image (HERE, SKIP).
+When PERFORMing an action, the +done-bit+ is set.
+When the +need-bit+ is set but not the +done-bit+, the level slot indicates which level of
+OPERATE it was last marked needed for; if it happens to be needed at a higher-level, then
+its urgency (and that of its transitive dependencies) must be escalated so that it will be
+done before the end of this level of operate.
+
+Also, when no ACTION-STATUS is associated to an action yet, NIL serves as a bottom value.
+
+(defparameter +keep-bit+ 4)
+(defparameter +done-bit+ 2)
+(defparameter +need-bit+ 1)
+(defparameter +good-bits+ 7)
+(defparameter +todo-bits+ 1)
+(defparameter +void-bits+ 0)
+
+(defparameter +status-good+
+(make-instance 'action-status :bits +good-bits+ :stamp t))
+(defparameter +status-todo+
+(make-instance 'action-status :bits +todo-bits+ :stamp nil))
+(defparameter +status-void+
+(make-instance 'action-status :bits +void-bits+ :stamp nil)))
+
+The four different actual traversals:
+,* TRAVERSE-ACTION o c T: Ensure all dependencies are either up-to-date in-image, or planned
+,* TRAVERSE-ACTION o c NIL: Ensure all dependencies are up-to-date or planned, in-image or not
+,* ACTION-UP-TO-DATE-P: Check whether some (defsystem-depends-on ?) dependencies are up to date
+,* COLLECT-ACTION-DEPENDENCIES: Get the dependencies (filtered), don't change any status
+
+High-level interface: make-plan, perform-plan
+|#
+#+end_example
 
 *** build
 :PROPERTIES:
 :ID:       5275243c-7424-4dac-acd4-5b8d30bae9b1
 :CREATED:  <2025-10-19 Sun 20:17>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/build.lisp")
+
+#+RESULTS:
+: This package started during the implementation of URING when it became
+: clear that we needed a generic 'CONS-like' protocol and class for objects
+: capable of constructing complex structures.
+: 
+: NOTE 2024-10-26: also to be used in DAT/TAR
 
 *** project
 :PROPERTIES:
 :ID:       ef9a558f-59e1-45a6-9138-cc49443353a9
 :CREATED:  <2025-10-19 Sun 20:15>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/project.lisp")
+
+#+RESULTS:
+#+begin_example
+The SK-PROJECT class used to be 'the base class', but not all projects
+necessarily fit into the SKEL protocol. A much more generic starting point
+is needed.
+
+The PROJECT class contains an unusually large number of slots for a
+base. We want to fit as much of the common 'metadata' involved in projects
+here so that we don't have to duplicate them elsewhere.
+
+The PROJECT class always contains a dedicated AST slot containing an S-expr
+representation of the project or NIL. This slot is used as a buffer when
+reading or writing projects.
+#+end_example
 
 *** schema
 :PROPERTIES:
 :ID:       9999800d-7d6c-4ba1-9bb7-64b6b827337c
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/schema.lisp")
+
+#+RESULTS:
+#+begin_example
+There are quite a few objects worth mentioning:
+
+SCHEMA is the top-level object which contains a slot filled with FIELDs.
+
+FIELDs are structs with a NAME and a TYPE. They are primitive objects which
+can't be extended.
+
+The COLUMN class can be extended but by default have the same
+representation as a FIELD. Implementation packages like RDB are free to
+extend the column class to support backend-specific abstractions - such as
+the RocksDB Column Family which is naturally represented by RDB-COLUMN as a
+pair of FIELDs - one for the key and another for the value. This class is
+further extended by RDB-COLUMN-FAMILY which wraps the low-level FFI
+interface.
+#+end_example
 
 *** secret
 :PROPERTIES:
 :ID:       2aab384b-4712-417f-97b3-c2026cb40308
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/secret.lisp")
+
+#+RESULTS:
+: ref: https://github.com/rotatef/secret-values
 
 *** srv
 :PROPERTIES:
 :ID:       0428d80c-4d61-40b6-85a8-d63a738525de
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/srv.lisp")
+
+#+RESULTS:
+#+begin_example
+As NET/SRV started coming together I realized we need proper isolation of
+the implementations (UDP, HTTP/S, and EXTernal at TOW) from the core
+protocol.
+
+This package provides as much common functionality as possible and may be
+further extended by the implementations.
+
+Notably, this package does not perform any IO itself, that is totally up to
+the implementation. The objects in this package consume incoming packets,
+requests, and events via HANDLE-* functions.
+
+TODO:
+
+%service-protocol
+
+endpoint? closer to service
+transport? closer to socket
+routes? build on std/pipe, probably in net/srv/*
+
+configs for everything
+
+program-service -> sb-ext:run-program IO
+
+REFS:
+
+Tower: https://github.com/tower-rs/tower
+
+Axum: https://github.com/tokio-rs/axum
+#+end_example
 
 *** graph
 :PROPERTIES:
 :ID:       c7054ddf-2972-4b5e-bb81-22b26b5dbedc
 :CREATED:  <2025-10-19 Sun 19:55>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/graph.lisp")
+
+#+RESULTS:
+#+begin_example
+Modeled off of eschulte's GRAPH library - see also DAT/DOT
+
+ref: https://eschulte.github.io/graph/
+
+Our goals are slightly different than the original library - we prioritize
+flexibility over speed or code size and generally prefer vectors to
+hash-tables. To this end, we support either collection type as the values
+of the NODES and EDGES slots of the GRAPH class. Mix and match - no
+problemo.
+
+Eschulte's graph library only supports symbols and integers as node values
+(keys must be EQUAL-safe), our implementation supports strings as well, and
+supports Eschulte's graph API. Note that the intended use-case here - when
+using simple objects as node values + hash-tables, is that you are
+supplying 'pointers' to objects which exist elsewhere - it is assumed that
+you are encoding as little 'information' into your graph directly and
+instead using it to perform complex calculations and transformations using
+the 'shape' which your graph's nodes and edges imply.
+
+Nowadays we prefer CLOS objects where possible. NODE is a class from them
+OBJ/AST module which has a single AST slot and serves as the basis for both
+the VERTEX and EDGE classes in this module. A VERTEX is a KV pair where
+K=ID and V=AST. The AST slot may be used as the EDGE-VALUE (property list,
+etc) of the EDGE class, which also includes IN and OUT slots. In Graphviz
+parlance the EDGE class is 'undirected' (--), the DIRECTED-EDGE class
+represents the 'directed' variant (->). Finally we supply a default
+WEIGHTED-EDGE which contains an additional WEIGHT slot.
+
+If you care about direction, use DIRECTED-GRAPH instead of GRAPH.
+#+end_example
 
 *** store
 :PROPERTIES:
 :ID:       4498318b-9d20-464a-99ef-5b24596c6298
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/store.lisp")
+
+#+RESULTS:
+#+begin_example
+Based on work from Elephant and XDB.
+
+A STORE plays a similar role to ORMs in blub languages, but better since we
+have CLOS and MOP for ultimate control. The purpose of a STORE is to
+orchestrate the persistence of objects of a specific metaclass called
+STORED. The metaclass adds an additional allocation target for slot-objects
+which indicates that any access to them from Lisp will be delegated to the
+associated STORE.
+
+The STORE itself is defined in this file and implements the 'controller'
+side of the underlying protocol.
+#+end_example
 
 *** tensor
 :PROPERTIES:
@@ -603,16 +957,128 @@ provide special classes called /metaclasses/.
 :ID:       fa2620fb-bff7-44ce-95b2-26bf9996539a
 :CREATED:  <2025-07-05 Sat 21:04>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/meta/sealed.lisp")
+
+#+RESULTS:
+#+begin_example
+From the sealable-metaobjects readme:
+
+#| 
+
+The goal is to inline a generic function under certain circumstances. These
+circumstances are:
+
+1 It is possible to statically determine the generic function being called.
+
+2 This generic function is sealed, i.e., it is an instance of
+SEALABLE-GENERIC-FUNCTION that has previously been passed to the function
+SEAL-GENERIC-FUNCTION.
+
+3 This sealed generic function has at least one sealed method, i.e., a method
+of type POTENTIALLY-SEALABLE-METHOD that specializes, on each relevant
+argument, on a built-in or sealed class, or an eql specializer whose object
+is an instance of a built-in or sealed class.
+
+4 It must be possible to determine, statically, that the types of all
+arguments in a specializing position uniquely determine the list of
+applicable methods.
+
+Examples
+
+The following examples illustrate how sealable metaobjects can be used. Each
+example code can be evaluated as-is.  However, for actual use, we recommend
+the following practices:
+
+,* Sealable generic functions should be defined in a separate file that is
+loaded early. If this is not done, its methods may not use the correct
+method-class. (An alternative is to specify the method class of each method
+explicitly).
+
+,* Metaobject sealing should be the very last step when loading a
+project. Ideally, all calls to SEAL-GENERIC-FUNCTION should be in a separate
+file that ASDF loads last. This way, sealing can also be disabled
+conveniently, e.g., to measure whether sealing actually improves
+performance (Which you should do!).
+
+Generic Plus
+
+This example shows how one can implement a generic version of cl:+.
+
+(defgeneric generic-binary-+ (a b)
+(:generic-function-class fast-generic-function))
+
+(defmethod generic-binary-+ ((a number) (b number))
+(+ a b))
+
+(defmethod generic-binary-+ ((a character) (b character))
+(+ (char-code a)
+(char-code b)))
+
+(seal-domain #'generic-binary-+ '(number number))
+(seal-domain #'generic-binary-+ '(character character))
+
+(defun generic-+ (&rest things)
+(cond ((null things) 0)
+((null (rest things)) (first things))
+(t (reduce #'generic-binary-+ things))))
+
+(define-compiler-macro generic-+ (&rest things)
+(cond ((null things) 0)
+((null (rest things)) (first things))
+(t
+(flet ((symbolic-generic-binary-+ (a b)
+`(generic-binary-+ ,a ,b)))
+(reduce #'symbolic-generic-binary-+ things)))))
+
+You can quickly verify that this new operator is as efficient as cl:+:
+
+(defun triple-1 (x)
+(declare (single-float x))
+(+ x x x))
+
+(defun triple-2 (x)
+(declare (single-float x))
+(generic-+ x x x))
+
+Both functions should compile to the same assembler code.
+(disassemble #'triple-1)
+(disassemble #'triple-2)
+
+Yet, other than cl:+, generic-+ can be extended by the user, just like a
+regular generic function. The only restriction is that new methods must not
+interfere with the behavior of methods that specialize on sealed types only.
+
+Generic Find
+
+This example illustrates how one can implement a fast, generic version of
+cl:find.
+
+(defgeneric generic-find (item sequence &key test)
+(:generic-function-class fast-generic-function))
+
+(defmethod generic-find (elt (list list) &key (test #'eql))
+(and (member elt list :test test)
+t))
+
+(defmethod generic-find (elt (vector vector) &key (test #'eql))
+(cl:find elt vector :test test))
+
+(seal-domain #'generic-find '(t list))
+(seal-domain #'generic-find '(t vector))
+
+(defun small-prime-p (x)
+(generic-find x '(2 3 5 7 11)))
+
+The call to GENERIC-FIND should have been replaced by a direct call to
+the appropriate effective method.
+(disassemble #'small-prime-p)
+
+|#
+#+end_example
 
 *** stealth
 :PROPERTIES:
 :ID:       e1b6ff26-9604-426a-a6f7-961f607d332b
-:CREATED:  <2025-07-05 Sat 21:04>
-:END:
-
-*** typed
-:PROPERTIES:
-:ID:       3e85dba6-0c50-4d0a-a60c-ad2676adcca1
 :CREATED:  <2025-07-05 Sat 21:04>
 :END:
 
@@ -627,6 +1093,15 @@ provide special classes called /metaclasses/.
 :ID:       6a2a31cc-6336-4a25-97dc-0e9bf3d31475
 :CREATED:  <2025-07-05 Sat 21:04>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/meta/stored.lisp")
+
+#+RESULTS:
+: This code is derived from XDB.
+: 
+: Note that this is not a general purpose SerDe. It is specifically designed
+: to decode/encode objects as simple octet-vectors from/to an open stream
+: with minimal overhead. There is a separate interface for general-purpose
+: data encoding which can be found in the DAT system.
 
 *** fast
 :PROPERTIES:
@@ -651,9 +1126,46 @@ provide special classes called /metaclasses/.
 :ID:       e537a12f-23fe-40fb-954f-58e282eba360
 :CREATED:  <2025-07-05 Sat 21:04>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/meta/dynamic.lisp")
 
-*** mixed
+#+RESULTS:
+#+begin_example
+jackdaniel's post does a great job at explaining the need for Dynamics in
+CLOS and where 'Dynamic Slots' can be most useful. In the case of McCLIM,
+it is being implemented in the repaint queue to enable thread-safe stream
+operations. The exact same strategy can be applied to virtually any other
+program that involves excessive thread-local bindings of slot values.
+
+The context I'm thinking of applying this to currently is NET/SRV, where it
+may be useful in binding SERVICE and REQUEST slots dynamically for worker
+threads. Many of our other libs can potentially benefit from this metaclass
+(LOGGER, RDB, etc).
+#+end_example
+
+*** mix
 :PROPERTIES:
 :ID:       c1d953dd-c965-4b22-b8e4-18623a401b19
 :CREATED:  <2025-07-05 Sat 21:05>
 :END:
+#+call:file-commentary("~/comp/core/lib/obj/meta/mix.lisp")
+
+#+RESULTS:
+#+begin_example
+#|
+mixins are for simple, dynamic class combinations:
+
+(defclass a () ())                                            
+(defclass b () ())                                            
+(defclass c () ())                                            
+
+(make-instance (mix 'a 'b)) ;; => #<MIXIN-OBJECT (A B)>       
+
+(let ((a (make-instance 'a)))                                 
+(ensure-mix a 'b 'c)      ;; => #<MIXIN-OBJECT (B C A)>     
+(delete-from-mix a 'a)    ;; => #<MIXIN-OBJECT (B C)>       
+(delete-from-mix a 'c))   ;; => #<B>                        
+
+This allows objects to be mixed and updated without manually defining many
+permutations.
+|#
+#+end_example
