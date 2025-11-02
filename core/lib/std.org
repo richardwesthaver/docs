@@ -375,49 +375,6 @@ DEFPKG names a macro:
   Source file: /home/ellis/comp/core/std/defpkg.lisp
 #+end_example
 
-** WIP defsys
-:PROPERTIES:
-:ID:       9831687d-15bd-4b60-ae0d-bcf4cd8b45bf
-:CREATED:  <2025-07-04 Fri 23:20>
-:END:
-#+call:file-description("~/comp/core/std/defsys.lisp")
-
-#+RESULTS:
-: The Core System Definition facility.
-
-#+call:file-commentary("~/comp/core/std/defsys.lisp")
-
-#+RESULTS:
-#+begin_example
-replacement/wrapper for ASDF
-
-goals:
-- dynamic asdf compatibility
-- replace quicklisp (will need to be in lib/sys)
-- share resources between system and dependency manager
-- integrate with skel/packy (package distributor)
-- multi-threaded by default
-- parallel compilation (completely short-circuiting asdf)
-- LISP ONLY -- multi-lang systems are handled by skel
-notes:
-
-operations we care about:
-- read
-- load
-- compile
-#+end_example
-
-The =std/defsys= package is the last package defined in the =std=
-system, which is compatible the more popular =ASDF=.
-
-Once the =std/defsys= package is loaded the /general preference/
-across the =core= is to use =std/defsys= instead of =ASDF=, although
-both are supported.
-
-Defsys is designed in such a way as to be directly integrated with the
-host Lisp compiler. System definitions (=defsys= forms) may be
-compiled to a FASL just like any other lisp file.
-
 ** sym
 :PROPERTIES:
 :ID:       d24943b2-5b49-47f5-901a-262a7d67d142
@@ -2680,3 +2637,106 @@ ascii art
 | UNICODE<=                          |
 | COLLAPSE-WHITESPACES               |
 | CHARACTER-ENCODING-ERROR           |
+
+** WIP defsys
+:PROPERTIES:
+:ID:       9831687d-15bd-4b60-ae0d-bcf4cd8b45bf
+:CREATED:  <2025-07-04 Fri 23:20>
+:END:
+#+call:lisp-package-dependencies("STD/DEFSYS") :post transpose
+
+#+RESULTS:
+| COMMON-LISP   |
+| STD/PRIM      |
+| STD/META      |
+| STD/MACS      |
+| STD/THREAD    |
+| STD/TASK      |
+| STD/SERDE     |
+| STD/SEQ       |
+| STD/PIPE      |
+| STD/CONDITION |
+| STD/PRINT     |
+| STD/PATH      |
+| STD/SYM       |
+
+#+call:lisp-package-files("STD/DEFSYS")
+
+#+RESULTS:
+| /home/ellis/comp/core/std/defsys.lisp |
+
+#+call:lisp-package-symbols("STD/DEFSYS") :post transpose
+
+#+RESULTS:
+| *SYSTEM-SESSION*    |
+| WITH-MODULE         |
+| SYSDEF              |
+| WITH-SYSTEM-SESSION |
+| UNLOAD-MODULE       |
+| LOAD-SYS            |
+| REGISTER-SYSTEM     |
+| SYSDEFS             |
+| *MODULE*            |
+| TEST-SYSTEM         |
+| FILE-COMPONENT      |
+| DEFCOMPONENT        |
+| COMPILE-SYSTEM      |
+| *SYSDEFS*           |
+| *SYSTEM-TABLE*      |
+| PKG-COMPONENT       |
+| LOAD-SYSTEM         |
+| *CORE-MODULE-TABLE* |
+| MODULE              |
+| SYSTEM              |
+| MOD-COMPONENT       |
+| COMPILE-SYS         |
+| COMPONENT-TYPE      |
+| GROVEL-COMPONENT    |
+| LOAD-MODULE         |
+| DIR-COMPONENT       |
+| DEFSYS              |
+| DEFPROVIDER         |
+| +SYS-EXTENSION+     |
+| FIND-SYSTEM         |
+| COMPONENT           |
+
+#+call:file-description("~/comp/core/std/defsys.lisp")
+
+#+RESULTS:
+: The Core System Definition facility.
+
+#+call:file-commentary("~/comp/core/std/defsys.lisp")
+
+#+RESULTS:
+#+begin_example
+replacement/wrapper for ASDF
+
+goals:
+- dynamic asdf compatibility
+- replace quicklisp (will need to be in lib/sys)
+- share resources between system and dependency manager
+- integrate with skel/packy (package distributor)
+- multi-threaded by default
+- parallel compilation (completely short-circuiting asdf)
+- LISP ONLY -- multi-lang systems are handled by skel
+notes:
+
+operations we care about:
+- read
+- load
+- compile
+#+end_example
+
+The =std/defsys= package is the last package defined in the =std=
+system, it provides a DEFSYS macro which is our equivalent to the more
+popular =ASDF:DEFSYSTEM=.
+
+Once the =std/defsys= package is loaded the /general preference/
+across the =core= is to use =STD/DEFSYS= (nickname is =SYS=) instead
+of =ASDF=, although both are generally supported.
+
+Defsys is designed in such a way as to be directly integrated with the
+host Lisp compiler. System definitions (=SYS:DEFSYS= forms) may be
+compiled to a FASL just like any other lisp file. Typically the file
+type is changed to =".fsys"= to distinguish them from standard lisp
+fasls - see the =SYS:COMPILE-SYS= function for details.
