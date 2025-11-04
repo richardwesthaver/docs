@@ -3,8 +3,8 @@
 #+setupfile: ../../../clean.theme
 #+OPTIONS: num:nil
 
-=skel= is /a hacker's project compiler and build tool/. It is an
-extensible software library designed for managing /projects/.
+=skel= is /a hacker's development tool/. It is an extensible software
+library designed for managing a development environment.
 
 The [[https://compiler.company/docs/core/app/skel.html][cli]] is the main entry point for typical users. This documentation
 is for library developers and internal use.
@@ -25,7 +25,6 @@ is for library developers and internal use.
   | SKEL/HOMER/CORE      |
   | SKEL/INFER           |
   | SKEL/CORE/PLAN       |
-  | SKEL/COMP/IGNITION   |
   | SKEL/COMP/ORG        |
   | SKEL/CORE/HEADER     |
   | SKEL/CORE/SCHEMA     |
@@ -57,19 +56,6 @@ is for library developers and internal use.
   #+CALL: lisp-system-dependencies[:post transpose]("skel")
 
   #+RESULTS:
-  | std   |
-  | obj   |
-  | dat   |
-  | cli   |
-  | organ |
-  | doc   |
-  | vc    |
-  | pod   |
-  | net   |
-  | box   |
-  | rdb   |
-  | syn   |
-  | NIL   |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("skel")
@@ -84,63 +70,6 @@ is for library developers and internal use.
   #+CALL: lisp-system-files[:post transpose]("skel")
 
   #+RESULTS:
-  | core/pkg.lisp        |
-  | core/condition.lisp  |
-  | core/proto.lisp      |
-  | core/header.lisp     |
-  | core/var.lisp        |
-  | core/obj.lisp        |
-  | core/component.lisp  |
-  | core/rule.lisp       |
-  | core/project.lisp    |
-  | core/pack.lisp       |
-  | core/print.lisp      |
-  | core/schema.lisp     |
-  | core/db.lisp         |
-  | core/log.lisp        |
-  | core/util.lisp       |
-  | comp/pkg.lisp        |
-  | comp/lisp.lisp       |
-  | comp/asd.lisp        |
-  | comp/cargo.lisp      |
-  | comp/container.lisp  |
-  | comp/org.lisp        |
-  | comp/dir-locals.lisp |
-  | comp/makefile.lisp   |
-  | comp/sys.lisp        |
-  | packy/pkg.lisp       |
-  | packy/var.lisp       |
-  | packy/proto.lisp     |
-  | packy/pkgbuild.lisp  |
-  | packy/apkbuild.lisp  |
-  | packy/db.lisp        |
-  | packy/client.lisp    |
-  | packy/srv.lisp       |
-  | packy/cfg.lisp       |
-  | packy/cli.lisp       |
-  | packy/packy.lisp     |
-  | krypt/pkg.lisp       |
-  | krypt/condition.lisp |
-  | krypt/krypt.lisp     |
-  | krypt/cli.lisp       |
-  | pkg.lisp             |
-  | homer/pkg.lisp       |
-  | homer/var.lisp       |
-  | homer/log.lisp       |
-  | homer/util.lisp      |
-  | homer/task.lisp      |
-  | homer/cfg.lisp       |
-  | homer/srv.lisp       |
-  | homer/cli.lisp       |
-  | homer/homer.lisp     |
-  | srv.lisp             |
-  | infer.lisp           |
-  | net/var.lisp         |
-  | net/server.lisp      |
-  | net/client.lisp      |
-  | net/endpoint.lisp    |
-  | cli.lisp             |
-  | skel.lisp            |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("skel")
@@ -162,7 +91,7 @@ is for library developers and internal use.
   | SK-PROJECT                   |
   | WITH-PROJECT                 |
   | MAKEFILE                     |
-  | INIT-SKEL-LOGGER             |
+  | SKEL-COMPILE-ERROR           |
   | SK-COMPILE                   |
   | SK-WRITE-ASD-COMPONENTS      |
   | SKEL-SIMPLE-ERROR            |
@@ -178,7 +107,7 @@ is for library developers and internal use.
   | SK-SNIPPETS                  |
   | SK-SERVER                    |
   | SKEL-STORE                   |
-  | *SKEL-INIT-HOOK*             |
+  | MAKE-SHEBANG-COMMENT         |
   | SK-LOG-REPAIR                |
   | *SKEL-USER-CONFIG*           |
   | SK-FIND*                     |
@@ -189,7 +118,6 @@ is for library developers and internal use.
   | FIND-SKELFILE                |
   | FIND-SK-FILE                 |
   | SK-BUNDLE                    |
-  | SK-UNBUNDLE                  |
   | *SKEL-PATH*                  |
   | SK-WRITELN                   |
   | SK-CONFIG                    |
@@ -208,7 +136,7 @@ is for library developers and internal use.
   | INIT-SKELRC                  |
   | SK-PRINT                     |
   | *MAKEFILE-EXTENSION*         |
-  | *MK-COMMAND-PREFIXES*        |
+  | SK-TEST                      |
   | *SKEL-PROJECT-FUNCTIONS*     |
   | SK-TARGET                    |
   | SK-ABBREV                    |
@@ -216,24 +144,24 @@ is for library developers and internal use.
   | SETF-SKEL-VARS               |
   | *SYSTEM-SKELRC*              |
   | SK-CONVERT                   |
-  | SK-BIND                      |
+  | *MK-COMMAND-PREFIXES*        |
   | SK-RULE-SOURCE               |
   | INIT-SKELFILE                |
   | SKEL-SYNTAX-ERROR            |
   | SK-TAGS                      |
   | *SKEL-PROJECT*               |
-  | SK-DESCRIPTION               |
+  | SK-SCRIPTS                   |
   | MAKE-SOURCE-FILE-HEADER      |
   | *SKEL-STASH*                 |
   | SK-LOG-LIST                  |
   | SK-PROJECT-SLOT              |
-  | LOAD-SKELRC                  |
+  | SK-BIND                      |
   | *SKEL-STORE*                 |
   | SK-READ-FILE                 |
   | *MK-MAGIC-VARS*              |
-  | *SKELFILE-BOUNDARY*          |
+  | SK-UNBUNDLE                  |
   | SK-LOAD-COMPONENT            |
-  | *DIR-LOCALS-FILE*            |
+  | SK-TRANSFORM                 |
   | *SKEL-SYSTEM-CONFIG*         |
   | *SKEL-LOGGER*                |
   | SK-CONFIG-SLOT               |
@@ -242,9 +170,9 @@ is for library developers and internal use.
   | SK-DEPLOY                    |
   | SK-BUILD                     |
   | FILE-HEADER-KIND             |
-  | SK-TEST                      |
-  | SK-TANGLE                    |
   | *SKEL-DATA*                  |
+  | SK-TANGLE                    |
+  | INIT-SKEL-LOGGER             |
   | SK-RULE-TARGET               |
   | SK-PUSH                      |
   | SK-USER-CONFIG               |
@@ -252,10 +180,11 @@ is for library developers and internal use.
   | PUSH-MK-VAR                  |
   | EDIT-SKELRC                  |
   | SK-SAVE                      |
+  | SK-DESCRIPTION               |
   | SK-RULE                      |
   | FILE-HEADER                  |
   | READ-SYSTEM-DEFINITIONS      |
-  | MAKE-SHEBANG-COMMENT         |
+  | *SKELFILE-BOUNDARY*          |
   | SKEL-DB-LOGGER               |
   | SK-LOG-SCHEMA                |
   | SK-ORG-FILE                  |
@@ -272,7 +201,7 @@ is for library developers and internal use.
   | *DEFAULT-MAKEFILE*           |
   | SK-STORE                     |
   | SK-FIND                      |
-  | SK-SCRIPTS                   |
+  | SK-FETCH                     |
   | SK-LICENSE                   |
   | SK-ABBREVS                   |
   | SKEL-ERROR                   |
@@ -282,21 +211,19 @@ is for library developers and internal use.
   | SK-WRITE                     |
   | SK-WRITE-FILE                |
   | MAKE-FILE-HEADER             |
-  | SK-FETCH                     |
+  | LOAD-SKELRC                  |
   | SK-LOG-SHUTDOWN              |
   | SK-READ                      |
   | SK-NEW                       |
   | MAKE-SK-RULE                 |
   | *DEFAULT-SKEL-CACHE*         |
-  | SK-TRANSFORM                 |
+  | SK-RUST-SYSTEM               |
   | SK-REGISTER                  |
-  | SK-WEAVE                     |
   | PUSH-MK-DIRECTIVE            |
   | PROJECT-ROOT                 |
   | SK-KIND                      |
   | MAKE-SHEBANG-FILE-HEADER     |
   | SK-AUTHOR                    |
-  | SK-RUST-SYSTEM               |
   | SK-MAKE                      |
   | MK-VAL                       |
   | *DEFAULT-SKEL-BINDINGS*      |
@@ -312,13 +239,15 @@ is for library developers and internal use.
   | SK-RULE-RECIPE               |
   | PARSE-SK-LISP-SYSTEM         |
   | PARSE-SK-RUST-SYSTEM         |
+  | *SKEL-HOOK*                  |
   | SK-INSTALL-USER-CONFIG       |
   | INIT-USER-SKELRC             |
   | SK-LOG-CLOSE                 |
-  | SKEL-COMPILE-ERROR           |
+  | SK-WEAVE                     |
   | SKEL-DB                      |
   | SK-RULES                     |
   | SK-INCLUDE                   |
+  | *DIR-LOCALS-FILE*            |
   | SK-SOURCE                    |
   | SK-PARENT                    |
   | INIT-SKEL                    |
@@ -345,35 +274,19 @@ it called ~load-ast~.
 We make use of mixins defined within the library like ~sk-meta~ as
 well as classes defined in other packages - the ~ast~ class for
 example provides a default method for AST functions (~load-ast~
-~build-ast~) and is defined in the ~obj/ast~ package.
+~build-ast~) and is defined in the ~obj/ast~ package. The
+~simple-project~ class is defined in ~obj/project~ and provides
+default slots for ~sk-meta~.
 
 In addition to the core objects we provide a set of ~sk-component~
 definitions which convert core objects to a corresponding external
 representation. For example the ~makefile~ and ~mk-*~ classes defined
 in ~skel/comp/make~ can be built from a ~sk-project~ and ~sk-*~
-instances.
+instances or may be used to ingest Makefiles into your project.
 
 The remainder of the ~skel~ system is dedicated to extensions. These
-are all optional. There are built-in extension called ~tools~ which
-run within the ~skel~ system and external extensions (~ext~) which
-integrate with a particular external system.
-
-The ~tools~ we provide are similar to Cargo's [[https://doc.rust-lang.org/book/ch14-05-extending-cargo.html][custom commands]], but
-they don't need to be a separate binary - they can be compiled into
-the core image. The downside is that this requires re-compiling ~skel~
-every time you want to add a new tool.
-
-~ext~ contains extensions for external systems. These modules are the
-'edges' of the system and provide support to programs which need to be
-able to access ~skel~ data at runtime. These modules always compiled
-separately and aren't built into the default core image.
-
-* features
-:PROPERTIES:
-:ID:       90d78420-e6d9-4f18-8222-89c4670633b4
-:END:
-
-** configuration
+are all optional.
+* Configuration
 :PROPERTIES:
 :ID:       2658a3d1-cfa5-436e-b2b0-9cf42a6f66c6
 :END:
@@ -386,9 +299,9 @@ via local configuration files. The configuration files are in the
 Both files are optional and the user skelrc takes precedence over
 system.
 
-Example =~/.skelrc=:
+Example =~/.config/skelrc=:
 #+begin_src shell :results output :exports both
-cat ~/.skelrc
+cat ~/.config/skelrc
 #+end_src
 
 #+RESULTS:
@@ -409,14 +322,14 @@ cat ~/.skelrc
 :scripts ("/usr/local/share/stash/scripts" "~/.stash/scripts")
 #+end_example
 
-** projects
+* Projects
 :PROPERTIES:
 :ID:       359441da-1b61-4d73-8563-605ea7262b58
 :END:
-Projects are the highest-level objects int the ~skel~ system. A project
-consists of a list of slots which are populated automatically or by
-the user. Once a project is initialized the slots can be accessed and
-a set of high-level operations can be performed.
+Projects are the highest-level objects int the ~skel~ system. A
+project consists of a list of slots which are populated automatically
+or by the user. Once a project is initialized the slots can be
+accessed and a set of high-level operations can be performed.
 
 The easiest way to initialize a project is with a ~skelfile~. These
 files are parsed as a simplified Lisp dialect and generate
@@ -444,7 +357,7 @@ Here is a more verbose example, still with only metadata:
 :vc :hg
 :tags ("core")
 :docs ((:org "readme") (:org "install") (:org "tests") (:org "todo"))
-:import ("emacs/emacs.sk")
+:include ("emacs/emacs.sk")
 #+end_src
 
 Another example with rules and components:
@@ -466,71 +379,191 @@ Another example with rules and components:
 :stash "~/.stash"
 #+end_src
 
-** version control
+* Features
 :PROPERTIES:
-:ID:       c15f58b5-d55e-425b-acf5-7001ef4591e4
+:ID:       90d78420-e6d9-4f18-8222-89c4670633b4
 :END:
-=skel= integrates closely with our Version Control System which
-is built on [[https://www.mercurial-scm.org/][Mercurial]], but we also interact with and host many [[https://git-scm.com/][Git]]
-repositories.
-
-The =skel= tool helps us abstract away the differences between git/hg
-and make maximum use of their utility. When you run a =skel vc=
-command the currently active ~sk-project~ and configuration are used
-to determine the appropriate VC backend to call. New backends can of
-course be added as extensions.
-
-** TODO compilers
-:PROPERTIES:
-:ID:       5ec3ae9d-8846-4374-a42b-5701606ad119
-:END:
-- State "TODO"       from              [2023-12-09 Sat 19:28]
-One of the most unusual features of =skel= is the compiler set. With
-the =skel= CLI you can compile the following types of files for your
-project directly from a ~skelfile~:
-- Makefile (.mk)
-- Lisp system defs (.asd)
-- Cargo.toml
-- Containerfile
-- .hgignore/.gitignore
-
-We treat skelfiles as the mother of all build formats and consolidate
-different formats into our own project DSL. This helps reduce
-complexity while increasing capability and portability.
-
-Project compilation occurs on demand with the =sk compile= command.
-
-** TODO virtualization
-:PROPERTIES:
-:ID:       fea87861-30c2-4739-b964-1ecb87d3ddff
-:END:
-- State "TODO"       from              [2023-12-09 Sat 18:55]
-
-  =skel= offers a mechanism for generating and running Virtual
-  Machines (VMs) and Containers. Under the hood we depend on [[https://podman.io/][podman]]
-  for our container runtime as well as [[https://www.qemu.org/][QEMU]] for some functionality.
-
-** TODO emacs integration
+** Emacs Integration
 :PROPERTIES:
 :ID:       3df22a04-3f6b-4738-bd5f-3eb91977d3af
 :END:
-- State "TODO"       from              [2023-12-09 Sat 19:30]
 =sk.el= is the Emacs support package for skel. It contains a
-=skel-mode= for working with skelfiles and will soon contain
-additional built-in integrations for =project.el=, =vc.el=, and more.
-
-** TODO deployment
+=skel-mode= for working with skelfiles, =skel-minor-mode= for
+projects, and more.
+** Homer
 :PROPERTIES:
-:ID:       7e66bdf6-304e-423e-8db4-783e7f6ccfd7
+:CREATED:  <2025-11-03 Mon 20:47>
+:ID:       b6bc36cb-5999-4f2e-b8f0-b751ce1f73ed
 :END:
-- State "TODO"       from              [2023-12-09 Sat 19:37]
+=homer= is the CC home management application for Unix users.
+- TODO
+  - launched on login
+  - runs under systemd
+  - maintains user configs, repos, services, applications
+  - other lispy endpoints
 
-** TODO visualization
+*** help
 :PROPERTIES:
-:ID:       efa22675-70d6-453f-b377-8e76875e5f1f
+:ID:       c7d8f1e6-cbcf-4736-b48b-d76f70c3a745
 :END:
-- State "TODO"       from              [2023-12-09 Sat 19:37]
+#+begin_src shell :results pp replace :exports both
+homer -h
+#+end_src
 
+#+RESULTS:
+#+begin_example
+homer v0.1.0 --- user home manager
+
+options:
+  -h/--help               print help
+    :doc Print help and exit.
+  -l/--level              set the log level
+    :doc Set the *LOG-LEVEL* for this CLI session.
+  -v/--version            print version
+    :doc Print version and exit.
+  -a/--ast                keep ASTs
+    :doc Set the *KEEP-AST* variable.
+  -f/--force              use force
+
+commands:
+  show                    
+
+  check*                  
+
+  push                    
+
+  pull                    
+
+  install                 
+
+  run                     
+
+  start                   
+
+  restart                 
+
+  stop                    
+
+  status                  
+
+#+end_example
+** Packy
+:PROPERTIES:
+:CREATED:  <2025-11-03 Mon 20:48>
+:ID:       8588217f-2844-42f9-9377-ea8840ee4d04
+:END:
+#+begin_center
+The universal package manager
+#+end_center
+- why
+  - we have standards for everything nowadays.. container images
+    (OCI), language servers (LSP), Emoji codes.. why not packages and
+    package managers?
+  - what happens if upstream package registries go down during release CI? (ur fukt)    
+  - decent amount of external traffic comes from package registry streams (CITE)
+    - ezpz - cache it locally, and reduce cost at the same time
+  - data proximity matters
+  - public registries are ripe for supply-chain attacks
+  - there are too many package managers, and it's unreasonable to
+    demand our clients rely on them
+    - needless external footprint - keep this traffic away from bad
+      actors and inside the corporate VPN
+  - traffic control matters
+- how
+  - sexps
+    + define spec in CLOS (lisp objects)
+    + define validation tools
+    + use tools to validate implementations
+  - compilers
+    + functionality composed of lambdas and closures
+      - insert hooks, custom settings, flags
+    + ability to define optimization passes
+    + dependency traversal, cycle detection
+    + macros
+- goals
+  - simple design
+  - extensibility
+  - introspectable (from client and server)
+- inspiration
+  - [[https://www.gnu.org/software/emacs/manual/html_mono/ede.html#EDE-Project-Concepts][EDE]]
+  - [[https://elpa.gnu.org/][ELPA]]
+  - [[https://www.gnu.org/software/emacs/manual/html_node/org/Configuration.html][org-publish.el]]
+  - [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Packages.html][package.el]]
+  - [[https://firefox-source-docs.mozilla.org/contributing/vcs/mercurial_bundles.html][Mercurial]]
+  - [[https://doc.rust-lang.org/book/ch07-01-packages-and-crates.html][Crates]]
+  - [[https://archlinux.org/pacman/][Pacman]]
+  - [[https://brew.sh/][Homebrew]]
+  - [[https://ultralisp.org/][Ultralisp]]
+- resources
+  - [[https://github.com/cargo-generate/cargo-generate][cargo-generate]]
+  - [[https://doc.rust-lang.org/book/ch14-05-extending-cargo.html][extending cargo]]
+  - [[https://github.com/quicklisp/quicklisp-projects][quicklisp-projects]]
+  - [[https://github.com/quicklisp/quicklisp-client][quicklisp-client]]
+  - [[https://github.com/ultralisp/ultralisp][ultralisp]]
+  - [[https://github.com/ultralisp/quickdist][quickdist]]
+
+:notes: design
+- core classes
+  - source
+  - collection
+  - op
+  - env
+- mixed
+  - registry
+    source + collection
+  - dependency
+    source + package
+  - client
+    - op+env
+  - server
+    - op+collection+env
+  - peer
+    - client+server
+:end:
+*** targets
+:PROPERTIES:
+:ID:       0cbf014a-6fef-4d64-9b53-046cd2b0cce8
+:END:
+The following package registries will be supported in v1.
+**** pack
+:PROPERTIES:
+:ID:       473c47a2-05b5-4650-a80d-0d9d18c07eec
+:CREATED:  <2025-11-03 Mon 20:51>
+:END:
+Native package format - typically exports to a Zstandard-compressed
+tar file with an extension of '.pack'.
+**** elpa
+:PROPERTIES:
+:ID:       559d141a-8e48-4cd9-ba48-1c0d8f590724
+:END:
+Emacs Lisp packages (tarballs)
+**** vc
+:PROPERTIES:
+:ID:       8b327ea1-e4ee-443a-9b80-09d478c1c02d
+:END:
+Version Control Repo bundles (tar.zst)
+**** pkgfile
+:PROPERTIES:
+:ID:       fd429060-c6df-4611-8bd1-a6080f720906
+:CREATED:  <2025-11-03 Mon 20:51>
+:END:
+Archlinux package format (PKGFILE)
+** TODO Krypt
+:PROPERTIES:
+:ID:       ca72d883-a12f-4732-b95f-4862aa012e0c
+:CREATED:  <2025-11-03 Mon 20:58>
+:END:
+:LOGBOOK:
+- State "TODO"       from              [2025-11-03 Mon 20:59]
+:END:
+Crypto utility.
+- Keyrings
+  - system, gpg-agent
+- Secrets management
+  - password suggester
+- Certificate management
+- Encryption/Decryption/Validation/Signing
+- Obfuscate
 * CLI
 :PROPERTIES:
 :ID:       08ab0042-8f9d-48f1-aa9d-1ae92e50fdfc
@@ -545,7 +578,7 @@ skel -h
 
 #+RESULTS:
 #+begin_example
-skel v0.1.1:29c2393b17b9+ --- The hackable devtool.
+skel v0.1.1:30b693970edc --- The hackable devtool.
 
 options:
   -h/--help               print help
@@ -560,7 +593,7 @@ options:
   -i/--interactive        enter the lisp image after running commands
 
 commands:
-  init                    initialize a skelfile in the current directory
+  init                    initialize a project
     -n/--name               project name
 
   id                      print the current project id
