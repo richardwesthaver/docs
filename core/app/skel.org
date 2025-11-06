@@ -56,6 +56,19 @@ is for library developers and internal use.
   #+CALL: lisp-system-dependencies[:post transpose]("skel")
 
   #+RESULTS:
+  | std   |
+  | obj   |
+  | dat   |
+  | cli   |
+  | organ |
+  | doc   |
+  | vc    |
+  | pod   |
+  | net   |
+  | box   |
+  | rdb   |
+  | syn   |
+  | NIL   |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("skel")
@@ -70,6 +83,63 @@ is for library developers and internal use.
   #+CALL: lisp-system-files[:post transpose]("skel")
 
   #+RESULTS:
+  | core/pkg.lisp        |
+  | core/condition.lisp  |
+  | core/proto.lisp      |
+  | core/header.lisp     |
+  | core/var.lisp        |
+  | core/obj.lisp        |
+  | core/component.lisp  |
+  | core/rule.lisp       |
+  | core/project.lisp    |
+  | core/pack.lisp       |
+  | core/print.lisp      |
+  | core/schema.lisp     |
+  | core/db.lisp         |
+  | core/log.lisp        |
+  | core/util.lisp       |
+  | comp/pkg.lisp        |
+  | comp/lisp.lisp       |
+  | comp/asd.lisp        |
+  | comp/cargo.lisp      |
+  | comp/container.lisp  |
+  | comp/org.lisp        |
+  | comp/dir-locals.lisp |
+  | comp/makefile.lisp   |
+  | comp/sys.lisp        |
+  | packy/pkg.lisp       |
+  | packy/var.lisp       |
+  | packy/proto.lisp     |
+  | packy/pkgbuild.lisp  |
+  | packy/apkbuild.lisp  |
+  | packy/db.lisp        |
+  | packy/client.lisp    |
+  | packy/srv.lisp       |
+  | packy/cfg.lisp       |
+  | packy/cli.lisp       |
+  | packy/packy.lisp     |
+  | krypt/pkg.lisp       |
+  | krypt/condition.lisp |
+  | krypt/krypt.lisp     |
+  | krypt/cli.lisp       |
+  | pkg.lisp             |
+  | homer/pkg.lisp       |
+  | homer/var.lisp       |
+  | homer/log.lisp       |
+  | homer/util.lisp      |
+  | homer/task.lisp      |
+  | homer/cfg.lisp       |
+  | homer/srv.lisp       |
+  | homer/cli.lisp       |
+  | homer/homer.lisp     |
+  | srv.lisp             |
+  | infer.lisp           |
+  | net/var.lisp         |
+  | net/server.lisp      |
+  | net/client.lisp      |
+  | net/endpoint.lisp    |
+  | cli.lisp             |
+  | skel.lisp            |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("skel")
@@ -149,6 +219,7 @@ is for library developers and internal use.
   | INIT-SKELFILE                |
   | SKEL-SYNTAX-ERROR            |
   | SK-TAGS                      |
+  | USER-SKELRC                  |
   | *SKEL-PROJECT*               |
   | SK-SCRIPTS                   |
   | MAKE-SOURCE-FILE-HEADER      |
@@ -411,42 +482,9 @@ homer -h
 #+end_src
 
 #+RESULTS:
-#+begin_example
-homer v0.1.0 --- user home manager
-
-options:
-  -h/--help               print help
-    :doc Print help and exit.
-  -l/--level              set the log level
-    :doc Set the *LOG-LEVEL* for this CLI session.
-  -v/--version            print version
-    :doc Print version and exit.
-  -a/--ast                keep ASTs
-    :doc Set the *KEEP-AST* variable.
-  -f/--force              use force
-
-commands:
-  show                    
-
-  check*                  
-
-  push                    
-
-  pull                    
-
-  install                 
-
-  run                     
-
-  start                   
-
-  restart                 
-
-  stop                    
-
-  status                  
-
-#+end_example
+: illegal terminating character after a colon: #\ 
+:   
+:   Stream: #<SB-SYS:FD-STREAM for "file /home/ellis/comp/org/docs/core/app/skel.org" {120431F8A3}>
 ** Packy
 :PROPERTIES:
 :CREATED:  <2025-11-03 Mon 20:48>
@@ -578,7 +616,7 @@ skel -h
 
 #+RESULTS:
 #+begin_example
-skel v0.1.1:30b693970edc --- The hackable devtool.
+skel v0.1.1:b3d4067ed518 --- The hackable devtool.
 
 options:
   -h/--help               print help

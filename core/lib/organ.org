@@ -29,6 +29,7 @@ been hindered by their attempts to clone the functionality as well.
 
   #+RESULTS:
   | ORGAN       |
+  | ORGAN/DB    |
   | ORGAN/CLI   |
   | ORGAN/GRAPH |
   | ORGAN/TESTS |
@@ -45,6 +46,7 @@ been hindered by their attempts to clone the functionality as well.
   | obj      |
   | rdb      |
   | log      |
+  | cry      |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("organ")
@@ -126,128 +128,138 @@ been hindered by their attempts to clone the functionality as well.
   #+CALL: lisp-package-symbols[:post transpose]("ORGAN")
 
   #+RESULTS:
-  | ORG-FILE-PROPERTY            |
-  | ORG-INACTIVE-TIMESTAMP       |
-  | ORG-STANDARD-TABLE-ROW       |
-  | ORG-NODE-PROPERTY            |
-  | ORG-TBLFM-RX                 |
-  | ORG-RULE-TABLE-ROW           |
-  | ORG-COMMENT                  |
-  | ORG-PROPERTY-DRAWER          |
-  | ORG-PRIORITY                 |
-  | ORG-TODO-KEYWORD-RX          |
-  | *ORG-TODO-KEYWORDS*          |
+  | ORG-DESCRIPTIVE-LIST         |
+  | ORG-ACTIVE-TIMESTAMP         |
+  | ORG-SRC-BLOCK-RX             |
+  | ORG-CITATION                 |
+  | ORG-CONTENTS                 |
   | ORG-BLOCK                    |
-  | ORG-ITALIC                   |
-  | ORG-END-RX                   |
-  | *ORG-DURATION-MIXED-RX*      |
-  | ORG-COLLECTION               |
-  | ORG-OBJECT-RX                |
-  | ORG-TAG-SPLIT                |
-  | ORG-ITEM-RX                  |
-  | TODO-TYPE                    |
-  | ORG-FILE-PROPERTY-RX         |
-  | ORG-FOOTNOTE-DEFINITION-RX   |
-  | ORG-LINES                    |
+  | ORG-TABLE                    |
   | TAGS                         |
   | TITLE                        |
-  | ORG-PLAIN-TEXT               |
-  | ORG-TABLE-ANY-BORDER-RX      |
-  | ORG-ZEROTH-SECTION           |
-  | ORG-INLINE-BABEL-CALL        |
-  | ORG-KEYWORD                  |
-  | ORG-UNORDERED-LIST           |
-  | ORG-ELEMENT                  |
-  | TEXT                         |
-  | ORG-INLINE-SOURCE-BLOCK      |
-  | ORG-GREATER-BLOCK            |
-  | ORG-CODE                     |
-  | *ORG-DURATION-HMMSS-RX*      |
-  | ORG-TABLE-EL                 |
-  | ORG-LESSER-BLOCK             |
-  | ORG-DRAWER                   |
-  | ORG-PARAGRAPH                |
-  | DOC-TREE                     |
-  | STATE                        |
-  | ORG-STREAM                   |
-  | ORG-RADIO-TARGET             |
   | ORG-TAG-RX                   |
-  | ORG-GET-ELEMENT              |
-  | ORG-PLANNING                 |
-  | ORG-PROPERTY-START-RX        |
-  | ORG-TABLE                    |
+  | ORG-RADIO-TARGET             |
+  | ORG-TAG-SPLIT                |
+  | ORG-DIARY-SEXP               |
+  | ORG-LESSER-BLOCK             |
+  | ORG-STRIKE-THROUGH           |
+  | ORG-LIST-FULL-ITEM-RX        |
+  | ORG-COMMENT                  |
+  | ORG-ID                       |
+  | TODO-TYPE                    |
+  | ORG-ELEMENT-OBJECTS          |
+  | ORG-TARGET                   |
+  | ORG-CITATION-REFERENCE       |
   | DOC-META                     |
-  | ORG-AFFILIATED-KEYWORD       |
-  | READ-ORG-LINES-FROM-STRING   |
-  | ORG-PROPERTY                 |
+  | MAKE-ORG-ID-LOCATIONS        |
+  | ORG-ORDERED-LIST             |
+  | ORG-STANDARD-TABLE-ROW       |
+  | ORG-ELEMENT                  |
+  | ORG-TBLFM-RX                 |
+  | ORG-DOCUMENT                 |
+  | ORG-INACTIVE-TIMESTAMP       |
+  | TEXT                         |
+  | ORG-PRIORITY-LEVEL           |
+  | ORG-MACRO                    |
+  | ORG-GET-ELEMENT              |
+  | ORG-END-RX                   |
+  | ORG-PARAGRAPH                |
+  | ORG-CODE                     |
+  | ORG-ZEROTH-SECTION           |
+  | ORG-OBJECT-RX                |
+  | ORG-DRAWER                   |
+  | ORG-EXPORT-SNIPPET           |
+  | ORG-TODO-KEYWORD-RX          |
+  | ORG-INSERT-BEFORE            |
+  | ORG-STARS                    |
+  | ORG-ITEM-RX                  |
+  | ORG-INLINE-SOURCE-BLOCK      |
+  | ORG-FOOTNOTE-REFERENCE       |
+  | ORG-HEADLINE-RX              |
+  | ORG-ITALIC                   |
+  | ORG-NODE-PROPERTY            |
+  | ORG-NODE-PROPERTIES          |
+  | ORG-STAT-COOKIE              |
+  | ORG-ACTIVE-TIMESTAMP-RANGE   |
+  | ORG-TS-RX                    |
+  | *ORG-DURATION-MIXED-RX*      |
+  | ORG-HEADING                  |
+  | ORG-CLOCK                    |
+  | STATE                        |
+  | ORG-PRIORITY                 |
+  | *ORG-DURATION-HMMSS-RX*      |
+  | UUID-OCTETS*                 |
+  | ORG-PLAIN-TEXT               |
+  | ORG-LOGBOOK-START-RX         |
+  | ORG-LIST                     |
+  | ORG-FILE-PROPERTY            |
+  | ORG-PROPERTIES               |
   | ORG-CREATE                   |
+  | ORG-PROPERTY                 |
+  | ORG-TIMESTAMP-RX             |
+  | ORG-GREATER-BLOCK            |
+  | ORG-PROPERTY-DRAWER          |
+  | ORG-TITLE                    |
+  | DOC-TREE                     |
+  | READ-ORG-LINES               |
+  | ORG-HORIZONTAL-RULE          |
+  | ORG-TABLE-EL                 |
+  | ORG-LATEX-ENVIRONMENT        |
+  | ORG-FOOTNOTE-DEFINITION      |
+  | ORG-EMPHASIS-ALIST           |
+  | *ORG-DURATION-FULL-RX*       |
+  | ORG-FOOTNOTE-DEFINITION-RX   |
+  | ORG-PROPERTY-START-RX        |
+  | ORG-TAG                      |
+  | ORG-KEYWORD                  |
+  | ORG-ENTITY                   |
+  | ORG-RULE-TABLE-ROW           |
+  | ORG-PRIORITY-RX              |
+  | O-LINES                      |
+  | ORG-COLLECTION               |
+  | ORG-DURATION-UNITS           |
+  | ORG-INLINE-BABEL-CALL        |
+  | ORG-STREAM                   |
+  | ORG-DYNAMIC-BLOCK            |
+  | ORG-AFFILIATED-KEYWORD       |
+  | ORG-FILE-HEADINGS            |
+  | *ORG-ID-LOCATIONS-FILE*      |
+  | *ORG-TODO-KEYWORDS*          |
+  | ORG-PLANNING-LINE            |
+  | ORG-LINES                    |
+  | *ORG-DURATION-HMM-RX*        |
+  | READ-ORG-FILE                |
+  | ORG-TODO-KEYWORD             |
+  | ORG-INACTIVE-TIMESTAMP-RANGE |
+  | ORG-BOLD                     |
+  | ORG-PLANNING                 |
+  | READ-ORG-STRING              |
+  | ORG-SCHEDULED-RX             |
+  | READ-ORG-LINES-FROM-STRING   |
   | ORG-TABLE-ANY-LINE-RX        |
   | ORG-LINK                     |
-  | PROPS                        |
-  | ORG-FILE-PROPERTIES          |
-  | ORG-ENTITY                   |
-  | ORG-SCHEDULED-RX             |
-  | ORG-DEADLINE-RX              |
-  | ORG-PRIORITY-RX              |
-  | *ORG-TODO-KEYWORD-TYPES*     |
-  | ORG-WRITE                    |
-  | ORG-TARGET                   |
-  | ORG-DYNAMIC-BLOCK            |
-  | ORG-VERBATIM                 |
-  | ORG-PUSH                     |
-  | *ORG-DURATION-HMM-RX*        |
-  | ORG-PROPERTY-RX              |
-  | ORG-PARSE-LINES              |
-  | ORG-LIST-FULL-ITEM-RX        |
-  | READ-ORG-LINES               |
-  | ORG-CITATION-REFERENCE       |
-  | ORG-DOCUMENT                 |
-  | ORG-INSERT-BEFORE            |
-  | ORG-MACRO                    |
-  | ORG-PLANNING-LINE            |
-  | ORG-PARSE                    |
-  | ORG-STRIKE-THROUGH           |
-  | ORG-LIST                     |
-  | ORG-PRIORITY-LEVEL           |
-  | ORG-LOGBOOK-START-RX         |
-  | ORG-TIMESTAMP-RX             |
-  | ORG-LATEX-ENVIRONMENT        |
-  | ORG-CITATION                 |
-  | ORG-HEADING                  |
-  | READ-ORG-FILE                |
-  | ORG-SRC-BLOCK-RX             |
-  | ORG-INACTIVE-TIMESTAMP-RANGE |
-  | O-LINES                      |
-  | ORG-EMPHASIS-ALIST           |
-  | ORG-HEADLINE-RX              |
-  | ORG-ELEMENT-OBJECTS          |
-  | ORG-DIARY-SEXP               |
-  | ORG-BOLD                     |
-  | ORG-TABLE-CELL               |
-  | ORG-NODE-PROPERTIES          |
-  | ORG-ELEMENT-TYPES            |
-  | ORG-HEADLINE                 |
-  | ORG-CONTENTS                 |
-  | ORG-DURATION-UNITS           |
-  | ORG-HORIZONTAL-RULE          |
-  | ORG-UNDERLINE                |
-  | ORG-TODO-KEYWORD             |
-  | ORG-TODO-KEYWORD-P           |
-  | ORG-EXPORT-SNIPPET           |
-  | ORG-FOOTNOTE-REFERENCE       |
-  | ORG-ACTIVE-TIMESTAMP         |
-  | ORG-TS-RX                    |
-  | ORG-CLOCK                    |
-  | *ORG-DURATION-FULL-RX*       |
   | ORG-TODO-KEYWORD-MAP         |
-  | ORG-STAT-COOKIE              |
-  | READ-ORG-STRING              |
-  | ORG-FOOTNOTE-DEFINITION      |
-  | ORG-ACTIVE-TIMESTAMP-RANGE   |
-  | ORG-ORDERED-LIST             |
-  | ORG-TAG                      |
+  | ORG-TABLE-ANY-BORDER-RX      |
+  | ORG-UNDERLINE                |
+  | ORG-TABLE-CELL               |
+  | ORG-TAGS                     |
+  | ORG-KEYWORDS                 |
+  | ORG-WRITE                    |
+  | ORG-PROPERTY-RX              |
+  | ORG-VERBATIM                 |
+  | ORG-FILE-PROPERTIES          |
+  | ORG-PUSH                     |
+  | ORG-FILE-PROPERTY-RX         |
+  | ORG-HEADLINE                 |
+  | ORG-DEADLINE-RX              |
+  | ORG-PARSE                    |
+  | *ORG-TODO-KEYWORD-TYPES*     |
   | ORG-LINE-BREAK               |
-  | ORG-DESCRIPTIVE-LIST         |
+  | ORG-ELEMENT-TYPES            |
+  | ORG-PARSE-LINES              |
+  | PROPS                        |
+  | ORG-UNORDERED-LIST           |
+  | ORG-TODO-KEYWORD-P           |
 
 #+END:
 
@@ -267,8 +279,8 @@ been hindered by their attempts to clone the functionality as well.
 | ORG-DESCRIPTIVE-LIST         |
 | ORG-ACTIVE-TIMESTAMP         |
 | ORG-SRC-BLOCK-RX             |
-| ORG-PARSE-LINES              |
-| ORG-LESSER-BLOCK             |
+| ORG-CITATION                 |
+| ORG-CONTENTS                 |
 | ORG-BLOCK                    |
 | ORG-TABLE                    |
 | TAGS                         |
@@ -276,8 +288,8 @@ been hindered by their attempts to clone the functionality as well.
 | ORG-TAG-RX                   |
 | ORG-RADIO-TARGET             |
 | ORG-TAG-SPLIT                |
-| READ-ORG-LINES-FROM-STRING   |
-| ORG-PRIORITY-RX              |
+| ORG-DIARY-SEXP               |
+| ORG-LESSER-BLOCK             |
 | ORG-STRIKE-THROUGH           |
 | ORG-LIST-FULL-ITEM-RX        |
 | ORG-COMMENT                  |
@@ -288,7 +300,7 @@ been hindered by their attempts to clone the functionality as well.
 | ORG-CITATION-REFERENCE       |
 | DOC-META                     |
 | MAKE-ORG-ID-LOCATIONS        |
-| ORG-KEYWORDS                 |
+| ORG-ORDERED-LIST             |
 | ORG-STANDARD-TABLE-ROW       |
 | ORG-ELEMENT                  |
 | ORG-TBLFM-RX                 |
@@ -307,19 +319,19 @@ been hindered by their attempts to clone the functionality as well.
 | ORG-EXPORT-SNIPPET           |
 | ORG-TODO-KEYWORD-RX          |
 | ORG-INSERT-BEFORE            |
-| ORG-ORDERED-LIST             |
+| ORG-STARS                    |
 | ORG-ITEM-RX                  |
 | ORG-INLINE-SOURCE-BLOCK      |
 | ORG-FOOTNOTE-REFERENCE       |
 | ORG-HEADLINE-RX              |
 | ORG-ITALIC                   |
 | ORG-NODE-PROPERTY            |
-| ORG-CONTENTS                 |
-| ORG-STARS                    |
+| ORG-NODE-PROPERTIES          |
+| ORG-STAT-COOKIE              |
 | ORG-ACTIVE-TIMESTAMP-RANGE   |
 | ORG-TS-RX                    |
 | *ORG-DURATION-MIXED-RX*      |
-| ORG-DIARY-SEXP               |
+| ORG-HEADING                  |
 | ORG-CLOCK                    |
 | STATE                        |
 | ORG-PRIORITY                 |
@@ -329,7 +341,7 @@ been hindered by their attempts to clone the functionality as well.
 | ORG-LOGBOOK-START-RX         |
 | ORG-LIST                     |
 | ORG-FILE-PROPERTY            |
-| ORG-PLANNING-LINE            |
+| ORG-PROPERTIES               |
 | ORG-CREATE                   |
 | ORG-PROPERTY                 |
 | ORG-TIMESTAMP-RX             |
@@ -350,7 +362,7 @@ been hindered by their attempts to clone the functionality as well.
 | ORG-KEYWORD                  |
 | ORG-ENTITY                   |
 | ORG-RULE-TABLE-ROW           |
-| ORG-CITATION                 |
+| ORG-PRIORITY-RX              |
 | O-LINES                      |
 | ORG-COLLECTION               |
 | ORG-DURATION-UNITS           |
@@ -358,9 +370,10 @@ been hindered by their attempts to clone the functionality as well.
 | ORG-STREAM                   |
 | ORG-DYNAMIC-BLOCK            |
 | ORG-AFFILIATED-KEYWORD       |
+| ORG-FILE-HEADINGS            |
 | *ORG-ID-LOCATIONS-FILE*      |
 | *ORG-TODO-KEYWORDS*          |
-| ORG-HEADING                  |
+| ORG-PLANNING-LINE            |
 | ORG-LINES                    |
 | *ORG-DURATION-HMM-RX*        |
 | READ-ORG-FILE                |
@@ -370,28 +383,28 @@ been hindered by their attempts to clone the functionality as well.
 | ORG-PLANNING                 |
 | READ-ORG-STRING              |
 | ORG-SCHEDULED-RX             |
-| ORG-STAT-COOKIE              |
+| READ-ORG-LINES-FROM-STRING   |
 | ORG-TABLE-ANY-LINE-RX        |
 | ORG-LINK                     |
 | ORG-TODO-KEYWORD-MAP         |
-| ORG-HEADLINE                 |
+| ORG-TABLE-ANY-BORDER-RX      |
 | ORG-UNDERLINE                |
 | ORG-TABLE-CELL               |
 | ORG-TAGS                     |
-| ORG-PROPERTIES               |
+| ORG-KEYWORDS                 |
 | ORG-WRITE                    |
 | ORG-PROPERTY-RX              |
 | ORG-VERBATIM                 |
 | ORG-FILE-PROPERTIES          |
 | ORG-PUSH                     |
 | ORG-FILE-PROPERTY-RX         |
-| ORG-NODE-PROPERTIES          |
+| ORG-HEADLINE                 |
 | ORG-DEADLINE-RX              |
 | ORG-PARSE                    |
 | *ORG-TODO-KEYWORD-TYPES*     |
 | ORG-LINE-BREAK               |
 | ORG-ELEMENT-TYPES            |
-| ORG-TABLE-ANY-BORDER-RX      |
+| ORG-PARSE-LINES              |
 | PROPS                        |
 | ORG-UNORDERED-LIST           |
 | ORG-TODO-KEYWORD-P           |
@@ -405,27 +418,23 @@ been hindered by their attempts to clone the functionality as well.
 #+CALL: lisp-package-symbols[:post transpose]("ORGAN/GRAPH")
 
 #+RESULTS:
-| *ORG-GRAPH-HEADINGS*     |
-| ORG-GRAPH-STATS          |
-| INIT-ORG-GRAPH-DB        |
-| ORG-GRAPH-INDEX          |
-| *ORG-GRAPH-NODES*        |
-| *ORG-GRAPH-FILE*         |
-| ORG-GRAPH-JSON           |
-| ORG-GRAPH-EDGE           |
-| *ORG-GRAPH*              |
-| ORG-GRAPH-VALUES         |
-| ORG-GRAPH                |
-| ORG-GRAPH-NODE           |
-| ORG-GRAPH-SCHEMA         |
-| *ORG-GRAPH-DB-DIRECTORY* |
-| INIT-ORG-GRAPH           |
-| *ORG-GRAPH-SCHEMA*       |
-| OG-GET                   |
-| ORG-ID                   |
-| *ORG-GRAPH-EDGES*        |
-| CLOSE-ORG-GRAPH-DB       |
-| OPEN-ORG-GRAPH-DB        |
-| *ORG-GRAPH-FILES*        |
-| ORG-GRAPH-EXTRACT-FILES  |
-| ORG-GRAPH-DB             |
+| ORG-GRAPH-EDGE            |
+| ORG-GRAPH-NODE            |
+| ORG-GRAPH-TINYSEARCH-JSON |
+| ORG-GRAPH-DB              |
+| *ORG-GRAPH-NODES*         |
+| ORG-GRAPH-STATS           |
+| *ORG-GRAPH-SCHEMA*        |
+| *ORG-GRAPH-FILES*         |
+| ORG-GRAPH-EXTRACT-FILES   |
+| *ORG-GRAPH*               |
+| *ORG-GRAPH-FILE*          |
+| *ORG-GRAPH-DB-DIRECTORY*  |
+| ORG-GRAPH                 |
+| ORG-GRAPH-SCHEMA          |
+| ORG-GRAPH-JSON            |
+| ORG-GRAPH-MINISEARCH-JSON |
+| ORG-GRAPH-INDEX           |
+| *ORG-GRAPH-HEADINGS*      |
+| INIT-ORG-GRAPH            |
+| *ORG-GRAPH-EDGES*         |

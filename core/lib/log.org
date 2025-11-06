@@ -74,6 +74,7 @@ libraries and apps.
   | db.lisp        |
   | stream.lisp    |
   | cfg.lisp       |
+  | syslog.lisp    |
   | sys.lisp       |
 
 - tests
@@ -209,7 +210,8 @@ protocol which is built atop the =std/pipe= protocol.
 #+RESULTS:
 : A class which implements logging functionality. An instance of this class may
 : be designated as the 'global' logger by setting the value of *LOGGER*, or may
-: be implemented for a specific application.
+: be implemented for a specific application. Loggers are async-friendly and will
+: create their own dedicated thread when started.
 
 #+begin_src lisp :package log
   (sb-mop:class-direct-superclasses (find-class 'logger))
@@ -237,7 +239,7 @@ protocol.
 #+end_src
 
 #+RESULTS:
-: #<LOGGER-CONFIG {1212F7B6D3}>
+: #<LOGGER-CONFIG {120DDCBF23}>
 :   [standard-object]
 : 
 : Slots with :INSTANCE allocation:

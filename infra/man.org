@@ -5,6 +5,51 @@
 #+setupfile: ../../clean.theme
 #+infojs_opt: toc:nil home:https://compiler.company up:./ view:overview
 #+property: header-args :eval no-export* Overview
+
+This manual is intended for developers of the [[vc:core][core]] software suite. The
+core is a Lisp development system which is designed for a very
+specific type of user, and the [[vc:infra][infra]] project is designed to fully
+provision machines for these users or *operators* as we will refer to
+them.
+
+* Introduction
+:PROPERTIES:
+:ID:       12988dd2-3367-4a11-aec5-c6fed1539cbc
+:CREATED:  <2025-11-05 Wed 19:35>
+:END:
+
+*As a rule we only support x86_64 Arch Linux operator machines* - we
+may support other targets for specific purposes but when talking about
+an *operator machine* we are refering specifically to the x86_64
+arch linux build with all of our libraries as well as the core
+itself. There is no guarantee that the core software suite will
+function correctly outside of this specific build, although if you
+disable enough features it eventually will to a limited degree
+depending on how well-provisioned your machine is. Other targets are
+only tested or shipped as needed internally.
+
+* Overview
+:PROPERTIES:
+:ID:       2015b333-bc24-40ea-b9ad-2f514b57b83b
+:CREATED:  <2025-11-05 Wed 20:07>
+:END:
+The project skelfile pulls in our utilities from =util.lisp= in the
+project root and contains a long list of rules which use the files in
+the =scripts= directory. These rules are called via the =skel= cli
+tool to build all of our dependencies from source, package them, and
+send them to the =packy=.
+
+There are several sub-projects inside infra:
+- home :: user home directory management (similar to GNU stash)
+- pod :: Podman-based containers - two base images (=o0= and =w0=)
+  provision the containerfile definitions in the project skelfile
+- box :: QEMU/bare-metal images, currently based on [[id:06ee60a3-9a98-40d2-893b-39ce992fc0dc][Archiso]].
+
+** Requirements
+:PROPERTIES:
+:ID:       488e4c5b-be7f-4f1c-b713-4948965717c2
+:CREATED:  <2025-11-05 Wed 19:39>
+:END:
 - *Host Requirements*
   - x86_64 >4 core CPU
   - 8G RAM
@@ -14,109 +59,51 @@
   - mercurial
   - git
   - zstd
+  - openssl
 
-* bootstrap.sh
+* Getting Started
 :PROPERTIES:
-:ID:       b906e6ea-71c2-41ae-9c29-c911582f054e
+:ID:       0d5496f3-3bba-4a90-ad83-708421df0b21
+:CREATED:  <2025-11-05 Wed 20:16>
 :END:
-#+begin_src lisp :results silent :exports code
-  (ql:quickload '(:dat :cli))
-  (in-package :dat/dot)
-  (let ((g (make-instance 'directed-graph)))
-    (add-node g :check)
-    (add-node g :bootstrap)
-    (add-node g :autogen)
-    (add-node g "profile.sxp")
-    (add-node g "host.sxp")
-    (add-edge g '(:check "host.sxp"))
-    (add-edge g '(:bootstrap :check))
-    (add-edge g '(:bootstrap :autogen))
-    (add-edge g '("profile.sxp" :autogen))
-    (add-edge g '("host.sxp" :autogen))
-    (serialize g :dot :path #p"/tmp/bootstrap.dot")
-    (sb-ext:run-program (cli:find-exe "dot") (list "-Tsvg" "/tmp/bootstrap.dot" "-o" "/tmp/bootstrap.svg")))
-#+end_src
+- NOTE :: as of [2025-11-05 Wed] the containers and disk images are \\
+  not hosted publicly so send me a message if you'd like to \\
+  investigate.
 
-[[cdn:media/img/bootstrap.svg]]
-
-The easiest way to get started is to run the top-level script
-=bootstrap.sh=. Running the script will:
-
-- run =check.sh=
-- install the latest cores and lisp runtime from
-  https://packy.compiler.company to the stash
-- load =autogen.lisp= and call the function =infra/autogen:autogen=
-  - check and apply the host config and profile
-  - build all features in parallel
-
-[[cdn:media/clip/infra-bootstrap.gif]]
-
-Upon completion a local =stash= directory is provisioned. At this
-point we no longer need to depend on shell scripting as we have a
-fully interactive Lisp environment to hack on our builds with.
-
-From here, you may run =skel inspect= to inspect the infra =skelfile=
-and select a target to build on your machine or in a container. Use
-=skel --help= for a list of other commands.
-
-** check.sh
+** Containers
 :PROPERTIES:
-:ID:       6a7b9d91-b22b-4534-9ff4-7ef5b71aca5c
+:ID:       88d4e10b-2c7f-466f-ad7e-9a7ca7b018c9
+:CREATED:  <2025-11-05 Wed 20:32>
 :END:
-This script checks that the current host is qualified. It needs to be
-ran once before the =autogen.lisp= file is loaded, usually via
-=bootstrap.sh=.
+The easiest way to get started is by downloading one of the Podman
+container images. The default operator container has root privileges
+and the worker containers have a minimal configuration and limited
+privileges.
 
-This will interrogate the system, checking for minimum
-requirements. If any requirement isn't met an error is signaled. On
-completion, the name of an SXP file is printed which contains the host
-config.
-
-The minimum software dependencies above should be installed via your
-system's package manager.
-
-#+begin_src shell
-./check.sh
-#+end_src
-
-#+RESULTS:
-
-** autogen.lisp
+** Disk Images
 :PROPERTIES:
-:ID:       cd5c94d4-bb53-4b1b-9898-320711e62a85
+:ID:       a5fd3b7a-c5e1-4a0e-87b4-b7b12d2450e3
+:CREATED:  <2025-11-05 Wed 20:32>
 :END:
-Once a core and lisp runtime are available, we load =autogen.lisp= and
-call =infra/autogen:autogen=. This will process the host configuration
-(=zor.sxp= in the example above) and the profile (defaults to
-=default.sxp=), update environment variables for the current shell and
-take any additional actions needed.
+The next step towards enlightenment is to download one of the disk
+images and run it in QEMU. If you're feeling particularly brave you
+now have all you need to boot into the core environment directly from
+disk :).
 
-The order of operations are loosely as follows:
-- initialize profile
-- update host environment variables
-- check features and ensure host dependencies
-- initialize host
-- initialize infra =skelfile=
-- process all features
-- quit
+A core installer is planned for next year which will provide an
+interface for customizing the installation with user profiles and
+settings.
 
-* TODO deploy.lisp
+** Bootstrap
 :PROPERTIES:
-:ID:       02b3701a-b969-473b-9dbd-ac4815f9d284
+:ID:       ac3b0505-996d-4526-89f2-aad372d6cff7
+:CREATED:  <2025-11-05 Wed 20:35>
 :END:
-Deploy =infra= builds to a remote.
+Bootstrapping here is defined as the process which gets us from a
+vanilla, unprovisioned machine to a *fully functional core*. Note that
+bootstrapping does not get us to a full *operator machine*, instead it
+provisions the machine enough so that you have the capability to
+transition to a full operator if you choose to do so.
 
-Deployment involves 'packing' a target found in =stash=, archiving it,
-compressing it, and sending it to a remote location possibly with a
-signature, checksum, or other metadata, and possibly encrypted. A
-'package' may also be a raw directory of plain-text files. It's a very
-loose term. Where the package ends up and how it is packed depends on
-the build-config and skelfile slots.
-
-Production deployments end up at https://packy.compiler.company.
-
-* TODO install.lisp
-:PROPERTIES:
-:ID:       26107fe5-6f4a-4fe5-9bdf-e35947bc7198
-:END:
-Install core packages locally.
+As of [2025-11-05 Wed] the bootstrap process is unfortunately limited
+to the pod container rules. Will eventually be provided in a PKGFILE.
