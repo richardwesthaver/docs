@@ -90,7 +90,6 @@ guide]] and further enriched or optimized based on our own expectations.
   | arrow           |
   | ublk            |
   | ssh2            |
-  | swank-client    |
   | skel            |
   | vc/tests        |
   | vc              |
@@ -1082,7 +1081,7 @@ Standard macros are defined in =std/macs=.
 | ARENA-BYTES-WASTED               |
 | DO-INTERNAL-SYMBOLS              |
 | 32-BIT-P                         |
-| DEFINE-LOGICAL-PATHNAME          |
+| *DEFAULT-ARENA-SIZE*             |
 | ARENA-P                          |
 | HEXDUMP                          |
 | FIXNUM-TAG-MASK                  |
@@ -1101,7 +1100,7 @@ Standard macros are defined in =std/macs=.
 | MAP-ALLOCATED-OBJECTS            |
 | CHECK-LOGICAL-HOSTS              |
 | DEFGLOBAL                        |
-| LIST-ALLOCATED-OBJECTS           |
+| 64-BIT-P                         |
 | CURRENT-MACHINE                  |
 | DEFINE-LOAD-TIME-GLOBAL          |
 | LOGICAL-HOST                     |
@@ -1148,7 +1147,7 @@ Standard macros are defined in =std/macs=.
 | SOURCE-LOCATION                  |
 | DESTROY-ARENA                    |
 | ASM-ROUTINE-INDEX-FROM-ADDR      |
-| VARIABLE-INFORMATION             |
+| DEFINE-LOGICAL-PATHNAME          |
 | CPU-BRAND                        |
 | CHECK-LOGICAL-HOST               |
 | C-FIND-HEAP->ARENA               |
@@ -1171,7 +1170,7 @@ Standard macros are defined in =std/macs=.
 | CPUID                            |
 | *EXTERNAL-FORMATS*               |
 | IN-SAME-ARENA                    |
-| LIST-ALL-SYMBOLS                 |
+| LIST-ALLOCATED-OBJECTS           |
 | *INFO-TYPES*                     |
 | ARENA                            |
 | WORD-SHIFT                       |
@@ -1186,13 +1185,13 @@ Standard macros are defined in =std/macs=.
 | MAKE-NULL-LEXENV                 |
 | *BACKEND-BYTE-ORDER*             |
 | *ARENA-EXHAUSTION-HANDLER*       |
-| *DEFAULT-ARENA-SIZE*             |
+| CPU-VENDOR                       |
 | N-FIXNUM-TAG-BITS                |
 | SBCL-HOOKS                       |
 | N-LOWTAG-BITS                    |
-| 64-BIT-P                         |
+| VARIABLE-INFORMATION             |
 | MOST-POSITIVE-WORD               |
-| CPU-VENDOR                       |
+| LIST-ALL-SYMBOLS                 |
 | *BACKEND-PRIMITIVE-TYPE-ALIASES* |
 | +LOWTAGS+                        |
 | PRIMITIVE-TYPE                   |
@@ -1380,29 +1379,29 @@ Standard macros are defined in =std/macs=.
 #+RESULTS:
 #+begin_example
 (#<STANDARD-METHOD STD/SERDE:SERIALIZE (JPEG:JPEG-COMPRESSOR
-                                        (EQL :JPEG)) {120C000023}>
+                                        (EQL :JPEG)) {1219B27C13}>
  #<STANDARD-METHOD STD/SERDE:SERIALIZE (POD:CONTAINERFILE
-                                        (EQL :BYTES)) {120CA5F5A3}>
+                                        (EQL :BYTES)) {12035C2CE3}>
  #<STANDARD-METHOD STD/SERDE:SERIALIZE (POD:CONTAINERFILE
-                                        (EQL :STRING)) {120CA5F003}>
+                                        (EQL :STRING)) {12035C2C43}>
  #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                        (EQL :JSON)) {120C036E33}>
+                                        (EQL :JSON)) {12041FF6D3}>
  #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                        (EQL :DOT)) {120C035C23}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {120C035B83}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (TLV (EQL :STRING)) {1204D80DD3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (TLV (EQL :BYTES)) {1204D80D03}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (STRING (EQL :QRCODE)) {1215896553}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (INTEGER (EQL :BASE64)) {12045A7863}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (VECTOR (EQL :BASE64)) {12045A7723}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (STRING (EQL :BASE64)) {12045A7533}>
+                                        (EQL :DOT)) {12041FF253}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {12041FF1B3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (TLV (EQL :STRING)) {120333F123}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (TLV (EQL :BYTES)) {120333F023}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (STRING (EQL :QRCODE)) {1201CD9F43}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (INTEGER (EQL :BASE64)) {12043EF8C3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (VECTOR (EQL :BASE64)) {12043EF823}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (STRING (EQL :BASE64)) {12043EF783}>
  #<STANDARD-METHOD STD/SERDE:SERIALIZE (DAT/TOML:TOML-TABLE
-                                        (EQL :TOML)) {1212E87693}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (DAT/HTML::NODE T) {1212C91D63}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (T (EQL :XML)) {1203ECC0D3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (T (EQL :JSON)) {1203E49553}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (VECTOR (EQL :CSV)) {1203E38583}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (GRAPH (EQL :DOT)) {121177A833}>)
+                                        (EQL :TOML)) {1203389683}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (DAT/HTML::NODE T) {120252F5C3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (T (EQL :XML)) {1208F76A43}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (T (EQL :JSON)) {120376F143}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (VECTOR (EQL :CSV)) {120239CBB3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (GRAPH (EQL :DOT)) {120250D103}>)
 #+end_example
 
 #+begin_src lisp
@@ -1411,52 +1410,52 @@ Standard macros are defined in =std/macs=.
 
 #+RESULTS:
 #+begin_example
-(#<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :JPEG)) {120BFEFF13}>
+(#<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :JPEG)) {1219B27573}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (JPEG:JPEG-DECOMPRESSOR
-                                          (EQL :JPEG)) {120BFEFCD3}>
+                                          (EQL :JPEG)) {1219B26193}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
-                                          (EQL :PKGBUILD)) {122A1D9263}>
+                                          (EQL :PKGBUILD)) {12024738B3}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
-                                          (EQL :CONTAINERFILE)) {120CA5EB33}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :OPENAPI)) {1205D01ED3}>
+                                          (EQL :CONTAINERFILE)) {12035C2B73}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :OPENAPI)) {12085D2EA3}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (DAT/JSON:JSON-OBJECT
-                                          (EQL :OPENAPI)) {1205D01DF3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :TLV)) {1204D80F83}>
+                                          (EQL :OPENAPI)) {12085D2DD3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :TLV)) {120333F313}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (SIMPLE-ARRAY
-                                          (EQL :TLV)) {1204D80EE3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :AUTHINFO)) {12056501C3}>
+                                          (EQL :TLV)) {120333F213}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :AUTHINFO)) {12044320A3}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
-                                          (EQL :AUTHINFO)) {1205650123}>
+                                          (EQL :AUTHINFO)) {1204431FD3}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
-                                          (EQL :SYSTEMD-UNIT)) {121A1ECC83}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {1204DBD7B3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :BASE64)) {12045A7AF3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :BASE64)) {12045A79E3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :BIB)) {1204107983}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :BIB)) {12041078E3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :BIB)) {1204107843}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :TOML)) {1212E98DB3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :TOML)) {1212E98623}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :TOML)) {1212E87D13}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {1212D8D303}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :INI)) {1212D5F373}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :INI)) {1212D5ED03}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :INI)) {1212D5E563}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :HTML)) {1212C91713}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :XML)) {1203ECC033}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :XML)) {1203ECBF93}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :XML)) {1203ECBEF3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :JSON-SCHEMA)) {1203E4E0B3}>
+                                          (EQL :SYSTEMD-UNIT)) {1207090E53}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {120717E813}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :BASE64)) {12043EFA03}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :BASE64)) {12043EF963}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :BIB)) {1207223EA3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :BIB)) {1207223E03}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :BIB)) {1207223D33}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :TOML)) {12033898F3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :TOML)) {1203389853}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :TOML)) {12033897B3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {1201B03533}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :INI)) {12035EA893}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :INI)) {12035EA7F3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :INI)) {12035EA723}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :HTML)) {120252F4B3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :XML)) {1208F769A3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :XML)) {1208F76903}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :XML)) {1208F76863}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :JSON-SCHEMA)) {1204413ED3}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (DAT/JSON:JSON-OBJECT
-                                          (EQL :JSON-SCHEMA)) {1203E4E013}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :JSON)) {1203E494B3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :JSON)) {1203E49413}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :JSON)) {1203E49373}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :CSV)) {1203E38973}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :CSV)) {1203E386C3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :CSV)) {1203E38623}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :DOT)) {121177AEB3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :ASN1)) {12116D4153}>)
+                                          (EQL :JSON-SCHEMA)) {1204413E03}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :JSON)) {120376F073}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :JSON)) {120376EFD3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :JSON)) {120376EF33}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :CSV)) {120239D863}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :CSV)) {120239CCF3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :CSV)) {120239CC53}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :DOT)) {120250D203}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :ASN1)) {1203223253}>)
 #+end_example
 
 ** alien
@@ -2311,38 +2310,38 @@ tree formatter
 
 #+RESULTS:
 #+begin_example
-█▀█  ▀▄▄▄▄▀  ▀ ███▄   █▄▀ ▀▀▄█▄█
- ▄█▄ ▀ ▄  ▄▄█  ▄ ▄  ▄  ▀▀  █▄█ ▄
-█▄▀▄▄  ▄ ▄▄▀ ▄ ▀  ▄▀ ▀    ▀▄  █▄
-    █ ▄  ██▄   ▀ ▄▀██  ▀ ▄ ▄   ▄
-▄▄▀▀▄ █▀   ▄ █    ▄  █▀█▀█   ██▀
- ▄ ▀   ▄ ▀ ▄▀  █ ▀▄▀ ▀ █ ▀ █▄▄▄█
-   ▀ ▀▀ ▄ ▀█▄  ▀ ▀▀    █▀▀▄ ▀   
-▀ ▀  ▄    █▀ ▀ ▀▀▄▀▄▄   ▀▀ █▀▀█▄
- ▀▄ ▄▄ ███ ▄▄▀  ▄ ▄  ▀▄▀█▀ █▄ ▄ 
-█▄ ▀ █▄  █ █ ▄  ▀▄▀▀█▄▄ ▄█  ▀  █
-▀▄   ▄█▄   ▀ ▀  ▄▄▄ ▄▀  ▀▄▀ █▄▄ 
-▄▀  ▀▀█ █▀█▄▀▀█  ▄ ▀█  ▀ ▄▄▄▄ ▀▀
- ▄▀ ▄ ▀▄▀▀  ▀ ▀▀ ▄▀   ▀ ▀▄  █▄▀ 
-▄ ▀█▄    ▀   ▄▀▄▀▄  ▄   █▀▄█    
-▄█  ▄ ██▄    ▄ ▄  █  ▀ ▀ ▀▄ █ ██
- ▀ ▀   ▄█ ▄▄▀▀█▀▀ ▀▀    ▄▄ █▀   
-███▄█████▄██▀▄███▀█▀▄▀█▀███▄▀▄▄ ▀▄ ███▀▄ ▄▀    █▄ ▄▀  ▀ █▄  ▄█ ▄▄   ▄ ▀   ▀ ▄  ▄       
-███████▄██▄████▀██▄█ ██ ███▀█▄▄▄██▀▀▀ ██▄▄█▀  ▀█ ▄▄ █ ▄    ▀ ▀ ▀▀      ▀               
-████▄████▀▄███████▀▀███▄▄▀▀█▀▀▀▄▀██▀ █▀███▀ ▀▄█▄ ▀▄▄▄ ▀ ▀      ▀▄     ▄      ▄ ▄       
-▀████▄▄███▄██▄▀█▀████ ▄▀▄██▄█ █ █▄ █   ▀▀  ██  ▄▀█ ▄▀  ▄███ █▀        ▀ ▀   ▀       ▀  
-█████████▀██▀███ ▄█ ▀██████▄ █▀  █▀▄██▄██▄  ███▄██▀█▀    ▄█▀▀▀ █▄    ▄  ▀▀▄   ▀   ▄    
-████████▀██▀█▀████▀███▀▄████████▄ ██▀▄▄█  ▄█▄   ▀▀ █ ▀▄  ▄▀ ▀  ▄ ▄ ▄    ▄    ▄   ▀     
-███████████▄█ ▀▄█▀ ▀▀█▀██▀█████▄▀▄█▄▄▀█▀▀ ▄▄  ▄▀  ▀   ▀ █▀    ▄    ▀ ▀  ▄  ▄ ▄         
-███████▀██▀██▄▀█▄▄███▀▀█▄▀ ▀█▀█▄██ ▄██▄▄▄ █ █ ███▄▀▀▄  ▀        ▄         ▀▀▀▀    █    
-█▄███████████▄████▀▄█▀█▄▄████▀█ █▀▄▀▀▄▀  ▄  ██ ▀▄▀█  ▀   ▀▄ ▀▄ ▀   ▀   ▄               
-██████▄█▄█▀█▀███████ █▀▄▄█▀██▀▀█▄▀▄▄███  █▀█▀ ██ ▀▄ ▄▀█▀  ▀▀ ▀█▄▀   ▀    ▀▄            
-███████████████▄██▀█▀█ █ ▄ ▄ ▀▄▄█▄▄▄▄▄█▀▄▀▄ ██ ▄ ▄▄ ▀ ▄ █▀▄ ▄   ▀▄▄▀ ▀ ▄       ▀       
-███████████▄████▀███ █▄▄ ▀▀████▄███  ▄▄ █ ▀▄▀▀▄▀█▀▄ █▄▄ ▀  ▄   ▀  ▄    ▄ ▄ ▀           
-██████▀█████▄██▄█▀▀██▀▀██▄█ ▄▀██▀█ ▄▄██▀▄██ ▄█▀    ▀█▄ ▄▄▀ ▄▀  █    ▀ ▄             ▄  
-█████▄██████▄██▄██▀███▄▄█▀▀██▀ ▄▄███▄█▀██ ▀▄▄▄█ ▄▄ ▀██  ▄ ▄▄▄▄▀█▀▀█  ▄ ▄ ▀  ▀▀ ▄  ▀    
-████████▀▄█ ██▄██▄▀▀███▄▄█████▀▄█▄█▄█▀  ▀█▄▀▄█▀ ▀ ▄▀█    ▄█▀   █   ▀   ▀ ▄ ▄▄          
-████████████████▄█▄▄█▀████▀▄█  ██ ██▀█ ▄▄█  ▀   ▄▄█  ▄▄██  ▄ ▄█▄  ▄▀   ▀   ▄▀          
+▀█ █  █▀█ ▀▀▄█       ▄▀█ ▀▀▄ ▀▄▄
+▄ ▄▀▄▀  ▄▄▄█ ▄ ▀   ▄▀▄▀ ▄█ ▀   ▄
+       █▀▀ █▀▀  ▄▀▀  █  ▄▄ █▄▀▀█
+    ▄▄ █    ▀ ▀▀▄▄ █▀ ▀   ▀  ▄▀▄
+▀██▄▀ ▀ ▄▄█▀█  ▀ █▀  ▄▀█ ▀ ▄█ █▄
+ ▄▄▀ ▄▄ ▀ ▄▄   ▀   ▄ ▀▀ ▄ ██  █ 
+ ▀ ▄▄▀█ █ ▀  ▀▀▄  ▄▄▄█ ▀▀ ▀   ▀ 
+   ▄▀▀  ▄     ▀▄▀ █   ▀█  ▄ █▄  
+▀ ▄ ▀       ▄█▀  ▄▄▀   ▄ █ ▄▀▀  
+▄▀█▄  ▀▄▀▀ ▀▀▀█▀▀▄▀ ▀▄▄ ▄▄ ▄█▀  
+▄ ▄█ █▄▄     █▀▀▀   ▄  █   ▄▀  ▀
+    ▀ ▀  ▀▄▀▀    ▄   ▀  █▀   ▀  
+▀▀ █         ▄▄ ██ ▀▀ ▀    ▀ █▀█
+▀▄▄█▄ ▄█ █▀▀  █ ▄ ▀▄ ▄▀ ▄▀▄ ▄▀ █
+ ▀▀▄█▄▀▄▄▀▀ ▄▄▄ ▀ █▀▄    ▄ █▀ ▄█
+ ▄ ▀▀▀  ▄ ▄▀██▄▀  ▀▄▀▄ ▄  ▀     
+██████▀███▄█▄█▀██▀▄▄██▀▀█▄██▄ █▀▄ █▀█▀  ▀█▀    ▄ █▄▀▄▄   ▀▀ ▀▀▄            ▀ ▀         
+██████████▀███▀██████████▀█▄▀▄▄█▀▀███▄▀█▄▄██ ▀█     ▀  ▀▄▀▀ █▀ ▄  ▄ ▀ ▄▄ ▀   ▀         
+██████████████▀█▀▄███▀ █▄▄ ▀█▄█▀███▄▀▄ ▀▀▀█▄▄▀█▄▄▀ ▄▄▄▀ ▀ ▀ ▄  ▀      ▄ ▄    ▀         
+████████▄▀▄▄██▀█▄██▀▀█▀██▄█▀▄▀ ▀█▀▄█▄▀ ▀▀█▀        ▄ ▄▄▄  ▀    ▀ ▀ ▄▄ ▄  ▀    ▀        
+█████████████▄▄██ ████ ███▄███▀▄▀▀▀█▀█▀  █  █ ▀▄█▀ ▀▄▀  ▄ ▄▀▀▄▄▀▄▀▄█▀ ▀▀               
+██▄██████▄█████▀▄▄███▀█▄█▄▄▀█▀▄▄█▄██▀▄▄█▀█▀▄█▄▀ █▀▄▄     ▀  ▄ █ ▀  ▀▀                  
+█████▄█ ███▄████▄▄██▄▄ █▀███ ▀▀▄▀█▄██▄ ▀ ███  ▀█ ▀▀▀▀ █  █ ▀▀▀   ▀         ▄    ▄      
+██████████▄████▀█▀█▄▀▀▀██ ▀█▄▀▄ ▀▄█▀▄▀▄  ▀ ▀█▄▀▄ ▀  ▄ ▀▀▀▄█  ▄   ▄▄  ▀ ▄        ▄ █    
+████▄███▄███▀█████▄██▀▄▀▀█▄▀▀ ███▄▄▄▀  ▄▄█ ▀▀█ ███▀▀▄    ▄▀█ ▄ ▄ ▄  ▀▀ ▀ ▀        ▄    
+█▀█████████████▀█▀███▄█▄ ▀ █ ▀▀█▀█▄▀█  ▀ ▀█ ▄ ▀  ▄ ▄▀▀▄ ▀ ▀▀    ▀ ▀▄▄▀▀▀   ▄       ▀   
+████████████████▀ ▄ █▄█▀▀█▄▀▀▀  ▀▄▀ ▀▄▀ ▄▀▄▀ █▀▀▄▄  █▄ ▄  ▄▄   ▄▄▄▀▄       ▀      ▄    
+████████▄▀█▀████▀▀█▀█████▄▄▀▄█▄▄███▄█▄▄▄▀█▀▀▀▄ ▄▄▄   ▄█▄▀▀█ ▀  ▀▀▀▀ █ ▀                
+█████▄▄███▀███▀███▀▄███▀█▀▄ ██ ▄ █▀▄▄ █▀█▄▄████▄█▄▀█ █  ▀█▀    ▀  ▄  ▄   ▀ ▄▄          
+██▀█████▀███████▄█ █████▀██▀▀▄█▀ ▄▀  ▄▄▄▀ ▀ ▄ ██ █  ▀▀ ▀ ▀    ▀  ▄         ▀           
+█████▀█▀█████████▄██ ▄▀▄█▀▄▀█▄██▀▄▄▄▀█▀█▄ ▀  ▄▄█▄  ██ ▀█▀ ▀    ▀▄ █ ▄  ▀    ▄     ▄    
+████████▀██████▄▀██▄████▄▀▀▀ ███▄▄▄▀█▄▀▀▄▀ ▀▄▄█▄ █   ▀  █▄  ▀ ▄▄▀ ▄▀▄▀   ▄▄      ▄     
 █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
 █                                                              █
 █                                                              █
