@@ -5,18 +5,11 @@
 This doc is about the [[https://en.wikipedia.org/wiki/Foreign_function_interface][Foreign Function Interface]] (FFI) features of the
 =core=. 
 
-#+BEGIN: lisp-system-info :system ffi :symbols nil :files nil :dependents nil
-- packages
-  #+CALL: lisp-system-packages[:post transpose]("ffi")
-
-  #+RESULTS:
-  | FFI/TESTS |
-
+#+BEGIN: lisp-system-info :system ffi :symbols nil :files nil :dependents nil :tests nil :packages nil
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("ffi")
 
   #+RESULTS:
-  | sb-grovel   |
   | arrow       |
   | blake3      |
   | btrfs       |
@@ -29,7 +22,6 @@ This doc is about the [[https://en.wikipedia.org/wiki/Foreign_function_interface
   | gstreamer   |
   | keyutils    |
   | rocksdb     |
-  | rustls      |
   | sndfile     |
   | ssh2        |
   | tree-sitter |
@@ -458,8 +450,7 @@ in addition to the userspace library (btrfsutil) documented below.
   #+CALL: lisp-system-dependencies[:post transpose]("btrfs")
 
   #+RESULTS:
-  | sb-grovel |
-  | std       |
+  | std |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("btrfs")
@@ -576,16 +567,15 @@ https://man.archlinux.org/man/io_uring.7.en
   #+CALL: lisp-system-dependencies[:post transpose]("uring")
 
   #+RESULTS:
-  | sb-grovel |
-  | std       |
-  | obj       |
+  | std |
+  | obj |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("uring")
 
   #+RESULTS:
-  | ffi         |
   | ublk        |
+  | ffi         |
   | uring/tests |
   | io/tests    |
   | io          |
@@ -902,8 +892,7 @@ zstd compression bindings: https://github.com/facebook/zstd
   #+CALL: lisp-system-dependencies[:post transpose]("zstd")
 
   #+RESULTS:
-  | sb-grovel |
-  | std       |
+  | std |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("zstd")
@@ -1005,8 +994,7 @@ bindings to tree-sitter parser generator and language libraries: https://github.
   #+CALL: lisp-system-dependencies[:post transpose]("tree-sitter")
 
   #+RESULTS:
-  | sb-grovel |
-  | std       |
+  | std |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("tree-sitter")
@@ -1178,8 +1166,7 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("blake3")
 
   #+RESULTS:
-  | sb-grovel |
-  | std       |
+  | std |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("blake3")
@@ -1246,15 +1233,14 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("ssh2")
 
   #+RESULTS:
-  | sb-grovel |
-  | std       |
+  | std |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("ssh2")
 
   #+RESULTS:
-  | ffi        |
   | ssh2/tests |
+  | ffi        |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("ssh2")
@@ -1548,12 +1534,14 @@ implementation (libblake3).
 
   #+RESULTS:
   | std |
+  | io  |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("openssl")
 
   #+RESULTS:
   | ffi           |
+  | cry           |
   | openssl/tests |
   | dat           |
 
@@ -1562,9 +1550,11 @@ implementation (libblake3).
 
   #+RESULTS:
   | pkg.lisp       |
+  | constants.lisp |
   | types.lisp     |
-  | condition.lisp |
   | openssl.lisp   |
+  | bio.lisp       |
+  | condition.lisp |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("OPENSSL")
@@ -1589,6 +1579,7 @@ implementation (libblake3).
   | LOAD-SSL                   |
   | ASN1-STRING-DATA           |
   | LOAD-CRYPTO                |
+  | SSL-FREE                   |
   | PEM-READ                   |
 
 #+END
@@ -1958,8 +1949,7 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("keyutils")
 
   #+RESULTS:
-  | sb-grovel |
-  | std       |
+  | std |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("keyutils")
@@ -2149,8 +2139,7 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("sndfile")
 
   #+RESULTS:
-  | sb-grovel |
-  | std       |
+  | std |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("sndfile")
@@ -2411,156 +2400,6 @@ implementation (libblake3).
   | AV-MAKE-ERROR-STRING             |
 
 #+END
-** rustls
-:PROPERTIES:
-:ID:       df5941d7-da34-4064-b6dd-64bf7aadfbd4
-:CREATED:  <2025-07-05 Sat 17:20>
-:END:
-#+BEGIN: lisp-system-info :system rustls
-- packages
-  #+CALL: lisp-system-packages[:post transpose]("rustls")
-
-  #+RESULTS:
-  | RUSTLS       |
-  | RUSTLS/TESTS |
-
-- dependencies
-  #+CALL: lisp-system-dependencies[:post transpose]("rustls")
-
-  #+RESULTS:
-  | std |
-
-- dependents
-  #+CALL: lisp-system-dependents[:post transpose]("rustls")
-
-  #+RESULTS:
-  | ffi          |
-  | rustls/tests |
-  | cry          |
-
-- files
-  #+CALL: lisp-system-files[:post transpose]("rustls")
-
-  #+RESULTS:
-  | pkg.lisp       |
-  | types.lisp     |
-  | condition.lisp |
-  | rustls.lisp    |
-
-- tests
-  #+CALL: lisp-system-tests[:post transpose]("rustls")
-
-  #+RESULTS:
-  | BASIC  |
-  | SANITY |
-
-- symbols
-  #+CALL: lisp-package-symbols[:post transpose]("RUSTLS")
-
-  #+RESULTS:
-  | RUSTLS-CLIENT-CONFIG-BUILDER-FREE                                    |
-  | RUSTLS-CRYPTO-PROVIDER-BUILDER-BUILD                                 |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-SET-KEY-LOG-FILE                        |
-  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER                                  |
-  | RUSTLS-HANDSHAKE-KIND                                                |
-  | RUSTLS-SERVER-CONFIG-BUILDER-FREE                                    |
-  | RUSTLS-ROOT-CERT-STORE-BUILDER-LOAD-ROOTS-FROM-FILE                  |
-  | RUSTLS-CERTIFIED-KEY-GET-CERTIFICATE                                 |
-  | RUSTLS-CERTIFIED-KEY-BUILD                                           |
-  | RUSTLS-ACCEPTOR                                                      |
-  | RUSTLS-SERVER-CONNECTION-NEW                                         |
-  | RUSTLS-VERSION                                                       |
-  | RUSTLS-ACCEPTED                                                      |
-  | RUSTLS-SERVER-CONFIG                                                 |
-  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-BUILDER-NEW                      |
-  | RUSTLS-RESULT*                                                       |
-  | RUSTLS-PLATFORM-SERVER-CERT-VERIFIER                                 |
-  | RUSTLS-CERTIFICATE                                                   |
-  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-BUILDER-ADD-CRL                  |
-  | RUSTLS-SERVER-CONFIG-BUILDER-NEW                                     |
-  | RUSTLS-SERVER-CONFIG-BUILDER-SET-PERSISTENCE                         |
-  | RUSTLS-ROOT-CERT-STORE-BUILDER-BUILD                                 |
-  | RUSTLS-CLIENT-CERT-VERIFIER-FREE                                     |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-NEW                                     |
-  | RUSTLS-KEYLOG-WILL-LOG-CALLBACK                                      |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-SET-ENABLE-SNI                          |
-  | RUSTLS-CRYPTO-PROVIDER-BUILDER-NEW-WITH-BASE                         |
-  | RUSTLS-CLIENT-CONFIG                                                 |
-  | RUSTLS-CRYPTO-PROVIDER-BUILDER-NEW-FROM-DEFAULT                      |
-  | RUSTLS-SERVER-CONFIG-BUILDER-SET-CLIENT-VERIFIER                     |
-  | RUSTLS-CLIENT-HELLO-SELECT-CERTIFIED-KEY                             |
-  | RUSTLS-SERVER-CONFIG-BUILDER-BUILD                                   |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-SET-KEY-LOG                             |
-  | RUSTLS-ACCEPTED-FREE                                                 |
-  | RUSTLS-CRYPTO-PROVIDER-CIPHERSUITES-GET                              |
-  | RUSTLS-CRYPTO-PROVIDER-BUILDER-BUILD-AS-DEFAULT                      |
-  | RUSTLS-ACCEPTOR-NEW                                                  |
-  | RUSTLS-CLIENT-CONFIG-FIPS                                            |
-  | RUSTLS-CRYPTO-PROVIDER-LOAD-KEY                                      |
-  | RUSTLS-CLIENT-CONNECTION-NEW                                         |
-  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-ENFORCE-REVOCATION-EXPIR         |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-ENABLE-ECH-GREASE                       |
-  | RUSTLS-SERVER-CONFIG-BUILDER-SET-HELLO-CALLBACK                      |
-  | RUSTLS-CERTIFIED-KEY-FREE                                            |
-  | RUSTLS-SERVER-CONFIG-BUILDER-SET-IGNORE-CLIENT-ORDER                 |
-  | RUSTLS-CRYPTO-PROVIDER-CIPHERSUITES-LEN                              |
-  | RUSTLS-SERVER-CONFIG-FREE                                            |
-  | RUSTLS-DEFAULT-CIPHERSUITES-GET-ENTRY                                |
-  | RUSTLS-SUPPORTED-CIPHERSUITE-GET-SUITE                               |
-  | RUSTLS-CLIENT-CONFIG-FREE                                            |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-BUILD                                   |
-  | RUSTLS-SERVER-CONFIG-BUILDER-SET-KEY-LOG-FILE                        |
-  | RUSTLS-SUPPORTED-CIPHERSUITE-GET-NAME                                |
-  | RUSTLS-ACCEPTOR-ACCEPT                                               |
-  | RUSTLS-ACCEPTED-INTO-CONNECTION                                      |
-  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-BUILDER-NEW-WITH-PROVIDER        |
-  | RUSTLS-SERVER-CONFIG-BUILDER-SET-KEY-LOG                             |
-  | RUSTLS-ROOT-CERT-STORE-BUILDER-FREE                                  |
-  | RUSTLS-SESSION-STORE-USERDATA                                        |
-  | RUSTLS-SERVER-CERT-VERIFIER                                          |
-  | RUSTLS-CLIENT-CERT-VERIFIER                                          |
-  | RUSTLS-SIGNING-KEY                                                   |
-  | RUSTLS-RESULT                                                        |
-  | RUSTLS-CLIENT-HELLO-USERDATA                                         |
-  | RUSTLS-SERVER-CONNECTION-GET-SERVER-NAME                             |
-  | RUSTLS-WEB-PKI-CLIENT-CERT-VERIFIER                                  |
-  | RUSTLS-CLIENT-HELLO                                                  |
-  | RUSTLS-ROOT-CERT-STORE-FREE                                          |
-  | RUSTLS-CONDITION                                                     |
-  | RUSTLS-ACCEPTOR-READ-TLS                                             |
-  | RUSTLS-ROOT-CERT-STORE-BUILDER-ADD-PEM                               |
-  | RUSTLS-ACCEPTED-CIPHER-SCHEME                                        |
-  | RUSTLS-ACCEPTOR-FREE                                                 |
-  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-ONLY-CHECK-END-ENTITY-REVOCATION |
-  | RUSTLS-CRYPTO-PROVIDER-DEFAULT                                       |
-  | RUSTLS-CRYPTO-PROVIDER                                               |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-ENABLE-ECH                              |
-  | RUSTLS-CERTIFICATE-GET-DER                                           |
-  | RUSTLS-ALL-CIPHERSUITES-GET-ENTRY                                    |
-  | RUSTLS-CRYPTO-PROVIDER-BUILDER-FREE                                  |
-  | RUSTLS-ALL-CIPHERSUITES-LEN                                          |
-  | RUSTLS-ROOT-CERT-STORE-BUILDER-NEW                                   |
-  | RUSTLS-SUPPORTED-CIPHERSUITE                                         |
-  | RUSTLS-TLS-VERSION*                                                  |
-  | RUSTLS-CRYPTO-PROVIDER-BUILDER-SET-CIPHER-SUITES                     |
-  | RUSTLS-TLS-VERSION                                                   |
-  | RUSTLS-ACCEPTED-SIGNATURE-SCHEME                                     |
-  | RUSTLS-DEFAULT-CIPHERSUITES-LEN                                      |
-  | RUSTLS-CLIENT-CONFIG-BUILDER-SET-SERVER-VERIFIER                     |
-  | RUSTLS-SERVER-CERT-VERIFIER-FREE                                     |
-  | RUSTLS-SLICE-BYTES                                                   |
-  | RUSTLS-KEYLOG-LOG-CALLBACK                                           |
-  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-BUILDER-FREE                     |
-  | RUSTLS-AWS-LC-RS-CRYPTO-PROVIDER                                     |
-  | RUSTLS-HANDSHAKE-KIND*                                               |
-  | RUSTLS-C-ERROR                                                       |
-  | RUSTLS-ACCEPTED-SERVER-NAME                                          |
-  | RUSTLS-WEB-PKI-SERVER-CERT-VERIFIER-BUILDER-BUILD                    |
-  | LOAD-RUSTLS                                                          |
-  | RUSTLS-CERTIFIED-KEY                                                 |
-  | RUSTLS-PLATFORM-SERVER-CERT-VERIFIER-WITH-PROVIDER                   |
-
-#+END
 ** ublk
 :PROPERTIES:
 :ID:       df572895-fa1e-4e0a-8df7-0e1eaf917192
@@ -2578,16 +2417,15 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("ublk")
 
   #+RESULTS:
-  | sb-grovel |
-  | std       |
-  | uring     |
+  | std   |
+  | uring |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("ublk")
 
   #+RESULTS:
-  | ffi        |
   | ublk/tests |
+  | ffi        |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("ublk")
@@ -2833,8 +2671,7 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("evdev")
 
   #+RESULTS:
-  | std       |
-  | sb-grovel |
+  | std |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("evdev")
@@ -2897,8 +2734,8 @@ implementation (libblake3).
   #+CALL: lisp-system-dependents[:post transpose]("arrow")
 
   #+RESULTS:
-  | arrow/tests |
   | ffi         |
+  | arrow/tests |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("arrow")

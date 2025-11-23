@@ -13,10 +13,10 @@ security and authentication protocols, passwords, keyrings, and more.
   #+CALL: lisp-system-packages[:post transpose]("cry")
 
   #+RESULTS:
+  | CRY-INT      |
   | CRY/SIGN     |
   | CRY/DRM      |
   | CRY/TESTS    |
-  | CRY/SSL      |
   | CRY/PASSWORD |
   | CRY/B3       |
   | CRY/GPG      |
@@ -24,9 +24,9 @@ security and authentication protocols, passwords, keyrings, and more.
   | CRY/KEYRING  |
   | CRY/JWT      |
   | CRY/AUTH     |
-  | CRY          |
   | CRY/SSH      |
   | CRY/HOTP     |
+  | CRY/TLS      |
   | CRY/AUTHINFO |
   | CRY/CRC64    |
 
@@ -44,8 +44,8 @@ security and authentication protocols, passwords, keyrings, and more.
   | dat            |
   | blake3         |
   | keyutils       |
-  | rustls         |
   | cl+ssl         |
+  | openssl        |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("cry")
@@ -64,9 +64,8 @@ security and authentication protocols, passwords, keyrings, and more.
   | pkg.lisp        |
   | condition.lisp  |
   | crc64.lisp      |
-  | ssl/pkg.lisp    |
-  | ssl/rls.lisp    |
-  | ssl/stream.lisp |
+  | tls/pkg.lisp    |
+  | tls/stream.lisp |
   | b3.lisp         |
   | password.lisp   |
   | authinfo.lisp   |
@@ -99,17 +98,41 @@ security and authentication protocols, passwords, keyrings, and more.
   #+CALL: lisp-package-symbols[:post transpose]("CRY")
 
   #+RESULTS:
-  | PASSWORD-DB               |
-  | CRYPTO-ERROR              |
-  | *DEFAULT-PASSWORD-PEPPER* |
-  | CRYPTO-TOKEN-EXPIRED      |
-  | CRYPTO-KEY                |
-  | CRYPTO-CONDITION          |
-  | *DEFAULT-PASSWORD-DB*     |
-  | *DEFAULT-PASSWORD-STORE*  |
-  | TOKEN                     |
-  | *DEFAULT-PASSWORD-HASHER* |
-  | CRYPTO-TOKEN              |
-  | CRYPTO-TOKEN-INVALID      |
+  | PASSWORD-SALT              |
+  | USER-GPG-AGENT-CONFIG-FILE |
+  | USER-SSH-CONFIG-FILE       |
+  | HOTP                       |
+  | USER-GPG-CONFIG-FILE       |
+  | JWT-DECODE                 |
+  | GET-KEY                    |
+  | AUTHINFO                   |
+  | SSHD-CONFIG                |
+  | +IMPROVED-POLYNOMIAL+      |
+  | CRC64-FILE                 |
+  | +POLYNOMIAL+               |
+  | AUTH                       |
+  | KEYRING                    |
+  | HS256-DIGEST               |
+  | *USER-SSH-DIRECTORY*       |
+  | SYSTEM-SSH-CONFIG-FILE     |
+  | CLEAR-KEYS                 |
+  | *DIGITS*                   |
+  | COMPARE-HS256-DIGEST       |
+  | MAKE-PASSWORD-HASH         |
+  | *USER-GPG-DIRECTORY*       |
+  | SSH-CONFIG                 |
+  | *TIME-STEP-IN-SECONDS*     |
+  | TOTP                       |
+  | *TIME-ZERO*                |
+  | CRC64-SEQUENCE             |
+  | CRC64-STREAM               |
+  | PASSWORD-HASH              |
+  | *HMAC-SHA-MODE*            |
+  | MAKE-KEYRING               |
+  | GPG-CONFIG                 |
+  | GPG-AGENT-CONFIG           |
+  | INIT-CRC64                 |
+  | SYSTEM-SSHD-CONFIG-FILE    |
+  | PASSWORD                   |
 
 #+END
