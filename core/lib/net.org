@@ -160,7 +160,7 @@ http/s server support.
   | DEFROUTE                          |
   | COPY-COOKIE                       |
   | TLV-TYPE                          |
-  | ACCESS-LOG-OUTPUT                 |
+  | HTTP-UPGRADE-P                    |
   | WAKE-SERVICE-FOR-SHUTDOWN         |
   | MAKE-BUNDLE                       |
   | *DEFAULT-MAX-THREAD-COUNT*        |
@@ -168,10 +168,11 @@ http/s server support.
   | LOCAL-ADDR*                       |
   | *WILDCARD-PORT*                   |
   | EVAL-FORM-REPEATEDLY              |
+  | SINGLE-THREADED-ENGINE            |
   | EVAL-FORM-ALL-WORKERS             |
   | HTTP-MAJOR-VERSION                |
   | SESSION                           |
-  | SINGLE-THREADED-ENGINE            |
+  | COOKIE-EQUAL                      |
   | MAKE-CLIENT-REQUEST               |
   | DNS-QUERY                         |
   | REMOVE-SESSION                    |
@@ -201,14 +202,14 @@ http/s server support.
   | MAKE-MULTIPART-PARSER             |
   | PEER                              |
   | WITH-UDP-CLIENT                   |
-  | *GLOBAL-SESSION-DB-LOCK*          |
+  | COOKIE=                           |
   | HTTP-RESPONSE                     |
   | WITH-OPEN-SOCKET                  |
   | INITIALIZE-INSTANCE               |
   | +KNOWN-HTTP-METHODS+              |
-  | COOKIE=                           |
+  | SERVER                            |
   | MAKE-HTTP                         |
-  | ENCODE-MESSAGE                    |
+  | *DEFAULT-PROXY*                   |
   | CLIENT                            |
   | *QUAD9-SERVERS*                   |
   | *SESSION-SECRET*                  |
@@ -218,6 +219,7 @@ http/s server support.
   | DECODE-DATA                       |
   | SESSION-GC                        |
   | INVALID-HEADER-VALUE              |
+  | SESSION-VALUE                     |
   | DP-REMOVE                         |
   | QUERY-DATA                        |
   | NGINX-SERVICE                     |
@@ -235,7 +237,7 @@ http/s server support.
   | INVALID-INTERNAL-STATE            |
   | DECREMENT-THREAD-COUNT            |
   | CREW-WORKER                       |
-  | HTTP-STATUS-MESSAGE               |
+  | *DEFAULT-READ-TIMEOUT*            |
   | SERVER-CONFIG                     |
   | CONNECT                           |
   | ABORT-REQUEST-HANDLER             |
@@ -252,7 +254,7 @@ http/s server support.
   | MAKE-COOKIE-JAR                   |
   | OAUTH-SERVICE-CONFIG              |
   | FIND-PORT                         |
-  | COOKIE-EQUAL                      |
+  | SLIME-CONNECT-FILE                |
   | MAKE-COOKIE                       |
   | PROXY                             |
   | NET-SERVICE-RESPONSE              |
@@ -268,6 +270,7 @@ http/s server support.
   | COOKIE-JAR-HOST-COOKIES           |
   | SERVICE-MAKE-REQUEST              |
   | COOKIE-HTTPONLY-P                 |
+  | RESET-CONNECTION-STREAM           |
   | UDP-SOCKET                        |
   | CALL-WITH-REQUEST-COUNT-INCF      |
   | HTTP-VERSION                      |
@@ -294,7 +297,7 @@ http/s server support.
   | WRITE-SET-COOKIE-HEADER           |
   | HTTP-KEYWORD                      |
   | SHUTDOWN-P                        |
-  | SESSION-VALUE                     |
+  | COOKIE-DATE                       |
   | SERVICE-LOG                       |
   | COOKIE-SAME-SITE                  |
   | SLIME-MIGRATE-EVALS               |
@@ -352,7 +355,7 @@ http/s server support.
   | +KNOWN-HTTP-VERSIONS+             |
   | REMOVE-SESSION-HOOK               |
   | NET-WARNING                       |
-  | HTTP-UPGRADE-P                    |
+  | *GLOBAL-SESSION-DB-LOCK*          |
   | REMOTE-PORT*                      |
   | COOKIE-JAR-COOKIES                |
   | COOKIE-ORIGIN-HOST                |
@@ -382,9 +385,6 @@ http/s server support.
   | SLIME-CONNECT                     |
   | MAKE-HTTP-REQUEST                 |
   | SESSION-TIMEOUT                   |
-  | HTTP-STATUS                       |
-  | INVALID-URL                       |
-  | OPENAPI-DOCUMENT                  |
   | ...                               |
 
 #+END:
@@ -444,33 +444,37 @@ underlying =SB-BSD-SOCKETS= class - either =INET-SOCKET= or
 #+CALL: lisp-package-symbols[:post transpose]("NET/CORE")
 
 #+RESULTS:
-| MAKE-CLIENT          |
-| PEER                 |
-| SERVER-CONFIG        |
-| SERVER               |
-| DISCONNECT           |
-| *DEFAULT-MTU*        |
-| CONNECT              |
-| MAKE-SERVER-RESPONSE |
-| NET-WARNING          |
-| *LOCALHOST*          |
-| WITH-OPEN-SOCKET     |
-| *WILDCARD-PORT*      |
-| CLIENT               |
-| WITH-CLIENT-SERVER   |
-| *WILDCARD-HOST*      |
-| NET-ERROR            |
-| GET-ADDRESS-BY-NAME  |
-| FIND-PORT            |
-| SOCKET-CONFIG        |
-| CONNECTION           |
-| CLIENT-CONFIG        |
-| NET-CONDITION        |
-| NET-CONFIG           |
-| TUNNEL               |
-| MAKE-CLIENT-REQUEST  |
-| MAKE-SERVER          |
-| PROXY                |
+| NET-WARNING               |
+| WITH-OPEN-SOCKET          |
+| PROXY                     |
+| SERVER-CONFIG             |
+| MAKE-CLIENT               |
+| NET-CONFIG                |
+| MAKE-CLIENT-REQUEST       |
+| *DEFAULT-CONNECT-TIMEOUT* |
+| MAKE-SERVER-RESPONSE      |
+| NET-CONDITION             |
+| PEER                      |
+| TUNNEL                    |
+| CONNECT                   |
+| *WILDCARD-PORT*           |
+| *WILDCARD-HOST*           |
+| *DEFAULT-USER-AGENT*      |
+| FIND-PORT                 |
+| CONNECTION                |
+| DISCONNECT                |
+| *LOCALHOST*               |
+| WITH-CLIENT-SERVER        |
+| *DEFAULT-PROXY*           |
+| CLIENT                    |
+| SOCKET-CONFIG             |
+| SERVER                    |
+| MAKE-SERVER               |
+| CLIENT-CONFIG             |
+| GET-ADDRESS-BY-NAME       |
+| NET-ERROR                 |
+| *DEFAULT-READ-TIMEOUT*    |
+| *DEFAULT-MTU*             |
 
 ** codec
 :PROPERTIES:
@@ -534,24 +538,21 @@ underlying =SB-BSD-SOCKETS= class - either =INET-SOCKET= or
 #+CALL: lisp-package-symbols[:post transpose]("NET/REQ")
 
 #+RESULTS:
-| REQUEST                   |
-| *CONNECTION-POOL*         |
-| *DEFAULT-READ-TIMEOUT*    |
-| DELETE                    |
-| GET                       |
-| *USE-CONNECTION-POOL*     |
-| MAKE-CONNECTION-POOL      |
-| PUT                       |
-| *DEFAULT-CONNECT-TIMEOUT* |
-| +SOCKS5-VERSION+          |
-| POST                      |
-| FETCH                     |
-| IGNORE-AND-CONTINUE       |
-| CLEAR-CONNECTION-POOL     |
-| *DEFAULT-PROXY*           |
-| DECODING-STREAM-OF        |
-| PATCH                     |
-| RETRY-REQUEST             |
-| HEAD                      |
-| HTTP-CLIENT               |
-| *VERBOSE*                 |
+| PUT                   |
+| DECODING-STREAM-OF    |
+| DELETE                |
+| GET                   |
+| RETRY-REQUEST         |
+| FETCH                 |
+| *VERBOSE*             |
+| POST                  |
+| IGNORE-AND-CONTINUE   |
+| +SOCKS5-VERSION+      |
+| REQUEST               |
+| PATCH                 |
+| MAKE-CONNECTION-POOL  |
+| HEAD                  |
+| HTTP-CLIENT           |
+| *USE-CONNECTION-POOL* |
+| *CONNECTION-POOL*     |
+| CLEAR-CONNECTION-POOL |

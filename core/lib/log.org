@@ -62,7 +62,6 @@ libraries and apps.
   | log/tests       |
   | cli             |
   | core            |
-  | bin/vc          |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("log")
@@ -239,11 +238,11 @@ protocol.
 #+end_src
 
 #+RESULTS:
-: #<LOGGER-CONFIG {1219A33C03}>
+: #<LOGGER-CONFIG {121E12BB33}>
 :   [standard-object]
 : 
 : Slots with :INSTANCE allocation:
-:   AST                            = ((LEVEL-FILTER :ID :LEVEL-FILTER :LEVEL :INFO) (TAG-TREE-FILTER)..
+:   AST                            = ((LEVEL-FILTER :ID :LEVEL-FILTER :LEVEL :INFO)..
 :   SIZE                           = 10
 :   LEVEL                          = :INFO
 
@@ -256,8 +255,8 @@ logger resulting from the =build= method.
 
 #+RESULTS:
 | LEVEL-FILTER    | :ID | :LEVEL-FILTER | :LEVEL | :INFO |
-| TAG-TREE-FILTER |     |               |        |       |
-| STREAM-SINK     |     |               |        |       |
+| TAG-TREE-FILTER | :ID | :TAG-FILTER   |        |       |
+| STREAM-SINK     | :ID | :SINK         |        |       |
 
 * Logging Functions
 :PROPERTIES:

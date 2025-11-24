@@ -24,6 +24,7 @@ security and authentication protocols, passwords, keyrings, and more.
   | CRY/KEYRING  |
   | CRY/JWT      |
   | CRY/AUTH     |
+  | CRY          |
   | CRY/SSH      |
   | CRY/HOTP     |
   | CRY/TLS      |
@@ -78,6 +79,7 @@ security and authentication protocols, passwords, keyrings, and more.
   | ssh.lisp        |
   | sign.lisp       |
   | auth.lisp       |
+  | cry.lisp        |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("cry")
@@ -98,41 +100,94 @@ security and authentication protocols, passwords, keyrings, and more.
   #+CALL: lisp-package-symbols[:post transpose]("CRY")
 
   #+RESULTS:
-  | PASSWORD-SALT              |
-  | USER-GPG-AGENT-CONFIG-FILE |
-  | USER-SSH-CONFIG-FILE       |
-  | HOTP                       |
-  | USER-GPG-CONFIG-FILE       |
-  | JWT-DECODE                 |
-  | GET-KEY                    |
-  | AUTHINFO                   |
-  | SSHD-CONFIG                |
-  | +IMPROVED-POLYNOMIAL+      |
-  | CRC64-FILE                 |
-  | +POLYNOMIAL+               |
-  | AUTH                       |
-  | KEYRING                    |
-  | HS256-DIGEST               |
-  | *USER-SSH-DIRECTORY*       |
-  | SYSTEM-SSH-CONFIG-FILE     |
-  | CLEAR-KEYS                 |
-  | *DIGITS*                   |
-  | COMPARE-HS256-DIGEST       |
-  | MAKE-PASSWORD-HASH         |
-  | *USER-GPG-DIRECTORY*       |
-  | SSH-CONFIG                 |
-  | *TIME-STEP-IN-SECONDS*     |
-  | TOTP                       |
-  | *TIME-ZERO*                |
-  | CRC64-SEQUENCE             |
-  | CRC64-STREAM               |
-  | PASSWORD-HASH              |
-  | *HMAC-SHA-MODE*            |
-  | MAKE-KEYRING               |
-  | GPG-CONFIG                 |
-  | GPG-AGENT-CONFIG           |
-  | INIT-CRC64                 |
-  | SYSTEM-SSHD-CONFIG-FILE    |
-  | PASSWORD                   |
+  | +SSL-VERIFY-PEER+                       |
+  | +SSL-OP-NO-TLSV1-1+                     |
+  | +SSL-VERIFY-NONE+                       |
+  | SSL-ERROR-INITIALIZE                    |
+  | *TIME-ZERO*                             |
+  | INIT-CRC64                              |
+  | DECODE-CERTIFICATE-FROM-FILE            |
+  | USE-CERTIFICATE-CHAIN-FILE              |
+  | HS256-DIGEST                            |
+  | SSL-CTX-FREE                            |
+  | SSHD-CONFIG                             |
+  | RANDOM-BYTES                            |
+  | ENSURE-INITIALIZED                      |
+  | TOTP                                    |
+  | JWT-DECODE                              |
+  | AUTHINFO                                |
+  | VERIFY-HOSTNAME                         |
+  | MAKE-CONTEXT                            |
+  | *DIGITS*                                |
+  | CLEAR-KEYS                              |
+  | SSL-ERROR-VERIFY                        |
+  | SSL-ERROR-STREAM                        |
+  | *DEFAULT-CIPHER-LIST*                   |
+  | CERTIFICATE-SUBJECT-COMMON-NAMES        |
+  | *CA-BUNDLE*                             |
+  | KEYRING                                 |
+  | GPG-CONFIG                              |
+  | *SSL-BUFFER-SIZE*                       |
+  | SSL-ERROR-CODE                          |
+  | +SSL-OP-NO-TLSV1+                       |
+  | MAKE-PASSWORD-HASH                      |
+  | *USER-GPG-DIRECTORY*                    |
+  | +SSL-SESS-CACHE-NO-AUTO-CLEAR+          |
+  | SSL-SET-GLOBAL-DEFAULT-VERIFY-PATHS     |
+  | SSH-CONFIG                              |
+  | +SSL-SESS-CACHE-NO-INTERNAL-STORE+      |
+  | *DEFAULT-BUFFER-SIZE*                   |
+  | CRC64-FILE                              |
+  | +SSL-OP-NO-TLSV1-2+                     |
+  | *SSL-CIPHER-LIST*                       |
+  | +SSL-SESS-CACHE-BOTH+                   |
+  | MAKE-SSL-SERVER-STREAM                  |
+  | +SSL-SESS-CACHE-NO-INTERNAL+            |
+  | SSL-STREAM-X509-CERTIFICATE             |
+  | *USER-SSH-DIRECTORY*                    |
+  | +SSL-SESS-CACHE-CLIENT+                 |
+  | *TIME-STEP-IN-SECONDS*                  |
+  | SSL-CHECK-VERIFY-P                      |
+  | DECODE-CERTIFICATE                      |
+  | SSL-LOAD-GLOBAL-VERIFY-LOCATIONS        |
+  | GET-SELECTED-ALPN-PROTOCOL              |
+  | +IMPROVED-POLYNOMIAL+                   |
+  | COMPARE-HS256-DIGEST                    |
+  | STREAM-FD                               |
+  | MAKE-SSL-CLIENT-STREAM                  |
+  | RELOAD                                  |
+  | CRC64-SEQUENCE                          |
+  | CRC64-STREAM                            |
+  | USER-GPG-AGENT-CONFIG-FILE              |
+  | SYSTEM-SSHD-CONFIG-FILE                 |
+  | SYSTEM-SSH-CONFIG-FILE                  |
+  | +SSL-SESS-CACHE-OFF+                    |
+  | PASSWORD                                |
+  | USER-SSH-CONFIG-FILE                    |
+  | CERTIFICATE-NOT-AFTER-TIME              |
+  | +SSL-SESS-CACHE-SERVER+                 |
+  | WITH-PEM-PASSWORD                       |
+  | +POLYNOMIAL+                            |
+  | *HMAC-SHA-MODE*                         |
+  | USER-GPG-CONFIG-FILE                    |
+  | GPG-AGENT-CONFIG                        |
+  | X509-FREE                               |
+  | WITH-GLOBAL-CONTEXT                     |
+  | *MAKE-SSL-CLIENT-STREAM-VERIFY-DEFAULT* |
+  | PASSWORD-SALT                           |
+  | +SSL-VERIFY-FAIL-IF-NO-PEER-CERT+       |
+  | *NO-SSL*                                |
+  | CERTIFICATE-FINGERPRINT                 |
+  | +SSL-OP-NO-SSLV3+                       |
+  | +SSL-SESS-CACHE-NO-INTERNAL-LOOKUP+     |
+  | +SSL-VERIFY-CLIENT-ONCE+                |
+  | AUTH                                    |
+  | GET-KEY                                 |
+  | HOTP                                    |
+  | +SSL-OP-NO-SSLV2+                       |
+  | *DEFAULT-UNWRAP-STREAM-P*               |
+  | PASSWORD-HASH                           |
+  | CERTIFICATE-NOT-BEFORE-TIME             |
+  | MAKE-KEYRING                            |
 
 #+END
