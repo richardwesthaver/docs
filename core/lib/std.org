@@ -566,54 +566,55 @@ in =std/condition=.
 #+CALL: lisp-package-symbols[:post transpose]("STD/CONDITION")
 
 #+RESULTS:
-| ERROR-ITEMS                 |
-| STD-ERROR                   |
-| MISSING-ARGUMENT            |
-| INTERACT                    |
-| SIMPLE-STYLE-WARNING        |
-| CIRCULAR-DEPENDENCIES       |
 | *ERROR-MESSAGE*             |
-| INTERACT-LINE               |
-| CONFLICTING-ARGUMENTS       |
-| INVALID-ARGUMENT            |
-| CAR-EQL                     |
-| TRANSFER-ERROR-REPORT       |
-| DEF-WARNING-REPORTER        |
-| UNKNOWN-ARGUMENT            |
-| ERROR-KIND                  |
-| OUT-OF-BOUNDS-ERROR         |
-| SIMPLE-READER-ERROR         |
-| WRAP-CONDITION              |
-| ERROR-REASON                |
-| INVOKE-TRANSFER-ERROR       |
-| TRANSFER-ERROR              |
-| REQUIRED-ARGUMENT           |
 | ERROR-MESSAGE               |
-| ERROR-ITEM                  |
-| WRAPPED-CONDITION-VALUE     |
-| CONDITION-HANDLER           |
-| ERROR-NAME                  |
-| SIMPLE-PROGRAM-ERROR        |
-| MISSING-METHODS             |
+| CAR-EQL                     |
+| DEFERROR                    |
+| ERROR-ITEMS                 |
 | DEFINE-ERROR-REPORTER       |
-| DEF-SIMPLE-ERROR-REPORTER   |
-| NYI!                        |
+| ERROR-NAME                  |
+| DEF-WARNING-REPORTER        |
 | MISSING-METHOD              |
-| META-CONDITION              |
-| *HANDLERS*                  |
+| STD-WARNING                 |
+| MISSING-METHODS             |
+| REQUIRED-ARGUMENT           |
 | SIMPLE-PARSE-ERROR          |
+| MISSING-ARGUMENT            |
+| ERROR-REASON                |
+| INVALID-ARGUMENT            |
+| STD-ERROR                   |
+| INVOKE-TRANSFER-ERROR       |
+| IGNORE-SOME-CONDITIONS      |
+| SIMPLE-PROGRAM-ERROR        |
 | WRAP-ERROR                  |
 | UNWIND-PROTECT-CASE         |
-| UNKNOWN-TOKEN               |
-| DEFERROR                    |
-| *UNINTERESTING-CONDITIONS*  |
-| WRAPPED-ERROR               |
-| DEFWARNING                  |
-| IGNORE-SOME-CONDITIONS      |
-| INTERACT*                   |
-| STD-WARNING                 |
-| WRAPPED-CONDITION           |
+| CIRCULAR-DEPENDENCIES       |
+| ERROR-KIND                  |
+| INTERACT                    |
+| SIMPLE-STYLE-WARNING        |
+| CONFLICTING-ARGUMENTS       |
+| DEF-SIMPLE-ERROR-REPORTER   |
 | DEF-SIMPLE-WARNING-REPORTER |
+| TRANSFER-ERROR-REPORT       |
+| DEFINE-ERROR-WRAPPER        |
+| META-CONDITION              |
+| WRAPPED-ERROR               |
+| TRANSFER-ERROR              |
+| WRAPPED-CONDITION           |
+| WRAPPED-CONDITION-VALUE     |
+| SIMPLE-READER-ERROR         |
+| CONDITION-HANDLER           |
+| ERROR-ITEM                  |
+| DEFWARNING                  |
+| *HANDLERS*                  |
+| OUT-OF-BOUNDS-ERROR         |
+| INTERACT*                   |
+| UNKNOWN-ARGUMENT            |
+| WRAP-CONDITION              |
+| INTERACT-LINE               |
+| UNKNOWN-TOKEN               |
+| *UNINTERESTING-CONDITIONS*  |
+| NYI!                        |
 
 ** type
 :PROPERTIES:
@@ -865,30 +866,31 @@ spans multiple files covering specific features.
 #+CALL: lisp-package-symbols[:post transpose]("STD/ARRAY")
 
 #+RESULTS:
-| ARRAY-RANK-LIMIT            |
-| WITH-ARRAY-DATA             |
-| MODPROJ                     |
-| VECTOR-MIN                  |
-| VECTOR-POP-POSITION         |
-| VECTOR-MAX                  |
-| BINARY-SEARCH               |
-| VECTORIFY                   |
-| VECTOR-TO-LIST              |
-| MAKE-ARRAY-ALLOCATOR        |
-| SIGNED-ARRAY-LENGTH         |
-| SIMPLIFY-ARRAY              |
-| VECTOR-MAP-FOLDR            |
-| SORT-INDEX                  |
-| ELEMENT-TYPE                |
-| VECTOR-EQ                   |
-| VECTOR-PUSH-EXTEND-POSITION |
 | COPY-VECTOR-TO-LIST         |
-| CHECK-BOUND                 |
+| VECTOR-FOLDR                |
 | COPY-ARRAY                  |
 | VECTOR-FOLDL                |
-| VECTOR-FOLDR                |
+| VECTOR-COPY                 |
+| VECTOR-EQ                   |
+| BINARY-SEARCH               |
+| ARRAY-RANK-LIMIT            |
 | VECTOR-MAP-FOLDL            |
+| VECTOR-MAX                  |
+| MODPROJ                     |
+| VECTOR-PUSH-EXTEND-POSITION |
+| SIGNED-ARRAY-LENGTH         |
+| VECTOR-MIN                  |
+| VECTOR-MAP-FOLDR            |
+| VECTOR-POP-POSITION         |
+| CHECK-BOUND                 |
 | ARRAY-SHIFT                 |
+| SORT-INDEX                  |
+| SIMPLIFY-ARRAY              |
+| MAKE-ARRAY-ALLOCATOR        |
+| WITH-ARRAY-DATA             |
+| VECTOR-TO-LIST              |
+| ELEMENT-TYPE                |
+| VECTORIFY                   |
 
 - implementation re-exports including =with-array-data=
 
@@ -990,7 +992,7 @@ Standard macros are defined in =std/macs=.
 #+RESULTS:
 | PANDORIC-EVAL           |
 | DEFINE-CLASS            |
-| NLET-TAIL               |
+| %P                      |
 | IT                      |
 | DEFWITH                 |
 | COMPILE-AND-EVAL        |
@@ -1006,20 +1008,20 @@ Standard macros are defined in =std/macs=.
 | WITH-MEMOIZATION        |
 | EVAL-ALWAYS             |
 | MEMOIZING               |
-| *LOOPS-ANSI-UNIVERSE*   |
+| PLAMBDA                 |
 | DEFITYPED               |
 | NESTED-LOOP             |
 | XOR                     |
 | LOOP-KERNEL             |
 | LOOP-STANDARD-EXPANSION |
 | THIS                    |
+| *LOOP-ANSI-UNIVERSE*    |
 | ALET*                   |
 | GET-PANDORIC            |
 | NAMED-LAMBDA            |
 | DEFUNITS                |
 | LETV*                   |
 | COLLECT                 |
-| LETY                    |
 | %A                      |
 | WITH-COLLECTORS         |
 | IF*                     |
@@ -1033,7 +1035,7 @@ Standard macros are defined in =std/macs=.
 | WHEN-LET*               |
 | DESTRUCTURING-CCASE     |
 | DISTANCE-DESIGNATOR     |
-| %P                      |
+| LETY                    |
 | WHEN-LET                |
 | DEFONCE                 |
 | IF-LET                  |
@@ -1068,7 +1070,7 @@ Standard macros are defined in =std/macs=.
 | PANDORICLET-SET         |
 | WHEN-MATCH              |
 | IF-LET*                 |
-| PLAMBDA                 |
+| NLET-TAIL               |
 | WITH-PANDORIC           |
 
 ** sys
@@ -1390,29 +1392,29 @@ Standard macros are defined in =std/macs=.
 #+RESULTS:
 #+begin_example
 (#<STANDARD-METHOD STD/SERDE:SERIALIZE (JPEG:JPEG-COMPRESSOR
-                                        (EQL :JPEG)) {120468F413}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (POD:CONTAINERFILE
-                                        (EQL :BYTES)) {12085C7423}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (POD:CONTAINERFILE
-                                        (EQL :STRING)) {12085C7383}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                        (EQL :JSON)) {1207BA14E3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                        (EQL :DOT)) {1207BA1063}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {1207BA0FC3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (TLV (EQL :STRING)) {1206783A93}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (TLV (EQL :BYTES)) {1206783993}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (STRING (EQL :QRCODE)) {120809B5E3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (INTEGER (EQL :BASE64)) {120769B453}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (VECTOR (EQL :BASE64)) {120769B3B3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (STRING (EQL :BASE64)) {120769B313}>
+                                        (EQL :JPEG)) {121C59A5A3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (STRING (EQL :QRCODE)) {120B0956C3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (INTEGER (EQL :BASE64)) {120D860C13}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (VECTOR (EQL :BASE64)) {120D857BB3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (STRING (EQL :BASE64)) {120D856EB3}>
  #<STANDARD-METHOD STD/SERDE:SERIALIZE (DAT/TOML:TOML-TABLE
-                                        (EQL :TOML)) {12064F1ED3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (DAT/HTML::NODE T) {12066ECA63}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (T (EQL :XML)) {1203FB0573}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (T (EQL :JSON)) {12026FA6E3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (VECTOR (EQL :CSV)) {1206484463}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (GRAPH (EQL :DOT)) {120417FBC3}>)
+                                        (EQL :TOML)) {1210686993}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (DAT/HTML::NODE T) {120C9F8743}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (T (EQL :XML)) {120A403003}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (T (EQL :JSON)) {120C3ED933}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (VECTOR (EQL :CSV)) {120AEA6103}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (GRAPH (EQL :DOT)) {1215F520D3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (POD:CONTAINERFILE
+                                        (EQL :BYTES)) {121179D963}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (POD:CONTAINERFILE
+                                        (EQL :STRING)) {121179D8C3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
+                                        (EQL :JSON)) {120F79AF53}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
+                                        (EQL :DOT)) {120F799AF3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {120F799A53}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (TLV (EQL :STRING)) {120F79D523}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (TLV (EQL :BYTES)) {120F79D303}>)
 #+end_example
 
 #+begin_src lisp
@@ -1421,52 +1423,52 @@ Standard macros are defined in =std/macs=.
 
 #+RESULTS:
 #+begin_example
-(#<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :JPEG)) {120468F143}>
+(#<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :JPEG)) {121C59A093}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (JPEG:JPEG-DECOMPRESSOR
-                                          (EQL :JPEG)) {120468EF03}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
-                                          (EQL :PKGBUILD)) {120796EFA3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
-                                          (EQL :CONTAINERFILE)) {12085C72B3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :OPENAPI)) {12077AD9E3}>
+                                          (EQL :JPEG)) {121C598BF3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :BASE64)) {120D861F63}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :BASE64)) {120D861173}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :BIB)) {1216241A83}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :BIB)) {1216240BC3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :BIB)) {1216240693}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :TOML)) {12106A13F3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :TOML)) {12106A0813}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :TOML)) {1210687C83}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {12099E3A43}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :INI)) {12098DA533}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :INI)) {12098D8453}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :INI)) {12098C7793}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :HTML)) {120C9F86A3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :XML)) {120A402F63}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :XML)) {120A402EC3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :XML)) {120A402E23}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :JSON-SCHEMA)) {120C4B8903}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (DAT/JSON:JSON-OBJECT
-                                          (EQL :OPENAPI)) {12077AD913}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :TLV)) {1206783C83}>
+                                          (EQL :JSON-SCHEMA)) {120C4B8863}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :JSON)) {120C3ED7E3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :JSON)) {12239424E3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :JSON)) {1223940553}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :CSV)) {120AEA62E3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :CSV)) {120AEA6243}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :CSV)) {120AEA61A3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :DOT)) {1215F52F13}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :ASN1)) {121009D333}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
+                                          (EQL :PKGBUILD)) {1213C48CD3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
+                                          (EQL :CONTAINERFILE)) {121179D7E3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :OPENAPI)) {120FCDD773}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (DAT/JSON:JSON-OBJECT
+                                          (EQL :OPENAPI)) {120FCDD6D3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :TLV)) {120F79D663}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (SIMPLE-ARRAY
-                                          (EQL :TLV)) {1206783B83}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :AUTHINFO)) {1208486A23}>
+                                          (EQL :TLV)) {120F79D5C3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :AUTHINFO)) {120D167963}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
-                                          (EQL :AUTHINFO)) {12084868B3}>
+                                          (EQL :AUTHINFO)) {120D1678C3}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
-                                          (EQL :SYSTEMD-UNIT)) {12064F6C13}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {12080C9F13}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :BASE64)) {120769B593}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :BASE64)) {120769B4F3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :BIB)) {12044E60E3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :BIB)) {12044E6043}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :BIB)) {12044E5F73}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :TOML)) {12064F2143}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :TOML)) {12064F20A3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :TOML)) {12064F2003}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {12016447D3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :INI)) {120781CEF3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :INI)) {120781CE53}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :INI)) {1201644543}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :HTML)) {12066EC953}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :XML)) {1203FB04D3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :XML)) {1203FB0433}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :XML)) {1203FB0393}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :JSON-SCHEMA)) {1202708DB3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (DAT/JSON:JSON-OBJECT
-                                          (EQL :JSON-SCHEMA)) {1202708CE3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :JSON)) {12026FA613}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :JSON)) {12026FA573}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :JSON)) {12026FA4A3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :CSV)) {1206484643}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :CSV)) {12064845A3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :CSV)) {1206484503}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :DOT)) {120417FCC3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :ASN1)) {1203BEC033}>)
+                                          (EQL :SYSTEMD-UNIT)) {120CC547F3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {120D356B93}>)
 #+end_example
 
 ** alien
@@ -1478,86 +1480,124 @@ Standard macros are defined in =std/macs=.
 #+CALL: lisp-package-symbols[:post transpose]("STD/ALIEN")
 
 #+RESULTS:
+| SAP-ALIEN                    |
+| FOREIGN-FREE                 |
+| ALIEN-FUNCALL                |
+| BOOL-TO-FOREIGN-INT          |
+| FOREIGN-ALLOC                |
+| COMPUTE-ALIEN-REP-TYPE       |
+| ALIEN                        |
+| NUM-CPUS                     |
+| SAP-INT                      |
+| ALIEN-SIZE*                  |
+| WITH-ALIEN-SLOTS             |
+| DOUBLE                       |
+| DEFINE-ALIEN-ENUM            |
+| DEPORT                       |
+| ELEMENT-TYPE-TO-ALIEN        |
+| DEREF                        |
+| UID-T                        |
+| CLONE-OCTET-VECTOR-LIST*     |
+| FOREIGN-VECTOR               |
+| OCTETS-TO-ALIEN-ARRAY        |
+| LOAD-ALIEN                   |
+| WRITE-ALIEN-UNSIGNED-BYTE-32 |
+| READ-ALIEN-DOUBLE-FLOAT      |
+| WRITE-ALIEN-SIGNED-BYTE-32   |
+| OFFSET-CHAR-POINTER          |
+| ALIEN-ARRAY                  |
+| DEFINE-ALIEN-ROUTINE         |
+| CLONE-OCTET-VECTOR-LIST      |
+| READ-ALIEN                   |
+| MAKE-ALIEN-STRING            |
+| READ-ALIEN-UNSIGNED-BYTE-32  |
+| UNPARSE-ALIEN-TYPE           |
+| INT                          |
+| *SHARED-OBJECTS*             |
+| PARSE-ALIEN-TYPE             |
+| WRITE-ALIEN-UNSIGNED-BYTE-64 |
+| COMPUTE-LISP-REP-TYPE        |
+| PID-T                        |
+| DEFINE-ALIEN-LOADER          |
+| UNSIGNED                     |
+| ALIEN-VALUE                  |
+| LOFF-T                       |
+| WRITE-ALIEN-FIXNUM           |
+| NATURALIZE                   |
+| READ-ALIEN-SIGNED-BYTE-32    |
+| PULL-SAP                     |
 | READ-ALIEN-FIXNUM            |
-| DEFAR                        |
+| FLOAT-ARRAY-POINTER          |
+| ALIEN-SIZE                   |
+| DEPORT-ALLOC                 |
+| OCTET-VECTOR-POINTER         |
+| SIGNED                       |
+| MEMCPY                       |
+| FOREIGN-INT-TO-BOOL          |
 | READ-ALIEN-SINGLE-FLOAT      |
+| *ALIEN-TYPE-CLASSES*         |
+| C-STRINGS-TO-STRING-LIST     |
+| PUSH-SAP*                    |
+| WITH-FOREIGN-OBJECT          |
+| SHARED-OBJECT-NAME           |
+| FREE                         |
+| SETFA                        |
 | WRITE-ALIEN-SIGNED-BYTE-64   |
 | WITH-FOREIGN-POINTER         |
-| FREE                         |
-| MEMCPY                       |
-| READ-ALIEN-SIGNED-BYTE-64    |
-| READ-ALIEN-UNSIGNED-BYTE-32  |
-| FOREIGN-INT-TO-INTEGER       |
-| *LINKAGE-INFO*               |
-| LOAD-ALIEN                   |
-| *CPUS*                       |
-| BOOL-TO-FOREIGN-INT          |
-| CLONE-OCTET-VECTOR-LIST      |
-| UNPARSE-ALIEN-TYPE           |
-| SAP-SVREF                    |
-| OCTET-VECTOR-POINTER         |
-| WRITE-ALIEN                  |
-| SAP-REF                      |
-| CLONE-OCTETS-TO-ALIEN        |
-| GID-T                        |
-| LOFF-T                       |
-| DEFINE-ALIEN-LOADER          |
-| POSIX-MEMALIGN               |
-| OCTETS-TO-ALIEN              |
-| WITH-VECTOR-SAP              |
-| DEFINE-ALIEN-ENUM            |
-| NUM-CPUS                     |
-| WRITE-ALIEN-DOUBLE-FLOAT     |
-| TIMESPEC                     |
-| DOUBLE-ARRAY-POINTER         |
-| FOREIGN-ALLOC                |
-| WRITE-ALIEN-UNSIGNED-BYTE-64 |
-| WITH-ALIEN-SLOTS             |
-| ALIEN-SIZE*                  |
-| CLONE-OCTETS-FROM-ALIEN      |
-| READ-ALIEN-SIGNED-BYTE-32    |
-| WRITE-ALIEN-SINGLE-FLOAT     |
-| OCTETS-TO-ALIEN-ARRAY        |
-| SETFA                        |
-| TIMEVAL                      |
-| ALIEN-TO-ELEMENT-TYPE        |
-| *SHARED-OBJECTS*             |
-| CLONE-INTEGER-LIST           |
-| ELEMENT-TYPE-TO-ALIEN        |
-| SYSTEM-AREA-POINTER          |
+| ALIEN-SAP                    |
 | ALIEN-OR-LISP-OCTETS         |
-| WRITE-ALIEN-SIGNED-BYTE-32   |
-| FOREIGN-INT-TO-BOOL          |
-| CLONE-OCTET-VECTOR-LIST*     |
-| READ-ALIEN                   |
-| LIST-ALL-SHARED-OBJECTS      |
-| PUSH-SAP*                    |
+| SLOT                         |
+| GID-T                        |
+| TIMESPEC                     |
+| %ALIEN-VALUE                 |
+| FREE-ALIEN                   |
+| DOUBLE-ARRAY-POINTER         |
 | MEMSET                       |
-| PUSH-SAP                     |
-| SAP-SET                      |
-| *ALIEN-LOAD-TABLE*           |
-| DEFINE-OPAQUE                |
-| LISP-FOR-C-SYMBOL            |
-| FOREIGN-VECTOR               |
-| FLOAT-ARRAY-POINTER          |
-| SHARED-OBJECT-NAME           |
-| OFFSET-CHAR-POINTER          |
-| PULL-SAP                     |
-| WRITE-ALIEN-UNSIGNED-BYTE-32 |
 | COPY-C-STRING                |
-| PULL-SAP*                    |
-| PID-T                        |
+| WITH-VECTOR-SAP              |
+| DEFAR                        |
+| SHORT                        |
+| READ-ALIEN-SIGNED-BYTE-64    |
+| EXTERN-ALIEN                 |
+| SAP-SET                      |
+| TIMEVAL                      |
+| WRITE-ALIEN                  |
+| LONG                         |
+| *LINKAGE-INFO*               |
+| CHAR                         |
+| SYSTEM-AREA-POINTER          |
+| WITH-ALIEN                   |
+| LIST-ALL-SHARED-OBJECTS      |
+| SAP-REF                      |
+| CAST                         |
 | WITH-FOREIGN-OBJECTS         |
-| SAP                          |
-| C-STRINGS-TO-STRING-LIST     |
-| READ-ALIEN-DOUBLE-FLOAT      |
-| WRITE-ALIEN-FIXNUM           |
+| POSIX-MEMALIGN               |
+| CLONE-OCTETS-FROM-ALIEN      |
+| FOREIGN-INT-TO-INTEGER       |
+| LISP-FOR-C-SYMBOL            |
+| ADDR                         |
+| WRITE-ALIEN-DOUBLE-FLOAT     |
+| PULL-SAP*                    |
+| *ALIEN-LOAD-TABLE*           |
+| PUSH-SAP                     |
+| *CPUS*                       |
+| DEFINE-ALIEN-VARIABLE        |
+| LONG-LONG                    |
+| OCTETS-TO-ALIEN              |
+| MAKE-ALIEN                   |
 | READ-ALIEN-UNSIGNED-BYTE-64  |
-| *ALIEN-TYPE-CLASSES*         |
+| ENUM                         |
+| VOID                         |
+| C-STRING                     |
+| SAP-SVREF                    |
+| DEFINE-OPAQUE                |
+| CLONE-INTEGER-LIST           |
+| SAP                          |
+| ALIEN-TO-ELEMENT-TYPE        |
 | CLONE-STRINGS                |
-| WITH-FOREIGN-OBJECT          |
-| FOREIGN-FREE                 |
-| UID-T                        |
+| CLONE-OCTETS-TO-ALIEN        |
+| UNION                        |
+| WRITE-ALIEN-SINGLE-FLOAT     |
 
 ** meta
 :PROPERTIES:
@@ -1758,7 +1798,6 @@ Standard macros are defined in =std/macs=.
 | ITER-VALID-P                  |
 | VECTOR-QUEUE                  |
 | STARTS-WITH-P                 |
-| ITER                          |
 | SPLIT-SEQUENCE                |
 | SEEK-TO-FIRST                 |
 | RAW-QUEUE                     |
@@ -2343,38 +2382,38 @@ tree formatter
 
 #+RESULTS:
 #+begin_example
-▀▄▄ ▄   ▀  ▀ ██▀▄█  █  ▀█ █  █▀█
-  ▄▀▀ ▄    ▄▀▄▀ ▄ █  ▀▀▄ ▄▀▄▀  ▄
-█▀█▄█   ▄▄▀ █  ▀▀ ▄ ▄▄█       █▀
-  ▀▄ ▄▄▀  ▄▄▀▄ ▀▀▄▀▀ ▄▀    ▄▄ █ 
- ▄▄▄  ▄▀█▄▀  ▄▄ ▄  ▄▀▄▀▀██▄▀ ▀ ▄
-▀▀ ▀  ▄ ▀   █▄▀  ▄█▀ █▀ ▄▄▀ ▄▄ ▀
- █▀ ▄▄    ▀ ▄ ▄█ █▀  █  ▀ ▄▄▀█ █
-     ▄▀▄ █▀▀▀▄▄    ▄      ▄▀▀  ▄
-    ▄▄▀  ▀▄   ▀ ▄▀ ██  ▀ ▄ ▀    
-▄ ▄██▄▄▄▀█ ▄  ▀ ▀ ▀▄▄  ▄▀█▄  ▀▄▀
-    ▄█▄▄▀   ▀▀▄▀▀ ▀█  ▄▄ ▄█ █▄▄ 
-▄ ▄▄▀      ▀▄ ▀▄▄ ▀ ▄      ▀ ▀  
- ▀     ▄█ ▄▄ ▄ ▀  ▄ ▄▄▄▀▀ █     
-▄▄▄ ▀█ ▀▀▄   ▄  ▄   █ █▀▄▄█▄ ▄█ 
-█▄   ▀ █ ▄█ ▀  ▀ ▀▄█  █ ▀▀▄█▄▀▄▄
-  ▄██▀▄  █ █    ▀▄▀  ▀▀ ▄ ▀▀▀  ▄
-██████▀████████████████▀▀ █▄█ █▀▄▄▀▄ ▀█▀▀█ ▀█▄ █ ▄ █▀▀▀  ▀█▀    ▄ █▄ ▄                 
-████████████▄██▀▀█ ███▄█▀▀█▀██▄▀▄█▄▀██▀███▀▀▄▀  █▀▀  ▄ ▀ ▄ ██ ▀▄           ▀ ▄  ▄      
-███████▄ █▀████▀█████▄██▀███▀▀█▀█▀▄██ ▀ █▄▄ ▀█ ▀▀█▄█▄▀   ▀ █▄▄ ▀▄▄▀  ▄ ▀     ▄  ▀      
-█████▀█▀██▀██▄███▄██▄ ██▀ ▀▄▄▄ ▀█▄ █▀▀█▀▀█▄█▀▄▀ ▀▀▀▄█   ▀▀ ▀          ▄▄   ▀           
-████▀▀██████▄████ ██████▀▄█▄▀█▄▄▀▄ ▀▀▀█ █▀▀▄█ █▀▄▀▀ █ █▀  █  ▀ ▀  ▀ ▀            ▄ ▄   
-█████████▄█▄██▄█▀█▄ ▀█████▄▀▀█▄▀▀▄▄██▄ █▄▀▄ ▀▄▀▄▄█▄▄▀▀ ▄█▀▄ ▄█▄  ▄        ▀  ▄         
-██████▄█████▄███▄█▄██▄▄█ ███▄██ ▄▄ ▄▄ ▄ █▀▄██ ▀ ▄▀▄▄▀█  ▀  █▀     ▀ ▀▀ ▄  ▀  ▀         
-██████▄████████▄██▀█████▄██ █▄▄▄▀█▀█▄▀▀ █  ▀█▄▀▄ ▀▄█▀ ▀▄  ▀  ▄ ▀▄ ▀      ▀▄▀  ▄        
-██████▀████▀█████████ ▀ █▄ ██▀▄▀█▀█▄ ▀▀  ▀▀ ▀▀ ▄██▄▄▄   ▄▄▄ ▀ ▄ █▀▀ ▀▄    ▄ ▄ ▄        
-██████▀███████▀▀█▄▀█████▀▀███▀██ █▀█▀▀▄▀  ▀ ▀   █ █▄ ▀  ▀ ▀▀   ▀  ▄  ▀ ▄   ▀           
-██▄██████████▀██████▄███▄▀▀▄██▀█▄▀ ▄ █▄█  █ ▀▀▀   ▄▀ ▀   ▄ ▄▀  ▀▀▄▄  ▀▄ ▄              
-█████████▀▀███▀ ██▄▀▀████▄▀█▀█▀▄█▀▀█▀█▀█▄█  ▀▄█ ▄▄█▄▄▄▄▄ ▀█▀▀▀▄ ▄▄▄    █▄▀ █    ▀▀     
-███████▀█▀█▀█████▀██ ▄ ▄ █▄▀▀▄▀▀█▄▀▀▄ ▄█▀█▀▄ ██ ▄ ▄▀▄▄  ▀▄▄ ▄██     █ ▄  ▀      ▀      
-█████████ ▀███▀███▀▀█████ █▄█████ ▄ ████ ▀▄ ▀▀▄▄▀  ▀       ▀ ▄ █▄    ▀▀   ▀            
-███▄██▀█▄██▄█▄█▀ █▀█▄  █▀▀██▀█ ███▄██ ▄▀▄▀▀▄▀▄▄█ ▀▄▄ ▀█  ▄ ▀    █   ▀█ ▀ ▀             
-████▀▀██▀████▄████ ▀█▀▄▄█▀▄█▄█▄▄▄▀▄█ █▄ █▄▀▀▀ ▄▄█ ▄▄ ▀▄▀    ▀▄ ▄▄ ▀   ▀  ▀▄    ▄       
+ ▀▄▀ ▀█ ▄▄ ▄ ▀▄▄ █ █▄▀▀█ ▄█▀  █ 
+█ ▄▄█ █▄  █▀ █▀ ██ ▀ ▄▀ ▀ ▀▀▀ ▄▀
+▀ ▀▄█ ▄▄▄▀▄▀▄   █▄█▀▄ ▄ ▀▄ ▀ ▀ ▄
+ ▄▀█▀ ▀▀  ▄ ▄▄▄▄ █ █ ▀  ▄▀  █▄▀█
+  ▄  ▄▄▄▀▀     ▄ ▀   ▄   ▄█   ▄▀
+▀▄▀██▄   ▀▄ ▀ ▄  ▀▀ ▄▀   ▄▄▀  ▄▄
+▄▀▀█ █  ▀    ██  █  ▀▄  ▄▄▀   ▀ 
+ ▀  ▀▀▀▄▄▄ ▄▄▀▀ ▄  ██ █ ▀▄   ▀▀▀
+   ▄  ▄ ▄▄  ▄▀█▀ ▀▀▀▀▄ ▄  █ ▄▄  
+█▀▀▀  ▄▀ ▄ █▄ ▀  ▄█▄▀▀       ▀▀ 
+▀ ▄ ▄  ▄▄▄ ▀▄█▀▀██ ▀  █▀▄▄ ▄▄█▄ 
+█▀▄▀ ▄▀▄▀ █ █ ▀  ▄  ▀  ▄▀▀▄ █   
+▀ ▄▀ ▀▄ █  ▄ ▀  ▄▀  ▀ ▀  ▄▀▀█▀█▄
+  ▀   ▄▀▄ ▀  ▀   █▄ ▄ ▄ ▀ ▄ █▀ ▄
+  ▀▀▀▄   ▄▀▀▀▀▄ ▀█▀  ▄   ▄ ▀▄  ▀
+█▄  █▄   ▄  ▄▀  ▀    ▄▄ ▀▀  ▄ █ 
+██████████▀▀▄▀ ██▄█▀▄▀ ███▄▄█████▀▄█▄█▄█▀  ▀█▄▀▄▀▀ ▀ ▄▀█    ▄█▀   █         ▄  ▄       
+██████████▄████████▄█▄▄█ ███▄▀▄█  ██ ██▀█ ▄▄█  ▀   ▄▄█  ▄▄██  ▄ ▄█▄  ▄▀       ▄▀       
+███████▀█████▀████▄██▄██▀▀█████▄ ▀████▀█▄▀▀▄▀▀▀██ ▄▀▀▄▄    ▄ █ ▄    ▀ ▀ ▀█▄      ▄ ▄   
+████████████▀▀█▄███▀█████▄ ▄█▀██▄█ █▄█▀ ▀▀█▀▀▄▄ █▀  ▀ ▀  ▀  ▄▄ ▀ ▄   ▀▀  ▀▄    ▀       
+███████▀███▀▄█▀▄████▄██▄▀██ █▄ ██▄██▀▄▄   █▄▀        ▄▀ ▄█▀     ▀   ▄  ▄ ▄ ▀▀ ▀        
+███▀████▀█▄█▄██████▄▄▀█▄████▄ ▄█▄█▄▀▄██▀▀██ ▄ ▀▄▄▄  ▀ ▀ ▀ ▀▄  ▀▄   ▄▀  ▄ ▀▄ ▀   ▄      
+█▄█▀██▄███▄███████▄▀█▄▀▄█▀▀▄▀▄█▄▄█ ██▀ ▄▄ ▄██ ▀▄ ▀▄▀▀▀ ▀   █     ▀    ▀ ▀ ▄     ▄      
+████████ █▀█▄███▄█▀▀▄██ ▀█▀▀█▄▄▄█▀▀█▄█▀█▀▀  ▄▄█▀▄▄ █▄█▄ ▄▀▀█    ▀       ▀   ▀   ▀      
+███▀████▀████▀▄██▄███ ▄██▄▀▀ █▄▄██▄ ▀▄█▀▄▀ ███▄▄█▄▀ ▀█ ▀▄▀ █   ▄▄▄        ▀            
+██████████████▀▀▀███▀▄▀██▄█▀██▀█ ▄██▀█▄ █▄█▄ ▀  ▄▄ ██▀▄█  ▀▄ ▀  ▀   ▀▀▄    ▀           
+█████▀██████▀████▀▄▀█▀▀▀█▀██▀ ▄█▄▀██▄█▀▄█ █▀▄▄  ▄▄  █▄█▀█▀ ▄ ▄▄ ▄   ▀  ▄    ▀          
+███████▄█▀█▀████▄▀██▀▄██▄▄▀ ██▀▀██▄ █▄▀ ▀▄█ █▀  ██▄   ▄▀▄▄▀     ▄     ▀▄▀▄ ▄ ▄▄    ▄   
+███████████▀█████▄█▀ ███▄█▄ ▀ █ ▄▀█ ▀█▀█ █▄█▀████▀▀▄ ▀  █▀▀▄▄  ▀▄▀    ▄▄▄ ▀▀▄      ▀   
+████▄████▀████▀▄▀██▄█▀█▄██▀ ██ ███▀▀▀█ ▀ ▄██▄▀  █▀▄  ▀▀  ▀▄    ▀  ▄▄  ▀    █   █       
+██████████▄█████▄███▀▄▀ █ ▄████▀▀██▄█▀██ █ ▄  ▄ █▀█▄▀▀      ▄▀ ▀ ▄   ▄▄▀ ▄   ▀▀▄ ▀     
+██████████▄███▀▄▀█▀█ █▀█▄██▄███ ███▄▀▀█▀▄▄▄▀ █  ▀  ▀█▀█ ▀▀▀  ▄▄  █▄   ▀  ▄  ▄          
 █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
 █                                                              █
 █                                                              █
@@ -2797,6 +2836,7 @@ ascii art
 | LIST-ALL-MODULES    |
 | *DEFINING-SYSTEM*   |
 | DEFPROVIDER         |
+| FIND-MODULE         |
 | LOAD-SYSTEM         |
 | WITH-SYSTEM-SESSION |
 | *MODULE-TABLE*      |
