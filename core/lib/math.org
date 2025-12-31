@@ -7,12 +7,15 @@
   #+CALL: lisp-system-packages[:post transpose]("math")
 
   #+RESULTS:
+  | MATH/SYN   |
   | MATH/AUTO  |
   | MATH/TESTS |
+  | MATH/BLAS  |
   | MATH-INT   |
   | MATH/PROTO |
   | MATH/UTIL  |
   | MATH/SFC   |
+  | MATH-USER  |
   | MATH       |
 
 - dependencies
@@ -23,6 +26,7 @@
   | obj  |
   | blas |
   | cuda |
+  | syn  |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("math")
@@ -39,11 +43,19 @@
   | pkg.lisp       |
   | var.lisp       |
   | proto.lisp     |
-  | prim.lisp      |
   | util.lisp      |
   | sfc.lisp       |
   | auto.lisp      |
+  | blas/axpy.lisp |
+  | blas/sum.lisp  |
+  | blas/gem.lisp  |
+  | blas/ger.lisp  |
+  | blas/trs.lisp  |
+  | lapack/lu.lisp |
+  | linfix.lisp    |
+  | syn.lisp       |
   | readtable.lisp |
+  | math.lisp      |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("math")
@@ -55,12 +67,20 @@
   #+CALL: lisp-package-symbols[:post transpose]("MATH")
 
   #+RESULTS:
+  | BLASFUNC          |
+  | LIFE              |
+  | TENSOR-SUM        |
+  | MEAN              |
+  | AXPY              |
+  | PROD              |
+  | MATH-ERROR        |
+  | ^                 |
+  | HILBERT-CURVE     |
+  | HILBERT-LIST      |
+  | LAPACKFUNC        |
   | MATH-WARNING      |
   | *RULE-PATTERNS*   |
-  | LIFE              |
+  | *LINFIX-PARSER*   |
   | CELLULAR-AUTOMATA |
-  | HILBERT-LIST      |
-  | HILBERT-CURVE     |
-  | MATH-ERROR        |
 
 #+END

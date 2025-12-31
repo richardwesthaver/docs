@@ -83,21 +83,12 @@ guide]] and further enriched or optimized based on our own expectations.
   #+RESULTS:
   | jpeg/tests      |
   | jpeg            |
-  | matroska/tests  |
-  | matroska        |
   | arrow/tests     |
   | arrow           |
-  | ublk            |
   | ssh2            |
   | skel            |
   | vc/tests        |
   | vc              |
-  | wasmer          |
-  | tree-sitter     |
-  | syn             |
-  | web/dash        |
-  | web/index       |
-  | web             |
   | box             |
   | pod             |
   | ffmpeg/tests    |
@@ -109,6 +100,8 @@ guide]] and further enriched or optimized based on our own expectations.
   | glib            |
   | gstreamer/tests |
   | gstreamer       |
+  | tree-sitter     |
+  | syn             |
   | cuda            |
   | blas            |
   | math            |
@@ -172,8 +165,6 @@ guide]] and further enriched or optimized based on our own expectations.
   | readtable.lisp        |
   | macs/ana.lisp         |
   | macs/pan.lisp         |
-  | macs/collecting.lisp  |
-  | macs/loop.lisp        |
   | macs/control.lisp     |
   | macs/sugar.lisp       |
   | macs/unit.lisp        |
@@ -922,6 +913,7 @@ them.
 | HASH-TABLE-PLIST        |
 | PLIST-STRING-HASH-TABLE |
 | HASHSET-COUNT           |
+| HASH-TABLE-LIST         |
 | MAPHASH-KEYS            |
 | POPHASH                 |
 | HASH-OBJECT             |
@@ -997,7 +989,6 @@ Standard macros are defined in =std/macs=.
 | DEFWITH                 |
 | COMPILE-AND-EVAL        |
 | ALET                    |
-| UNTIL                   |
 | DOLLAR-SYMBOL-P         |
 | IFRET                   |
 | PANDORICLET             |
@@ -1010,9 +1001,9 @@ Standard macros are defined in =std/macs=.
 | MEMOIZING               |
 | PLAMBDA                 |
 | DEFITYPED               |
-| NESTED-LOOP             |
+| UNTIL                   |
 | XOR                     |
-| LOOP-KERNEL             |
+| NESTED-LOOP             |
 | LOOP-STANDARD-EXPANSION |
 | THIS                    |
 | *LOOP-ANSI-UNIVERSE*    |
@@ -1106,6 +1097,7 @@ Standard macros are defined in =std/macs=.
 | *FASL-FILE-TYPE*                 |
 | LEXENV-USER-DATA                 |
 | REVIVE-IMAGE                     |
+| *LOGICAL-HOSTS*                  |
 | READ-ONLY-SPACE-OBJ-P            |
 | LEXENV-FIND                      |
 | SHOW-FINALIZERS                  |
@@ -1142,7 +1134,7 @@ Standard macros are defined in =std/macs=.
 | DUMP-ARENA-OBJECTS               |
 | *BACKEND-PRIMITIVE-TYPE-NAMES*   |
 | FORGET-SHARED-OBJECT             |
-| ENCLOSE                          |
+| CURRENT-LISP-IMPLEMENTATION      |
 | FUN-SIGNATURE=                   |
 | LITTLE-ENDIAN-P                  |
 | OPEN-FASL-OUTPUT                 |
@@ -1193,14 +1185,13 @@ Standard macros are defined in =std/macs=.
 | LOWTAG-LIMIT                     |
 | MAYBE-INLINE                     |
 | +WIDETAGS+                       |
-| *LOGICAL-HOSTS*                  |
+| LIST-ALL-LOGICAL-HOST-NAMES      |
 | MAP-IMMOBILE-OBJECTS             |
 | MAKE-NULL-LEXENV                 |
-| *BACKEND-BYTE-ORDER*             |
 | *ARENA-EXHAUSTION-HANDLER*       |
 | CPU-VENDOR                       |
 | N-FIXNUM-TAG-BITS                |
-| SBCL-HOOKS                       |
+| ENCLOSE                          |
 | N-LOWTAG-BITS                    |
 | VARIABLE-INFORMATION             |
 | MOST-POSITIVE-WORD               |
@@ -1209,17 +1200,17 @@ Standard macros are defined in =std/macs=.
 | +LOWTAGS+                        |
 | PRIMITIVE-TYPE                   |
 | DEFINE-DECLARATION               |
-| SHOW-CTYPE-CTOR-CACHE-METRICS    |
+| SBCL-HOOKS                       |
 | *BACKEND-TYPE-PREDICATES*        |
 | N-FIXNUM-BITS                    |
 | WIDETAG-MASK                     |
 | N-MACHINE-WORD-BYTES             |
 | FUNCTION-INFORMATION             |
 | FORGET-SHARED-OBJECTS            |
-| LOGICAL-HOST-NAMES               |
+| SHOW-CTYPE-CTOR-CACHE-METRICS    |
 | INT-SAP                          |
 | CHECK-FASL-HEADER                |
-| CURRENT-LISP-IMPLEMENTATION      |
+| *BACKEND-BYTE-ORDER*             |
 | ARENA-LENGTH                     |
 | COMPILER-LET                     |
 | GET-EXTERNAL-FORMAT              |
@@ -1392,29 +1383,29 @@ Standard macros are defined in =std/macs=.
 #+RESULTS:
 #+begin_example
 (#<STANDARD-METHOD STD/SERDE:SERIALIZE (JPEG:JPEG-COMPRESSOR
-                                        (EQL :JPEG)) {121C59A5A3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (STRING (EQL :QRCODE)) {120B0956C3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (INTEGER (EQL :BASE64)) {120D860C13}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (VECTOR (EQL :BASE64)) {120D857BB3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (STRING (EQL :BASE64)) {120D856EB3}>
+                                        (EQL :JPEG)) {1204CB9593}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (POD:CONTAINERFILE
+                                        (EQL :BYTES)) {12046BA223}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (POD:CONTAINERFILE
+                                        (EQL :STRING)) {12046BA183}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
+                                        (EQL :JSON)) {1208B22263}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
+                                        (EQL :DOT)) {1208B21343}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {1208B212A3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (TLV (EQL :STRING)) {1208339E93}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (TLV (EQL :BYTES)) {1208339D93}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (STRING (EQL :QRCODE)) {1203BE21F3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (INTEGER (EQL :BASE64)) {1203809B93}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (VECTOR (EQL :BASE64)) {1203809AF3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (STRING (EQL :BASE64)) {1203809A53}>
  #<STANDARD-METHOD STD/SERDE:SERIALIZE (DAT/TOML:TOML-TABLE
-                                        (EQL :TOML)) {1210686993}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (DAT/HTML::NODE T) {120C9F8743}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (T (EQL :XML)) {120A403003}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (T (EQL :JSON)) {120C3ED933}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (VECTOR (EQL :CSV)) {120AEA6103}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (GRAPH (EQL :DOT)) {1215F520D3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (POD:CONTAINERFILE
-                                        (EQL :BYTES)) {121179D963}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (POD:CONTAINERFILE
-                                        (EQL :STRING)) {121179D8C3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                        (EQL :JSON)) {120F79AF53}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                        (EQL :DOT)) {120F799AF3}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {120F799A53}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (TLV (EQL :STRING)) {120F79D523}>
- #<STANDARD-METHOD STD/SERDE:SERIALIZE (TLV (EQL :BYTES)) {120F79D303}>)
+                                        (EQL :TOML)) {1205F814E3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (DAT/HTML::NODE T) {1207E6DEA3}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (T (EQL :XML)) {1207D3B763}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (T (EQL :JSON)) {1203D2E633}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (VECTOR (EQL :CSV)) {1203CA4933}>
+ #<STANDARD-METHOD STD/SERDE:SERIALIZE (GRAPH (EQL :DOT)) {1203A50993}>)
 #+end_example
 
 #+begin_src lisp
@@ -1423,52 +1414,52 @@ Standard macros are defined in =std/macs=.
 
 #+RESULTS:
 #+begin_example
-(#<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :JPEG)) {121C59A093}>
+(#<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :JPEG)) {1204CB8F83}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (JPEG:JPEG-DECOMPRESSOR
-                                          (EQL :JPEG)) {121C598BF3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :BASE64)) {120D861F63}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :BASE64)) {120D861173}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :BIB)) {1216241A83}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :BIB)) {1216240BC3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :BIB)) {1216240693}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :TOML)) {12106A13F3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :TOML)) {12106A0813}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :TOML)) {1210687C83}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {12099E3A43}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :INI)) {12098DA533}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :INI)) {12098D8453}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :INI)) {12098C7793}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :HTML)) {120C9F86A3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :XML)) {120A402F63}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :XML)) {120A402EC3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :XML)) {120A402E23}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :JSON-SCHEMA)) {120C4B8903}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (DAT/JSON:JSON-OBJECT
-                                          (EQL :JSON-SCHEMA)) {120C4B8863}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :JSON)) {120C3ED7E3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :JSON)) {12239424E3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :JSON)) {1223940553}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :CSV)) {120AEA62E3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :CSV)) {120AEA6243}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :CSV)) {120AEA61A3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :DOT)) {1215F52F13}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :ASN1)) {121009D333}>
+                                          (EQL :JPEG)) {1204A97C43}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
-                                          (EQL :PKGBUILD)) {1213C48CD3}>
+                                          (EQL :PKGBUILD)) {1203C9D3E3}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
-                                          (EQL :CONTAINERFILE)) {121179D7E3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :OPENAPI)) {120FCDD773}>
+                                          (EQL :CONTAINERFILE)) {12046BA0B3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :OPENAPI)) {12019BB4F3}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (DAT/JSON:JSON-OBJECT
-                                          (EQL :OPENAPI)) {120FCDD6D3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :TLV)) {120F79D663}>
+                                          (EQL :OPENAPI)) {12019BB423}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :TLV)) {120833A083}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (SIMPLE-ARRAY
-                                          (EQL :TLV)) {120F79D5C3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :AUTHINFO)) {120D167963}>
+                                          (EQL :TLV)) {1208339F83}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :AUTHINFO)) {12038F4893}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
-                                          (EQL :AUTHINFO)) {120D1678C3}>
+                                          (EQL :AUTHINFO)) {12038F47C3}>
  #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME
-                                          (EQL :SYSTEMD-UNIT)) {120CC547F3}>
- #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {120D356B93}>)
+                                          (EQL :SYSTEMD-UNIT)) {1203D2B753}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {1207C9A9C3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :BASE64)) {1203809CD3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :BASE64)) {1203809C33}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :BIB)) {12043B5303}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :BIB)) {12043B5263}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :BIB)) {12043B5193}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :TOML)) {1205F81753}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :TOML)) {1205F816B3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :TOML)) {1205F81613}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {120378D133}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :INI)) {120378C0B3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :INI)) {120378C013}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :INI)) {120378BF43}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :HTML)) {1207E6DDD3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :XML)) {1207D3B6C3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :XML)) {1207D3B623}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :XML)) {1207D3B583}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :JSON-SCHEMA)) {1203D38393}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (DAT/JSON:JSON-OBJECT
+                                          (EQL :JSON-SCHEMA)) {1203D382C3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STREAM (EQL :JSON)) {1203D2E563}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :JSON)) {1203D2E4C3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :JSON)) {1203D2DF33}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :CSV)) {1203CA4B13}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :CSV)) {1203CA4A73}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (PATHNAME (EQL :CSV)) {1203CA49D3}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (STRING (EQL :DOT)) {1203A50A93}>
+ #<STANDARD-METHOD STD/SERDE:DESERIALIZE (T (EQL :ASN1)) {12039900A3}>)
 #+end_example
 
 ** alien
@@ -1798,6 +1789,7 @@ Standard macros are defined in =std/macs=.
 | ITER-VALID-P                  |
 | VECTOR-QUEUE                  |
 | STARTS-WITH-P                 |
+| ITER                          |
 | SPLIT-SEQUENCE                |
 | SEEK-TO-FIRST                 |
 | RAW-QUEUE                     |
@@ -1905,11 +1897,11 @@ Standard macros are defined in =std/macs=.
 | *WORKER-RESTARTS*             |
 | FIND-THREAD-POOL              |
 | SEMAPHORE                     |
-| TIMED-JOIN-THREAD             |
+| PRINTLN-TOP-LEVEL             |
 | WITH-SPINLOCK                 |
 | *SUPER-THREADS*               |
 | FIND-WORK                     |
-| *THREAD-POOL-TABLE*           |
+| TIMED-JOIN-THREAD             |
 | THREAD-PIPE                   |
 | WORKER-MESSAGE                |
 | THREAD-ID-LIST                |
@@ -1924,10 +1916,9 @@ Standard macros are defined in =std/macs=.
 | *WORKER-CLASS*                |
 | POP-WORKER                    |
 | JOIN-THREAD-ERROR             |
-| SEMAPHORE-NOTIFICATION-STATUS |
+| THREAD-DEADLOCK               |
 | DO-WORKERS                    |
 | UNWRAP-RESULT                 |
-| WORKER-COUNT                  |
 | INTERRUPT-THREAD              |
 | *DEFAULT-SPINT-COUNT*         |
 | WORKER-COUNT*                 |
@@ -1988,7 +1979,7 @@ Standard macros are defined in =std/macs=.
 | WORKER-KERNEL-FUNCTION        |
 | START-WORKERS*                |
 | MAKE-WORKER                   |
-| SPINLOCK                      |
+| WORKER-COUNT                  |
 | THREAD-ALIVE-P                |
 | RELEASE-SPINLOCK              |
 | GRAB-MUTEX                    |
@@ -2004,13 +1995,13 @@ Standard macros are defined in =std/macs=.
 | FOREIGN-THREAD                |
 | SYMBOL-VALUE-IN-THREAD        |
 | WITH-DEFAULT-SPECIAL-BINDINGS |
-| PRINTLN-TOP-LEVEL             |
+| SPINLOCK                      |
 | MAKE-CHANNEL                  |
 | CONDITION-WAIT                |
 | +WORK-TAG+                    |
 | CONDITION-WAIT*               |
 | RWLOCK-WRLOCK                 |
-| WORKER-INDEX*                 |
+| SEMAPHORE-NOTIFICATION-STATUS |
 | SUBMIT-WORK                   |
 | SYMBOL-VALUE-IN-THREAD-ERROR  |
 | SEMAPHORE-COUNT               |
@@ -2034,7 +2025,7 @@ Standard macros are defined in =std/macs=.
 | JOIN-WORKER                   |
 | TERMINATE-THREAD              |
 | SCOPE                         |
-| CONDITION-NOTIFY              |
+| WORKER-INDEX*                 |
 | WORK                          |
 | PRINT-TOP-LEVEL               |
 | THREAD-OS-TID                 |
@@ -2045,12 +2036,12 @@ Standard macros are defined in =std/macs=.
 | JOIN-THREAD                   |
 | *INTERRUPT-HANDLER*           |
 | WORKER                        |
-| WORKER-INDEX                  |
+| CONDITION-NOTIFY              |
 | START-WORKERS                 |
 | INTERRUPT-THREAD-ERROR        |
 | SYNC-MESSAGE                  |
 | BROADCAST-WORK                |
-| THREAD-DEADLOCK               |
+| *THREAD-POOL-TABLE*           |
 | WORKER-THREAD                 |
 | WORKERS                       |
 | +STANDARD-IO-BINDINGS+        |
@@ -2130,55 +2121,6 @@ Standard macros are defined in =std/macs=.
 ** async
 :PROPERTIES:
 :ID:       4eb79c5a-bf3a-41a4-998f-0e573ff21d1d
-:CREATED:  <2025-07-05 Sat 00:42>
-:END:
-
-#+CALL: lisp-package-symbols[:post transpose]("STD/ASYNC")
-
-#+RESULTS:
-| PMAPL             |
-| WHILE-WAITING-FOR |
-| *DEFPUNS*         |
-| PNOTEVERY         |
-| PCOUNT            |
-| PMAPLIST-INTO     |
-| DEFPUN            |
-| POR               |
-| PMAPCAR           |
-| PMAP              |
-| PMAPCON           |
-| PREDUCE-PARTIAL   |
-| PMAPLIST          |
-| PMAP-REDUCE       |
-| PEVERY            |
-| DECLAIM-DEFPUN    |
-| PSOME             |
-| SPECULATE         |
-| PFIND-IF          |
-| FULFILLEDP        |
-| PREDUCE           |
-| PMAP-INTO         |
-| PCOUNT-IF         |
-| PLET-IF           |
-| FUTURE            |
-| PMAPC             |
-| PDOTIMES          |
-| AWAIT             |
-| PFIND             |
-| PCOUNT-IF-NOT     |
-| PMAPCAN           |
-| PFIND-IF-NOT      |
-| PROMISE           |
-| PLET              |
-| FUTURE-KERNEL     |
-| DEFPTYPED         |
-| PNOTANY           |
-| PAND              |
-| FULFILL           |
-
-** async
-:PROPERTIES:
-:ID:       647cf7b9-b9b4-441f-ae78-08e9ce4d75bb
 :CREATED:  <2025-07-05 Sat 00:42>
 :END:
 
@@ -2382,38 +2324,38 @@ tree formatter
 
 #+RESULTS:
 #+begin_example
- ▀▄▀ ▀█ ▄▄ ▄ ▀▄▄ █ █▄▀▀█ ▄█▀  █ 
-█ ▄▄█ █▄  █▀ █▀ ██ ▀ ▄▀ ▀ ▀▀▀ ▄▀
-▀ ▀▄█ ▄▄▄▀▄▀▄   █▄█▀▄ ▄ ▀▄ ▀ ▀ ▄
- ▄▀█▀ ▀▀  ▄ ▄▄▄▄ █ █ ▀  ▄▀  █▄▀█
-  ▄  ▄▄▄▀▀     ▄ ▀   ▄   ▄█   ▄▀
-▀▄▀██▄   ▀▄ ▀ ▄  ▀▀ ▄▀   ▄▄▀  ▄▄
-▄▀▀█ █  ▀    ██  █  ▀▄  ▄▄▀   ▀ 
- ▀  ▀▀▀▄▄▄ ▄▄▀▀ ▄  ██ █ ▀▄   ▀▀▀
-   ▄  ▄ ▄▄  ▄▀█▀ ▀▀▀▀▄ ▄  █ ▄▄  
-█▀▀▀  ▄▀ ▄ █▄ ▀  ▄█▄▀▀       ▀▀ 
-▀ ▄ ▄  ▄▄▄ ▀▄█▀▀██ ▀  █▀▄▄ ▄▄█▄ 
-█▀▄▀ ▄▀▄▀ █ █ ▀  ▄  ▀  ▄▀▀▄ █   
-▀ ▄▀ ▀▄ █  ▄ ▀  ▄▀  ▀ ▀  ▄▀▀█▀█▄
-  ▀   ▄▀▄ ▀  ▀   █▄ ▄ ▄ ▀ ▄ █▀ ▄
-  ▀▀▀▄   ▄▀▀▀▀▄ ▀█▀  ▄   ▄ ▀▄  ▀
-█▄  █▄   ▄  ▄▀  ▀    ▄▄ ▀▀  ▄ █ 
-██████████▀▀▄▀ ██▄█▀▄▀ ███▄▄█████▀▄█▄█▄█▀  ▀█▄▀▄▀▀ ▀ ▄▀█    ▄█▀   █         ▄  ▄       
-██████████▄████████▄█▄▄█ ███▄▀▄█  ██ ██▀█ ▄▄█  ▀   ▄▄█  ▄▄██  ▄ ▄█▄  ▄▀       ▄▀       
-███████▀█████▀████▄██▄██▀▀█████▄ ▀████▀█▄▀▀▄▀▀▀██ ▄▀▀▄▄    ▄ █ ▄    ▀ ▀ ▀█▄      ▄ ▄   
-████████████▀▀█▄███▀█████▄ ▄█▀██▄█ █▄█▀ ▀▀█▀▀▄▄ █▀  ▀ ▀  ▀  ▄▄ ▀ ▄   ▀▀  ▀▄    ▀       
-███████▀███▀▄█▀▄████▄██▄▀██ █▄ ██▄██▀▄▄   █▄▀        ▄▀ ▄█▀     ▀   ▄  ▄ ▄ ▀▀ ▀        
-███▀████▀█▄█▄██████▄▄▀█▄████▄ ▄█▄█▄▀▄██▀▀██ ▄ ▀▄▄▄  ▀ ▀ ▀ ▀▄  ▀▄   ▄▀  ▄ ▀▄ ▀   ▄      
-█▄█▀██▄███▄███████▄▀█▄▀▄█▀▀▄▀▄█▄▄█ ██▀ ▄▄ ▄██ ▀▄ ▀▄▀▀▀ ▀   █     ▀    ▀ ▀ ▄     ▄      
-████████ █▀█▄███▄█▀▀▄██ ▀█▀▀█▄▄▄█▀▀█▄█▀█▀▀  ▄▄█▀▄▄ █▄█▄ ▄▀▀█    ▀       ▀   ▀   ▀      
-███▀████▀████▀▄██▄███ ▄██▄▀▀ █▄▄██▄ ▀▄█▀▄▀ ███▄▄█▄▀ ▀█ ▀▄▀ █   ▄▄▄        ▀            
-██████████████▀▀▀███▀▄▀██▄█▀██▀█ ▄██▀█▄ █▄█▄ ▀  ▄▄ ██▀▄█  ▀▄ ▀  ▀   ▀▀▄    ▀           
-█████▀██████▀████▀▄▀█▀▀▀█▀██▀ ▄█▄▀██▄█▀▄█ █▀▄▄  ▄▄  █▄█▀█▀ ▄ ▄▄ ▄   ▀  ▄    ▀          
-███████▄█▀█▀████▄▀██▀▄██▄▄▀ ██▀▀██▄ █▄▀ ▀▄█ █▀  ██▄   ▄▀▄▄▀     ▄     ▀▄▀▄ ▄ ▄▄    ▄   
-███████████▀█████▄█▀ ███▄█▄ ▀ █ ▄▀█ ▀█▀█ █▄█▀████▀▀▄ ▀  █▀▀▄▄  ▀▄▀    ▄▄▄ ▀▀▄      ▀   
-████▄████▀████▀▄▀██▄█▀█▄██▀ ██ ███▀▀▀█ ▀ ▄██▄▀  █▀▄  ▀▀  ▀▄    ▀  ▄▄  ▀    █   █       
-██████████▄█████▄███▀▄▀ █ ▄████▀▀██▄█▀██ █ ▄  ▄ █▀█▄▀▀      ▄▀ ▀ ▄   ▄▄▀ ▄   ▀▀▄ ▀     
-██████████▄███▀▄▀█▀█ █▀█▄██▄███ ███▄▀▀█▀▄▄▄▀ █  ▀  ▀█▀█ ▀▀▀  ▄▄  █▄   ▀  ▄  ▄          
+█▄█   ▄▄▀ █  ▀▀ ▄ ▄▄█       █▀▀ 
+▀▄ ▄▄▀  ▄▄▀▄ ▀▀▄▀▀ ▄▀    ▄▄ █   
+▄▄  ▄▀█▄▀  ▄▄ ▄  ▄▀▄▀▀██▄▀ ▀ ▄▄█
+ ▀  ▄ ▀   █▄▀  ▄█▀ █▀ ▄▄▀ ▄▄ ▀ ▄
+▀ ▄▄    ▀ ▄ ▄█ █▀  █  ▀ ▄▄▀█ █ ▀
+   ▄▀▄ █▀▀▀▄▄    ▄      ▄▀▀  ▄  
+  ▄▄▀  ▀▄   ▀ ▄▀ ██  ▀ ▄ ▀      
+▄██▄▄▄▀█ ▄  ▀ ▀ ▀▄▄  ▄▀█▄  ▀▄▀▀ 
+  ▄█▄▄▀   ▀▀▄▀▀ ▀█  ▄▄ ▄█ █▄▄   
+▄▄▀      ▀▄ ▀▄▄ ▀ ▄      ▀ ▀  ▀▄
+     ▄█ ▄▄ ▄ ▀  ▄ ▄▄▄▀▀ █       
+▄ ▀█ ▀▀▄   ▄  ▄   █ █▀▄▄█▄ ▄█ █▀
+   ▀ █ ▄█ ▀  ▀ ▀▄█  █ ▀▀▄█▄▀▄▄▀▀
+▄██▀▄  █ █    ▀▄▀  ▀▀ ▄ ▀▀▀  ▄ ▄
+ ▀█▀ ▄▄ ▀▄▀ ▀▄        ▀ ▄  ▄ ▀ ▀
+ ▀ ▀█ ▄▀▄█  ▄▄▀▄ ▀  ▀  ▀▀ ▄▄█   
+███████▄███████▄██▄████▄▄██▄▀█ ▀▄█▄█ █ ▄▄ ▀▄▄ ▄▄▀ ▀▀ █▀   ▄▄ ▄▄      ▄    ▄   ▄        
+███████████▄███▄██▀████▀█▀ ▀█▄▀██▄▄█▀█▀ ████▀ ▄█  ▄    ▄ █ ▄ ▀  █      ▀▀     ▄        
+█████████▀█▀▀██▄█ ████▄▄██▀▄▄▀█▀▄██▀█ █ ▄▄▄█▀▀ ▀▀▀  ▀▀▀    ▄ ▀  ▄ ▄    ▀       ▄       
+██████████▄███▀ ██▀█▄▄█ ███▀▄█▄▄ █▄██▄▄▄  █  ▄ ▄ ▄▄ █ ▀▀▀   ▄▄  ▄ ▄ ██ █▄              
+███▀██████▀██████▀ ████▄▀█▀▀███ ▀▄ ▄█▄▀ ▄▄█▄ █ ▄▀█▄  ▀   ▀▄▀  ▀▀ █ ▀█▄                 
+██████▀█▀███▀███▄▀▀██▀ ▀████▄▀▄█▀██▀█▄▀▀█ █▄█▀▀▄▄▀▄██▄ ▄  ▄ ▄█▄▀  ▄                    
+████████▄██▀███▄██▄█▀██▄█▄▀██ ▄ ▀▄▀██▀█   █▀█▄ ▄▀ ▄    █▄▄▀▄          ▄            ▄   
+█████▀███▀██████▄█▄▀█▄▄ ██▄ ██ █▄▄▀▀ █ ▀  ▄ ▄██ █▄▄▄▄▀    ▀█▄ ▀   ▀▀ ▄▄ █ ▄      ▀ ▀   
+█████████████▄████████ █  █▀▄ ▄████▀█▄  █▀█▄  ▀▄▀▀▀  █▄  ▄▀▄█ ▀ ▀▄▀▄  ▄▄▄          ▀▄  
+██▄█████████████▄█ ▀▀█▀██▄▄ █▄▄ ▀▄▀█ █ ▄  ▄▀▄▀▄▄▄ ▀  ▄ ▀           ▄▀▀      █          
+█████████▀███████▄▄█▄███▄▄▀▀▄ ▄  ▄█▄ ▄▀  █▄█▄▄▀  ▀▀  ▀▀▄▀▄▄█ ▄  ███▄▀▄ ▄           ▀   
+██████▀▀██▄█▄████▄▄█ ▀▄████▀ ██▀▀▀██▀▀▀▀█▄▀ ▄▄█▄▀█▀▄▄ █▀▀▄▄█    ▄    ▀    ▄            
+███████████▄███▄█▀█ ████▄█▄█▄█▀▄█ ▀▄▀▀ ▀ █▀█▀▀▀█▀▀█ ▀▄█ ▄ █    ▄   ▀  ▀      ▀         
+███▄██▀██▄████████▀▄█▀▀█▀▄█▀▄ ▀█▄▄▀  ▄███  ▄ ▀ ▀█ ▀ ▄▄ ▄▄▄      ▄ ▀▄    ▄              
+██████▄█▄███████▀███▀▄▀ █▀▄█▄▀███ ▀▀█▄▀▄█▀▄ ▄ ▀▄▀▀▄ ▀▀▄ ▀▄   ▄   █ ▀▄▀▄      ▀     ▀   
+█████████▄▀████▀█ ████████▄▄▄▄▀▀▀█▀█ ▀▀  █ ▄ █▀█▀ ▀▄▄  ▄▄█▀  ▄ █▀  ▀ ▀  ▄ █▀      ▀    
 █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
 █                                                              █
 █                                                              █
@@ -2886,3 +2828,28 @@ host Lisp compiler. System definitions (=SYS:DEFSYS= forms) may be
 compiled to a FASL just like any other lisp file. Typically the file
 type is changed to =".fsys"= to distinguish them from standard lisp
 fasls - see the =SYS:COMPILE-SYS= function for details.
+
+*** ASDF Compatibility
+:PROPERTIES:
+:ID:       5dfc7fea-c82d-4c46-8b38-26f244cc24f4
+:CREATED:  <2025-12-10 Wed 20:42>
+:END:
+all =SYS:COMPONENT= classes have relevant =CHANGE-CLASS= methods
+defined for their relevant ASDF counterparts so that you can translate
+between the two when needed, but in general this is not needed.
+
+Many SYS methods accept an ASDF keyword which defaults to the value of
+=*ASDF-COMPATIBILITY*=. When Non-nil, 
+
+#+call: describe-lisp-symbol('*asdf-compatibility*)
+
+#+RESULTS:
+: STD/DEFSYS:*ASDF-COMPATIBILITY*
+:   [symbol]
+: 
+: *ASDF-COMPATIBILITY* names a special variable:
+:   Value: NIL
+:   Documentation:
+:     When non-nil, enable compatibility between STD/DEFSYS and SYSTTEM - component
+:     operations will use ASDF and DEFSYS will first pass all argument to
+:     ASDF:DEFSYSTEM.

@@ -15,7 +15,6 @@ This doc is about the [[https://en.wikipedia.org/wiki/Foreign_function_interface
   | btrfs       |
   | alsa        |
   | jack        |
-  | matroska    |
   | cuda        |
   | evdev       |
   | glib        |
@@ -25,7 +24,6 @@ This doc is about the [[https://en.wikipedia.org/wiki/Foreign_function_interface
   | sndfile     |
   | ssh2        |
   | tree-sitter |
-  | ublk        |
   | uring       |
   | xkb         |
   | zstd        |
@@ -575,7 +573,6 @@ https://man.archlinux.org/man/io_uring.7.en
 
   #+RESULTS:
   | ffi         |
-  | ublk        |
   | uring/tests |
   | io/tests    |
   | io          |
@@ -2398,183 +2395,6 @@ implementation (libblake3).
   | AV-GET-OUTPUT-TIMESTAMP          |
   | LOAD-AVCODEC                     |
   | AV-MAKE-ERROR-STRING             |
-
-#+END
-** ublk
-:PROPERTIES:
-:ID:       df572895-fa1e-4e0a-8df7-0e1eaf917192
-:CREATED:  <2025-07-05 Sat 17:20>
-:END:
-#+BEGIN: lisp-system-info :system ublk
-- packages
-  #+CALL: lisp-system-packages[:post transpose]("ublk")
-
-  #+RESULTS:
-  | UBLK/TESTS |
-  | UBLK       |
-
-- dependencies
-  #+CALL: lisp-system-dependencies[:post transpose]("ublk")
-
-  #+RESULTS:
-  | std   |
-  | uring |
-
-- dependents
-  #+CALL: lisp-system-dependents[:post transpose]("ublk")
-
-  #+RESULTS:
-  | ffi        |
-  | ublk/tests |
-
-- files
-  #+CALL: lisp-system-files[:post transpose]("ublk")
-
-  #+RESULTS:
-  | pkg.lisp       |
-  | constants.lisp |
-  | cmd.lisp       |
-  | srv.lisp       |
-
-- tests
-  #+CALL: lisp-system-tests[:post transpose]("ublk")
-
-  #+RESULTS:
-  | SANITY |
-
-- symbols
-  #+CALL: lisp-package-symbols[:post transpose]("UBLK")
-
-  #+RESULTS:
-  | +UBLK-IO-BUF-BITS-MASK+          |
-  | +UBLKSRV-IO-BUF-OFFSET+          |
-  | +UBLKSRV-QUEUE-IOCTL-OP+         |
-  | +UBLKSRV-TGT-NAME-MAX-LEN+       |
-  | +UBLK-IO-F-FAILFAST-TRANSPORT+   |
-  | +UBLK-IO-F-NOUNMAP+              |
-  | +UBLK-IO-COMMIT-AND-FETCH-REQ+   |
-  | +UBLK-IO-OP-WRITE-ZEROES+        |
-  | +UBLK-CMD-STOP-DEV+              |
-  | +UBLK-IO-OP-FLUSH+               |
-  | +UBLK-CMD-SET-PARAMS+            |
-  | +UBLK-ATTR-READ-ONLY+            |
-  | +UBLK-QID-BITS+                  |
-  | +UBLK-CMD-GET-PARAMS+            |
-  | +UBLK-IO-F-META+                 |
-  | +UBLK-IO-OP-WRITE+               |
-  | +UBLKSRV-USER-COPY+              |
-  | +UBLK-F-USER-COPY+               |
-  | +UBLK-FEATURES-LEN+              |
-  | +UBLK-IO-F-FAILFAST-DRIVER+      |
-  | +UBLK-U-IO-NEED-GET-DATA+        |
-  | +UBLK-TAG-BITS-MASK+             |
-  | +UBLK-F-SUPPORT-ZERO-COPY+       |
-  | +UBLKSRV-CMD-BUF-OFFSET+         |
-  | +UBLK-IO-F-FAILFAST-DEV+         |
-  | +DEF-BUF-SIZE+                   |
-  | +UBLKSRV-F-NEED-EVENTFD+         |
-  | +UBLK-PARAM-TYPE-DEVT+           |
-  | +DEF-QD+                         |
-  | +UBLK-F-URING-CMD-COMP-IN-TASK+  |
-  | +UBLK-IO-OP-DISCARD+             |
-  | +UBLKSRV-QUEUE-IDLE+             |
-  | +MAX-NR-HW-QUEUES+               |
-  | +UBLK-U-IO-COMMIT-AND-FETCH-REQ+ |
-  | +UBLKSRV-QUEUE-STOPPING+         |
-  | +DEF-NR-HW-QUEUES+               |
-  | UBLK-CMD-GET-QUEUE-AFFINITY      |
-  | LOAD-UBLKSRV                     |
-  | +UBLK-IO-RES-ABORT+              |
-  | +UBLK-TAG-OFF+                   |
-  | +UBLK-PARAM-TYPE-DISCARD+        |
-  | +MAX-BUF-SIZE+                   |
-  | +UBLK-CMD-START-USER-RECOVERY+   |
-  | +UBLK-CMD-DEL-DEV+               |
-  | +UBLK-F-USER-RECOVERY-REISSUE+   |
-  | +UBLK-CMD-GET-DEV-INFO2+         |
-  | +UBLK-PARAM-TYPE-BASIC+          |
-  | +UBLK-IO-OP-WRITE-SAME+          |
-  | +UBLK-MAX-NR-QUEUES+             |
-  | +UBLK-CMD-START-DEV+             |
-  | +UBLK-F-UNPRIVILEGED-DEV+        |
-  | +UBLK-CMD-END-USER-RECOVERY+     |
-  | +UBLK-U-IO-FETCH-REQ+            |
-  | +UBLK-ATTR-FUA+                  |
-  | +UBLK-ATTR-VOLATILE-CACHE+       |
-  | +UBLK-IO-FETCH-REQ+              |
-  | +UBLK-QID-OFF+                   |
-  | +UBLK-IO-RES-NEED-GET-DATA+      |
-  | +UBLK-IO-BUF-OFF+                |
-  | +UBLK-F-CMD-IOCTL-ENCODE+        |
-  | +UBLK-S-DEV-LIVE+                |
-  | +UBLKSRV-TGT-MAX-FDS+            |
-  | +UBLKSRV-IO-BUF-TOTAL-BITS+      |
-  | +MAX-QD+                         |
-  | +UBLK-MAX-QUEUE-DEPTH+           |
-  | +UBLK-IO-F-FUA+                  |
-  | +UBLK-TAG-BITS+                  |
-  | +UBLK-ATTR-ROTATIONAL+           |
-  | +UBLK-IO-RES-OK+                 |
-  | +UBLK-CMD-ADD-DEV+               |
-  | +UBLK-F-NEED-GET-DATA+           |
-  | +UBLK-QID-BITS-MASK+             |
-  | +UBLK-IO-NEED-GET-DATA+          |
-  | +UBLK-CMD-GET-DEV-INFO+          |
-  | +UBLK-IO-F-SWAP+                 |
-  | +UBLK-S-DEV-QUIESCED+            |
-  | +UBLKSRV-IO-BUF-TOTAL-SIZE+      |
-  | +UBLK-IO-BUF-BITS+               |
-  | +UBLK-S-DEV-DEAD+                |
-  | +UBLK-F-USER-RECOVERY+           |
-  | +UBLK-IO-OP-READ+                |
-
-#+END
-** wasmer
-:PROPERTIES:
-:ID:       8c9b1e06-4234-4ea6-b819-b46a47b71a00
-:CREATED:  <2025-07-05 Sat 17:20>
-:END:
-#+BEGIN: lisp-system-info :system wasmer
-- packages
-  #+CALL: lisp-system-packages[:post transpose]("wasmer")
-
-  #+RESULTS:
-  | WASMER       |
-  | WASMER/TESTS |
-
-- dependencies
-  #+CALL: lisp-system-dependencies[:post transpose]("wasmer")
-
-  #+RESULTS:
-  | std |
-
-- dependents
-  #+CALL: lisp-system-dependents[:post transpose]("wasmer")
-
-  #+RESULTS:
-  | wasmer/tests |
-  | web          |
-
-- files
-  #+CALL: lisp-system-files[:post transpose]("wasmer")
-
-  #+RESULTS:
-  | pkg.lisp    |
-  | types.lisp  |
-  | wasmer.lisp |
-
-- tests
-  #+CALL: lisp-system-tests[:post transpose]("wasmer")
-
-  #+RESULTS:
-  | BASIC  |
-  | SANITY |
-
-- symbols
-  #+CALL: lisp-package-symbols[:post transpose]("WASMER")
-
-  #+RESULTS:
-  | LOAD-WASMER |
 
 #+END
 ** cuda
