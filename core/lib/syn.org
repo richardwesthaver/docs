@@ -10,15 +10,12 @@
   | SYN/TESTS/GEN    |
   | SYN/GEN/PY       |
   | SYN/LANG/PY      |
-  | SYN/GEN/RS/SWAP  |
   | SYN/GEN/CPP/SWAP |
-  | SYN/GEN/RS       |
   | SYN/TS           |
   | SYN/LANG         |
   | SYN/TESTS        |
   | SYN/TEMPO        |
   | SYN/GEN/CPP/SYM  |
-  | SYN/GEN/RS/SYM   |
   | SYN/FMT          |
   | SYN/GEN/CPP      |
   | SYN              |
@@ -32,7 +29,7 @@
   | SYN/CLI          |
   | SYN/GEN/CU       |
   | SYN/GEN/C/SWAP   |
-  | SYN/LANG/RS      |
+  | SYN/GEN/CU/SWAP  |
   | SYN/TESTS/LANG   |
   | SYN/LANG/C       |
   | SYN/GEN/C/SYM    |
@@ -50,6 +47,7 @@
   | cli         |
   | io          |
   | dat         |
+  | cuda        |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("syn")
@@ -68,7 +66,6 @@
   | ts.lisp            |
   | lang/c.lisp        |
   | lang/js.lisp       |
-  | lang/rs.lisp       |
   | lang/py.lisp       |
   | gen/condition.lisp |
   | gen/var.lisp       |
@@ -81,14 +78,14 @@
   | gen/c/sym.lisp     |
   | gen/c/print.lisp   |
   | gen/cpp/pkg.lisp   |
+  | gen/cpp/ast.lisp   |
   | gen/cpp/sym.lisp   |
+  | gen/cpp/print.lisp |
+  | gen/cpp/read.lisp  |
   | gen/cu/pkg.lisp    |
-  | gen/rs/pkg.lisp    |
-  | gen/rs/read.lisp   |
-  | gen/rs/ast.lisp    |
-  | gen/rs/sym.lisp    |
-  | gen/rs/util.lisp   |
-  | gen/rs/print.lisp  |
+  | gen/cu/ast.lisp    |
+  | gen/cu/print.lisp  |
+  | gen/cu/read.lisp   |
   | gen/py/pkg.lisp    |
   | gen/js/pkg.lisp    |
   | gen/js/read.lisp   |
@@ -106,10 +103,9 @@
   #+CALL: lisp-system-tests[:post transpose]("syn")
 
   #+RESULTS:
-  | PY-SRC   |
-  | JS-SRC   |
-  | RUST-SRC |
-  | C-SRC    |
+  | PY-SRC |
+  | JS-SRC |
+  | C-SRC  |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("SYN")
@@ -125,6 +121,7 @@
   | EMPTY                  |
   | %SELF                  |
   | PRINT-CODE             |
+  | CINTERN                |
   | LINT                   |
   | *BACKUP-READTABLE*     |
   | TAG                    |

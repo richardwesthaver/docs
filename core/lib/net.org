@@ -22,6 +22,7 @@ http/s server support.
   | NET/PROTO/CREW         |
   | NET/CODEC/HTTP         |
   | NET/SRV/HTTP           |
+  | NET/CODEC/DBUS         |
   | NET/SRV/OAUTH          |
   | NET/PROTO/DNS          |
   | NET/PROTO/NSM          |
@@ -44,6 +45,8 @@ http/s server support.
   | NET/CODEC/OSC          |
   | NET/CODEC/TLV          |
   | NET/PROTO/SESH         |
+  | NET/UNIX               |
+  | NET/PROTO/DBUS         |
   | NET/SRV/UDP            |
   | NET/SRV/EXT            |
   | NET/PROTO/DICT         |
@@ -72,6 +75,7 @@ http/s server support.
   | pod       |
   | dsp       |
   | rdb       |
+  | cry/tests |
   | net/tests |
   | core      |
 
@@ -82,22 +86,24 @@ http/s server support.
   | pkg.lisp         |
   | obj.lisp         |
   | util.lisp        |
-  | udp.lisp         |
-  | tcp.lisp         |
   | codec/dns.lisp   |
   | codec/tlv.lisp   |
   | codec/osc.lisp   |
   | codec/http.lisp  |
+  | codec/dbus.lisp  |
+  | udp.lisp         |
+  | tcp.lisp         |
+  | unix.lisp        |
+  | proto/dns.lisp   |
   | proto/swank.lisp |
   | proto/crew.lisp  |
   | proto/http.lisp  |
-  | proto/dns.lisp   |
   | proto/whois.lisp |
   | proto/dict.lisp  |
+  | proto/dbus.lisp  |
   | proto/ssh.lisp   |
   | proto/dm.lisp    |
   | proto/sesh.lisp  |
-  | proto/nsm.lisp   |
   | cookie.lisp      |
   | req.lisp         |
   | srv/proto.lisp   |
@@ -127,262 +133,262 @@ http/s server support.
   #+CALL: lisp-package-symbols[:post transpose]("NET")
 
   #+RESULTS:
-  | ENCODE-QUERY                      |
-  | COOKIE                            |
-  | DP-REGISTER                       |
-  | *RECORD-TYPE-TABLE*               |
-  | MAKE-TLV                          |
-  | DELETE-ROUTE                      |
-  | CALLBACK-ERROR                    |
-  | RESPONSE-CODE                     |
-  | PROCESS-REQUEST                   |
-  | MAKE-OSC-MESSAGE                  |
-  | DELETE-SESSION-VALUE              |
-  | *HEADERS-SENT*                    |
-  | PARALLEL-REDUCE                   |
-  | SLIME-EVAL                        |
-  | *DEFAULT-MTU*                     |
-  | MULTIPART-PARSING-ERROR           |
-  | EVAL-REPEATEDLY-ASYNC-STATE       |
-  | COOKIE-NAME                       |
-  | COOKIE-EXPIRES                    |
-  | HTTP-CLIENT-CONFIG                |
-  | TIMETAG+                          |
-  | TUNNEL                            |
-  | MERGE-COOKIES                     |
-  | SLIME-PENDING-EVALS-P             |
-  | INVALID-METHOD                    |
-  | NET-RESPONSE                      |
-  | OPENAPI-SERVICE-CONFIG            |
+  | WITH-UNIX-CLIENT                  |
+  | CB-MESSAGE-BEGIN                  |
   | NET-SERVICE-REQUEST               |
-  | DEFROUTE                          |
-  | COPY-COOKIE                       |
-  | TLV-TYPE                          |
-  | HTTP-UPGRADE-P                    |
-  | WAKE-SERVICE-FOR-SHUTDOWN         |
-  | MAKE-BUNDLE                       |
-  | *DEFAULT-MAX-THREAD-COUNT*        |
-  | WITH-SESSION-DB-LOCK              |
-  | LOCAL-ADDR*                       |
-  | *WILDCARD-PORT*                   |
-  | EVAL-FORM-REPEATEDLY              |
-  | SINGLE-THREADED-ENGINE            |
-  | EVAL-FORM-ALL-WORKERS             |
-  | HTTP-MAJOR-VERSION                |
-  | SESSION                           |
-  | COOKIE-EQUAL                      |
-  | MAKE-CLIENT-REQUEST               |
-  | DNS-QUERY                         |
+  | PROCESS-REQUEST                   |
+  | COOKIE-JAR-COOKIES                |
+  | CREATE-REQUEST-WORKER-THREAD      |
+  | MULTI-THREADED-ENGINE             |
+  | UDP-SERVICE-CONFIG                |
   | REMOVE-SESSION                    |
   | NET-REQUEST                       |
-  | DNS-PORT                          |
-  | SERVICE-TIMEOUT                   |
-  | MESSAGE-LOG-OUTPUT                |
-  | TLV-LENGTH                        |
-  | TCP-SOCKET                        |
-  | INVALID-FRAGMENT                  |
-  | DNS-SERVER-FAILURE                |
-  | CB-HEADER-FIELD                   |
-  | *DEFAULT-SSL-SERVICE-PORT*        |
-  | *ACCESS-LOG-LOCK*                 |
-  | ECHO-SERVICE                      |
-  | INVALID-STATUS                    |
-  | DP-MATCH                          |
-  | START-LISTENING                   |
-  | UNIX-TIME->TIMETAG                |
-  | NET-ERROR                         |
-  | BUNDLE                            |
-  | SLIME-CLOSE                       |
-  | PARSE-REQUEST                     |
-  | UDP-SERVER                        |
-  | OAPI-CLIENT                       |
-  | FORMAT-OSC-DATA                   |
-  | MAKE-MULTIPART-PARSER             |
-  | PEER                              |
-  | WITH-UDP-CLIENT                   |
-  | COOKIE=                           |
-  | HTTP-RESPONSE                     |
-  | WITH-OPEN-SOCKET                  |
-  | INITIALIZE-INSTANCE               |
-  | +KNOWN-HTTP-METHODS+              |
-  | SERVER                            |
-  | MAKE-HTTP                         |
-  | *DEFAULT-PROXY*                   |
-  | CLIENT                            |
-  | *QUAD9-SERVERS*                   |
-  | *SESSION-SECRET*                  |
-  | REMOTE-ADDR*                      |
-  | OPENAPI-SERVICE                   |
-  | SERVICE-CONFIG                    |
-  | DECODE-DATA                       |
-  | SESSION-GC                        |
-  | INVALID-HEADER-VALUE              |
-  | SESSION-VALUE                     |
-  | DP-REMOVE                         |
-  | QUERY-DATA                        |
-  | NGINX-SERVICE                     |
-  | COOKIE-P                          |
-  | TCP-ECHO                          |
-  | SERVICE-LOG-MESSAGE               |
-  | TLV                               |
-  | DEFSERVICE                        |
-  | DETACH-SOCKET                     |
-  | PARSING-ERROR                     |
-  | *GOOGLE-SERVERS*                  |
-  | UNKNOWN-ERROR                     |
-  | DNS-CONDITION                     |
-  | CLOSED-CONNECTION                 |
-  | INVALID-INTERNAL-STATE            |
-  | DECREMENT-THREAD-COUNT            |
-  | CREW-WORKER                       |
-  | *DEFAULT-READ-TIMEOUT*            |
-  | SERVER-CONFIG                     |
-  | CONNECT                           |
-  | ABORT-REQUEST-HANDLER             |
-  | ELEMENTS                          |
-  | CB-FIRST-LINE                     |
-  | *LOG-SERVICE-ERRORS*              |
-  | TIMETAG                           |
-  | HTTP-RESOURCE                     |
-  | DEFAULT-WEB-DIRECTORY             |
-  | COOKIE-MAX-AGE                    |
-  | *TCP-PING-SIZE*                   |
-  | MAKE-SERVICE                      |
-  | COOKIE-SECURE-P                   |
-  | MAKE-COOKIE-JAR                   |
-  | OAUTH-SERVICE-CONFIG              |
-  | FIND-PORT                         |
-  | SLIME-CONNECT-FILE                |
-  | MAKE-COOKIE                       |
-  | PROXY                             |
-  | NET-SERVICE-RESPONSE              |
-  | SEND-SERVICE-UNAVAILABLE-RESPONSE |
-  | CB-MESSAGE-BEGIN                  |
-  | ADD-ROUTE                         |
-  | HTTP-CHUNKED-P                    |
-  | UDP-SERVICE-CONFIG                |
-  | INVALID-CONTENT-LENGTH            |
-  | INVALID-MULTIPART-BODY            |
-  | +KNOWN-HTTP-WORDS+                |
-  | HTTP-ERROR                        |
-  | COOKIE-JAR-HOST-COOKIES           |
-  | SERVICE-MAKE-REQUEST              |
-  | COOKIE-HTTPONLY-P                 |
-  | RESET-CONNECTION-STREAM           |
-  | UDP-SOCKET                        |
-  | CALL-WITH-REQUEST-COUNT-INCF      |
-  | HTTP-VERSION                      |
-  | *DEFAULT-SESSION-TIMEOUT*         |
-  | *CLOUDFLARE-SERVERS*              |
-  | NET-SERVICE                       |
-  | COOKIE-JAR                        |
-  | NET-SERVICE-CONFIG                |
-  | INVALID-PATH                      |
-  | RESET-SESSION-SECRET              |
-  | NEXT-SESSION-ID                   |
-  | UDP-ECHO                          |
-  | *WILDCARD-HOST*                   |
-  | GET-ADDRESS-BY-NAME               |
-  | INVALID-HOST                      |
-  | ENCODE-HOST                       |
-  | UDP-RECEIVE-PING                  |
-  | HTTP-CONFIG                       |
-  | SLIME-EVAL-ASYNC                  |
-  | TCP-RECEIVE-PING                  |
+  | NET-CONDITION                     |
   | INVALID-CONSTANT                  |
-  | HTTP-MULTIPART-PARSE              |
-  | CREW-WORKER-POOL                  |
-  | WRITE-SET-COOKIE-HEADER           |
-  | HTTP-KEYWORD                      |
-  | SHUTDOWN-P                        |
-  | COOKIE-DATE                       |
-  | SERVICE-LOG                       |
-  | COOKIE-SAME-SITE                  |
-  | SLIME-MIGRATE-EVALS               |
-  | SLIME-NETWORK-ERROR               |
-  | HTTP                              |
-  | SESSION-VERIFY                    |
-  | WITH-UDP-SERVER                   |
-  | LF-EXPECTED                       |
-  | WITH-SLIME-CONNECTION             |
-  | MAKE-SERVER                       |
-  | TIMETAG->UNIX-TIME                |
-  | MAKE-SERVER-RESPONSE              |
-  | HANDLE-CONNECTION                 |
-  | MAKE-HTTP-RESPONSE                |
-  | *DEFAULT-MAX-ACCEPT-COUNT*        |
-  | MAKE-CREW                         |
-  | DECODE-BUNDLE                     |
-  | STRINGIFY-COOKIE                  |
-  | ID-RECORD-TYPE                    |
-  | HTTP-SERVICE-CONFIG               |
-  | CONNECTION                        |
-  | %HANDLE-CONNECTION                |
-  | STRICT-ERROR                      |
-  | INVALID-PARAMETER-VALUE           |
-  | RESET-SESSIONS                    |
-  | *DEFAULT-CONNECTION-MAX*          |
-  | MAKE-HTTP-PARSER                  |
-  | MAKE-OSC-TREE                     |
-  | TLV-VALUE                         |
-  | SERVICE-LOGGER                    |
-  | PARSE-SET-COOKIE-HEADER           |
-  | ENCODE-BUNDLE                     |
-  | ENCODE-HEADER                     |
-  | DECODE-QUERY                      |
-  | CB-BODY                           |
-  | TCP-SINK                          |
-  | DECODE-MESSAGE                    |
-  | WRITE-COOKIE-HEADER               |
-  | +HANDLER-TAG+                     |
-  | CB-HEADERS-COMPLETE               |
-  | DECODE-RESPONSE                   |
-  | OSC-MESSAGE                       |
-  | SERVICE-STATUS-MESSAGE            |
-  | EXECUTE-SERVICE                   |
-  | PARSE-RESPONSE                    |
-  | DECODE-RECORD                     |
-  | DISCONNECT                        |
-  | NET-CONFIG                        |
-  | MAKE-CLIENT                       |
-  | *LOCALHOST*                       |
-  | CLIENT-CONFIG                     |
-  | INCREMENT-ACCEPT-COUNT            |
-  | LL-MULTIPART-PARSER               |
+  | *DEFAULT-OSC-BUFFER-SIZE*         |
+  | CLOSED-CONNECTION                 |
   | CREW-CONNECTION-INFO              |
-  | +KNOWN-HTTP-VERSIONS+             |
-  | REMOVE-SESSION-HOOK               |
-  | NET-WARNING                       |
-  | *GLOBAL-SESSION-DB-LOCK*          |
-  | REMOTE-PORT*                      |
-  | COOKIE-JAR-COOKIES                |
-  | COOKIE-ORIGIN-HOST                |
-  | SECURE-SERVICE-P                  |
-  | HTTP-CLIENT                       |
-  | *SERVICE-STREAM*                  |
-  | HTTP-RESPONSE-P                   |
-  | HTTP-HEADERS                      |
-  | DECODE-HEADER                     |
-  | DISCONNECT-WORKER                 |
-  | DNS-SERVERS-EXHAUSTED             |
-  | LOCAL-PORT*                       |
-  | MULTI-THREADED-ENGINE             |
-  | GET-UNIX-TIME                     |
-  | COOKIE-PATH                       |
-  | ACCEPT                            |
-  | REQUEST-PROTOCOL*                 |
-  | CB-URL                            |
-  | SERVICE-LOG-ACCESS                |
-  | HTTP-SERVICE                      |
-  | HTTP-REQUEST-P                    |
-  | INCREMENT-THREAD-COUNT            |
-  | HTTP-MINOR-VERSION                |
-  | TCP-SERVER                        |
   | CONNECT-WORKER                    |
-  | *DEFAULT-SERVICE-PORT*            |
-  | SLIME-CONNECT                     |
+  | INVALID-PATH                      |
+  | PROCESS-CONNECTION                |
+  | SLIME-PENDING-EVALS-P             |
+  | SESSION                           |
+  | EXECUTE-SERVICE                   |
+  | TIMETAG                           |
+  | DP-REGISTER                       |
+  | HTTP-STATUS-MESSAGE               |
+  | TOO-MANY-ENGINE-REQUESTS          |
+  | SINGLE-THREADED-ENGINE            |
   | MAKE-HTTP-REQUEST                 |
+  | WITH-CLIENT-SERVER                |
+  | GET-UNIX-TIME                     |
+  | CB-MESSAGE-COMPLETE               |
+  | UNIX-ECHO                         |
+  | CLIENT-CONFIG                     |
+  | INVALID-STATUS                    |
+  | HTTP-KEYWORD                      |
+  | HTTP-SERVICE                      |
+  | CONNECT                           |
+  | +KNOWN-HTTP-VERSIONS+             |
+  | HEADER-VALUE-PARSING-ERROR        |
+  | HTTP-CONFIG                       |
+  | TLV-VALUE                         |
+  | +HANDLER-TAG+                     |
+  | HTTP-SERVICE-RESPONSE             |
+  | MAKE-OSC-TREE                     |
+  | INVALID-URL                       |
+  | SESSION-EXPIRED-P                 |
+  | UNIX-RECEIVE-PING                 |
+  | OSC-MESSAGE                       |
+  | *SERVICE-STREAM*                  |
+  | WITH-SLIME-CONNECTION             |
+  | HTTP-VERSION                      |
+  | DECODE-RECORD                     |
+  | EVAL-FORM-ALL-WORKERS             |
+  | RESOLVE                           |
+  | NGINX-SERVICE                     |
+  | *TCP-PING-SIZE*                   |
+  | *DEFAULT-CONNECTION-TIMEOUT*      |
+  | SERVICE-TIMEOUT                   |
+  | DECODE-QUERY                      |
+  | INVALID-METHOD                    |
+  | FIND-ROUTE                        |
+  | WITH-SESSION-DB-LOCK              |
+  | UNIX-CLIENT                       |
+  | *LOG-SERVICE-ERRORS*              |
+  | *WILDCARD-PORT*                   |
+  | *ROUTER*                          |
+  | TCP-SOCKET                        |
+  | DETACH-SOCKET                     |
+  | INVALID-PARAMETER-KEY             |
+  | HTTP-ERROR                        |
+  | COPY-COOKIE                       |
+  | START-SESSION                     |
+  | HTTP-STATUS-TEXT                  |
+  | MAKE-OSC-MESSAGE                  |
+  | NEXT-SESSION-ID                   |
+  | *DEFAULT-CONNECT-TIMEOUT*         |
+  | ABORT-REQUEST-HANDLER             |
+  | WITH-DNS-ERROR-HANDLING           |
+  | HTTP-P                            |
+  | OPENAPI-DOCUMENT                  |
+  | OAUTH-SERVICE                     |
+  | WRITE-COOKIE-HEADER               |
+  | *DNS-SERVERS*                     |
+  | DECODE-MESSAGE                    |
+  | WITH-UDP-CLIENT                   |
+  | INVALID-VERSION                   |
+  | RECORD-TYPE-ID                    |
+  | TCP-SERVER                        |
+  | DECODE-DATA                       |
+  | *FINISH-PROCESSING-SOCKET*        |
+  | HTTPS-SERVICE                     |
+  | DECODE-RESPONSE                   |
+  | DEFROUTE                          |
+  | UDP-ECHO                          |
+  | ACCESS-LOG-OUTPUT                 |
+  | ENCODE-HOST                       |
+  | REQUEST-PROTOCOL*                 |
+  | COOKIE-MAX-AGE                    |
+  | INVALID-HEADER-VALUE              |
+  | CB-BODY                           |
+  | MAKE-CLIENT-REQUEST               |
+  | LF-EXPECTED                       |
+  | MAKE-COOKIE-JAR                   |
+  | %HANDLE-CONNECTION                |
+  | FORMAT-OSC-DATA                   |
+  | COOKIE-P                          |
+  | DNS-SERVER-FAILURE                |
+  | *DEFAULT-SESSION-TIMEOUT*         |
+  | COOKIE-SECURE-P                   |
+  | SLIME-CONNECT-FILE                |
+  | COMMAND                           |
+  | COOKIE-PARTITIONED                |
+  | SESSION-CREATED                   |
+  | PARSE-SET-COOKIE-HEADER           |
+  | *HTTP-STATUS-MESSAGE-MAP*         |
+  | MAKE-SERVER                       |
+  | DECREMENT-THREAD-COUNT            |
+  | DEFAULT-WEB-DIRECTORY             |
+  | HTTP-RESPONSE-P                   |
+  | REMOVE-SESSION-HOOK               |
+  | SWANK-CONNECTION                  |
+  | STRICT-ERROR                      |
+  | ID-RECORD-TYPE                    |
+  | HOSTNAME                          |
+  | INVALID-BOUNDARY                  |
+  | UDP-SOCKET                        |
+  | SERVICE-CONFIG                    |
+  | SLIME-EVAL                        |
+  | OAUTH-SERVICE-CONFIG              |
+  | CLIENT                            |
+  | *SESSION-SECRET*                  |
+  | SOCKET-CONFIG                     |
+  | DNS-CONDITION                     |
+  | COOKIE-JAR-HOST-COOKIES           |
+  | TIMETAG+                          |
+  | ADD-ROUTE                         |
+  | INVALID-FRAGMENT                  |
+  | HTTP-MAJOR-VERSION                |
+  | +KNOWN-HTTP-WORDS+                |
+  | MAKE-SERVER-RESPONSE              |
+  | INVALID-MULTIPART-BODY            |
+  | HTTP-RESPONSE                     |
+  | MAKE-CLIENT                       |
+  | HTTP                              |
+  | TLV-LENGTH                        |
+  | TLV-TYPE                          |
+  | SERVICE-LOG-ACCESS                |
+  | HTTP-STATUS                       |
+  | COOKIE-HTTPONLY-P                 |
+  | SERVICE-LOG-MESSAGE               |
+  | CLOSE-CONNECTION                  |
+  | MAKE-COOKIE                       |
+  | +KNOWN-HTTP-METHODS+              |
+  | COOKIE-SAME-SITE                  |
+  | OPENAPI-SERVICE-CONFIG            |
+  | COOKIE                            |
+  | CB-HEADERS-COMPLETE               |
+  | COOKIE-EXPIRES                    |
+  | *CLOSE-SERVICE-STREAM*            |
+  | *DEFAULT-SERVICE-PORT*            |
+  | *LOCALHOST*                       |
+  | ECHO-SERVICE                      |
+  | QUERY-DATA                        |
+  | COOKIE-DOMAIN                     |
+  | INVALID-CHUNK-SIZE                |
+  | CREW-WORKER                       |
+  | NET-CONFIG                        |
+  | *MESSAGE-LOG-LOCK*                |
+  | INITIALIZE-INSTANCE               |
+  | COOKIE-NAME                       |
+  | HTTP-CONTENT-LENGTH               |
+  | COOKIE-VALUE                      |
+  | COOKIE-EQUAL                      |
+  | OAPI-CLIENT                       |
+  | NET-SERVICE-CONFIG                |
+  | HTTP-UPGRADE-P                    |
+  | INCREMENT-ACCEPT-COUNT            |
+  | UDP-SERVER                        |
+  | *QUAD9-SERVERS*                   |
+  | WITH-OPEN-SOCKET                  |
+  | ACCEPT                            |
+  | COOKIE-JAR                        |
+  | RESPONSE-CODE-NAME                |
+  | PARSE-RESPONSE                    |
+  | DECODE-HOST                       |
+  | CADDY-SERVICE                     |
+  | ENCODE-BUNDLE                     |
+  | *DEFAULT-USER-AGENT*              |
+  | *DEFAULT-CONNECTION-MAX*          |
+  | UNKNOWN-ERROR                     |
+  | RESET-SESSION-SECRET              |
+  | SHUTDOWN-P                        |
+  | SESSION-DB                        |
+  | REMOTE-PORT*                      |
+  | ROUTE                             |
+  | PRINT-AS-DOUBLE                   |
+  | *CLOUDFLARE-SERVERS*              |
+  | HTTP-METHOD                       |
+  | WRITE-SET-COOKIE-HEADER           |
+  | HTTP-REQUEST-P                    |
+  | UNIX-SOCKET                       |
+  | ELEMENTS                          |
+  | WITH-TCP-CLIENT                   |
+  | *SESSION*                         |
+  | STRINGIFY-COOKIE                  |
+  | DISCONNECT                        |
+  | INVALID-INTERNAL-STATE            |
+  | FIND-PORT                         |
+  | COOKIE-DATE                       |
+  | TCP-PING-SERVER                   |
+  | UDP-SERVICE                       |
+  | MAKE-TLV                          |
+  | TCP-CONFIG                        |
+  | MULTIPART-PARSING-ERROR           |
+  | DECREMENT-ACCEPT-COUNT            |
+  | HTTP-MULTIPART-PARSE              |
+  | ENCODE-MESSAGE                    |
+  | LL-MULTIPART-PARSER               |
+  | UNIX-TIME->TIMETAG                |
+  | MAKE-HTTP                         |
+  | CONNECTION                        |
+  | PARSE-REQUEST                     |
+  | COOKIE=                           |
+  | SLIME-NETWORK-ERROR               |
+  | PARALLEL-MAPCAR                   |
+  | HTTP-CLIENT                       |
+  | *SESSION-DB*                      |
+  | INVALID-QUERY-STRING              |
+  | PARSING-ERROR                     |
+  | NET-ERROR                         |
+  | *DEFAULT-READ-TIMEOUT*            |
+  | PROXY                             |
+  | START-LISTENING                   |
+  | WAKE-SERVICE-FOR-SHUTDOWN         |
+  | INCREMENT-THREAD-COUNT            |
+  | SERVICE-LOG                       |
+  | *HEADERS-SENT*                    |
+  | COOKIE-ORIGIN-HOST                |
+  | *DNSWATCH-SERVERS*                |
+  | HTTP-RESOURCE                     |
+  | MAKE-HTTP-PARSER                  |
+  | MAKE-CALLBACKS                    |
+  | SLIME-EVAL-ASYNC                  |
+  | RECONNECT-WORKER                  |
+  | PEER                              |
+  | NET-WARNING                       |
+  | SEND-SERVICE-UNAVAILABLE-RESPONSE |
   | SESSION-TIMEOUT                   |
+  | CB-STATUS                         |
+  | NET-SERVICE-RESPONSE              |
+  | INVALID-PARAMETER-VALUE           |
+  | *GLOBAL-SESSION-DB-LOCK*          |
+  | NET-RESPONSE                      |
+  | UDP-RECEIVE-PING                  |
+  | TCP-SOURCE                        |
+  | CB-HEADER-FIELD                   |
+  | *SWANK-CONNECTIONS*               |
   | ...                               |
 
 #+END:
@@ -412,15 +418,18 @@ net-int:*net-packages*
 - NET/PROTO/TRANSMISSION
 - NET/PROTO/HTTP
 - NET/PROTO/SSH
+- NET/PROTO/DBUS
 - NET/PROTO/DNS
 - NET/PROTO/DICT
 - NET/PROTO/WHOIS
+- NET/UNIX
+- NET/TCP
+- NET/UDP
+- NET/CODEC/DBUS
 - NET/CODEC/HTTP
 - NET/CODEC/OSC
 - NET/CODEC/TLV
 - NET/CODEC/DNS
-- NET/TCP
-- NET/UDP
 - NET/CORE
 
 ** core
@@ -442,37 +451,41 @@ underlying =SB-BSD-SOCKETS= class - either =INET-SOCKET= or
 #+CALL: lisp-package-symbols[:post transpose]("NET/CORE")
 
 #+RESULTS:
-| NET-WARNING               |
-| WITH-OPEN-SOCKET          |
-| PROXY                     |
-| SERVER-CONFIG             |
-| MAKE-CLIENT               |
-| NET-CONFIG                |
-| MAKE-CLIENT-REQUEST       |
-| *DEFAULT-CONNECT-TIMEOUT* |
 | MAKE-SERVER-RESPONSE      |
-| NET-CONDITION             |
+| *DEFAULT-PROXY*           |
+| SERVER                    |
+| WITH-OPEN-SOCKET          |
+| CLIENT                    |
+| CLOSE-CONNECTION          |
+| NET-WARNING               |
 | PEER                      |
+| NET-ERROR                 |
 | TUNNEL                    |
-| CONNECT                   |
-| *WILDCARD-PORT*           |
-| *WILDCARD-HOST*           |
+| MAKE-CLIENT-REQUEST       |
 | *DEFAULT-USER-AGENT*      |
+| SERVER-CONFIG             |
+| *DEFAULT-MTU*             |
+| SOCKET-CONFIG             |
+| MAKE-CLIENT               |
 | FIND-PORT                 |
 | CONNECTION                |
-| DISCONNECT                |
-| *LOCALHOST*               |
+| *WILDCARD-PORT*           |
+| OPEN-CONNECTION-WITH      |
+| CONNECT                   |
 | WITH-CLIENT-SERVER        |
-| *DEFAULT-PROXY*           |
-| CLIENT                    |
-| SOCKET-CONFIG             |
-| SERVER                    |
+| *DEFAULT-CONNECT-TIMEOUT* |
+| NET-CONDITION             |
+| DISCONNECT                |
+| *WILDCARD-HOST*           |
 | MAKE-SERVER               |
-| CLIENT-CONFIG             |
-| GET-ADDRESS-BY-NAME       |
-| NET-ERROR                 |
+| *LOCALHOST*               |
+| OPEN-CONNECTION           |
 | *DEFAULT-READ-TIMEOUT*    |
-| *DEFAULT-MTU*             |
+| NET-CONFIG                |
+| GET-ADDRESS-BY-NAME       |
+| CLIENT-CONFIG             |
+| ROUTE                     |
+| PROXY                     |
 
 ** codec
 :PROPERTIES:

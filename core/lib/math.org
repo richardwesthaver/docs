@@ -7,16 +7,18 @@
   #+CALL: lisp-system-packages[:post transpose]("math")
 
   #+RESULTS:
-  | MATH/SYN   |
-  | MATH/AUTO  |
-  | MATH/TESTS |
-  | MATH/BLAS  |
-  | MATH-INT   |
-  | MATH/PROTO |
-  | MATH/UTIL  |
-  | MATH/SFC   |
-  | MATH-USER  |
-  | MATH       |
+  | MATH/SYN    |
+  | MATH/AUTO   |
+  | MATH/TESTS  |
+  | MATH/BLAS   |
+  | MATH/LAPACK |
+  | MATH/SYM    |
+  | MATH-INT    |
+  | MATH/UTIL   |
+  | MATH/SFC    |
+  | MATH-USER   |
+  | MATH/CUDA   |
+  | MATH        |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("math")
@@ -40,47 +42,97 @@
   #+CALL: lisp-system-files[:post transpose]("math")
 
   #+RESULTS:
-  | pkg.lisp       |
-  | var.lisp       |
-  | proto.lisp     |
-  | util.lisp      |
-  | sfc.lisp       |
-  | auto.lisp      |
-  | blas/axpy.lisp |
-  | blas/sum.lisp  |
-  | blas/gem.lisp  |
-  | blas/ger.lisp  |
-  | blas/trs.lisp  |
-  | lapack/lu.lisp |
-  | linfix.lisp    |
-  | syn.lisp       |
-  | readtable.lisp |
-  | math.lisp      |
+  | pkg.lisp          |
+  | util.lisp         |
+  | blas/axpy.lisp    |
+  | blas/sum.lisp     |
+  | blas/gem.lisp     |
+  | blas/ger.lisp     |
+  | blas/trs.lisp     |
+  | blas/norm.lisp    |
+  | lapack/lu.lisp    |
+  | lapack/chol.lisp  |
+  | lapack/eig.lisp   |
+  | lapack/lstsq.lisp |
+  | lapack/qr.lisp    |
+  | lapack/schur.lisp |
+  | lapack/svd.lisp   |
+  | lapack/syl.lisp   |
+  | lapack/poly.lisp  |
+  | cuda/tensor.lisp  |
+  | cuda/kernel.lisp  |
+  | sym.lisp          |
+  | linfix.lisp       |
+  | syn.lisp          |
+  | readtable.lisp    |
+  | sfc.lisp          |
+  | auto.lisp         |
+  | math.lisp         |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("math")
 
   #+RESULTS:
+  | NORM   |
+  | TRS    |
+  | SUM    |
+  | GER    |
+  | GEM    |
+  | AXPY   |
   | SANITY |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("MATH")
 
   #+RESULTS:
-  | BLASFUNC          |
-  | LIFE              |
-  | TENSOR-SUM        |
-  | MEAN              |
-  | AXPY              |
-  | PROD              |
-  | MATH-ERROR        |
-  | ^                 |
-  | HILBERT-CURVE     |
-  | HILBERT-LIST      |
-  | LAPACKFUNC        |
-  | MATH-WARNING      |
-  | *RULE-PATTERNS*   |
-  | *LINFIX-PARSER*   |
-  | CELLULAR-AUTOMATA |
+  | SVD                    |
+  | *RULE-PATTERNS*        |
+  | CHOL                   |
+  | GETRI!                 |
+  | GEKR!                  |
+  | BLASFUNC               |
+  | LAPACKFUNC             |
+  | MESHGRID               |
+  | PROD                   |
+  | GETT!                  |
+  | GER                    |
+  | LSTSQ                  |
+  | AXPY!                  |
+  | NORMALIZE!             |
+  | QR!                    |
+  | ~                      |
+  | HEEV!                  |
+  | AXPY                   |
+  | GEEV-COMPLEXIFY-EIGVEC |
+  | LDL!                   |
+  | POTRS!                 |
+  | WITH-LAPACK-QUERY      |
+  | LIFE                   |
+  | POTRF!                 |
+  | PROD!                  |
+  | TENSOR-SUM             |
+  | GEM                    |
+  | EIG                    |
+  | POTRI!                 |
+  | TRS!                   |
+  | GEM!                   |
+  | HILBERT-CURVE          |
+  | SCHUR                  |
+  | SYL                    |
+  | LDL                    |
+  | GER!                   |
+  | MEAN                   |
+  | QR                     |
+  | LDL-PERMUTE!           |
+  | TRSYL!                 |
+  | GELSY                  |
+  | GETRF!                 |
+  | HILBERT-LIST           |
+  | CHOL!                  |
+  | GETRS!                 |
+  | TENSOR-SUM!            |
+  | CELLULAR-AUTOMATA      |
+  | LU                     |
+  | GEEV!                  |
 
 #+END

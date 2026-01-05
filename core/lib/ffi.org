@@ -1309,8 +1309,7 @@ implementation (libblake3).
   #+CALL: lisp-system-tests[:post transpose]("blas")
 
   #+RESULTS:
-  | DGEMM         |
-  | STATIC-VECTOR |
+  | DGEMM |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("BLAS")
@@ -1550,34 +1549,121 @@ implementation (libblake3).
   | constants.lisp |
   | types.lisp     |
   | openssl.lisp   |
-  | bio.lisp       |
   | condition.lisp |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("OPENSSL")
 
   #+RESULTS:
-  | D2I-X509                   |
-  | OPENSSL-ADD-ALL-ALGORITHMS |
-  | PEM-WRITE                  |
-  | ASN1-UTCTIME-CHECK         |
-  | ASN1-STRING-LENGTH         |
-  | AWS-LC-C-ERROR             |
-  | AWS-LC-ERROR-CALL          |
-  | ASN1-STRING-FREE           |
-  | ASN1-STRING                |
-  | V-ASN1*                    |
-  | AWS-LC-CONDITION           |
-  | ASN1-STRING-TYPE           |
-  | READ-AWS-LC-ERROR-QUEUE    |
-  | OPENSSL-CONFIG             |
-  | V-ASN1                     |
-  | ASN1-TIME-CHECK            |
-  | LOAD-SSL                   |
-  | ASN1-STRING-DATA           |
-  | LOAD-CRYPTO                |
-  | SSL-FREE                   |
-  | PEM-READ                   |
+  | BIO-GET-NEW-INDEX                |
+  | SSL-CTX-SET-DEFAULT-VERIFY-PATHS |
+  | V-ASN1                           |
+  | SSL-SET-CONNECT-STATE            |
+  | X509-NAME-ENTRY-GET-DATA         |
+  | BIO-METH-SET-DESTROY             |
+  | BIO-FREE                         |
+  | X509-NAME-ONELINE                |
+  | EVP-MD-GET-SIZE                  |
+  | PEM-READ-BIO-X509                |
+  | SSL-SET-ALPN-PROTOS              |
+  | X509-GET-ISSUER-NAME             |
+  | SSL-SET-FD                       |
+  | OPENSSL-ADD-ALL-ALGORITHMS       |
+  | BIO-METH-SET-PUTS                |
+  | X509-NAME-GET-ENTRY              |
+  | +SSL-CTRL-OPTIONS+               |
+  | ASN1-UTCTIME-CHECK               |
+  | PEM-WRITE-BIO-X509               |
+  | LOAD-SSL                         |
+  | OPENSSL-ERROR-WANT-X509-LOOKUP   |
+  | SSL-SET-CIPHER-LIST              |
+  | V-ASN1*                          |
+  | LOAD-CRYPTO                      |
+  | SSL-SET-DEFAULT-PASSWD-CB        |
+  | SSL-GET-ERROR                    |
+  | BIO-TEST-FLAGS                   |
+  | BIO-METH-SET-CTRL                |
+  | SSL-WRITE                        |
+  | ASN1-STRING-DATA                 |
+  | X509-NAME-GET-INDEX-BY-NID       |
+  | TLS-METHOD                       |
+  | OPENSSL-ERROR-ZERO-RETURN        |
+  | EVP-GET-DIGEST-BY-NAME           |
+  | X509-GET0-NOT-BEFORE             |
+  | SSL-CONNECT                      |
+  | +SSL-ERROR-WANT-READ+            |
+  | BIO-NEW-SOCKET                   |
+  | +SSL-ERROR-ZERO-RETURN+          |
+  | BIO-SET-INIT                     |
+  | RSA-FREE                         |
+  | OPENSSL-SK-NUM                   |
+  | BIO-METH-SET-READ                |
+  | BIO-METH-SET-GETS                |
+  | OPENSSL-SK-VALUE                 |
+  | BIO-METH-SET-CREATE              |
+  | OPENSSL-CONFIG                   |
+  | SSL-SET-ACCEPT-STATE             |
+  | X509-FREE                        |
+  | INVALID-ASN1-STRING              |
+  | X509-GET-SUBJECT-NAME            |
+  | +SSL-ERROR-WANT-WRITE+           |
+  | OPENSSL-ERROR-INITIALIZE         |
+  | SSL-GET-FD                       |
+  | ASN1-TIME-CHECK                  |
+  | SSL-SHUTDOWN                     |
+  | X509-GET0-NOT-AFTER              |
+  | +SSL-CTRL-MODE+                  |
+  | +SSL-ERROR-NONE+                 |
+  | +SSL-ERROR-SSL+                  |
+  | OPENSSL-ERROR-WANT-READ          |
+  | BIO-CLEAR-FLAGS                  |
+  | BIO-METH-SET-WRITE               |
+  | ASN1-STRING                      |
+  | PEM-READ                         |
+  | OPENSSL-ERROR-CALL               |
+  | X509-STORE-CTX-GET-ERROR         |
+  | SSL-ACCEPT                       |
+  | BIO-SET-FLAGS                    |
+  | OPENSSL-SAP-ERROR                |
+  | PEM-WRITE                        |
+  | SSL-READ                         |
+  | SSL-CTX-FREE                     |
+  | OPENSSL-ERROR-VERIFY             |
+  | ASN1-STRING-LENGTH               |
+  | SSL-FREE                         |
+  | BIO-METH-NEW                     |
+  | X509-DIGEST                      |
+  | OPENSSL-ERROR-WANT-WRITE         |
+  | OPENSSL-ERROR-NONE               |
+  | SSL-NEW                          |
+  | FORMAT-ERROR-QUEUE               |
+  | SSL-GET0-ALPN-SELECTED           |
+  | SSL-CTX-SET-DEFAULT-VERIFY-FILE  |
+  | OPENSSL-ERROR-SYSCALL            |
+  | SERVER-CERTIFICATE-MISSING       |
+  | ASN1-STRING-TYPE                 |
+  | ERR-R                            |
+  | SSL-SET-BIO                      |
+  | BIO-NEW                          |
+  | RSA-GENERATE-KEY                 |
+  | ASN1-STRING-FREE                 |
+  | OPENSSL-CONDITION                |
+  | SSL-CTX-SET-DEFAULT-VERIFY-DIR   |
+  | OPENSSL-ERROR-WANT-CONNECT       |
+  | +NID-COMMONNAME+                 |
+  | +NID-SUBJECT-ALT-NAME+           |
+  | X509-GET-EXT-D2I                 |
+  | OPENSSL-ERROR                    |
+  | BIO-CTRL                         |
+  | +SSL-ERROR-WANT-X509-LOOKUP+     |
+  | +SSL-ERROR-SYSCALL+              |
+  | OPENSSL-ERROR-WANT-SOMETHING     |
+  | +SSL-CTRL-SET-SESS-CACHE-MODE+   |
+  | READ-OPENSSL-ERROR-QUEUE         |
+  | D2I-X509                         |
+  | +SSL-ERROR-WANT-CONNECT+         |
+  | ASN1-ERROR                       |
+  | GENERAL-NAMES-FREE               |
 
 #+END
 ** chromaprint
@@ -1873,7 +1959,6 @@ implementation (libblake3).
 
   #+RESULTS:
   | JPEG       |
-  | JPEG-SYS   |
   | JPEG/TESTS |
 
 - dependencies
@@ -2422,6 +2507,7 @@ implementation (libblake3).
 
   #+RESULTS:
   | ffi        |
+  | syn        |
   | cuda/tests |
   | math       |
 
@@ -2433,7 +2519,9 @@ implementation (libblake3).
   | constants.lisp |
   | type.lisp      |
   | alien.lisp     |
-  | cuda.lisp      |
+  | ctx.lisp       |
+  | mem.lisp       |
+  | event.lisp     |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("cuda")
@@ -2445,32 +2533,60 @@ implementation (libblake3).
   #+CALL: lisp-package-symbols[:post transpose]("CUDA")
 
   #+RESULTS:
-  | +CU-GRAPH-KERNEL-NODE-PORT-PROGRAMMATIC+    |
-  | +CU-GRAPH-KERNEL-NODE-PORT-LAUNCH-ORDER+    |
-  | +CU-MEMHOSTALLOC-DEVICEMAP+                 |
-  | +CU-MEMHOSTREGISTER-IOMEMORY+               |
-  | LOAD-CUDA                                   |
-  | +CUDNN-MINOR+                               |
-  | +CU-GRAPH-KERNEL-NODE-PORT-DEFAULT+         |
-  | +CU-MEMHOSTALLOC-PORTABLE+                  |
-  | +CU-GRAPH-COND-ASSIGN-DEFAULT+              |
-  | +CU-MEMHOSTREGISTER-DEVICEMAP+              |
-  | +CUDNN-VERSION+                             |
-  | +CU-MEMHOSTALLOC-WRITECOMBINED+             |
-  | +CUDA-VERSION+                              |
-  | +CUDNN-MAX-DEVICE-VERSION+                  |
-  | +CU-TENSOR-MAP-NUM-QWORDS+                  |
+  | +FFTW-PATIENT+                              |
   | +CUDNN-MAJOR+                               |
+  | DEVICE-COMPUTE-CAPABILITY                   |
+  | LOAD-CUBLAS                                 |
+  | +CUDA-VERSION+                              |
+  | +CUFFT-VER-MINOR+                           |
+  | +CUFFT-VER-PATCH+                           |
+  | LOAD-CUFFT                                  |
+  | *CUDA-HOME*                                 |
+  | +CUDNN-MAX-DEVICE-VERSION+                  |
   | +CU-MEMHOSTREGISTER-PORTABLE+               |
+  | +CUDNN-MINOR+                               |
+  | +FFTW-BACKWARD+                             |
+  | +CUFFT-VER-BUILD+                           |
+  | LOAD-CUDART                                 |
+  | +CU-MEMHOSTALLOC-DEVICEMAP+                 |
+  | +CU-GRAPH-COND-ASSIGN-DEFAULT+              |
+  | +CU-GRAPH-KERNEL-NODE-PORT-LAUNCH-ORDER+    |
+  | +CUFFT-VER-MAJOR+                           |
+  | +FFTW-FORWARD+                              |
+  | *CUDA-LIB-PATH*                             |
+  | +FFTW-MEASURE+                              |
+  | +CUFFT-PLAN-NULL+                           |
+  | +CUDNN-VERSION+                             |
+  | +MAX-CUFFT-ERROR+                           |
+  | +CUDNN-MAX-SM-MAJOR-NUMBER+                 |
+  | LOAD-CURAND                                 |
+  | +CU-MEMHOSTREGISTER-DEVICEMAP+              |
+  | +FFTW-EXHAUSTIVE+                           |
+  | +FFTW-DESTROY-INPUT+                        |
+  | +FFTW-UNALIGNED+                            |
+  | +CU-MEMHOSTALLOC-PORTABLE+                  |
+  | +FFTW-INVERSE+                              |
+  | +FFTW-PRESERVE-INPUT+                       |
+  | +CU-GRAPH-KERNEL-NODE-PORT-DEFAULT+         |
   | +CUDNN-MAX-SM-MINOR-NUMBER+                 |
   | +CU-IPC-HANDLE-SIZE+                        |
-  | +CUDNN-MAX-SM-MAJOR-NUMBER+                 |
-  | +CU-COMPUTE-ACCELERATED-TARGET-BASE+        |
-  | LOAD-CUDNN                                  |
-  | DEVICE-COMPUTE-CAPABILITY                   |
-  | +CUDNN-PATCHLEVEL+                          |
-  | +CU-ARRAY-SPARSE-PROPERTIES-SINGLE-MIPTAIL+ |
+  | +CUFFT-INVERSE+                             |
+  | +FFTW-WISDOM-ONLY+                          |
   | +CU-MEMHOSTREGISTER-READ-ONLY+              |
+  | +FFTW-ESTIMATE+                             |
+  | +CUDNN-PATCHLEVEL+                          |
+  | +MAX-SHIM-RANK+                             |
+  | LOAD-CUDA                                   |
+  | LOAD-CUDNN                                  |
+  | +CU-MEMHOSTREGISTER-IOMEMORY+               |
+  | +CUFFT-FORWARD+                             |
+  | +CU-GRAPH-KERNEL-NODE-PORT-PROGRAMMATIC+    |
+  | +CU-TENSOR-MAP-NUM-QWORDS+                  |
+  | +CU-ARRAY-SPARSE-PROPERTIES-SINGLE-MIPTAIL+ |
+  | LOAD-CUFFTW                                 |
+  | +CU-MEMHOSTALLOC-WRITECOMBINED+             |
+  | CUDA-VECTOR                                 |
+  | +CU-COMPUTE-ACCELERATED-TARGET-BASE+        |
 
 #+END
 ** evdev

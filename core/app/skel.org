@@ -325,26 +325,36 @@ is for library developers and internal use.
 :PROPERTIES:
 :ID:       4fd2d7eb-e738-4e2f-8de1-3b8f5671d488
 :END:
+
+** Core
+:PROPERTIES:
+:ID:       35a5aa3b-1ff1-46ea-9ec7-1d6c9a2386f2
+:CREATED:  <2026-01-03 Sat 20:09>
+:END:
 The library core is built on CLOS. Most important data structures are
 represented with classes, slots, and methods such as the ~sk-project~
 class which has a slot named ~:components~ and a method specialized on
 it called ~load-ast~.
 
-We make use of mixins defined within the library like ~sk-meta~ as
-well as classes defined in other packages - the ~ast~ class for
-example provides a default method for AST functions (~load-ast~
-~build-ast~) and is defined in the ~obj/ast~ package. The
-~simple-project~ class is defined in ~obj/project~ and provides
-default slots for ~sk-meta~.
-
+** Components
+:PROPERTIES:
+:ID:       c86d03b4-dc7d-4836-8bdb-58498bd84e46
+:CREATED:  <2026-01-03 Sat 20:09>
+:END:
 In addition to the core objects we provide a set of ~sk-component~
 definitions which convert core objects to a corresponding external
 representation. For example the ~makefile~ and ~mk-*~ classes defined
-in ~skel/comp/make~ can be built from a ~sk-project~ and ~sk-*~
+in ~comp/makefile~ can be built from a ~sk-project~ and ~sk-*~
 instances or may be used to ingest Makefiles into your project.
 
-The remainder of the ~skel~ system is dedicated to extensions. These
-are all optional.
+** Network
+:PROPERTIES:
+:ID:       ad4583d9-9e83-402d-87a9-8da27c6064ac
+:CREATED:  <2026-01-03 Sat 20:10>
+:END:
+The skel network is based on the objects provided in the NET library
+and includes a modular client/server protocol base on NET/PROTO/SESH.
+
 * Configuration
 :PROPERTIES:
 :ID:       2658a3d1-cfa5-436e-b2b0-9cf42a6f66c6
@@ -374,7 +384,7 @@ cat ~/.config/skelrc
 :vc :hg
 :auto-insert t
 :license :mpl2
-:logger (:level :trace)
+:logger (:level :info)
 :stash ".stash"
 :store "/opt/store"
 :scripts ("~/.stash/scripts")
@@ -636,7 +646,7 @@ skel -h
 
 #+RESULTS:
 #+begin_example
-skel v0.1.1:394593dcf32b --- The hackable devtool.
+skel v0.1.1:3678eb876e38+ --- The hackable devtool.
 
 options:
   -h/--help               print help
@@ -665,9 +675,6 @@ commands:
   describe                describe a skelfile
 
   edit                    edit a project file in emacs.
-
-  show*                   show skel objects slots
-    -f/--file               path to skelfile
 
   status                  show the current project status
 

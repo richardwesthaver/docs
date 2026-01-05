@@ -88,157 +88,43 @@ language present at this time is C (0.1%).
 :ID:       66163a74-dc41-4679-bf83-a2c7598bb316
 :CREATED:  <2025-06-02 Mon 20:54>
 :END:
-The source for each _module_ is located in its own directory. The
-=STD= module lives under the =std/= directory, FFI modules such as
-=ROCKSDB= under the =ffi/= directory and library modules like =RDB=
-under the =lib/= directory. The top-level directory is dedicated to
-the =CORE= module itself.
-
-** Modules
-:PROPERTIES:
-:ID:       13a2689e-6d57-44b0-a8e0-fad145832871
-:CREATED:  <2025-06-02 Mon 20:23>
-:END:
-*Core modules* loosely equate to a lisp system and its 'sub-systems' -
-for example the ~CORE~ module contains the ~CORE~ system and
-~CORE/TESTS~, ~CORE/USER~, etc sub-systems. They are effectively a
-container of one or more systems. 
-
-Developers may import ASDF systems provided by a module and use the
-packages it contains, or use the compiled lisp /images/ directly.
-
-A full module system is planned which leverages the =*MODULES*=
-variable, in a similar fashion to ASDF with support for more direct
-usage of modules in day-to-day programming.
-
-** Features
-:PROPERTIES:
-:ID:       25ecd39d-e6ea-4e26-8818-438df27cd253
-:CREATED:  <2025-06-02 Mon 19:55>
-:END:
-The core contains /many/ features which are included in the compiled
-image by default. 
-
-The following features have special meaning at _build-time_ where they
-determine which modules get loaded into the resulting core image.
-
-#+begin_src lisp :eval never
-  :std     ; the STD library - always required
-  :prelude ; the PRELUDE library - on by default
-  :gui     ; the GUI module - optional
-  :web     ; the WEB module - optional
-  :full    ; ALL modules
-#+end_src
-
-The rest of the features provided by the core are also tracked in the
-=*FEATURES*= list but should not need to be updated manually.
-
-#+begin_src lisp :post transpose
-  ,*features*
+#+begin_src sh :eval no-export
+  ls
 #+end_src
 
 #+RESULTS:
-| :AVFILTER                       |
-| :AVFORMAT                       |
-| :AVCODEC                        |
-| :AVUTIL                         |
-| :SSL                            |
-| :CRYPTO                         |
-| :TURBOJPEG                      |
-| :JPEG                           |
-| :BLAS                           |
-| :JACK                           |
-| :CHROMAPRINT                    |
-| :ASOUND                         |
-| :GST-PLAY                       |
-| :GSTREAMER                      |
-| :GLIB                           |
-| :EVDEV                          |
-| :CUDA                           |
-| :ARROW                          |
-| :KEYUTILS                       |
-| :BLAKE3                         |
-| :SNDFILE                        |
-| :SSH2                           |
-| :XKBCOMMON                      |
-| :TREE-SITTER-JSON               |
-| :BTRFSUTIL                      |
-| :BTRFS                          |
-| :SWANK                          |
-| :SKEL                           |
-| :USER                           |
-| :CORE                           |
-| :TREE-SITTER-PYTHON             |
-| :TREE-SITTER-RUST               |
-| :TREE-SITTER-JAVASCRIPT         |
-| :TREE-SITTER-C                  |
-| :TREE-SITTER-ALIEN              |
-| :TREE-SITTER                    |
-| :ROCKSDB                        |
-| :NET                            |
-| :RFC3912                        |
-| :SPLIT-SEQUENCE                 |
-| :BORDEAUX-THREADS               |
-| :GLOBAL-VARS                    |
-| :FLEXI-STREAMS                  |
-| CFFI-FEATURES:FLAT-NAMESPACE    |
-| CFFI-FEATURES:X86-64            |
-| CFFI-FEATURES:UNIX              |
-| :CFFI                           |
-| CFFI-SYS::FLAT-NAMESPACE        |
-| ALEXANDRIA::SEQUENCE-EMPTYP     |
-| :CLI                            |
-| :IO                             |
-| :KBD                            |
-| :ZSTD                           |
-| :URING                          |
-| :RFC8141                        |
-| :RFC6874                        |
-| :RFC3986                        |
-| :RFC3492                        |
-| :IRONCLAD-ASSEMBLY              |
-| :IRONCLAD-SB-VM-EA              |
-| :IRONCLAD-FAST-MOD64-ARITHMETIC |
-| :IRONCLAD-FAST-MOD32-ARITHMETIC |
-| :STD                            |
-| :THREAD-SUPPORT                 |
-| :CL-PPCRE                       |
-| :QUICKLISP                      |
-| :ASDF3.3                        |
-| :ASDF3.2                        |
-| :ASDF3.1                        |
-| :ASDF3                          |
-| :ASDF2                          |
-| :ASDF                           |
-| :OS-UNIX                        |
-| :NON-BASE-CHARS-EXIST-P         |
-| :ASDF-UNICODE                   |
-| :ARENA-ALLOCATOR                |
-| :X86-64                         |
-| :MARK-REGION-GC                 |
-| :64-BIT                         |
-| :ANSI-CL                        |
-| :COMMON-LISP                    |
-| :ELF                            |
-| :IEEE-FLOATING-POINT            |
-| :LINUX                          |
-| :LITTLE-ENDIAN                  |
-| :PACKAGE-LOCAL-NICKNAMES        |
-| :SB-CORE-COMPRESSION            |
-| :SB-LDB                         |
-| :SB-PACKAGE-LOCKS               |
-| :SB-THREAD                      |
-| :SB-UNICODE                     |
-| :SBCL                           |
-| :UNIX                           |
+| app              |
+| bench            |
+| bin              |
+| core.asd         |
+| core.lisp        |
+| core.sys         |
+| emacs            |
+| ffi              |
+| lib              |
+| readme.org       |
+| skelfile         |
+| std              |
+
+- Common Lisp \\
+  The =STD= library lives under the =std= directory, FFI libraries
+  such as =ROCKSDB= under the =ffi= directory and user libraries like
+  =RDB= under the =lib= directory. Executables and scripts are located
+  under =bin=, application code for the =SKEL= and =MPK= systems under
+  =app= and various benchmarks under =bench=.
+  
+  The =app= directory contains 
+- Emacs Lisp \\
+  The =emacs= directory contains a complete Emacs Lisp configuration
+  which is used during development.
 
 ** Images
 :PROPERTIES:
 :ID:       346fbc32-b1d2-489b-9091-3767ba372281
 :CREATED:  <2025-06-02 Mon 20:35>
 :END:
-*Core Images* refer to the binary file resulting from a call to
- =SAVE-LISP-AND-DIE=. According to SBCL this file contains
+*Images* refer to the binary file resulting from a call to
+ =SAVE-LISP-AND-DIE=. According to SBCL this file contains:
 
 #+begin_quote
 enough information to restart a Lisp process later in the same state,
@@ -249,10 +135,56 @@ See the function docs for details - there are many options available
 which determine how the image can be used directly or dynamically from
 other programs.
 
-The images we produce are most often executable and contain the full
+The =core images= we produce are executables which contain the full
 SBCL runtime at their disposal. Note that these images can be quite
 large - multiple gigabytes in some cases, and so care should be taken
 when enabling additional build-time features.
+
+Note that image-based development is quite unique. You start inside
+your Lisp implementation's core image which contains the Lisp runtime
+in its executable. The runtime in SBCL is compiled C code which you
+may be included with the images you save to make them executable, or
+you can remove it to save space. Restarting an image in the /exact
+same state/ you saved it in is as simple as executing sbcl with the
+=--core= argument or executing the saved core file (with runtime)
+directly.
+
+The development experience is exceptionally fluid when fully
+appreciated. You have everything at your fingertips, always fully
+compiled and ready to load into memory at a moment's notice.
+
+Images are concatenative - they always build on an existing image. We
+start with the ANSI LISP 'kernel' image, then we save it, extend it,
+and repeat indefinitely. The natural evolution of this concept is to
+have your *entire system in a Lisp image*. It is a 'maximalist'
+philosophy which is deeply ingrained into the very idea of Lisp,
+although ultimately relegated to the long-forgotten Lisp Machines.
+
+Image-based development does come with its own set of foot guns - it
+is more complex by nature and easy to end up in an unusable state when
+you compile in faulty code. However the biggest conflict that arises
+from images is that they are *anti-UNIX*.
+
+GNU/Linux distributions today come with hundreds of binaries. The vast
+majority of these are single-use tools with simple text interfaces
+which aide themselves to composability via the shell. Lisp images are
+not single-use tools - they always contain a complete Lisp runtime in
+addition to any extensions you've added - so if you want to use them
+like UNIX binaries with one image per application or tool, you're
+duplicating a tremendous amount of code in each image[fn:1].
+
+One of the goals of the =core= is to realize a full appreciation of
+images and image-based development, starting from GNU/Linux Userspace
+and working our way towards service management and then the
+kernel. The general strategy is to reduce the OS environment while
+extending our Lisp image. We aim to first serve as a default user
+login shell, and ultimately challenge SystemD for PID1. If we are
+successful, we will have a complete Lisp system compatible with the
+Linux kernel.
+
+[fn:1] Some Lisp applications developers do actually prefer this -
+taking GNU/Linux and the UNIX philosophy as a constant in any
+self-respecting OS.
 
 * Getting Started
 :PROPERTIES:
@@ -314,7 +246,7 @@ swm -> core -> /usr/local/bin/
 :PROPERTIES:
 :ID:       22b763b9-c781-4061-b5ef-fc4f19720cf0
 :END:
-If you do choose to build yourself without using =infra=, make sure
+If you do choose to build from source without using =infra=, make sure
 you're on GNU/Linux and have the required packages installed.
 
 - *Required*
@@ -356,12 +288,10 @@ you're on GNU/Linux and have the required packages installed.
 :PROPERTIES:
 :ID:       d9a1f958-c43e-4465-9916-3526f7a27268
 :END:
-The next thing you'll want to take care of is user configuration. You
-can run any of the core apps without a configuration and it will
-install a default one for you.
+The next thing you'll want to take care of is user configuration.
 
-The only other /required/ development dependency which needs
-configuring is Emacs.
+The only /required/ development dependency which needs configuring is
+Emacs.
 *** Core
 :PROPERTIES:
 :ID:       db2ee1f1-846f-433c-9747-83ec18d47e40
@@ -380,10 +310,17 @@ dispatch to a 'main' function like so:
     ,#+nil ...)
 #+end_src
 
+The default path (when argv[0]=core) accepts a lisp file as
+configuration just like =~/.sbclrc=, =corerc= respected the
+=XDG_CONFIG_HOME= variable though and may be located in
+=~/.config/corerc=.
+
 The current apps that read a configuration file on startup are:
-- skel - project management: =.skelrc=
-- homer - home management: =.homerc=
-- mpk - media production kit: =.mpkrc=
+- skel - project management: =skelrc=
+- homer - home management: =homerc=
+- mpk - media production kit: =mpkrc=
+
+By default they are located under =XDG_CONFIG_HOME=.
 
 These apps all use the same /configuration object protocol/ from the
 =OBJ/CONFIG= package and are printed to various S-Expression. Most
@@ -410,7 +347,7 @@ Emacs configuration using the =skel= command.
 
 - Warning :: this will overwrite files in your =.emacs= directory (defaults to =$XDG_CONFIG_HOME/emacs/=:
   #+begin_src shell :dir ~/comp/core/ :results output :exports both
-  cd emacs && skel install
+  skel make install-emacs
   #+end_src
 
   #+RESULTS:
@@ -420,7 +357,6 @@ Emacs configuration using the =skel= command.
   init.el -> /home/ellis/.config/emacs/init.el
   keys.el -> /home/ellis/.config/emacs/keys.el
   util.el -> /home/ellis/.config/emacs/util.el
-  c2.el -> /home/ellis/.config/emacs/lib/c2.el
   exec-path-from-shell.el -> /home/ellis/.config/emacs/lib/exec-path-from-shell.el
   gen.el -> /home/ellis/.config/emacs/lib/gen.el
   graph.el -> /home/ellis/.config/emacs/lib/graph.el
@@ -439,11 +375,8 @@ Emacs configuration using the =skel= command.
   ulang.el -> /home/ellis/.config/emacs/lib/ulang.el
   uml-mode.el -> /home/ellis/.config/emacs/lib/uml-mode.el
   x86-lookup.el -> /home/ellis/.config/emacs/lib/x86-lookup.el
-  core -> /usr/local/bin/
-  skel -> /usr/local/bin/core
-  homer -> /usr/local/bin/core
-  mpk -> /usr/local/bin/core
-  pod -> /usr/local/bin/core
+  #:debug 0.183
+  ; (#<rule install-emacs>)
   #+end_example
 
 The default config supports user customizations in a file with the
@@ -518,6 +451,8 @@ or from lisp:
 :ID:       2634e0bd-29b2-4191-9892-766abfa7435e
 :CREATED:  <2025-09-30 Tue 21:48>
 :END:
+User docs for each [[file:app/][application]] and [[file:lib][library]] is available under separate
+directories.
 ** Contributing
 :PROPERTIES:
 :ID:       e0657c76-395c-47b5-b5a6-1dcebd59ce7c
@@ -526,22 +461,11 @@ or from lisp:
 The core is currently a solo project and I don't plan on accepting
 contributions in the near future. The core is its own private island,
 isolated from the rest of the Common Lisp ecosystem and in almost all
-cases contributions would be better directed towards other
-packages.
+cases contributions would be better directed towards other packages.
 
 See [[https://awesome-cl.com/][Awesome CL]] for a list of projects which could use additional
 support, and take note the comments scattered throughout the core
 source code which often reference popular packages from the ecosystem.
-
-*** TODO Style Guide
-:PROPERTIES:
-:ID:       40fc3406-0280-49e9-93b0-57faeb595d36
-:CREATED:  <2025-09-30 Tue 21:45>
-:END:
-:LOGBOOK:
-- State "TODO"       from              [2025-09-30 Tue 21:49]
-:END:
-
 * Concepts
 :PROPERTIES:
 :ID:       8e379ae7-5eca-4ccb-8603-e32a20ef2d37
