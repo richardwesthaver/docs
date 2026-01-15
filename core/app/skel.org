@@ -9,7 +9,7 @@ library designed for managing a development environment.
 The [[id:08ab0042-8f9d-48f1-aa9d-1ae92e50fdfc][CLI]] is the main entry point for typical users. This documentation
 is for library developers and internal use.
 
-#+BEGIN: lisp-system-info :system skel
+#+BEGIN: lisp-system-info :system skel :tests nil
 - packages
   #+CALL: lisp-system-packages[:post transpose]("skel")
 
@@ -74,6 +74,7 @@ is for library developers and internal use.
   #+CALL: lisp-system-dependents[:post transpose]("skel")
 
   #+RESULTS:
+  | wm         |
   | skel/tests |
   | bin/sk     |
   | bin/skel   |
@@ -141,17 +142,6 @@ is for library developers and internal use.
   | net/srv.lisp         |
   | cli.lisp             |
   | skel.lisp            |
-
-- tests
-  #+CALL: lisp-system-tests[:post transpose]("skel")
-
-  #+RESULTS:
-  | PACKY-DB        |
-  | ASD             |
-  | MAKEFILE        |
-  | SKELRC          |
-  | SKELFILE        |
-  | HEADER-COMMENTS |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("SKEL")
@@ -645,7 +635,7 @@ skel -h
 
 #+RESULTS:
 #+begin_example
-skel v0.1.1:9d381851e7ef --- The hackable devtool.
+skel v0.1.1:3e95437865cd+ --- The hackable devtool.
 
 options:
   -h/--help               print help
