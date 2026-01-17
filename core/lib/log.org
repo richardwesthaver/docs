@@ -78,7 +78,6 @@ libraries and apps.
   #+CALL: lisp-system-tests[:post transpose]("log")
 
   #+RESULTS:
-  | DB-LOGGER            |
   | STOP-LOGGER          |
   | FAST-STREAM          |
   | STREAM               |
@@ -92,77 +91,78 @@ libraries and apps.
   #+CALL: lisp-package-symbols[:post transpose]("LOG")
 
   #+RESULTS:
-  | LOGGER                         |
-  | *LOG-MESSAGE-CLASS*            |
-  | REMOVE-LOGGER                  |
-  | ALIEN-LOGGER                   |
-  | LOG-ROTATE                     |
-  | LOG-LEVEL-DESIGNATOR           |
-  | TRACE!                         |
-  | LEVEL                          |
-  | TAG-TREE-FILTER                |
-  | LOG-OBJECT                     |
-  | DEBUG-DESCRIBE                 |
-  | LOG-ERROR                      |
-  | INFO-DESCRIBE                  |
-  | DEFAULT-LOGGER-CONFIG          |
-  | LOG-P                          |
-  | LOGGER-CONFIG                  |
-  | *LOGGER*                       |
-  | ERROR-DESCRIBE                 |
-  | *LOG-SHOW-BACKTRACE*           |
-  | WITH-FAST-LOG-STREAM           |
-  | INFO-P                         |
-  | *LOG-LEVEL*                    |
-  | MATCHING-TREE-TAG              |
-  | DB-SOURCE                      |
-  | *LOG-LEVELS*                   |
-  | LOG-TIMESTAMP-SOURCE           |
-  | LOG-DESCRIBE                   |
-  | LOG-MESSAGE                    |
-  | WARN-P                         |
-  | ALIEN-SINK                     |
-  | WITH-LOG-STREAM                |
-  | *TAG-SEPARATOR*                |
-  | LOG-PIPE                       |
-  | ROTATE-FILE-SINK               |
-  | INIT-LOG-TIMESTAMP             |
-  | FATAL-DESCRIBE                 |
-  | DATABASE-LOGGER                |
-  | *LOG-INDENT*                   |
-  | DB-SINK                        |
-  | SIMPLE-LOG-MESSAGE             |
-  | INFO!                          |
-  | TRACE-DESCRIBE                 |
-  | MESSAGE-THREAD                 |
-  | ERROR!                         |
-  | LOGGER-P                       |
-  | WITH-LOGGER                    |
-  | DEBUG!                         |
-  | DEBUG-P                        |
-  | *LOG-TIMESTAMP*                |
-  | GET-REAL-TIME-SINCE            |
-  | LEVEL-FILTER                   |
-  | OCTETS-TO-LOG-MESSAGE          |
-  | *SIMPLE-LOG-MESSAGE-FORMATTER* |
-  | WARN-DESCRIBE                  |
-  | WARN!                          |
-  | TAG-FILTER                     |
-  | DEFINE-LOG-LEVEL               |
-  | RESTART-LOGGER                 |
-  | ROTATING-FILE-SINK             |
-  | %LOG-OBJECT                    |
-  | LOG-MESSAGE-TO-OCTETS          |
-  | FATAL!                         |
-  | ILEVEL                         |
-  | DEFAULT-LOGGER                 |
-  | TRACE-P                        |
-  | *LOG-TIMESTAMP-FORMAT*         |
-  | LOG!                           |
-  | ERROR-P                        |
-  | FATAL-P                        |
-  | ALIEN-SOURCE                   |
-  | LOG-CONFIG                     |
+  | TRACE!                  |
+  | *LOG-SHOW-BACKTRACE*    |
+  | LOG-PIPE                |
+  | LOG-TIMESTAMP-SOURCE    |
+  | DEFAULT-LOGGER          |
+  | ERROR-P                 |
+  | WITH-LOGGER             |
+  | INFO-DESCRIBE           |
+  | LOGGER-CONFIG           |
+  | LOGGER-P                |
+  | RESTART-LOGGER          |
+  | WARN!                   |
+  | SIMPLE-LOG-MESSAGE      |
+  | LEVEL-FILTER            |
+  | %LOG-OBJECT             |
+  | *LOG-TIMESTAMP*         |
+  | LOG!                    |
+  | DATABASE-LOGGER         |
+  | LOG-MESSAGE             |
+  | ERROR-DESCRIBE          |
+  | DB-SINK                 |
+  | GET-REAL-TIME-SINCE     |
+  | DEFAULT-LOGGER-CONFIG   |
+  | WARN-DESCRIBE           |
+  | FATAL-P                 |
+  | LOGGER                  |
+  | WITH-LOG-STREAM         |
+  | ILEVEL                  |
+  | *LOG-MESSAGE-CLASS*     |
+  | DEFINE-LOG-LEVEL        |
+  | TRACE-DESCRIBE          |
+  | *LOG-TIMESTAMP-FORMAT*  |
+  | ALIEN-SINK              |
+  | ROTATING-FILE-SINK      |
+  | LOG-DESCRIBE            |
+  | LOG-CONFIG              |
+  | TRACE-P                 |
+  | OCTETS-TO-LOG-MESSAGE   |
+  | LOG-P                   |
+  | TAG-FILTER              |
+  | LOG-LEVEL-DESIGNATOR    |
+  | LEVEL                   |
+  | DEBUG-DESCRIBE          |
+  | LOG-ROTATE              |
+  | FATAL!                  |
+  | ALIEN-LOGGER            |
+  | *LOG-LEVELS*            |
+  | WITH-FAST-LOG-STREAM    |
+  | *LOG-INDENT*            |
+  | *LOGGER*                |
+  | INFO!                   |
+  | DEBUG-P                 |
+  | *TAG-SEPARATOR*         |
+  | MESSAGE-THREAD          |
+  | *LOG-LEVEL*             |
+  | DB-SOURCE               |
+  | DFORMAT                 |
+  | INIT-LOG-TIMESTAMP      |
+  | TAG-TREE-FILTER         |
+  | LOG-MESSAGE-TO-OCTETS   |
+  | ROTATE-FILE-SINK        |
+  | MATCHING-TREE-TAG       |
+  | LOG-OBJECT              |
+  | ALIEN-SOURCE            |
+  | INFO-P                  |
+  | FATAL-DESCRIBE          |
+  | DEBUG!                  |
+  | REMOVE-LOGGER           |
+  | LOG-ERROR               |
+  | ERROR!                  |
+  | *LOG-MESSAGE-FORMATTER* |
+  | WARN-P                  |
 
 #+END
 
@@ -183,7 +183,7 @@ variable:
 #+end_src
 
 #+RESULTS:
-| T | :TRACE | :DEBUG | :INFO | :WARN | :ERROR | :FATAL | NIL |
+| :FATAL | :ERROR | :WARN | :INFO | :DEBUG | :TRACE |
 
 Note that the actual position of log-levels in the =*log-level*=
 vector implies the /precedence/ of that level. For example =:trace=
@@ -236,13 +236,13 @@ protocol.
 #+end_src
 
 #+RESULTS:
-: #<LOGGER-CONFIG {121E50BB33}>
+: #<LOGGER-CONFIG {120696A333}>
 :   [standard-object]
 : 
 : Slots with :INSTANCE allocation:
-:   AST                            = ((LEVEL-FILTER :ID :LEVEL-FILTER :LEVEL :INFO)..
+:   AST                            = ((LEVEL-FILTER :ID :LEVEL-FILTER :LEVEL :DEBUG)..
 :   SIZE                           = 10
-:   LEVEL                          = :INFO
+:   LEVEL                          = :DEBUG
 
 The =ast= slot stores an unevaluated =pipe= used to initialized the
 logger resulting from the =build= method.
@@ -252,9 +252,9 @@ logger resulting from the =build= method.
 #+end_src
 
 #+RESULTS:
-| LEVEL-FILTER    | :ID | :LEVEL-FILTER | :LEVEL | :INFO |
-| TAG-TREE-FILTER | :ID | :TAG-FILTER   |        |       |
-| STREAM-SINK     | :ID | :SINK         |        |       |
+| LEVEL-FILTER    | :ID | :LEVEL-FILTER | :LEVEL | :DEBUG |
+| TAG-TREE-FILTER | :ID | :TAG-FILTER   |        |        |
+| STREAM-SINK     | :ID | :SINK         |        |        |
 
 * Logging Functions
 :PROPERTIES:

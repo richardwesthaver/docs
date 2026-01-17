@@ -1282,7 +1282,8 @@ implementation (libblake3).
   #+CALL: lisp-system-packages[:post transpose]("blas")
 
   #+RESULTS:
-  | BLAS |
+  | BLAS/TESTS |
+  | BLAS       |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("blas")
@@ -1712,29 +1713,30 @@ implementation (libblake3).
 
   #+RESULTS:
   | CHROMAPRINT-GET-ALGORITHM            |
-  | CHROMAPRINT-GET-NUM-CHANNELS         |
+  | CHROMAPRINT-NEW                      |
   | CHROMAPRINT-DEALLOC                  |
   | CHROMAPRINT-GET-DELAY-MS             |
-  | CHROMAPRINT-NEW                      |
+  | CHROMAPRINT-GET-RAW-FINGERPRINT      |
   | CHROMAPRINT-FINISH                   |
   | CHROMAPRINT-GET-RAW-FINGERPRINT-SIZE |
   | CHROMAPRINT-CLEAR-FINGERPRINT        |
   | CHROMAPRINT-DECODE-FINGERPRINT       |
   | WITH-CHROMAPRINT-CTX                 |
-  | CHROMAPRINT-SET-OPTION               |
   | CHROMAPRINT-GET-ITEM-DURATION-MS     |
   | CHROMAPRINT-ENCODE-FINGERPRINT       |
   | CHROMAPRINT-GET-FINGERPRINT          |
   | CHROMAPRINT-GET-FINGERPRINT-HASH     |
   | CHROMAPRINT-FREE                     |
   | CHROMAPRINT-ALGORITHM                |
+  | CHROMAPRINT-GET-NUM-CHANNELS         |
   | LOAD-CHROMAPRINT                     |
-  | CHROMAPRINT-CONTEXT                  |
   | CHROMAPRINT-GET-ITEM-DURATION        |
-  | CHROMAPRINT-GET-RAW-FINGERPRINT      |
+  | *DEFAULT-CHROMAPRINT-ALGORITHM*      |
+  | CHROMAPRINT-SET-OPTION               |
   | CHROMAPRINT-HASH-FINGERPRINT         |
-  | CHROMAPRINT-GET-VERSION              |
   | CHROMAPRINT-GET-SAMPLE-RATE          |
+  | CHROMAPRINT-GET-VERSION              |
+  | CHROMAPRINT-CONTEXT                  |
   | CHROMAPRINT-START                    |
   | CHROMAPRINT-GET-DELAY                |
   | CHROMAPRINT-FEED                     |
@@ -2630,8 +2632,7 @@ implementation (libblake3).
   #+CALL: lisp-system-tests[:post transpose]("evdev")
 
   #+RESULTS:
-  | BASIC  |
-  | SANITY |
+  | BASIC |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("EVDEV")
@@ -2644,51 +2645,5 @@ implementation (libblake3).
   | LIBEVDEV-NEW         |
   | LIBEVDEV-FREE        |
   | LIBEVDEV-NEW-FROM-FD |
-
-#+END
-** arrow
-:PROPERTIES:
-:ID:       75e412af-4706-42a1-96da-a916c49e03f4
-:CREATED:  <2025-07-05 Sat 17:21>
-:END:
-#+BEGIN: lisp-system-info :system arrow
-- packages
-  #+CALL: lisp-system-packages[:post transpose]("arrow")
-
-  #+RESULTS:
-  | ARROW       |
-  | ARROW/TESTS |
-
-- dependencies
-  #+CALL: lisp-system-dependencies[:post transpose]("arrow")
-
-  #+RESULTS:
-  | std |
-  | log |
-
-- dependents
-  #+CALL: lisp-system-dependents[:post transpose]("arrow")
-
-  #+RESULTS:
-  | arrow/tests |
-  | ffi         |
-
-- files
-  #+CALL: lisp-system-files[:post transpose]("arrow")
-
-  #+RESULTS:
-  | pkg.lisp |
-
-- tests
-  #+CALL: lisp-system-tests[:post transpose]("arrow")
-
-  #+RESULTS:
-  | SANITY |
-
-- symbols
-  #+CALL: lisp-package-symbols[:post transpose]("ARROW")
-
-  #+RESULTS:
-  | LOAD-ARROW |
 
 #+END
