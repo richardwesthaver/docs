@@ -1,0 +1,26 @@
+#+title:: WM
+This document describe the Window Manager (WM). Our window manager is
+a fork of StumpWM, based on a fork of CLX and other related
+dependencies.
+
+WM depends on the [[comp:docs/core][core]] as well as our CLX fork [[comp:docs/shed/xlib][xlib]]. The core includes
+low-level libraries which are shared between xlib and wm.
+
+* Notes
+:PROPERTIES:
+:ID:       94677134-9d2b-4dc4-bf86-d44ac471fe51
+:CREATED:  <2026-02-05 Thu 20:04>
+:END:
+- The =IO/KBD= protocol depends on =XKBCOMMON= in addition to some
+  static data to help us map out all relevant =KEY= concepts including
+  keysyms, keycodes, keybinds, and keymaps. xlib and wm share this
+  protocol wherever possible.
+- Commands are inherited from the =OBJ/CMD= protocol which combines an
+  'interactive typespec' (list of functions known as 'command-types')
+  with an optionally-named function. Commands get stored in their own
+  command tables - see =(commands :wm)=.
+- wm uses a simple single-rotation file-logger, based on the =LOG=
+  core package
+- [ ] Colors are inherited from =OBJ/COLOR=
+- [ ] Time values are inherited from =OBJ/TIME=
+- [ ] WM-specific annotations are available - see =(annotations :wm)=
