@@ -1,38 +1,38 @@
-#+title: ffi
+#+title: alien
 #+author: Richard Westhaver
 #+setupfile: ../../../clean.theme
 #+OPTIONS: num:nil
-This doc is about the [[https://en.wikipedia.org/wiki/Foreign_function_interface][Foreign Function Interface]] (FFI) features of the
-=core=. 
+This doc is about the [[https://en.wikipedia.org/wiki/Foreign_function_interface][Foreign Function Interface]] features of the
+=core=.
 
-#+BEGIN: lisp-system-info :system ffi :symbols nil :files nil :dependents nil :tests nil :packages nil
+#+BEGIN: lisp-system-info :system alien :symbols nil :files nil :dependents nil :tests nil :packages nil
 - dependencies
-  #+CALL: lisp-system-dependencies[:post transpose]("ffi")
+  #+CALL: lisp-system-dependencies[:post transpose]("alien")
 
   #+RESULTS:
-  | arrow       |
-  | blake3      |
-  | btrfs       |
-  | alsa        |
-  | jack        |
-  | cuda        |
-  | evdev       |
-  | glib        |
-  | gstreamer   |
-  | keyutils    |
-  | rocksdb     |
-  | sndfile     |
-  | ssh2        |
-  | tree-sitter |
-  | uring       |
-  | xkb         |
-  | zstd        |
-  | jpeg        |
-  | chromaprint |
-  | blas        |
-  | openssl     |
-  | ffmpeg      |
-  | syslog      |
+  | ARROW       |
+  | BLAKE3      |
+  | BTRFS       |
+  | ALSA        |
+  | CUDA        |
+  | EVDEV       |
+  | GLIB        |
+  | GSTREAMER   |
+  | SNDFILE     |
+  | SSH2        |
+  | TREE-SITTER |
+  | URING       |
+  | XKB         |
+  | ZSTD        |
+  | JPEG        |
+  | CHROMAPRINT |
+  | BLAS        |
+  | OPENSSL     |
+  | FFMPEG      |
+  | SYSLOG      |
+  | JACK        |
+  | KEYUTILS    |
+  | ROCKSDB     |
 
 #+END:
 
@@ -60,21 +60,22 @@ x11/xkb directly.
   #+CALL: lisp-system-dependencies[:post transpose]("xkb")
 
   #+RESULTS:
-  | std |
+  | STD |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("xkb")
 
   #+RESULTS:
-  | ffi         |
-  | evdev/tests |
-  | xkb/tests   |
-  | io          |
+  | :ALIEN       |
+  | :IO          |
+  | :XKB/TESTS   |
+  | :EVDEV/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("xkb")
 
   #+RESULTS:
+  | xkb.sys        |
   | pkg.lisp       |
   | constants.lisp |
 
@@ -109,22 +110,23 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
   #+CALL: lisp-system-dependencies[:post transpose]("rocksdb")
 
   #+RESULTS:
-  | std |
-  | log |
+  | STD |
+  | LOG |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("rocksdb")
 
   #+RESULTS:
-  | ffi           |
-  | rocksdb/tests |
-  | rdb/tests     |
-  | rdb           |
+  | :ALIEN         |
+  | :RDB           |
+  | :ROCKSDB/TESTS |
+  | :RDB/TESTS     |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("rocksdb")
 
   #+RESULTS:
+  | rocksdb.sys         |
   | pkg.lisp            |
   | prim.lisp           |
   | types.lisp          |
@@ -182,7 +184,7 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
   | ROCKSDB-OPTIONS-GET-MAX-SUBCOMPACTIONS                                  |
   | ROCKSDB-OPTIONS-SET-MAX-WRITE-BUFFER-NUMBER                             |
   | ROCKSDB-WRITEBATCH-WI-DELETE                                            |
-  | ROCKSDB-TRANSACTION-GET-PINNED-CF                                       |
+  | ROCKSDB-MERGE-CF                                                        |
   | ROCKSDB-WRITEBATCH-WI-UPDATE-TIMESTAMPS                                 |
   | ROCKSDB-TRANSACTIONDB-OPEN-COLUMN-FAMILIES                              |
   | ROCKSDB-OPTIONS-GET-TARGET-FILE-SIZE-MULTIPLIER                         |
@@ -278,7 +280,7 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
   | ROCKSDB-SSTFILEWRITER-PUT-WITH-TS                                       |
   | ROCKSDB-SSTFILEWRITER-CREATE-WITH-COMPARATOR                            |
   | ROCKSDB-TRANSACTIONDB-FLUSH-CFS                                         |
-  | ROCKSDB-OPTIONS-SET-BLOB-COMPACTION-READAHEAD-SIZE                      |
+  | ROCKSDB-TRANSACTION-COMMIT                                              |
   | ROCKSDB-KEY-MAY-EXIST-CF                                                |
   | ROCKSDB-COMPACTIONJOBINFO-INPUT-RECORDS                                 |
   | ROCKSDB-OPTIONS-SET-PREPARE-FOR-BULK-LOAD                               |
@@ -288,6 +290,7 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
   | ROCKSDB-BLOCK-BASED-OPTIONS-SET-DATA-BLOCK-HASH-RATIO                   |
   | ROCKSDB-COLUMN-FAMILY-HANDLE-GET-NAME                                   |
   | ROCKSDB-BATCHED-MULTI-GET-CF                                            |
+  | ROCKSDB-EXTERNALFILEINGESTIONINFO-INTERNAL-FILE-PATH                    |
   | ROCKSDB-MERGEOPERATOR-FUNCTION                                          |
   | ROCKSDB-OPTIONS-SET-RATELIMITER                                         |
   | ROCKSDB-OPTIONS-CREATE                                                  |
@@ -313,23 +316,23 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
   | ROCKSDB-OPTIONS-GET-MEMTABLE-PREFIX-BLOOM-SIZE-RATIO                    |
   | ROCKSDB-IN-RANGE-DEFAULT                                                |
   | ROCKSDB-MULTI-GET                                                       |
-  | WITH-ERRPTR                                                             |
+  | ROCKSDB-BACKUP-ENGINE-CLOSE                                             |
   | ROCKSDB-BACKUP-ENGINE-OPTIONS-SET-DESTROY-OLD-DATA                      |
-  | ROCKSDB-PUT                                                             |
+  | ROCKSDB-MEMTABLEINFO-FIRST-SEQNO                                        |
   | ROCKSDB-INGEST-EXTERNAL-FILE-CF                                         |
   | ROCKSDB-LOAD-LATEST-OPTIONS                                             |
   | ROCKSDB-CONDITION                                                       |
   | ROCKSDB-OPTIONS-SET-BLOB-FILE-SIZE                                      |
   | ROCKSDB-OPTIONS-GET-KEEP-LOG-FILE-NUM                                   |
   | ROCKSDB-SSTFILEWRITER-PUT                                               |
-  | ROCKSDB-OPTIONS-SET-SKIP-CHECKING-SST-FILE-SIZES-ON-DB-OPEN             |
+  | ROCKSDB-COMPACTOPTIONS                                                  |
   | ROCKSDB-OPTIONS-SET-UINT64ADD-MERGE-OPERATOR                            |
   | ROCKSDB-BLOCK-BASED-OPTIONS-SET-BLOCK-SIZE-DEVIATION                    |
   | ROCKSDB-TRANSACTIONDB                                                   |
   | ROCKSDB-OPTIONS-SET-MAX-COMPACTION-BYTES                                |
   | ROCKSDB-READOPTIONS-SET-READ-TIER                                       |
   | ROCKSDB-OPEN-COLUMN-FAMILIES                                            |
-  | ROCKSDB-TRANSACTION                                                     |
+  | ROCKSDB-OPTIONS-GET-LEVEL-COMPACTION-DYNAMIC-LEVEL-BYTES                |
   | ROCKSDB-OPTIONS-GET-ALLOW-MMAP-READS                                    |
   | ROCKSDB-HYPER-CLOCK-CACHE-OPTIONS-SET-CAPACITY                          |
   | ROCKSDB-LRU-CACHE-OPTIONS                                               |
@@ -362,7 +365,7 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
   | ROCKSDB-TRANSACTIONDB-RELEASE-SNAPSHOT                                  |
   | ROCKSDB-BLOCK-BASED-OPTIONS-SET-DATA-BLOCK-INDEX-TYPE                   |
   | ROCKSDB-FIFO-COMPACTION-OPTIONS-DESTROY                                 |
-  | ROCKSDB-TRANSACTIONDB-FLUSH-WAL                                         |
+  | ROCKSDB-OPTIONS-SET-MIN-WRITE-BUFFER-NUMBER-TO-MERGE                    |
   | ROCKSDB-NUM-FILES-AT-LEVEL                                              |
   | ROCKSDB-OPTIONS-SET-WAL-TTL-SECONDS                                     |
   | ROCKSDB-TRANSACTION-DESTROY                                             |
@@ -394,7 +397,7 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
   | ROCKSDB-LOGGER-FUNCTION                                                 |
   | ROCKSDB-OPTIONS-GET-MAX-SEQUENTIAL-SKIP-IN-ITERATIONS                   |
   | ROCKSDB-BACKUP-ENGINE                                                   |
-  | ROCKSDB-BACKUP-ENGINE-OPTIONS-GET-SHARED-FILES-WITH-CHECKSUM-NAMING     |
+  | ROCKSDB-OPTIONS-GET-DB-WRITE-BUFFER-SIZE                                |
   | ROCKSDB-COLUMN-FAMILY-METADATA-GET-FILE-COUNT                           |
   | ROCKSDB-WRITEOPTIONS-SET-NO-SLOWDOWN                                    |
   | ROCKSDB-CREATE-COMPACTION-FILTER                                        |
@@ -426,7 +429,6 @@ https://xkbcommon.org/doc/current/md_doc_2quick-guide.html
   | ROCKSDB-BACKUP-ENGINE-OPTIONS-GET-CALLBACK-TRIGGER-INTERVAL-SIZE        |
   | *ROCKSDB-COMPRESSION-BACKENDS*                                          |
   | ROCKSDB-OPTIONS-GET-COMPACTION-STYLE                                    |
-  | DEFAULT-ON-MEMTABLE-SEALED-CB                                           |
   | ...                                                                     |
 
 #+END:
@@ -449,20 +451,21 @@ in addition to the userspace library (btrfsutil) documented below.
   #+CALL: lisp-system-dependencies[:post transpose]("btrfs")
 
   #+RESULTS:
-  | std |
+  | STD |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("btrfs")
 
   #+RESULTS:
-  | ffi         |
-  | btrfs/tests |
-  | io          |
+  | :ALIEN       |
+  | :IO          |
+  | :BTRFS/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("btrfs")
 
   #+RESULTS:
+  | btrfs.sys      |
   | pkg.lisp       |
   | constants.lisp |
   | util.lisp      |
@@ -566,22 +569,23 @@ https://man.archlinux.org/man/io_uring.7.en
   #+CALL: lisp-system-dependencies[:post transpose]("uring")
 
   #+RESULTS:
-  | std |
-  | obj |
+  | STD |
+  | OBJ |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("uring")
 
   #+RESULTS:
-  | ffi         |
-  | uring/tests |
-  | io/tests    |
-  | io          |
+  | :ALIEN       |
+  | :IO          |
+  | :URING/TESTS |
+  | :IO/TESTS    |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("uring")
 
   #+RESULTS:
+  | uring.sys      |
   | pkg.lisp       |
   | constants.lisp |
   | util.lisp      |
@@ -890,20 +894,21 @@ zstd compression bindings: https://github.com/facebook/zstd
   #+CALL: lisp-system-dependencies[:post transpose]("zstd")
 
   #+RESULTS:
-  | std |
+  | STD |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("zstd")
 
   #+RESULTS:
-  | ffi        |
-  | zstd/tests |
-  | io         |
+  | :ALIEN      |
+  | :IO         |
+  | :ZSTD/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("zstd")
 
   #+RESULTS:
+  | zstd.sys       |
   | pkg.lisp       |
   | constants.lisp |
   | simple.lisp    |
@@ -949,13 +954,12 @@ zstd compression bindings: https://github.com/facebook/zstd
   | ZSTDC                        |
   | ZSTD-INBUFFER                |
   | ZSTD-DSTREAM                 |
-  | ZSTD-VERSIONNUMBER           |
   | +ZSTD-VERSION-RELEASE+       |
   | +ZSTD-MAGIC-SKIPPABLE-START+ |
   | ZSTD-CSTREAMOUTSIZE          |
   | ZSTD-DECOMPRESS              |
   | WITH-ZSTD-CSTREAM            |
-  | ZDICT-PARAMS                 |
+  | ZSTD-VERSIONNUMBER           |
   | +ZSTD-CLEVEL-DEFAULT+        |
   | ZSTD-DECOMPRESSSTREAM        |
   | +ZSTD-MAX-INPUT-SIZE+        |
@@ -992,33 +996,33 @@ bindings to tree-sitter parser generator and language libraries: https://github.
   #+CALL: lisp-system-dependencies[:post transpose]("tree-sitter")
 
   #+RESULTS:
-  | std |
+  | STD |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("tree-sitter")
 
   #+RESULTS:
-  | ffi               |
-  | tree-sitter/tests |
-  | syn               |
+  | :ALIEN             |
+  | :SYN               |
+  | :TREE-SITTER/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("tree-sitter")
 
   #+RESULTS:
-  | pkg.lisp       |
-  | ffi.lisp       |
-  | lang.lisp      |
-  | api.lisp       |
-  | constants.lisp |
+  | tree-sitter.sys |
+  | pkg.lisp        |
+  | ffi.lisp        |
+  | lang.lisp       |
+  | api.lisp        |
+  | constants.lisp  |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("tree-sitter")
 
   #+RESULTS:
-  | TS-QUERY-C |
-  | TS-RUST    |
-  | TS-JSON    |
+  | TS-RUST |
+  | TS-JSON |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("TREE-SITTER")
@@ -1034,13 +1038,12 @@ bindings to tree-sitter parser generator and language libraries: https://github.
   | CONVERT-FOREIGN-TREE-TO-LIST                  |
   | TS-LANGUAGE-SYMBOL-COUNT                      |
   | LIST-TS-LANGS                                 |
-  | TS-NODE-GRAMMAR-SYMBOL                        |
+  | TS-NODE-GRAMMAR-TYPE                          |
   | TS-NODE-LANGUAGE                              |
   | WITH-TS-QUERY                                 |
   | TS-PARSER-PRINT-DOT-GRAPHS                    |
-  | TS-NODE                                       |
   | TS-TREE-COPY                                  |
-  | TREE-SITTER-CSS                               |
+  | LOAD-TREE-SITTER-JSON                         |
   | TREE-SITTER-JAVASCRIPT                        |
   | TS-PARSER-PARSE                               |
   | +TREE-SITTER-LANGUAGE-VERSION+                |
@@ -1059,12 +1062,11 @@ bindings to tree-sitter parser generator and language libraries: https://github.
   | *TREE-SITTER-LANGUAGE-DIRECTORY*              |
   | TS-STATE-ID                                   |
   | TS-LOOKAHEAD-ITERATOR                         |
-  | WITH-TS-CURSOR                                |
+  | TS-NODE                                       |
   | TS-NODE-EQ                                    |
   | TREE-SITTER-ERROR                             |
   | TS-TREE-CURSOR-DELETE                         |
   | TS-NODE-IS-NULL                               |
-  | TS-TREE-ROOT-NODE-POINTER                     |
   | PARSE-STRING                                  |
   | TS-PARSER-SET-LOGGER                          |
   | TS-PARSER                                     |
@@ -1075,24 +1077,25 @@ bindings to tree-sitter parser generator and language libraries: https://github.
   | LOAD-TREE-SITTER-CSS                          |
   | TS-NODE-STRING                                |
   | TS-LOGGER                                     |
+  | TS-TREE-CURSOR-NEW                            |
   | LOAD-TREE-SITTER-YAML                         |
   | TS-NODE-START-BYTE                            |
-  | TS-TREE-CURSOR-GOTO-FIRST-CHILD               |
+  | TS-NODE-END-BYTE                              |
   | TS-QUERY-CURSOR-DELETE                        |
-  | TS-TREE-CURSOR-CURRENT-NODE-POINTER           |
+  | TS-NODE-SYMBOL                                |
   | TREE-SITTER-COMMONLISP                        |
   | TS-TREE-CURSOR-CURRENT-FIELD-NAME             |
   | TS-QUERY-CURSOR                               |
   | LOAD-TREE-SITTER-ALIEN                        |
   | TS-LANGUAGE                                   |
-  | TS-NODE-GRAMMAR-TYPE                          |
   | TS-TREE-EDIT                                  |
-  | TS-NODE-IS-NAMED-POINTER                      |
+  | TS-PARSER-NEW                                 |
   | LOAD-TREE-SITTER-C                            |
   | +TREE-SITTER-MIN-COMPATIBLE-LANGUAGE-VERSION+ |
-  | *TS-LANGS*                                    |
+  | PARSE-STRING-WITH-LANGUAGE                    |
+  | WITH-TS-CURSOR                                |
   | TS-TREE-ROOT-NODE                             |
-  | LOAD-TREE-SITTER-TYPESCRIPT-TYPESCRIPT        |
+  | TS-PARSER-PARSE-STRING                        |
   | TREE-SITTER-TYPESCRIPT-TSX                    |
   | TREE-SITTER-YAML                              |
   | TS-NODE-START-POINT                           |
@@ -1104,44 +1107,41 @@ bindings to tree-sitter parser generator and language libraries: https://github.
   | LOAD-TREE-SITTER-CPP                          |
   | TS-TREE-CURSOR                                |
   | TS-LANGUAGE-SYMBOL-NAME                       |
-  | TS-PARSER-LOGGER                              |
+  | LOAD-TREE-SITTER-TYPESCRIPT-TYPESCRIPT        |
   | TS-POINT                                      |
-  | TS-TREE-CURSOR-NEW-POINTER                    |
+  | *TS-LANGS*                                    |
   | TS-TREE-PRINT-DOT-GRAPH                       |
   | LOAD-TREE-SITTER-JAVASCRIPT                   |
   | TREE-SITTER-JSON                              |
-  | LANGUAGE-MODULE                               |
+  | TS-NODE-IS-NAMED                              |
   | TREE-SITTER-CPP                               |
   | TS-TREE                                       |
-  | TS-QUERY-ERROR                                |
-  | LOAD-TREE-SITTER-JSON                         |
+  | LANGUAGE-MODULE                               |
+  | TREE-SITTER-CSS                               |
   | LOAD-TREE-SITTER-GO                           |
   | TS-PARSER-SET-LANGUAGE                        |
   | TS-SYMBOL                                     |
   | LOAD-TREE-SITTER-HTML                         |
-  | TS-NODE-END-BYTE                              |
   | TS-LANGUAGE-VERSION                           |
-  | TS-NODE-START-POINT-POINTER                   |
+  | TS-NODE-GRAMMAR-SYMBOL                        |
   | LOAD-TREE-SITTER-TYPESCRIPT-TSX               |
   | TREE-SITTER-JSDOC                             |
-  | PARSE-STRING-WITH-LANGUAGE                    |
+  | TS-TREE-CURSOR-CURRENT-NODE                   |
   | TS-LANGUAGE-FIELD-COUNT                       |
-  | TS-PARSER-NEW                                 |
+  | TS-TREE-CURSOR-GOTO-FIRST-CHILD               |
   | LOAD-TREE-SITTER-BASH                         |
   | LOAD-TREE-SITTER-JSDOC                        |
   | WITH-TS-LANG                                  |
-  | TS-NODE-TYPE-POINTER                          |
-  | TS-LANGUAGE-NEXT-STATE                        |
+  | TS-PARSER-LOGGER                              |
   | LOAD-TREE-SITTER-REGEX                        |
   | TS-QUERY-NEW                                  |
-  | TS-NODE-SYMBOL                                |
-  | TS-PARSER-PARSE-STRING                        |
+  | TS-LANGUAGE-NEXT-STATE                        |
   | TS-PARSER-DELETE                              |
   | TS-TREE-DELETE                                |
   | TS-TREE-CURSOR-GOTO-NEXT-SIBLING              |
   | TS-QUERY-DELETE                               |
   | CHECK-TS-QUERY-ERROR                          |
-  | TS-NODE-END-POINT-POINTER                     |
+  | TS-QUERY-ERROR                                |
 
 #+END:
 
@@ -1164,20 +1164,21 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("blake3")
 
   #+RESULTS:
-  | std |
+  | STD |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("blake3")
 
   #+RESULTS:
-  | ffi          |
-  | blake3/tests |
-  | cry          |
+  | :ALIEN        |
+  | :CRY          |
+  | :BLAKE3/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("blake3")
 
   #+RESULTS:
+  | blake3.sys     |
   | pkg.lisp       |
   | constants.lisp |
 
@@ -1231,19 +1232,20 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("ssh2")
 
   #+RESULTS:
-  | std |
+  | STD |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("ssh2")
 
   #+RESULTS:
-  | ffi        |
-  | ssh2/tests |
+  | :ALIEN      |
+  | :SSH2/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("ssh2")
 
   #+RESULTS:
+  | ssh2.sys       |
   | pkg.lisp       |
   | constants.lisp |
   | ssh2.lisp      |
@@ -1259,16 +1261,16 @@ implementation (libblake3).
   #+CALL: lisp-package-symbols[:post transpose]("SSH2")
 
   #+RESULTS:
-  | LIBSSH2-ERROR                  |
-  | LIBSSH2-FREE                   |
+  | LOAD-SSH2                      |
   | SSH-DISCONNECT*                |
-  | LIBSSH2-SESSION-SUPPORTED-ALGS |
-  | LIBSSH2-EXIT                   |
   | LIBSSH2-ERROR*                 |
-  | LIBSSH2-SESSION-INIT-EX        |
   | LIBSSH2-INIT                   |
   | SSH-DISCONNECT                 |
-  | LOAD-SSH2                      |
+  | LIBSSH2-EXIT                   |
+  | LIBSSH2-SESSION-SUPPORTED-ALGS |
+  | LIBSSH2-SESSION-INIT-EX        |
+  | LIBSSH2-ERROR                  |
+  | LIBSSH2-FREE                   |
 
 #+END
 
@@ -1289,21 +1291,22 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("blas")
 
   #+RESULTS:
-  | std |
-  | log |
+  | STD |
+  | LOG |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("blas")
 
   #+RESULTS:
-  | ffi        |
-  | blas/tests |
-  | math       |
+  | :ALIEN      |
+  | :MATH       |
+  | :BLAS/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("blas")
 
   #+RESULTS:
+  | blas.sys  |
   | blas.lisp |
 
 - tests
@@ -1351,22 +1354,23 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("jack")
 
   #+RESULTS:
-  | std |
-  | log |
-  | dat |
+  | STD |
+  | LOG |
+  | DAT |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("jack")
 
   #+RESULTS:
-  | ffi        |
-  | jack/tests |
-  | dsp        |
+  | :ALIEN      |
+  | :DSP        |
+  | :JACK/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("jack")
 
   #+RESULTS:
+  | jack.sys |
   | pkg.lisp |
 
 - tests
@@ -1484,20 +1488,21 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("alsa")
 
   #+RESULTS:
-  | std |
+  | STD |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("alsa")
 
   #+RESULTS:
-  | ffi        |
-  | alsa/tests |
-  | dsp        |
+  | :ALIEN      |
+  | :DSP        |
+  | :ALSA/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("alsa")
 
   #+RESULTS:
+  | alsa.sys |
   | pkg.lisp |
 
 - tests
@@ -1543,22 +1548,23 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("openssl")
 
   #+RESULTS:
-  | std |
-  | io  |
+  | STD |
+  | IO  |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("openssl")
 
   #+RESULTS:
-  | ffi           |
-  | cry           |
-  | openssl/tests |
-  | dat           |
+  | :ALIEN         |
+  | :CRY           |
+  | :DAT           |
+  | :OPENSSL/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("openssl")
 
   #+RESULTS:
+  | openssl.sys    |
   | pkg.lisp       |
   | constants.lisp |
   | types.lisp     |
@@ -1703,21 +1709,22 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("chromaprint")
 
   #+RESULTS:
-  | std |
+  | STD |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("chromaprint")
 
   #+RESULTS:
-  | ffi               |
-  | chromaprint/tests |
-  | dsp               |
+  | :ALIEN             |
+  | :DSP               |
+  | :CHROMAPRINT/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("chromaprint")
 
   #+RESULTS:
-  | pkg.lisp |
+  | chromaprint.sys |
+  | pkg.lisp        |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("chromaprint")
@@ -1778,22 +1785,23 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("glib")
 
   #+RESULTS:
-  | std |
-  | log |
+  | STD |
+  | LOG |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("glib")
 
   #+RESULTS:
-  | ffi             |
-  | glib/tests      |
-  | gstreamer/tests |
-  | gstreamer       |
+  | :ALIEN           |
+  | :GSTREAMER       |
+  | :GLIB/TESTS      |
+  | :GSTREAMER/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("glib")
 
   #+RESULTS:
+  | glib.sys |
   | pkg.lisp |
 
 - tests
@@ -1836,22 +1844,23 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("gstreamer")
 
   #+RESULTS:
-  | std  |
-  | log  |
-  | glib |
+  | STD  |
+  | LOG  |
+  | GLIB |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("gstreamer")
 
   #+RESULTS:
-  | ffi             |
-  | gstreamer/tests |
-  | dsp             |
+  | :ALIEN           |
+  | :DSP             |
+  | :GSTREAMER/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("gstreamer")
 
   #+RESULTS:
+  | gstreamer.sys        |
   | pkg.lisp             |
   | object.lisp          |
   | clock.lisp           |
@@ -1986,20 +1995,21 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("jpeg")
 
   #+RESULTS:
-  | std |
-  | log |
+  | STD |
+  | LOG |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("jpeg")
 
   #+RESULTS:
-  | jpeg/tests |
-  | ffi        |
+  | :ALIEN      |
+  | :JPEG/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("jpeg")
 
   #+RESULTS:
+  | jpeg.sys       |
   | pkg.lisp       |
   | constants.lisp |
   | jpeg.lisp      |
@@ -2018,21 +2028,21 @@ implementation (libblake3).
 
   #+RESULTS:
   | LOAD-TURBOJPEG         |
-  | SAVE-JPEG-IMAGE        |
-  | JPEG-DECOMPRESSOR      |
-  | WITH-JPEG-DECOMPRESSOR |
-  | JPEG-WARNING           |
   | WITH-JPEG-COMPRESSOR   |
-  | JPEG                   |
-  | JPEG-COMPRESSOR        |
+  | JPEG-DECOMPRESSOR      |
+  | JPEG-TRANSFORMER       |
   | TRANSFORM-JPEG-IMAGE   |
+  | WITH-JPEG-DECOMPRESSOR |
+  | JPEG-COMPRESSOR        |
+  | JPEG-GET               |
   | LOAD-JPEG              |
   | LOAD-JPEG-IMAGE        |
   | JPEG-ERROR             |
   | JPEG-SET               |
-  | JPEG-TRANSFORMER       |
-  | JPEG-GET               |
+  | JPEG-WARNING           |
+  | JPEG                   |
   | WITH-JPEG-TRANSFORMER  |
+  | SAVE-JPEG-IMAGE        |
 
 #+END
 ** keyutils
@@ -2052,20 +2062,21 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("keyutils")
 
   #+RESULTS:
-  | std |
+  | STD |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("keyutils")
 
   #+RESULTS:
-  | ffi            |
-  | keyutils/tests |
-  | cry            |
+  | :ALIEN          |
+  | :CRY            |
+  | :KEYUTILS/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("keyutils")
 
   #+RESULTS:
+  | keyutils.sys   |
   | pkg.lisp       |
   | constants.lisp |
   | keyutils.lisp  |
@@ -2242,20 +2253,21 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("sndfile")
 
   #+RESULTS:
-  | std |
+  | STD |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("sndfile")
 
   #+RESULTS:
-  | ffi           |
-  | sndfile/tests |
-  | dsp           |
+  | :ALIEN         |
+  | :DSP           |
+  | :SNDFILE/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("sndfile")
 
   #+RESULTS:
+  | sndfile.sys    |
   | pkg.lisp       |
   | constants.lisp |
 
@@ -2350,22 +2362,23 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("ffmpeg")
 
   #+RESULTS:
-  | std |
-  | log |
+  | STD |
+  | LOG |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("ffmpeg")
 
   #+RESULTS:
-  | ffi          |
-  | ffmpeg/tests |
-  | dsp          |
+  | :ALIEN        |
+  | :DSP          |
+  | :FFMPEG/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("ffmpeg")
 
   #+RESULTS:
-  | pkg.lisp |
+  | ffmpeg.sys |
+  | pkg.lisp   |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("ffmpeg")
@@ -2520,22 +2533,23 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("cuda")
 
   #+RESULTS:
-  | std |
-  | log |
+  | STD |
+  | LOG |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("cuda")
 
   #+RESULTS:
-  | ffi        |
-  | syn        |
-  | cuda/tests |
-  | math       |
+  | :ALIEN      |
+  | :MATH       |
+  | :SYN        |
+  | :CUDA/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("cuda")
 
   #+RESULTS:
+  | cuda.sys       |
   | pkg.lisp       |
   | constants.lisp |
   | type.lisp      |
@@ -2628,20 +2642,21 @@ implementation (libblake3).
   #+CALL: lisp-system-dependencies[:post transpose]("evdev")
 
   #+RESULTS:
-  | std |
+  | STD |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("evdev")
 
   #+RESULTS:
-  | ffi         |
-  | evdev/tests |
-  | io          |
+  | :ALIEN       |
+  | :IO          |
+  | :EVDEV/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("evdev")
 
   #+RESULTS:
+  | evdev.sys      |
   | pkg.lisp       |
   | constants.lisp |
   | input.lisp     |
