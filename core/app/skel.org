@@ -20,26 +20,28 @@ is for library developers and internal use.
   | SKEL/COMP/DIR-LOCALS |
   | SKEL/COMP/LISP       |
   | SKEL/COMP            |
-  | SKEL/NET/CLIENT      |
   | SKEL/COMP/CONTAINER  |
   | SKEL/HOMER/CORE      |
   | SKEL/COMP/ORG        |
+  | SKEL/MPK/MPD         |
+  | SKEL/MPK/METRO       |
   | SKEL/HOMER           |
+  | SKEL/MPK/DB          |
+  | SKEL/MPK/CLI         |
   | SKEL/COMP/CARGO      |
-  | SKEL/TESTS           |
   | SKEL                 |
-  | SKEL/NET/CORE        |
   | SKEL/CLI             |
+  | SKEL-INT             |
   | SKEL/COMP/INFER      |
   | SKEL/HOMER/CLI       |
   | SKEL/NET             |
   | SKEL/PACKY/CLI       |
+  | SKEL/MPK             |
   | SKEL/COMP/MAKEFILE   |
   | SKEL/PACKY           |
   | SKEL/PACKY/APKBUILD  |
   | SKEL/COMP/SYS        |
   | SKEL/SRV             |
-  | SKEL/NET/SERVER      |
   | SKEL/KRYPT           |
   | SKEL/COMP/ASD        |
 
@@ -47,33 +49,32 @@ is for library developers and internal use.
   #+CALL: lisp-system-dependencies[:post transpose]("skel")
 
   #+RESULTS:
-  | std   |
-  | obj   |
-  | dat   |
-  | cli   |
-  | organ |
-  | doc   |
-  | vc    |
-  | pod   |
-  | net   |
-  | box   |
-  | rdb   |
-  | syn   |
-  | NIL   |
+  | STD   |
+  | OBJ   |
+  | DAT   |
+  | CLI   |
+  | ORGAN |
+  | DOC   |
+  | VC    |
+  | POD   |
+  | NET   |
+  | BOX   |
+  | RDB   |
+  | SYN   |
+  | NLP   |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("skel")
 
   #+RESULTS:
-  | skel/tests |
-  | bin/core   |
-  | bin/skel   |
-  | bin/homer  |
+  | :BIN        |
+  | :SKEL/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("skel")
 
   #+RESULTS:
+  | skel.sys             |
   | pkg.lisp             |
   | core/condition.lisp  |
   | core/proto.lisp      |
@@ -99,6 +100,8 @@ is for library developers and internal use.
   | comp/makefile.lisp   |
   | comp/sys.lisp        |
   | comp/infer.lisp      |
+  | net.lisp             |
+  | srv.lisp             |
   | packy/pkg.lisp       |
   | packy/var.lisp       |
   | packy/proto.lisp     |
@@ -121,11 +124,17 @@ is for library developers and internal use.
   | homer/cfg.lisp       |
   | homer/srv.lisp       |
   | homer/cli.lisp       |
-  | net/var.lisp         |
-  | net/server.lisp      |
-  | net/client.lisp      |
-  | net/endpoint.lisp    |
-  | net/srv.lisp         |
+  | mpk/pkg.lisp         |
+  | mpk/mpd.lisp         |
+  | mpk/var.lisp         |
+  | mpk/proto.lisp       |
+  | mpk/util.lisp        |
+  | mpk/db.lisp          |
+  | mpk/cfg.lisp         |
+  | mpk/net.lisp         |
+  | mpk/metro.lisp       |
+  | mpk/mpk.lisp         |
+  | mpk/cli.lisp         |
   | cli.lisp             |
   | skel.lisp            |
 
@@ -135,7 +144,7 @@ is for library developers and internal use.
   #+RESULTS:
   | PRINT-SKEL-OBJECT            |
   | *SKEL-PROJECT-MACROS*        |
-  | SK-SERVER                    |
+  | DIR-LOCAL-VAR-DESIGNATOR     |
   | LOAD-SKELRC                  |
   | SK-LOG-SHUTDOWN              |
   | *SKEL-ENV*                   |
@@ -158,7 +167,7 @@ is for library developers and internal use.
   | USER-SKELRC                  |
   | MAKEFILE                     |
   | SK-PULL                      |
-  | MAKE-SHEBANG-COMMENT         |
+  | MERGE-PROJECT-PATHNAMES      |
   | *SKEL-STORE*                 |
   | *DIR-LOCALS-FILE*            |
   | FIND-SKELFILE                |
@@ -179,20 +188,18 @@ is for library developers and internal use.
   | SK-LOG-CLOSE                 |
   | SK-COMPONENT                 |
   | SK-STASH                     |
-  | *DEFAULT-MAKEFILE*           |
   | LOAD-USER-SKELRC             |
   | USER                         |
   | SK-SCRIPT                    |
   | SKEL-CONDITION               |
-  | DIR-LOCAL-VAR-DESIGNATOR     |
+  | MAKE-FILE-HEADER             |
   | SK-READ-FILE                 |
   | INIT-SKEL-LOGGER             |
   | SKEL                         |
   | *DEFAULT-SKEL-CACHE*         |
   | SK-SYSTEM-CONFIG             |
   | PUSH-MK-RULE                 |
-  | SK-LOG-REPAIR                |
-  | MERGE-PROJECT-PATHNAMES      |
+  | DEF-SK-CLASS                 |
   | SK-PACK                      |
   | SK-RUST-SYSTEM               |
   | LOAD-SYSTEM-SKELRC           |
@@ -205,6 +212,7 @@ is for library developers and internal use.
   | SK-COMMAND                   |
   | SK-PUSH                      |
   | *SYSTEM-SKELRC*              |
+  | MAKE-SHEBANG-COMMENT         |
   | SK-SCHEMA                    |
   | SK-USER-CONFIG               |
   | SK-NEW                       |
@@ -216,9 +224,9 @@ is for library developers and internal use.
   | *USER-SKELRC*                |
   | MAKE-SOURCE-HEADER-COMMENT   |
   | SK-META                      |
-  | SK-ABBREV                    |
-  | PARSE-SK-LISP-SYSTEM         |
   | MK-VAR                       |
+  | PARSE-SK-LISP-SYSTEM         |
+  | *SKEL-PATH*                  |
   | SK-PROJECT                   |
   | MK-VAL                       |
   | SK-PARENT                    |
@@ -227,7 +235,7 @@ is for library developers and internal use.
   | *SKEL-CACHE-SCHEMA*          |
   | LOAD-SKELFILE                |
   | *SKEL-SYSTEM-CONFIG*         |
-  | *SKEL-PATH*                  |
+  | SK-ABBREV                    |
   | SK-TARGET                    |
   | MK-VAL-DESIGNATOR            |
   | *DEFAULT-SKELFILE*           |
@@ -236,7 +244,7 @@ is for library developers and internal use.
   | INIT-SKELFILE                |
   | FIND-PROJECT-ROOT            |
   | SK-RULE                      |
-  | MAKE-FILE-HEADER             |
+  | SK-LOG-REPAIR                |
   | *SKEL-LOGGER*                |
   | *SKEL-USER-CONFIG*           |
   | SK-CALL                      |
@@ -246,7 +254,7 @@ is for library developers and internal use.
   | *DEFAULT-SKEL-USER*          |
   | *SKEL-LOGGER-CONFIG*         |
   | PUSH-MK-VAR                  |
-  | DEF-SK-CLASS                 |
+  | *DEFAULT-MAKEFILE*           |
   | SK-RULE-RECIPE               |
   | SCRIPTS                      |
   | SKEL-STORE                   |
@@ -336,7 +344,6 @@ cat ~/.config/skelrc
 :name "Richard Westhaver"
 :email "richard.westhaver@gmail.com"
 :version "0.1.0"
-:tags ("auto")
 :fmt :pretty
 :vc :hg
 :auto-insert t
@@ -436,10 +443,13 @@ homer -h
 #+end_src
 
 #+RESULTS:
-: The value
-:   NIL
-: is not of type
-:   STRING
+: restarts (invokable by number or by possibly-abbreviated name):
+:   0: [ABORT] Skip to toplevel REPL.
+:   1: [EXIT ] Exit SBCL (calling #'EXIT, killing the process).
+: 
+: (READ-COMMAND #<SB-IMPL::STRING-INPUT-STREAM {7FAEBBD579D3}>)
+:    source: (UNDEFINED-COMMAND C ARGS)
+: 0] 
 ** Packy
 :PROPERTIES:
 :CREATED:  <2025-11-03 Mon 20:48>
@@ -570,7 +580,15 @@ skel -h
 #+end_src
 
 #+RESULTS:
-: The value
-:   NIL
-: is not of type
-:   STRING
+#+begin_example
+#:fatal 0.030999
+unknown argument: -h
+Backtrace for: #<THREAD tid=138590 "main thread" RUNNING {12033C0003}>
+0: (FATAL! "-h")
+1: ((LAMBDA (&REST SKEL/CLI::ARGS) :IN "/home/ellis/comp/core/skel/cli.lisp") "-h")
+2: ((SB-PCL::EMF CALL) #<unused argument> #<unused argument> #<CLI-COMMAND (LAMBDA (&REST ARGS) IN /home/ellis/comp/core/skel/cli.lisp)> ("-h"))
+3: (SKEL/CLI::START-SKEL)
+4: ((FLET SB-UNIX::BODY :IN SB-IMPL::START-LISP))
+5: ((FLET "WITHOUT-INTERRUPTS-BODY-3" :IN SB-IMPL::START-LISP))
+6: (SB-IMPL::%START-LISP)
+#+end_example

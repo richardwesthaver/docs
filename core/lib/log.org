@@ -17,68 +17,65 @@ libraries and apps.
   #+CALL: lisp-system-dependencies[:post transpose]("log")
 
   #+RESULTS:
-  | std    |
-  | io     |
-  | obj    |
-  | syslog |
+  | STD    |
+  | IO     |
+  | OBJ    |
+  | SYSLOG |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("log")
 
   #+RESULTS:
-  | jpeg/tests      |
-  | jpeg            |
-  | arrow/tests     |
-  | arrow           |
-  | vc              |
-  | box/tests       |
-  | box             |
-  | ffmpeg/tests    |
-  | ffmpeg          |
-  | jack            |
-  | glib/tests      |
-  | glib            |
-  | gstreamer/tests |
-  | gstreamer       |
-  | cuda            |
-  | lapack          |
-  | blas            |
-  | math/tests      |
-  | dsp             |
-  | organ           |
-  | doc/tests       |
-  | doc             |
-  | q/tests         |
-  | q               |
-  | rocksdb         |
-  | rdb/tests       |
-  | rdb             |
-  | nlp/tests       |
-  | cry             |
-  | rt              |
-  | net             |
-  | dat             |
-  | log/tests       |
-  | cli             |
-  | core            |
+  | :CORE            |
+  | :ARROW           |
+  | :BLAS            |
+  | :LAPACK          |
+  | :CUDA            |
+  | :FFMPEG          |
+  | :GLIB            |
+  | :GSTREAMER       |
+  | :JACK            |
+  | :JPEG            |
+  | :ROCKSDB         |
+  | :BOX             |
+  | :CLI             |
+  | :CRY             |
+  | :DAT             |
+  | :DOC             |
+  | :DSP             |
+  | :NET             |
+  | :ORGAN           |
+  | :Q               |
+  | :RDB             |
+  | :RT              |
+  | :VC              |
+  | :LOG/TESTS       |
+  | :Q/TESTS         |
+  | :RDB/TESTS       |
+  | :BOX/TESTS       |
+  | :MATH/TESTS      |
+  | :BBDB            |
+  | :XLIB            |
+  | :GSTREAMER/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("log")
 
   #+RESULTS:
+  | log.sys        |
   | pkg.lisp       |
   | condition.lisp |
   | log.lisp       |
   | db.lisp        |
   | stream.lisp    |
   | cfg.lisp       |
-  | syslog.lisp    |
   | sys.lisp       |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("log")
 
   #+RESULTS:
+  | LOGGER-CONFIG        |
   | STOP-LOGGER          |
   | FAST-STREAM          |
   | STREAM               |
@@ -94,6 +91,7 @@ libraries and apps.
   #+RESULTS:
   | TRACE!                  |
   | *LOG-SHOW-BACKTRACE*    |
+  | LOG-MESSAGE*            |
   | LOG-PIPE                |
   | LOG-TIMESTAMP-SOURCE    |
   | DEFAULT-LOGGER          |
@@ -101,16 +99,16 @@ libraries and apps.
   | WITH-LOGGER             |
   | INFO-DESCRIBE           |
   | LOGGER-CONFIG           |
-  | LOGGER-P                |
+  | ALIEN-SOURCE            |
   | RESTART-LOGGER          |
   | WARN!                   |
   | SIMPLE-LOG-MESSAGE      |
   | LEVEL-FILTER            |
-  | %LOG-OBJECT             |
+  | DEBUG-P                 |
   | *LOG-TIMESTAMP*         |
   | LOG!                    |
   | DATABASE-LOGGER         |
-  | LOG-MESSAGE             |
+  | DEFINE-LOG-LEVEL        |
   | ERROR-DESCRIBE          |
   | DB-SINK                 |
   | GET-REAL-TIME-SINCE     |
@@ -121,7 +119,8 @@ libraries and apps.
   | WITH-LOG-STREAM         |
   | ILEVEL                  |
   | *LOG-MESSAGE-CLASS*     |
-  | DEFINE-LOG-LEVEL        |
+  | WARN-P                  |
+  | TAG-FILTER              |
   | TRACE-DESCRIBE          |
   | *LOG-TIMESTAMP-FORMAT*  |
   | ALIEN-SINK              |
@@ -131,31 +130,33 @@ libraries and apps.
   | TRACE-P                 |
   | OCTETS-TO-LOG-MESSAGE   |
   | LOG-P                   |
-  | TAG-FILTER              |
+  | LOG-OBJECT              |
   | LOG-LEVEL-DESIGNATOR    |
   | LEVEL                   |
   | DEBUG-DESCRIBE          |
   | LOG-ROTATE              |
+  | WITH-CONDITIONS-LOGGED  |
   | FATAL!                  |
   | ALIEN-LOGGER            |
   | *LOG-LEVELS*            |
-  | WITH-FAST-LOG-STREAM    |
+  | *LOG-LEVEL*             |
   | *LOG-INDENT*            |
   | *LOGGER*                |
   | INFO!                   |
-  | DEBUG-P                 |
-  | *TAG-SEPARATOR*         |
+  | %LOG-OBJECT             |
+  | LOGGER-P                |
   | MESSAGE-THREAD          |
-  | *LOG-LEVEL*             |
+  | *TAG-SEPARATOR*         |
   | DB-SOURCE               |
   | DFORMAT                 |
   | INIT-LOG-TIMESTAMP      |
+  | BACKUP-FILE-SINK        |
   | TAG-TREE-FILTER         |
-  | LOG-MESSAGE-TO-OCTETS   |
+  | LOG-MESSAGE             |
   | ROTATE-FILE-SINK        |
   | MATCHING-TREE-TAG       |
-  | LOG-OBJECT              |
-  | ALIEN-SOURCE            |
+  | DPRINT                  |
+  | WITH-FAST-LOG-STREAM    |
   | INFO-P                  |
   | FATAL-DESCRIBE          |
   | DEBUG!                  |
@@ -163,7 +164,7 @@ libraries and apps.
   | LOG-ERROR               |
   | ERROR!                  |
   | *LOG-MESSAGE-FORMATTER* |
-  | WARN-P                  |
+  | LOG-MESSAGE-TO-OCTETS   |
 
 #+END
 
@@ -237,7 +238,7 @@ protocol.
 #+end_src
 
 #+RESULTS:
-: #<LOGGER-CONFIG {120CA83A93}>
+: #<LOGGER-CONFIG {120C341523}>
 :   [standard-object]
 : 
 : Slots with :INSTANCE allocation:

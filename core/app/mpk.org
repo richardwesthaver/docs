@@ -27,41 +27,21 @@ maintaining mid-sized collections of mixed media (10-100TB).
   #+CALL: lisp-system-packages[:post transpose]("mpk")
 
   #+RESULTS:
-  | MPK/CLI   |
-  | MPK/DB    |
-  | MPK/METRO |
-  | MPK       |
-  | MPK-USER  |
-  | MPK/MPD   |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("mpk")
 
   #+RESULTS:
-  | core |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("mpk")
 
   #+RESULTS:
-  | bin/core |
-  | bin/mpk  |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("mpk")
 
   #+RESULTS:
-  | pkg.lisp   |
-  | mpd.lisp   |
-  | var.lisp   |
-  | proto.lisp |
-  | util.lisp  |
-  | db.lisp    |
-  | metro.lisp |
-  | cfg.lisp   |
-  | net.lisp   |
-  | mpk.lisp   |
-  | cli.lisp   |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("MPK")
@@ -138,10 +118,10 @@ by the tools we rely on (picard, transmission, mpd).
 
 #+RESULTS:
 #+begin_example
-MPK:MPK-CONFIG
+SKEL/MPK:MPK-CONFIG
   [symbol]
 
-MPK-CONFIG names the standard-class #<STANDARD-CLASS MPK:MPK-CONFIG>:
+MPK-CONFIG names the standard-class #<STANDARD-CLASS SKEL/MPK:MPK-CONFIG>:
   Direct superclasses: AST, ID, CONFIG
   No subclasses.
   Not yet finalized.
@@ -156,9 +136,9 @@ MPK-CONFIG names the standard-class #<STANDARD-CLASS MPK:MPK-CONFIG>:
       Readers: LOGGER
       Writers: (SETF LOGGER)
     MPD
-      Type: MPK/MPD:MPD-CONFIG
+      Type: SKEL/MPK/MPD:MPD-CONFIG
       Initargs: :MPD
-      Initform: (MPK/MPD::LOAD-MPD-CONFIG)
+      Initform: (SKEL/MPK/MPD::LOAD-MPD-CONFIG)
     AUDIO
       Type: DSP/CORE:AUDIO-SYSTEM-CONFIG
       Initargs: :AUDIO
@@ -166,10 +146,10 @@ MPK-CONFIG names the standard-class #<STANDARD-CLASS MPK:MPK-CONFIG>:
       Type: DSP/CORE:VIDEO-SYSTEM-CONFIG
       Initargs: :VIDEO
     METRO
-      Type: MPK/METRO:METRO-CONFIG
+      Type: SKEL/MPK/METRO:METRO-CONFIG
       Initargs: :METRO
     DB
-      Type: MPK/DB:MPK-DB-CONFIG
+      Type: SKEL/MPK/DB:MPK-DB-CONFIG
       Initargs: :DB
     PICARD
       Type: CLI/TOOLS/MEDIA:PICARD-CONFIG

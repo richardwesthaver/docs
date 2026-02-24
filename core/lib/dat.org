@@ -28,6 +28,7 @@
   | DAT/PROTO       |
   | DAT/QRCODE      |
   | DAT/M3U         |
+  | DAT/TESTS       |
   | DAT/ASN1        |
   | DAT/BASE64      |
   | DAT/YAML        |
@@ -46,34 +47,37 @@
   #+CALL: lisp-system-dependencies[:post transpose]("dat")
 
   #+RESULTS:
-  | obj     |
-  | io      |
-  | log     |
-  | openssl |
+  | STD     |
+  | LOG     |
+  | OBJ     |
+  | IO      |
+  | OPENSSL |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("dat")
 
   #+RESULTS:
-  | skel      |
-  | box       |
-  | pod       |
-  | jack      |
-  | syn       |
-  | dsp       |
-  | q         |
-  | rdb       |
-  | cry       |
-  | rt        |
-  | net       |
-  | dat/tests |
-  | cli       |
-  | core      |
+  | :CORE      |
+  | :JACK      |
+  | :BOX       |
+  | :CLI       |
+  | :CRY       |
+  | :DSP       |
+  | :NET       |
+  | :POD       |
+  | :Q         |
+  | :RDB       |
+  | :RT        |
+  | :SYN       |
+  | :SKEL      |
+  | :DAT/TESTS |
+  | :UTIL      |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("dat")
 
   #+RESULTS:
+  | dat.sys               |
   | pkg.lisp              |
   | condition.lisp        |
   | sxp.lisp              |
@@ -111,11 +115,269 @@
   | ttf.lisp              |
   | base64.lisp           |
   | qrcode.lisp           |
+  | dat.lisp              |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("DAT")
 
   #+RESULTS:
+  | WRITE-CSV-STRING                    |
+  | JSON-WRITE                          |
+  | CONTOUR                             |
+  | FONT-EQUAL                          |
+  | MESSAGE-DENOMINATOR                 |
+  | JSON-POINTER-FROM-STRING            |
+  | XML-UNESCAPE-NAME                   |
+  | LINE-GAP                            |
+  | XMLREP-ATTRIBS                      |
+  | ARFF-PATH                           |
+  | PARSE-TOML-VALUE                    |
+  | FINALIZE-TAR-FILE                   |
+  | PNG                                 |
+  | FMT                                 |
+  | BBOX-XMAX                           |
+  | GET-MIME*                           |
+  | MATRIX                              |
+  | TAR-FILE                            |
+  | VDESCENDER                          |
+  | HTM                                 |
+  | XMLREP-FIND-CHILD-TAG               |
+  | EM                                  |
+  | WRITE-FILE-ENTRY                    |
+  | +URI-DECODE-TABLE+                  |
+  | TAR-CHARACTER-DEVICE-ENTRY          |
+  | NAME-ENTRY-VALUE                    |
+  | PARSE-ARFF-STREAM                   |
+  | DESCENDER                           |
+  | GNU-LONG-LINK-NAME-ENTRY            |
+  | PARSE-CSS-SELECTOR                  |
+  | NN                                  |
+  | STREAM-TO-BASE64-STRING             |
+  | ARFF-DATA                           |
+  | XML-NODE-NAME                       |
+  | FONT-OVERLINE                       |
+  | JSON-TRAILING-COMMAS-P              |
+  | REMOVE-ATTRIBUTE-BY-NAME            |
+  | GLYPH-COUNT                         |
+  | BASE64-STRING-TO-INTEGER            |
+  | WRITE-DIRECTORY-ENTRY               |
+  | XML-NODE-ATTRS                      |
+  | COLLECTION-FONT-INDEX               |
+  | REGRETTABLE-HEX-VALUE               |
+  | NODE-INSERT-BEFORE                  |
+  | GNU-VOLUME-HEADER-NAME-ENTRY        |
+  | MAKE-DOCUMENT                       |
+  | TOML-REDEFINE-TABLE-ERROR           |
+  | FONT-UNDERLINE                      |
+  | FONT-OVERWRITE-GCONTEXT             |
+  | MAKE-DECODE-TABLE                   |
+  | NODE-APPEND-CHILD                   |
+  | MIDIFILE-DIVISION                   |
+  | GNU-SPARSE-FILE-ENTRY               |
+  | OCTET-VECTOR-TO-BASE64-STREAM       |
+  | DECODE-ASN1-TIME                    |
+  | DECODE-U28                          |
+  | NODE-NAMESPACE                      |
+  | MESSAGE-VELOCITY                    |
+  | ASCENDER                            |
+  | BAD-MAGIC                           |
+  | XML-NODE-P                          |
+  | BLUR                                |
+  | QR-ENCODE-PNG                       |
+  | PITCH-BEND-MESSAGE                  |
+  | PARQUET-OBJECT                      |
+  | WRITE-XML                           |
+  | POSTSCRIPT-NAME                     |
+  | JSON-OBJECT                         |
+  | BASE64-STREAM-TO-STREAM             |
+  | FONT-STRIKETHROUGH                  |
+  | DO-CONTOURS                         |
+  | XMLREP-CHILDREN                     |
+  | ELEMENT-ATTRIBUTE                   |
+  | PNG=                                |
+  | *MINIFY-CSS*                        |
+  | *HTML-LANG*                         |
+  | PARSE-CSV-STRING                    |
+  | VW                                  |
+  | CONTOUR-COUNT                       |
+  | FIND-NAME-ENTRY                     |
+  | TRY-GET-ASN1-STRING-DATA            |
+  | FULL-NAME                           |
+  | OCTET-VECTOR-TO-BASE64-STRING       |
+  | DO-ATTRIBUTES                       |
+  | FONT-STRING-LINE-ALPHA-MAPS         |
+  | WITH-OPEN-TAR-FILE                  |
+  | WRITE-PAX-GLOBAL-ATTRIBUTES-ENTRY   |
+  | WRITE-PAX-EXTENDED-ATTRIBUTES-ENTRY |
+  | READ-ID3-HEADER                     |
+  | MIME-TYPE-MAGIC                     |
+  | TEMPO-MESSAGE                       |
+  | WRITE-GNU-LONG-LINK-NAME-ENTRY      |
+  | ALL-KERNING-PAIRS                   |
+  | XMLREP-STRING-CHILD                 |
+  | INTEGER-TO-BASE64-STREAM            |
+  | TAR-ARCHIVE                         |
+  | EXTRACT-PATH-LIST                   |
+  | *TAR-BLOCK-BYTES*                   |
+  | DO-ENTRIES                          |
+  | MESSAGE-TIME                        |
+  | INDEX-GLYPH                         |
+  | UNDERLINE-THICKNESS                 |
+  | WRITE-PNG-STREAM                    |
+  | FONT-ANTIALIAS                      |
+  | BIBLIOGRAPHY                        |
+  | EXTRACT-PATH                        |
+  | MAKE-FRAGMENT                       |
+  | INCOMPLETE-BASE64-DATA              |
+  | REGRETTABLE-VALUE                   |
+  | *FONT-DIRS*                         |
+  | KEY-SIGNATURE-MESSAGE               |
+  | *HTML-OUTPUT*                       |
+  | UNDERLINE-POSITION                  |
+  | STREAMED-PNG                        |
+  | READ-CSV-FILE-AND-SORT              |
+  | SHOW-ID3-HEADERS                    |
+  | COPY-PNG                            |
+  | FIND-GLYPH                          |
+  | FAMILY-NAME                         |
+  | READ-ENTRY                          |
+  | NOTE-OFF-MESSAGE                    |
+  | DESKTOP-ENTRY                       |
+  | COMPILE-CSS-FILE                    |
+  | PARQUET-STRUCT-OBJECT               |
+  | V7-TAR-FILE                         |
+  | UNSUPPORTED-VALUE                   |
+  | TOP-SIDE-BEARING                    |
+  | MAKE-ELEMENT                        |
+  | WRITE-CSV-STREAM                    |
+  | MIME                                |
+  | FONT-FOREGROUND                     |
+  | PARSE-HTML5-FRAGMENT                |
+  | COMPILE-CSS                         |
+  | ARFF-RELATION                       |
+  | SMPTE-OFFSET-MESSAGE                |
+  | CC                                  |
+  | FINISH-PNG                          |
+  | ENTRY-SYMBOLIC-LINK-P               |
+  | PROC-INST-CONTENTS                  |
+  | DAT-ERROR                           |
+  | PARQUET-READ                        |
+  | MAKE-DOCTYPE                        |
+  | NODE-TYPE                           |
+  | TOML-COLLECTION                     |
+  | FONT                                |
+  | GET-FONT-SUBFAMILIES                |
+  | TOML-MODIFY-INLINE-TABLE-ERROR      |
+  | BASE64-STRING-TO-OCTET-VECTOR       |
+  | MAKE-ENTRY-STREAM                   |
+  | MESSAGE-SF                          |
+  | CLOSE-FONT-LOADER                   |
+  | DD                                  |
+  | WITH-HTML-STRING                    |
+  | JSON-POINTER-P                      |
+  | WRITE-FIFO-ENTRY                    |
+  | XML-ESCAPE-NAME                     |
+  | UPDATE-MIME-DATABASE                |
+  | ENTRY-FIFO-P                        |
+  | BBOX-YMAX                           |
+  | +DECODE-TABLE+                      |
+  | BASE64-STREAM-TO-INTEGER            |
+  | CSS                                 |
+  | PARSE-CSS-FRAGMENT                  |
+  | ENCODE-SYMBOL                       |
+  | ARCHIVE                             |
+  | BASE64-STREAM-TO-OCTET-VECTOR       |
+  | PAX-EXTENDED-ATTRIBUTES-ENTRY       |
+  | JSON-REMF                           |
+  | TRANSFER-OCTETS-TO-TAR-FILE         |
+  | MAKE-XML-NODE                       |
+  | *ALLOW-JSON-TRAILING-COMMAS*        |
+  | QR-SYMBOL                           |
+  | XML-NODE-NS                         |
+  | PARQUET-WRITE                       |
+  | READ-M3U-STREAM                     |
+  | ENTRY-BLOCK-DEVICE-P                |
+  | MIME-TYPE-GLOB                      |
+  | ENTRY-HARD-LINK-P                   |
+  | ENTRY-CHARACTER-DEVICE-P            |
+  | XML-PARSE                           |
+  | PARSE-HTML5                         |
+  | MIME-TYPE-SUPERCLASSES              |
+  | FONT-STRING-BBOXES                  |
+  | SHOW-ID3-HEADER                     |
+  | INI-SECTION                         |
+  | ELEMENT-MAP-CHILDREN                |
+  | VASCENDER                           |
+  | XML-NODE-CHILDREN                   |
+  | LOAD-MIME-INFO                      |
+  | BASE64-ERROR                        |
+  | ITALIC-ANGLE                        |
+  | ON-CURVE-P                          |
+  | MESSAGE-CHANNEL                     |
+  | MIME-MAGIC-OFFSET                   |
+  | FONT-FAMILY                         |
+  | NODE-PREVIOUS-SIBLING               |
+  | GRAPH-TO-DOT                        |
+  | NODE-LAST-CHILD                     |
+  | SUBFAMILY-NAME                      |
+  | NODE-PARENT                         |
+  | XMLREP-TAG                          |
+  | WRITE-CSV-FILE                      |
+  | FONT-SUBFAMILY                      |
+  | FONT-SIZE                           |
+  | TAR-FIFO-ENTRY                      |
+  | MIDI-MESSAGE                        |
+  | PAX-GLOBAL-ATTRIBUTES-ENTRY         |
+  | GNU-LONG-NAME-ENTRY                 |
+  | CACHE-FONTS                         |
+  | JSON-ENCODE                         |
+  | READ-MIDI-FILE                      |
+  | PARSE-TOML-BLOCKS                   |
+  | DO-CONTOUR-SEGMENTS*                |
+  | GET-MIME                            |
+  | START-PNG                           |
+  | FONT-STRING-LINE-BBOXES             |
+  | GNU-TAR-FILE                        |
+  | GLYPH-EXISTS-P                      |
+  | JSON-READ                           |
+  | ENTRY-TYPE                          |
+  | TOML-REDEFINE-PROPERTY-ERROR        |
+  | PROC-INST-TARGET                    |
+  | JSON-SETF                           |
+  | MAKE-XMLREP                         |
+  | TAR-ERROR                           |
+  | TAR-FILE-ENTRY                      |
+  | MAKE-TEXT-NODE                      |
+  | *CSV-SEPARATOR*                     |
+  | WRITE-ENTRY                         |
+  | BASE64-STRING-TO-STREAM             |
+  | UNKNOWN-TAR-ENTRY                   |
+  | SEQUENCE/TRACK-NAME-MESSAGE         |
+  | JSON-SCHEMA-VALIDATE                |
+  | PARQUET-DECODE                      |
+  | PARSE-ARFF-STRING                   |
+  | FIXED-PITCH-P                       |
+  | CACHE-FONT-FILE                     |
+  | FONT-BACKGROUND                     |
+  | *HTML-CHARSET*                      |
+  | USTAR-TAR-FILE                      |
+  | BB                                  |
+  | CH                                  |
+  | TAR-SYMBOLIC-LINK-ENTRY             |
+  | CODE-POINT                          |
+  | ADVANCE-WIDTH                       |
+  | JSON-DECODE                         |
+  | NODE-SYSTEM-ID                      |
+  | PROGRAM-CHANGE-MESSAGE              |
+  | GNU-DIRECTORY-DUMP-ENTRY            |
+  | WRITE-SYMBOLIC-LINK-ENTRY           |
+  | NOTE-ON-MESSAGE                     |
+  | NODE-NAME                           |
+  | JSON-DELF                           |
+  | XMLREP-TAGMATCH                     |
+  | INTEGER-TO-BASE64-STRING            |
+  | *HTML-INDENT*                       |
+  | ...                                 |
 
 #+END:
 

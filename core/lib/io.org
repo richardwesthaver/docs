@@ -16,7 +16,6 @@
   | IO-USER         |
   | IO/PROTO        |
   | IO/FAST         |
-  | IO-INT          |
   | IO/STATIC       |
   | IO/STREAM       |
   | IO/DISK/BTRFS   |
@@ -32,39 +31,38 @@
   #+CALL: lisp-system-dependencies[:post transpose]("io")
 
   #+RESULTS:
-  | ppcre          |
-  | std            |
-  | ironclad       |
-  | uring          |
-  | xkb            |
-  | evdev          |
-  | btrfs          |
-  | sb-bsd-sockets |
-  | zstd           |
+  | STD              |
+  | IRONCLAD/DIGESTS |
+  | URING            |
+  | XKB              |
+  | EVDEV            |
+  | BTRFS            |
+  | ZSTD             |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("io")
 
   #+RESULTS:
-  | vc/tests   |
-  | pod        |
-  | syn        |
-  | blas/tests |
-  | dsp        |
-  | cry        |
-  | net        |
-  | openssl    |
-  | dat        |
-  | io/tests   |
-  | log/tests  |
-  | log        |
-  | cli        |
-  | core       |
+  | :CORE       |
+  | :OPENSSL    |
+  | :CLI        |
+  | :CRY        |
+  | :DAT        |
+  | :DSP        |
+  | :LOG        |
+  | :NET        |
+  | :POD        |
+  | :SYN        |
+  | :LOG/TESTS  |
+  | :IO/TESTS   |
+  | :VC/TESTS   |
+  | :BLAS/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("io")
 
   #+RESULTS:
+  | io.sys            |
   | pkg.lisp          |
   | socket.lisp       |
   | stream.lisp       |
@@ -78,7 +76,6 @@
   | flate.lisp        |
   | zstd.lisp         |
   | deflate.lisp      |
-  | disk/pkg.lisp     |
   | disk/util.lisp    |
   | disk/proto.lisp   |
   | disk/btrfs.lisp   |
@@ -89,6 +86,8 @@
   #+CALL: lisp-system-tests[:post transpose]("io")
 
   #+RESULTS:
+  | KEYMAPS                  |
+  | KEYS                     |
   | DISK-BTRFS               |
   | DISK-GENERIC             |
   | XSUBSEQ                  |
@@ -263,59 +262,6 @@
   | INPUT-SIZE                        |
 
 #+END:
-
-* Packages
-:PROPERTIES:
-:ID:       d146e916-95f8-48c3-989f-6e409d2a1f8b
-:CREATED:  <2025-07-06 Sun 20:50>
-:END:
-#+begin_src lisp :post transpose :results list
-  io-int:*io-packages*
-#+end_src
-
-#+RESULTS:
-- DAT
-- DAT/PARQUET
-- DAT/TAR
-- DAT/TTF
-- DAT/GIF
-- DAT/QRCODE
-- DAT/PNG
-- DAT/MIDI
-- DAT/YAML
-- DAT/MIME
-- DAT/SVG
-- DAT/XML
-- DAT/HTML
-- DAT/CSS
-- DAT/ID3
-- DAT/M3U
-- DAT/BASE64
-- DAT/OPENAPI
-- DAT/JSON
-- DAT/BIB
-- DAT/ARFF
-- DAT/TOML
-- DAT/INI
-- DAT/CSV
-- DAT/DOT
-- DAT/ASN1
-- DAT/SXP
-- DAT/PROTO
-- IO
-- IO/SMART-BUFFER
-- IO/XSUBSEQ
-- IO/KBD
-- IO/DEFLATE
-- IO/ZSTD
-- IO/FLATE
-- IO/SOCKET
-- IO/CHUNKY
-- IO/URING
-- IO/FAST
-- IO/STATIC
-- IO/STREAM
-- IO/PROTO
 
 * Notes
 :PROPERTIES:
