@@ -11,7 +11,6 @@ This doc is about the [[https://en.wikipedia.org/wiki/Foreign_function_interface
 
   #+RESULTS:
   | ARROW       |
-  | BLAKE3      |
   | BTRFS       |
   | ALSA        |
   | CUDA        |
@@ -1145,76 +1144,6 @@ bindings to tree-sitter parser generator and language libraries: https://github.
 
 #+END:
 
-** blake3
-:PROPERTIES:
-:ID:       a1807b79-9811-49f0-9524-cbf5e88c1a66
-:END:
-temporary package for CL implementation of Blake3 SHA. Wraps C
-implementation (libblake3).
-
-#+BEGIN: lisp-system-info :system blake3
-- packages
-  #+CALL: lisp-system-packages[:post transpose]("blake3")
-
-  #+RESULTS:
-  | BLAKE3/TESTS |
-  | BLAKE3/PKG   |
-
-- dependencies
-  #+CALL: lisp-system-dependencies[:post transpose]("blake3")
-
-  #+RESULTS:
-  | STD |
-
-- dependents
-  #+CALL: lisp-system-dependents[:post transpose]("blake3")
-
-  #+RESULTS:
-  | :ALIEN        |
-  | :CRY          |
-  | :BLAKE3/TESTS |
-
-- files
-  #+CALL: lisp-system-files[:post transpose]("blake3")
-
-  #+RESULTS:
-  | blake3.sys     |
-  | pkg.lisp       |
-  | constants.lisp |
-
-- tests
-  #+CALL: lisp-system-tests[:post transpose]("blake3")
-
-  #+RESULTS:
-  | LESS-COMMON |
-  | COMMON      |
-  | VERSION     |
-
-- symbols
-  #+CALL: lisp-package-symbols[:post transpose]("BLAKE3")
-
-  #+RESULTS:
-  | BLAKE3-VERSION                    |
-  | BLAKE3-HASHER-INIT-KEYED          |
-  | BLAKE3-HASHER-FINALIZE-SEEK       |
-  | +BLAKE3-BLOCK-LEN+                |
-  | +BLAKE3-MAX-DEPTH+                |
-  | +BLAKE3-CHUNK-LEN+                |
-  | WITH-BLAKE3-HASHER                |
-  | BLAKE3-HASHER-RESET               |
-  | BLAKE3-HASHER-UPDATE              |
-  | BLAKE3-HASHER-FINALIZE            |
-  | BLAKE3-HASHER                     |
-  | BLAKE3-HASHER-INIT                |
-  | +BLAKE3-OUT-LEN+                  |
-  | BLAKE3-CHUNK-STATE                |
-  | BLAKE3-HASHER-INIT-DERIVE-KEY-RAW |
-  | LOAD-BLAKE3                       |
-  | +BLAKE3-KEY-LEN+                  |
-  | BLAKE3-HASHER-INIT-DERIVE-KEY     |
-
-#+END:
-
 ** ssh2
 :PROPERTIES:
 :ID:       3c9e02d8-2c59-4ef5-8232-8422fd9e8ed3
@@ -2003,6 +1932,7 @@ implementation (libblake3).
 
   #+RESULTS:
   | :ALIEN      |
+  | :DAT        |
   | :JPEG/TESTS |
 
 - files
