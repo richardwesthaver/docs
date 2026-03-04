@@ -120,7 +120,6 @@ http/s server support.
   #+CALL: lisp-system-tests[:post transpose]("net")
 
   #+RESULTS:
-  | SWANK   |
   | SRV     |
   | COOKIES |
   | REQ     |
@@ -136,27 +135,27 @@ http/s server support.
 
   #+RESULTS:
   | CADDY-SERVICE                     |
-  | NET-REQUEST                       |
+  | SINGLE-THREADED-ENGINE            |
   | INVALID-PATH                      |
-  | EVAL-FORM-REPEATEDLY              |
+  | ADD-ROUTE                         |
   | COOKIE-HTTPONLY-P                 |
-  | DECODE-RECORD                     |
+  | HOSTNAME                          |
   | TCP-PING-SERVER                   |
-  | MAKE-COOKIE                       |
-  | OSC-MATCH                         |
+  | SERVER-CONFIG                     |
+  | *HTTP-STATUS-MESSAGE-MAP*         |
   | COOKIE-DOMAIN                     |
   | SLIME-MIGRATE-EVALS               |
-  | CB-MESSAGE-BEGIN                  |
+  | SESSION-GC                        |
   | NET-WARNING                       |
-  | MAKE-OSC-BUNDLE                   |
+  | NET-SERVICE-CONFIG                |
   | ECHO-SERVICE                      |
   | ACCEPT                            |
   | *SWANK-CONNECTIONS*               |
   | COOKIE-VALUE                      |
-  | SESSION-GC                        |
+  | CONNECT-WORKER                    |
   | UNKNOWN-ERROR                     |
-  | PARSING-ERROR                     |
-  | MERGE-COOKIES                     |
+  | PROXY                             |
+  | *WILDCARD-HOST*                   |
   | *DNSWATCH-SERVERS*                |
   | INVALID-STATUS                    |
   | ENDPOINT                          |
@@ -165,21 +164,22 @@ http/s server support.
   | FORMAT-OSC-DATA                   |
   | WITH-OPEN-SOCKET                  |
   | HTTP-CONTENT-LENGTH               |
-  | HTTP-STATUS                       |
+  | MULTIPART-PARSING-ERROR           |
   | *DEFAULT-SSL-SERVICE-PORT*        |
   | *DEFAULT-SWANK-PORT*              |
-  | OSC-COMMAND                       |
+  | HTTP-CONFIG                       |
+  | OSC-DISPATCH                      |
   | INVALID-VERSION                   |
-  | %HANDLE-CONNECTION                |
-  | CB-STATUS                         |
+  | CB-BODY                           |
+  | +KNOWN-HTTP-METHODS+              |
   | HTTP-P                            |
-  | MAKE-SERVER-RESPONSE              |
-  | FIND-PORT                         |
-  | MULTIPART-PARSING-ERROR           |
-  | *HEADERS-SENT*                    |
-  | REMOVE-SESSION                    |
-  | COOKIE-MAX-AGE                    |
   | NET-CONFIG                        |
+  | FIND-PORT                         |
+  | SERVER                            |
+  | *HEADERS-SENT*                    |
+  | MAKE-OSC-MESSAGE                  |
+  | STRICT-ERROR                      |
+  | TCP-CLIENT                        |
   | UDP-SERVER                        |
   | TOO-MANY-ENGINE-REQUESTS          |
   | UNIX-SERVER                       |
@@ -189,93 +189,95 @@ http/s server support.
   | *LOG-SERVICE-ERRORS*              |
   | MAKE-SERVER                       |
   | +HANDLER-TAG+                     |
-  | ADD-ROUTE                         |
+  | HTTP-SERVICE-CONFIG               |
   | MESSAGE-LOG-OUTPUT                |
   | CB-MESSAGE-COMPLETE               |
   | *CLOUDFLARE-SERVERS*              |
-  | HTTP-REQUEST                      |
-  | MAKE-SERVICE                      |
+  | INVALID-CONSTANT                  |
+  | SERVICE-LOG-MESSAGE               |
   | HTTP-CHUNKED-P                    |
   | MAKE-HTTP-PARSER                  |
   | INITIALIZE-CONNECTION-HOOK        |
   | ABORT-REQUEST-HANDLER             |
   | INVALID-URL                       |
   | NET-SERVICE                       |
-  | COOKIE-SECURE-P                   |
+  | SESSION-CREATED                   |
   | DECREMENT-THREAD-COUNT            |
   | CLOSED-CONNECTION                 |
   | CB-HEADERS-COMPLETE               |
   | ID-RECORD-TYPE                    |
-  | +KNOWN-HTTP-METHODS+              |
+  | MAKE-HTTP-RESPONSE                |
   | REMOTE-ADDR*                      |
   | *LOCALHOST*                       |
   | CONNECT                           |
   | EXECUTE-SERVICE                   |
   | TLV-VALUE                         |
   | HTTP                              |
-  | SERVICE-LOG-MESSAGE               |
+  | *SESSION*                         |
   | LOCAL-ADDR*                       |
-  | HOSTNAME                          |
+  | TCP-CONFIG                        |
   | MAKE-HTTP-REQUEST                 |
   | PROCESS-CONNECTION                |
-  | HTTP-VERSION                      |
-  | OAUTH-SERVICE                     |
+  | STRINGIFY-COOKIE                  |
+  | UNIX-SOCKET                       |
   | PARSE-SET-COOKIE-HEADER           |
   | *DEFAULT-USER-AGENT*              |
-  | ENCODE-HEADER                     |
-  | COOKIE-ORIGIN-HOST                |
-  | SERVER-CONFIG                     |
+  | DEFROUTE                          |
+  | OSC-REGISTER                      |
+  | COOKIE-JAR-COOKIES                |
   | HTTP-ERROR                        |
-  | STRICT-ERROR                      |
-  | *DEFAULT-MAX-ACCEPT-COUNT*        |
-  | RESPONSE-CODE-NAME                |
+  | HTTP-MINOR-VERSION                |
+  | RECORD-TYPE-ID                    |
+  | COOKIE-EQUAL                      |
   | NET-RESPONSE                      |
   | *DNS-SERVERS*                     |
   | DECODE-HOST                       |
   | START-LISTENING                   |
-  | DECODE-OSC-BUNDLE                 |
+  | NET-SERVICE-REQUEST               |
   | SEND-SERVICE-UNAVAILABLE-RESPONSE |
-  | COOKIE-JAR-COOKIES                |
+  | TLV-LENGTH                        |
   | SERVICE-LOG                       |
+  | WRITE-SET-COOKIE-HEADER           |
   | UDP-SERVICE                       |
   | UNIX-ECHO                         |
   | INVALID-CONTENT-LENGTH            |
   | RESET-CONNECTION-STREAM           |
   | NET-ERROR                         |
   | SLIME-NETWORK-ERROR               |
-  | *DEFAULT-OSC-BUFFER-SIZE*         |
+  | +KNOWN-HTTP-WORDS+                |
   | TLV                               |
   | *DEFAULT-SERVICE-PORT*            |
   | WITH-UDP-CLIENT                   |
+  | DISCONNECT                        |
   | COOKIE-PARTITIONED                |
   | UNIX-RECEIVE-PING                 |
   | CREATE-REQUEST-WORKER-THREAD      |
   | CLIENT                            |
-  | UDP-SERVICE-CONFIG                |
+  | COOKIE                            |
   | HTTP-METHOD                       |
-  | RECORD-TYPE-ID                    |
+  | HTTP-MULTIPART-PARSE              |
+  | EVAL-FORM-REPEATEDLY              |
   | HTTP-MAJOR-VERSION                |
-  | CONNECT-WORKER                    |
+  | INVALID-QUERY-STRING              |
   | TCP-ECHO                          |
-  | HTTP-UPGRADE-P                    |
   | FIND-ROUTE                        |
   | SLIME-PENDING-EVALS-P             |
-  | SLIME-EVAL-ASYNC                  |
-  | HANDLE-CONNECTION                 |
-  | OSC-BUNDLE                        |
-  | COOKIE-JAR                        |
-  | TLV-LENGTH                        |
+  | UDP-SERVICE-CONFIG                |
+  | +KNOWN-HTTP-VERSIONS+             |
+  | HEADER-VALUE-PARSING-ERROR        |
   | OSC-TIMETAG                       |
-  | HTTP-SERVICE-CONFIG               |
+  | CB-HEADER-FIELD                   |
   | HTTP-RESOURCE                     |
   | DNS-SERVER-FAILURE                |
-  | COOKIE-PATH                       |
+  | DECODE-OSC-MESSAGE                |
+  | INVALID-CHUNK-SIZE                |
   | *FINISH-PROCESSING-SOCKET*        |
+  | INVALID-PARAMETER-VALUE           |
   | INVALID-HEADER-TOKEN              |
   | INVALID-EOF-STATE                 |
-  | UNIX-SOCKET                       |
+  | TCP-SERVER                        |
   | COOKIE-P                          |
-  | *HTTP-STATUS-MESSAGE-MAP*         |
+  | CB-FIRST-LINE                     |
   | OSC-ARGS                          |
   | SOCKET-CONFIG                     |
   | NET-CONDITION                     |
@@ -283,29 +285,29 @@ http/s server support.
   | THREAD-PER-CONNECTION-ENGINE      |
   | *WILDCARD-PORT*                   |
   | TCP-SOURCE                        |
-  | STRINGIFY-COOKIE                  |
+  | *DEFAULT-SESSION-TIMEOUT*         |
   | *SESSION-DB*                      |
-  | WITH-UNIX-CLIENT                  |
+  | MAKE-OSC-TREE                     |
   | DEFSERVICE                        |
   | SESSION-VALUE                     |
-  | DECREMENT-ACCEPT-COUNT            |
   | MULTI-THREADED-ENGINE             |
   | WITH-CLIENT-SERVER                |
   | REMOVE-SESSION-HOOK               |
   | WITH-REQUEST-COUNT-INCF           |
   | GET-ADDRESS-BY-NAME               |
-  | HTTP-STATUS-TEXT                  |
-  | INVALID-INTERNAL-STATE            |
-  | NET-SERVICE-RESPONSE              |
+  | *GLOBAL-SESSION-DB-LOCK*          |
+  | *SERVICE-STREAM*                  |
+  | HTTP-REQUEST                      |
+  | UDP-SOCKET                        |
   | OPENAPI-DOCUMENT                  |
   | HTTPS-SERVICE                     |
   | HTTP-CLIENT                       |
-  | SESSION-EXPIRED-P                 |
+  | SECURE-SERVICE-P                  |
   | SLIME-CONNECT-FILE                |
   | LF-EXPECTED                       |
-  | WITH-DNS-ERROR-HANDLING           |
+  | SERVICE-LOG-ACCESS                |
   | INCREMENT-THREAD-COUNT            |
-  | START-SESSION                     |
+  | OSC-MATCH                         |
   | INCREMENT-ACCEPT-COUNT            |
   | SERVICE-LOGGER                    |
   | INVALID-PORT                      |
@@ -314,34 +316,35 @@ http/s server support.
   | *DEFAULT-MAX-THREAD-COUNT*        |
   | INVALID-BOUNDARY                  |
   | SESSION                           |
-  | SECURE-SERVICE-P                  |
+  | UDP-CLIENT                        |
   | *CLOSE-SERVICE-STREAM*            |
   | DECODE-QUERY                      |
+  | MERGE-COOKIES                     |
+  | WITH-DNS-ERROR-HANDLING           |
   | COOKIE=                           |
-  | NET-SERVICE-CONFIG                |
-  | TCP-SOCKET                        |
-  | NET-SERVICE-REQUEST               |
+  | *ROUTER*                          |
   | *OPENDNS-SERVERS*                 |
   | OPENAPI-SERVICE                   |
-  | HTTP-MINOR-VERSION                |
+  | COOKIE-MAX-AGE                    |
   | NEXT-SESSION-ID                   |
+  | PARSING-ERROR                     |
   | PARSE-RESPONSE                    |
   | INVALID-HOST                      |
-  | CLIENT-CONFIG                     |
+  | DECREMENT-ACCEPT-COUNT            |
   | SLIME-EVAL                        |
   | SLIME-CLOSE                       |
   | COOKIE-CREATION-TIMESTAMP         |
   | *SESSION-GC-FREQUENCY*            |
-  | HTTP-CONFIG                       |
+  | COOKIE-NAME                       |
   | INVALID-MULTIPART-BODY            |
   | MAKE-CREW                         |
   | COOKIE-DATE                       |
   | OSC-ELEMENTS                      |
   | MAKE-CALLBACKS                    |
   | CREW-WORKER-POOL                  |
-  | *MESSAGE-LOG-LOCK*                |
+  | INVALID-INTERNAL-STATE            |
+  | EVAL-REPEATEDLY-ASYNC-STATE       |
   | REQUEST-PROTOCOL*                 |
-  | INITIALIZE-INSTANCE               |
   | *ACCESS-LOG-LOCK*                 |
   | WRITE-COOKIE-HEADER               |
   | *GOOGLE-SERVERS*                  |
@@ -349,49 +352,136 @@ http/s server support.
   | DNS-QUERY                         |
   | DNS-PORT                          |
   | PARSE-REQUEST                     |
-  | SERVICE-LOG-ACCESS                |
+  | *DEFAULT-OSC-BUFFER-SIZE*         |
   | RESET-SESSION-SECRET              |
   | HTTP-SERVICE                      |
-  | COOKIE-NAME                       |
+  | OAPI-SERVER                       |
   | PARALLEL-MAPCAR                   |
+  | CB-STATUS                         |
   | *DEFAULT-MTU*                     |
   | PEER                              |
   | CREW-CONNECTION-INFO              |
   | WITH-TCP-CLIENT                   |
-  | UDP-CLIENT                        |
-  | TCP-CONFIG                        |
-  | HTTP-MULTIPART-PARSE              |
+  | OSC-COMMAND                       |
+  | HTTP-VERSION                      |
+  | COOKIE-SECURE-P                   |
   | MAKE-LL-MULTIPART-PARSER          |
-  | SERVER                            |
-  | INVALID-CONSTANT                  |
-  | OAPI-SERVER                       |
+  | WITH-UDP-SERVER                   |
+  | ENCODE-HOST                       |
   | HTTP-SERVICE-RESPONSE             |
-  | MAKE-CLIENT-REQUEST               |
+  | CB-MESSAGE-BEGIN                  |
   | MAKE-HTTP                         |
   | CB-URL                            |
-  | UDP-SOCKET                        |
+  | REMOVE-SESSION                    |
   | DELETE-SESSION-VALUE              |
-  | *SERVICE-STREAM*                  |
   | ROUTE                             |
+  | MAKE-SERVER-RESPONSE              |
+  | *TCP-PING-SIZE*                   |
   | INVALID-HEADER-VALUE              |
   | WAKE-SERVICE-FOR-SHUTDOWN         |
-  | +KNOWN-HTTP-WORDS+                |
+  | SERVICE-TIMEOUT                   |
   | DELETE-ROUTE                      |
   | OSC-REMOVE                        |
+  | SESSION-EXPIRED-P                 |
   | *DEFAULT-CONNECTION-MAX*          |
-  | OAPI-CLIENT                       |
   | SLIME-CONNECT                     |
-  | DEFROUTE                          |
+  | OAPI-CLIENT                       |
   | COOKIE-JAR-HOST-COOKIES           |
-  | SERVICE-TIMEOUT                   |
+  | HTTP-STATUS                       |
   | EVAL-FORM-ALL-WORKERS             |
   | MAKE-COOKIE-JAR                   |
-  | *SESSION-SECRET*                  |
-  | CB-FIRST-LINE                     |
+  | INITIALIZE-INSTANCE               |
+  | MAKE-SERVICE                      |
   | INVALID-METHOD                    |
   | UDP-RECEIVE-PING                  |
+  | RESPONSE-CODE                     |
   | SERVICE-CONFIG                    |
-  | ...                               |
+  | COOKIE-SAME-SITE                  |
+  | SESSION-DATABASE                  |
+  | DECODE-RECORD                     |
+  | CB-HEADER-VALUE                   |
+  | DNS-SERVERS-EXHAUSTED             |
+  | *DEFAULT-READ-TIMEOUT*            |
+  | DECODE-DATA                       |
+  | HANDLE-CONNECTION                 |
+  | OPENAPI-SERVICE-CONFIG            |
+  | SESSION-TIMEOUT                   |
+  | OAUTH-SERVICE                     |
+  | OSC-BUNDLE                        |
+  | RECONNECT-WORKER                  |
+  | MAKE-CLIENT                       |
+  | CALLBACK-ERROR                    |
+  | ENCODE-HEADER                     |
+  | HTTP-STATUS-TEXT                  |
+  | PARALLEL-REDUCE                   |
+  | *DEFAULT-MAX-ACCEPT-COUNT*        |
+  | DETACH-SOCKET                     |
+  | SERVICE-STATUS-MESSAGE            |
+  | *DEFAULT-CONNECTION-TIMEOUT*      |
+  | COOKIE-ORIGIN-HOST                |
+  | RESET-SESSIONS                    |
+  | TLV-TYPE                          |
+  | ACCESS-LOG-OUTPUT                 |
+  | SESSION-VERIFY                    |
+  | *RECORD-TYPE-TABLE*               |
+  | HTTP-KEYWORD                      |
+  | NET-REQUEST                       |
+  | MAKE-OSC-BUNDLE                   |
+  | %HANDLE-CONNECTION                |
+  | MAKE-COOKIE                       |
+  | CALL-WITH-REQUEST-COUNT-INCF      |
+  | DECODE-OSC-BUNDLE                 |
+  | DECODE-RESPONSE                   |
+  | SLIME-EVAL-ASYNC                  |
+  | COOKIE-JAR                        |
+  | CLIENT-CONFIG                     |
+  | SHUTDOWN-P                        |
+  | *SESSION-SECRET*                  |
+  | ROUTER                            |
+  | SESSION-DB                        |
+  | TCP-RECEIVE-PING                  |
+  | CONNECTION                        |
+  | WAIT-FOR-FREE-CONNECTION          |
+  | HTTP-STATUS-MESSAGE               |
+  | MAKE-MULTIPART-PARSER             |
+  | HTTP-CLIENT-CONFIG                |
+  | RESOLVE                           |
+  | HTTP-UPGRADE-P                    |
+  | MAKE-CLIENT-REQUEST               |
+  | NET-SERVICE-RESPONSE              |
+  | TCP-SOCKET                        |
+  | WITH-UNIX-SERVER                  |
+  | *DEFAULT-PROXY*                   |
+  | QUERY-DATA                        |
+  | DECODE-HEADER                     |
+  | REMOTE-PORT*                      |
+  | HEADER-OVERFLOW                   |
+  | MAKE-TLV                          |
+  | DISCONNECT-WORKER                 |
+  | WITH-UNIX-CLIENT                  |
+  | *QUAD9-SERVERS*                   |
+  | HTTP-REQUEST-P                    |
+  | PROCESS-REQUEST                   |
+  | COOKIE-PATH                       |
+  | RESPONSE-CODE-NAME                |
+  | HTTP-RESPONSE                     |
+  | DNS-CONDITION                     |
+  | CREW-WORKER                       |
+  | OSC-MESSAGE                       |
+  | SWANK-CONNECTION                  |
+  | WITH-SESSION-DB-LOCK              |
+  | *MESSAGE-LOG-LOCK*                |
+  | COOKIE-EXPIRES                    |
+  | INVALID-PARAMETER-KEY             |
+  | COPY-COOKIE                       |
+  | TCP-SINK                          |
+  | UDP-ECHO                          |
+  | START-SESSION                     |
+  | *DEFAULT-CONNECT-TIMEOUT*         |
+  | DEFAULT-WEB-DIRECTORY             |
+  | LL-MULTIPART-PARSER               |
+  | LOCAL-PORT*                       |
+  | WITH-SLIME-CONNECTION             |
 
 #+END:
 * Packages
@@ -454,37 +544,37 @@ underlying =SB-BSD-SOCKETS= class - either =INET-SOCKET= or
 
 #+RESULTS:
 | NET-ERROR                 |
-| ENDPOINT                  |
-| *LOCALHOST*               |
-| MAKE-SERVER               |
-| *WILDCARD-HOST*           |
-| SOCKET-CONFIG             |
-| WITH-OPEN-SOCKET          |
-| MAKE-SERVER-RESPONSE      |
-| ROUTER                    |
 | SERVER                    |
+| *LOCALHOST*               |
+| *DEFAULT-USER-AGENT*      |
+| WITH-CLIENT-SERVER        |
+| SOCKET-CONFIG             |
 | MAKE-CLIENT-REQUEST       |
 | CONNECTION                |
-| WITH-CLIENT-SERVER        |
+| *DEFAULT-PROXY*           |
+| DISCONNECT                |
+| ROUTER                    |
+| *DEFAULT-CONNECT-TIMEOUT* |
+| GET-ADDRESS-BY-NAME       |
+| MAKE-SERVER               |
+| *WILDCARD-PORT*           |
 | SERVER-CONFIG             |
 | MAKE-CLIENT               |
-| CONNECT                   |
 | *DEFAULT-MTU*             |
-| *DEFAULT-USER-AGENT*      |
+| *WILDCARD-HOST*           |
 | PROXY                     |
-| CLIENT                    |
+| MAKE-SERVER-RESPONSE      |
 | NET-CONFIG                |
-| *DEFAULT-CONNECT-TIMEOUT* |
-| *DEFAULT-PROXY*           |
-| GET-ADDRESS-BY-NAME       |
+| CONNECT                   |
+| CLIENT                    |
 | CLIENT-CONFIG             |
-| DISCONNECT                |
+| NET-WARNING               |
 | FIND-PORT                 |
 | NET-CONDITION             |
-| NET-WARNING               |
-| *WILDCARD-PORT*           |
-| ROUTE                     |
 | PEER                      |
+| WITH-OPEN-SOCKET          |
+| ROUTE                     |
+| ENDPOINT                  |
 | *DEFAULT-READ-TIMEOUT*    |
 
 ** codec
@@ -515,28 +605,28 @@ underlying =SB-BSD-SOCKETS= class - either =INET-SOCKET= or
 | PARSE-SET-COOKIE-HEADER   |
 | COOKIE-EXPIRES            |
 | COOKIE-JAR-HOST-COOKIES   |
-| COOKIE-CREATION-TIMESTAMP |
 | COPY-COOKIE               |
 | COOKIE-JAR-COOKIES        |
-| COOKIE-MAX-AGE            |
+| COOKIE-NAME               |
 | COOKIE-DOMAIN             |
-| STRINGIFY-COOKIE          |
+| MERGE-COOKIES             |
 | COOKIE-VALUE              |
 | COOKIE-ORIGIN-HOST        |
 | WRITE-SET-COOKIE-HEADER   |
 | COOKIE                    |
 | COOKIE-P                  |
+| COOKIE-MAX-AGE            |
 | WRITE-COOKIE-HEADER       |
+| STRINGIFY-COOKIE          |
 | COOKIE-SAME-SITE          |
 | COOKIE-PATH               |
-| MERGE-COOKIES             |
+| COOKIE-CREATION-TIMESTAMP |
 | MAKE-COOKIE               |
 | COOKIE-HTTPONLY-P         |
 | COOKIE-JAR                |
 | COOKIE-PARTITIONED        |
 | MAKE-COOKIE-JAR           |
 | COOKIE-DATE               |
-| COOKIE-NAME               |
 | COOKIE=                   |
 | COOKIE-SECURE-P           |
 
@@ -550,20 +640,20 @@ underlying =SB-BSD-SOCKETS= class - either =INET-SOCKET= or
 
 #+RESULTS:
 | PUT                   |
-| DECODING-STREAM-OF    |
-| DELETE                |
-| GET                   |
-| RETRY-REQUEST         |
-| FETCH                 |
-| *VERBOSE*             |
 | POST                  |
+| DELETE                |
+| REQUEST               |
+| DECODING-STREAM-OF    |
+| HEAD                  |
+| *VERBOSE*             |
+| HTTP-CLIENT           |
 | IGNORE-AND-CONTINUE   |
 | +SOCKS5-VERSION+      |
-| REQUEST               |
+| *CONNECTION-POOL*     |
 | PATCH                 |
 | MAKE-CONNECTION-POOL  |
-| HEAD                  |
-| HTTP-CLIENT           |
+| FETCH                 |
+| RETRY-REQUEST         |
+| GET                   |
 | *USE-CONNECTION-POOL* |
-| *CONNECTION-POOL*     |
 | CLEAR-CONNECTION-POOL |

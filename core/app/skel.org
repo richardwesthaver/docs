@@ -29,6 +29,7 @@ is for library developers and internal use.
   | SKEL/MPK/DB          |
   | SKEL/MPK/CLI         |
   | SKEL/COMP/CARGO      |
+  | SKEL/TESTS           |
   | SKEL                 |
   | SKEL/CLI             |
   | SKEL-INT             |
@@ -67,7 +68,7 @@ is for library developers and internal use.
   #+CALL: lisp-system-dependents[:post transpose]("skel")
 
   #+RESULTS:
-  | :BIN        |
+  | :CORE       |
   | :SKEL/TESTS |
 
 - files
@@ -142,117 +143,118 @@ is for library developers and internal use.
   #+CALL: lisp-package-symbols[:post transpose]("SKEL")
 
   #+RESULTS:
-  | PRINT-SKEL-OBJECT            |
+  | *SKEL-ENV*                   |
   | *SKEL-PROJECT-MACROS*        |
-  | DIR-LOCAL-VAR-DESIGNATOR     |
   | LOAD-SKELRC                  |
   | SK-LOG-SHUTDOWN              |
-  | *SKEL-ENV*                   |
+  | LOAD-USER-SKELRC             |
   | SK-RUN                       |
-  | WITH-SKEL-AST                |
+  | MAKE-SOURCE-HEADER-COMMENT   |
   | INIT-SYSTEM-SKELRC           |
   | SKEL-DB                      |
   | INIT-USER-SKELRC             |
-  | SK-PROJECT-SLOT              |
+  | SKEL-DB-LOGGER               |
   | MAKE-SK-RULE                 |
   | SK-LISP-SYSTEM               |
   | *SKEL-PROJECT*               |
+  | *SKEL-CACHE-SCHEMA*          |
   | SK-CONTAINERFILE             |
   | SK-LOG-SCHEMA                |
   | *SKEL-STASH*                 |
   | SK-MAKE                      |
   | SK-CONFIG-SLOT               |
-  | SK-SNIPPET                   |
-  | SK-RULE-SOURCE               |
+  | SK-ABBREV                    |
+  | SK-READ-FILE                 |
   | USER-SKELRC                  |
-  | MAKEFILE                     |
-  | SK-PULL                      |
-  | MERGE-PROJECT-PATHNAMES      |
-  | *SKEL-STORE*                 |
-  | *DIR-LOCALS-FILE*            |
-  | FIND-SKELFILE                |
-  | SK-CONVERT                   |
-  | *SKEL-REGISTRY-SCHEMA*       |
+  | SK-SNIPPET                   |
+  | DEF-SK-CLASS                 |
+  | SK-MOD                       |
   | SKEL-SIMPLE-ERROR            |
+  | SK-PROJECT                   |
+  | *SKEL-USER-CONFIG*           |
+  | USER                         |
+  | SK-CONVERT                   |
+  | SK-COMMAND                   |
+  | WITH-PROJECT                 |
   | *SKEL-DATA*                  |
   | SKEL-DB-SINK                 |
-  | SKEL-DB-LOGGER               |
+  | FILE-HEADER                  |
   | *MK-MAGIC-VARS*              |
   | PARSE-SK-RUST-SYSTEM         |
-  | FIND-SK-FILE                 |
+  | PUSH-MK-DIRECTIVE            |
+  | *SKEL-PROJECT-FUNCTIONS*     |
   | SK-OBJECT-SCHEMA             |
-  | SK-WRITE                     |
-  | *DEFAULT-SKEL-BINDINGS*      |
+  | SK-DIR-LOCALS                |
+  | SK-CONFIG                    |
   | *SKELFILE-EXTENSION*         |
-  | MAKE-SOURCE-FILE-HEADER      |
+  | SK-PULL                      |
   | SK-LOG-CLOSE                 |
-  | SK-COMPONENT                 |
-  | SK-STASH                     |
-  | LOAD-USER-SKELRC             |
-  | USER                         |
+  | *SYSTEM-SKELRC*              |
+  | FILE-HEADER-KIND             |
+  | MAKE-SOURCE-FILE-HEADER      |
   | SK-SCRIPT                    |
-  | SKEL-CONDITION               |
-  | MAKE-FILE-HEADER             |
-  | SK-READ-FILE                 |
-  | INIT-SKEL-LOGGER             |
+  | DIR-LOCAL-VAR-DESIGNATOR     |
+  | PRINT-SKEL-OBJECT            |
+  | SK-ENV                       |
   | SKEL                         |
   | *DEFAULT-SKEL-CACHE*         |
   | SK-SYSTEM-CONFIG             |
-  | PUSH-MK-RULE                 |
-  | DEF-SK-CLASS                 |
+  | SK-LOG-REPAIR                |
+  | SKEL-CONDITION               |
   | SK-PACK                      |
   | SK-RUST-SYSTEM               |
-  | LOAD-SYSTEM-SKELRC           |
+  | SK-COMPONENT                 |
   | *SKEL-PROJECT-SYMBOL-MACROS* |
   | PROJECT-ROOT                 |
   | READ-SYSTEM-DEFINITIONS      |
   | SKEL-ERROR                   |
   | SK-KIND                      |
   | *SKELFILE-BOUNDARY*          |
-  | SK-COMMAND                   |
+  | SK-WRITE                     |
   | SK-PUSH                      |
-  | *SYSTEM-SKELRC*              |
+  | *SKEL-REGISTRY-SCHEMA*       |
   | MAKE-SHEBANG-COMMENT         |
+  | MAKEFILE                     |
   | SK-SCHEMA                    |
-  | SK-USER-CONFIG               |
   | SK-NEW                       |
-  | SK-MOD                       |
+  | *SKEL-STORE*                 |
   | SK-LOAD                      |
   | SETF-SKEL-VARS               |
   | *SKEL-LOG-SCHEMA*            |
-  | SK-ENV                       |
+  | SK-BUILD                     |
   | *USER-SKELRC*                |
-  | MAKE-SOURCE-HEADER-COMMENT   |
+  | *DIR-LOCALS-FILE*            |
   | SK-META                      |
-  | MK-VAR                       |
+  | MERGE-PROJECT-PATHNAMES      |
+  | SK-PROJECT-SLOT              |
   | PARSE-SK-LISP-SYSTEM         |
-  | *SKEL-PATH*                  |
-  | SK-PROJECT                   |
+  | *SKEL-LOGGER-CONFIG*         |
   | MK-VAL                       |
-  | SK-PARENT                    |
-  | FILE-HEADER                  |
-  | *SKEL-PROJECT-FUNCTIONS*     |
-  | *SKEL-CACHE-SCHEMA*          |
+  | PUSH-MK-RULE                 |
+  | MK-VAR                       |
+  | SK-RULE                      |
   | LOAD-SKELFILE                |
+  | WITH-SKEL-AST                |
   | *SKEL-SYSTEM-CONFIG*         |
-  | SK-ABBREV                    |
+  | SK-USER-CONFIG               |
   | SK-TARGET                    |
   | MK-VAL-DESIGNATOR            |
-  | *DEFAULT-SKELFILE*           |
-  | FILE-HEADER-KIND             |
+  | SK-RULE-SOURCE               |
+  | INIT-SKEL-LOGGER             |
   | SK-DATA                      |
   | INIT-SKELFILE                |
   | FIND-PROJECT-ROOT            |
-  | SK-RULE                      |
-  | SK-LOG-REPAIR                |
+  | FIND-SKELFILE                |
+  | MAKE-FILE-HEADER             |
+  | LOAD-SYSTEM-SKELRC           |
   | *SKEL-LOGGER*                |
-  | *SKEL-USER-CONFIG*           |
+  | *SKEL-PATH*                  |
   | SK-CALL                      |
-  | PUSH-MK-DIRECTIVE            |
+  | FIND-SK-FILE                 |
   | *SKEL-HOOK*                  |
   | SK-LOAD-COMPONENT            |
-  | *DEFAULT-SKEL-USER*          |
-  | *SKEL-LOGGER-CONFIG*         |
+  | *SKEL-CACHE*                 |
+  | SK-STASH                     |
   | PUSH-MK-VAR                  |
   | *DEFAULT-MAKEFILE*           |
   | SK-RULE-RECIPE               |
@@ -265,21 +267,20 @@ is for library developers and internal use.
   | MAKE-SHEBANG-FILE-HEADER     |
   | *DEFAULT-CLEAN-FUNCTION*     |
   | EDIT-SKELRC                  |
-  | SK-BUILD                     |
+  | *DEFAULT-SKELFILE*           |
   | *MK-COMMAND-PREFIXES*        |
   | *DEFAULT-SKELRC*             |
-  | WITH-PROJECT                 |
+  | SK-WRITE-ASD-COMPONENTS      |
   | SK-WRITE-FILE                |
-  | SK-DIR-LOCALS                |
-  | SK-CONFIG                    |
+  | *DEFAULT-SKEL-USER*          |
   | INIT-SKEL                    |
   | SK-SOURCE                    |
   | SKEL-SYNTAX-ERROR            |
-  | SK-WRITE-ASD-COMPONENTS      |
+  | SK-PARENT                    |
   | SK-SEARCH-PROJECT            |
   | SKEL-DB-PATH                 |
   | SK-COMPILE                   |
-  | *SKEL-CACHE*                 |
+  | *DEFAULT-SKEL-BINDINGS*      |
   | *MAKEFILE-EXTENSION*         |
   | SK-RULE-TARGET               |
   | SK-ORG-FILE                  |
@@ -443,13 +444,18 @@ homer -h
 #+end_src
 
 #+RESULTS:
-: restarts (invokable by number or by possibly-abbreviated name):
-:   0: [ABORT] Skip to toplevel REPL.
-:   1: [EXIT ] Exit SBCL (calling #'EXIT, killing the process).
-: 
-: (READ-COMMAND #<SB-IMPL::STRING-INPUT-STREAM {7FFB99F579D3}>)
-:    source: (UNDEFINED-COMMAND C ARGS)
-: 0] 
+#+begin_example
+
+Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
+
+restarts (invokable by number or by possibly-abbreviated name):
+  0: [ABORT] Skip to toplevel REPL.
+  1: [EXIT ] Exit SBCL (calling #'EXIT, killing the process).
+
+(READ-COMMAND #<SB-IMPL::STRING-INPUT-STREAM {7F65C08AF9D3}>)
+   source: (UNDEFINED-COMMAND C ARGS)
+0] 
+#+end_example
 ** Packy
 :PROPERTIES:
 :CREATED:  <2025-11-03 Mon 20:48>
@@ -582,7 +588,7 @@ skel -h
 #+RESULTS:
 : #:fatal 0.03
 : unknown argument: -h
-: Backtrace for: #<THREAD tid=39228 "main thread" RUNNING {1203518003}>
+: Backtrace for: #<THREAD tid=81944 "main thread" RUNNING {1203520003}>
 : 0: (FATAL! "-h")
 : 1: ((LAMBDA (&REST SKEL/CLI::ARGS) :IN "/home/ellis/comp/core/skel/cli.lisp") "-h")
 : 2: (SKEL/CLI::START-SKEL)
