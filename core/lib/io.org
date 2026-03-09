@@ -35,11 +35,11 @@
   | STD                   |
   | IRONCLAD/DIGESTS      |
   | IRONCLAD/DIGEST/CRC32 |
+  | ZSTD                  |
   | URING                 |
   | XKB                   |
   | EVDEV                 |
   | BTRFS                 |
-  | ZSTD                  |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("io")
@@ -110,58 +110,54 @@
   #+CALL: lisp-package-symbols[:post transpose]("IO")
 
   #+RESULTS:
-  | PEEKED                            |
-  | OCTET-CONCATENATED-XSUBSEQS       |
+  | SOCKOPT-RECEIVE-TIMEOUT           |
+  | WITH-ZSTD-STREAM                  |
   | OUTPUT-POSITION                   |
   | MAKE-SMART-BUFFER                 |
-  | STATIC-VECTOR-POINTER             |
-  | IO-SOCKET                         |
-  | COERCE-TO-SEQUENCE                |
-  | SOCKOPT-REUSE-PORT                |
+  | *DEFAULT-MEMORY-LIMIT*            |
+  | CONCATENATED-XSUBSEQS             |
+  | MAKE-IN-MEMORY-INPUT-STREAM       |
   | *COMPRESSION-LEVEL*               |
   | ZSTD-COMPRESSOR                   |
   | BLOCKED-OUTPUT-STREAM             |
-  | COMPRESSOR                        |
+  | BLOCKED-IO-STREAM                 |
   | SOCKOPT-LINGER                    |
   | FLUSH                             |
   | *COMPRESSOR*                      |
-  | COMPRESSION-LEVEL                 |
+  | GET-OUTPUT-STREAM-SEQUENCE        |
   | BUFFER-ON-MEMORY-P                |
-  | WITH-COMPRESSOR                   |
+  | COMPRESSION-LEVEL                 |
   | SNAPSHOT                          |
   | DELETE-STREAM-FILE                |
-  | DEC-FILL-BUFFER                   |
+  | INPUT-CHUNKING-P                  |
   | *PREFERRED-COMPRESSION-TYPE*      |
-  | ASSERT-CHAR                       |
+  | NEEDS-TO-FILL-BUFFER-P            |
   | *DECOMPRESSION-BUFFER-SIZE*       |
   | INPUT-BUFFER                      |
-  | COMPRESSING-STREAM                |
-  | UNREAD-CHAR*                      |
+  | WITH-COMPRESSOR                   |
   | +BUFFER-SIZE+                     |
   | FILL-BUFFER                       |
-  | CHUNKED-IO-STREAM                 |
-  | EXPECTING-CRLF-P                  |
-  | FLEX-INPUT-STREAM                 |
-  | NULL-CONCATENATED-XSUBSEQS        |
-  | DECOMPRESSION-ERROR               |
-  | MAKE-FLEX-STREAM                  |
+  | UNREAD-CHAR*                      |
+  | MAKE-BOUND-STREAM                 |
+  | XNCONC                            |
+  | XNCONCF                           |
   | SIGNAL-EOF                        |
   | OUTPUT-CHUNKING-P                 |
   | COMPRESS-OBJECT                   |
   | SOCKOPT-PEERCRED                  |
   | *DEFAULT-STATIC-STREAM-SIZE*      |
-  | STATIC-VECTOR                     |
-  | HEADER                            |
+  | NULL-CONCATENATED-XSUBSEQS        |
+  | DECOMPRESS-OBJECT                 |
   | CHUNKED-OUTPUT-STREAM             |
-  | BLOCKED-IO-STREAM                 |
+  | STATIC-VECTOR-POINTER             |
   | BLOCKED-INPUT-STREAM              |
   | WITH-ZSTD-BUFFER                  |
   | PEEKED-SIZE                       |
   | WITH-STATIC-VECTORS               |
   | *COMPRESSION-TYPES*               |
   | WITH-ZSTD-OUTPUT                  |
-  | CHUNKED-STREAM                    |
-  | SMART-BUFFER                      |
+  | IO-SOCKET                         |
+  | FREE-STATIC-VECTOR                |
   | MAKE-CONCATENATED-XSUBSEQS        |
   | *TREAT-SEMICOLON-AS-CONTINUATION* |
   | PEEK-BYTE                         |
@@ -170,14 +166,16 @@
   | DECOMPRESSION-BUFFER-SIZE*        |
   | HEADER-LENGTH                     |
   | *DECOMPRESSOR*                    |
+  | COMPRESS-OCTET                    |
   | DECOMPRESS                        |
   | OFFSET                            |
   | COMPRESS-WITH                     |
-  | OUTPUT-STREAM-SEQUENCE-LENGTH     |
+  | HEADER                            |
   | DECOMPRESS-WITH                   |
   | IO-SOCKET-ERROR                   |
   | BLOCKED-STREAM                    |
   | MAKE-STATIC-VECTOR                |
+  | MAKE-DECOMPRESSING-STREAM         |
   | SIMPLE-CHUNKED-INPUT-STREAM       |
   | DECODING-STREAM                   |
   | BOUND-INPUT-STREAM                |
@@ -185,85 +183,87 @@
   | SOCKOPT-PEER-CRED                 |
   | READ-CHAR*                        |
   | ASSERT-CRLF                       |
-  | *COMPRESSION-BUFFER-SIZE*         |
+  | SOCKOPT-REUSE-PORT                |
   | OUTPUT-BUFFER                     |
   | WITH-CHARACTER-STREAM-SEMANTICS   |
   | WITH-XSUBSEQS                     |
   | SOCKOPT-SEND-TIMEOUT              |
-  | COMPRESS-OCTET-VECTOR             |
-  | MAKE-BOUND-STREAM                 |
+  | ASSERT-CHAR                       |
   | OUTPUT-AVAILABLE-P                |
   | COMPRESSION-ERROR                 |
-  | MAKE-DECOMPRESSING-STREAM         |
+  | INPUT-AVAILABLE-P                 |
   | IO-STREAM                         |
-  | XNCONC                            |
+  | *COMPRESSION-BUFFER-SIZE*         |
   | IO-STREAM-ERROR                   |
   | IO-ERROR                          |
   | FINISH-DECOMPRESSION              |
   | RESET-DECOMPRESSOR                |
   | WITH-STATIC-STREAMS               |
-  | COMPRESS-OCTET                    |
-  | OUTPUT                            |
+  | +DEFAULT-CHUNKED-OUTPUT-SIZE+     |
+  | DELETE-TEMPORARY-FILES            |
   | FLEX-STREAM                       |
   | CHUNKED-INPUT-STREAM              |
   | FLATE-ERROR                       |
-  | WRITE-TO-BUFFER                   |
+  | CHUNKED-STREAM                    |
   | WITH-INPUT-FROM-SEQUENCE          |
-  | DECOMPRESSOR                      |
-  | INPUT-AVAILABLE-P                 |
+  | MAKE-FLEX-STREAM                  |
+  | COMPRESSING-STREAM                |
   | MAKE-COMPRESSING-STREAM           |
-  | NEEDS-TO-FILL-BUFFER-P            |
+  | PEEKED                            |
+  | FLEX-INPUT-STREAM                 |
   | FINISH-COMPRESSION                |
-  | SOCKOPT-RECEIVE-TIMEOUT           |
+  | STATIC-VECTOR                     |
   | FILL-FOREIGN-MEMORY               |
-  | INPUT-CHUNKING-P                  |
+  | MAKE-DECODING-STREAM              |
   | COMPRESS                          |
   | INPUT                             |
   | MAKE-CHUNKED-STREAM               |
-  | DELETE-TEMPORARY-FILES            |
-  | *DEFAULT-DISK-LIMIT*              |
+  | EXPECTING-CRLF-P                  |
+  | COMPRESS-OCTET-VECTOR             |
   | FLEX-OUTPUT-STREAM                |
   | XSUBSEQ                           |
+  | WITH-OUTPUT-TO-SEQUENCE           |
   | WITH-STATIC-STREAM                |
+  | HEADER-TYPE                       |
   | RESET-COMPRESSOR                  |
   | BUFFER-LIMIT-EXCEEDED             |
   | PEEKING-INPUT-STREAM              |
   | PEEK-CHAR*                        |
+  | WRITE-TO-BUFFER                   |
   | ZSTD-ERROR                        |
   | STRING-CONCATENATED-XSUBSEQS      |
-  | MAKE-DECODING-STREAM              |
-  | FREE-STATIC-VECTOR                |
+  | *DEFAULT-DISK-LIMIT*              |
+  | DECOMPRESSOR                      |
   | INPUT-POSITION                    |
-  | GET-OUTPUT-STREAM-SEQUENCE        |
+  | OUTPUT-STREAM-SEQUENCE-LENGTH     |
   | CHUNKED-INPUT-STREAM-EXTENSIONS   |
-  | HEADER-TYPE                       |
+  | DEC-FILL-BUFFER                   |
   | ENSURE-FILE-POSITION              |
+  | SMART-BUFFER                      |
   | XLENGTH                           |
   | RESET-STATIC-STREAM               |
   | DECOMPRESS-OCTET-VECTOR           |
-  | XNCONCF                           |
+  | CHUNKED-IO-STREAM                 |
   | WITH-STATIC-VECTOR                |
   | COERCE-TO-STRING                  |
-  | MAKE-IN-MEMORY-OUTPUT-STREAM      |
+  | COMPRESSOR                        |
   | REPLACE-FOREIGN-MEMORY            |
-  | +DEFAULT-CHUNKED-OUTPUT-SIZE+     |
+  | OCTET-CONCATENATED-XSUBSEQS       |
   | WITH-SMART-BUFFER                 |
   | PEEKED-COUNT                      |
   | FINALIZE-BUFFER                   |
-  | *DEFAULT-MEMORY-LIMIT*            |
-  | WITH-OUTPUT-TO-SEQUENCE           |
+  | COERCE-TO-SEQUENCE                |
+  | DECOMPRESSION-ERROR               |
   | OUTPUT-SIZE                       |
-  | MAKE-IN-MEMORY-INPUT-STREAM       |
-  | WITH-ZSTD-STREAM                  |
+  | MAKE-IN-MEMORY-OUTPUT-STREAM      |
   | FLEX-IO-STREAM                    |
-  | CONCATENATED-XSUBSEQS             |
+  | OUTPUT                            |
   | DECOMPRESSING-STREAM              |
   | STRING-XSUBSEQ                    |
   | WITH-ZSTD-INPUT                   |
   | STATIC-STREAM                     |
   | *ACCEPT-BOGUS-EOLS*               |
   | INPUT-SIZE                        |
-  | DECOMPRESS-OBJECT                 |
 
 #+END:
 

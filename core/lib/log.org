@@ -55,6 +55,7 @@ libraries and apps.
   | :RDB/TESTS       |
   | :BOX/TESTS       |
   | :MATH/TESTS      |
+  | :TUTORIAL        |
   | :BBDB            |
   | :XLIB            |
 
@@ -93,14 +94,13 @@ libraries and apps.
   | *LOG-SHOW-BACKTRACE*    |
   | LOG-MESSAGE*            |
   | LOG-PIPE                |
-  | LOG-CONFIG              |
   | LOG-TIMESTAMP-SOURCE    |
   | DEFAULT-LOGGER          |
   | ERROR-P                 |
   | WITH-LOGGER             |
   | INFO-DESCRIBE           |
   | LOGGER-CONFIG           |
-  | LOGGER-P                |
+  | ALIEN-SOURCE            |
   | RESTART-LOGGER          |
   | WARN!                   |
   | SIMPLE-LOG-MESSAGE      |
@@ -109,7 +109,7 @@ libraries and apps.
   | *LOG-TIMESTAMP*         |
   | LOG!                    |
   | DATABASE-LOGGER         |
-  | LOG-MESSAGE             |
+  | DEFINE-LOG-LEVEL        |
   | ERROR-DESCRIBE          |
   | DB-SINK                 |
   | GET-REAL-TIME-SINCE     |
@@ -120,31 +120,32 @@ libraries and apps.
   | WITH-LOG-STREAM         |
   | ILEVEL                  |
   | *LOG-MESSAGE-CLASS*     |
-  | DEFINE-LOG-LEVEL        |
+  | WARN-P                  |
   | TAG-FILTER              |
   | TRACE-DESCRIBE          |
   | *LOG-TIMESTAMP-FORMAT*  |
   | ALIEN-SINK              |
   | ROTATING-FILE-SINK      |
   | LOG-DESCRIBE            |
-  | LEVEL                   |
+  | LOG-CONFIG              |
   | TRACE-P                 |
   | OCTETS-TO-LOG-MESSAGE   |
   | LOG-P                   |
   | LOG-OBJECT              |
   | LOG-LEVEL-DESIGNATOR    |
-  | *LOG-LEVEL*             |
+  | LEVEL                   |
   | DEBUG-DESCRIBE          |
   | LOG-ROTATE              |
   | WITH-CONDITIONS-LOGGED  |
   | FATAL!                  |
+  | ALIEN-LOGGER            |
   | *LOG-LEVELS*            |
-  | WITH-FAST-LOG-STREAM    |
+  | *LOG-LEVEL*             |
   | *LOG-INDENT*            |
   | *LOGGER*                |
   | INFO!                   |
   | %LOG-OBJECT             |
-  | DPRINT                  |
+  | LOGGER-P                |
   | MESSAGE-THREAD          |
   | *TAG-SEPARATOR*         |
   | DB-SOURCE               |
@@ -152,11 +153,11 @@ libraries and apps.
   | INIT-LOG-TIMESTAMP      |
   | BACKUP-FILE-SINK        |
   | TAG-TREE-FILTER         |
-  | LOG-MESSAGE-TO-OCTETS   |
+  | LOG-MESSAGE             |
   | ROTATE-FILE-SINK        |
   | MATCHING-TREE-TAG       |
-  | ALIEN-LOGGER            |
-  | ALIEN-SOURCE            |
+  | DPRINT                  |
+  | WITH-FAST-LOG-STREAM    |
   | INFO-P                  |
   | FATAL-DESCRIBE          |
   | DEBUG!                  |
@@ -164,7 +165,7 @@ libraries and apps.
   | LOG-ERROR               |
   | ERROR!                  |
   | *LOG-MESSAGE-FORMATTER* |
-  | WARN-P                  |
+  | LOG-MESSAGE-TO-OCTETS   |
 
 #+END
 
@@ -238,7 +239,7 @@ protocol.
 #+end_src
 
 #+RESULTS:
-: #<LOGGER-CONFIG {12104E3AF3}>
+: #<LOGGER-CONFIG {120C999573}>
 :   [standard-object]
 : 
 : Slots with :INSTANCE allocation:

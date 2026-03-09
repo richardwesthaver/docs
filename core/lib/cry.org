@@ -19,13 +19,12 @@ security and authentication protocols, passwords, keyrings, and more.
   | CRY/TESTS    |
   | CRY/PASSWORD |
   | CRY/GPG      |
-  | CRY/TOTP     |
   | CRY/KEYRING  |
   | CRY/JWT      |
   | CRY/AUTH     |
+  | CRY/OTP      |
   | CRY          |
   | CRY/SSH      |
-  | CRY/HOTP     |
   | CRY/TLS      |
   | CRY/AUTHINFO |
   | CRY/CRC64    |
@@ -74,8 +73,7 @@ security and authentication protocols, passwords, keyrings, and more.
   | authinfo.lisp      |
   | keyring.lisp       |
   | jwt.lisp           |
-  | hotp.lisp          |
-  | totp.lisp          |
+  | otp.lisp           |
   | drm.lisp           |
   | gpg.lisp           |
   | ssh.lisp           |
@@ -101,54 +99,54 @@ security and authentication protocols, passwords, keyrings, and more.
   #+CALL: lisp-package-symbols[:post transpose]("CRY")
 
   #+RESULTS:
-  | MAKE-SSL-SERVER-STREAM       |
+  | SYSTEM-SSHD-CONFIG-FILE      |
   | SSL-INITIALIZED-P            |
   | USER-SSH-CONFIG-FILE         |
   | HOTP                         |
   | MAKE-KEYRING                 |
+  | SSH-CONFIG                   |
   | PASSWORD                     |
   | +IMPROVED-POLYNOMIAL+        |
   | USER-GPG-AGENT-CONFIG-FILE   |
-  | KEYRING                      |
-  | *TIME-STEP-IN-SECONDS*       |
-  | SSL-STREAM-X509-CERTIFICATE  |
-  | USER-GPG-CONFIG-FILE         |
-  | INIT-CRC64                   |
-  | +POLYNOMIAL+                 |
-  | *SSL-CIPHER-LIST*            |
+  | MAKE-PASSWORD-HASH           |
+  | *DIGITS*                     |
   | TOTP                         |
-  | COMPARE-HS256-DIGEST         |
+  | USER-GPG-CONFIG-FILE         |
+  | *USER-GPG-DIRECTORY*         |
+  | HS256-DIGEST                 |
+  | *SSL-CIPHER-LIST*            |
   | SSHD-CONFIG                  |
+  | *TIME-STEP-IN-SECONDS*       |
+  | INIT-CRC64                   |
   | PASSWORD-SALT                |
   | *USER-SSH-DIRECTORY*         |
   | CRC64-FILE                   |
   | *CA-BUNDLE*                  |
   | *HMAC-SHA-MODE*              |
   | GPG-AGENT-CONFIG             |
+  | CRC64-SEQUENCE               |
   | PASSWORD-HASH                |
-  | *DIGITS*                     |
   | *TIME-ZERO*                  |
   | ENSURE-SSL                   |
-  | CRC64-SEQUENCE               |
-  | MAKE-SSL-CLIENT-STREAM       |
+  | SYSTEM-SSH-CONFIG-FILE       |
+  | KEYRING                      |
   | DECODE-CERTIFICATE-FROM-FILE |
-  | SYSTEM-SSHD-CONFIG-FILE      |
-  | *USER-GPG-DIRECTORY*         |
+  | SSL-STREAM-X509-CERTIFICATE  |
   | DECODE-DER-OCTET-VECTOR      |
   | AUTHINFO                     |
   | CRC64-STREAM                 |
-  | HS256-DIGEST                 |
+  | COMPARE-HS256-DIGEST         |
   | *NO-SSL*                     |
   | GPG-CONFIG                   |
-  | SSH-CONFIG                   |
-  | *SSL-BUFFER-SIZE*            |
+  | MAKE-SSL-SERVER-STREAM       |
+  | +POLYNOMIAL+                 |
   | AUTH                         |
   | MAKE-SSL-CONTEXT             |
   | CLEAR-KEYS                   |
-  | MAKE-PASSWORD-HASH           |
+  | *SSL-BUFFER-SIZE*            |
   | WITH-GLOBAL-CONTEXT          |
   | GET-KEY                      |
   | JWT-DECODE                   |
-  | SYSTEM-SSH-CONFIG-FILE       |
+  | MAKE-SSL-CLIENT-STREAM       |
 
 #+END
