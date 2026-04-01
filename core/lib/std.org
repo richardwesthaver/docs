@@ -100,7 +100,7 @@ guide]] and further enriched or optimized based on our own expectations.
   | :ROCKSDB         |
   | :SNDFILE         |
   | :SSH2            |
-  | :SYSLOG          |
+  | :SYS             |
   | :TREE-SITTER     |
   | :URING           |
   | :XKB             |
@@ -152,7 +152,6 @@ guide]] and further enriched or optimized based on our own expectations.
   | list.lisp             |
   | prim.lisp             |
   | kernel.lisp           |
-  | api.lisp              |
   | named-readtables.lisp |
   | num/parse.lisp        |
   | num/math.lisp         |
@@ -222,6 +221,7 @@ guide]] and further enriched or optimized based on our own expectations.
   | THREADS                       |
   | WITH-THREADS                  |
   | BASIC-PIPES                   |
+  | PQUEUE                        |
   | ITER                          |
   | ACCUMULATOR                   |
   | FIB-HEAP                      |
@@ -232,6 +232,8 @@ guide]] and further enriched or optimized based on our own expectations.
   | FLOATS                        |
   | PARSE-NUMBERS                 |
   | LEB128                        |
+  | IOBUF                         |
+  | FV                            |
   | SERDE                         |
   | COMP                          |
   | BITS                          |
@@ -529,59 +531,65 @@ in =std/condition=.
 #+CALL: lisp-package-symbols[:post transpose]("STD/CONDITION")
 
 #+RESULTS:
-| *ERROR-MESSAGE*             |
+| UNKNOWN-TOKEN               |
+| REQUIRED-ARGUMENT           |
+| INTERACT*                   |
+| DEF-SIMPLE-ERROR-REPORTER   |
+| PROTECT-ABORT               |
+| WITH-IF-FAILED-HANDLER      |
+| DEF-SIMPLE-WARNING-REPORTER |
+| ENTRY-REPLACEMENT-ATTEMPT   |
+| UNWIND-PROTECT-CASE         |
+| DEF-WARNING-REPORTER        |
+| WITH-RETRY-RESTART          |
 | ERROR-MESSAGE               |
 | SIMPLE-PROGRAM-ERROR        |
-| STD-WARNING                 |
+| UNKNOWN-ARGUMENT            |
+| *VERBOSE*                   |
+| MISSING-METHODS             |
+| OUT-OF-BOUNDS-ERROR         |
+| INVOKE-TRANSFER-ERROR       |
+| WRAPPED-ERROR               |
+| INTERACT                    |
+| *ERROR-MESSAGE*             |
+| SIMPLE-PARSE-ERROR          |
+| *HANDLERS*                  |
+| RETRY                       |
+| NYI!                        |
+| SIMPLE-READER-ERROR         |
+| TRANSFER-ERROR              |
+| DEFINE-ERROR-WRAPPER        |
+| INTERACT-LINE               |
+| DEFWARNING                  |
+| ERROR-ITEMS                 |
+| MISSING-ARGUMENT            |
+| CONFLICTING-ARGUMENTS       |
+| WRAP-CONDITION              |
+| CAR-EQL                     |
+| INVALID-ARGUMENT            |
+| IGNORE-SOME-CONDITIONS      |
 | DEFERROR                    |
 | GET-BACKTRACE               |
-| ERROR-ITEMS                 |
-| DEFINE-ERROR-REPORTER       |
-| ERROR-NAME                  |
-| DEF-WARNING-REPORTER        |
-| MISSING-METHOD              |
-| WRAPPED-ERROR               |
-| MISSING-METHODS             |
-| INTERACT                    |
-| INVALID-ITEM                |
-| SIMPLE-STYLE-WARNING        |
-| SIMPLE-PARSE-ERROR          |
-| MISSING-ARGUMENT            |
-| INVALID-ARGUMENT            |
-| STD-ERROR                   |
-| IGNORE-SOME-CONDITIONS      |
-| PROTECT-ABORT               |
-| REQUIRED-ARGUMENT           |
-| WRAP-ERROR                  |
-| UNWIND-PROTECT-CASE         |
-| CIRCULAR-DEPENDENCIES       |
 | ERROR-KIND                  |
 | CONDITION-HANDLER           |
-| TRANSFER-ERROR              |
-| CAR-EQL                     |
-| CONFLICTING-ARGUMENTS       |
-| DEF-SIMPLE-ERROR-REPORTER   |
-| INVOKE-TRANSFER-ERROR       |
-| TRANSFER-ERROR-REPORT       |
-| DEFINE-ERROR-WRAPPER        |
-| META-CONDITION              |
+| MISSING-METHOD              |
+| WRAP-ERROR                  |
 | ERROR-REASON                |
-| *VERBOSE*                   |
-| WRAPPED-CONDITION           |
-| WRAPPED-CONDITION-VALUE     |
-| SIMPLE-READER-ERROR         |
 | ERROR-ITEM                  |
-| DEFWARNING                  |
-| *HANDLERS*                  |
-| UNKNOWN-TOKEN               |
-| INTERACT*                   |
-| UNKNOWN-ARGUMENT            |
-| OUT-OF-BOUNDS-ERROR         |
-| WRAP-CONDITION              |
-| INTERACT-LINE               |
-| DEF-SIMPLE-WARNING-REPORTER |
+| DEFINE-ERROR-REPORTER       |
+| STD-WARNING                 |
+| WRAPPED-CONDITION           |
+| REPLACE-ENTRY-P             |
+| ERROR-NAME                  |
 | *UNINTERESTING-CONDITIONS*  |
-| NYI!                        |
+| META-CONDITION              |
+| WRAPPED-CONDITION-VALUE     |
+| TRANSFER-ERROR-REPORT       |
+| MISSING-ENTRY               |
+| SIMPLE-STYLE-WARNING        |
+| INVALID-ITEM                |
+| STD-ERROR                   |
+| CIRCULAR-DEPENDENCIES       |
 
 ** type
 :PROPERTIES:
@@ -594,153 +602,148 @@ ANSI CL standard.
 #+CALL: lisp-package-symbols[:post transpose]("STD/TYPE")
 
 #+RESULTS:
-| NON-NEGATIVE-SINGLE-FLOAT-P     |
-| S64                             |
-| OCTET-VECTOR                    |
-| NON-POSITIVE-SHORT-FLOAT        |
-| CLASSOID-OF                     |
-| NEGATIVE-SHORT-FLOAT-P          |
-| U6                              |
-| *TYPE-CLASSES*                  |
-| S7                              |
-| NEGATIVE-DOUBLE-FLOAT           |
-| NON-POSITIVE-RATIONAL           |
-| SFUNCTION                       |
-| PARSE-KEY-ARG-SPEC              |
-| DS-LAMBDA-LIST-MATCHER          |
-| NON-NEGATIVE-LONG-FLOAT-P       |
-| S6                              |
-| S16                             |
-| SIMPLE-TYPE-ID                  |
-| U32                             |
-| U1                              |
-| OCTET-VECTOR-P                  |
-| NON-POSITIVE-REAL               |
-| NEGATIVE-FIXNUM                 |
-| TYPE-CLASS-ID-OF                |
+| COERCEF                         |
 | PARSE-META-DS-LAMBDA-LIST       |
-| NEGATIVE-SINGLE-FLOAT-P         |
-| NEGATIVE-RATIONAL-P             |
+| NON-NEGATIVE-SHORT-FLOAT        |
+| U5                              |
+| POSITIVE-DOUBLE-FLOAT           |
 | WORD                            |
-| NEGATIVE-REAL-P                 |
-| S1                              |
-| TYPE=                           |
+| NON-NEGATIVE-DOUBLE-FLOAT       |
 | TYPE-CLASS-NAME                 |
 | NON-POSITIVE-INTEGER            |
-| NON-NEGATIVE-INTEGER-P          |
-| NON-POSITIVE-FIXNUM             |
-| *TYPE-CACHE-NONCE*              |
-| POSITIVE-SINGLE-FLOAT-P         |
-| NON-NEGATIVE-RATIONAL-P         |
-| TYPE-CLASS-ID                   |
-| DS-LAMBDA-LIST-MATCH-P          |
-| NON-NEGATIVE-FLOAT              |
-| S2                              |
-| NEGATIVE-LONG-FLOAT-P           |
-| U2                              |
-| NEGATIVE-LONG-FLOAT             |
-| POSITIVE-SINGLE-FLOAT           |
-| NON-POSITIVE-FLOAT-P            |
-| UNSIGNED-BYTE*                  |
-| NEGATIVE-REAL                   |
-| NON-POSITIVE-LONG-FLOAT         |
-| TYPE-CLASS-NAME-OF              |
-| NON-NEGATIVE-REAL-P             |
-| S8                              |
-| NON-NEGATIVE-SHORT-FLOAT        |
-| U4                              |
-| POSITIVE-FLOAT                  |
-| POSITIVE-FIXNUM-P               |
-| NON-NEGATIVE-LONG-FLOAT         |
-| NON-POSITIVE-LONG-FLOAT-P       |
-| NEGATIVE-DOUBLE-FLOAT-P         |
-| U5                              |
-| NEGATIVE-SINGLE-FLOAT           |
-| TYPE-ID->TYPE-CLASS             |
-| NEGATIVE-INTEGER-P              |
-| ABSTRACT-DS-LAMBDA-LIST         |
-| +DEFAULT-ELEMENT-TYPE+          |
-| NON-NEGATIVE-FLOAT-P            |
-| *CTYPE-HASHSETS*                |
-| POSITIVE-LONG-FLOAT             |
-| POSITIVE-SHORT-FLOAT-P          |
-| POSITIVE-RATIONAL               |
-| NON-NEGATIVE-SINGLE-FLOAT       |
-| FIND-CLASSOID                   |
-| NON-NEGATIVE-DOUBLE-FLOAT-P     |
-| POSITIVE-REAL-P                 |
+| NON-NEGATIVE-LONG-FLOAT-P       |
+| NON-POSITIVE-REAL               |
 | FUNCTION-DESIGNATOR             |
-| S4                              |
-| U64                             |
-| TYPE-CLASS                      |
+| NEGATIVE-REAL                   |
 | ARRAY-LENGTH                    |
-| ARRAY-INDEX                     |
-| NON-NEGATIVE-REAL               |
-| INTEGER-TYPE-LENGTH             |
-| OCTET                           |
-| POSITIVE-RATIONAL-P             |
-| POSITIVE-INTEGER                |
-| NON-POSITIVE-REAL-P             |
-| PRIM-TYPE                       |
-| NON-POSITIVE-DOUBLE-FLOAT       |
-| *CORE-TYPES*                    |
-| META-ABSTRACTIFY-DS-LAMBDA-LIST |
-| S3                              |
-| S5                              |
-| NON-POSITIVE-FLOAT              |
-| NEGATIVE-RATIONAL               |
-| S24                             |
-| POSITIVE-DOUBLE-FLOAT-P         |
-| *CORE-TYPE-TABLE*               |
-| TYPE-ID<                        |
-| NON-POSITIVE-SHORT-FLOAT-P      |
-| U3                              |
-| NON-NEGATIVE-SHORT-FLOAT-P      |
-| NEGATIVE-FLOAT-P                |
-| NON-NEGATIVE-RATIONAL           |
-| NEGATIVE-SHORT-FLOAT            |
-| *SIMPLE-TYPE-TABLE*             |
-| TYPE-ID=                        |
-| TYPE-HASH-VALUE                 |
-| TYPE-ID                         |
-| POSITIVE-INTEGER-P              |
-| POSITIVE-SHORT-FLOAT            |
-| TYPE-ID<=                       |
-| POSITIVE-FLOAT-P                |
-| POSITIVE-REAL                   |
-| NON-POSITIVE-FIXNUM-P           |
-| NEGATIVE-INTEGER                |
-| U16                             |
-| POSITIVE-LONG-FLOAT-P           |
-| NON-POSITIVE-RATIONAL-P         |
-| *SIMPLE-TYPES*                  |
-| NON-NEGATIVE-FIXNUM             |
 | POSITIVE-FIXNUM                 |
-| PARSE-DS-LAMBDA-LIST            |
-| PARSE-OPTIONAL-ARG-SPEC         |
-| U7                              |
-| NON-POSITIVE-DOUBLE-FLOAT-P     |
-| S32                             |
+| NEGATIVE-INTEGER-P              |
+| NON-POSITIVE-FIXNUM-P           |
+| TYPE-ID<=                       |
 | NON-NEGATIVE-FIXNUM-P           |
-| RESET-CORE-TYPES                |
-| POSITIVE-DOUBLE-FLOAT           |
+| ARRAY-INDEX                     |
+| POSITIVE-LONG-FLOAT-P           |
+| NEGATIVE-RATIONAL               |
+| NEGATIVE-DOUBLE-FLOAT-P         |
+| NON-POSITIVE-LONG-FLOAT         |
+| POSITIVE-SINGLE-FLOAT-P         |
+| PARSE-KEY-ARG-SPEC              |
+| TYPE-ID<                        |
+| TYPE-CLASS                      |
+| POSITIVE-SINGLE-FLOAT           |
+| NON-NEGATIVE-FIXNUM             |
+| U4                              |
+| NON-POSITIVE-DOUBLE-FLOAT-P     |
+| NEGATIVE-INTEGER                |
+| *CORE-TYPE-TABLE*               |
+| DS-LAMBDA-LIST-MATCH-P          |
+| NON-NEGATIVE-SINGLE-FLOAT       |
+| NON-NEGATIVE-INTEGER-P          |
+| *SIMPLE-TYPES*                  |
+| NON-POSITIVE-RATIONAL-P         |
+| SIMPLE-TYPE-ID                  |
+| NON-NEGATIVE-SINGLE-FLOAT-P     |
+| NON-POSITIVE-SHORT-FLOAT-P      |
 | NON-NEGATIVE-INTEGER            |
-| NON-POSITIVE-SINGLE-FLOAT-P     |
-| REGISTER-TYPE-ID                |
-| NON-NEGATIVE-DOUBLE-FLOAT       |
-| NON-POSITIVE-SINGLE-FLOAT       |
-| *PRIMITIVE-OBJECT-TABLE*        |
-| U24                             |
-| NON-POSITIVE-INTEGER-P          |
-| LAYOUT-OF                       |
-| NEGATIVE-FLOAT                  |
-| NEGATIVE-FIXNUM-P               |
-| TYPE-CLASS-OF                   |
+| OCTET                           |
+| NON-POSITIVE-FIXNUM             |
+| POSITIVE-RATIONAL               |
 | CLASSOID                        |
+| U3                              |
+| NON-POSITIVE-INTEGER-P          |
+| S8                              |
+| NEGATIVE-FLOAT-P                |
+| POSITIVE-RATIONAL-P             |
+| NON-POSITIVE-FLOAT              |
+| S3                              |
+| NEGATIVE-RATIONAL-P             |
+| POSITIVE-REAL-P                 |
+| TYPE-CLASS-ID-OF                |
+| NEGATIVE-FIXNUM-P               |
+| S32                             |
+| POSITIVE-SHORT-FLOAT-P          |
+| POSITIVE-DOUBLE-FLOAT-P         |
+| S4                              |
+| PARSE-DS-LAMBDA-LIST            |
+| *PRIMITIVE-OBJECT-TABLE*        |
+| S7                              |
+| +DEFAULT-ELEMENT-TYPE+          |
+| CLASSOID-OF                     |
+| S2                              |
+| NEGATIVE-DOUBLE-FLOAT           |
+| SFUNCTION                       |
+| NEGATIVE-LONG-FLOAT             |
+| POSITIVE-INTEGER-P              |
+| U2                              |
+| NON-NEGATIVE-FLOAT              |
+| NON-POSITIVE-REAL-P             |
+| *SIMPLE-TYPE-TABLE*             |
+| NON-POSITIVE-DOUBLE-FLOAT       |
+| TYPE=                           |
+| TYPE-CLASS-NAME-OF              |
+| NON-NEGATIVE-RATIONAL-P         |
+| NON-NEGATIVE-FLOAT-P            |
+| NEGATIVE-FIXNUM                 |
+| NEGATIVE-FLOAT                  |
+| ABSTRACT-DS-LAMBDA-LIST         |
+| U1                              |
+| REGISTER-TYPE-ID                |
+| POSITIVE-INTEGER                |
+| NON-POSITIVE-LONG-FLOAT-P       |
+| INTEGER-TYPE-LENGTH             |
+| NEGATIVE-SINGLE-FLOAT           |
+| NON-NEGATIVE-RATIONAL           |
+| NEGATIVE-LONG-FLOAT-P           |
 | OF-TYPE                         |
-| U8                              |
-| COERCEF                         |
+| TYPE-CLASS-ID                   |
+| TYPE-ID                         |
+| TYPE-CLASS-OF                   |
+| NEGATIVE-SHORT-FLOAT-P          |
+| S64                             |
+| NON-POSITIVE-SINGLE-FLOAT-P     |
+| U7                              |
+| UNSIGNED-BYTE*                  |
+| OCTET-VECTOR-P                  |
+| POSITIVE-LONG-FLOAT             |
+| META-ABSTRACTIFY-DS-LAMBDA-LIST |
+| POSITIVE-SHORT-FLOAT            |
+| NEGATIVE-REAL-P                 |
+| POSITIVE-FLOAT                  |
+| FIND-CLASSOID                   |
+| NON-NEGATIVE-REAL               |
+| PRIM-TYPE                       |
+| S5                              |
+| TYPE-ID=                        |
+| NON-NEGATIVE-SHORT-FLOAT-P      |
+| *CORE-TYPES*                    |
+| NON-POSITIVE-FLOAT-P            |
+| POSITIVE-FIXNUM-P               |
+| *CTYPE-HASHSETS*                |
+| NON-NEGATIVE-DOUBLE-FLOAT-P     |
+| TYPE-HASH-VALUE                 |
+| NON-NEGATIVE-LONG-FLOAT         |
+| NON-NEGATIVE-REAL-P             |
+| POSITIVE-FLOAT-P                |
+| NON-POSITIVE-SHORT-FLOAT        |
+| TYPE-ID->TYPE-CLASS             |
+| S24                             |
+| NEGATIVE-SHORT-FLOAT            |
+| S6                              |
+| PARSE-OPTIONAL-ARG-SPEC         |
+| OCTET-VECTOR                    |
+| NEGATIVE-SINGLE-FLOAT-P         |
+| U6                              |
+| POSITIVE-REAL                   |
+| S1                              |
+| S16                             |
+| *TYPE-CACHE-NONCE*              |
+| DS-LAMBDA-LIST-MATCHER          |
+| LAYOUT-OF                       |
+| *TYPE-CLASSES*                  |
+| RESET-CORE-TYPES                |
 | ARRAY-TYPE=                     |
+| NON-POSITIVE-RATIONAL           |
+| NON-POSITIVE-SINGLE-FLOAT       |
 - most of ~CDR5~ is implemented except RATIO-related definitions
 
 ** num
@@ -754,40 +757,42 @@ spans multiple files covering specific features.
 #+CALL: lisp-package-symbols[:post transpose]("STD/NUM")
 
 #+RESULTS:
-| READ-LEB128                |
-| ENCODE-FLOAT32             |
-| ENCODE-ULEB128             |
-| BINOMIAL-COEFFICIENT       |
-| COUNT-PERMUTATIONS         |
-| MAP-IOTA                   |
-| ENCODE-LEB128              |
-| ENCODE-FLOAT64             |
-| DECODE-FLOAT32             |
-| STANDARD-DEVIATION         |
-| %LERP                      |
-| MAKE-FLOAT-CONVERTERS      |
-| DECODE-LEB128              |
-| POWER-OF-TWO-P             |
-| INVALID-NUMBER-VALUE       |
-| FACTORIAL                  |
-| INVALID-NUMBER-REASON      |
-| DECODE-FLOAT64             |
-| GAUSSIAN-RANDOM            |
-| %MEAN                      |
-| %MEDIAN                    |
-| INVALID-NUMBER             |
-| VARIANCE                   |
-| POWER-OF-TWO-CEILING       |
-| CLAMP                      |
-| PARSE-REAL-NUMBER          |
-| PARSE-POSITIVE-REAL-NUMBER |
-| MAXF                       |
-| MINF                       |
-| SUBFACTORIAL               |
-| PARSE-NUMBER               |
 | DECODE-ULEB128             |
+| INVALID-NUMBER-REASON      |
+| MAKE-FLOAT-CONVERTERS      |
+| MAXF                       |
+| BINOMIAL-COEFFICIENT       |
+| PARSE-POSITIVE-REAL-NUMBER |
+| PARSE-REAL-NUMBER          |
+| CLAMP                      |
+| VARIANCE                   |
+| %LERP                      |
+| READ-LEB128                |
+| COUNT-PERMUTATIONS         |
+| ENCODE-FLOAT32             |
 | READ-ULEB128               |
+| %MEDIAN                    |
+| MAP-IOTA                   |
+| INVALID-NUMBER-VALUE       |
 | IOTA                       |
+| GAUSSIAN-RANDOM            |
+| POWER-OF-TWO-P             |
+| STANDARD-DEVIATION         |
+| DECODE-LEB128              |
+| DECODE-FLOAT64             |
+| PARSE-NUMBER               |
+| ENSURE-INTEGER             |
+| ENCODE-ULEB128             |
+| DECODE-FLOAT32             |
+| SUBFACTORIAL               |
+| ENSURE-NUMBER              |
+| %MEAN                      |
+| FACTORIAL                  |
+| ENCODE-LEB128              |
+| INVALID-NUMBER             |
+| MINF                       |
+| ENCODE-FLOAT64             |
+| POWER-OF-TWO-CEILING       |
 
 - utilities from =alexandria/numbers=
 - number parsing functions: =parse-number=, =parse-integers=,
@@ -970,6 +975,7 @@ Standard macros are defined in =std/macs=.
 | PANDORIC-EVAL            |
 | PANDORIC-HOTPATCH        |
 | %A                       |
+| MULTIPLE-VALUE-CASE      |
 | PARSE-LAMBDA-LIST        |
 | ALAMBDA                  |
 | XOR                      |
@@ -1079,7 +1085,6 @@ Standard macros are defined in =std/macs=.
 | HEXDUMP                          |
 | FIXNUM-TAG-MASK                  |
 | SAVE-LISP-TREE-SHAKE-AND-DIE     |
-| PRIMITIVE-TYPE-OF                |
 | DECLARATION-INFORMATION          |
 | ARENA-CONTENTS                   |
 | ARENA-USERDATA                   |
@@ -1090,7 +1095,7 @@ Standard macros are defined in =std/macs=.
 | READ-ONLY-SPACE-OBJ-P            |
 | LEXENV-FIND                      |
 | C-FIND-HEAP->ARENA               |
-| *STORE*                          |
+| PRIMITIVE-TYPE-NAME              |
 | MAP-ALLOCATED-OBJECTS            |
 | CHECK-LOGICAL-HOSTS              |
 | DEFGLOBAL                        |
@@ -1121,7 +1126,6 @@ Standard macros are defined in =std/macs=.
 | MOST-POSITIVE-WORD               |
 | LOAD-AS-FASL                     |
 | FIND-STORE-DIRECTORY             |
-| DUMP-ARENA-OBJECTS               |
 | *BACKEND-PRIMITIVE-TYPE-NAMES*   |
 | FORGET-SHARED-OBJECT             |
 | CURRENT-LISP-IMPLEMENTATION      |
@@ -1146,7 +1150,7 @@ Standard macros are defined in =std/macs=.
 | LOGICAL-PATHNAME-TRANSLATION     |
 | CHECK-LOGICAL-HOST               |
 | 32-BIT-P                         |
-| PRIMITIVE-TYPE-NAME              |
+| PRIMITIVE-TYPE-OF                |
 | REFERENCES-P                     |
 | UNUSE-ARENA                      |
 | NEW-ARENA                        |
@@ -1224,41 +1228,45 @@ Standard macros are defined in =std/macs=.
 #+CALL: lisp-package-symbols[:post transpose]("STD/BIT")
 
 #+RESULTS:
-| BITFIELD-SLOT-END                      |
-| BITFIELD-SLOT-UNPACK                   |
-| BITFIELD-SLOT-NAME                     |
-| INTEGER-TO-OCTETS-LE                   |
-| BITFIELD-BOOLEAN-SLOT                  |
-| BITFIELD-INTEGER-SLOT                  |
-| OCTETS                                 |
-| OCTET-VECTOR-TO-HEX-STRING             |
-| SIGN-BIT                               |
-| OCTETS-TO-INTEGER                      |
-| MORTIFY-BITS                           |
-| BITFIELD-SLOT-PACK                     |
-| DEFINE-BITFIELD                        |
-| HEX-STRING-TO-OCTET-VECTOR             |
-| PARSE-ATOMIC-BITFIELD-SLOT-SPECIFIER   |
-| LOGBIT                                 |
 | BITFIELD-SLOT-START                    |
-| BITFIELD-MEMBER-SLOT                   |
-| HEXCHAR-TO-INT                         |
+| SIGNED-TO-UNSIGNED                     |
+| FLAGS-CASE                             |
 | BITFIELD-SLOT                          |
-| DIFFERENT-SIGNS-P                      |
-| PARSE-COMPOUND-BITFIELD-SLOT-SPECIFIER |
-| BITFIELD-SLOT-SIZE                     |
-| MAKE-BIT-VECTOR                        |
-| WRITE-LITTLE-ENDIAN                    |
-| BITFIELD-SLOT-INITFORM                 |
-| MAKE-BITS                              |
 | OCTETS-TO-INTEGER-LE                   |
-| MAKE-OCTETS                            |
-| READ-LITTLE-ENDIAN                     |
-| AREF-BIT                               |
 | INTEGER-TO-OCTETS                      |
+| LOGBIT                                 |
+| BITFIELD-SLOT-UNPACK                   |
+| READ-LITTLE-ENDIAN                     |
+| OCTET-VECTOR-TO-HEX-STRING             |
+| BITFIELD-BOOLEAN-SLOT                  |
+| HEXCHAR-TO-INT                         |
+| BITFIELD-SLOT-NAME                     |
+| BITFIELD-SLOT-INITFORM                 |
+| OCTETS                                 |
 | INT-LIST-BITS                          |
-| READ-N-BYTES                           |
+| BITFIELD-INTEGER-SLOT                  |
+| DEFINE-BITFIELD                        |
+| PARSE-ATOMIC-BITFIELD-SLOT-SPECIFIER   |
+| BITFIELD-MEMBER-SLOT                   |
+| BITFIELD-SLOT-PACK                     |
+| BITFIELD-SLOT-END                      |
+| INTEGER-TO-OCTETS-LE                   |
 | BITFIELD                               |
+| SIGN-BIT                               |
+| READ-N-BYTES                           |
+| MAKE-BIT-VECTOR                        |
+| MAKE-OCTETS                            |
+| MAKE-BITS                              |
+| HEX-STRING-TO-OCTET-VECTOR             |
+| WRITE-LITTLE-ENDIAN                    |
+| DIFFERENT-SIGNS-P                      |
+| AREF-BIT                               |
+| BITFIELD-SLOT-SIZE                     |
+| OCTETS-TO-INTEGER                      |
+| PARSE-COMPOUND-BITFIELD-SLOT-SPECIFIER |
+| UNSIGNED-TO-SIGNED                     |
+| HEX-STRING                             |
+| MORTIFY-BITS                           |
 
 ** comp
 :PROPERTIES:
@@ -1270,23 +1278,23 @@ Standard macros are defined in =std/macs=.
 
 #+RESULTS:
 | MAKE-LISP-SOURCE-INFO               |
-| TYPE-SPECIFIER                      |
+| DEFTRANSFORM                        |
 | PARSE-DEFTRANSFORM                  |
 | PRIMITIVE-OBJECT-LOWTAG             |
 | *COMPILE-FILE-WARNING-ACTION*       |
-| PRIMITIVE-OBJECT-NAME               |
+| DEF-IR1-TRANSLATOR                  |
 | DEFKNOWN                            |
-| PRIMITIVE-OBJECT-WIDETAG            |
+| TYPE-SPECIFIER                      |
 | CHECKED-COMPILE-FILE                |
 | CHECKED-COMPILE                     |
 | GET-SIMPLE-FUN-INSTRUCTION-MODEL    |
 | FIND-SAETP                          |
-| RUNTIME                             |
+| ASM-SEARCH                          |
 | CHECK-DEFERRED-WARNINGS             |
 | EMIT                                |
 | PRINT-SIGNALED-CONDITIONS           |
-| DUMP-SYMBOLIC-ASM                   |
-| DEF-IR1-TRANSLATOR                  |
+| DESCRIBE-COMPONENT                  |
+| *COMPILE-FILE-FAILURE-ACTION*       |
 | *PRIMITIVE-OBJECTS*                 |
 | *COMPILE-PROGRESS*                  |
 | RESET-DEFERRED-WARNINGS             |
@@ -1297,7 +1305,7 @@ Standard macros are defined in =std/macs=.
 | INST*                               |
 | *BACKEND-SC-NAMES*                  |
 | PRIMITIVE-TYPE-NAME-OF              |
-| EA                                  |
+| PRIMITIVE-OBJECT-WIDETAG            |
 | CHECK-LISP-COMPILE-RESULTS          |
 | COMPILE-FILE-ERROR                  |
 | FIND-SAETP-BY-CTYPE                 |
@@ -1307,7 +1315,6 @@ Standard macros are defined in =std/macs=.
 | *BACKEND-SBS*                       |
 | CHECK-LISP-COMPILE-WARNINGS         |
 | CTYPE-ARRAY-DIMENSIONS              |
-| BOXED-IMMEDIATE-SC-P                |
 | IMMEDIATE-CONSTANT-SC               |
 | DEFINE-VOP                          |
 | COMPILE-CONDITION-CONTEXT-FORMAT    |
@@ -1319,7 +1326,7 @@ Standard macros are defined in =std/macs=.
 | COMPILE-CONDITION                   |
 | INST                                |
 | DESCRIBE-IR2-COMPONENT              |
-| *COMPILE-FILE-FAILURE-ACTION*       |
+| RUNTIME                             |
 | COMPILE-FAILED-WARNING              |
 | *BACKEND-SC-NUMBERS*                |
 | *EMIT-CFASL*                        |
@@ -1329,20 +1336,20 @@ Standard macros are defined in =std/macs=.
 | VOP*                                |
 | COMPILE-WARNED-ERROR                |
 | *REGISTER-ARG-TNS*                  |
-| ASM-SEARCH                          |
+| PRIMITIVE-OBJECT-NAME               |
 | *COMPILER-PRINT-VARIABLE-ALIST*     |
 | CALL-WITH-SAVED-DEFERRED-WARNINGS   |
 | WITHOUT-SCHEDULING                  |
 | COMPILE-WARNED-WARNING              |
 | PRINT-FORM-AND-OPTIMIZE             |
-| DESCRIBE-COMPONENT                  |
+| EA                                  |
 | MACHINE-EA                          |
 | WITHOUT-COMPILER-NOTES              |
 | PRINT-ARGUMENTS                     |
 | WITH-SAVED-DEFERRED-WARNINGS        |
 | *COMPILE-COMPONENT-HOOK*            |
 | COMPILE-FAILED-ERROR                |
-| DEFTRANSFORM                        |
+| BOXED-IMMEDIATE-SC-P                |
 | ASM                                 |
 | *COMPILATION-UNIT*                  |
 
@@ -1355,17 +1362,27 @@ Standard macros are defined in =std/macs=.
 #+CALL: lisp-package-symbols[:post transpose]("STD/IO")
 
 #+RESULTS:
-| SERIALIZER-ERROR   |
-| SERIALIZE          |
-| DE                 |
-| SERDE-ERROR        |
-| SER                |
-| DESERIALIZER-ERROR |
-| SERDE-CONDITION    |
-| *IO-TABLE*         |
-| DEFINE-IO          |
-| DESERIALIZE        |
-| SERDE              |
+| SERDE                   |
+| SERIALIZER-ERROR        |
+| ALIGN                   |
+| SERDE-ERROR             |
+| DESERIALIZER-ERROR      |
+| U24                     |
+| U16                     |
+| U32                     |
+| U64                     |
+| WITH-BINARY-READERS     |
+| DE                      |
+| *IO-TABLE*              |
+| SER                     |
+| *STREAM-READ-POSITIONS* |
+| U8                      |
+| SERIALIZE               |
+| DEFINE-IO               |
+| STREAM-READ-POSITION    |
+| SERDE-CONDITION         |
+| WITH-BINARY-WRITERS     |
+| DESERIALIZE             |
 
 #+begin_src lisp
   (generic-function-methods (function serialize))
@@ -1374,30 +1391,30 @@ Standard macros are defined in =std/macs=.
 #+RESULTS:
 #+begin_example
 (#<STANDARD-METHOD STD/IO:SERIALIZE (POD:CONTAINERFILE
-                                     (EQL :BYTES)) {1201C457D3}>
+                                     (EQL :BYTES)) {1201D7B283}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (POD:CONTAINERFILE
-                                     (EQL :STRING)) {1201C457C3}>
+                                     (EQL :STRING)) {1201D7B273}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                     (EQL :JSON)) {1201C407E3}>
+                                     (EQL :JSON)) {1201D764E3}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                     (EQL :DOT)) {1201C407D3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {12005D2703}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :STRING)) {1201C32CE3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :BYTES)) {1201C32CD3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :QRCODE)) {12007BB813}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (INTEGER (EQL :BASE64)) {12007BB523}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :BASE64)) {120029C493}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :BASE64)) {12007BB7F3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (GIF-STREAM (EQL :GIF)) {1201C287D3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (TOML-TABLE (EQL :TOML)) {1201C1DCF3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (DAT/HTML::NODE T) {12005CDEC3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :XML)) {12005CC3F3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :JSON)) {12005CC343}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :CSV)) {120029C473}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (GRAPH (EQL :DOT)) {1201C0E363}>
+                                     (EQL :DOT)) {1201D764D3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {12005FC083}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :STRING)) {1201D66F83}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :BYTES)) {1201D66F73}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :QRCODE)) {12007F2313}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (INTEGER (EQL :BASE64)) {12007F2023}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :BASE64)) {12002B15C3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :BASE64)) {12007F22F3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (GIF-STREAM (EQL :GIF)) {1201D59293}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (TOML-TABLE (EQL :TOML)) {1201D4EFF3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (DAT/HTML::NODE T) {12005F74D3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :XML)) {12005F5A03}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :JSON)) {12005F5953}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :CSV)) {12002B15A3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (GRAPH (EQL :DOT)) {1201D34823}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (JPEG:JPEG-COMPRESSOR
-                                     (EQL :JPEG)) {1201C148E3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :URL)) {12005C99A3}>)
+                                     (EQL :JPEG)) {1201D486D3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :URL)) {12005F2E03}>)
 #+end_example
 
 #+begin_src lisp
@@ -1406,52 +1423,53 @@ Standard macros are defined in =std/macs=.
 
 #+RESULTS:
 #+begin_example
-(#<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :PKGBUILD)) {1200AE4EF3}>
+(#<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :PKGBUILD)) {1200B48483}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME
-                                       (EQL :CONTAINERFILE)) {1200AE4E63}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :OPENAPI)) {12005D1713}>
+                                       (EQL :CONTAINERFILE)) {1200B483F3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :OPENAPI)) {12005FB093}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (JSON-OBJECT
-                                       (EQL :OPENAPI)) {1201C14FC3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TLV)) {1200E6BC83}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (SIMPLE-ARRAY (EQL :TLV)) {120029BD63}>
+                                       (EQL :OPENAPI)) {1201D48DB3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :DBUS)) {1200DBAB33}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TLV)) {1200DBAB23}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (SIMPLE-ARRAY (EQL :TLV)) {12002B0E83}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME
-                                       (EQL :SYSTEMD-UNIT)) {1200AE4DE3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {12005D0913}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :AUTHINFO)) {12007BB843}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :AUTHINFO)) {1200AE4DD3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BASE64)) {1200E6BC63}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BASE64)) {12007BB803}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BIB)) {12007BB7A3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :BIB)) {1200AE4DB3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BIB)) {1200E6BC53}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TOML)) {1200E6BC43}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :TOML)) {12007BB783}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :TOML)) {1200AE4D93}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {12005CE0C3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :INI)) {1200AE4D83}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :INI)) {12007BB773}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :INI)) {1200E6BC33}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :HTML)) {12005CDEB3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :SVG)) {12007BB753}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :SVG)) {1200AE4D63}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :XML)) {1200AE4D53}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :XML)) {1200E6BC23}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :XML)) {12007BB743}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JSON-SCHEMA)) {12005CC353}>
+                                       (EQL :SYSTEMD-UNIT)) {1200B48363}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {12005F9F23}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :AUTHINFO)) {12007F2343}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :AUTHINFO)) {1200B48353}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BASE64)) {1200DBAB03}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BASE64)) {12007F2303}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BIB)) {12007F22A3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :BIB)) {1200B48333}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BIB)) {1200DBAAF3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TOML)) {1200DBAAE3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :TOML)) {12007F2283}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :TOML)) {1200B48313}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {12005F76D3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :INI)) {1200B48303}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :INI)) {12007F2273}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :INI)) {1200DBAAD3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :HTML)) {12005F74C3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :SVG)) {12007F2253}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :SVG)) {1200B482E3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :XML)) {1200B482D3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :XML)) {1200DBAAC3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :XML)) {12007F2243}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JSON-SCHEMA)) {12005F5963}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (JSON-OBJECT
-                                       (EQL :JSON-SCHEMA)) {1201C14FA3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :JSON)) {1200E6BC13}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :JSON)) {1200AE4D33}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :JSON)) {12007BB713}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :CSV)) {12007BB703}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :CSV)) {12005CC323}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :CSV)) {1200AE4D23}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :DOT)) {12007BB6F3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :ASN1)) {12005CC313}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JPEG)) {12005CC1B3}>
+                                       (EQL :JSON-SCHEMA)) {1201D48D93}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :JSON)) {1200DBAAB3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :JSON)) {1200B482B3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :JSON)) {12007F2213}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :CSV)) {12007F2203}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :CSV)) {12005F5933}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :CSV)) {1200B482A3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :DOT)) {12007F21F3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :ASN1)) {12005F5923}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JPEG)) {12005F57C3}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (JPEG:JPEG-DECOMPRESSOR
-                                       (EQL :JPEG)) {1201C148F3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :URL)) {12005C99B3}>)
+                                       (EQL :JPEG)) {1201D486E3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :URL)) {12005F2E13}>)
 #+end_example
 
 ** alien
@@ -1463,130 +1481,140 @@ Standard macros are defined in =std/macs=.
 #+CALL: lisp-package-symbols[:post transpose]("STD/ALIEN")
 
 #+RESULTS:
-| FOREIGN-VECTOR-LENGTH        |
-| SYSTEM-AREA-POINTER          |
-| ALIEN-SAP                    |
-| OCTET-VECTOR-POINTER         |
-| TIMESPEC                     |
-| FOREIGN-VECTOR-ELEMENT-TYPE  |
-| WITH-FOREIGN-POINTER         |
-| LISP-FOR-C-SYMBOL            |
-| OFFSET-CHAR-POINTER          |
-| READ-ALIEN-SINGLE-FLOAT      |
-| WRITE-ALIEN-SINGLE-FLOAT     |
-| FVREF                        |
-| SAP-ALIEN                    |
-| SLOT                         |
-| CLONE-OCTETS-FROM-ALIEN      |
-| COPY-C-STRING                |
-| OCTETS-TO-ALIEN-ARRAY        |
-| CLONE-INTEGER-LIST           |
-| C-STRINGS-TO-STRING-LIST     |
-| WITH-VECTOR-SAP              |
-| FOREIGN-VECTOR               |
-| LONG-LONG                    |
-| READ-ALIEN-SIGNED-BYTE-32    |
-| *LINKAGE-INFO*               |
-| TIMEVAL                      |
-| *ALIEN-TYPE-CLASSES*         |
-| READ-ALIEN-UNSIGNED-BYTE-32  |
-| *SHARED-OBJECTS*             |
-| WRITE-ALIEN-UNSIGNED-BYTE-32 |
-| DEFINE-ALIEN-ROUTINE         |
-| PULL-SAP                     |
-| NULL-POINTER                 |
-| UNION                        |
-| WITH-ALIEN-SLOTS             |
-| DEFINE-ALIEN-LOADER          |
-| COMPUTE-LISP-REP-TYPE        |
-| FREE-ALIEN                   |
-| ALIEN-SIZE*                  |
-| DEFINE-ALIEN-VARIABLE        |
-| FOREIGN-INT-TO-BOOL          |
-| SAP-SVREF                    |
-| WRITE-ALIEN-SIGNED-BYTE-32   |
-| MAKE-ALIEN                   |
-| FOREIGN-FREE                 |
-| LOAD-ALIEN                   |
-| ALIEN-ARRAY                  |
-| ALIEN                        |
-| *ALIEN-LOAD-TABLE*           |
-| WITH-FOREIGN-OBJECT          |
+| INT                          |
 | GID-T                        |
-| PARSE-ALIEN-TYPE             |
-| MAKE-ALIEN-STRING            |
-| DEFINE-OPAQUE                |
-| FOREIGN-INT-TO-INTEGER       |
-| BOOL-TO-FOREIGN-INT          |
-| MEMCPY                       |
-| CLONE-OCTET-VECTOR-LIST      |
+| ALIEN-SIZE                   |
 | ENUM                         |
-| NUM-CPUS                     |
-| ALIEN-FUNCALL                |
-| *CPUS*                       |
+| OCTETS-TO-ALIEN              |
+| %ALIEN-VALUE                 |
+| LONG                         |
 | WITH-FOREIGN-OBJECTS         |
-| ALIEN-TO-ELEMENT-TYPE        |
-| READ-ALIEN-SIGNED-BYTE-64    |
-| PID-T                        |
-| DEFINE-ALIEN-ENUM            |
-| ELEMENT-TYPE-TO-ALIEN        |
-| CLONE-STRINGS                |
-| SHORT                        |
-| PUSH-SAP                     |
-| ALIEN-VALUE                  |
-| FOREIGN-TYPE-SIZE            |
-| WRITE-ALIEN-SIGNED-BYTE-64   |
+| C-STRING                     |
+| DEFINE-ALIEN-ROUTINE         |
+| CLONE-INTEGER-LIST           |
+| SAP-REF                      |
+| TIMESPEC                     |
+| ALIEN-ENUM-KEYS              |
+| ALIEN                        |
+| FOREIGN-VECTOR               |
+| BZERO                        |
+| *LINKAGE-INFO*               |
+| SIGNED                       |
+| SLOT                         |
+| WRITE-ALIEN-FIXNUM           |
+| COMPUTE-ALIEN-REP-TYPE       |
+| COPY-C-STRING                |
 | SHARED-OBJECT-NAME           |
-| CLONE-OCTETS-TO-ALIEN        |
-| DOUBLE                       |
-| SETFA                        |
-| VOID                         |
+| SYSCALL-RETURN-TYPE          |
+| *ALIEN-TYPE-CLASSES*         |
+| LOFF-T                       |
+| WRITE-ALIEN                  |
+| UNION                        |
+| PARSE-ALIEN-TYPE             |
+| FOREIGN-INT-TO-BOOL          |
+| FOREIGN-FREE                 |
 | DEFAR                        |
+| MEMCPY                       |
+| DEFINE-ALIEN-VARIABLE        |
+| DEFINE-ALIEN-ENUM            |
+| WITH-VECTOR-SAP              |
+| WRITE-ALIEN-SIGNED-BYTE-64   |
+| OCTETS-TO-ALIEN-ARRAY        |
+| TIMEVAL                      |
+| IOBUF                        |
+| MEMSET                       |
+| PID-T                        |
+| LOAD-ALIEN                   |
+| DOUBLE                       |
+| PULL-SAP*                    |
+| WITH-FOREIGN-POINTER         |
+| READ-ALIEN                   |
+| DEFINE-OPAQUE                |
+| LISP-FOR-C-SYMBOL            |
+| WRITE-ALIEN-SIGNED-BYTE-32   |
+| WITH-ALIEN                   |
+| FOREIGN-VECTOR-CLASS         |
+| DEPORT                       |
+| MAKE-ALIEN-STRING            |
+| WITH-ALIEN-SLOTS             |
+| C-STRINGS-TO-STRING-LIST     |
+| VOID                         |
+| COMPUTE-LISP-REP-TYPE        |
+| POSIX-MEMALIGN               |
+| MAKE-ALIEN                   |
+| *SYSCALL-TYPE-TABLE*         |
+| DOUBLE-ARRAY-POINTER         |
+| CLONE-OCTET-VECTOR-LIST*     |
+| ALIEN-ENUM-VALUES            |
+| READ-ALIEN-SINGLE-FLOAT      |
+| CLONE-STRINGS                |
+| FVREF                        |
+| ALIEN-ARRAY                  |
+| CAST                         |
+| READ-ALIEN-SIGNED-BYTE-32    |
+| DEFINE-ALIEN-LOADER          |
+| CLONE-OCTETS-FROM-ALIEN      |
+| FOREIGN-VECTOR-LENGTH        |
+| ALLOC                        |
+| CLONE-OCTETS-TO-ALIEN        |
+| ALIEN-TO-ELEMENT-TYPE        |
+| CLONE-OCTET-VECTOR-LIST      |
+| READ-ALIEN-SIGNED-BYTE-64    |
+| ELEMENT-TYPE-TO-ALIEN        |
+| FOREIGN-VECTOR-ELEMENT-TYPE  |
+| WRITE-ALIEN-UNSIGNED-BYTE-32 |
+| SYSTEM-AREA-POINTER          |
+| UNPARSE-ALIEN-TYPE           |
+| WITH-FOREIGN-OBJECT          |
+| NULL-POINTER                 |
+| LONG-LONG                    |
+| FOREIGN-TYPE-SIZE            |
+| CHAR                         |
+| OCTET-VECTOR-POINTER         |
+| LIST-ALL-SHARED-OBJECTS      |
+| SAP-SVREF                    |
+| EXTERN-ALIEN                 |
+| BOOL-TO-FOREIGN-INT          |
+| FLOAT-ARRAY-POINTER          |
+| NATURALIZE                   |
+| READ-ALIEN-UNSIGNED-BYTE-64  |
+| BREF                         |
+| ALIEN-OR-LISP-OCTETS         |
+| OFFSET-CHAR-POINTER          |
+| *SHARED-OBJECTS*             |
+| WRITE-ALIEN-SINGLE-FLOAT     |
+| UNSIGNED                     |
+| READ-ALIEN-UNSIGNED-BYTE-32  |
+| PUSH-SAP                     |
+| SAP-ALIEN                    |
+| *ALIEN-LOAD-TABLE*           |
+| ALIEN-FUNCALL                |
+| DEPORT-ALLOC                 |
+| PUSH-SAP*                    |
+| SHORT                        |
+| FREE-ALIEN                   |
+| *CPUS*                       |
+| WRITE-ALIEN-DOUBLE-FLOAT     |
+| ALIEN-SIZE*                  |
+| ALIEN-VALUE                  |
+| SAP                          |
+| NUM-CPUS                     |
+| FREE                         |
+| DEREF                        |
+| READ-ALIEN-DOUBLE-FLOAT      |
 | SAP-INT                      |
 | SAP-SET                      |
-| C-STRING                     |
-| DOUBLE-ARRAY-POINTER         |
-| UNPARSE-ALIEN-TYPE           |
-| READ-ALIEN-FIXNUM            |
-| SAP-REF                      |
-| READ-ALIEN-UNSIGNED-BYTE-64  |
-| MEMSET                       |
-| WITH-ALIEN                   |
-| %ALIEN-VALUE                 |
-| WRITE-ALIEN-UNSIGNED-BYTE-64 |
-| DEREF                        |
-| POSIX-MEMALIGN               |
-| COMPUTE-ALIEN-REP-TYPE       |
-| FREE                         |
-| PUSH-SAP*                    |
-| FOREIGN-VECTOR-CLASS         |
-| OCTETS-TO-ALIEN              |
-| PULL-SAP*                    |
-| CHAR                         |
-| READ-ALIEN                   |
-| NATURALIZE                   |
-| SIGNED                       |
-| LOFF-T                       |
-| EXTERN-ALIEN                 |
-| WRITE-ALIEN-DOUBLE-FLOAT     |
-| WRITE-ALIEN                  |
-| SAP                          |
-| CLONE-OCTET-VECTOR-LIST*     |
-| DEPORT                       |
-| FOREIGN-ALLOC                |
-| ALIEN-OR-LISP-OCTETS         |
 | UID-T                        |
-| CAST                         |
-| READ-ALIEN-DOUBLE-FLOAT      |
-| LIST-ALL-SHARED-OBJECTS      |
+| READ-ALIEN-FIXNUM            |
+| FOREIGN-ALLOC                |
+| PULL-SAP                     |
 | ADDR                         |
-| DEPORT-ALLOC                 |
-| FLOAT-ARRAY-POINTER          |
-| ALIEN-SIZE                   |
-| LONG                         |
-| INT                          |
-| UNSIGNED                     |
-| WRITE-ALIEN-FIXNUM           |
+| SETFA                        |
+| ALIEN-SAP                    |
+| FOREIGN-INT-TO-INTEGER       |
+| WRITE-ALIEN-UNSIGNED-BYTE-64 |
+| DEFSYSCALL                   |
+| NULL-POINTER-P               |
 
 ** meta
 :PROPERTIES:
@@ -1612,10 +1640,11 @@ Standard macros are defined in =std/macs=.
 | CLONE                                      |
 | BIND                                       |
 | READER-METHOD-CLASS                        |
+| STANDARD-DIRECT-SLOT-DEFINITION            |
 | UPGRADE                                    |
 | COMPUTE-APPLICABLE-METHODS-USING-CLASSES   |
 | STARTED-P                                  |
-| VERBP                                      |
+| METHOD-QUALIFIERS                          |
 | ENSURE-FINALIZED                           |
 | T                                          |
 | DEFINE-TEMPLATE-GENERIC                    |
@@ -1634,14 +1663,13 @@ Standard macros are defined in =std/macs=.
 | EXTRACT-SPECIALIZER-NAMES                  |
 | METHOD-SPECIALIZERS                        |
 | CLASS-PRECEDENCE-LIST                      |
-| SPECIALIZER-DIRECT-METHODS                 |
-| COPY-OBJECT                                |
+| ASSIGNEE                                   |
 | DEFACCESSOR                                |
 | FORWARD-REFERENCED-CLASS                   |
 | INTERN-EQL-SPECIALIZER                     |
 | UPDATE-DEPENDENT                           |
 | GENERIC-FUNCTION-METHOD-CLASS              |
-| *SHAM-CLASSES*                             |
+| STRUCT-CONSTRUCTOR                         |
 | DEFSHAM                                    |
 | STANDARD-METHOD                            |
 | FIND-METHOD-COMBINATION                    |
@@ -1655,22 +1683,25 @@ Standard macros are defined in =std/macs=.
 | SLOT-DEFINITION-INITARGS                   |
 | SET-FUNCALLABLE-INSTANCE-FUNCTION          |
 | CLASS-DIRECT-SUPERCLASSES                  |
-| ACCESSOR-METHOD-SLOT-DEFINITION            |
+| REMOVE-DIRECT-SUBCLASS                     |
+| BUILT-IN-CLASS                             |
+| SPECIALIZER-DIRECT-METHODS                 |
 | SUBCLASSP                                  |
 | METHOD-GENERIC-FUNCTION                    |
-| STANDARD-GENERIC-FUNCTION                  |
 | CLASS-DIRECT-SLOTS                         |
-| REMOVE-DIRECT-SUBCLASS                     |
+| NAME                                       |
 | LIST-CLASS-SLOTS                           |
 | *TEMPLATE-TABLE*                           |
 | COPY                                       |
 | DEADLINE                                   |
 | GENERIC-FUNCTION-ARGUMENT-PRECEDENCE-ORDER |
-| BUILT-IN-CLASS                             |
+| FUNCALLABLE-STANDARD-INSTANCE-ACCESS       |
+| SEND                                       |
 | EFFECTIVE-SLOT-DEFINITION                  |
 | ENSURE-CLASS-USING-CLASS                   |
 | METHOD-FUNCTION                            |
 | SLOT-DEFINITION-WRITERS                    |
+| CALL                                       |
 | CLASS-DEFAULT-INITARGS                     |
 | WITH-FSLOTS                                |
 | COMPUTE-CLASS-PRECEDENCE-LIST              |
@@ -1688,11 +1719,11 @@ Standard macros are defined in =std/macs=.
 | FIND-SLOT-DEFS-BY-TYPE                     |
 | SLOT-DEFINITION-READERS                    |
 | EQL-SPECIALIZER-OBJECT                     |
-| CALL                                       |
+| RECEIVE                                    |
 | FIND-SLOT-DEF-BY-NAME                      |
 | SLOT-DEFINITION                            |
 | SLOT-DEFINITION-ALLOCATION                 |
-| STANDARD-DIRECT-SLOT-DEFINITION            |
+| FINALIZE-INHERITANCE                       |
 | COMPUTE-DEFAULT-INITARGS                   |
 | STANDARD-SLOT-DEFINITION                   |
 | DEFACCESSOR*                               |
@@ -1703,18 +1734,19 @@ Standard macros are defined in =std/macs=.
 | GENERIC-FUNCTION-NAME                      |
 | CLASS-PROTOTYPE                            |
 | TAIL                                       |
-| CLASS-FINALIZED-P                          |
+| MAP-DEPENDENTS                             |
 | GENERIC-FUNCTION-DECLARATIONS              |
 | ENSURE-GENERIC-FUNCTION-USING-CLASS        |
-| GENERIC-FUNCTION-METHODS                   |
+| RUN-OBJECT                                 |
 | SLOT-DEFINITION-TYPE                       |
 | CLASS                                      |
 | METHOD-COMBINATION                         |
 | STRUCT-SLOTS-AND-VALUES                    |
 | MAKE-METHOD-LAMBDA                         |
 | SAVE                                       |
-| RUN-OBJECT                                 |
-| ENSURE-CLASS                               |
+| STANDARD-GENERIC-FUNCTION                  |
+| GENERIC-FUNCTION-METHODS                   |
+| VERB-P                                     |
 | INSTALL                                    |
 | SLOT-DEFINITION-INITFUNCTION               |
 | SLOT-BOUNDP-USING-CLASS                    |
@@ -1729,34 +1761,33 @@ Standard macros are defined in =std/macs=.
 | GENERIC-FUNCTION-LAMBDA-LIST               |
 | EXPLORE                                    |
 | HEAD                                       |
-| NAME                                       |
+| RESET                                      |
 | PAUSE                                      |
 | WRITER-METHOD-CLASS                        |
 | SLOTS-BOUNDP                               |
-| FINALIZE-INHERITANCE                       |
-| FUNCALLABLE-STANDARD-INSTANCE-ACCESS       |
+| ACCESSOR-METHOD-SLOT-DEFINITION            |
+| COPY-OBJECT                                |
+| DEFINE-CLASS-MAP                           |
 | SPECIALIZER                                |
 | STANDARD-EFFECTIVE-SLOT-DEFINITION         |
 | UNINSTALL                                  |
-| ASSIGNEE                                   |
+| CLASS-FINALIZED-P                          |
 | *STANDARD-METAOBJECTS*                     |
 | CLASS-DIRECT-SUBCLASSES                    |
 | STOPPED-P                                  |
 | REMOVE-DIRECT-METHOD                       |
 | FIND-DIRECT-SLOT-DEF-BY-NAME               |
-| METHOD-QUALIFIERS                          |
 | COMPUTE-EFFECTIVE-SLOT-DEFINITION          |
 | GENERIC-FUNCTION                           |
 | SLOT-VALUES                                |
 | STANDARD-INSTANCE-ACCESS                   |
 | SLOT-MAKUNBOUND-USING-CLASS                |
-| RESET                                      |
+| ENSURE-CLASS                               |
 | COMPUTE-APPLICABLE-METHODS                 |
 | SHALLOW-COPY-OBJECT                        |
-| MAP-DEPENDENTS                             |
+| *SHAM-CLASSES*                             |
 | VERSION                                    |
 | ADD-METHOD                                 |
-| STRUCT-CONSTRUCTOR                         |
 | LIST-SLOT-VALUES-USING-CLASS               |
 | DATA                                       |
 | SPECIALIZER-DIRECT-GENERIC-FUNCTIONS       |
@@ -1782,105 +1813,116 @@ Standard macros are defined in =std/macs=.
 #+CALL: lisp-package-symbols[:post transpose]("STD/SEQ")
 
 #+RESULTS:
-| QUEUE-EMPTY-P*                |
-| MOD-INCF                      |
+| MAKE-PRIORITY-QUEUE           |
+| SPLIT-SEQUENCE-IF-NOT         |
+| SEEK-TO-FIRST                 |
+| REPEAT                        |
+| POP-PRIORITY-QUEUE            |
+| ITER-VALID-P                  |
+| QUEUE-FULL-P*                 |
+| QUEUE                         |
+| PQUEUE-EMPTY-P                |
+| PQUEUE-REMOVE                 |
+| PQUEUE-KEYFUN                 |
+| STARTS-WITH-P                 |
+| MOD-DECF                      |
+| POP-SPIN-QUEUE                |
+| PUSH-QUEUE*                   |
+| MAX-ACCUMULATOR               |
+| PRIORITY-QUEUE                |
 | *DEFAULT-PRIORITY*            |
+| COUNTER                       |
+| *ITER*                        |
+| SEEK-FOR-PREV                 |
+| TRY-POP-QUEUE*                |
+| MIN-ACCUMULATOR               |
+| MOD-INCF                      |
+| ACCUMULATOR                   |
+| CONS-QUEUE-EMPTY-P            |
 | RAW-QUEUE-EMPTY-P             |
 | FIB-DELETE                    |
-| MAKE-CONS-QUEUE               |
-| CONS-QUEUE-EMPTY-P            |
-| POP-PRIORITY-QUEUE            |
-| STARTS-WITH-SUBSEQ            |
-| STARTS-WITH                   |
-| STARTS-WITH-P                 |
-| VECTOR-QUEUE                  |
-| PUSH-CONS-QUEUE               |
-| SVAL                          |
-| ITER                          |
-| SPLIT-SEQUENCE                |
-| PUSH-QUEUE                    |
-| RAW-QUEUE                     |
-| PEEK-CONS-QUEUE               |
-| MAKE-SPIN-QUEUE               |
-| WITH-ITER                     |
-| POP-RAW-QUEUE                 |
-| COPY-N                        |
-| MAKE-COUNTER                  |
-| REPEAT                        |
-| MAX-ACCUMULATOR               |
-| QUEUE-FULL-P*                 |
-| TAKE                          |
-| RAW-QUEUE-CAPACITY            |
-| DOSEQUENCE                    |
-| MAKE-HEAP                     |
-| MAKE-RAW-QUEUE                |
-| INC-COUNTER                   |
-| UNSPLICE                      |
-| MIN-ACCUMULATOR               |
-| BASIC-QUEUE                   |
-| ACCUMULATED                   |
-| QUEUE                         |
-| PEEK-QUEUE                    |
-| MAKE-QUEUE                    |
-| ACCUMULATE                    |
-| SEEK-TO-FIRST                 |
-| POP-SPIN-QUEUE                |
-| MAKE-SPIN-LOCK                |
-| ITER-VALID-P                  |
-| WITH-SPIN-LOCK                |
-| RAW-QUEUE-COUNT               |
-| COUNTER-VALUE                 |
-| *ITER*                        |
-| PEEK-RAW-QUEUE                |
 | SKEY                          |
-| QUEUE-COUNT                   |
-| SPIN-QUEUE-EMPTY-P            |
-| EXTRACT-MIN                   |
-| FIB-HEAP                      |
-| PRIORITY-QUEUE                |
-| QUEUE-COUNT*                  |
-| ACCUMULATOR                   |
-| TAKE*                         |
-| MOD-DECF                      |
-| WITH-QUEUE-LOCK               |
-| TRY-POP-QUEUE*                |
-| SPIN-QUEUE-COUNT              |
-| SEQUENCEP                     |
-| POP-CONS-QUEUE                |
-| NEXT                          |
-| IDX                           |
-| COUNTER                       |
-| ITERATOR                      |
-| PEEK-QUEUE*                   |
-| PUSH-SPIN-QUEUE               |
-| SPIN-QUEUE                    |
-| STARTS-WITH-ONE-OF-P          |
-| PUSH-PRIORITY-QUEUE           |
-| PREV                          |
-| QUEUE-EMPTY-P                 |
-| SEEK-TO-LAST                  |
-| POP-QUEUE*                    |
-| NTH-VALUE-OR                  |
-| RAW-QUEUE-FULL-P              |
-| FIB-INSERT                    |
-| SEEK                          |
-| DO-INDEXES                    |
-| POP-QUEUE                     |
-| SEEK-FOR-PREV                 |
-| CONS-QUEUE                    |
-| QUEUE-FULL-P                  |
-| MAKE-PRIORITY-QUEUE           |
-| PUSH-QUEUE*                   |
-| SPLIT-SEQUENCE-IF-NOT         |
-| ENDS-WITH-SUBSEQ              |
-| DEC-COUNTER                   |
-| *DEFAULT-PRIORITY-QUEUE-SIZE* |
-| CALL-WITH-QUEUE-LOCK          |
-| ENDS-WITH                     |
-| PEEK-SPIN-QUEUE               |
-| ITEM-PREDICATE                |
+| PQUEUE-MAXIMUM                |
+| INC-COUNTER                   |
 | TRY-POP-QUEUE                 |
+| ENDS-WITH                     |
+| CALL-WITH-QUEUE-LOCK          |
+| POP-RAW-QUEUE                 |
+| POP-QUEUE                     |
+| PUSH-QUEUE                    |
+| RAW-QUEUE-FULL-P              |
+| TAKE                          |
+| PQUEUE-REORDER                |
+| PQUEUE-CONTENTS               |
+| RAW-QUEUE-COUNT               |
+| RAW-QUEUE-CAPACITY            |
+| PUSH-SPIN-QUEUE               |
+| SPIN-QUEUE-COUNT              |
+| ENDS-WITH-SUBSEQ              |
+| ITER                          |
+| DOSEQUENCE                    |
+| QUEUE-COUNT                   |
+| ITERATOR                      |
+| NTH-VALUE-OR                  |
+| QUEUE-COUNT*                  |
+| MAKE-COUNTER                  |
+| SEQUENCEP                     |
+| QUEUE-FULL-P                  |
+| MAKE-SPIN-LOCK                |
+| PEEK-QUEUE                    |
+| PQUEUE                        |
+| PQUEUE-INSERT                 |
+| POP-QUEUE*                    |
+| TAKE*                         |
+| PEEK-RAW-QUEUE                |
+| WITH-SPIN-LOCK                |
+| PEEK-SPIN-QUEUE               |
+| PQUEUE-EMPTYP                 |
+| SEEK                          |
+| PREV                          |
+| WITH-QUEUE-LOCK               |
+| VECTOR-QUEUE                  |
+| ACCUMULATED                   |
+| MAKE-HEAP                     |
+| BASIC-QUEUE                   |
+| COUNTER-VALUE                 |
+| EXTRACT-MIN                   |
+| FIB-INSERT                    |
+| MAKE-RAW-QUEUE                |
+| POP-CONS-QUEUE                |
+| FIB-HEAP                      |
+| ACCUMULATE                    |
+| QUEUE-EMPTY-P*                |
+| MAKE-CONS-QUEUE               |
+| PQUEUE-EXTRACT-MAXIMUM        |
+| PUSH-PRIORITY-QUEUE           |
+| SEEK-TO-LAST                  |
+| *DEFAULT-PRIORITY-QUEUE-SIZE* |
+| SPIN-QUEUE                    |
+| SPIN-QUEUE-EMPTY-P            |
+| SVAL                          |
+| UNSPLICE                      |
+| MAKE-PQUEUE                   |
+| CONS-QUEUE                    |
+| STARTS-WITH                   |
+| ITEM-PREDICATE                |
+| PEEK-CONS-QUEUE               |
+| STARTS-WITH-ONE-OF-P          |
+| PUSH-CONS-QUEUE               |
+| DEC-COUNTER                   |
+| WITH-ITER                     |
+| IDX                           |
+| PEEK-QUEUE*                   |
+| MAKE-QUEUE                    |
+| NEXT                          |
+| QUEUE-EMPTY-P                 |
+| STARTS-WITH-SUBSEQ            |
+| COPY-N                        |
+| DO-INDEXES                    |
+| MAKE-SPIN-QUEUE               |
+| RAW-QUEUE                     |
 | SPLIT-SEQUENCE-IF             |
+| SPLIT-SEQUENCE                |
 
 ** thread
 :PROPERTIES:
@@ -1891,206 +1933,208 @@ Standard macros are defined in =std/macs=.
 #+CALL: lisp-package-symbols[:post transpose]("STD/THREAD")
 
 #+RESULTS:
-| DESIGNATE-ORACLE              |
-| WITH-SUBMIT-INDEXED           |
-| *CURRENT-THREAD*              |
-| AVLTREE-LIST                  |
-| CLEAR-SEMAPHORE-NOTIFICATION  |
-| WITH-NEW-SESSION              |
-| THREAD-POOL                   |
-| WITH-THREADS                  |
-| WITH-CHANNEL                  |
-| AVL-FIND<=                    |
-| CURRENT-THREAD-SAP            |
 | AVL-FIND>=                    |
-| MAKE-ORACLE                   |
+| BIASED-SCHEDULER              |
+| *DEFAULT-SPECIAL-BINDINGS*    |
+| RELEASE-FOREGROUND            |
+| CONDITION-WAIT*               |
+| THREAD-NAME                   |
+| THREAD-ALIVE-P                |
+| FOREIGN-THREAD                |
+| *THREAD-POOL-TABLE*           |
+| SEMAPHORE-COUNT               |
+| SUBMIT-WITH-CANCEL            |
+| FILTER-WORKER                 |
+| END-THREAD-POOL               |
+| SEMAPHORE-NOTIFICATION        |
+| MAKE-WORKER*                  |
+| CHANNEL-POOL                  |
+| BROADCAST-WORK                |
+| RWLOCK-RDLOCK                 |
 | *WORKER-RESTARTS*             |
-| FIND-THREAD-POOL              |
-| SEMAPHORE                     |
+| MAKE-MUTEX                    |
+| WITH-RECURSIVE-LOCK           |
 | PRINTLN-TOP-LEVEL             |
-| WITH-SPINLOCK                 |
-| *SUPER-THREADS*               |
-| FIND-WORK                     |
+| RECEIVE-RESULT                |
+| MAKE-SEMAPHORE-NOTIFICATION   |
+| RELEASE-SPINLOCK              |
+| WORKER-INDEX*                 |
+| SCHEDULER                     |
+| RESET-ALLOCATOR-HISTOGRAM     |
+| DO-WORKERS                    |
+| DESTROY-THREAD                |
+| INTERRUPT-THREAD-ERROR        |
+| MUTEX-NAME                    |
 | TIMED-JOIN-THREAD             |
 | THREAD-PIPE                   |
-| WORKER-MESSAGE                |
-| THREAD-ID-LIST                |
-| MAKE-THREAD-POOL              |
-| SOURCE-WORKER                 |
-| MAKE-SEMAPHORE-NOTIFICATION   |
-| EXIT-THREAD-POOLS             |
-| MUTEX                         |
-| WAIT-FOR-WORKER               |
-| RECEIVE-CANCELABLES           |
-| CONDITION-BROADCAST           |
-| *WORKER-CLASS*                |
-| POP-WORKER                    |
-| JOIN-THREAD-ERROR             |
-| THREAD-DEADLOCK               |
-| DO-WORKERS                    |
-| UNWRAP-RESULT                 |
-| SCHEDULE-WORK                 |
-| INTERRUPT-THREAD              |
-| *DEFAULT-SPINT-COUNT*         |
-| WORKER-COUNT*                 |
-| *ORACLE-TABLE*                |
-| ORACLE-ID                     |
-| ALLOCATOR-HISTOGRAM           |
-| WITH-TLS-LOCK                 |
-| MAKE-SEMAPHORE                |
-| MAKE-THREAD                   |
-| GET-FOREGROUND                |
-| *WORKER-KERNEL*               |
-| JOIN-THREAD-PROBLEM           |
-| *POOL-KERNEL*                 |
-| MAKE-WAITQUEUE                |
-| COMPUTE-SPECIAL-BINDINGS      |
-| THREAD-ERROR                  |
-| SEMAPHORE-NAME                |
-| WITH-TIMEOUT*                 |
-| *DEFAULT-SPECIAL-BINDINGS*    |
-| ORACLE                        |
-| HANG                          |
-| WORKER-EVENT                  |
-| THREAD-COUNT                  |
-| INTERRUPT-THREAD-ERROR-THREAD |
-| WITH-MUTEX                    |
-| SUPERVISOR-THREAD             |
-| SUBMIT-CANCELABLE             |
-| WAIT-FOR-THREADS              |
-| *WORKER*                      |
-| LIMITER-LOCK                  |
-| DOMAIN                        |
-| MAKE-WORKER*                  |
-| KILL                          |
-| RECEIVE-RESULT                |
-| THREAD-EPHEMERAL-P            |
-| WITH-RECURSIVE-LOCK           |
-| GET-MUTEX                     |
-| END-THREAD-POOL               |
-| JOIN-THREAD-ERROR-THREAD      |
-| MAKE-EPHEMERAL-THREAD         |
-| MAKE-RWLOCK                   |
-| START-WORKER                  |
-| FINISH-THREADS                |
-| KILL-THREAD                   |
-| SCHEDULE                      |
-| RESET-ALLOCATOR-HISTOGRAM     |
-| MAKE-THREADS                  |
-| CHECK-THREAD-POOL             |
-| CHANNEL-QUEUE                 |
-| THREAD-NAME                   |
-| FIND-THREAD                   |
-| RETURN-FROM-THREAD            |
-| MUTEX-NAME                    |
-| SUBMIT-INDEXED                |
-| MUTEX-OWNER                   |
-| SCHEDULER                     |
-| POOL-KERNEL-FUNCTION          |
-| WORKER-KERNEL-FUNCTION        |
-| START-WORKERS*                |
-| MAKE-WORKER                   |
-| WORKER-COUNT                  |
-| THREAD-ALIVE-P                |
-| RELEASE-SPINLOCK              |
-| GRAB-MUTEX                    |
-| WORKERS*                      |
-| BARRIER                       |
-| RWLOCK-RDLOCK                 |
-| SUPERVISOR                    |
-| RELEASE-MUTEX                 |
-| WITH-THREAD-POOL              |
-| DESTROY-THREAD                |
-| THREAD-YIELD                  |
-| TIMER-P                       |
-| GET-SPINLOCK                  |
-| FOREIGN-THREAD                |
-| SYMBOL-VALUE-IN-THREAD        |
-| WITH-DEFAULT-SPECIAL-BINDINGS |
-| SUBMIT-RAW-WORK               |
-| SPINLOCK                      |
-| MAKE-CHANNEL                  |
-| CONDITION-WAIT                |
-| +WORK-TAG+                    |
-| CONDITION-WAIT*               |
-| RWLOCK-WRLOCK                 |
-| SEMAPHORE-NOTIFICATION-STATUS |
-| SUBMIT-WORK                   |
-| SYMBOL-VALUE-IN-THREAD-ERROR  |
-| SEMAPHORE-COUNT               |
-| HOLDING-MUTEX-P               |
-| CHANNEL                       |
-| THREAD-SUPPORT-P              |
-| MUTEX-VALUE                   |
-| SCHEDULER*                    |
-| KILL-WORKER                   |
-| SUBMIT-COUNTED                |
 | LIMITER-COUNT                 |
-| WITH-SUBMIT-COUNTED           |
-| RECEIVE-INDEXED               |
-| THREAD-DEADLOCK-CYCLE         |
-| LIST-ALL-THREADS              |
-| %DISPOSE-THREAD-STRUCTS       |
-| RECEIVE-COUNTED               |
-| SEMAPHORE-NOTIFICATION        |
-| *ALL-THREADS*                 |
-| FILTER-WORKER                 |
-| JOIN-WORKER                   |
-| TERMINATE-THREAD              |
-| SCOPE                         |
-| WORKER-INDEX*                 |
-| WORK                          |
-| PRINT-TOP-LEVEL               |
-| THREAD-OS-TID                 |
-| RWLOCK-UNLOCK                 |
-| MAIN-THREAD                   |
-| MAIN-THREAD-P                 |
-| *WORKER-THREADS*              |
-| JOIN-THREAD                   |
-| *INTERRUPT-HANDLER*           |
-| WORKER                        |
-| CONDITION-NOTIFY              |
-| START-WORKERS                 |
-| INTERRUPT-THREAD-ERROR        |
-| SYNC-MESSAGE                  |
-| BROADCAST-WORK                |
-| *THREAD-POOL-TABLE*           |
-| WORKER-THREAD                 |
-| WORKERS                       |
-| +STANDARD-IO-BINDINGS+        |
-| CALL-WITH-TEMP-POOL           |
-| WITH-TEMP-POOL                |
-| TRY-RECEIVE-RESULT            |
-| SINK-WORKER                   |
-| SUBMIT-WITH-CANCEL            |
-| SHUTDOWN-CHANNEL              |
-| WITH-SYNC-MESSAGE             |
-| MAKE-WORKERS                  |
 | RUN-THREAD                    |
-| PRINT-ALLOCATOR-HISTOGRAM     |
-| MAKE-LISTENER-THREAD          |
-| CHANNEL-POOL                  |
-| RUN-WORKER                    |
-| *THREAD-POOL*                 |
-| MAKE-SCHEDULER                |
-| FUTEX-WAKE                    |
-| UPDATE-LIMITER-COUNT          |
-| BIASED-SCHEDULER              |
-| WAITQUEUE-NAME                |
-| %THREAD-LOCAL-REFERENCES      |
-| RELEASE-FOREGROUND            |
-| WITH-THREAD                   |
-| MAKE-MUTEX                    |
-| THREAD                        |
+| MAKE-THREADS                  |
+| WORKER-KERNEL-FUNCTION        |
+| THREAD-COUNT                  |
+| MAIN-THREAD                   |
+| JOIN-THREAD-ERROR-THREAD      |
+| MAKE-SEMAPHORE                |
 | KILL-WORKERS                  |
+| WITH-THREADS                  |
+| SCHEDULE-WORK                 |
+| COMPUTE-SPECIAL-BINDINGS      |
+| WITH-THREAD                   |
+| MAKE-WAITQUEUE                |
+| %DISPOSE-THREAD-STRUCTS       |
+| SYMBOL-VALUE-IN-THREAD-ERROR  |
+| RECEIVE-CANCELABLES           |
+| THREAD                        |
+| SHUTDOWN-CHANNEL              |
+| *CURRENT-THREAD*              |
+| RWLOCK-UNLOCK                 |
+| EXIT-THREAD-POOLS             |
+| THREAD-ERROR                  |
+| MAKE-THREAD                   |
+| HOLDING-MUTEX-P               |
 | WAITQUEUE                     |
-| TRY-SEMAPHORE                 |
-| ABORT-THREAD                  |
-| FIND-THREAD-BY-ID             |
-| WITH-SESSION-LOCK             |
-| WAIT-ON-SEMAPHORE             |
-| SIGNAL-SEMAPHORE              |
 | THREAD-ERROR-THREAD           |
+| ORACLE                        |
+| MAIN-THREAD-P                 |
+| MAKE-ORACLE                   |
+| GRAB-MUTEX                    |
+| CALL-WITH-TEMP-POOL           |
+| PRINT-ALLOCATOR-HISTOGRAM     |
+| HANG                          |
+| FINISH-THREADS                |
+| *WORKER-KERNEL*               |
+| THREAD-YIELD                  |
+| MUTEX-OWNER                   |
+| WAIT-FOR-WORKER               |
+| FUTEX-WAKE                    |
+| SUBMIT-WORK                   |
+| SEMAPHORE                     |
+| SEMAPHORE-NOTIFICATION-STATUS |
+| RWLOCK-WRLOCK                 |
+| ORACLE-ID                     |
+| WITH-TEMP-POOL                |
+| MAKE-THREAD-POOL              |
+| GET-MUTEX                     |
+| MAKE-SCHEDULER                |
+| CURRENT-THREAD-SAP            |
+| TRY-SEMAPHORE                 |
+| ALLOCATOR-HISTOGRAM           |
+| +STANDARD-IO-BINDINGS+        |
+| CONDITION-WAIT                |
+| SCHEDULER*                    |
+| FIND-THREAD                   |
+| WORK                          |
+| SYNC-MESSAGE                  |
+| JOIN-THREAD                   |
+| AVLTREE-LIST                  |
+| DOMAIN                        |
+| WITH-SYNC-MESSAGE             |
+| WITH-CHANNEL                  |
+| KILL-THREAD                   |
+| WITH-DEFAULT-SPECIAL-BINDINGS |
+| *ALL-THREADS*                 |
+| SYMBOL-VALUE-IN-THREAD        |
+| UNWRAP-RESULT                 |
+| WORKER-THREAD                 |
+| WORKER-COUNT*                 |
+| TIMER-EXPIRED-P               |
+| SPINLOCK                      |
+| WITH-MUTEX                    |
+| SUBMIT-RAW-WORK               |
+| SOURCE-WORKER                 |
+| CONDITION-BROADCAST           |
+| +WORK-TAG+                    |
+| *DEFAULT-SPINT-COUNT*         |
+| *SUPER-THREADS*               |
+| WITH-SPINLOCK                 |
+| WORKER-EVENT                  |
+| THREAD-DEADLOCK               |
+| MAKE-CHANNEL                  |
+| *WORKER-THREADS*              |
+| TERMINATE-THREAD              |
+| CONDITION-NOTIFY              |
+| UPDATE-LIMITER-COUNT          |
+| WITH-SUBMIT-COUNTED           |
+| WITH-SUBMIT-INDEXED           |
+| KILL                          |
+| *WORKER-CLASS*                |
+| *WORKER*                      |
+| RELEASE-MUTEX                 |
+| *POOL-KERNEL*                 |
+| AVL-FIND<=                    |
+| THREAD-OS-TID                 |
+| WORKER-COUNT                  |
+| THREAD-DEADLOCK-CYCLE         |
+| MAKE-WORKER                   |
+| CLEAR-SEMAPHORE-NOTIFICATION  |
+| FIND-THREAD-POOL              |
+| SEMAPHORE-NAME                |
+| SINK-WORKER                   |
+| START-WORKERS                 |
+| RUN-WITH-TIMER                |
+| DESIGNATE-ORACLE              |
+| SUBMIT-INDEXED                |
+| KILL-WORKER                   |
+| *THREAD-POOL*                 |
+| START-WORKER                  |
+| LIST-ALL-THREADS              |
+| THREAD-ID-LIST                |
+| CHECK-THREAD-POOL             |
+| MAKE-RWLOCK                   |
+| INTERRUPT-THREAD              |
+| SCOPE                         |
+| FIND-WORK                     |
+| SUBMIT-COUNTED                |
+| SIGNAL-SEMAPHORE              |
+| SCHEDULE                      |
+| RETURN-FROM-THREAD            |
+| *ORACLE-TABLE*                |
+| MAKE-EPHEMERAL-THREAD         |
+| LIMITER-LOCK                  |
+| THREAD-SUPPORT-P              |
+| CHANNEL-QUEUE                 |
+| PRINT-TOP-LEVEL               |
+| JOIN-THREAD-ERROR             |
+| RUN-WORKER                    |
+| POP-WORKER                    |
+| TRY-RECEIVE-RESULT            |
+| JOIN-THREAD-PROBLEM           |
+| TIMER-P                       |
+| WITH-NEW-SESSION              |
+| WITH-SESSION-LOCK             |
+| WAIT-FOR-THREADS              |
+| MUTEX-VALUE                   |
+| START-WORKERS*                |
+| BARRIER                       |
+| FIND-THREAD-BY-ID             |
+| INTERRUPT-THREAD-ERROR-THREAD |
+| RECEIVE-COUNTED               |
+| WORKERS*                      |
+| WITH-TLS-LOCK                 |
+| WORKERS                       |
+| %THREAD-LOCAL-REFERENCES      |
+| CHANNEL                       |
+| WITH-THREAD-POOL              |
+| SUPERVISOR-THREAD             |
+| GET-SPINLOCK                  |
+| MAKE-LISTENER-THREAD          |
+| SUPERVISOR                    |
+| THREAD-POOL                   |
+| RECEIVE-INDEXED               |
+| WORKER-MESSAGE                |
+| WAITQUEUE-NAME                |
+| POOL-KERNEL-FUNCTION          |
+| MUTEX                         |
+| GET-FOREGROUND                |
+| *INTERRUPT-HANDLER*           |
+| JOIN-WORKER                   |
+| WITH-TIMEOUT*                 |
+| SUBMIT-CANCELABLE             |
+| MAKE-WORKERS                  |
+| WORKER                        |
+| WAIT-ON-SEMAPHORE             |
+| THREAD-EPHEMERAL-P            |
+| ABORT-THREAD                  |
 
 ** task
 :PROPERTIES:
@@ -2101,16 +2145,17 @@ Standard macros are defined in =std/macs=.
 #+CALL: lisp-package-symbols[:post transpose]("STD/TASK")
 
 #+RESULTS:
-| *TASK-CLASS*        |
-| TASKP               |
+| TASK-PREVENTED-P    |
 | DEPENDENCIES        |
 | SIMPLE-PLAN         |
-| RESULTS             |
+| *JOBS*              |
+| TASK                |
+| *TASKS*             |
 | MAKE-TASK           |
 | RESULT              |
 | MAKE-JOB            |
 | TASK-SCHEDULE       |
-| *TASKS*             |
+| *TASK-PRIORITY*     |
 | SIMPLE-TASK         |
 | PRESSURE-PARAMETERS |
 | MARK-TASK-DONE      |
@@ -2118,7 +2163,7 @@ Standard macros are defined in =std/macs=.
 | SCHEDULED-TASK      |
 | TASK-POOL           |
 | DEPENDENTS          |
-| *JOBS*              |
+| PLANNER             |
 | JOBS                |
 | RUN-JOB             |
 | *RESULT*            |
@@ -2126,19 +2171,18 @@ Standard macros are defined in =std/macs=.
 | *TASK*              |
 | STATUS              |
 | TASK-FORCED-P       |
-| ASYNC-TASK          |
 | TASK-DONE-P         |
-| *TASK-PRIORITY*     |
-| TASK-PREVENTED-P    |
 | JOB                 |
-| TASK                |
+| RECORD-DEPENDENCY   |
+| ASYNC-TASK          |
+| JOB-P               |
 | PRESSURE            |
 | TASKS               |
-| RECORD-DEPENDENCY   |
+| TASK-P              |
 | PLAN                |
+| RESULTS             |
 | *STAGES*            |
-| JOBP                |
-| PLANNER             |
+| *TASK-CLASS*        |
 
 ** async
 :PROPERTIES:
@@ -2368,38 +2412,38 @@ tree formatter
 
 #+RESULTS:
 #+begin_example
-█ ▀▀ ▄  ▀▀▄▀  ▀▀▀▀▄▀  ▄▄▄▄ █▀ ▄ 
-▄ ▀▄▄ ▀█ ▄▄▄▄ ▄ ▄█ ▀▄▀▀ ▄█▀▄██ ▄
-▀ ▀▄█▀▄ ▀▄▄██▀ ▀█▄██▀▄█▀▀ ▄▄  ▀▄
-        ▄ █▄▀█▀▀    ▀ ▀█  █▄▀█  
-█▄▄   █  █▀ ▄▀█▀  ▀█  ▀▀  █ ▄  █
- ▀█▀▄▄  ▀    ▄    █   ▄▄  ▄█▄▀█▄
-▄ ▄▄ ▄ ▀▄▀█ ▄█  ▀  ▀▀    ▄ ▀▄  ▄
-  ▄ █   █▀   ▀▄▀██ ▀▄      █ █ ▀
-▀█  ▄ ▄█▀▀▄▀  ▀▀█▄▀▀ ▀ ▄▄▀ ▀█  █
-  ▄▄ ▀  ▀  ▄▄▀  ▄    ▄ ▀▄▀▀ █   
-█   ▄▄ ▄▀█ ▄ ▄█  █▄     █▀▀▄▄▄ ▀
-▀  ▀▄ ▄██▄▄ █ █ ▀▀     █ █ ▀▄   
-▄   ▀ ▀▀▀   █  ▀▀█  ▀ ▄█▄▀▀    ▄
-▀ ▀█  ▄▄ ▀▄▀█   ▄▄█▀▀ ▀ ▀ ▄  ▄  
- ▄   ▄▄ ▀   ▄ ▄█  █ ▄▄  ▀▀▀▄█▀▀ 
- ▀▀ ▄██▀▄  ▀██ ▀▀▀ ▄▄▄▀▄▄ ▄▄ ▀ █
-██████▀▄█ ███████▄▀█▄ ██▀▄▄█ █ ▀█ █▀▄███  ▄▀▄▄▄▄▄ █   ▀ ▄▄ ▄▀▄         ▀▄▀ ▀▄          
-█████████████▄▄█▄▄██▄█▀█▀█▀▀▄█████ ▄ ▀ ██▄ ▄█▄▄ ▀█  ▀ ███▄▀ ▄▀▄█▀ ▄  ▀ ▄  ▄            
-████████▄▀█▀ ██▄▄▄██ ▄▄██▀▄█▄▄█▀▄█▄██   ██ ▄█▀ ▀ █▄▀▀▄█  ▄█ ██▄ ▄  ▀ ▀ █ ▀          ▄  
-█████▀█████████▀███▄█▀▀█████▄█▀  ▄▀▀▄█▀█ █▀▀▄  ▄▀▀█  ▀▄     ▄      ▀      ▀            
-███████▄█████▀██▄▄▄▀███▄████▄▄▀▀▀▄▀ ▄█ ▄ █ ▀▄██ ▀█ ▀ ▀ ▀█ ▄     ▄▄█ ▄ █ ▀              
-██████████▀█▀▀█████▄█▀█▄█▀█▄██▀██▄█  ▀▄ █▄▀▄█▄▀▄    ▄ ▀█▀██▄█▄▀ ▀ ▄▀▀▀   ▄█  ▄▀   ▀    
-█████▀▀█▄██▄▀███▀██▄▀█▄█▄▀███▄▀▄ ▀ █▄▀█▀ ▀█▀▄▄▀▄▄▀    ▀  ▀   ▀▄ █ ▄    ▀▀    ▀         
-████▄████▄▄███▀█▀▀▄███▄█▀▄▄ ██▄ ▄▄█▄█▀▀██▀▄ ▄▄▄▄█▀ ▀▀▄▄█   ▄▄▄  ▄▄ ▄ ▄      █          
-█████████▀██ ▀█▄███▄▄█▀██▀████▀ ███ ▄ ▀  ▄ █▄▄ ▀  █▄ ▀   █▀ ▄ ▀ ▄ ▄▀  ▀▄▀     ▄        
-████████▄████▄█▀█▀█████ █▀▄▄▄█▀▀ ██▀█ ▀▀█▀   ▄▀▀▄ █ ▄▀▀ █▀ ▀█▄   ▄▀▀  ▄▀   ▄▄          
-██████▄███████▄█▄█▀█▄███▄█▀ █  ▄▄▄█▄▄▄███▀▀▀ ▄▄▄  █▀█▀██▀█▄     ▀          ▀▄          
-███▀██████▀██▀████▀█ █████████ █ ████ █▀▄▀ ▀▄▀  ██ █ ▀█▄  ▀     ▄    ▀        ▀        
-███████▀██████▄▀▄█▀██▀██▀▀█ █▄███▄▄▀▄██▄▀▄ ▄▄ ▄██▀  ▄▄ ▀▄ █▄    ▀     ▄   ▀ ▄   ▄      
-█████████▄█▄███ █▀▀▄███▀█▀▄▀█▀██▄▄▀▄▄    ███▀▄ ▄▀    █▄ ▄▀    █▄  ▄█ ▄    ▄     ▀ ▄  ▄ 
-█████████████ ██▄███▀▀██▄█ ██ ▄██ █▄▄▄█▀ ▀▀ ██▄▄▀▀  ▀█ ▄▄ █ ▄    ▀ ▀ ▀       ▀         
-████████▄█ ████▀▄██████▄▀▀█▀█▄ ▀▀▄▀▀▀▄ ██  █▀██▀▀ ▀▄█▄  ▄▄▄ ▀ ▀      ▀▄     ▄      ▄   
+▄ ▀   ▄▀ ▀█    ▄▄▀▄█▀      ██▄▀▄
+  ▄█ ▀ █ ▀▀ ▄  ▀▀▄▀  ▀▀▀▀▄▀  ▄▄▄
+█▄▀▄▄▀ ▄ ▀▄▄ ▀█ ▄▄▄▄ ▄ ▄█ ▀▄▀▀ ▄
+▀ ▀▀▀▄▀▀ ▀▄█▀▄ ▀▄▄██▀ ▀█▄██▀▄█▀▀
+ █▀▄▄ ▀        ▄ █▄▀█▀▀    ▀ ▀█ 
+ █▀ ▀ ▄█▄▄   █  █▀ ▄▀█▀  ▀█  ▀▀ 
+ ▀▄▀▄▄▀ ▀█▀▄▄  ▀    ▄    █   ▄▄ 
+ ▀█▀ ▀▀▄ ▄▄ ▄ ▀▄▀█ ▄█  ▀  ▀▀    
+▀ ▄▀▄ █  ▄ █   █▀   ▀▄▀██ ▀▄    
+▄ █▄▀ ▄▀█  ▄ ▄█▀▀▄▀  ▀▀█▄▀▀ ▀ ▄▄
+▄▄ █  ▀  ▄▄ ▀  ▀  ▄▄▀  ▄    ▄ ▀▄
+▄▄ ▀  ▄█   ▄▄ ▄▀█ ▄ ▄█  █▄     █
+▄ █▀▀  ▀  ▀▄ ▄██▄▄ █ █ ▀▀     █ 
+█▄ ▀   ▄   ▀ ▀▀▀   █  ▀▀█  ▀ ▄█▄
+      ▀▀ ▀█  ▄▄ ▀▄▀█   ▄▄█▀▀ ▀ ▀
+▄█ ▄█▄  ▄   ▄▄ ▀   ▄ ▄█  █ ▄▄  ▀
+████████████▄█▄▀▄██▀  ██▀█▀▄▀█▀  ▄▄   ███▀█▀▀█▀▀ ▄▄ ▄▀▄   ▀▄▄▀  ▄█▀▄ ▀▄   ▄ ▄▀         
+███████▀██▄█▄█▀▀███▄▀█▄██████▀▀█ ▄▄█▀██▄██▄█  ▀▄▄▄▀█   ▀  ▄▀      █  ▄ ▀▀ ▄  ▄    ▄ ▄  
+█████▀█▀▀███████▀ ███▄███▀▄▀█▄█▄▀█▀█▀▄ █▄▀▀▀▄▀▄▀▄ █▀▄▀  ▄▄  ▄ ▀ ▀▄ ▀▄ ▀ ▄ ▄▀   ▄       
+███████▀███▀████▄█▄▀█▄█▀ ▄▀▄███▄█▀▀█▀▀ ▀█▀█▀  ██▀██▀ ▄ █ ▀  ▄  ▀▄ ▀ ▄       ▄          
+███████████████▀█ ▀▀█▀██▄█▀▄█▀▄▄█▀▄▄▀█▀█ █▀▄ ▄▄▄ ▄ ▄█▀▀▄  ▀▄█▄  ▀  ▀ ▄  ▄       ▀      
+█████████▄▄▄▀▄ █████▀▄▀███▀▄█ ▀█▄▄████▀▄█▄ █▀▀▄█▄▀▄▄▀▄   ▄ █ ▄▄ ▄▄   ▄▀  ▄▀▀▀     ▄ ▄  
+█████████▄▀▀██▄▄██▄██▄█▀▀▄▀ ▄  █▀█▀ █▀▀▀█▄▀▄███▀▄ ▄▄███▀█▀  █     ▄█▀  ▀  ▄▄   ▄       
+████████████▄███▄█▄▄▄█ █▀▀██▄▄▄▄███  █▄▀ ▀ ▀ ▀ ▀▀ ▀▄▄▀ ▄▄ ▀  ▄▀▄ ▄▀  ▀    ▄▄ ▄▄▄▀  ▀   
+██████████████▀█ ▄▀█▄▀███▀██▄▄ ▀███ ▄▄▀▀██▄▀▀▄█▄▀█ ▄  ▄▀▄    ▄█ ▀   █ ▀ █  ▀    ▀      
+██████████▄█████▀██▄█ ███▄█▀ █▀█▄▄▄▄█▄▄█ ▀ ▀ █▄ █▀█ █ ▀▀▀▀▄▄▄ ▄        █ ▄▄         ▄  
+████▄█████▄███▄███▄██▄███▀ ▀▄█▄██▄▄██ ▄▀█ ▄▄▀  ▄▀█  ▀▀█▀ ▄█   ▄  ▀       ▄             
+█████████▄█▀█████████▀▄ █▀▀██▀▄█▄█▀ ███▀▄     █▀▄▀    ▀▀█▄ ▄ ▀ ▀ ▀▀ ▄      ▄   ▀       
+██████▀██████████████▀ █▄▄▄██ ▀▄▄▀█▄ ▄ ▀▀▄▀█▀    ▀   ▄▀   ▀▄ ▀▀  █▀      ▀ ▀▀          
+███▄███████████▀███ █▄██ ▀▀███ ▀█▀▀██▀▀█▀█▀ ▀ █ ▀▀  ▄█▄█▄▀ █  ▀▀▄▀▀     ▀     ▀▄▀   ▀  
+██████████████▀█ ████████ █▄▄  ▄██▀▀▀█▄  ▀▀▀▄▀█ ███▄ █ ▀▄   ▄▀  ▀▄ █                   
+████████▄███▄███▀████▀▄█████ ▄▀▄▀ █▀ █ █ █▄ ▄▄  █▀▀   ▀▄▀▄     ▄▄ ▄ ▀    ▄    ▄        
 █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
 █                                                              █
 █                                                              █
@@ -2581,72 +2625,91 @@ ascii art
 #+CALL: lisp-package-symbols[:post transpose]("STD/OS")
 
 #+RESULTS:
-| *XDG-DIR-TABLE*         |
-| RELATIVE-PATHNAME-P     |
-| GET-HOST-NAME           |
-| FIND-A-PTY              |
-| INIT-XDG-DIRS           |
-| +OPOST+                 |
-| XDG-DATA-DIRECTORY      |
-| FORKABLE-P              |
-| TERMIOS-LFLAG           |
-| +TCSAFLUSH+             |
-| FILE-KIND               |
-| WITH-UMASK              |
-| TCGETATTR*              |
-| ISATTY                  |
-| +TIOCNOTTY+             |
-| *USER-FASL-CACHE*       |
-| TERMIOS-IFLAG           |
-| OPEN-PIPE               |
-| SUDO-P                  |
-| LIST-ALL-GROUPS         |
-| CURRENT-DIRECTORY       |
-| CFMAKERAW               |
-| DISABLE-ECHO            |
-| XDG-RUNTIME-DIRECTORY   |
-| XDG-CACHE-DIR           |
-| TCSETATTR*              |
-| FASL-CACHE-FILE         |
-| ENABLE-ECHO             |
-| MAKE-SYMLINKS           |
-| XDG-STATE-DIR           |
-| XDG-CACHE-DIRECTORY     |
-| MERGE-ENV-PATHNAMES     |
-| XDG-CONFIG-DIRECTORY    |
-| WITHOUT-ECHO            |
-| PATHNAME-EXECUTABLE-P   |
-| XDG-DATA-DIR            |
-| SET-SIGNAL-HANDLER      |
-| TCGETATTR               |
-| XDG-DIR                 |
-| CURRENT-USER            |
-| USER-INFO               |
-| TERMIOS-OFLAG           |
-| +TIOCGWINSZ+            |
-| +TIOCSWINSZ+            |
-| WITH-FD                 |
-| TERMIOS                 |
-| TCSETATTR               |
-| +TCSANOW+               |
-| WITH-DIRECTORY-ITERATOR |
-| XDG-CONFIG-DIR          |
-| WINSIZE                 |
-| LIST-ALL-USERS          |
-| UNMERGE-PATHNAMES       |
-| GROUP-ADD               |
-| IOCTL                   |
-| +TCSADRAIN+             |
-| TERMIOS-CFLAG           |
-| OPEN-PTY                |
-| ENSURE-FASL-CACHE-FILE  |
-| ABSOLUTE-PATHNAME-P     |
-| USER-FASL-CACHE         |
-| USER-ADD                |
-| XDG-CONFIG-FILE         |
 | XDG-RUNTIME-DIR         |
-| RESOLVE-FASL-CACHE-FILE |
+| SUDO-P                  |
+| OPEN-PIPE               |
+| ABSOLUTE-PATHNAME-P     |
+| TERMIOS-IFLAG           |
+| TERMIOS-OFLAG           |
+| WITH-DIRECTORY-ITERATOR |
+| TERMIOS-CFLAG           |
+| CURRENT-DIRECTORY       |
+| XDG-CACHE-DIR           |
+| VOID-SYSCALL            |
+| OPEN-PTY                |
+| XDG-STATE-DIR           |
+| SYSCALL-TYPE            |
+| IOCTL                   |
+| XDG-CONFIG-DIR          |
+| TCGETATTR*              |
+| GET-HOST-NAME           |
+| ENABLE-ECHO             |
+| FASL-CACHE-FILE         |
+| INT-SYSCALL             |
+| FD-TYPE                 |
+| FD-SET                  |
+| INIT-XDG-DIRS           |
+| WITHOUT-ECHO            |
+| XDG-RUNTIME-DIRECTORY   |
+| XDG-DATA-DIRECTORY      |
+| TCSETATTR               |
+| XDG-DATA-DIR            |
 | XDG-STATE-DIRECTORY     |
+| MERGE-ENV-PATHNAMES     |
+| ISATTY                  |
+| FILE-KIND               |
+| UNMERGE-PATHNAMES       |
+| UNIX-FAST-SELECT        |
+| RESOLVE-FASL-CACHE-FILE |
+| TCGETATTR               |
+| PATHNAME-EXECUTABLE-P   |
+| TYPE-SYSCALL            |
+| MAKE-SYMLINKS           |
+| +TIOCSWINSZ+            |
+| +TCSANOW+               |
+| XDG-CONFIG-DIRECTORY    |
+| +TIOCGWINSZ+            |
+| CFMAKERAW               |
+| FD-ISSET                |
+| UNIX-UID                |
+| UNIX-PID                |
+| GROUP-ADD               |
+| LIST-ALL-GROUPS         |
+| FIND-A-PTY              |
+| WITH-UMASK              |
+| +TCSADRAIN+             |
+| FD-ZERO                 |
+| *USER-FASL-CACHE*       |
+| ENSURE-FASL-CACHE-FILE  |
+| TERMIOS-LFLAG           |
+| UNIX-STAT               |
+| LIST-ALL-USERS          |
+| USER-FASL-CACHE         |
+| TERMIOS                 |
+| UNIX-GID                |
+| FD-CLR                  |
+| *XDG-DIR-TABLE*         |
+| USER-INFO               |
+| DISABLE-ECHO            |
+| SYSCALL                 |
+| SET-SIGNAL-HANDLER      |
+| WINSIZE                 |
+| TCSETATTR*              |
+| +TCSAFLUSH+             |
+| RELATIVE-PATHNAME-P     |
+| WITH-FD                 |
+| UNIX-LSTAT              |
+| XDG-CONFIG-FILE         |
+| CURRENT-USER            |
+| UNIX-FSTAT              |
+| USER-ADD                |
+| UNIX-FILE-MODE          |
+| FORKABLE-P              |
+| SYSCALL*                |
+| XDG-DIR                 |
+| +OPOST+                 |
+| XDG-CACHE-DIRECTORY     |
+| +TIOCNOTTY+             |
 
 ** pipe
 :PROPERTIES:
@@ -2706,82 +2769,84 @@ ascii art
 #+CALL: lisp-package-symbols[:post transpose]("STD/STRING")
 
 #+RESULTS:
-| LOWERCASE-P                        |
-| CONFUSABLE-P                       |
-| NCONCATF                           |
-| UTF8-TO-STRING                     |
-| AGE                                |
-| HANGUL-SYLLABLE-TYPE               |
-| STRING-DESIGNATOR                  |
 | LINES                              |
-| LINE-BREAK-CLASS                   |
-| TITLECASE                          |
-| EAST-ASIAN-WIDTH                   |
-| NCONCAT                            |
-| PROPLIST-P                         |
-| COMBINING-CLASS                    |
-| SCRIPT                             |
-| WORD-DELIMITER-P                   |
 | NORMALIZED-P                       |
-| GRAPHEMES                          |
-| CHARACTER-CODING-ERROR             |
-| AT-DELIMITER-P                     |
-| GENERAL-CATEGORY                   |
-| EF-OCTETS-TO-STRING-FUN            |
-| WHITESPACE-P                       |
-| DEFAULT-IGNORABLE-P                |
-| SSPLIT                             |
-| CHARACTER-DECODING-ERROR           |
-| ASCII-ISTRING=                     |
-| *SUPPRESS-CHARACTER-CODING-ERRORS* |
-| DIGIT-VALUE                        |
-| SENTENCES                          |
-| CHAR-BLOCK                         |
-| BIDI-CLASS                         |
-| *OMIT-NULLS*                       |
-| *TAB-WIDTH*                        |
-| CHARACTER-ENCODING-ERROR           |
-| WORDS                              |
-| MATH-P                             |
+| ALPHABETIC-P                       |
+| MIRRORED-P                         |
+| IDEOGRAPHIC-P                      |
+| UNICODE-EQUAL                      |
+| UPPERCASE-P                        |
+| SOFT-DOTTED-P                      |
+| NCONCAT                            |
+| COMBINING-CLASS                    |
+| STRING-TO-OCTETS                   |
+| MAKE-GROWABLE-STRING               |
 | MAKE-TEMPLATE-PARSER               |
-| COLLAPSE-WHITESPACES               |
-| STRING-CASE                        |
-| NUMERIC-VALUE                      |
-| CASED-P                            |
-| UNICODE<=                          |
-| UNICODE=                           |
+| WORDS                              |
+| HEX-DIGIT-P                        |
+| DIGIT-VALUE                        |
+| GENERAL-CATEGORY                   |
+| TRIM                               |
 | EF-STRING-TO-OCTETS-FUN            |
 | *WHITESPACES*                      |
-| ALPHABETIC-P                       |
+| EAST-ASIAN-WIDTH                   |
+| WHITESPACE-P                       |
+| CHAR-RANGE                         |
+| AGE                                |
+| BIDI-MIRRORING-GLYPH               |
+| ASCII-ISTRING=                     |
+| *SUPPRESS-CHARACTER-CODING-ERRORS* |
+| NCONCATF                           |
+| *OMIT-NULLS*                       |
+| EF-OCTETS-TO-STRING-FUN            |
+| CONFUSABLE-P                       |
+| CHARACTER-CODING-ERROR             |
+| UNICODE<                           |
+| MATH-P                             |
+| SSPLIT                             |
+| DEFAULT-IGNORABLE-P                |
+| BIDI-CLASS                         |
+| SENTENCES                          |
+| UNICODE-1-NAME                     |
+| *WORD-DELIMITERS*                  |
+| PROPLIST-P                         |
+| DETABIFY                           |
+| UTF8-TO-STRING                     |
+| PARSE-SIMPLE-SEMVER                |
+| WORD-DELIMITER-P                   |
+| CASED-P                            |
+| STRING-DESIGNATOR                  |
+| OCTETS-TO-STRING                   |
+| CHARACTER-ENCODING-ERROR           |
+| NUMERIC-VALUE                      |
+| NORMALIZE-STRING                   |
+| ASCII-ICHAR=                       |
+| AT-DELIMITER-P                     |
+| DECIMAL-VALUE                      |
+| LOWERCASE                          |
 | CASEFOLD                           |
 | REMOVE-STRING                      |
-| WORD-BREAK-CLASS                   |
-| HEX-DIGIT-P                        |
-| DECIMAL-VALUE                      |
-| SPLIT-WHITESPACE                   |
-| IDEOGRAPHIC-P                      |
-| ASCII-ICHAR=                       |
-| LOWERCASE                          |
-| CHAR-RANGE                         |
-| UNICODE-1-NAME                     |
-| NORMALIZE-STRING                   |
-| SOFT-DOTTED-P                      |
-| DETABIFY                           |
-| *WORD-DELIMITERS*                  |
-| TRIM                               |
-| UPPERCASE-P                        |
-| UNICODE>=                          |
-| MIRRORED-P                         |
-| UNICODE<                           |
-| SENTENCE-BREAK-CLASS               |
-| UNICODE>                           |
-| PARSE-SIMPLE-SEMVER                |
 | GRAPHEME-BREAK-CLASS               |
-| UPPERCASE                          |
-| UNICODE-EQUAL                      |
-| MAKE-GROWABLE-STRING               |
-| BIDI-MIRRORING-GLYPH               |
+| COLLAPSE-WHITESPACES               |
+| SCRIPT                             |
+| CHAR-BLOCK                         |
+| UNICODE<=                          |
+| UNICODE>                           |
+| CHARACTER-DECODING-ERROR           |
+| HANGUL-SYLLABLE-TYPE               |
+| *TAB-WIDTH*                        |
+| LOWERCASE-P                        |
+| LINE-BREAK-CLASS                   |
+| WORD-BREAK-CLASS                   |
+| TITLECASE                          |
+| STRING-CASE                        |
+| SENTENCE-BREAK-CLASS               |
+| UNICODE=                           |
+| SPLIT-WHITESPACE                   |
+| UNICODE>=                          |
 | CASE-IGNORABLE-P                   |
+| GRAPHEMES                          |
+| UPPERCASE                          |
 
 ** WIP defsys
 :PROPERTIES:
@@ -2807,6 +2872,8 @@ ascii art
 | STD/TYPE      |
 | STD/OS        |
 | STD/DEFPKG    |
+| STD/LIST      |
+| STD/HASH      |
 
 #+call:lisp-package-files("STD/DEFSYS")
 
@@ -2816,65 +2883,64 @@ ascii art
 #+call:lisp-package-symbols("STD/DEFSYS") :post transpose
 
 #+RESULTS:
-| LOAD-SYSTEM              |
-| COMPONENTS               |
-| COMPONENT-TYPE           |
-| LIST-ALL-SYSTEMS         |
-| LOAD-MODULE              |
-| WITH-MODULE              |
-| *SYSTEM-SESSION*         |
-| SYSTEM-HOME              |
-| *CORE-MODULE-TABLE*      |
-| MODULE                   |
-| LIST-ALL-MODULES         |
-| DIR-COMPONENT            |
-| SAVE-SYSTEM              |
-| LOAD-COMPONENT           |
-| SYSTEM                   |
-| SYSTEM-PATH              |
-| FILE-COMPONENT           |
-| FIND-SYSTEM              |
-| REGISTER-MODULE          |
-| *SYSDEFS*                |
-| COMPONENT-PACKAGE        |
-| USING                    |
-| DEFPROVIDER              |
-| *MODULE*                 |
-| +SYS-EXTENSION+          |
-| DEFSYS                   |
-| SYSDEF                   |
-| *DEFSYS*                 |
-| COMPILE-COMPONENT        |
-| FIND-COMPONENT           |
-| UNLOAD-MODULE            |
-| REFUSE                   |
-| WITH-SYSTEM-SESSION      |
-| MAKE-SYSTEM              |
 | COMPILE-SYS              |
-| COMPONENT-REQUIRE        |
 | *ASDF-COMPATIBILITY*     |
+| USE                      |
+| UNLOAD-MODULE            |
 | MOD-COMPONENT            |
-| SYSDEFS                  |
-| FIND-MODULE              |
-| LIST-ALL-TEST-SYSTEMS    |
-| *MODULE-TABLE*           |
-| GROVEL-COMPONENT         |
-| SYSTEM-RELATIVE-PATHNAME |
+| REFUSING                 |
 | DEFCOMPONENT             |
 | LOAD-SYS                 |
+| FIND-COMPONENT           |
 | *PROVIDER-TABLE*         |
-| LIST-ALL-PROVIDERS       |
-| MAKE-SYSTEM-SESSION      |
-| *SYSTEM-TABLE*           |
-| PKG-COMPONENT            |
-| MODULE-PROVIDE           |
-| COMPILE-SYSTEM           |
-| READ-COMPONENT           |
-| USE                      |
-| REFUSING                 |
 | TEST-SYSTEM              |
-| COMPONENT                |
+| FIND-SYSTEM              |
+| +SYS-EXTENSION+          |
+| *MODULE*                 |
+| DEFSYS                   |
+| SYSTEM-RELATIVE-PATHNAME |
 | MODULE-REQUIRE           |
+| COMPILE-SYSTEM           |
+| LIST-ALL-TEST-SYSTEMS    |
+| FILE-COMPONENT           |
+| GROVEL-COMPONENT         |
+| *DEFSYS*                 |
+| COMPONENT-PACKAGE        |
+| SAVE-SYSTEM              |
+| MODULE-PROVIDE           |
+| LOAD-SYSTEM              |
+| COMPONENT-TYPE           |
+| COMPONENT                |
+| LIST-ALL-SYSTEMS         |
+| SYSTEM-PATH              |
+| USING                    |
+| PKG-COMPONENT            |
+| *SYSDEFS*                |
+| DEFPROVIDER              |
+| *SYSTEM-SESSION*         |
+| MAKE-SYSTEM-SESSION      |
+| LOAD-COMPONENT           |
+| COMPONENT-REQUIRE        |
+| REFUSE                   |
+| LOAD-MODULE              |
+| FIND-MODULE              |
+| DIR-COMPONENT            |
+| WITH-MODULE              |
+| SYSTEM                   |
+| COMPONENTS               |
+| *SYSTEM-TABLE*           |
+| MAKE-SYSTEM              |
+| *MODULE-TABLE*           |
+| READ-COMPONENT           |
+| LIST-ALL-MODULES         |
+| SYSDEFS                  |
+| SYSDEF                   |
+| LIST-ALL-PROVIDERS       |
+| MODULE                   |
+| COMPILE-COMPONENT        |
+| REGISTER-MODULE          |
+| WITH-SYSTEM-SESSION      |
+| SYSTEM-HOME              |
 
 #+call:file-description("~/comp/core/std/defsys.lisp")
 

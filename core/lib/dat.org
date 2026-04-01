@@ -96,8 +96,8 @@
   | parquet/io.lisp       |
   | parquet/rle.lisp      |
   | parquet/proto.lisp    |
-  | xml/xml.lisp          |
-  | xml/svg.lisp          |
+  | xml.lisp              |
+  | svg.lisp              |
   | html/const.lisp       |
   | html/entity.lisp      |
   | html/parse.lisp       |
@@ -116,13 +116,11 @@
   | ttf.lisp              |
   | base64.lisp           |
   | qrcode.lisp           |
-  | dat.lisp              |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("DAT")
 
   #+RESULTS:
-  | MIME-TYPE-MAGIC                        |
   | INLINE-CSS                             |
   | GRAPH-FROM-DOT-FILE                    |
   | ENTRY-FILE-P                           |
@@ -137,7 +135,7 @@
   | NODE-APPEND-CHILD                      |
   | XML-ESCAPE-NAME                        |
   | NODE-PUBLIC-ID                         |
-  | ADD-DELAY                              |
+  | REMOVE-ATTRIBUTE-BY-NAME               |
   | ADD-IMAGE                              |
   | KERNING-OFFSET                         |
   | COMPILE-CSS-FILE                       |
@@ -152,7 +150,7 @@
   | *CSV-SEPARATOR*                        |
   | FINISH-PNG                             |
   | UNDERLINE-THICKNESS                    |
-  | CODE-POINT                             |
+  | PAX-EXTENDED-ATTRIBUTES-ENTRY          |
   | MESSAGE-NUMERATOR                      |
   | *TAR-BLOCK-BYTES*                      |
   | TAR-ERROR                              |
@@ -160,15 +158,15 @@
   | MAKE-DECODE-TABLE                      |
   | FIXED-PITCH-P                          |
   | LOAD-MIME-INFO                         |
-  | ENTRY-FIFO-P                           |
+  | ENCODE-SYMBOL                          |
   | GET-MIME                               |
-  | TOML-COLLECTION                        |
-  | MAKE-ENTRY-STREAM                      |
+  | NODE-REMOVE-CHILD                      |
+  | DO-CONTOUR-SEGMENTS                    |
   | *MINIFY-CSS*                           |
   | FONT-INDEX                             |
   | RIGHT-SIDE-BEARING                     |
-  | BOUNDING-BOX                           |
-  | MESSAGE-MI                             |
+  | MESSAGE-VALUE                          |
+  | PARQUET-WRITE                          |
   | MESSAGE-CHANNEL                        |
   | +URI-DECODE-TABLE+                     |
   | MIME-MAGIC-TYPE                        |
@@ -182,12 +180,12 @@
   | PROC-INST-CONTENTS                     |
   | QR-ENCODE-PNG-BYTES                    |
   | JSON-SCHEMA                            |
-  | GLYPH-EXISTS-P                         |
+  | XML-NODE                               |
   | DATA-BYTE                              |
   | DO-ENTRIES                             |
   | MODULES                                |
   | ARFF                                   |
-  | DECODE-ASN1-STRING                     |
+  | MESSAGE-MI                             |
   | BASE64-STRING-TO-OCTET-VECTOR          |
   | BASE64-STREAM-TO-STRING                |
   | COLLECTION-FONT-INDEX                  |
@@ -195,29 +193,28 @@
   | CHECK-IMAGE-DIMENSIONS                 |
   | COPY-PNG                               |
   | XMLREP-BOOLEAN-ATTRIB-VALUE            |
-  | DO-CONTOUR-SEGMENTS                    |
+  | JSON-POINTER-P                         |
   | PARSE-ARFF                             |
   | JSON-READ                              |
-  | BBOX-XMIN                              |
+  | GLYPH-EXISTS-P                         |
   | IMAGE-STREAM                           |
   | TAR-FILE                               |
   | MAKE-DOCTYPE                           |
   | TAR-ENTRY                              |
   | %                                      |
-  | VALUE                                  |
+  | WITH-HTML-STRING                       |
   | ENTRY-TYPE                             |
   | TOP-SIDE-BEARING                       |
   | MAKE-GIF-STREAM                        |
   | GNU-VOLUME-HEADER-NAME-ENTRY           |
   | GNU-DIRECTORY-DUMP-ENTRY               |
-  | GNU-SPARSE-FILE-ENTRY                  |
+  | USTAR-TAR-FILE                         |
   | WRITE-CSV-STRING                       |
-  | PNG-ERROR                              |
   | PX                                     |
   | XMLREP-CHILDREN                        |
   | GET-FONT-SUBFAMILIES                   |
   | TOML-MODIFY-INLINE-TABLE-ERROR         |
-  | SIMPLE-TAR-ERROR                       |
+  | PNG                                    |
   | FIND-GLYPH                             |
   | OPEN-TAR-FILE                          |
   | WITH-FONT-LOADER                       |
@@ -227,16 +224,16 @@
   | NODE-LAST-CHILD                        |
   | MESSAGE-VELOCITY                       |
   | MIME-MAGIC-OFFSET                      |
-  | XML-NODE                               |
+  | LEFT-SIDE-BEARING                      |
   | MIME-TYPE-GLOB                         |
-  | JSON-POINTER-P                         |
+  | KEY-SIGNATURE-MESSAGE                  |
   | OUTPUT-GIF-STREAM                      |
   | WRITE-PROLOGUE                         |
   | PIXEL-STREAMED-PNG                     |
   | DO-ATTRIBUTES                          |
   | INDEX-GLYPH                            |
   | IMAGES                                 |
-  | PNG                                    |
+  | TOML-REDEFINE-PROPERTY-ERROR           |
   | UNITS/EM                               |
   | BASE64-STRING-TO-STREAM                |
   | FONT-STRING-BBOXES                     |
@@ -245,7 +242,7 @@
   | DECODE-U28                             |
   | ON-CURVE-P                             |
   | WRITE-GNU-LONG-LINK-NAME-ENTRY         |
-  | SAVE-CANVAS                            |
+  | DECODE-ASN1-STRING                     |
   | COLLECTION-FONT-COUNT                  |
   | NODE-INSERT-BEFORE                     |
   | WITH-OPEN-TAR-FILE                     |
@@ -254,7 +251,7 @@
   | FONT-FAMILY                            |
   | MESSAGE-KEY                            |
   | WRITE-M3U-FILE                         |
-  | SHOW-ID3-HEADER                        |
+  | SIMPLE-TAR-ERROR                       |
   | XML-NODE-P                             |
   | WRITE-CSV-STREAM                       |
   | WRITE-SYMBOLIC-LINK-ENTRY              |
@@ -265,7 +262,6 @@
   | ROTATE-180                             |
   | GIF-STREAM                             |
   | PARSE-HTML5                            |
-  | NODE-SYSTEM-ID                         |
   | WIDTH                                  |
   | TRY-GET-ASN1-STRING-DATA               |
   | XML-NODE-NS                            |
@@ -273,7 +269,7 @@
   | GRAPH-TO-DOT-FILE                      |
   | MESSAGE-DENOMINATOR                    |
   | EXTRACT-PATH                           |
-  | REMOVE-ATTRIBUTE-BY-NAME               |
+  | TRANSFORM-HTML5-DOM                    |
   | JSON-TRAILING-COMMAS-P                 |
   | DEINTERLACE                            |
   | LINE-GAP                               |
@@ -287,8 +283,8 @@
   | INI-DOCUMENT                           |
   | MESSAGE-TIME                           |
   | FONT-STRING-ALPHA-MAPS                 |
-  | PARQUET-WRITE                          |
-  | ENCODE-SYMBOL                          |
+  | WRITE-FIFO-ENTRY                       |
+  | BBOX-XMIN                              |
   | HTM                                    |
   | PIXEL                                  |
   | BBOX-XMAX                              |
@@ -301,14 +297,14 @@
   | XMLREP-TAGMATCH                        |
   | LAST-IMAGE                             |
   | FONT                                   |
-  | MESSAGE-TEMPO                          |
+  | GLYPH-COUNT                            |
   | MIDIFILE-TRACKS                        |
   | TAR-DIRECTORY-ENTRY                    |
   | INI-SECTION                            |
   | FONT-FOREGROUND                        |
   | STREAM-TO-BASE64-STREAM                |
   | UNSUPPORTED-VALUE                      |
-  | TOML-REDEFINE-PROPERTY-ERROR           |
+  | IMAGE-ERROR                            |
   | ENTRY-HARD-LINK-P                      |
   | BASE64-STRING-TO-STRING                |
   | BAD-BASE64-CHARACTER                   |
@@ -318,25 +314,26 @@
   | STRING-TO-BASE64-STRING                |
   | MIME-MAGIC                             |
   | READ-CANVAS                            |
-  | WRITE-MIDI-FILE                        |
+  | PROC-INST-TARGET                       |
   | MAKE-XML-NODE                          |
   | ENTRY-BLOCK-DEVICE-P                   |
   | FMT                                    |
   | READ-ENTRY                             |
-  | WRITE-PROLOG                           |
+  | PARSE-CSS                              |
   | ENTRY-DIRECTORY-P                      |
   | UNSUPPORTED-VERSION                    |
   | ARFF-PATH                              |
-  | USTAR-TAR-FILE                         |
+  | CONTOUR                                |
   | TOP                                    |
-  | TRANSFORM-HTML5-DOM                    |
+  | JSON-ENCODE                            |
+  | WRITE-DOCTYPE                          |
   | GIF-IMAGE                              |
   | CC                                     |
   | FONT-OVERLINE                          |
   | FAMILY-NAME                            |
   | XML-NODE-CHILDREN                      |
   | MAKE-IMAGE-DATA                        |
-  | IMAGE                                  |
+  | NODE-SYSTEM-ID                         |
   | INI-OBJECT                             |
   | CHECK-DIMENSIONS                       |
   | LOAD-CANVAS                            |
@@ -348,11 +345,12 @@
   | NODE-VALUE                             |
   | PARQUET-DECODE                         |
   | MAKE-TEXT-NODE                         |
+  | UNDERLINE-POSITION                     |
   | NOTE-OFF-MESSAGE                       |
   | NODE-FIRST-CHILD                       |
   | POSTSCRIPT-NAME                        |
   | BASE64-STREAM-TO-OCTET-VECTOR          |
-  | PAX-EXTENDED-ATTRIBUTES-ENTRY          |
+  | ID3-P                                  |
   | SEQUENCE/TRACK-NAME-MESSAGE            |
   | MAKE-COMMENT                           |
   | ESC                                    |
@@ -366,6 +364,7 @@
   | CACHE-FONTS                            |
   | MAKE-ELEMENT                           |
   | FONT-OVERWRITE-GCONTEXT                |
+  | MIME-TYPE-SUPERCLASSES                 |
   | TAR-FILE-ENTRY                         |
   | CSS                                    |
   | READ-ID3-HEADER                        |
@@ -385,19 +384,20 @@
   | WRITE-CANVAS                           |
   | CONTOURS                               |
   | +DECODE-TABLE+                         |
-  | JSON-ENCODE                            |
+  | DD                                     |
   | OCTET-VECTOR-TO-BASE64-STREAM          |
   | CH                                     |
   | DECODE-ASN1-TIME                       |
   | NODE-NAMESPACE                         |
   | MAKE-GIF-IMAGE                         |
   | PARQUET-STRUCT-OBJECT                  |
-  | MIME-TYPE-SUPERCLASSES                 |
+  | ARFF-RELATION                          |
   | WRITE-PNG-STREAM                       |
   | TOML-DOTTED-KEY-REDEFINE-TABLE-ERROR   |
+  | BOUNDING-BOX                           |
   | BBOX-YMAX                              |
-  | DD                                     |
-  | PARSE-HTML5-FRAGMENT                   |
+  | WRITE-MIDI-FILE                        |
+  | SHOW-ID3-HEADER                        |
   | PITCH-BEND-MESSAGE                     |
   | MIME-CASE                              |
   | CP-X                                   |
@@ -414,29 +414,29 @@
   | WRITE-BLOCK-DEVICE-ENTRY               |
   | FONT-UNDERLINE                         |
   | WRITE-GNU-LONG-NAME-ENTRY              |
-  | GLYPH-COUNT                            |
+  | CODE-POINT                             |
   | PARSE-ARFF-STRING                      |
   | XML-NODE-NAME                          |
   | CONTOUR-COUNT                          |
   | TRANSPARENTP                           |
   | BASE64-STREAM-TO-INTEGER               |
   | MESSAGE-SF                             |
-  | PROC-INST-TARGET                       |
+  | GNU-SPARSE-FILE-ENTRY                  |
   | STRING-TO-BASE64-STREAM                |
-  | UNDERLINE-POSITION                     |
+  | MESSAGE-TEMPO                          |
   | JPEG-IMAGE                             |
   | WITH-FONT                              |
   | WRITE-CHARACTER-DEVICE-ENTRY           |
   | JSON-DELF                              |
   | PARSE-SVG-FILE                         |
-  | PARSE-CSS                              |
+  | MAKE-ENTRY-STREAM                      |
   | BLUR                                   |
-  | NODE-REMOVE-CHILD                      |
+  | ENTRY-FIFO-P                           |
   | FILL-CANVAS                            |
   | READ-CSV-FILE-AND-SORT                 |
   | PARSE-SVG-STRING                       |
   | PARSE-CSS-FRAGMENT                     |
-  | CONTOUR                                |
+  | FLIP-VERTICAL                          |
   | BIBLIOGRAPHY                           |
   | PARQUET-ENCODE                         |
   | READ-MIDI-FILE                         |
@@ -445,34 +445,32 @@
   | SMPTE-OFFSET-MESSAGE                   |
   | PARSE-TOML-VALUE                       |
   | TOML-DOTTED-KEY-OPEN-TABLE-ARRAY-ERROR |
-  | IMAGE-ERROR                            |
   | STRING-BOUNDING-BOX                    |
   | PARSE-CSS-SELECTOR                     |
   | XMLREP-STRING-CHILD                    |
   | WRITE-PAX-GLOBAL-ATTRIBUTES-ENTRY      |
   | FONT-STRING-LINE-BBOXES                |
   | WRITE-DIRECTORY-ENTRY                  |
-  | WRITE-FIFO-ENTRY                       |
   | NN                                     |
   | REGRETTABLE-HEX-VALUE                  |
   | QR-ENCODE-PNG                          |
-  | TIME-SIGNATURE-MESSAGE                 |
+  | TOML-TABLE-ARRAY                       |
   | MIDI-MESSAGE                           |
   | DESCENDER                              |
   | WRITE-M3U-STRING                       |
   | MAKE-XMLREP                            |
   | BB                                     |
-  | WITH-HTML-STRING                       |
-  | *FONT-DIRS*                            |
-  | KEY-SIGNATURE-MESSAGE                  |
+  | PNG-ERROR                              |
+  | MIME-TYPE-MAGIC                        |
   | MIME-MAGIC-VALUE                       |
   | TRANSFER-OCTETS-TO-TAR-FILE            |
   | XMLREP-FIND-CHILD-TAG                  |
+  | SAVE-CANVAS                            |
   | INTERLACE                              |
   | VH                                     |
   | WRITE-M3U-STREAM                       |
   | WITH-HTML                              |
-  | XMLREP-ADD-CHILD!                      |
+  | IMAGE                                  |
   | STREAM-TO-BASE64-STRING                |
   | READ-ATTRIBUTE                         |
   | MATRIX                                 |
@@ -489,7 +487,7 @@
   | MIME-TYPE-NAME                         |
   | EXPLICIT-CONTOUR-POINTS                |
   | FONT-BACKGROUND                        |
-  | ARFF-RELATION                          |
+  | V7-TAR-FILE                            |
   | READ-CSV-STREAM                        |
   | DARK-MODULE-P                          |
   | ITALIC-ANGLE                           |
@@ -498,7 +496,7 @@
   | TAR-HARD-LINK-ENTRY                    |
   | BAD-MAGIC                              |
   | QR-SYMBOL-TO-PNG                       |
-  | LEFT-SIDE-BEARING                      |
+  | PARSE-HTML5-FRAGMENT                   |
   | GIF-ERROR                              |
   | TAR-SYMBOLIC-LINK-ENTRY                |
   | WRITE-PNG                              |
@@ -510,8 +508,8 @@
   | TOML-TABLE                             |
   | STREAMED-PNG                           |
   | TEMPO-MESSAGE                          |
-  | MESSAGE-VALUE                          |
-  | TOML-TABLE-ARRAY                       |
+  | XMLREP-ADD-CHILD!                      |
+  | TOML-COLLECTION                        |
   | JSON-SETF                              |
   | *HTML-LANG*                            |
   | ELEMENT-MAP-ATTRIBUTES*                |
@@ -521,7 +519,7 @@
   | ELEMENT-ATTRIBUTE                      |
   | HEIGHT                                 |
   | QR-ENCODE-PNG-STREAM                   |
-  | ID3-P                                  |
+  | ADD-DELAY                              |
   | FONT-STRING-LINE-ALPHA-MAPS            |
   | STR                                    |
   | GNU-TAR-FILE                           |
@@ -541,7 +539,7 @@
   | OCTET-VECTOR-TO-BASE64-STRING          |
   | CLOSE-FONT-LOADER                      |
   | XMLREP-TAG                             |
-  | V7-TAR-FILE                            |
+  | TIME-SIGNATURE-MESSAGE                 |
   | TAR-BLOCK-DEVICE-ENTRY                 |
   | JSON-GETF                              |
   | TOML-REDEFINE-TABLE-ERROR              |
@@ -555,7 +553,7 @@
   | ASCENDER                               |
   | PARSE-TOML-BLOCKS                      |
   | ARFF-DATA                              |
-  | FLIP-VERTICAL                          |
+  | *FONT-DIRS*                            |
   | TOML-DOCUMENT                          |
   | PNG=                                   |
 
@@ -744,7 +742,6 @@
 | XMLREP-CHILDREN             |
 | XML-NODE-ATTRS              |
 | WRITE-PROLOGUE              |
-| WRITE-PROLOG                |
 | XMLREP-ATTRIB-VALUE         |
 | XML-PARSE                   |
 | XMLREP-TAG                  |
@@ -756,6 +753,7 @@
 | XMLREP-INTEGER-CHILD        |
 | XML-NODE-P                  |
 | XML-NODE-NAME               |
+| WRITE-DOCTYPE               |
 | PROC-INST-TARGET            |
 | XML-NODE-NS                 |
 | PROC-INST-P                 |

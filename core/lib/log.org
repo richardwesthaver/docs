@@ -17,10 +17,10 @@ libraries and apps.
   #+CALL: lisp-system-dependencies[:post transpose]("log")
 
   #+RESULTS:
-  | STD    |
-  | IO     |
-  | OBJ    |
-  | SYSLOG |
+  | STD |
+  | IO  |
+  | OBJ |
+  | SYS |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("log")
@@ -91,81 +91,81 @@ libraries and apps.
 
   #+RESULTS:
   | TRACE!                  |
-  | *LOG-SHOW-BACKTRACE*    |
+  | LOG-P                   |
   | LOG-MESSAGE*            |
   | LOG-PIPE                |
-  | LOG-TIMESTAMP-SOURCE    |
+  | LOG-CONFIG              |
   | DEFAULT-LOGGER          |
   | ERROR-P                 |
   | WITH-LOGGER             |
-  | INFO-DESCRIBE           |
+  | LOG-TIMESTAMP-SOURCE    |
   | LOGGER-CONFIG           |
-  | ALIEN-SOURCE            |
+  | *LOGGER*                |
+  | LOGGER-P                |
   | RESTART-LOGGER          |
-  | WARN!                   |
+  | *LOG-LEVELS*            |
   | SIMPLE-LOG-MESSAGE      |
   | LEVEL-FILTER            |
-  | DEBUG-P                 |
-  | *LOG-TIMESTAMP*         |
+  | %LOG-OBJECT             |
+  | WARN-DESCRIBE           |
   | LOG!                    |
   | DATABASE-LOGGER         |
-  | DEFINE-LOG-LEVEL        |
-  | ERROR-DESCRIBE          |
+  | DEBUG!                  |
+  | DEBUG-DESCRIBE          |
   | DB-SINK                 |
   | GET-REAL-TIME-SINCE     |
   | DEFAULT-LOGGER-CONFIG   |
-  | WARN-DESCRIBE           |
-  | FATAL-P                 |
+  | *LOG-INDENT*            |
+  | LOG-MESSAGE             |
+  | WARN!                   |
   | LOGGER                  |
   | WITH-LOG-STREAM         |
   | ILEVEL                  |
   | *LOG-MESSAGE-CLASS*     |
-  | WARN-P                  |
+  | DEFINE-LOG-LEVEL        |
   | TAG-FILTER              |
   | TRACE-DESCRIBE          |
   | *LOG-TIMESTAMP-FORMAT*  |
   | ALIEN-SINK              |
   | ROTATING-FILE-SINK      |
   | LOG-DESCRIBE            |
-  | LOG-CONFIG              |
+  | ERROR-DESCRIBE          |
   | TRACE-P                 |
   | OCTETS-TO-LOG-MESSAGE   |
-  | LOG-P                   |
+  | LEVEL                   |
   | LOG-OBJECT              |
   | LOG-LEVEL-DESIGNATOR    |
-  | LEVEL                   |
-  | DEBUG-DESCRIBE          |
+  | INFO-DESCRIBE           |
+  | *LOG-TIMESTAMP*         |
   | LOG-ROTATE              |
   | WITH-CONDITIONS-LOGGED  |
   | FATAL!                  |
-  | ALIEN-LOGGER            |
-  | *LOG-LEVELS*            |
-  | *LOG-LEVEL*             |
-  | *LOG-INDENT*            |
-  | *LOGGER*                |
-  | INFO!                   |
-  | %LOG-OBJECT             |
-  | LOGGER-P                |
-  | MESSAGE-THREAD          |
+  | FATAL-P                 |
+  | WITH-FAST-LOG-STREAM    |
+  | REMOVE-LOGGER           |
   | *TAG-SEPARATOR*         |
+  | DEBUG-P                 |
+  | DPRINT                  |
+  | MESSAGE-THREAD          |
+  | *LOG-LEVEL*             |
   | DB-SOURCE               |
   | DFORMAT                 |
   | INIT-LOG-TIMESTAMP      |
   | BACKUP-FILE-SINK        |
   | TAG-TREE-FILTER         |
-  | LOG-MESSAGE             |
+  | LOG-MESSAGE-TO-OCTETS   |
   | ROTATE-FILE-SINK        |
   | MATCHING-TREE-TAG       |
-  | DPRINT                  |
-  | WITH-FAST-LOG-STREAM    |
+  | ALIEN-LOGGER            |
+  | ALIEN-SOURCE            |
   | INFO-P                  |
   | FATAL-DESCRIBE          |
-  | DEBUG!                  |
-  | REMOVE-LOGGER           |
+  | INFO!                   |
+  | *LOG-SHOW-BACKTRACE*    |
   | LOG-ERROR               |
   | ERROR!                  |
   | *LOG-MESSAGE-FORMATTER* |
-  | LOG-MESSAGE-TO-OCTETS   |
+  | WARN-P                  |
 
 #+END
 
@@ -239,7 +239,7 @@ protocol.
 #+end_src
 
 #+RESULTS:
-: #<LOGGER-CONFIG {120C999573}>
+: #<LOGGER-CONFIG {120E31BC93}>
 :   [standard-object]
 : 
 : Slots with :INSTANCE allocation:

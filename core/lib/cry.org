@@ -78,7 +78,6 @@ security and authentication protocols, passwords, keyrings, and more.
   | gpg.lisp           |
   | ssh.lisp           |
   | auth.lisp          |
-  | cry.lisp           |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("cry")
@@ -99,54 +98,46 @@ security and authentication protocols, passwords, keyrings, and more.
   #+CALL: lisp-package-symbols[:post transpose]("CRY")
 
   #+RESULTS:
-  | SYSTEM-SSHD-CONFIG-FILE      |
-  | SSL-INITIALIZED-P            |
-  | USER-SSH-CONFIG-FILE         |
-  | HOTP                         |
-  | MAKE-KEYRING                 |
-  | SSH-CONFIG                   |
-  | PASSWORD                     |
-  | +IMPROVED-POLYNOMIAL+        |
-  | USER-GPG-AGENT-CONFIG-FILE   |
-  | MAKE-PASSWORD-HASH           |
-  | *DIGITS*                     |
-  | TOTP                         |
-  | USER-GPG-CONFIG-FILE         |
-  | *USER-GPG-DIRECTORY*         |
-  | HS256-DIGEST                 |
-  | *SSL-CIPHER-LIST*            |
-  | SSHD-CONFIG                  |
-  | *TIME-STEP-IN-SECONDS*       |
-  | INIT-CRC64                   |
-  | PASSWORD-SALT                |
-  | *USER-SSH-DIRECTORY*         |
-  | CRC64-FILE                   |
-  | *CA-BUNDLE*                  |
-  | *HMAC-SHA-MODE*              |
-  | GPG-AGENT-CONFIG             |
-  | CRC64-SEQUENCE               |
-  | PASSWORD-HASH                |
-  | *TIME-ZERO*                  |
-  | ENSURE-SSL                   |
-  | SYSTEM-SSH-CONFIG-FILE       |
-  | KEYRING                      |
-  | DECODE-CERTIFICATE-FROM-FILE |
-  | SSL-STREAM-X509-CERTIFICATE  |
-  | DECODE-DER-OCTET-VECTOR      |
-  | AUTHINFO                     |
-  | CRC64-STREAM                 |
-  | COMPARE-HS256-DIGEST         |
-  | *NO-SSL*                     |
-  | GPG-CONFIG                   |
-  | MAKE-SSL-SERVER-STREAM       |
-  | +POLYNOMIAL+                 |
-  | AUTH                         |
-  | MAKE-SSL-CONTEXT             |
-  | CLEAR-KEYS                   |
-  | *SSL-BUFFER-SIZE*            |
-  | WITH-GLOBAL-CONTEXT          |
-  | GET-KEY                      |
-  | JWT-DECODE                   |
-  | MAKE-SSL-CLIENT-STREAM       |
+  | TOTP                       |
+  | CLEAR-KEYS                 |
+  | MAKE-PASSWORD-HASH         |
+  | CRC64-STREAM               |
+  | HS256-DIGEST               |
+  | HOTP                       |
+  | SUPPORTED-AUTHENTICATORS   |
+  | CRC64-SEQUENCE             |
+  | JWT-DECODE                 |
+  | GET-KEY                    |
+  | AUTH                       |
+  | MAKE-KEYRING               |
+  | AUTHINFO                   |
+  | COMPARE-HS256-DIGEST       |
+  | AUTHENTICATOR              |
+  | *DIGITS*                   |
+  | SYSTEM-SSH-CONFIG-FILE     |
+  | CRC64-FILE                 |
+  | AUTHENTICATOR-TEXTUAL-P    |
+  | +IMPROVED-POLYNOMIAL+      |
+  | +POLYNOMIAL+               |
+  | PASSWORD-HASH              |
+  | PASSWORD                   |
+  | USER-GPG-AGENT-CONFIG-FILE |
+  | *TIME-STEP-IN-SECONDS*     |
+  | *USER-SSH-DIRECTORY*       |
+  | *HMAC-SHA-MODE*            |
+  | USER-SSH-CONFIG-FILE       |
+  | KEYRING                    |
+  | INIT-CRC64                 |
+  | AUTHENTICATE               |
+  | *TIME-ZERO*                |
+  | SYSTEM-SSHD-CONFIG-FILE    |
+  | GPG-CONFIG                 |
+  | SSH-CONFIG                 |
+  | GPG-AGENT-CONFIG           |
+  | PASSWORD-SALT              |
+  | *USER-GPG-DIRECTORY*       |
+  | AUTHENTICATOR-CHALLENGE    |
+  | USER-GPG-CONFIG-FILE       |
+  | SSHD-CONFIG                |
 
 #+END

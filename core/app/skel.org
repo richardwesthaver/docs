@@ -160,18 +160,18 @@ is for library developers and internal use.
   | *SKEL-PROJECT*               |
   | SK-CONTAINERFILE             |
   | SK-LOG-SCHEMA                |
-  | *SKEL-STASH*                 |
+  | LOAD-SYSTEM-SKELRC           |
   | SK-MAKE                      |
   | SK-CONFIG-SLOT               |
   | SK-SNIPPET                   |
   | SK-RULE-SOURCE               |
   | USER-SKELRC                  |
   | MAKEFILE                     |
-  | SK-PULL                      |
-  | MERGE-PROJECT-PATHNAMES      |
+  | DEF-SK-CLASS                 |
+  | MAKE-SHEBANG-COMMENT         |
   | *SKEL-STORE*                 |
   | *DIR-LOCALS-FILE*            |
-  | FIND-SKELFILE                |
+  | *SKEL-STASH*                 |
   | SK-CONVERT                   |
   | *SKEL-REGISTRY-SCHEMA*       |
   | SKEL-SIMPLE-ERROR            |
@@ -200,10 +200,10 @@ is for library developers and internal use.
   | *DEFAULT-SKEL-CACHE*         |
   | SK-SYSTEM-CONFIG             |
   | PUSH-MK-RULE                 |
-  | DEF-SK-CLASS                 |
+  | MERGE-PROJECT-PATHNAMES      |
   | SK-PACK                      |
   | SK-RUST-SYSTEM               |
-  | LOAD-SYSTEM-SKELRC           |
+  | SK-PULL                      |
   | *SKEL-PROJECT-SYMBOL-MACROS* |
   | PROJECT-ROOT                 |
   | READ-SYSTEM-DEFINITIONS      |
@@ -213,7 +213,6 @@ is for library developers and internal use.
   | SK-COMMAND                   |
   | SK-PUSH                      |
   | *SYSTEM-SKELRC*              |
-  | MAKE-SHEBANG-COMMENT         |
   | SK-SCHEMA                    |
   | SK-USER-CONFIG               |
   | SK-NEW                       |
@@ -225,9 +224,9 @@ is for library developers and internal use.
   | *USER-SKELRC*                |
   | MAKE-SOURCE-HEADER-COMMENT   |
   | SK-META                      |
-  | MK-VAR                       |
+  | SK-ABBREV                    |
   | PARSE-SK-LISP-SYSTEM         |
-  | *SKEL-PATH*                  |
+  | MK-VAR                       |
   | SK-PROJECT                   |
   | MK-VAL                       |
   | SK-PARENT                    |
@@ -236,15 +235,15 @@ is for library developers and internal use.
   | *SKEL-CACHE-SCHEMA*          |
   | LOAD-SKELFILE                |
   | *SKEL-SYSTEM-CONFIG*         |
-  | SK-ABBREV                    |
+  | *SKEL-PATH*                  |
   | SK-TARGET                    |
   | MK-VAL-DESIGNATOR            |
   | *DEFAULT-SKELFILE*           |
   | FILE-HEADER-KIND             |
   | SK-DATA                      |
   | INIT-SKELFILE                |
-  | FIND-PROJECT-ROOT            |
-  | SK-RULE                      |
+  | *DEFAULT-MAKEFILE*           |
+  | FIND-SKELFILE                |
   | SK-LOG-REPAIR                |
   | *SKEL-LOGGER*                |
   | *SKEL-USER-CONFIG*           |
@@ -255,7 +254,7 @@ is for library developers and internal use.
   | *DEFAULT-SKEL-USER*          |
   | *SKEL-LOGGER-CONFIG*         |
   | PUSH-MK-VAR                  |
-  | *DEFAULT-MAKEFILE*           |
+  | SK-RULE                      |
   | SK-RULE-RECIPE               |
   | SCRIPTS                      |
   | SKEL-STORE                   |
@@ -452,11 +451,7 @@ restarts (invokable by number or by possibly-abbreviated name):
   0: [ABORT] Skip to toplevel REPL.
   1: [EXIT ] Exit SBCL (calling #'EXIT, killing the process).
 
-(READ-COMMAND #<SB-IMPL::STRING-INPUT-STREAM {7F664D6979B3}>)
-; File has been modified since compilation:
-;   /home/ellis/comp/core/lib/obj/cmd.lisp
-; Using form offset instead of character position.
-
+(READ-COMMAND #<SB-IMPL::STRING-INPUT-STREAM {7F812B4879B3}>)
    source: (UNDEFINED-COMMAND C ARGS)
 0] 
 #+end_example
@@ -591,9 +586,9 @@ skel -h
 
 #+RESULTS:
 #+begin_example
-#:fatal 0.029
+#:fatal 0.030999
 unknown argument: -h
-Backtrace for: #<THREAD tid=102409 "main thread" RUNNING {1203440003}>
+Backtrace for: #<THREAD tid=187985 "main thread" RUNNING {1203650003}>
 0: (FATAL! "-h")
 1: ((LAMBDA (&REST SKEL/CLI::ARGS) :IN "/home/ellis/comp/core/skel/cli.lisp") "-h")
 2: (SKEL/CLI::START-SKEL)

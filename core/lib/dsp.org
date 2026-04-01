@@ -18,6 +18,7 @@ working with =audio= and =video= data.
   | DSP/CORE  |
   | DSP/AUD   |
   | DSP/GST   |
+  | DSP-INT   |
   | DSP       |
   | DSP/AV    |
 
@@ -61,7 +62,6 @@ working with =audio= and =video= data.
   | aud/chroma.lisp |
   | vid/pkg.lisp    |
   | gst.lisp        |
-  | dsp.lisp        |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("dsp")
@@ -73,52 +73,39 @@ working with =audio= and =video= data.
   #+CALL: lisp-package-symbols[:post transpose]("DSP")
 
   #+RESULTS:
-  | MEDIA-CODEC                 |
-  | GST-ERROR                   |
-  | DSP-CONDITION               |
-  | CHROMAPRINT                 |
-  | LOAD-AV                     |
-  | JACK-SOUNDS-PLAYING-NOW     |
-  | MEDIA-META                  |
-  | +SAMPLE-SIZE+               |
-  | *DEFAULT-MEDIA-PROBE*       |
-  | N-SOUNDS-PLAYING-NOW        |
-  | JACK-CLOSE-ALL-SOUNDS       |
-  | IMAGE-FILE                  |
-  | N-SOUNDS-PAUSING-NOW        |
-  | JACK-PLAY-SOUND             |
+  | AV-DICTIONARY-TO-HASH-TABLE |
+  | GST-CONDITION               |
   | GST-PIPE                    |
+  | *MEDIA-DIRECTORY*           |
+  | WITH-AV-FORMAT-CONTEXT      |
+  | VIDEO-FILE                  |
   | VIDEO-CODEC                 |
-  | *JACK-SOUNDS*               |
-  | MEDIA-FILE-METADATA         |
+  | *DEFAULT-MEDIA-PROBE*       |
+  | AV-ERROR                    |
   | AV-DICTIONARY-ALIST         |
-  | MEDIA-FILE-FORMAT           |
   | MEDIA-FILE                  |
-  | WITH-AV-PARSER              |
-  | JACK-CLOSE-SOUND            |
-  | *DAC-FOLDING*               |
-  | LOAD-GST                    |
-  | AUDIO-CONFIG                |
   | VIDEO-CONFIG                |
+  | AUDIO-FILE                  |
+  | VIDEO-SYSTEM-CONFIG         |
+  | MEDIA-FILE-CODECS           |
+  | DSP-CONDITION               |
   | AUDIO-SYSTEM-CONFIG         |
-  | WITH-AV-CODEC-CONTEXT       |
+  | AUDIO-CONFIG                |
+  | WITH-AV-PARSER              |
+  | MEDIA-META                  |
+  | AV-CONTEXT-METADATA         |
+  | MEDIA-CODEC                 |
   | AUDIO-CODEC                 |
   | DSP-ERROR                   |
-  | VIDEO-SYSTEM-CONFIG         |
-  | AV-DICTIONARY-TO-HASH-TABLE |
-  | AV-CONTEXT-METADATA         |
-  | *JACK-SND*                  |
-  | JACK-SND                    |
-  | VIDEO-FILE                  |
-  | MEDIA-FILE-STREAM-COUNT     |
-  | JACK-OPEN-SOUND             |
-  | *MEDIA-DIRECTORY*           |
-  | MEDIA-FILE-CODECS           |
+  | WITH-AV-CODEC-CONTEXT       |
+  | MEDIA-FILE-FORMAT           |
   | AV-META                     |
-  | AUDIO-FILE                  |
-  | GST-CONDITION               |
-  | AV-ERROR                    |
-  | WITH-AV-FORMAT-CONTEXT      |
+  | LOAD-GST                    |
+  | GST-ERROR                   |
+  | MEDIA-FILE-METADATA         |
+  | MEDIA-FILE-STREAM-COUNT     |
+  | LOAD-AV                     |
+  | IMAGE-FILE                  |
 
 #+END:
 * WIP Audio
