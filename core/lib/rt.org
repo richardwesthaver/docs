@@ -13,197 +13,31 @@ shenanigans.
   #+CALL: lisp-system-packages[:post transpose]("rt")
 
   #+RESULTS:
-  | RT/TESTS      |
-  | RT            |
-  | RT/TRACING    |
-  | RT/FUZZ       |
-  | RT/FLAMEGRAPH |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("rt")
 
   #+RESULTS:
-  | STD |
-  | LOG |
-  | DAT |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("rt")
 
   #+RESULTS:
-  | :CORE              |
-  | :NET               |
-  | :STD/TESTS         |
-  | :XKB/TESTS         |
-  | :EVDEV/TESTS       |
-  | :BTRFS/TESTS       |
-  | :ZSTD/TESTS        |
-  | :SYS/TESTS         |
-  | :KEYUTILS/TESTS    |
-  | :TREE-SITTER/TESTS |
-  | :OBJ/TESTS         |
-  | :URING/TESTS       |
-  | :IO/TESTS          |
-  | :LOG/TESTS         |
-  | :ARROW/TESTS       |
-  | :GLIB/TESTS        |
-  | :GSTREAMER/TESTS   |
-  | :ROCKSDB/TESTS     |
-  | :BLAS/TESTS        |
-  | :LAPACK/TESTS      |
-  | :CUDA/TESTS        |
-  | :OPENSSL/TESTS     |
-  | :SSH2/TESTS        |
-  | :JPEG/TESTS        |
-  | :DAT/TESTS         |
-  | :RT/TESTS          |
-  | :SNDFILE/TESTS     |
-  | :ALSA/TESTS        |
-  | :CHROMAPRINT/TESTS |
-  | :JACK/TESTS        |
-  | :FFMPEG/TESTS      |
-  | :PARSE/TESTS       |
-  | :CRY/TESTS         |
-  | :CLI/TESTS         |
-  | :Q/TESTS           |
-  | :RDB/TESTS         |
-  | :ORGAN/TESTS       |
-  | :SYN/TESTS         |
-  | :NLP/TESTS         |
-  | :DOC/TESTS         |
-  | :VC/TESTS          |
-  | :BOX/TESTS         |
-  | :POD/TESTS         |
-  | :NET/TESTS         |
-  | :MATH/TESTS        |
-  | :DSP/TESTS         |
-  | :SKEL/TESTS        |
-  | :CORE/TESTS        |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("rt")
 
   #+RESULTS:
-  | rt.sys          |
-  | pkg.lisp        |
-  | var.lisp        |
-  | condition.lisp  |
-  | proto.lisp      |
-  | obj.lisp        |
-  | util.lisp       |
-  | cfg.lisp        |
-  | rt.lisp         |
-  | tracing.lisp    |
-  | flamegraph.lisp |
-  | fuzz.lisp       |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("rt")
 
   #+RESULTS:
-  | FUZZ       |
-  | TMP        |
-  | FIXTURE    |
-  | TRACING    |
-  | FLAMEGRAPH |
-  | RT         |
-  | SANITY     |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("RT")
 
   #+RESULTS:
-  | FIND-SUITE                |
-  | IS                        |
-  | TEST-FIXTURE              |
-  | ENSURE-SUITE              |
-  | ISAND                     |
-  | TEST-NAME=                |
-  | *DEFAULT-TEST-SUITE-NAME* |
-  | ISEQUALP                  |
-  | *TMP*                     |
-  | IS>                       |
-  | RESET-TESTS               |
-  | TEST-FIXTURES             |
-  | FAIL!                     |
-  | ISSOME                    |
-  | TEST-RESULT               |
-  | ISTYPE                    |
-  | ISSUBTYPE                 |
-  | TEST-FN                   |
-  | COMPILE-TEST              |
-  | ISEQUAL                   |
-  | ISZERO                    |
-  | TEST-RESULTS              |
-  | *COMPILE-TESTS*           |
-  | DELETE-TEST               |
-  | *COVERAGE-DIRECTORY*      |
-  | SIGNALS                   |
-  | MAKE-TEST-RESULT          |
-  | MAKE-TEST                 |
-  | *CATCH-TEST-ERRORS*       |
-  | CONTINUE-TESTING          |
-  | TEST-FAILED               |
-  | WITH-FIXTURE              |
-  | ISEQ                      |
-  | TEST-ERROR                |
-  | ISSUBCLASS                |
-  | COMPILE-SUITE             |
-  | PUSH-TEST                 |
-  | *TEST-SUITE-LIST*         |
-  | DEFTEST                   |
-  | *TESTING*                 |
-  | TEST-SUITE-DESIGNATOR     |
-  | IN-SUITE                  |
-  | %TEST-RESULT              |
-  | CHECK-SUITE-DESIGNATOR    |
-  | *TEST-POLICY*             |
-  | ISLIST                    |
-  | +TEST-TAG+                |
-  | ISOR                      |
-  | *TEST-SUFFIX*             |
-  | TEST-OBJECT               |
-  | FIXTURE-PROTOTYPE         |
-  | *TEST-ON-DEF*             |
-  | IS>=                      |
-  | ISNT                      |
-  | EVAL-TEST                 |
-  | IS=                       |
-  | WITH-TMP-FILE             |
-  | %TEST-BAIL                |
-  | WITH-TMP-DIRECTORY        |
-  | POP-TEST                  |
-  | DO-TEST                   |
-  | RUN-ALL-TESTS             |
-  | *TEST-SUITE*              |
-  | MAKE-SUITE                |
-  | *FX*                      |
-  | IS<                       |
-  | DO-TESTS                  |
-  | TEST-PASS-P               |
-  | ISEQL                     |
-  | FIND-TEST                 |
-  | ISEVERY                   |
-  | TIME-TOTAL                |
-  | TEST-SUITE                |
-  | DEFSUITE                  |
-  | DO-SUITE                  |
-  | TEST-FORM                 |
-  | IS<=                      |
-  | TESTS                     |
-  | MAKE-FIXTURE              |
-  | TEST-SKIP-P               |
-  | FIXTURE                   |
-  | MAKE-FIXTURE-PROTOTYPE    |
-  | TEST-FAIL-P               |
-  | TEST                      |
-  | *DEFAULT-TMP-DIRECTORY*   |
-  | TMP-FIXTURE               |
-  | TEST-POLICY               |
-  | ISEMPTY                   |
-  | TEST-DECLARE              |
-  | WITH-TEST-ENV             |
-  | *FIXTURES*                |
 
 #+END
 
