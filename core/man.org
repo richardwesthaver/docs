@@ -1,7 +1,7 @@
 #+title: Core User Manual
 #+author: Richard Westhaver
 #+email: ellis@rwest.io
-#+property: header-args :dir ~/comp/core/ :eval no-export
+#+property: header-args:shell :dir ~/comp/core/
 #+setupfile: ../../clean.theme
 #+texinfo_filename: core.info
 #+texinfo_dir_category: Software development
@@ -71,33 +71,46 @@ For example:
 :END:
 The core itself is not an application but is complex enough that it
 merits its own dedicated manual. There are dedicated manuals for the
-[[file:app/][applications]] and [[file:lib][libraries]] which are part of the core, so what we are
-concerned with here is exploring, managing, and hacking on the source
-code itself.
+[[file:app/][applications]] and [[file:lib][libraries]] which are included with the core, so what
+we are concerned with here is the overall design, common patterns, and
+structure of the source code.
 
 This manual is often technical, but occassionally theoretical in
 nature and intended for software developers with expertise in Lisp,
 GNU/Linux, and Emacs.
 
 The Core is a Lisp system. Common Lisp is our language of choice and
-there is a significant amount of Emacs Lisp code too. The only other
-language present at this time is C (0.1%).
+there is a significant amount of Emacs Lisp code too.
 
 ** Source Code
 :PROPERTIES:
 :ID:       66163a74-dc41-4679-bf83-a2c7598bb316
 :CREATED:  <2025-06-02 Mon 20:54>
 :END:
-#+begin_src sh :eval no-export
-  ls
+#+begin_src shell :eval no-export
+ls -Ah
 #+end_src
 
 #+RESULTS:
-| app        |
-| lib        |
-| man.org    |
-| readme.org |
-| ref.org    |
+| alien          |
+| bootstrap.lisp |
+| core.lisp      |
+| core.sys       |
+| etc            |
+| .hg            |
+| .hgignore      |
+| .hgsub         |
+| .hgsubstate    |
+| ironclad       |
+| lib            |
+| ppcre          |
+| readme.org     |
+| skel           |
+| skelfile       |
+| skel.org       |
+| slime          |
+| .stash         |
+| std            |
 
 - Common Lisp \\
   The =STD= library lives under the =std= directory, FFI libraries
@@ -187,53 +200,18 @@ self-respecting OS.
 :PROPERTIES:
 :ID:       dcb3ffff-5388-4387-8a46-553ae0309d70
 :END:
-Bootstrapping the core can be done via an existing core image or the
-=skel= binary in a 'self-bootstrapping' fashion. See the [[comp:docs/infra][infra]] project
-documentation for details on that process.
+Bootstrapping from SBCL is quite easy. All that is needed is to get
+the source and run bootstrap.lisp[fn:2].
 
-Bootstrapping from SBCL is quite easy too. All that is needed is to
-get the source, load the project =skelfile= and run =sk-make=.
-
-  #+begin_src shell :eval never :exports code
-    # clone the source code from a mirror
-    git clone https://codeberg.org/c-c/core
-    cd core
-    sbcl
-  #+end_src
-
-Then in the SBCL REPL:
-#+begin_src lisp :dir ~/comp/core/ :exports both :eval never
-  (ql:quickload :skel)
-  (in-package :sk-user)
-  (init-skel)
-  (sk-make *skel-project* :all)
+#+begin_src shell :eval never :exports code
+# clone the source code from a mirror
+git clone https://codeberg.org/c-c/core
+cd core
+sbcl --script bootstrap.lisp
+sudo .stash/core --script etc/script/install.lisp
 #+end_src
 
-#+RESULTS:
-| :ALL |
-
-Installation can be done from the same REPL session. By default the
-=core= binary will be written to =/usr/local/bin/= and a series of
-symlinks will be created in the same directory - similar to Busybox
-binaries. Note that this may not work in a =SLIME= repl since =sudo=
-is called and might need input at the terminal.
-
-#+begin_src lisp :dir ~/comp/core/ :package sk-user :eval never :exports code
-  (sk-make *skel-project* :install-core)
-#+end_src
-
-You should see some output like the following:
-
-#+begin_example
-skel -> core -> /usr/local/bin/
-homer -> core -> /usr/local/bin/
-packy -> core -> /usr/local/bin/
-rdb -> core -> /usr/local/bin/
-organ -> core -> /usr/local/bin/
-vc -> core -> /usr/local/bin/
-gen -> core -> /usr/local/bin/
-swm -> core -> /usr/local/bin/
-#+end_example
+[fn:2] Assuming you have all the dependencies installed... 
 
 *** Dependencies
 :PROPERTIES:
@@ -248,43 +226,51 @@ you're on GNU/Linux and have the required packages installed.
   - sbcl
   - emacs
   - quicklisp
-  - rocksdb
+  - rocksdb (FROM SOURCE - jemalloc must be disabled)
   - zstd
   - mercurial
   - openssl
 
-- /Optional/
+- *Optional*
   - cuda
   - evdev
   - jack
   - libjpeg-turbo
   - xkbcommon
-  - ublksrv
   - keyutils
-  - wasmer
   - sndfile
   - libssh2
   - btrfsutils
-  - podman
-  - qemu
   - gstreamer
-  - rustls
   - tree-sitter
   - blake3
   - liburing
   - alsa
   - ffmpeg
-  - glib
   - chromaprint
   - openblas (blas/lapack)
+
 ** Configuration
 :PROPERTIES:
 :ID:       d9a1f958-c43e-4465-9916-3526f7a27268
 :END:
-The next thing you'll want to take care of is user configuration.
+The next thing you'll want to take care of is user configuration. You
+can save your configuration at your preferred XDG-compliant location
+(=~/.config/corerc= is recommended).
 
-The only /required/ development dependency which needs configuring is
+#+begin_src lisp :eval no
+;;; .corerc --- core init file -*- mode: common-lisp; -*-
+(in-package :user)
+(init :xdg) ;; apply user XDG config
+(init :term) ;; detect current terminal
+(init :log :level :debug) ;; enable global logger
+;; index local systems
+(init :sys :sysdefs '("path/to/core/" #+optional "path/to/shed/"))
+#+end_src
+
+The only other development dependency which needs configuring is
 Emacs.
+
 *** Core
 :PROPERTIES:
 :ID:       db2ee1f1-846f-433c-9747-83ec18d47e40
@@ -344,7 +330,7 @@ Emacs configuration using the =skel= command.
   #+end_src
 
   #+RESULTS:
-  : #:debug 0.099
+  : #:debug 0.159
   : ; (#<rule install-emacs>)
 
 The default config supports user customizations in a file with the
@@ -439,86 +425,15 @@ source code which often reference popular packages from the ecosystem.
 :ID:       8e379ae7-5eca-4ccb-8603-e32a20ef2d37
 :CREATED:  <2025-09-30 Tue 21:49>
 :END:
-** ULang
+** System Paths
 :PROPERTIES:
-:ID:       17f9cf38-c7a3-42f7-9b48-58c9999d1b71
-:CREATED:  <2025-09-30 Tue 21:49>
+:ID:       eb6edfd5-632f-43d4-aa93-fc07a523e8b1
+:CREATED:  <2026-04-17 Fri 19:09>
 :END:
-*** Babel
+** DSLs
 :PROPERTIES:
-:ID:       5dacc810-e6c2-49c3-ba62-c85f536c44e4
-:CREATED:  <2025-09-30 Tue 21:49>
-:END:
-*** Style
-:PROPERTIES:
-:ID:       63185a8a-cd68-4697-b5c8-eaa49eff514e
-:CREATED:  <2025-09-30 Tue 21:51>
-:END:
-*** Workflows
-:PROPERTIES:
-:ID:       0fdb6ac8-baa0-4130-9ce2-c0fc38b38475
-:CREATED:  <2025-09-30 Tue 21:51>
-:END:
-*** Glossary
-:PROPERTIES:
-:ID:       9e9b92ed-4ae7-4253-b41c-b1a862c9a538
-:CREATED:  <2025-09-30 Tue 21:52>
-:END:
-** Lisp
-:PROPERTIES:
-:ID:       da4bc7cd-8b7f-4969-9dd5-a0c10a5c41b0
-:CREATED:  <2025-09-30 Tue 21:50>
-:END:
-*** Macros
-:PROPERTIES:
-:ID:       1fdb7040-d003-4734-b3d3-7453782f8a63
-:CREATED:  <2025-09-30 Tue 21:51>
-:END:
-*** Images
-:PROPERTIES:
-:ID:       0883806d-7660-4dba-8b23-1a9c43b303b3
-:CREATED:  <2025-09-30 Tue 21:50>
-:END:
-*** Compilers
-:PROPERTIES:
-:ID:       861a913e-f575-4f7d-8664-b11ff4d43b8d
-:CREATED:  <2025-09-30 Tue 21:50>
-:END:
-*** Modules
-:PROPERTIES:
-:ID:       f81af189-def0-4433-8da3-a9817a663245
-:CREATED:  <2025-09-30 Tue 21:50>
-:END:
-*** DSLs
-:PROPERTIES:
-:ID:       b9f18978-82e5-46bd-a5f2-1aee430103bd
-:CREATED:  <2025-09-30 Tue 21:53>
-:AKA: Domain Specific Languages
-:END:
-**** Systems
-:PROPERTIES:
-:ID:       236ba44b-dd4a-4625-af74-cabfc208537b
-:CREATED:  <2025-09-30 Tue 21:50>
-:END:
-** Control
-:PROPERTIES:
-:ID:       fe2c5b29-2953-4f45-ad05-64eb097f99b5
-:CREATED:  <2025-09-30 Tue 21:54>
-:END:
-*** Source
-:PROPERTIES:
-:ID:       1ec074bf-4769-4cbf-91f8-95b2d32f0e1f
-:CREATED:  <2025-09-30 Tue 21:54>
-:END:
-*** Compute
-:PROPERTIES:
-:ID:       cc8a17af-e01f-4004-98a3-546e3d2397ce
-:CREATED:  <2025-09-30 Tue 21:54>
-:END:
-*** Data
-:PROPERTIES:
-:ID:       380fbb96-b625-4165-aea1-b9afdef0db0f
-:CREATED:  <2025-09-30 Tue 21:54>
+:ID:       66a1a653-29b1-4446-a66e-a3587979edca
+:CREATED:  <2026-04-17 Fri 19:10>
 :END:
 * Features
 :PROPERTIES:
