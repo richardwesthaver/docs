@@ -17,31 +17,614 @@ http/s server support.
   #+CALL: lisp-system-packages[:post transpose]("net")
 
   #+RESULTS:
+  | NET/COOKIE      |
+  | NET/PROTO/CREW  |
+  | NET/CODEC/HTTP  |
+  | NET/SRV/HTTP    |
+  | NET/CODEC/DBUS  |
+  | NET/SRV/OAUTH   |
+  | NET/PROTO/DNS   |
+  | NET-INT         |
+  | NET/REQ         |
+  | NET-USER        |
+  | NET/CORE        |
+  | NET/PROTO/WHOIS |
+  | NET/CODEC/DNS   |
+  | NET/PROTO/DM    |
+  | NET/PROTO/SSH   |
+  | NET/PROTO/HTTP  |
+  | NET             |
+  | NET/SRV/OPENAPI |
+  | NET/SRV         |
+  | NET/PROTO/SWANK |
+  | NET/CODEC/OSC   |
+  | NET/CODEC/TLV   |
+  | NET/PROTO/SESH  |
+  | NET/PROTO/DBUS  |
+  | NET/SRV/UDP     |
+  | NET/SRV/EXT     |
+  | NET/PROTO/DICT  |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("net")
 
   #+RESULTS:
+  | DAT   |
+  | OBJ   |
+  | IO    |
+  | PARSE |
+  | RT    |
+  | CRY   |
+  | STD   |
+  | CLI   |
+  | LOG   |
 
 - dependents
   #+CALL: lisp-system-dependents[:post transpose]("net")
 
   #+RESULTS:
+  | :CORE      |
+  | :BOX       |
+  | :DSP       |
+  | :POD       |
+  | :RDB       |
+  | :VC        |
+  | :SKEL      |
+  | :MODELINE  |
+  | :CRY/TESTS |
+  | :NET/TESTS |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("net")
 
   #+RESULTS:
+  | net.sys          |
+  | pkg.lisp         |
+  | obj.lisp         |
+  | address.lisp     |
+  | socket.lisp      |
+  | codec/dns.lisp   |
+  | codec/tlv.lisp   |
+  | codec/osc.lisp   |
+  | codec/http.lisp  |
+  | codec/dbus.lisp  |
+  | proto/dns.lisp   |
+  | proto/swank.lisp |
+  | proto/crew.lisp  |
+  | proto/http.lisp  |
+  | proto/whois.lisp |
+  | proto/dict.lisp  |
+  | proto/dbus.lisp  |
+  | proto/ssh.lisp   |
+  | proto/dm.lisp    |
+  | proto/sesh.lisp  |
+  | cookie.lisp      |
+  | req.lisp         |
+  | srv/proto.lisp   |
+  | srv/udp.lisp     |
+  | srv/http.lisp    |
+  | srv/oauth.lisp   |
+  | srv/openapi.lisp |
+  | srv/ext.lisp     |
 
 - tests
   #+CALL: lisp-system-tests[:post transpose]("net")
 
   #+RESULTS:
+  | DBUS-PUBLISH    |
+  | DBUS-INTROSPECT |
+  | MUX-SOCKET      |
+  | SOCKET          |
+  | NETLINK         |
+  | SRV             |
+  | COOKIES         |
+  | REQ             |
+  | HTTP            |
+  | OSC             |
+  | TLV             |
+  | UDP             |
+  | TCP             |
+  | DNS             |
 
 - symbols
   #+CALL: lisp-package-symbols[:post transpose]("NET")
 
   #+RESULTS:
+  | HTTP-REQUEST-P                    |
+  | SERVICE-LOG-ACCESS                |
+  | INVALID-STATUS                    |
+  | REMOVE-SESSION-HOOK               |
+  | *DEFAULT-SSL-SERVICE-PORT*        |
+  | SOCKOPT-KEEP-ALIVE                |
+  | HTTP-HEADERS                      |
+  | GET-HOST-BY-ADDRESS               |
+  | INVALID-FRAGMENT                  |
+  | CONNECT                           |
+  | UNIX-ECHO                         |
+  | NO-BUFFERS-ERROR                  |
+  | *ACCESS-LOG-LOCK*                 |
+  | DNS-SERVERS-EXHAUSTED             |
+  | INVALID-QUERY-STRING              |
+  | GET-ADDRESS-BY-NAME               |
+  | *OPENDNS-SERVERS*                 |
+  | UDP-SERVICE                       |
+  | SEND-SERVICE-UNAVAILABLE-RESPONSE |
+  | SOCKET-FAMILY                     |
+  | DBUS-ERROR                        |
+  | CLOSED-CONNECTION                 |
+  | SOCKOPT-TYPE                      |
+  | MAKE-SOCKET                       |
+  | CREW-WORKER-POOL                  |
+  | MAKE-CLIENT                       |
+  | SOCKET-CONFIG                     |
+  | SERVICE-LOG-MESSAGE               |
+  | COOKIE-EXPIRES                    |
+  | TLV                               |
+  | SOCKET-ADDRESS                    |
+  | CB-FIRST-LINE                     |
+  | COOKIE=                           |
+  | MAKE-OSC-MESSAGE                  |
+  | ADD-ROUTE                         |
+  | SOCKET-RECEIVE                    |
+  | BAD-FILE-DESCRIPTOR-ERROR         |
+  | CONNECTION-REFUSED-ERROR          |
+  | NET-SERVICE-CONFIG                |
+  | MAKE-NETMASK                      |
+  | SESSION-CREATED                   |
+  | INVALID-INTERNAL-STATE            |
+  | WITH-CLIENT-SERVER                |
+  | COPY-COOKIE                       |
+  | WITH-SOCKET-STREAM                |
+  | IPV4-NETWORK                      |
+  | OSC-TIMETAG                       |
+  | *ALL-DBUS-OBJECTS*                |
+  | COOKIE-VALUE                      |
+  | HTTP-REQUEST                      |
+  | PEER                              |
+  | WRITE-SET-COOKIE-HEADER           |
+  | OPENAPI-DOCUMENT                  |
+  | DBUS-OBJECT-HANDLER-LOOKUP-TABLE  |
+  | INCREMENT-THREAD-COUNT            |
+  | SOCKET-NAME                       |
+  | SOCKOPT-BSD-COMPATIBLE            |
+  | INVALID-HOST                      |
+  | HTTPS-SERVICE                     |
+  | DECODE-HEADER                     |
+  | HTTP-ERROR                        |
+  | WAKE-SERVICE-FOR-SHUTDOWN         |
+  | SOCKOPT-TCP-NODELAY               |
+  | COOKIE-EQUAL                      |
+  | FIND-DBUS-OBJECT                  |
+  | SERVICE-TIMEOUT                   |
+  | CLIENT                            |
+  | HTTP-STATUS                       |
+  | ID-RECORD-TYPE                    |
+  | HTTP-UPGRADE-P                    |
+  | COOKIE-PARTITIONED                |
+  | WITH-INTROSPECTED-OBJECT          |
+  | SOCKOPT-SEND-LOW-WATER            |
+  | SYSTEM-SERVER-ADDRESSES           |
+  | TCP-PING-SERVER                   |
+  | *LOG-SERVICE-ERRORS*              |
+  | ROUTER                            |
+  | FIND-DBUS-TYPE                    |
+  | SOCKET-CLOSE                      |
+  | UNIX-SOCKET-CONFIG                |
+  | SOCKOPT-TCP-KEEPCNT               |
+  | MAKE-HTTP-REQUEST                 |
+  | HEADER-VALUE-PARSING-ERROR        |
+  | NET-SERVICE-RESPONSE              |
+  | DETACH-SOCKET                     |
+  | COOKIE-ORIGIN-HOST                |
+  | OUT-OF-MEMORY-ERROR               |
+  | ADDRESS-NETWORK-CLASS             |
+  | DEFINE-DBUS-TYPE                  |
+  | WRITE-COOKIE-HEADER               |
+  | DECODE-RESPONSE                   |
+  | MAKE-HTTP-RESPONSE                |
+  | HOST-ENT-ADDRESS-TYPE             |
+  | SOCKOPT-TCP-USER-TIMEOUT          |
+  | TRY-AGAIN-ERROR                   |
+  | DECODE-QUERY                      |
+  | ECHO-SERVICE                      |
+  | SLIME-PENDING-EVALS-P             |
+  | INCREMENT-ACCEPT-COUNT            |
+  | INVALID-CONTENT-LENGTH            |
+  | +HANDLER-TAG+                     |
+  | CB-URL                            |
+  | OSC-MESSAGE                       |
+  | *DEFAULT-MAX-THREAD-COUNT*        |
+  | SESSION-DATABASE                  |
+  | SOCKET-FILE-DESCRIPTOR            |
+  | UNIX-RECEIVE-PING                 |
+  | HTTP                              |
+  | MESSAGE-LOG-OUTPUT                |
+  | CB-STATUS                         |
+  | *CLOUDFLARE-SERVERS*              |
+  | CONNECTION-PENDING-MESSAGES       |
+  | ROUTE                             |
+  | OSC-ELEMENTS                      |
+  | HOST-ENT-NAME                     |
+  | OPERATION-NOT-SUPPORTED-ERROR     |
+  | DECODE-OSC-BUNDLE                 |
+  | SECURE-SERVICE-P                  |
+  | SOCKOPT-TCP-KEEPINTVL             |
+  | SHUTDOWN-P                        |
+  | RESET-SESSIONS                    |
+  | QUERY-DATA                        |
+  | MAKE-CREW                         |
+  | SOCKET-LISTEN                     |
+  | DECODE-DATA                       |
+  | INVALID-MULTIPART-BODY            |
+  | SLIME-CONNECT-FILE                |
+  | *DEFAULT-SESSION-TIMEOUT*         |
+  | ADDRESSES-IN-SAME-NETWORK-P       |
+  | DEFROUTE                          |
+  | DBUS-STANDARD-MESSAGE             |
+  | *DEFAULT-MAX-ACCEPT-COUNT*        |
+  | DATAGRAM-SOCKET                   |
+  | MAKE-COOKIE-JAR                   |
+  | MAKE-CALLBACKS                    |
+  | SLIME-CONNECT                     |
+  | *DEFAULT-MTU*                     |
+  | NET-RESPONSE                      |
+  | OSC-BUNDLE                        |
+  | HTTP-VERSION                      |
+  | HTTP-RESPONSE-P                   |
+  | STREAM-SOCKET                     |
+  | INITIALIZE-CONNECTION-HOOK        |
+  | MAKE-HTTP                         |
+  | INVALID-ARGUMENT-ERROR            |
+  | MAKE-INET-ADDRESS                 |
+  | OSC-REMOVE                        |
+  | ADDRESS-FAMILY-NOT-SUPPORTED      |
+  | INVALID-HEADER-VALUE              |
+  | PARALLEL-MAPCAR                   |
+  | DECODE-HOST                       |
+  | COOKIE-SAME-SITE                  |
+  | HEADER-OVERFLOW                   |
+  | UDP-SOCKET                        |
+  | REGISTER-DBUS-OBJECT              |
+  | LOCAL-ABSTRACT-SOCKET             |
+  | SOCKET                            |
+  | SERVER                            |
+  | SOCKET-ACCEPT                     |
+  | ADDRESS-PRIVATE-P                 |
+  | ABORT-REQUEST-HANDLER             |
+  | TCP-SOCKET                        |
+  | HTTP-METHOD                       |
+  | *PING-SIZE*                       |
+  | ENCODE-DBUS-MESSAGE               |
+  | OSC-ARGS                          |
+  | PARSE-REQUEST                     |
+  | DBUS-TYPE-TABLE                   |
+  | HOST-ENT-ADDRESS                  |
+  | CREATE-REQUEST-WORKER-THREAD      |
+  | OUTPUT-INTROSPECTION-FRAGMENT     |
+  | UNIX-SOCKET                       |
+  | MAKE-CLIENT-REQUEST               |
+  | *WILDCARD-HOST*                   |
+  | DBUS-METHOD-HANDLER               |
+  | EVAL-FORM-REPEATEDLY              |
+  | *DEFAULT-CONNECTION-MAX*          |
+  | *DEFAULT-CONNECT-TIMEOUT*         |
+  | MAKE-LL-MULTIPART-PARSER          |
+  | DEFAULT-INET-ADDRESS-FAMILY       |
+  | *RECORD-TYPE-TABLE*               |
+  | TLV-VALUE                         |
+  | SESSION-DB                        |
+  | SERVER-CONFIG                     |
+  | MAKE-HTTP-PARSER                  |
+  | WITH-SESSION-DB-LOCK              |
+  | SOCKOPT-PASS-CREDENTIALS          |
+  | INTROSPECTION-DOCUMENT            |
+  | ACCESS-LOG-OUTPUT                 |
+  | *DEFAULT-USER-AGENT*              |
+  | UDP-ECHO                          |
+  | NET-REQUEST                       |
+  | DISCONNECT                        |
+  | REQUEST-PROTOCOL*                 |
+  | TOO-MANY-ENGINE-REQUESTS          |
+  | *SESSION-GC-FREQUENCY*            |
+  | SOCKOPT-RECEIVE-LOW-WATER         |
+  | DECODE-DBUS-MESSAGE               |
+  | SEND-MESSAGE                      |
+  | ENCODE-HOST                       |
+  | UNKNOWN-PROTOCOL                  |
+  | IP-ADDRESS                        |
+  | TCP-CONFIG                        |
+  | DNS-QUERY                         |
+  | SERVICE-MAKE-REQUEST              |
+  | COOKIE-CREATION-TIMESTAMP         |
+  | MAKE-OSC-TREE                     |
+  | PARALLEL-REDUCE                   |
+  | SOCKOPT-BROADCAST                 |
+  | DRAIN-PENDING-MESSAGES            |
+  | SOCKET-SHUTDOWN                   |
+  | INTERRUPTED-ERROR                 |
+  | HTTP-STATUS-MESSAGE               |
+  | DBUS-AUTH-ERROR                   |
+  | NAME-SERVICE-ERROR                |
+  | SINGLE-THREADED-ENGINE            |
+  | SERVICE-LOGGER                    |
+  | CREW-CONNECTION-INFO              |
+  | CALL-WITH-REQUEST-COUNT-INCF      |
+  | *DEFAULT-SWANK-PORT*              |
+  | DNS-CONDITION                     |
+  | SOCKOPT-SEND-BUFFER               |
+  | PARSING-ERROR                     |
+  | *DEFAULT-CONNECTION-TIMEOUT*      |
+  | *DBUS-TYPE-TABLE*                 |
+  | OSC-REGISTER                      |
+  | SOCKET-ERROR                      |
+  | DBUS-METHOD-ERROR                 |
+  | SOCKOPT-ERROR                     |
+  | HTTP-RESOURCE                     |
+  | CONNECTION                        |
+  | DBUS-METHOD-CALL-MESSAGE          |
+  | DECREMENT-ACCEPT-COUNT            |
+  | COOKIE-JAR-COOKIES                |
+  | ENDPOINT                          |
+  | DNS-SERVER-FAILURE                |
+  | NET-ERROR                         |
+  | NO-RECOVERY-ERROR                 |
+  | *SERVICE-STREAM*                  |
+  | COOKIE-SECURE-P                   |
+  | FIND-ROUTE                        |
+  | *HTTP-STATUS-MESSAGE-MAP*         |
+  | PRIVILEGED-PORT                   |
+  | SERVICE-LOG                       |
+  | ADDRESS-IN-NETWORK-P              |
+  | HOSTNAME                          |
+  | *LOCALHOST*                       |
+  | NOT-CONNECTED-ERROR               |
+  | LL-MULTIPART-PARSER               |
+  | GET-ADDRESS                       |
+  | HTTP-CLIENT-CONFIG                |
+  | DEFAULT-WEB-DIRECTORY             |
+  | *GLOBAL-SESSION-DB-LOCK*          |
+  | *IPV6*                            |
+  | *WILDCARD-PORT*                   |
+  | WITH-SLIME-CONNECTION             |
+  | REGISTER-DBUS-SIGNAL-HANDLER      |
+  | REMOVE-SESSION                    |
+  | HTTP-STATUS-TEXT                  |
+  | CONNECTION-NEXT-SERIAL            |
+  | HANDLE-CONNECTION                 |
+  | FREE-SOCKADDR-FOR                 |
+  | DECODE-RECORD                     |
+  | INVALID-METHOD                    |
+  | INVOKE-METHOD                     |
+  | *QUAD9-SERVERS*                   |
+  | DBUS-ERROR-MESSAGE                |
+  | REMOTE-ADDR*                      |
+  | OAUTH-SERVICE                     |
+  | *DEFAULT-OSC-BUFFER-SIZE*         |
+  | +DNS-PORT+                        |
+  | *HEADERS-SENT*                    |
+  | CB-HEADER-FIELD                   |
+  | UNKNOWN-ERROR                     |
+  | OPERATION-NOT-PERMITTED-ERROR     |
+  | PROCESS-CONNECTION                |
+  | PARSE-SET-COOKIE-HEADER           |
+  | +KNOWN-HTTP-WORDS+                |
+  | SERVICE-STATUS-MESSAGE            |
+  | PARSE-RESPONSE                    |
+  | *DNSWATCH-SERVERS*                |
+  | *DEFAULT-BACKLOG*                 |
+  | WAIT-FOR-REPLY                    |
+  | *FINISH-PROCESSING-SOCKET*        |
+  | RECEIVE-MESSAGE-NO-HANG           |
+  | PROTOCOL-NOT-SUPPORTED-ERROR      |
+  | +KNOWN-HTTP-METHODS+              |
+  | SOCKET-DISCONNECT                 |
+  | SOCKET-SEND                       |
+  | *SESSION-DB*                      |
+  | NET-WARNING                       |
+  | INVALID-VERSION                   |
+  | SWANK-CONNECTION                  |
+  | INVALID-BOUNDARY                  |
+  | SESSION-EXPIRED-P                 |
+  | GET-PROTOCOL-BY-NAME              |
+  | MAKE-SOCKADDR-FOR                 |
+  | CONNECT-WORKER                    |
+  | HTTP-P                            |
+  | NET-SERVICE                       |
+  | NETDB-SUCCESS-ERROR               |
+  | INET-SOCKET                       |
+  | INITIALIZE-INSTANCE               |
+  | NET-SERVICE-REQUEST               |
+  | OSC-COMMAND                       |
+  | FORMAT-OSC-DATA                   |
+  | NGINX-SERVICE                     |
+  | SLIME-MIGRATE-EVALS               |
+  | HTTP-CHUNKED-P                    |
+  | NET-CONFIG                        |
+  | ACCEPT                            |
+  | SOCKET-TYPE-NOT-SUPPORTED-ERROR   |
+  | HTTP-CONTENT-LENGTH               |
+  | MAKE-TLV                          |
+  | HTTP-CONFIG                       |
+  | CADDY-SERVICE                     |
+  | EVAL-REPEATEDLY-ASYNC-STATE       |
+  | DBUS-SIGNAL-HANDLER               |
+  | +KNOWN-HTTP-VERSIONS+             |
+  | UDP-CONFIG                        |
+  | HTTP-MINOR-VERSION                |
+  | TLV-TYPE                          |
+  | +MESSAGE-NO-REPLY-EXPECTED+       |
+  | SOCKOPT-TCP-KEEPIDLE              |
+  | INVALID-URL                       |
+  | PUBLISH-OBJECTS                   |
+  | HTTP-SERVICE-RESPONSE             |
+  | EVAL-FORM-ALL-WORKERS             |
+  | WITH-OPEN-SOCKET                  |
+  | WITH-TCP-CLIENT                   |
+  | INVALID-CONSTANT                  |
+  | PING                              |
+  | SOCKET-BIND                       |
+  | *ROUTER*                          |
+  | SESSION-VALUE                     |
+  | RECORD-TYPE-ID                    |
+  | ENCODE-HEADER                     |
+  | SOCKOPT-REUSE-ADDRESS             |
+  | SLIME-EVAL                        |
+  | PROCESS-REQUEST                   |
+  | SLIME-NETWORK-ERROR               |
+  | SOCKET-TYPE                       |
+  | INVALID-PARAMETER-VALUE           |
+  | WITH-REQUEST-COUNT-INCF           |
+  | OPENAPI-SERVICE                   |
+  | WRAPPED-SOCKET                    |
+  | *CLOSE-SERVICE-STREAM*            |
+  | WITH-UDP-CLIENT                   |
+  | NETLINK-SOCKET                    |
+  | INVALID-PATH                      |
+  | HTTP-KEYWORD                      |
+  | LOCAL-PORT*                       |
+  | PORT                              |
+  | TCP-ECHO                          |
+  | GET-HOST-BY-NAME                  |
+  | FAMILY                            |
+  | NET-CONDITION                     |
+  | OAUTH-SERVICE-CONFIG              |
+  | CONNECTION-SERVER-ID              |
+  | DELETE-ROUTE                      |
+  | INVALID-PARAMETER-KEY             |
+  | DEFSERVICE                        |
+  | *SESSION-SECRET*                  |
+  | FIND-AUTHENTICATOR-CLASS          |
+  | CALLBACK-ERROR                    |
+  | RESOLVE                           |
+  | DBUS-HANDLER                      |
+  | BITS-OF-SOCKADDR                  |
+  | DECREMENT-THREAD-COUNT            |
+  | COOKIE                            |
+  | INET6-SOCKET                      |
+  | SLIME-EVAL-ASYNC                  |
+  | SESSION-GC                        |
+  | *DEFAULT-READ-TIMEOUT*            |
+  | INVALID-CHUNK-SIZE                |
+  | SLIME-CLOSE                       |
+  | MAKE-INET-SOCKET                  |
+  | COOKIE-HTTPONLY-P                 |
+  | OSC-MATCH                         |
+  | HTTP-RESPONSE                     |
+  | THREAD-PER-CONNECTION-ENGINE      |
+  | OPENAPI-SERVICE-CONFIG            |
+  | HOST-ENT-ADDRESSES                |
+  | COOKIE-NAME                       |
+  | OSC-DISPATCH                      |
+  | %HANDLE-CONNECTION                |
+  | SOCKET-OPEN-P                     |
+  | SESSION-VERIFY                    |
+  | DELETE-SESSION-VALUE              |
+  | OAPI-SERVER                       |
+  | HOST-ENT-ALIASES                  |
+  | *DEFAULT-SERVICE-PORT*            |
+  | CLIENT-CONFIG                     |
+  | SOCKET-MAKE-STREAM                |
+  | +MESSAGE-NO-AUTO-START+           |
+  | WITH-UNIX-SERVER                  |
+  | OAPI-CLIENT                       |
+  | WITH-UDP-SERVER                   |
+  | MAKE-OSC-BUNDLE                   |
+  | UNPRIVILEGED-PORT                 |
+  | RESET-CONNECTION-STREAM           |
+  | *SWANK-CONNECTIONS*               |
+  | WITH-OPEN-CONNECTION              |
+  | RECONNECT-WORKER                  |
+  | ADDRESS-IN-USE-ERROR              |
+  | HTTP-SERVICE-CONFIG               |
+  | NEXT-SESSION-ID                   |
+  | FIND-PORT                         |
+  | MAKE-SERVICE                      |
+  | SOCKOPT-RECEIVE-BUFFER            |
+  | START-SESSION                     |
+  | SOCKOPT-PRIORITY                  |
+  | ADDRESS                           |
+  | SESSION-TIMEOUT                   |
+  | DBUS-SIGNAL-MESSAGE               |
+  | TCP-RECEIVE-PING                  |
+  | SOCKOPT-DEBUG                     |
+  | REMOTE-PORT*                      |
+  | SOCKET-PEERNAME                   |
+  | EXECUTE-SERVICE                   |
+  | DBUS-TYPE                         |
+  | SESSION-SERVER-ADDRESSES          |
+  | RESET-SESSION-SECRET              |
+  | DBUS-METHOD-RETURN-MESSAGE        |
+  | LOCAL-SOCKET                      |
+  | COOKIE-DOMAIN                     |
+  | MAKE-MULTIPART-PARSER             |
+  | LF-EXPECTED                       |
+  | TLV-LENGTH                        |
+  | COOKIE-P                          |
+  | CREW-WORKER                       |
+  | *DEFAULT-PROXY*                   |
+  | HOST-ENT                          |
+  | DEFINE-DBUS-METHOD                |
+  | START-LISTENING                   |
+  | SOCKOPT-DONT-ROUTE                |
+  | *DNS-SERVERS*                     |
+  | SOCKOPT-BIND-TO-DEVICE            |
+  | MERGE-COOKIES                     |
+  | MAKE-COOKIE                       |
+  | INVALID-HEADER-TOKEN              |
+  | LOCAL-ADDR*                       |
+  | *GOOGLE-SERVERS*                  |
+  | WITH-UNIX-CLIENT                  |
+  | INVALID-EOF-STATE                 |
+  | DBUS-MESSAGE                      |
+  | ENSURE-NETMASK                    |
+  | *AUTHENTICATOR-CLASSES*           |
+  | NON-BLOCKING-MODE                 |
+  | COOKIE-JAR                        |
+  | PAUSED-ERROR                      |
+  | MAKE-SERVER                       |
+  | HTTP-CLIENT                       |
+  | WITH-OPEN-BUS                     |
+  | DECODE-OSC-MESSAGE                |
+  | HTTP-SERVICE                      |
+  | CB-MESSAGE-BEGIN                  |
+  | SOCKET-PROTOCOL                   |
+  | NETDB-INTERNAL-ERROR              |
+  | COOKIE-DATE                       |
+  | OPERATION-IN-PROGRESS             |
+  | CB-MESSAGE-COMPLETE               |
+  | HTTP-MAJOR-VERSION                |
+  | MAKE-SERVER-RESPONSE              |
+  | DISCONNECT-WORKER                 |
+  | COOKIE-JAR-HOST-COOKIES           |
+  | UDP-RECEIVE-PING                  |
+  | STRICT-ERROR                      |
+  | INVALID-PORT                      |
+  | WAIT-FOR-FREE-CONNECTION          |
+  | STRINGIFY-COOKIE                  |
+  | HTTP-MULTIPART-PARSE              |
+  | SIZE-OF-SOCKADDR                  |
+  | NETWORK-UNREACHABLE-ERROR         |
+  | *SESSION*                         |
+  | CB-BODY                           |
+  | OPERATION-TIMEOUT-ERROR           |
+  | DEFINE-DBUS-SIGNAL-HANDLER        |
+  | CB-HEADERS-COMPLETE               |
+  | MULTI-THREADED-ENGINE             |
+  | CB-HEADER-VALUE                   |
+  | MULTIPART-PARSING-ERROR           |
+  | DBUS-OBJECT                       |
+  | HOST-NOT-FOUND-ERROR              |
+  | SOCKOPT-OOB-INLINE                |
+  | ENCODE-QUERY                      |
+  | MAKE-INET6-ADDRESS                |
+  | WITH-SOCKET                       |
+  | UDP-SERVICE-CONFIG                |
+  | COOKIE-PATH                       |
+  | DEFINE-DBUS-OBJECT                |
+  | PROXY                             |
+  | SOCKET-CONNECT                    |
+  | *MESSAGE-LOG-LOCK*                |
+  | COOKIE-MAX-AGE                    |
 
 #+END:
 * Packages
@@ -68,6 +651,176 @@ underlying =SB-BSD-SOCKETS= class - either =INET-SOCKET= or
 #+CALL: lisp-package-symbols[:post transpose]("NET/CORE")
 
 #+RESULTS:
+| SOCKOPT-DEBUG                   |
+| HOST-ENT-ALIASES                |
+| SOCKOPT-TCP-USER-TIMEOUT        |
+| SOCKET-ACCEPT                   |
+| SOCKOPT-KEEP-ALIVE              |
+| WITH-UDP-CLIENT                 |
+| *DEFAULT-BACKLOG*               |
+| INET6-SOCKET                    |
+| SOCKET-CLOSE                    |
+| INET-SOCKET                     |
+| WITH-OPEN-SOCKET                |
+| SOCKET-TYPE-NOT-SUPPORTED-ERROR |
+| PEER                            |
+| *DEFAULT-READ-TIMEOUT*          |
+| STREAM-SOCKET                   |
+| WRAPPED-SOCKET                  |
+| SOCKOPT-BROADCAST               |
+| DEFAULT-INET-ADDRESS-FAMILY     |
+| CONNECTION-REFUSED-ERROR        |
+| SOCKOPT-SEND-BUFFER             |
+| CONNECTION-PENDING-MESSAGES     |
+| BAD-FILE-DESCRIPTOR-ERROR       |
+| UNKNOWN-PROTOCOL                |
+| SOCKOPT-ERROR                   |
+| NETDB-SUCCESS-ERROR             |
+| UNPRIVILEGED-PORT               |
+| NETDB-INTERNAL-ERROR            |
+| SOCKOPT-REUSE-ADDRESS           |
+| UNIX-SOCKET-CONFIG              |
+| HOST-ENT-ADDRESSES              |
+| DRAIN-PENDING-MESSAGES          |
+| SOCKOPT-PASS-CREDENTIALS        |
+| ADDRESSES-IN-SAME-NETWORK-P     |
+| WITH-UNIX-SERVER                |
+| ENDPOINT                        |
+| PRIVILEGED-PORT                 |
+| CLIENT                          |
+| HOST-ENT-NAME                   |
+| GET-ADDRESS-BY-NAME             |
+| SOCKET-ERROR                    |
+| SOCKOPT-TCP-KEEPCNT             |
+| *WILDCARD-PORT*                 |
+| WITH-SOCKET                     |
+| INTERRUPTED-ERROR               |
+| SOCKOPT-RECEIVE-LOW-WATER       |
+| SOCKOPT-PRIORITY                |
+| SOCKET-OPEN-P                   |
+| NO-RECOVERY-ERROR               |
+| ADDRESS-IN-USE-ERROR            |
+| MAKE-SERVER-RESPONSE            |
+| SEND-MESSAGE                    |
+| SOCKET-PROTOCOL                 |
+| ROUTER                          |
+| OPERATION-TIMEOUT-ERROR         |
+| CONNECT                         |
+| SOCKOPT-TCP-KEEPIDLE            |
+| WITH-CLIENT-SERVER              |
+| SOCKET-SEND                     |
+| SOCKOPT-TCP-NODELAY             |
+| SOCKET-TYPE                     |
+| SOCKOPT-TCP-KEEPINTVL           |
+| UNIX-ECHO                       |
+| ROUTE                           |
+| SOCKET                          |
+| UNIX-SOCKET                     |
+| MAKE-CLIENT-REQUEST             |
+| SOCKOPT-TYPE                    |
+| TCP-SOCKET                      |
+| PING                            |
+| HOST-ENT                        |
+| SOCKOPT-SEND-LOW-WATER          |
+| NET-ERROR                       |
+| UDP-CONFIG                      |
+| WITH-TCP-CLIENT                 |
+| SOCKET-DISCONNECT               |
+| SOCKET-PEERNAME                 |
+| OUT-OF-MEMORY-ERROR             |
+| OPERATION-NOT-SUPPORTED-ERROR   |
+| SOCKET-FILE-DESCRIPTOR          |
+| UDP-SOCKET                      |
+| HOST-NOT-FOUND-ERROR            |
+| CONNECTION-NEXT-SERIAL          |
+| MAKE-SERVER                     |
+| UDP-ECHO                        |
+| SOCKET-BIND                     |
+| MAKE-INET6-ADDRESS              |
+| NET-CONDITION                   |
+| MAKE-SOCKET                     |
+| MAKE-INET-ADDRESS               |
+| FREE-SOCKADDR-FOR               |
+| ADDRESS-IN-NETWORK-P            |
+| *DEFAULT-CONNECT-TIMEOUT*       |
+| SOCKOPT-OOB-INLINE              |
+| *DEFAULT-USER-AGENT*            |
+| GET-HOST-BY-NAME                |
+| UDP-RECEIVE-PING                |
+| SOCKET-LISTEN                   |
+| HOST-ENT-ADDRESS-TYPE           |
+| SOCKOPT-DONT-ROUTE              |
+| SOCKOPT-BIND-TO-DEVICE          |
+| INVALID-ARGUMENT-ERROR          |
+| CONNECTION-SERVER-ID            |
+| *PING-SIZE*                     |
+| NAME-SERVICE-ERROR              |
+| LOCAL-SOCKET                    |
+| SIZE-OF-SOCKADDR                |
+| SERVER                          |
+| IP-ADDRESS                      |
+| HOST-ENT-ADDRESS                |
+| GET-PROTOCOL-BY-NAME            |
+| LOCAL-ABSTRACT-SOCKET           |
+| GET-HOST-BY-ADDRESS             |
+| WAIT-FOR-REPLY                  |
+| MAKE-SOCKADDR-FOR               |
+| NET-WARNING                     |
+| SOCKET-CONFIG                   |
+| SOCKOPT-BSD-COMPATIBLE          |
+| PROXY                           |
+| UNIX-RECEIVE-PING               |
+| DATAGRAM-SOCKET                 |
+| ADDRESS-NETWORK-CLASS           |
+| SERVER-CONFIG                   |
+| TCP-CONFIG                      |
+| SOCKET-RECEIVE                  |
+| ADDRESS-PRIVATE-P               |
+| FIND-PORT                       |
+| NOT-CONNECTED-ERROR             |
+| WITH-OPEN-CONNECTION            |
+| SOCKET-FAMILY                   |
+| SOCKET-SHUTDOWN                 |
+| CLIENT-CONFIG                   |
+| ENSURE-NETMASK                  |
+| SOCKOPT-RECEIVE-BUFFER          |
+| *DEFAULT-MTU*                   |
+| WITH-UDP-SERVER                 |
+| SOCKET-NAME                     |
+| RECEIVE-MESSAGE-NO-HANG         |
+| PORT                            |
+| *WILDCARD-HOST*                 |
+| *IPV6*                          |
+| PROTOCOL-NOT-SUPPORTED-ERROR    |
+| MAKE-CLIENT                     |
+| ADDRESS                         |
+| DISCONNECT                      |
+| NETWORK-UNREACHABLE-ERROR       |
+| TCP-RECEIVE-PING                |
+| TCP-ECHO                        |
+| BITS-OF-SOCKADDR                |
+| NON-BLOCKING-MODE               |
+| OPERATION-NOT-PERMITTED-ERROR   |
+| NET-CONFIG                      |
+| SOCKET-CONNECT                  |
+| MAKE-INET-SOCKET                |
+| SOCKET-ADDRESS                  |
+| FAMILY                          |
+| GET-ADDRESS                     |
+| NO-BUFFERS-ERROR                |
+| MAKE-NETMASK                    |
+| *LOCALHOST*                     |
+| TCP-PING-SERVER                 |
+| ADDRESS-FAMILY-NOT-SUPPORTED    |
+| CONNECTION                      |
+| WITH-UNIX-CLIENT                |
+| WITH-SOCKET-STREAM              |
+| NETLINK-SOCKET                  |
+| *DEFAULT-PROXY*                 |
+| OPERATION-IN-PROGRESS           |
+| IPV4-NETWORK                    |
+| SOCKET-MAKE-STREAM              |
+| TRY-AGAIN-ERROR                 |
 
 ** codec
 :PROPERTIES:
@@ -93,6 +846,34 @@ underlying =SB-BSD-SOCKETS= class - either =INET-SOCKET= or
 #+CALL: lisp-package-symbols[:post transpose]("NET/COOKIE")
 
 #+RESULTS:
+| COOKIE-EQUAL              |
+| PARSE-SET-COOKIE-HEADER   |
+| COOKIE-EXPIRES            |
+| COOKIE-JAR-HOST-COOKIES   |
+| COOKIE-CREATION-TIMESTAMP |
+| COPY-COOKIE               |
+| COOKIE-JAR-COOKIES        |
+| COOKIE-MAX-AGE            |
+| COOKIE-DOMAIN             |
+| STRINGIFY-COOKIE          |
+| COOKIE-VALUE              |
+| COOKIE-ORIGIN-HOST        |
+| WRITE-SET-COOKIE-HEADER   |
+| COOKIE                    |
+| COOKIE-P                  |
+| WRITE-COOKIE-HEADER       |
+| COOKIE-SAME-SITE          |
+| COOKIE-PATH               |
+| MERGE-COOKIES             |
+| MAKE-COOKIE               |
+| COOKIE-HTTPONLY-P         |
+| COOKIE-JAR                |
+| COOKIE-PARTITIONED        |
+| MAKE-COOKIE-JAR           |
+| COOKIE-DATE               |
+| COOKIE-NAME               |
+| COOKIE=                   |
+| COOKIE-SECURE-P           |
 
 ** req
 :PROPERTIES:
@@ -103,3 +884,20 @@ underlying =SB-BSD-SOCKETS= class - either =INET-SOCKET= or
 #+CALL: lisp-package-symbols[:post transpose]("NET/REQ")
 
 #+RESULTS:
+| PUT                   |
+| DELETE                |
+| GET                   |
+| RETRY-REQUEST         |
+| FETCH                 |
+| *VERBOSE*             |
+| POST                  |
+| IGNORE-AND-CONTINUE   |
+| +SOCKS5-VERSION+      |
+| REQUEST               |
+| PATCH                 |
+| MAKE-CONNECTION-POOL  |
+| HEAD                  |
+| HTTP-CLIENT           |
+| *USE-CONNECTION-POOL* |
+| *CONNECTION-POOL*     |
+| CLEAR-CONNECTION-POOL |

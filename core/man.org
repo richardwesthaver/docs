@@ -70,17 +70,17 @@ For example:
 :ID:       ceb67759-c656-411d-a0c0-df19b18732e5
 :END:
 The core itself is not an application but is complex enough that it
-merits its own dedicated manual. There are dedicated manuals for the
-[[file:app/][applications]] and [[file:lib][libraries]] which are included with the core, so what
-we are concerned with here is the overall design, common patterns, and
-structure of the source code.
+merits its own dedicated manual. There is library-specific and API
+[[id:2634e0bd-29b2-4191-9892-766abfa7435e][documentation]] available for the core, so what we are concerned with
+here is the overall design, common patterns, and architecture of the
+core environment.
 
 This manual is often technical, but occassionally theoretical in
 nature and intended for software developers with expertise in Lisp,
 GNU/Linux, and Emacs.
 
 The Core is a Lisp system. Common Lisp is our language of choice and
-there is a significant amount of Emacs Lisp code too.
+there is a decent amount of Emacs Lisp code too.
 
 ** Source Code
 :PROPERTIES:
@@ -107,22 +107,18 @@ ls -Ah
 | readme.org     |
 | skel           |
 | skelfile       |
-| skel.org       |
 | slime          |
 | .stash         |
 | std            |
 
 - Common Lisp \\
-  The =STD= library lives under the =std= directory, FFI libraries
-  such as =ROCKSDB= under the =ffi= directory and user libraries like
-  =RDB= under the =lib= directory. Executables and scripts are located
-  under =bin=, application code for the =SKEL= and =MPK= systems under
-  =app= and various benchmarks under =bench=.
-  
-  The =app= directory contains 
+  The =STD= library lives under the [[vc:core/std][std]] directory, low-level FFI
+  library bindings such as =ROCKSDB= under the [[vc:core/alien][alien]] directory and
+  high-level user libraries like =RDB= under the [[vc:core/lib][lib]] directory. The
+  [[vc:core/skel][skel]] directory contains the source of our multi-purpose project
+  tool =SKEL=.
 - Emacs Lisp \\
-  The =emacs= directory contains a complete Emacs Lisp configuration
-  which is used during development.
+  The [[vc:core/etc/emacs][etc/emacs]] directory contains a complete Emacs configuration.
 
 ** Images
 :PROPERTIES:
@@ -196,13 +192,59 @@ self-respecting OS.
 :PROPERTIES:
 :ID:       636ffa98-c39a-4f2a-9a49-aa82497a8ca8
 :END:
+** Dependencies
+:PROPERTIES:
+:ID:       22b763b9-c781-4061-b5ef-fc4f19720cf0
+:END:
+To ensure dependencies on an existing system you should refer to the
+[[comp:docs/infra/man][infra manual]].
+
+A PKGBUILD recipe is planned but not ready AO [2026-04-18 Sat]. Note
+that RocksDB should be installed via the =infra= project (the default
+=extra/rocksdb= package is not compatible).
+
+*** Required Dependencies
+The following dependencies are _required_ - Arch Linux is assumed but
+other distros should work.
+
+- linux-headers
+- gcc
+- sbcl
+- emacs
+- quicklisp
+- rocksdb (jemalloc is not supported)
+- zstd
+- mercurial
+- openssl
+
+*** Optional Dependencies
+Some of these dependencies may already be installed on your system,
+others will need to be installed manually or via [[vc:infra][infra]].
+
+- cuda
+- evdev
+- jack
+- libjpeg-turbo
+- xkbcommon
+- keyutils
+- sndfile
+- libssh2
+- btrfsutils
+- gstreamer
+- tree-sitter
+- blake3
+- liburing
+- alsa
+- ffmpeg
+- chromaprint
+- openblas (blas/lapack)
+
 ** Bootstrap
 :PROPERTIES:
 :ID:       dcb3ffff-5388-4387-8a46-553ae0309d70
 :END:
-Bootstrapping from SBCL is quite easy. All that is needed is to get
-the source and run bootstrap.lisp[fn:2].
-
+Bootstrapping from SBCL is quite easy. Once all required dependencies
+are installed, just run [[vc:core/bootstrap.lisp][bootstrap.lisp]]:
 #+begin_src shell :eval never :exports code
 # clone the source code from a mirror
 git clone https://codeberg.org/c-c/core
@@ -211,44 +253,7 @@ sbcl --script bootstrap.lisp
 sudo .stash/core --script etc/script/install.lisp
 #+end_src
 
-[fn:2] Assuming you have all the dependencies installed... 
-
-*** Dependencies
-:PROPERTIES:
-:ID:       22b763b9-c781-4061-b5ef-fc4f19720cf0
-:END:
-If you do choose to build from source without using =infra=, make sure
-you're on GNU/Linux and have the required packages installed.
-
-- *Required*
-  - linux-headers
-  - gcc
-  - sbcl
-  - emacs
-  - quicklisp
-  - rocksdb (FROM SOURCE - jemalloc must be disabled)
-  - zstd
-  - mercurial
-  - openssl
-
-- *Optional*
-  - cuda
-  - evdev
-  - jack
-  - libjpeg-turbo
-  - xkbcommon
-  - keyutils
-  - sndfile
-  - libssh2
-  - btrfsutils
-  - gstreamer
-  - tree-sitter
-  - blake3
-  - liburing
-  - alsa
-  - ffmpeg
-  - chromaprint
-  - openblas (blas/lapack)
+Release tarballs are planned but not available AO [2026-04-18 Sat].
 
 ** Configuration
 :PROPERTIES:
@@ -258,18 +263,81 @@ The next thing you'll want to take care of is user configuration. You
 can save your configuration at your preferred XDG-compliant location
 (=~/.config/corerc= is recommended).
 
-#+begin_src lisp :eval no
+#+begin_src lisp :var path-to-core="~/comp/core/" path-to-shed="~/comp/shed/" :package user :results output replace
 ;;; .corerc --- core init file -*- mode: common-lisp; -*-
-(in-package :user)
 (init :xdg) ;; apply user XDG config
 (init :term) ;; detect current terminal
 (init :log :level :debug) ;; enable global logger
 ;; index local systems
-(init :sys :sysdefs '("path/to/core/" #+optional "path/to/shed/"))
+(init :sys :sysdefs (append (sysdefs path-to-core t) #+optional (sysdefs path-to-shed t)))
 #+end_src
 
+#+RESULTS:
+#+begin_example
+; 0:01:59.008 loading systems from /home/ellis/comp/core/core.sys
+; 0:01:59.010 loading systems from /home/ellis/comp/core/alien/alien.sys
+; 0:01:59.012 loading systems from /home/ellis/comp/core/alien/alsa/alsa.sys
+; 0:01:59.014 loading systems from /home/ellis/comp/core/alien/arrow/arrow.sys
+; 0:01:59.017 loading systems from /home/ellis/comp/core/alien/blas/blas.sys
+; 0:01:59.019 loading systems from /home/ellis/comp/core/alien/btrfs/btrfs.sys
+; 0:01:59.021 loading systems from /home/ellis/comp/core/alien/chromaprint/chromaprint.sys
+; 0:01:59.023 loading systems from /home/ellis/comp/core/alien/cuda/cuda.sys
+; 0:01:59.026 loading systems from /home/ellis/comp/core/alien/evdev/evdev.sys
+; 0:01:59.028 loading systems from /home/ellis/comp/core/alien/ffmpeg/ffmpeg.sys
+; 0:01:59.030 loading systems from /home/ellis/comp/core/alien/glib/glib.sys
+; 0:01:59.032 loading systems from /home/ellis/comp/core/alien/gstreamer/gstreamer.sys
+; 0:01:59.034 loading systems from /home/ellis/comp/core/alien/jack/jack.sys
+; 0:01:59.036 loading systems from /home/ellis/comp/core/alien/jpeg/jpeg.sys
+; 0:01:59.038 loading systems from /home/ellis/comp/core/alien/keyutils/keyutils.sys
+; 0:01:59.040 loading systems from /home/ellis/comp/core/alien/openssl/openssl.sys
+; 0:01:59.042 loading systems from /home/ellis/comp/core/alien/rocksdb/rocksdb.sys
+; 0:01:59.045 loading systems from /home/ellis/comp/core/alien/security/security.sys
+; 0:01:59.047 loading systems from /home/ellis/comp/core/alien/sndfile/sndfile.sys
+; 0:01:59.049 loading systems from /home/ellis/comp/core/alien/ssh2/ssh2.sys
+; 0:01:59.051 loading systems from /home/ellis/comp/core/alien/sys/sys.sys
+; 0:01:59.053 loading systems from /home/ellis/comp/core/alien/tree-sitter/tree-sitter.sys
+; 0:01:59.055 loading systems from /home/ellis/comp/core/alien/uring/uring.sys
+; 0:01:59.057 loading systems from /home/ellis/comp/core/alien/xkb/xkb.sys
+; 0:01:59.059 loading systems from /home/ellis/comp/core/alien/zstd/zstd.sys
+; 0:01:59.061 loading systems from /home/ellis/comp/core/ironclad/ironclad.sys
+; 0:01:59.192 loading systems from /home/ellis/comp/core/lib/box/box.sys
+; 0:01:59.195 loading systems from /home/ellis/comp/core/lib/cli/cli.sys
+; 0:01:59.198 loading systems from /home/ellis/comp/core/lib/cry/cry.sys
+; 0:01:59.200 loading systems from /home/ellis/comp/core/lib/dat/dat.sys
+; 0:01:59.202 loading systems from /home/ellis/comp/core/lib/doc/doc.sys
+; 0:01:59.204 loading systems from /home/ellis/comp/core/lib/dsp/dsp.sys
+; 0:01:59.206 loading systems from /home/ellis/comp/core/lib/io/io.sys
+; 0:01:59.208 loading systems from /home/ellis/comp/core/lib/log/log.sys
+; 0:01:59.210 loading systems from /home/ellis/comp/core/lib/math/math.sys
+; 0:01:59.214 loading systems from /home/ellis/comp/core/lib/net/net.sys
+; 0:01:59.216 loading systems from /home/ellis/comp/core/lib/nlp/nlp.sys
+; 0:01:59.219 loading systems from /home/ellis/comp/core/lib/obj/obj.sys
+; 0:01:59.224 loading systems from /home/ellis/comp/core/lib/organ/organ.sys
+; 0:01:59.228 loading systems from /home/ellis/comp/core/lib/parse/parse.sys
+; 0:01:59.230 loading systems from /home/ellis/comp/core/lib/pod/pod.sys
+; 0:01:59.233 loading systems from /home/ellis/comp/core/lib/q/q.sys
+; 0:01:59.235 loading systems from /home/ellis/comp/core/lib/rdb/rdb.sys
+; 0:01:59.237 loading systems from /home/ellis/comp/core/lib/rt/rt.sys
+; 0:01:59.239 loading systems from /home/ellis/comp/core/lib/syn/syn.sys
+; 0:01:59.244 loading systems from /home/ellis/comp/core/lib/vc/vc.sys
+; 0:01:59.245 loading systems from /home/ellis/comp/core/ppcre/ppcre.sys
+; 0:01:59.247 loading systems from /home/ellis/comp/core/skel/skel.sys
+; 0:01:59.252 loading systems from /home/ellis/comp/core/slime/swank.sys
+; 0:01:59.254 loading systems from /home/ellis/comp/core/std/std.sys
+#+end_example
+
 The only other development dependency which needs configuring is
-Emacs.
+Emacs. This can be done via the =skel= tool, but keep in mind that
+this will overwrite the XDG-compliant emacs configuration directory
+(=~/.config/emacs=) if it exists:
+
+#+begin_src shell :results output replace
+skel make install-emacs
+#+end_src
+
+#+RESULTS:
+: #:debug 0.140999
+: ; (#<rule install-emacs>)
 
 *** Core
 :PROPERTIES:
@@ -330,32 +398,29 @@ Emacs configuration using the =skel= command.
   #+end_src
 
   #+RESULTS:
-  : #:debug 0.154999
+  : #:debug 0.139999
   : ; (#<rule install-emacs>)
 
 The default config supports user customizations in a file with the
 same name as the current user, so when the current =$USER= is ~ellis~
 then we check for the file =ellis.el= and load it if it exists.
 
-** Demo
+** Demos
 :PROPERTIES:
 :ID:       ec5dca14-eb23-4dac-962a-34f1a5d4fd1f
 :CREATED:  <2025-07-07 Mon 14:11>
 :END:
 Core demo applications, examples, and tutorials can be found in the
-[[gh:richardwesthaver/demo][demo repository]] with documentation [[comp:docs/demo][here]].
+[[vc:demo][demo]] project with documentation [[comp:docs/demo][available online]].
 ** Testing
 :PROPERTIES:
 :ID:       c074e53b-846d-45ed-8ddc-70e559ed6f0c
 :END:
 Each module in the core contains its own test suite located in the
-=tests.lisp= file or =tests= directory and isolated to its own ASDF
-system. The ASDF system is always the module name prefixed by
+=tests.lisp= file or =tests= directory and isolated to its own
+system. The system is always the module name with a suffix of
 =/tests= - for example the =IO/TESTS= system is responsible for
 testing the =IO= module system.
-
-In addition to the test suite we have a set of experimental
-benchmarks. These are kept in the top-level =bench= directory.
 
 *** Regression Tests
 :PROPERTIES:
@@ -364,55 +429,36 @@ benchmarks. These are kept in the top-level =bench= directory.
 :END:
 Testing the core can be done from the CLI using =skel=:
 
-#+begin_src sh :dir ~/comp/core/ :eval never
+#+begin_src shell :eval no
   # skel compile tests
   skel run tests
 #+end_src
 
 or from lisp:
 
-#+begin_src lisp :eval never
-  (ql:quickload :core/tests)
-  (rt:run-all-tests)
+#+begin_src lisp :eval no
+  (test-system :core)
 #+end_src
-
-*** Benchmarks
-:PROPERTIES:
-:ID:       d2b45403-cec0-4b17-9295-d2ae7f19a1df
-:CREATED:  <2025-06-02 Mon 18:26>
-:END:
-
-using =skel=:
-
-#+begin_src sh :dir ~/comp/core/ :eval never
-  # skel compile bench
-  skel run bench db-stress
-#+end_src
-
-or from lisp:
-
-#+begin_src lisp :eval never
-  (ql:quickload :core/bench)
-  (use-package :core/bench)
-  (run-benchmark :db-stress)
-#+end_src
-
-#+RESULTS:
-: #<PACKAGE "CORE/BENCH/DB/STRESS">
 
 ** Documentation
 :PROPERTIES:
 :ID:       2634e0bd-29b2-4191-9892-766abfa7435e
 :CREATED:  <2025-09-30 Tue 21:48>
 :END:
-User docs for each [[file:app/][application]] and [[file:lib][library]] is available under separate
-directories.
+Module-level documentation is available in the [[comp:docs/core/lib][lib]] directory. This
+documentation is partially auto-generated, but generally reserved for
+extended developer documentation. Not all systems are guaranteed to be
+covered.
+
+AO [2026-04-18 Sat] full-auto API docs are planned but not
+available. They will be located under the [[comp:core/docs/api][api]] directory.
+
 ** Contributing
 :PROPERTIES:
 :ID:       e0657c76-395c-47b5-b5a6-1dcebd59ce7c
 :CREATED:  <2025-06-02 Mon 19:36>
 :END:
-The core is currently a solo project and I don't plan on accepting
+The core is a solo experiment and I don't plan on accepting
 contributions in the near future. The core is its own private island,
 isolated from the rest of the Common Lisp ecosystem and in almost all
 cases contributions would be better directed towards other packages.
@@ -425,33 +471,365 @@ source code which often reference popular packages from the ecosystem.
 :ID:       8e379ae7-5eca-4ccb-8603-e32a20ef2d37
 :CREATED:  <2025-09-30 Tue 21:49>
 :END:
-** System Paths
+** Systems
+:PROPERTIES:
+:ID:       d0f002d4-f42e-4aad-b8fe-9a2a930a696f
+:CREATED:  <2026-04-18 Sat 22:18>
+:END:
+** Logical Paths
 :PROPERTIES:
 :ID:       eb6edfd5-632f-43d4-aa93-fc07a523e8b1
 :CREATED:  <2026-04-17 Fri 19:09>
 :END:
-** DSLs
+*** Stash
+:PROPERTIES:
+:ID:       ee776fda-3bec-4b71-b4f4-fdc2b0bd53bb
+:CREATED:  <2026-04-18 Sat 23:00>
+:END:
+*** Shed
+:PROPERTIES:
+:ID:       1d9a49b3-c7c6-427c-9cd0-ae9f174d243f
+:CREATED:  <2026-04-18 Sat 22:59>
+:END:
+*** Scratch
+:PROPERTIES:
+:ID:       1d02e7c3-47c2-4a68-b901-81d9b82b2e8b
+:CREATED:  <2026-04-18 Sat 23:00>
+:END:
+** Reader
+:PROPERTIES:
+:ID:       2f1fd6e4-af27-4128-99dc-078216d1105c
+:CREATED:  <2026-04-18 Sat 23:01>
+:END:
+** Printer
+:PROPERTIES:
+:ID:       9943ef84-5484-4d3a-b33b-1ac96a9cd59c
+:CREATED:  <2026-04-18 Sat 23:01>
+:END:
+** Macros
+:PROPERTIES:
+:ID:       22cb1cff-c5d3-4c98-9a31-cbd5c0403a98
+:CREATED:  <2026-04-18 Sat 22:16>
+:END:
+*** DSLs
 :PROPERTIES:
 :ID:       66a1a653-29b1-4446-a66e-a3587979edca
 :CREATED:  <2026-04-17 Fri 19:10>
 :END:
-* Features
+*** Memoization
 :PROPERTIES:
-:ID:       06954eeb-7ed8-4a81-ae8b-730b4c89e40e
-:CREATED:  <2025-09-30 Tue 21:55>
+:ID:       3dc4b9cd-56fa-46b9-b747-7a71704e755b
+:CREATED:  <2026-04-18 Sat 22:17>
 :END:
 * Protocols
 :PROPERTIES:
 :ID:       bc25aea1-1375-405e-b091-6660e21e9916
 :CREATED:  <2025-09-30 Tue 21:56>
 :END:
-* Applications
+~Protocols~ are keyed groupings of symbols, sort of like light-weight
+packages.
+
+#+begin_src lisp :results replace
+(fmt-tree nil (find-module :std :proto :kernel) :plist t :layout :down)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+:KERNEL
+ ├─ :PACKAGE
+ │   ╰─ :STD/PRIM
+ ├─ :DESCRIPTION
+ │   ╰─ "Standard funcallable object extensions."
+ ├─ :VARIABLES
+ │   ╰─ (*KERNEL*)
+ ├─ :CONDITIONS
+ │   ╰─ (KERNEL-INIT-ERROR NO-KERNEL-ERROR)
+ ├─ :ACCESSORS
+ │   ╰─ (KERNEL KERNEL-INFO KERNEL-DOCUMENTATION)
+ ├─ :METHODS
+ │   ╰─ (KERNEL-EXPRESSION)
+ ├─ :FUNCTIONS
+ │   ╰─ (CHECK-KERNEL MAKE-KERNEL)
+ ├─ :MACROS
+ │   ╰─ (DEFKERNEL)
+ ├─ :PREDICATES
+ │   ╰─ (KERNELP)
+ ╰─ :CLASSES
+     ╰─ (KERNEL-CLASS KERNEL-OBJECT)
+#+end_example
+
+Protocols are designated by a key with an associated plist (the cdr of
+~(find-module ... :proto ...)~). The list of available /plist/ keys in
+a protocol are identified by a variable:
+
+#+begin_src lisp :results list
+std/defsys::*protocol-keyword-imports*
+#+end_src
+
+#+RESULTS:
+- :METHODS
+- :FUNCTIONS
+- :TYPES
+- :VARIABLES
+- :CONSTANTS
+- :PARAMETERS
+- :MACROS
+- :CONDITIONS
+- :RESTARTS
+- :ACCESSORS
+- :PREDICATES
+- :CLASSES
+
+* Skel
 :PROPERTIES:
 :ID:       01613601-0dc2-4d4d-9354-7ffcc0a1eaed
 :CREATED:  <2025-09-30 Tue 21:58>
 :END:
+#+begin_src shell :results pp replace :exports both
+skel help
+#+end_src
+
+#+RESULTS:
+: skel v0.1.1:ea8ef1984539 --- The hackable devtool.
+: usage: skel [opts] <command> [<arg>]
+
+The =skel= tool is an extensible program designed around the idea of
+[[id:359441da-1b61-4d73-8563-605ea7262b58][projects]].
+
+#+BEGIN: lisp-system-info :system skel :tests nil :symbols nil :dependencies nil :dependents nil
+- packages
+  #+CALL: lisp-system-packages[:post transpose]("skel")
+
+  #+RESULTS:
+  | SKEL/COMP/BOX        |
+  | SKEL/CORE            |
+  | SKEL/PACKY/PKGBUILD  |
+  | SKEL/COMP/DIR-LOCALS |
+  | SKEL/COMP/LISP       |
+  | SKEL/COMP            |
+  | SKEL/COMP/CONTAINER  |
+  | SKEL/HOMER/CORE      |
+  | SKEL/COMP/ORG        |
+  | SKEL/MPK/MPD         |
+  | SKEL/MPK/METRO       |
+  | SKEL/HOMER           |
+  | SKEL/MPK/DB          |
+  | SKEL/MPK/CLI         |
+  | SKEL/COMP/CARGO      |
+  | SKEL                 |
+  | SKEL/CLI             |
+  | SKEL-INT             |
+  | SKEL/COMP/INFER      |
+  | SKEL/HOMER/CLI       |
+  | SKEL/NET             |
+  | SKEL/PACKY/CLI       |
+  | SKEL/MPK             |
+  | SKEL/COMP/MAKEFILE   |
+  | SKEL/PACKY           |
+  | SKEL/PACKY/APKBUILD  |
+  | SKEL/COMP/SYS        |
+  | SKEL/SRV             |
+  | SKEL/KRYPT           |
+  | SKEL/COMP/ASD        |
+
+- files
+  #+CALL: lisp-system-files[:post transpose]("skel")
+
+  #+RESULTS:
+  | skel.sys             |
+  | pkg.lisp             |
+  | core/condition.lisp  |
+  | core/proto.lisp      |
+  | core/header.lisp     |
+  | core/var.lisp        |
+  | core/obj.lisp        |
+  | core/component.lisp  |
+  | core/rule.lisp       |
+  | core/project.lisp    |
+  | core/pack.lisp       |
+  | core/print.lisp      |
+  | core/schema.lisp     |
+  | core/db.lisp         |
+  | core/log.lisp        |
+  | core/util.lisp       |
+  | comp/lisp.lisp       |
+  | comp/asd.lisp        |
+  | comp/cargo.lisp      |
+  | comp/box.lisp        |
+  | comp/container.lisp  |
+  | comp/org.lisp        |
+  | comp/dir-locals.lisp |
+  | comp/makefile.lisp   |
+  | comp/sys.lisp        |
+  | comp/infer.lisp      |
+  | net.lisp             |
+  | srv.lisp             |
+  | packy/pkg.lisp       |
+  | packy/var.lisp       |
+  | packy/proto.lisp     |
+  | packy/pkgbuild.lisp  |
+  | packy/apkbuild.lisp  |
+  | packy/db.lisp        |
+  | packy/client.lisp    |
+  | packy/srv.lisp       |
+  | packy/cfg.lisp       |
+  | packy/cli.lisp       |
+  | krypt/pkg.lisp       |
+  | krypt/condition.lisp |
+  | krypt/krypt.lisp     |
+  | krypt/cli.lisp       |
+  | homer/pkg.lisp       |
+  | homer/var.lisp       |
+  | homer/log.lisp       |
+  | homer/util.lisp      |
+  | homer/task.lisp      |
+  | homer/cfg.lisp       |
+  | homer/srv.lisp       |
+  | homer/cli.lisp       |
+  | mpk/pkg.lisp         |
+  | mpk/mpd.lisp         |
+  | mpk/var.lisp         |
+  | mpk/proto.lisp       |
+  | mpk/util.lisp        |
+  | mpk/db.lisp          |
+  | mpk/cfg.lisp         |
+  | mpk/net.lisp         |
+  | mpk/metro.lisp       |
+  | mpk/mpk.lisp         |
+  | mpk/cli.lisp         |
+  | cli.lisp             |
+  | skel.lisp            |
+
+#+END:
+
+** Architecture
+:PROPERTIES:
+:ID:       4fd2d7eb-e738-4e2f-8de1-3b8f5671d488
+:END:
+
+*** Core
+:PROPERTIES:
+:ID:       35a5aa3b-1ff1-46ea-9ec7-1d6c9a2386f2
+:CREATED:  <2026-01-03 Sat 20:09>
+:END:
+The library core is built on CLOS. Most important data structures are
+represented with classes, slots, and methods such as the =SK-PROJECT=
+class which is based on the =OBJ:PROJECT= class (a generic project
+type).
+
+*** Components
+:PROPERTIES:
+:ID:       c86d03b4-dc7d-4836-8bdb-58498bd84e46
+:CREATED:  <2026-01-03 Sat 20:09>
+:END:
+In addition to the core objects we provide a set of =SK-COMPONENT=
+definitions which convert core objects to a corresponding external
+representation. For example the =makefile= class defined in
+=comp/makefile.lisp= can be built from or consumed by a project.
+
+** Configuration
+:PROPERTIES:
+:ID:       2658a3d1-cfa5-436e-b2b0-9cf42a6f66c6
+:END:
+The ~skel~ tool can be configured at runtime using the CLI flags, or
+via local configuration files. The configuration files are in the
+~skelfile~ format and are assigned the following locations by default:
+- =*user-skelrc*= :: =$XDG_CONFIG_HOME/skelrc=
+- =*system-skelrc*= :: =/etc/skelrc=
+
+Both files are optional and the user skelrc takes precedence over
+system.
+
+Example =~/.config/skelrc=:
+#+begin_src shell :results output :exports both
+cat ~/.config/skelrc
+#+end_src
+
+#+RESULTS:
+#+begin_example
+;;; skelrc @ 2023-10-12.02:58:08 -*- mode: skel; -*-
+:name "Richard Westhaver"
+:email "richard.westhaver@gmail.com"
+:version "0.1.0"
+:fmt :pretty
+:vc :hg
+:auto-insert t
+:license :mpl2
+:logger (:level :info)
+:stash ".stash"
+:store "/opt/store"
+:scripts ("~/.stash/scripts")
+#+end_example
+
+** Projects
+:PROPERTIES:
+:ID:       359441da-1b61-4d73-8563-605ea7262b58
+:END:
+Projects are the highest-level objects int the ~skel~ system. A
+project consists of a list of slots which are populated automatically
+or by the user. Once a project is initialized the slots can be
+accessed and a set of high-level operations can be performed.
+
+The easiest way to initialize a project is with a ~skelfile~. These
+files are parsed as a simplified Lisp dialect and generate
+~sk-project~ objects based on their contents.
+
+The simplest project looks like this:
+
+#+begin_src lisp :eval never
+:name hello-world
+#+end_src
+
+Don't worry, this is still lisp - the parentheses are implied. All we
+actually need is a name to generate an object, and we can fill in the
+blanks later as the project develops.
+
+Here is a more verbose example, still with only metadata:
+
+#+begin_src lisp :eval never
+;;; skelfile --- core skelfile -*- mode: skel; -*-
+:name "core"
+:author "Richard Westhaver <ellis@rwest.io>"
+:version "0.1.0"
+:license "MPL"
+:description "The Compiler Company Core"
+:vc :hg
+:tags ("core")
+:docs ((:org "readme") (:org "install") (:org "tests") (:org "todo"))
+:include ("emacs/emacs.sk")
+#+end_src
+
+Another example with rules and components:
+
+#+begin_src lisp :eval never
+;;; skelfile @ 2023-10-08.02:37:25 -*- mode: skel; -*-
+:name skel
+:author "ellis"
+:version "0.1.0"
+:description "a hacker's project compiler"
+:license "MPL"
+:vc :hg
+:tags ("lisp")
+:rules ((build () (print (asdf:make :skel/cli)))
+        (clean () #$rm -rf */*.fasl$#))
+:docs ((:org "readme"))
+:components
+((:elisp "sk"))
+:stash "~/.stash"
+#+end_src
+
 * Hacking
 :PROPERTIES:
 :ID:       a2797272-550f-4b96-a0c5-c0660af57d05
 :CREATED:  <2025-09-30 Tue 21:56>
 :END:
+Lisp is by nature a hacking-friendly language, and every effort is
+made to preserve those properties throughout the core. As a result it
+is easy to change any symbol and modify any place in a running core
+system, although the consequences may range from unexpected to
+catastrophic if attempts are made to use or modify
+internals. Especially when dealing with ~alien~ objects it's just as
+easy to corrupt your Lisp image as it is to modify it.
+
+When hacking on the source refer to the [[comp:docs/core/lib][library]] docs and take note of
+the file comments, especially inline tasks.
