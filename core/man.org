@@ -211,8 +211,9 @@ other distros should work.
 - gcc
 - sbcl
 - emacs
-- quicklisp
-- rocksdb (jemalloc is not supported)
+- rocksdb (built WITHOUT jemalloc)
+  - gflags
+  - intel-oneapi-tbb
 - zstd
 - mercurial
 - openssl
@@ -284,7 +285,7 @@ skel make install-emacs
 #+end_src
 
 #+RESULTS:
-: #:debug 0.132999
+: #:debug 0.137999
 : ; (#<rule install-emacs>)
 
 *** Core
@@ -346,7 +347,7 @@ Emacs configuration using the =skel= command.
   #+end_src
 
   #+RESULTS:
-  : #:debug 0.128999
+  : #:debug 0.131999
   : ; (#<rule install-emacs>)
 
 The default config supports user customizations in a file with the
@@ -538,7 +539,7 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:4daabedcef58+ --- The hackable devtool.
+: skel v0.1.1:6964cc7b7f5a+ --- The hackable devtool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
