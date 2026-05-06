@@ -285,7 +285,7 @@ skel make install-emacs
 #+end_src
 
 #+RESULTS:
-: #:debug 0.135999
+: #:debug 0.133999
 : ; (#<rule install-emacs>)
 
 *** Core
@@ -347,7 +347,7 @@ Emacs configuration using the =skel= command.
   #+end_src
 
   #+RESULTS:
-  : #:debug 0.126999
+  : #:debug 0.163999
   : ; (#<rule install-emacs>)
 
 The default config supports user customizations in a file with the
@@ -425,25 +425,56 @@ source code which often reference popular packages from the ecosystem.
 :ID:       d0f002d4-f42e-4aad-b8fe-9a2a930a696f
 :CREATED:  <2026-04-18 Sat 22:18>
 :END:
-** Logical Paths
+** Logical Hosts
 :PROPERTIES:
 :ID:       eb6edfd5-632f-43d4-aa93-fc07a523e8b1
 :CREATED:  <2026-04-17 Fri 19:09>
 :END:
-*** Stash
+[[id:bbdc87f1-cece-474f-905e-d02401e82510][Logical Pathnames]] are used sparingly in the ~core~ source but their
+use is encouraged by users. Several logical hosts are pre-defined in
+addition to the SBCL =SYS= host.
+
+#+begin_src lisp
+(list-all-logical-host-names)
+#+end_src
+
+#+RESULTS:
+| ETC | MEDIA | SCRATCH | SRV | STASH | STORE | SYS | USER | USR | VAR |
+
+*** VAR
 :PROPERTIES:
-:ID:       ee776fda-3bec-4b71-b4f4-fdc2b0bd53bb
-:CREATED:  <2026-04-18 Sat 23:00>
+:ID:       d4aba737-7ed5-4548-919e-4f54b48a65f1
+:CREATED:  <2026-05-04 Mon 21:01>
 :END:
-*** Shed
+*** SRV
+:PROPERTIES:
+:ID:       c5f3eeef-3a7e-43f7-a87d-41eb53656ad0
+:CREATED:  <2026-05-04 Mon 21:01>
+:END:
+*** ETC
+:PROPERTIES:
+:ID:       c95d90be-377f-4145-8626-56bc6a82a8f6
+:CREATED:  <2026-05-04 Mon 21:31>
+:END:
+*** USR
+:PROPERTIES:
+:ID:       da86a850-3b31-434f-b7fb-eb1868ce7ce1
+:CREATED:  <2026-05-04 Mon 21:01>
+:END:
+*** USER
+:PROPERTIES:
+:ID:       50ddd65b-0114-40a3-9965-c03a1822e7cc
+:CREATED:  <2026-05-04 Mon 21:05>
+:END:
+*** STASH
 :PROPERTIES:
 :ID:       1d9a49b3-c7c6-427c-9cd0-ae9f174d243f
 :CREATED:  <2026-04-18 Sat 22:59>
 :END:
-*** Scratch
+*** STORE
 :PROPERTIES:
-:ID:       1d02e7c3-47c2-4a68-b901-81d9b82b2e8b
-:CREATED:  <2026-04-18 Sat 23:00>
+:ID:       9b0ab705-85ac-45d2-898d-97ce83faa98f
+:CREATED:  <2026-05-04 Mon 21:00>
 :END:
 ** Reader
 :PROPERTIES:
@@ -528,6 +559,9 @@ std/defsys::*protocol-keyword-imports*
 - :ACCESSORS
 - :PREDICATES
 - :CLASSES
+- :STRUCTS
+- :DECLARATIONS
+- :GLOBALS
 
 * Skel
 :PROPERTIES:
@@ -539,13 +573,13 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:663795e8d3b0 --- The hackable devtool.
+: skel v0.1.1:3d76eef65e76 --- A universal project development tool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
 [[id:359441da-1b61-4d73-8563-605ea7262b58][projects]].
 
-#+BEGIN: lisp-system-info :system skel :tests nil :symbols nil :dependencies nil :dependents nil
+#+BEGIN: lisp-system-info :system skel :tests nil :symbols nil :dependencies nil :dependents nil :files nil
 - packages
   #+CALL: lisp-system-packages[:post transpose]("skel")
 
@@ -581,81 +615,12 @@ The =skel= tool is an extensible program designed around the idea of
   | SKEL/KRYPT           |
   | SKEL/COMP/ASD        |
 
-- files
-  #+CALL: lisp-system-files[:post transpose]("skel")
-
-  #+RESULTS:
-  | skel.sys             |
-  | pkg.lisp             |
-  | core/condition.lisp  |
-  | core/proto.lisp      |
-  | core/header.lisp     |
-  | core/var.lisp        |
-  | core/obj.lisp        |
-  | core/component.lisp  |
-  | core/rule.lisp       |
-  | core/project.lisp    |
-  | core/pack.lisp       |
-  | core/print.lisp      |
-  | core/schema.lisp     |
-  | core/db.lisp         |
-  | core/log.lisp        |
-  | core/util.lisp       |
-  | comp/lisp.lisp       |
-  | comp/asd.lisp        |
-  | comp/cargo.lisp      |
-  | comp/box.lisp        |
-  | comp/container.lisp  |
-  | comp/org.lisp        |
-  | comp/dir-locals.lisp |
-  | comp/makefile.lisp   |
-  | comp/sys.lisp        |
-  | comp/infer.lisp      |
-  | net.lisp             |
-  | srv.lisp             |
-  | packy/pkg.lisp       |
-  | packy/var.lisp       |
-  | packy/proto.lisp     |
-  | packy/pkgbuild.lisp  |
-  | packy/apkbuild.lisp  |
-  | packy/db.lisp        |
-  | packy/client.lisp    |
-  | packy/srv.lisp       |
-  | packy/cfg.lisp       |
-  | packy/cli.lisp       |
-  | krypt/pkg.lisp       |
-  | krypt/condition.lisp |
-  | krypt/krypt.lisp     |
-  | krypt/cli.lisp       |
-  | homer/pkg.lisp       |
-  | homer/var.lisp       |
-  | homer/log.lisp       |
-  | homer/util.lisp      |
-  | homer/task.lisp      |
-  | homer/cfg.lisp       |
-  | homer/srv.lisp       |
-  | homer/cli.lisp       |
-  | mpk/pkg.lisp         |
-  | mpk/mpd.lisp         |
-  | mpk/var.lisp         |
-  | mpk/proto.lisp       |
-  | mpk/util.lisp        |
-  | mpk/db.lisp          |
-  | mpk/cfg.lisp         |
-  | mpk/net.lisp         |
-  | mpk/metro.lisp       |
-  | mpk/mpk.lisp         |
-  | mpk/cli.lisp         |
-  | cli.lisp             |
-  | skel.lisp            |
-
 #+END:
 
 ** Architecture
 :PROPERTIES:
 :ID:       4fd2d7eb-e738-4e2f-8de1-3b8f5671d488
 :END:
-
 *** Core
 :PROPERTIES:
 :ID:       35a5aa3b-1ff1-46ea-9ec7-1d6c9a2386f2
@@ -666,6 +631,26 @@ represented with classes, slots, and methods such as the =SK-PROJECT=
 class which is based on the =OBJ:PROJECT= class (a generic project
 type).
 
+#+begin_src lisp :results list
+(mapcar 'name (components (find-component :core (find-system :skel))))
+#+end_src
+
+#+RESULTS:
+- condition
+- proto
+- header
+- var
+- obj
+- component
+- rule
+- project
+- pack
+- print
+- schema
+- db
+- log
+- util
+
 *** Components
 :PROPERTIES:
 :ID:       c86d03b4-dc7d-4836-8bdb-58498bd84e46
@@ -675,6 +660,37 @@ In addition to the core objects we provide a set of =SK-COMPONENT=
 definitions which convert core objects to a corresponding external
 representation. For example the =makefile= class defined in
 =comp/makefile.lisp= can be built from or consumed by a project.
+
+#+begin_src lisp :results list
+(mapcar 'name (components (find-component :comp (find-system :skel))))
+#+end_src
+
+#+RESULTS:
+- lisp
+- asd
+- cargo
+- box
+- container
+- org
+- dir-locals
+- makefile
+- sys
+- infer
+
+*** Apps
+:PROPERTIES:
+:ID:       6e3a9575-a6d9-46e7-a0cf-7f4bbde91040
+:CREATED:  <2026-05-04 Mon 21:36>
+:END:
+The ~skel~ system is further extended by built-in ~applications~ which
+specialize on skel objects in project domains of particular interest.
+
+There are currently 4 apps in addition to skel itself:
+
+- homer :: Home Management
+- packy :: Package Management
+- krypt :: Secrets Management
+- mpk :: Media Management
 
 ** Configuration
 :PROPERTIES:
@@ -725,7 +741,7 @@ files are parsed as a simplified Lisp dialect and generate
 
 The simplest project looks like this:
 
-#+begin_src lisp :eval never
+#+begin_src lisp :eval never :name skelfile-hello
 :name hello-world
 #+end_src
 
@@ -750,7 +766,7 @@ Here is a more verbose example, still with only metadata:
 
 Another example with rules and components:
 
-#+begin_src lisp :eval never
+#+begin_src lisp :eval never :name skelfile-simple
 ;;; skelfile @ 2023-10-08.02:37:25 -*- mode: skel; -*-
 :name skel
 :author "ellis"
@@ -767,6 +783,40 @@ Another example with rules and components:
 :stash "~/.stash"
 #+end_src
 
+The currently accessible ~sk-project~ be easily inferred via the
+~init~ protocol:
+#+begin_src lisp :results output replace
+(init :skel) ;; find the top-level skel project
+(describe *skel-project*)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+#<project ORG :components 0 :rules 15>
+  [standard-object]
+
+Slots with :INSTANCE allocation:
+  NAME                           = ORG
+  PATH                           = #P"/home/ellis/comp/org/skelfile"
+  AUTHOR                         = ("Richard Westhaver" . "ellis@rwest.io")
+  VERSION                        = "0.1.0"
+  TAGS                           = (ORG DOCS NOTES META PLAN ARCHIVE GRAPH)
+  DESCRIPTION                    = "CC Org Files"
+  LICENSE                        = "MPL"
+  AST                            = NIL
+  ID                             = 1784914079056115652
+  VC                             = #<VC/HG:HG-REPO {1207AE5EA3}>
+  SRC                            = #P"/home/ellis/comp/org/"
+  STASH                          = #P"/home/ellis/comp/org/.stash/"
+  STORE                          = #P"/home/ellis/comp/org/.stash/store/"
+  CACHE                          = #P"/home/ellis/comp/org/.stash/cache/"
+  COMPONENTS                     = #()
+  BIND                           = NIL
+  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {1207A6D393}>
+  RULES                          = #(#<rule default (build publish deploy dist-html dist-source..
+  INCLUDE                        = #()
+#+end_example
+
 * Hacking
 :PROPERTIES:
 :ID:       a2797272-550f-4b96-a0c5-c0660af57d05
@@ -781,4 +831,4 @@ internals. Especially when dealing with ~alien~ objects it's just as
 easy to corrupt your Lisp image as it is to modify it.
 
 When hacking on the source refer to the [[comp:docs/core/lib][library]] docs and take note of
-the file comments, especially inline tasks.
+the file comments, particularly inline tasks.

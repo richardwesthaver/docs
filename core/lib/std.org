@@ -480,7 +480,7 @@ in =std/condition=.
 
 #+RESULTS:
 | UNKNOWN-TOKEN               |
-| REQUIRED-ARGUMENT           |
+| *EXIT*                      |
 | INTERACT*                   |
 | DEF-SIMPLE-ERROR-REPORTER   |
 | PROTECT-ABORT               |
@@ -496,13 +496,14 @@ in =std/condition=.
 | *VERBOSE*                   |
 | MISSING-METHODS             |
 | OUT-OF-BOUNDS-ERROR         |
+| DEFINE-ERROR-REPORTER       |
 | INVOKE-TRANSFER-ERROR       |
 | WRAPPED-ERROR               |
 | INTERACT                    |
 | *ERROR-MESSAGE*             |
 | SIMPLE-PARSE-ERROR          |
 | *HANDLERS*                  |
-| RETRY                       |
+| *UNINTERESTING-CONDITIONS*  |
 | NYI!                        |
 | SIMPLE-READER-ERROR         |
 | TRANSFER-ERROR              |
@@ -524,13 +525,13 @@ in =std/condition=.
 | WRAP-ERROR                  |
 | ERROR-REASON                |
 | ERROR-ITEM                  |
-| DEFINE-ERROR-REPORTER       |
+| META-CONDITION              |
 | STD-WARNING                 |
 | WRAPPED-CONDITION           |
 | REPLACE-ENTRY-P             |
 | ERROR-NAME                  |
-| *UNINTERESTING-CONDITIONS*  |
-| META-CONDITION              |
+| REQUIRED-ARGUMENT           |
+| RETRY                       |
 | WRAPPED-CONDITION-VALUE     |
 | TRANSFER-ERROR-REPORT       |
 | MISSING-ENTRY               |
@@ -630,6 +631,7 @@ ANSI CL standard.
 | TYPE=                           |
 | TYPE-CLASS-NAME-OF              |
 | NON-NEGATIVE-RATIONAL-P         |
+| SIMPLE-OCTET-VECTOR             |
 | NON-NEGATIVE-FLOAT-P            |
 | NEGATIVE-FIXNUM                 |
 | NEGATIVE-FLOAT                  |
@@ -896,15 +898,16 @@ composition primitives.
 
 #+RESULTS:
 | [-reader                     |
-| {-reader                     |
-| #f-reader                    |
 | _                            |
+| #f-reader                    |
+| IGNORE-NUMARG                |
 | SUBST-MODE-PPCRE-LAMBDA-FORM |
-| #`-reader                    |
-| #~-reader                    |
-| #$-reader                    |
-| #"-reader                    |
 | MATCH-MODE-PPCRE-LAMBDA-FORM |
+| #$-reader                    |
+| #~-reader                    |
+| {-reader                     |
+| #"-reader                    |
+| #`-reader                    |
 | SEGMENT-READER               |
 | #l-reader                    |
 
@@ -1339,33 +1342,33 @@ Standard macros are defined in =std/macs=.
 #+RESULTS:
 #+begin_example
 (#<STANDARD-METHOD STD/IO:SERIALIZE (POD:CONTAINERFILE
-                                     (EQL :BYTES)) {1222E19143}>
+                                     (EQL :BYTES)) {12228310C3}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (POD:CONTAINERFILE
-                                     (EQL :STRING)) {1222E19133}>
+                                     (EQL :STRING)) {12228310B3}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                     (EQL :JSON)) {1203AC57A3}>
+                                     (EQL :JSON)) {1203A9B393}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                     (EQL :DOT)) {1203AC5793}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {12037E9373}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (COOKIE (EQL :STRING)) {1203A45BF3}>
+                                     (EQL :DOT)) {1203A9B383}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {12037F5FF3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (COOKIE (EQL :STRING)) {1203A3CE33}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (NET/CODEC/OSC::OSC-DATA
-                                     (EQL :OSC)) {1203AC47C3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :STRING)) {1203AC47B3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :BYTES)) {1203AC47A3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :QRCODE)) {1203851D93}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (INTEGER (EQL :BASE64)) {1203851893}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :BASE64)) {12037C43F3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :BASE64)) {1203851D73}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (GIF-STREAM (EQL :GIF)) {1203AC3413}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (TOML-TABLE (EQL :TOML)) {1203AC1643}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (DAT/HTML::NODE T) {12037D6123}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :XML)) {12037D4BC3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :JSON)) {12037D4B53}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :CSV)) {12037C43D3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (GRAPH (EQL :DOT)) {1203AC0183}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :URL)) {12037D2B13}>
+                                     (EQL :OSC)) {1203A9A3B3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :STRING)) {1203A9A3A3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :BYTES)) {1203A9A393}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :QRCODE)) {1203839E73}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (INTEGER (EQL :BASE64)) {1203839973}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :BASE64)) {12037BC433}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :BASE64)) {1203839E53}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (GIF-STREAM (EQL :GIF)) {1203A99003}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (TOML-TABLE (EQL :TOML)) {1203A97273}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (DAT/HTML::NODE T) {12037F2DA3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :XML)) {12037F1843}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :JSON)) {12037F17D3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :CSV)) {12037BC413}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (GRAPH (EQL :DOT)) {1203A95DB3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :URL)) {12037CF753}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (JPEG:JPEG-COMPRESSOR
-                                     (EQL :JPEG)) {1203AC1393}>)
+                                     (EQL :JPEG)) {1203A96FC3}>)
 #+end_example
 
 #+begin_src lisp
@@ -1375,53 +1378,53 @@ Standard macros are defined in =std/macs=.
 #+RESULTS:
 #+begin_example
 (#<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME
-                                       (EQL :CONTAINERFILE)) {1222DE0DE3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :AUTHINFO)) {1203851DC3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :AUTHINFO)) {1203853493}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :OPENAPI)) {12037E8613}>
+                                       (EQL :CONTAINERFILE)) {122281C263}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :AUTHINFO)) {1203839EA3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :AUTHINFO)) {1203854293}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :OPENAPI)) {12037F5293}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (JSON-OBJECT
-                                       (EQL :OPENAPI)) {1203AC14E3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :DBUS)) {120390DCB3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (VECTOR (EQL :OSC)) {12037C4413}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TLV)) {120390DCA3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (SIMPLE-ARRAY (EQL :TLV)) {12037C42B3}>
+                                       (EQL :OPENAPI)) {1203A97113}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :DBUS)) {12039128E3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (VECTOR (EQL :OSC)) {12037BC453}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TLV)) {12039128D3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (SIMPLE-ARRAY (EQL :TLV)) {12037BC2F3}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME
-                                       (EQL :SYSTEMD-UNIT)) {12038534A3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {12037D7B93}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BASE64)) {120390DC83}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BASE64)) {1203851D83}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BIB)) {1203851D23}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :BIB)) {1203853473}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BIB)) {120390DC73}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TOML)) {120390DC63}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :TOML)) {1203851D03}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :TOML)) {1203853453}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {12037D6193}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :INI)) {1203853443}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :INI)) {1203851CF3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :INI)) {120390DC53}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :HTML)) {12037D6113}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :SVG)) {1203851CD3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :SVG)) {1203853423}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :XML)) {1203853413}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :XML)) {120390DC43}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :XML)) {1203851CC3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JSON-SCHEMA)) {12037D4B63}>
+                                       (EQL :SYSTEMD-UNIT)) {12038542A3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {12037F4813}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BASE64)) {12039128B3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BASE64)) {1203839E63}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BIB)) {1203839E03}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :BIB)) {1203854273}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BIB)) {12039128A3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TOML)) {1203912893}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :TOML)) {1203839DE3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :TOML)) {1203854253}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {12037F2E13}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :INI)) {1203854243}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :INI)) {1203839DD3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :INI)) {1203912883}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :HTML)) {12037F2D93}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :SVG)) {1203839DB3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :SVG)) {1203854223}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :XML)) {1203854213}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :XML)) {1203912873}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :XML)) {1203839DA3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JSON-SCHEMA)) {12037F17E3}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (JSON-OBJECT
-                                       (EQL :JSON-SCHEMA)) {1203AC14C3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :JSON)) {120390DC33}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :JSON)) {12038533F3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :JSON)) {1203851C93}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :CSV)) {1203851C83}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :CSV)) {12037D4B33}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :CSV)) {12038533E3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :DOT)) {1203851C73}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :ASN1)) {12037D4B23}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :URL)) {12037D2B23}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JPEG)) {12037D49D3}>
+                                       (EQL :JSON-SCHEMA)) {1203A970F3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :JSON)) {1203912863}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :JSON)) {12038541F3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :JSON)) {1203839D73}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :CSV)) {1203839D63}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :CSV)) {12037F17B3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :CSV)) {12038541E3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :DOT)) {1203839D53}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :ASN1)) {12037F17A3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :URL)) {12037CF763}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JPEG)) {12037F1653}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (JPEG:JPEG-DECOMPRESSOR
-                                       (EQL :JPEG)) {1203AC13A3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :PKGBUILD)) {1200A06063}>)
+                                       (EQL :JPEG)) {1203A96FD3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :PKGBUILD)) {1200B685F3}>)
 #+end_example
 
 ** alien
@@ -1577,184 +1580,186 @@ Standard macros are defined in =std/macs=.
 #+CALL: lisp-package-symbols[:post transpose]("STD/META")
 
 #+RESULTS:
-| CLASS-EQUALP                               |
-| DEFINE-TEMPLATE-METHOD                     |
-| EXTRACT-LAMBDA-LIST                        |
-| INIT*                                      |
-| REMOVE-METHOD                              |
-| FUNCALLABLE-STANDARD-CLASS                 |
-| REMOVE-TEMPLATE-METHOD                     |
-| EXEC                                       |
-| METAOBJECT                                 |
-| COMPUTE-EFFECTIVE-METHOD                   |
-| ADD-DIRECT-METHOD                          |
-| DEFVERB                                    |
-| CLONE                                      |
-| BIND                                       |
-| READER-METHOD-CLASS                        |
-| STANDARD-DIRECT-SLOT-DEFINITION            |
-| UPGRADE                                    |
-| COMPUTE-APPLICABLE-METHODS-USING-CLASSES   |
-| STARTED-P                                  |
-| METHOD-QUALIFIERS                          |
-| ENSURE-FINALIZED                           |
-| T                                          |
-| DEFINE-TEMPLATE-GENERIC                    |
-| DEFCLASS!                                  |
-| ADD-DIRECT-SUBCLASS                        |
-| WRITE-OBJECT                               |
-| SWAP                                       |
-| FUNCALLABLE-STANDARD-OBJECT                |
-| CLEAN                                      |
-| START                                      |
-| SLOT-DEFINITION-INITFORM                   |
-| SLOT-DEFINITION-NAME                       |
-| LIST-CLASS-METHODS                         |
-| COMPUTE-DISCRIMINATING-FUNCTION            |
-| EQL-SPECIALIZER                            |
-| EXTRACT-SPECIALIZER-NAMES                  |
-| METHOD-SPECIALIZERS                        |
-| CLASS-PRECEDENCE-LIST                      |
-| ASSIGNEE                                   |
-| DEFACCESSOR                                |
-| FORWARD-REFERENCED-CLASS                   |
-| INTERN-EQL-SPECIALIZER                     |
-| UPDATE-DEPENDENT                           |
-| GENERIC-FUNCTION-METHOD-CLASS              |
-| STRUCT-CONSTRUCTOR                         |
-| DEFSHAM                                    |
-| STANDARD-METHOD                            |
-| FIND-METHOD-COMBINATION                    |
+| COMPUTE-DEFAULT-INITARGS                   |
 | TEMPLATE-FUNCTION-P                        |
-| METHOD-LAMBDA-LIST                         |
-| STANDARD-READER-METHOD                     |
-| EFFECTIVE-SLOT-DEFINITION-CLASS            |
+| EXPLORE                                    |
 | CLASS-NAME                                 |
-| SLOTS-AND-VALUES                           |
-| SLOT-VALUE-USING-CLASS                     |
-| SLOT-DEFINITION-INITARGS                   |
-| SET-FUNCALLABLE-INSTANCE-FUNCTION          |
-| CLASS-DIRECT-SUPERCLASSES                  |
-| REMOVE-DIRECT-SUBCLASS                     |
-| BUILT-IN-CLASS                             |
+| MAKE-INSTANCE                              |
+| SLOT-BOUNDP-USING-CLASS                    |
+| SLOT-DEFINITION-ALLOCATION                 |
+| STANDARD-CLASS                             |
+| READER-METHOD-CLASS                        |
+| SLOTS-BOUNDP                               |
+| COMPUTE-EFFECTIVE-SLOT-DEFINITION          |
+| BUILD                                      |
+| SPECIALIZER-DIRECT-GENERIC-FUNCTIONS       |
+| MAP-DEPENDENTS                             |
+| EQL-SPECIALIZER-OBJECT                     |
+| ALLOCATE-INSTANCE                          |
+| METHOD-LAMBDA-LIST                         |
+| GENERIC-FUNCTION-ARGUMENT-PRECEDENCE-ORDER |
+| RUN-OBJECT                                 |
+| SLOT-BOUNDP*                               |
+| COPY-OBJECT                                |
+| RESUME                                     |
+| SLOT-DEFINITION-INITFUNCTION               |
+| INIT*                                      |
+| ASSIGN                                     |
+| WRITE-OBJECT                               |
+| CLASS-PROTOTYPE                            |
+| GENERIC-FUNCTION-METHODS                   |
+| STANDARD-EFFECTIVE-SLOT-DEFINITION         |
+| METAOBJECT                                 |
+| DEFVERB                                    |
+| ADD-DIRECT-SUBCLASS                        |
 | SPECIALIZER-DIRECT-METHODS                 |
+| COMPUTE-SLOTS                              |
+| GENERIC-FUNCTION-METHOD-COMBINATION        |
+| METHOD-COMBINATION                         |
+| BIND                                       |
+| ADD-DIRECT-METHOD                          |
+| SLOT-DEFINITION-TYPE                       |
+| CLASS-DEFAULT-INITARGS                     |
+| SLOT-DEFINITION-INITARGS                   |
+| SLOTS-AND-VALUES                           |
+| GENERIC-FUNCTION-DECLARATIONS              |
+| ADD-METHOD                                 |
+| METHOD-SPECIALIZERS                        |
+| STANDARD-READER-METHOD                     |
+| CLASS-DIRECT-DEFAULT-INITARGS              |
+| SAFE-SUPERCLASSES                          |
+| MAKE-METHOD-LAMBDA                         |
+| STANDARD-DIRECT-SLOT-DEFINITION            |
+| FIND-SLOT-DEF-NAMES-BY-TYPE                |
+| PAUSE                                      |
+| ENSURE-CLASS-USING-CLASS                   |
+| STRUCT-SLOTS-AND-VALUES                    |
+| DEFMETHODS                                 |
+| DATA                                       |
+| METHOD-QUALIFIERS                          |
+| DIRECT-SLOT-DEFINITION-CLASS               |
+| DEFINE-TEMPLATE-GENERIC                    |
+| COMPUTE-APPLICABLE-METHODS                 |
+| ADD-DEPENDENT                              |
+| ENSURE-GENERIC-FUNCTION                    |
+| STOPPED-P                                  |
+| REMOVE-DEPENDENT                           |
+| START                                      |
+| SYNC                                       |
+| DIRECT-SLOT-DEFINITION                     |
+| FIND-DIRECT-SLOT-DEF-BY-NAME               |
+| STANDARD-SLOT-DEFINITION                   |
 | SUBCLASSP                                  |
+| METHOD                                     |
+| BUILT-IN-CLASS                             |
+| COPY                                       |
+| UNINSTALL                                  |
+| DEFACCESSOR                                |
+| REMOVE-TEMPLATE-METHOD                     |
+| CLEAN                                      |
+| DEFSHAM                                    |
+| SLOT-DEFINITION-NAME                       |
+| GENERIC-FUNCTION                           |
+| STARTED-P                                  |
+| CALL                                       |
+| FINALIZE-INHERITANCE                       |
+| INTERN-EQL-SPECIALIZER                     |
+| SEND                                       |
+| DEFINE-TEMPLATE-METHOD                     |
+| SLOT-VALUE-USING-CLASS                     |
+| FIND-METHOD-COMBINATION                    |
+| ASSIGNEE                                   |
+| SET-FUNCALLABLE-INSTANCE-FUNCTION          |
+| STANDARD-WRITER-METHOD                     |
+| ENSURE-CLASS                               |
+| LIST-CLASS-METHODS                         |
+| FIND-SLOT-DEF-BY-NAME                      |
+| RECEIVE                                    |
+| COMPUTE-DISCRIMINATING-FUNCTION            |
+| GENERIC-FUNCTION-LAMBDA-LIST               |
+| HEAD                                       |
+| PURGE                                      |
+| VERB-P                                     |
+| FUNCTION                                   |
+| FUNCALLABLE-STANDARD-INSTANCE-ACCESS       |
+| REMOVE-DIRECT-SUBCLASS                     |
+| CLASS-FINALIZED-P                          |
+| REMOVE-DIRECT-METHOD                       |
+| EXEC                                       |
+| SHUTDOWN                                   |
+| CLASS                                      |
 | METHOD-GENERIC-FUNCTION                    |
 | CLASS-DIRECT-SLOTS                         |
-| NAME                                       |
-| LIST-CLASS-SLOTS                           |
-| *TEMPLATE-TABLE*                           |
-| COPY                                       |
-| DEADLINE                                   |
-| GENERIC-FUNCTION-ARGUMENT-PRECEDENCE-ORDER |
-| FUNCALLABLE-STANDARD-INSTANCE-ACCESS       |
-| SEND                                       |
 | EFFECTIVE-SLOT-DEFINITION                  |
-| ENSURE-CLASS-USING-CLASS                   |
-| METHOD-FUNCTION                            |
-| SLOT-DEFINITION-WRITERS                    |
-| CALL                                       |
-| CLASS-DEFAULT-INITARGS                     |
-| WITH-FSLOTS                                |
-| COMPUTE-CLASS-PRECEDENCE-LIST              |
-| LOCK                                       |
-| STANDARD-CLASS                             |
-| STOP                                       |
-| CLASS-DIRECT-DEFAULT-INITARGS              |
-| METHOD                                     |
-| ENSURE-GENERIC-FUNCTION                    |
-| DEFMETHODS                                 |
-| DIRECT-SLOT-DEFINITION-CLASS               |
-| RESUME                                     |
-| FIND-SLOT-DEF-NAMES-BY-TYPE                |
-| STANDARD-ACCESSOR-METHOD                   |
-| FIND-SLOT-DEFS-BY-TYPE                     |
-| SLOT-DEFINITION-READERS                    |
-| EQL-SPECIALIZER-OBJECT                     |
-| RECEIVE                                    |
-| FIND-SLOT-DEF-BY-NAME                      |
-| SLOT-DEFINITION                            |
-| SLOT-DEFINITION-ALLOCATION                 |
-| FINALIZE-INHERITANCE                       |
-| COMPUTE-DEFAULT-INITARGS                   |
-| STANDARD-SLOT-DEFINITION                   |
-| DEFACCESSOR*                               |
-| TAGS                                       |
-| COMPUTE-SLOTS                              |
-| MAKE-INSTANCE                              |
-| DIRECT-SLOT-DEFINITION                     |
 | GENERIC-FUNCTION-NAME                      |
-| CLASS-PROTOTYPE                            |
-| TAIL                                       |
-| MAP-DEPENDENTS                             |
-| GENERIC-FUNCTION-DECLARATIONS              |
-| ENSURE-GENERIC-FUNCTION-USING-CLASS        |
-| RUN-OBJECT                                 |
-| SLOT-DEFINITION-TYPE                       |
-| CLASS                                      |
-| METHOD-COMBINATION                         |
-| STRUCT-SLOTS-AND-VALUES                    |
-| MAKE-METHOD-LAMBDA                         |
-| SAVE                                       |
-| STANDARD-GENERIC-FUNCTION                  |
-| GENERIC-FUNCTION-METHODS                   |
-| VERB-P                                     |
-| INSTALL                                    |
-| SLOT-DEFINITION-INITFUNCTION               |
-| SLOT-BOUNDP-USING-CLASS                    |
-| SLOT-BOUNDP*                               |
-| FUNCTION                                   |
-| PURGE                                      |
-| SYNC                                       |
-| GENERIC-FUNCTION-METHOD-COMBINATION        |
-| ADD-DEPENDENT                              |
-| STANDARD-WRITER-METHOD                     |
-| SHUTDOWN                                   |
-| GENERIC-FUNCTION-LAMBDA-LIST               |
-| EXPLORE                                    |
-| HEAD                                       |
-| RESET                                      |
-| PAUSE                                      |
-| WRITER-METHOD-CLASS                        |
-| SLOTS-BOUNDP                               |
-| ACCESSOR-METHOD-SLOT-DEFINITION            |
-| COPY-OBJECT                                |
-| DEFINE-CLASS-MAP                           |
-| SPECIALIZER                                |
-| STANDARD-EFFECTIVE-SLOT-DEFINITION         |
-| UNINSTALL                                  |
-| CLASS-FINALIZED-P                          |
-| *STANDARD-METAOBJECTS*                     |
-| CLASS-DIRECT-SUBCLASSES                    |
-| STOPPED-P                                  |
-| REMOVE-DIRECT-METHOD                       |
-| FIND-DIRECT-SLOT-DEF-BY-NAME               |
-| COMPUTE-EFFECTIVE-SLOT-DEFINITION          |
-| GENERIC-FUNCTION                           |
-| SLOT-VALUES                                |
-| STANDARD-INSTANCE-ACCESS                   |
-| SLOT-MAKUNBOUND-USING-CLASS                |
-| ENSURE-CLASS                               |
-| COMPUTE-APPLICABLE-METHODS                 |
-| SHALLOW-COPY-OBJECT                        |
-| *SHAM-CLASSES*                             |
-| VERSION                                    |
-| ADD-METHOD                                 |
-| LIST-SLOT-VALUES-USING-CLASS               |
-| DATA                                       |
-| SPECIALIZER-DIRECT-GENERIC-FUNCTIONS       |
-| STANDARD-OBJECT                            |
-| *VERBS*                                    |
+| ENSURE-FINALIZED                           |
 | VALIDATE-SUPERCLASS                        |
+| REMOVE-METHOD                              |
+| SLOT-DEFINITION                            |
+| SLOT-MAKUNBOUND-USING-CLASS                |
+| BUILD-FROM                                 |
+| EXTRACT-LAMBDA-LIST                        |
+| FUNCALLABLE-STANDARD-OBJECT                |
+| RESET                                      |
+| NAME                                       |
+| STANDARD-OBJECT                            |
+| STANDARD-INSTANCE-ACCESS                   |
+| DEFINE-CLASS-MAP                           |
+| *STANDARD-METAOBJECTS*                     |
+| SAVE                                       |
+| SHALLOW-COPY-OBJECT                        |
+| EQL-SPECIALIZER                            |
+| SLOT-DEFINITION-WRITERS                    |
+| T                                          |
+| ACCESSOR-METHOD-SLOT-DEFINITION            |
+| CLASS-PRECEDENCE-LIST                      |
+| COMPUTE-CLASS-PRECEDENCE-LIST              |
+| ENSURE-GENERIC-FUNCTION-USING-CLASS        |
+| *TEMPLATE-TABLE*                           |
+| SPECIALIZER                                |
+| COMPUTE-EFFECTIVE-METHOD                   |
+| FUNCALLABLE-STANDARD-CLASS                 |
+| DEFACCESSOR*                               |
+| STOP                                       |
+| STANDARD-GENERIC-FUNCTION                  |
+| CLONE                                      |
 | SLOT-DEFINITION-LOCATION                   |
-| INIT                                       |
-| VALIDATE                                   |
-| ASSIGN                                     |
+| DEADLINE                                   |
+| VERSION                                    |
 | CLASS-SLOTS                                |
-| SAFE-SUPERCLASSES                          |
-| ALLOCATE-INSTANCE                          |
+| LIST-CLASS-SLOTS                           |
+| TAIL                                       |
+| COMPUTE-APPLICABLE-METHODS-USING-CLASSES   |
+| WRITER-METHOD-CLASS                        |
+| EFFECTIVE-SLOT-DEFINITION-CLASS            |
+| INIT                                       |
+| WITH-FSLOTS                                |
+| *SHAM-CLASSES*                             |
+| GENERIC-FUNCTION-METHOD-CLASS              |
+| SLOT-DEFINITION-INITFORM                   |
+| CLASS-EQUALP                               |
+| LIST-SLOT-VALUES-USING-CLASS               |
+| SWAP                                       |
+| INSTALL                                    |
+| *VERBS*                                    |
+| CLASS-DIRECT-SUPERCLASSES                  |
+| DEFCLASS!                                  |
+| FIND-SLOT-DEFS-BY-TYPE                     |
+| UPDATE-DEPENDENT                           |
+| UPGRADE                                    |
+| EXTRACT-SPECIALIZER-NAMES                  |
+| VALIDATE                                   |
 | STATE                                      |
-| REMOVE-DEPENDENT                           |
+| STANDARD-METHOD                            |
+| STANDARD-ACCESSOR-METHOD                   |
+| FORWARD-REFERENCED-CLASS                   |
+| STRUCT-CONSTRUCTOR                         |
+| CLASS-DIRECT-SUBCLASSES                    |
+| METHOD-FUNCTION                            |
+| TAGS                                       |
+| SLOT-DEFINITION-READERS                    |
+| SLOT-VALUES                                |
+| LOCK                                       |
 
 ** seq
 :PROPERTIES:
@@ -2369,38 +2374,38 @@ tree formatter
 
 #+RESULTS:
 #+begin_example
-▄ ▀   ▄▀ ▀█    ▄▄▀▄█▀      ██▄▀▄
-  ▄█ ▀ █ ▀▀ ▄  ▀▀▄▀  ▀▀▀▀▄▀  ▄▄▄
-█▄▀▄▄▀ ▄ ▀▄▄ ▀█ ▄▄▄▄ ▄ ▄█ ▀▄▀▀ ▄
-▀ ▀▀▀▄▀▀ ▀▄█▀▄ ▀▄▄██▀ ▀█▄██▀▄█▀▀
- █▀▄▄ ▀        ▄ █▄▀█▀▀    ▀ ▀█ 
- █▀ ▀ ▄█▄▄   █  █▀ ▄▀█▀  ▀█  ▀▀ 
- ▀▄▀▄▄▀ ▀█▀▄▄  ▀    ▄    █   ▄▄ 
- ▀█▀ ▀▀▄ ▄▄ ▄ ▀▄▀█ ▄█  ▀  ▀▀    
-▀ ▄▀▄ █  ▄ █   █▀   ▀▄▀██ ▀▄    
-▄ █▄▀ ▄▀█  ▄ ▄█▀▀▄▀  ▀▀█▄▀▀ ▀ ▄▄
-▄▄ █  ▀  ▄▄ ▀  ▀  ▄▄▀  ▄    ▄ ▀▄
-▄▄ ▀  ▄█   ▄▄ ▄▀█ ▄ ▄█  █▄     █
-▄ █▀▀  ▀  ▀▄ ▄██▄▄ █ █ ▀▀     █ 
-█▄ ▀   ▄   ▀ ▀▀▀   █  ▀▀█  ▀ ▄█▄
-      ▀▀ ▀█  ▄▄ ▀▄▀█   ▄▄█▀▀ ▀ ▀
-▄█ ▄█▄  ▄   ▄▄ ▀   ▄ ▄█  █ ▄▄  ▀
-████████████▄█▄▀▄██▀  ██▀█▀▄▀█▀  ▄▄   ███▀█▀▀█▀▀ ▄▄ ▄▀▄   ▀▄▄▀  ▄█▀▄ ▀▄   ▄ ▄▀         
-███████▀██▄█▄█▀▀███▄▀█▄██████▀▀█ ▄▄█▀██▄██▄█  ▀▄▄▄▀█   ▀  ▄▀      █  ▄ ▀▀ ▄  ▄    ▄ ▄  
-█████▀█▀▀███████▀ ███▄███▀▄▀█▄█▄▀█▀█▀▄ █▄▀▀▀▄▀▄▀▄ █▀▄▀  ▄▄  ▄ ▀ ▀▄ ▀▄ ▀ ▄ ▄▀   ▄       
-███████▀███▀████▄█▄▀█▄█▀ ▄▀▄███▄█▀▀█▀▀ ▀█▀█▀  ██▀██▀ ▄ █ ▀  ▄  ▀▄ ▀ ▄       ▄          
-███████████████▀█ ▀▀█▀██▄█▀▄█▀▄▄█▀▄▄▀█▀█ █▀▄ ▄▄▄ ▄ ▄█▀▀▄  ▀▄█▄  ▀  ▀ ▄  ▄       ▀      
-█████████▄▄▄▀▄ █████▀▄▀███▀▄█ ▀█▄▄████▀▄█▄ █▀▀▄█▄▀▄▄▀▄   ▄ █ ▄▄ ▄▄   ▄▀  ▄▀▀▀     ▄ ▄  
-█████████▄▀▀██▄▄██▄██▄█▀▀▄▀ ▄  █▀█▀ █▀▀▀█▄▀▄███▀▄ ▄▄███▀█▀  █     ▄█▀  ▀  ▄▄   ▄       
-████████████▄███▄█▄▄▄█ █▀▀██▄▄▄▄███  █▄▀ ▀ ▀ ▀ ▀▀ ▀▄▄▀ ▄▄ ▀  ▄▀▄ ▄▀  ▀    ▄▄ ▄▄▄▀  ▀   
-██████████████▀█ ▄▀█▄▀███▀██▄▄ ▀███ ▄▄▀▀██▄▀▀▄█▄▀█ ▄  ▄▀▄    ▄█ ▀   █ ▀ █  ▀    ▀      
-██████████▄█████▀██▄█ ███▄█▀ █▀█▄▄▄▄█▄▄█ ▀ ▀ █▄ █▀█ █ ▀▀▀▀▄▄▄ ▄        █ ▄▄         ▄  
-████▄█████▄███▄███▄██▄███▀ ▀▄█▄██▄▄██ ▄▀█ ▄▄▀  ▄▀█  ▀▀█▀ ▄█   ▄  ▀       ▄             
-█████████▄█▀█████████▀▄ █▀▀██▀▄█▄█▀ ███▀▄     █▀▄▀    ▀▀█▄ ▄ ▀ ▀ ▀▀ ▄      ▄   ▀       
-██████▀██████████████▀ █▄▄▄██ ▀▄▄▀█▄ ▄ ▀▀▄▀█▀    ▀   ▄▀   ▀▄ ▀▀  █▀      ▀ ▀▀          
-███▄███████████▀███ █▄██ ▀▀███ ▀█▀▀██▀▀█▀█▀ ▀ █ ▀▀  ▄█▄█▄▀ █  ▀▀▄▀▀     ▀     ▀▄▀   ▀  
-██████████████▀█ ████████ █▄▄  ▄██▀▀▀█▄  ▀▀▀▄▀█ ███▄ █ ▀▄   ▄▀  ▀▄ █                   
-████████▄███▄███▀████▀▄█████ ▄▀▄▀ █▀ █ █ █▄ ▄▄  █▀▀   ▀▄▀▄     ▄▄ ▄ ▀    ▄    ▄        
+▄▀▄ ▄█    ██ █▀ ▄▄▄▄ ▄▀▀▀ ▀  ▄█ 
+▄ ▀ ▄  ▀▄▄  ▀      ▄▀▄ ▄█▀▀█▄▀▄▄
+ ▄█ ▄▀█▄ ▀▄▀▀██▄▀▄█▀▄▄█ ▄▄█▀ ▀▀▀
+▀▄   ▀▀ ▀  ▀█▀█▄▄▄▀▀▀▀▄▀█▄  █▀▄▄
+  ▄     ▄ ▀▄█▀ █▄▄  ▄▄  ▄█  █▀ ▀
+ █▀██▄  ▀ ▄▀  ▀ ▀   ▄▀      ▀▄▀▄
+█▄  ▀ ▀▀ ▄ ▄▄  █  ▄ ▀▄▄ ▀▀  ▀█▀ 
+ ▄▀ ▀▀▄▀  █▄▀ ▀█ ▄▄▄ ▄     ▀ ▄▀▄
+ ▀▄▄▀ ▀  ▄█▄ ▄  █▄█▀▄▄▀▄   ▄ █▄▀
+ █ ▀  ▀▄▀▀▄ ▀  ▄  ▀▀     █▀▄▄ █ 
+  ▄ ▀▀    ▄▄ ▀▀ ▄ ▀▄   ▀  █▄▄ ▀ 
+ ▀█  ▄▀▀ █▄▀ ▀▄▀█ ▄█▀    ▄▀▄ █▀▀
+      █ ███▀▀ █ ▀▄▄▄  ▄  █ █▄ ▀ 
+ ▄█ ▄▄     ▄ ▄█    ▀▄▄▄ █▀█     
+     ▀  ▀▀▄ ▀ ▀  ▄▀▀█     ▄▄█ ▄█
+▀  █▄  ██▄   ▄█▄▀█▄▄▀ ▀▀▄    ▀▀▄
+██████████▀█▀████▀███▀███▀ ████▄███   █ █▀▀█▄██ ▀█  █  ▄      ▀ ▀ ▄ ▀▀     ▄▄▄▄        
+███▄████████████▀██▀▄ ▄▀▄▀▄▄█▄█▄██▄▀▀ █ ▄▄█ ▄▀▄▄█ ▄█ ▀▀▀ ▀▄█▀█▄█      ▄▄    ▄  ▀       
+████████████▄███▄▀▀███ ██▀▀▀█▄▀▀▄██▀█▄▄▀   ▄▀ ▄▄██ ▄ ▄▄   ▄ ▀ ▄  ▀     ▀  █  ▀         
+▀██████▀█▄████████ ███▀███ ▀▄▀▀ ▄▄▀▀█▀ ██▀▄█ ▀▄ █ █  ▀ ▄▀▄  ▀      ▀ █ █  ▄   ▀     ▄  
+██▀██████▄███▄▀▄███▄██▀▄█▄▄▀█▀▀██▄█▀▄  ██ ▄ █▄▄▄▄▀▄ █▄▄█ ▄    ▀▄  ▄    ▀ ▀▄ ▀  ▄       
+████████▀█▄████████▀████▄▄▄▄▄█▀ ███  ▄▀▀▀   ▀██ ▄▄█▀▄    ▄▀▄▀█ ▄▀  ▀▄ █   ▄  ▄         
+███████████████████████▄█▀▄ ▄▀██▀▀▄▀ █▄▄▄▄▀█▄ ▀▄  ▀▄▄█▄▀▀██▄▀    ▀▄ ▀  ▀▀▀             
+██████▄█████▀█████▀███▀▄▄▄███▄▀▄▀█ █▄▄█▄▄█▄▄▀█ ▀▄█▄▀   ▄  ▀▄▄ ▄ ▀ ▀▀ ▀     ▄           
+███████▀▀██████▄▄█▄██▀██▄▄█▄███▄██▀▄█▀▄▀█▀  █▄ ▄█▄ ▄ █   █ █▀  █  ▄    ▄     ▀  █      
+████████▄█▄██▀█▄█▀██▀▀██▄▀█▀  ▀▄█ ▀██▄▄▄██▀▄▄▀▄ ▄██▀█   ▄▄ █▀▀  ▀▀   ▀     ▄ ▀         
+█████▄█▄██▄█▀████▀███▄██▄ ▄▀██  █▀ █▄▄█ ▄██▀▄▀▄▄ ▄▄▀█ ▄▄  ▄  ▄ ▄  ▄ ▄ ▀▀               
+████▄▄███▀█▀██▀██▄▀▀████▄█▀█▄█▀█▄▀ ▄▄ ▀▄▀▄ ▀█ █ ▀▄  █▄▀ ▄▄▀  ▄            ▄      ▀ ▀   
+██████▀█████▀███ █▀▄▄▀▀█▀██▄ ██  ▀▀▀▀▀ ▀█▄▀▄▄▀▄▀▀█▀▀▄▄ ▀█ ▀▄█▀▀  ▀▄ ▄▄    ▄  █         
+██████▀████████▀████████ ██▀█▀▀ ██▄█▀▄█ █ ▀██ ▄ ▀▄▀█▄▀▄   ▄▀   ▄  ▄    ▀ ▄ ▄           
+██████████████████▄██▀█▀█▀▀▄██▀█▄█▄▀▀▄▄ ▀▄▄ ██ ▀▄▄▀▀   ▀    ▄▀  █▄▄ ▄     ▀   ▀        
+██████▄████▄█████▀███▄▄▄██▄██▄█▄▀▄██▄▄ ▄  ▄ ▄  ▀█▀█▀▀▄  █▀█▄  ▀▄▀    █    ▀▄▀ ▀        
 █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
 █                                                              █
 █                                                              █

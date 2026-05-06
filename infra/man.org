@@ -7,43 +7,38 @@
 #+property: header-args :eval no-export* Overview
 
 This manual is intended for developers of the [[vc:core][core]] software suite. The
-core is a Lisp development system which is designed for a very
-specific type of user, and the [[vc:infra][infra]] project is designed to fully
-provision machines for these users or *operators* as we will refer to
-them.
+[[vc:infra][infra]] project is designed to fully provision machines for *operators*
+in our ecosystem.
 
 * Introduction
 :PROPERTIES:
 :ID:       12988dd2-3367-4a11-aec5-c6fed1539cbc
 :CREATED:  <2025-11-05 Wed 19:35>
 :END:
+This manual is written for x86_64 systems, but accounts for Intel vs
+AMD CPU optimizations.
 
-*As a rule we only support x86_64 Arch Linux operator machines* - we
-may support other targets for specific purposes but when talking about
-an *operator machine* we are refering specifically to the x86_64
+We may support other targets for specific purposes but when talking
+about an *operator machine* we are refering specifically to the x86_64
 arch linux build with all of our libraries as well as the core
 itself. There is no guarantee that the core software suite will
-function correctly outside of this specific build, although if you
-disable enough features it eventually will to a limited degree
-depending on how well-provisioned your machine is. Other targets are
-only tested or shipped as needed internally.
+function correctly outside of this specific build.
 
 * Overview
 :PROPERTIES:
 :ID:       2015b333-bc24-40ea-b9ad-2f514b57b83b
 :CREATED:  <2025-11-05 Wed 20:07>
 :END:
-The project skelfile pulls in our utilities from =util.lisp= in the
+The project [[vc:infra/file/tip/skelfile][skelfile]] pulls in our utilities from [[vc:infra/file/tip/util.lisp][util.lisp]] in the
 project root and contains a long list of rules which use the files in
-the =scripts= directory. These rules are called via the =skel= cli
-tool to build all of our dependencies from source, package them, and
-send them to the =packy=.
+the [[vc:infra/file/tip/scripts/][scripts]] directory. These rules are called via the =skel= cli tool
+to build all of our dependencies from source, package, and deploy
+them.
 
 There are several sub-projects inside infra:
-- home :: user home directory management (similar to GNU stash)
-- pod :: Podman-based containers - two base images (=o0= and =w0=)
-  provision the containerfile definitions in the project skelfile
-- box :: QEMU/bare-metal images, currently based on [[id:06ee60a3-9a98-40d2-893b-39ce992fc0dc][Archiso]].
+- [[vc:infra/home][home]] :: home directory management
+- [[vc:infra/pod][pod]] :: [[id:89199dcd-fabd-4952-b5e9-1b3ffaf06e6b][Podman]] containers
+- [[vc:infra/box][box]] :: [[id:06ee60a3-9a98-40d2-893b-39ce992fc0dc][Archiso]] and [[id:c4f26ef4-a936-4cf3-8218-4d23dbd9b33a][QEMU]] configs
 
 ** Requirements
 :PROPERTIES:
@@ -51,7 +46,7 @@ There are several sub-projects inside infra:
 :CREATED:  <2025-11-05 Wed 19:39>
 :END:
 - *Host Requirements*
-  - x86_64 >4 core CPU
+  - x86_64
   - 8G RAM
   - 32G Disk Space
   - Linux kernel
@@ -66,10 +61,6 @@ There are several sub-projects inside infra:
 :ID:       0d5496f3-3bba-4a90-ad83-708421df0b21
 :CREATED:  <2025-11-05 Wed 20:16>
 :END:
-- NOTE :: as of [2025-11-05 Wed] the containers and disk images are \\
-  not hosted publicly so send me a message if you'd like to \\
-  investigate.
-
 ** Containers
 :PROPERTIES:
 :ID:       88d4e10b-2c7f-466f-ad7e-9a7ca7b018c9
@@ -80,19 +71,11 @@ container images. The default operator container has root privileges
 and the worker containers have a minimal configuration and limited
 privileges.
 
-** Disk Images
+** ISOs
 :PROPERTIES:
 :ID:       a5fd3b7a-c5e1-4a0e-87b4-b7b12d2450e3
 :CREATED:  <2025-11-05 Wed 20:32>
 :END:
-The next step towards enlightenment is to download one of the disk
-images and run it in QEMU. If you're feeling particularly brave you
-now have all you need to boot into the core environment directly from
-disk :).
-
-A core installer is planned for next year which will provide an
-interface for customizing the installation with user profiles and
-settings.
 
 ** Bootstrap
 :PROPERTIES:
@@ -100,10 +83,4 @@ settings.
 :CREATED:  <2025-11-05 Wed 20:35>
 :END:
 Bootstrapping here is defined as the process which gets us from a
-vanilla, unprovisioned machine to a *fully functional core*. Note that
-bootstrapping does not get us to a full *operator machine*, instead it
-provisions the machine enough so that you have the capability to
-transition to a full operator if you choose to do so.
-
-As of [2025-11-05 Wed] the bootstrap process is unfortunately limited
-to the pod container rules. Will eventually be provided in a PKGFILE.
+vanilla, unprovisioned machine to an *operator machine* from scratch.

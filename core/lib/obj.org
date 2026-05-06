@@ -13,7 +13,6 @@ libraries.
   | OBJ/AST             |
   | OBJ/TIME            |
   | OBJ/SCHEMA          |
-  | OBJ/BUILD           |
   | OBJ/CONFIG          |
   | OBJ                 |
   | OBJ/URI/PUNYCODE    |
@@ -149,7 +148,6 @@ libraries.
   | time/local.lisp       |
   | time/util.lisp        |
   | uuid.lisp             |
-  | build.lisp            |
   | ast.lisp              |
   | config.lisp           |
   | schema.lisp           |
@@ -295,7 +293,6 @@ libraries.
   | READ-ARG                              |
   | METHOD-FILTER                         |
   | COLUMN-COUNT                          |
-  | UNDEFINED-COMMAND                     |
   | WITH-COLUMNIFICATION                  |
   | CURSOR-SET                            |
   | MAKE-COLOR-TABLE                      |
@@ -549,7 +546,7 @@ libraries.
   | +ISO-8601-FORMAT+                     |
   | LHS                                   |
   | REQUEST-PROTOCOL                      |
-  | SEAL-METHOD                           |
+  | PRINT-BTREE-ENTRY                     |
   | BLAS-MIXIN                            |
   | COMMAND-TYPES                         |
   | EVAL-COMMAND                          |
@@ -581,7 +578,7 @@ libraries.
   | +MONTHS-PER-YEAR+                     |
   | SLOT-FIELD-TYPE                       |
   | URI-HOST                              |
-  | PRINT-BTREE-ENTRY                     |
+  | SLOT-DEFINITION-ALLOCATION            |
   | MISSING-PALETTE                       |
   | DELETE-NODE                           |
   | FLUSH-COLUMN                          |
@@ -602,7 +599,7 @@ libraries.
   | INDEXED-BTREE                         |
   | T.FC                                  |
   | ASSOCIATION-SLOT-INDICES              |
-  | WRAP-OBJECT                           |
+  | LIGHTNESS                             |
   | UNWRAP-OBJECT                         |
   | UNDEFINED-COMMAND-TYPE                |
   | MERGE-KV                              |
@@ -718,7 +715,7 @@ libraries.
   | RESPONSE-STATUS                       |
   | CONFIG-GET                            |
   | WRITE-AST                             |
-  | SET-DATABASE-BACKEND-OPTION           |
+  | KEYTYPE                               |
   | DUMP-INDEX                            |
   | RFC-1123-DATE                         |
   | POTENTIALLY-SEALABLE-STANDARD-METHOD  |
@@ -874,7 +871,7 @@ libraries.
   | LIST-COMMANDS                         |
   | SCAL                                  |
   | GENERATE-RAND                         |
-  | SET-VALUED-EFFECTIVE-SLOT-DEFINITION  |
+  | UNDEFINED-COMMAND                     |
   | TRANSIENT-P                           |
   | CURSOR-OID                            |
   | ASSOCIATION-END-SLOT-NAMES            |
@@ -884,7 +881,7 @@ libraries.
   | MAKE-URI-SPACE                        |
   | INGEST-DB                             |
   | CURSOR-PLAST                          |
-  | BUILD-AST                             |
+  | SET-VALUED-EFFECTIVE-SLOT-DEFINITION  |
   | RANDN                                 |
   | OCTET-VECTOR-TO-UUID                  |
   | HANDLE-REQUEST                        |
@@ -928,7 +925,6 @@ libraries.
   | URI-CONDITION                         |
   | TIMESTAMP-MAXIMUM                     |
   | DISPATCH-REQUEST                      |
-  | SLOT-DEFINITION-ALLOCATION            |
   | CLONE-TIMESTAMP                       |
   | ASSOCIATION-SLOT-DEFINITION           |
   | .X                                    |
@@ -943,7 +939,7 @@ libraries.
   | CONNECT-DB                            |
   | TIMESTAMP/=                           |
   | ENSURE-REVEALED                       |
-  | LIGHTNESS                             |
+  | SET-DATABASE-BACKEND-OPTION           |
   | SERVICE-CONFIG                        |
   | MAKE-INDEXED-BTREE                    |
   | RESTORE-DB                            |
@@ -968,7 +964,6 @@ libraries.
   | BLUE                                  |
   | *STRICT-PARSE*                        |
   | REGISTER-SERVICE                      |
-  | BUILD                                 |
   | LIST-COMMAND-TYPES                    |
   | GET-CACHE                             |
   | FIELD-TYPE                            |
@@ -984,6 +979,7 @@ libraries.
   | .Y                                    |
   | DEFAULT-CLASS-ID                      |
   | DELETE-KEY-TS                         |
+  | SLICE~                                |
   | LITERAL-EXPR                          |
   | STORED-CLASS                          |
   | ADD-DATABASE-OPTIONS                  |
@@ -1014,7 +1010,7 @@ libraries.
   | SUBGRAPH                              |
   | COMMAND-NAME                          |
   | SCAL!                                 |
-  | SLICE~                                |
+  | REAL-SUBTYPEP                         |
   | +MINUTES-PER-DAY+                     |
   | TIMESTAMP                             |
   | TRANSACTION-OPTS                      |
@@ -1101,7 +1097,7 @@ libraries.
   | STORE-SIZE                            |
   | OPEN-COLUMN                           |
   | .LAMBDA.                              |
-  | BUILD-FROM                            |
+  | WRAP-OBJECT                           |
   | COLOR                                 |
   | MAPSLICE                              |
   | COLOR-RGB                             |
@@ -1137,7 +1133,7 @@ libraries.
   | SNAPSHOT-DB                           |
   | CURSOR-LAST                           |
   | URI-TLD                               |
-  | REAL-SUBTYPEP                         |
+  | SEAL-METHOD                           |
   | FIND-THEME                            |
   | +ASCTIME-FORMAT+                      |
   | DIRECTED-GRAPH                        |
@@ -1215,7 +1211,6 @@ libraries.
   | URL-DECODE                            |
   | CALL-WITH-AST                         |
   | DOT                                   |
-  | KEYTYPE                               |
   | MAGENTA                               |
   | *DEFAULT-STORE*                       |
   | ENCODE-PUNYCODE                       |
@@ -1431,20 +1426,6 @@ caching for WM.
 :CREATED:  <2025-10-19 Sun 20:15>
 :END:
 
-*** build
-:PROPERTIES:
-:ID:       5275243c-7424-4dac-acd4-5b8d30bae9b1
-:CREATED:  <2025-10-19 Sun 20:17>
-:END:
-#+call:file-commentary("~/comp/core/lib/obj/build.lisp")
-
-#+RESULTS:
-: This package started during the implementation of URING when it became
-: clear that we needed a generic 'CONS-like' protocol and class for objects
-: capable of constructing complex structures.
-: 
-: NOTE 2024-10-26: also to be used in DAT/TAR
-
 *** project
 :PROPERTIES:
 :ID:       ef9a558f-59e1-45a6-9138-cc49443353a9
@@ -1624,7 +1605,6 @@ which are prefixed with =T.= for tensor-specific methods.
 :ID:       4441fd36-a1e0-4475-84e9-e8ded08e76a5
 :CREATED:  <2025-07-05 Sat 21:04>
 :END:
-
 *** sealed
 :PROPERTIES:
 :ID:       fa2620fb-bff7-44ce-95b2-26bf9996539a
