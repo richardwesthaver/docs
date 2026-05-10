@@ -15,14 +15,14 @@ in our ecosystem.
 :ID:       12988dd2-3367-4a11-aec5-c6fed1539cbc
 :CREATED:  <2025-11-05 Wed 19:35>
 :END:
-This manual is written for x86_64 systems, but accounts for Intel vs
-AMD CPU optimizations.
+This manual is written for [[id:4c7530b8-6d6f-475a-b2a3-986a10a0d812][x86_64]] systems, but accounts for [[id:4555306b-b68c-43a9-8a54-e4066ca7437d][Intel]] vs
+[[id:e2368655-59e9-404b-9ac6-cecb35216c11][AMD]] CPU optimizations.
 
 We may support other targets for specific purposes but when talking
-about an *operator machine* we are refering specifically to the x86_64
-arch linux build with all of our libraries as well as the core
-itself. There is no guarantee that the core software suite will
-function correctly outside of this specific build.
+about an *operator machine* we are refering specifically to the
+~x86_64~ core linux build with all of our libraries
+pre-installed. There is no guarantee that the core software suite will
+function correctly outside of our environment.
 
 * Overview
 :PROPERTIES:
@@ -61,26 +61,40 @@ There are several sub-projects inside infra:
 :ID:       0d5496f3-3bba-4a90-ad83-708421df0b21
 :CREATED:  <2025-11-05 Wed 20:16>
 :END:
-** Containers
+** TODO Containers
 :PROPERTIES:
 :ID:       88d4e10b-2c7f-466f-ad7e-9a7ca7b018c9
 :CREATED:  <2025-11-05 Wed 20:32>
 :END:
-The easiest way to get started is by downloading one of the Podman
-container images. The default operator container has root privileges
-and the worker containers have a minimal configuration and limited
-privileges.
-
-** ISOs
-:PROPERTIES:
-:ID:       a5fd3b7a-c5e1-4a0e-87b4-b7b12d2450e3
-:CREATED:  <2025-11-05 Wed 20:32>
+:LOGBOOK:
+- State "TODO"       from              [2026-05-09 Sat 22:09]
 :END:
+Several containers are hosted publicly and can be retrieved using
+=podman import=:
+#+begin_src shell
+podman import https://packy.compiler.company/pod/op.tar.zst
+#+end_src
 
-** Bootstrap
+#+RESULTS:
+: Downloading from "https://packy.compiler.company/pod/op.tar.zst"
+
+** TODO PKGBUILDs
 :PROPERTIES:
 :ID:       ac3b0505-996d-4526-89f2-aad372d6cff7
 :CREATED:  <2025-11-05 Wed 20:35>
 :END:
-Bootstrapping here is defined as the process which gets us from a
-vanilla, unprovisioned machine to an *operator machine* from scratch.
+:LOGBOOK:
+- State "TODO"       from              [2026-05-09 Sat 22:46]
+:END:
+If you're already running Arch Linux you can download PKGBUILDs from
+our package archive and use =makepkg= to install them.
+
+Make sure to download and add our [[packy:data/rwest.gpg][GPG key]]:
+#+begin_src shell
+curl https://packy.compiler.company/data/rwest.gpg -o /tmp/rwest.gpg
+sudo pacman-key --add /tmp/rwest.gpg
+sudo pacman-key --finger 196FA2C31A5821D0
+#+end_src
+
+Then use the provided [[vc:infra/file/tip/scripts/install.sh][scripts/install.sh]] script to build and install
+all dependencies.

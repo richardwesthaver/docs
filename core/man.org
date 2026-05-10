@@ -285,7 +285,14 @@ skel make install-emacs
 #+end_src
 
 #+RESULTS:
-: #:debug 0.146999
+: 
+: ("gcc") 
+: ((NIL (INDENT-TABS-MODE)) (SH-MODE SH-INDENTATION . 2)
+:  (MAKEFILE-MODE (INDENT-TABS-MODE . T))) 
+: ((NIL (INDENT-TABS-MODE)) (SH-MODE SH-INDENTATION . 2)
+:  (MAKEFILE-MODE (INDENT-TABS-MODE . T))) 
+: ("/opt/store/packy") 
+: #:debug 0.101999
 : ; (#<rule install-emacs>)
 
 *** Core
@@ -347,7 +354,14 @@ Emacs configuration using the =skel= command.
   #+end_src
 
   #+RESULTS:
-  : #:debug 0.135999
+  : 
+  : ("gcc") 
+  : ((NIL (INDENT-TABS-MODE)) (SH-MODE SH-INDENTATION . 2)
+  :  (MAKEFILE-MODE (INDENT-TABS-MODE . T))) 
+  : ((NIL (INDENT-TABS-MODE)) (SH-MODE SH-INDENTATION . 2)
+  :  (MAKEFILE-MODE (INDENT-TABS-MODE . T))) 
+  : ("/opt/store/packy") 
+  : #:debug 0.100999
   : ; (#<rule install-emacs>)
 
 The default config supports user customizations in a file with the
@@ -573,7 +587,13 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:3d76eef65e76 --- A universal project development tool.
+: 
+: ("gcc") 
+: ((NIL (INDENT-TABS-MODE)) (SH-MODE SH-INDENTATION . 2)
+:  (MAKEFILE-MODE (INDENT-TABS-MODE . T))) 
+: ((NIL (INDENT-TABS-MODE)) (SH-MODE SH-INDENTATION . 2)
+:  (MAKEFILE-MODE (INDENT-TABS-MODE . T))) 
+: ("/opt/store/packy") skel v0.1.1:d5b6f1855f81 --- A universal project development tool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
@@ -594,6 +614,7 @@ The =skel= tool is an extensible program designed around the idea of
   | SKEL/HOMER/CORE      |
   | SKEL/COMP/ORG        |
   | SKEL/MPK/MPD         |
+  | SKEL/COMP/PYPROJECT  |
   | SKEL/MPK/METRO       |
   | SKEL/HOMER           |
   | SKEL/MPK/DB          |
@@ -792,7 +813,15 @@ The currently accessible ~sk-project~ be easily inferred via the
 
 #+RESULTS:
 #+begin_example
-#<project ORG :components 0 :rules 15>
+
+("/opt/stash/data/web/www") 
+("/opt/stash/data/web/cdn") 
+("/opt/store/packy") 
+("~/.ssh/ellis_aws.pem") 
+("fedora") 
+("compiler.company") 
+("ssh://rurik:/srv/www") 
+#<project ORG :components 0 :rules 16>
   [standard-object]
 
 Slots with :INSTANCE allocation:
@@ -805,14 +834,14 @@ Slots with :INSTANCE allocation:
   LICENSE                        = "MPL"
   AST                            = NIL
   ID                             = 1784914079056115652
-  VC                             = #<VC/HG:HG-REPO {1212296113}>
+  VC                             = #<VC/HG:HG-REPO {12212FE163}>
   SRC                            = #P"/home/ellis/comp/org/"
   STASH                          = #P"/home/ellis/comp/org/.stash/"
   STORE                          = #P"/home/ellis/comp/org/.stash/store/"
   CACHE                          = #P"/home/ellis/comp/org/.stash/cache/"
   COMPONENTS                     = #()
-  BIND                           = NIL
-  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {121221D393}>
+  BIND                           = ((SUBMODS (LIST "graph" "meta" "plan" "docs" "notes" "archive")))
+  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {1221285393}>
   RULES                          = #(#<rule default (build publish deploy dist-html dist-source..
   INCLUDE                        = #()
 #+end_example
