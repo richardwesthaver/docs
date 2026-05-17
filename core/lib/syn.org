@@ -28,6 +28,7 @@
   | SYN/GEN/CU       |
   | SYN/GEN/C/SWAP   |
   | SYN/GEN/CU/SWAP  |
+  | SYN/LANG/RS      |
   | SYN/LANG/C       |
   | SYN/GEN/C/SYM    |
   | SYN/GEN/JS/SYM   |
@@ -62,6 +63,7 @@
   | syn.sys            |
   | pkg.lisp           |
   | ts.lisp            |
+  | lang/proto.lisp    |
   | lang/c.lisp        |
   | lang/js.lisp       |
   | lang/py.lisp       |
@@ -111,12 +113,15 @@
   | GEN-DESIGNATOR         |
   | ++INDENT               |
   | PUSH-SIGN              |
+  | LANG-WARNING           |
+  | *INDENT*               |
   | GEN-PACKAGE            |
+  | PUSH-INFO              |
   | *CODE-DISPATCH-TABLE*  |
-  | PARSE-FILE             |
+  | LANG-CONDITION         |
   | LISP                   |
   | WRITE-CODE             |
-  | DEFSYNTAX              |
+  | *LANGS*                |
   | *GEN-BACKEND-TABLE*    |
   | REGISTER-TEMPLATE      |
   | MAKE-TEMPO-FUNCTION    |
@@ -125,47 +130,51 @@
   | FUNCTION-CALL          |
   | *TEMPO-CASE-SENSITIVE* |
   | %SELF                  |
-  | UNLOAD-GEN             |
+  | *GEN*                  |
   | LANG                   |
   | PRINT-CODE             |
-  | PUSH-INFO              |
-  | TAG                    |
   | STR-LITERAL            |
+  | TAG                    |
+  | CODE-PRINT             |
   | MAKE-NODE              |
   | GEN-CONDITION          |
   | NODE-SLOT              |
+  | WITH-LANG              |
   | QUOTY                  |
   | TOP-INFO               |
   | *TEMPO-PARAMETERS*     |
-  | LANGUAGE               |
-  | *BACKUP-READTABLE*     |
-  | *TEMPO-END*            |
+  | DEFTEMPO               |
+  | DEFLANG                |
+  | GEN-ERROR              |
   | GEN-READER-SWITCH      |
-  | EMPTY                  |
-  | *INDENT*               |
-  | INFO-SIZE              |
+  | BUILD-SWAP-PACKAGE     |
+  | *LANG*                 |
+  | --INDENT               |
+  | POP-INFO               |
   | GEN-BACKEND            |
   | LOAD-GEN               |
+  | LANG-STATS             |
   | CODE-PRINTER           |
+  | DEFINE-CODE-PROCESSOR  |
   | WITH-CODE-PRINTER      |
-  | *GEN-WARNINGS*         |
+  | AST-TRAVERSER          |
+  | UNLOAD-GEN             |
   | DELETE-CODE-PRINTER    |
   | TEMPO-FUNCTION         |
   | %LEVEL                 |
   | DEFINE-CODE-SWITCH     |
   | FIND-SIGN              |
-  | DEFINE-CODE-PROCESSOR  |
-  | EXPAND-TEMPLATE-TAGS   |
-  | *GEN-DESIGNATORS*      |
-  | *TEMPO-START*          |
-  | CODE-PRINT             |
   | INIT-GEN               |
-  | BUILD-SWAP-PACKAGE     |
+  | EXPAND-TEMPLATE-TAGS   |
+  | *TEMPO-START*          |
+  | EMPTY                  |
+  | LANG-CONFIG            |
+  | LANGP                  |
   | GETF-TEMPO             |
   | NODE                   |
   | DEFINE-CODE-PRINTER    |
-  | LINT                   |
-  | AST-TRAVERSER          |
+  | DEFSYNTAX              |
+  | *GEN-LANGS*            |
   | DEL-PROXY              |
   | INDENT                 |
   | GEN                    |
@@ -174,27 +183,29 @@
   | DEFINE-CODE-READER     |
   | SIMPLE-GEN-ERROR       |
   | *TEMPO-VARIABLES*      |
-  | *GEN*                  |
-  | *CL-SYMBOLS*           |
+  | *TEMPO-END*            |
+  | PARSE-FILE             |
   | *TEMPO-TABLE*          |
   | TOP-SIGN               |
   | CL-READER              |
-  | *LANGUAGE*             |
+  | *BACKUP-READTABLE*     |
+  | INFO-SIZE              |
   | BUILD-CONTEXT-SWITCHES |
-  | --INDENT               |
+  | DEFINE-GEN-BACKEND     |
   | STREAM                 |
   | CHAR-LITERAL           |
-  | POP-INFO               |
+  | LINT                   |
   | *CODE-READER*          |
   | EXECUTE-TEMPLATE       |
   | CINTERN                |
-  | DEFINE-GEN-BACKEND     |
+  | NUM-LITERAL            |
   | WITH-CODEGEN           |
   | DEFINE-CODE-SWITCHES   |
-  | DEFTEMPO               |
+  | *GEN-WARNINGS*         |
   | *TEMPO-PACKAGE*        |
   | FIND-INFO              |
-  | NUM-LITERAL            |
+  | *CL-SYMBOLS*           |
+  | LANG-ERROR             |
   | POP-SIGN               |
   | MAKE-NODES             |
 

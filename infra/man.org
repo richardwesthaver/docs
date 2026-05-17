@@ -79,7 +79,7 @@ podman import https://packy.compiler.company/pod/op.tar.zst
 #+RESULTS:
 : Downloading from "https://packy.compiler.company/pod/op.tar.zst"
 
-** TODO PKGBUILDs
+** TODO Packs
 :PROPERTIES:
 :ID:       ac3b0505-996d-4526-89f2-aad372d6cff7
 :CREATED:  <2025-11-05 Wed 20:35>
@@ -87,10 +87,18 @@ podman import https://packy.compiler.company/pod/op.tar.zst
 :LOGBOOK:
 - State "TODO"       from              [2026-05-09 Sat 22:46]
 :END:
-If you're already running Arch Linux you can download PKGBUILDs from
-our package archive and use =makepkg= to install them.
+We maintain our own package archive which is compatible with the [[id:03215632-83da-48c0-9f36-df72a9e956b5][Arch
+Build System]] and [[id:3c814d4d-8635-4c6f-a849-5c7d72db20fe][Pacman]]. you may install packages using =hg clone= and
+=makepkg= or by adding as a custom package repository to
+=/etc/pacman.conf=:
 
-Make sure to download and add our [[packy:data/rwest.gpg][GPG key]]:
+#+begin_example
+[packy]
+SigLevel = Optional
+Server = https://packy.compiler.company
+#+end_example
+
+Make sure to download and add our [[packy:data/rwest.gpg][GPG key]] to verify signed packages:
 #+begin_src shell
 curl https://packy.compiler.company/data/rwest.gpg -o /tmp/rwest.gpg
 sudo pacman-key --add /tmp/rwest.gpg
@@ -99,5 +107,18 @@ sudo pacman-key --finger 196FA2C31A5821D0
 
 #+RESULTS:
 
-Then use the provided [[vc:infra/file/tip/scripts/install.sh][scripts/install.sh]] script to build and install
-all dependencies.
+- pacman install
+  #+begin_src shell
+  pacman -Sy core
+  #+end_src
+
+  #+RESULTS:
+
+- makepkg install
+  #+begin_src shell
+  hg clone https://vc.compiler.company/packy/core
+  cd core
+  makepkg -si
+  #+end_src
+
+  #+RESULTS:

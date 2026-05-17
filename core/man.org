@@ -285,7 +285,7 @@ skel make install-emacs
 #+end_src
 
 #+RESULTS:
-: #:debug 0.165999
+: #:debug 0.140999
 : ; (#<rule install-emacs>)
 
 *** Core
@@ -347,7 +347,7 @@ Emacs configuration using the =skel= command.
   #+end_src
 
   #+RESULTS:
-  : #:debug 0.139
+  : #:debug 0.139999
   : ; (#<rule install-emacs>)
 
 The default config supports user customizations in a file with the
@@ -573,50 +573,11 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:ec7f35700b56 --- A universal project development tool.
+: skel v0.1.1:10e375b07907 --- A universal project development tool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
 [[id:359441da-1b61-4d73-8563-605ea7262b58][projects]].
-
-#+BEGIN: lisp-system-info :system skel :tests nil :symbols nil :dependencies nil :dependents nil :files nil
-- packages
-  #+CALL: lisp-system-packages[:post transpose]("skel")
-
-  #+RESULTS:
-  | SKEL/COMP/BOX        |
-  | SKEL/CORE            |
-  | SKEL/PACKY/PKGBUILD  |
-  | SKEL/COMP/DIR-LOCALS |
-  | SKEL/COMP/LISP       |
-  | SKEL/COMP            |
-  | SKEL/COMP/CONTAINER  |
-  | SKEL/HOMER/CORE      |
-  | SKEL/COMP/ORG        |
-  | SKEL/MPK/MPD         |
-  | SKEL/COMP/PYPROJECT  |
-  | SKEL/MPK/METRO       |
-  | SKEL/HOMER           |
-  | SKEL/MPK/DB          |
-  | SKEL/MPK/CLI         |
-  | SKEL/COMP/CARGO      |
-  | SKEL                 |
-  | SKEL/CLI             |
-  | SKEL-INT             |
-  | SKEL/COMP/INFER      |
-  | SKEL/HOMER/CLI       |
-  | SKEL/NET             |
-  | SKEL/PACKY/CLI       |
-  | SKEL/MPK             |
-  | SKEL/COMP/MAKEFILE   |
-  | SKEL/PACKY           |
-  | SKEL/PACKY/APKBUILD  |
-  | SKEL/COMP/SYS        |
-  | SKEL/SRV             |
-  | SKEL/KRYPT           |
-  | SKEL/COMP/ASD        |
-
-#+END:
 
 ** Architecture
 :PROPERTIES:
@@ -806,17 +767,144 @@ Slots with :INSTANCE allocation:
   LICENSE                        = "MPL"
   AST                            = NIL
   ID                             = 1784914079056115652
-  VC                             = #<VC/HG:HG-REPO {121483DEF3}>
+  VC                             = #<VC/HG:HG-REPO {12092CE183}>
   SRC                            = #P"/home/ellis/comp/org/"
   STASH                          = #P"/home/ellis/comp/org/.stash/"
   STORE                          = #P"/home/ellis/comp/org/.stash/store/"
   CACHE                          = #P"/home/ellis/comp/org/.stash/cache/"
   COMPONENTS                     = #()
   BIND                           = ((SUBMODS (LIST "graph" "meta" "plan" "docs" "notes" "archive")))
-  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {12147C5FD3}>
+  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {1209251613}>
   RULES                          = #(#<rule default (build publish deploy dist-html dist-source..
   INCLUDE                        = #()
 #+end_example
+
+*** Components
+:PROPERTIES:
+:ID:       bc8d6372-01aa-49e1-a019-d22b03dd7e80
+:CREATED:  <2026-05-16 Sat 22:29>
+:END:
+*** Rules
+:PROPERTIES:
+:ID:       0d22af45-3e2a-43f9-af61-2df1e2629cb8
+:CREATED:  <2026-05-16 Sat 22:29>
+:END:
+Skel ~rules~ are the Lisp equivalent of Makefile rules. They are
+almost always executed at the CLI via the =make= command.
+
+Rules are a project slot so you can list them with =show=:
+#+begin_src shell :results output replace
+skel show rules
+#+end_src
+
+#+RESULTS:
+#+begin_example
+#<rule default (data rebuild-core)>
+#<rule bootstrap (data build-core)>
+#<rule data (%stash psl.dat kbd.sxp x11.lisp parquet.json)>
+#<rule all (%stash psl.dat x11.lisp kbd.sxp parquet.thrift rebuild-core deploy)>
+#<rule upstream>
+#<rule clean>
+#<rule update-readme>
+#<rule psl.dat (%stash)>
+#<rule kbd.sxp (%stash)>
+#<rule ccadb.dat (%stash)>
+#<rule rgb.txt (%stash)>
+#<rule x11.lisp (rgb.txt)>
+#<rule parquet.thrift (%stash)>
+#<rule parquet.json (%stash)>
+#<rule freedesktop.org.xml (%stash)>
+#<rule parquet-test-data (%stash)>
+#<rule sndfile-test-data (%stash)>
+#<rule ffmpeg-test-data (%stash)>
+#<rule test-data (ffmpeg-test-data sndfile-test-data parquet-test-data)>
+#<rule %stash>
+#<rule ssl-certs>
+#<rule ssl-client-certs>
+#<rule install-emacs>
+#<rule purge-emacs>
+#<rule build-core (%stash)>
+#<rule rebuild-core (%stash)>
+#<rule compile-core>
+#<rule install-core>
+#<rule install-emacs>
+#<rule run-tests>
+#<rule save-tests>
+#<rule compile-tests>
+#<rule compile-core>
+#<rule coverage>
+#<rule install (install-core)>
+#<rule syms.sxp>
+#<rule dist>
+#<rule dist-repo>
+#<rule dist-source>
+#<rule build-docs>
+#<rule build-core (%stash)>
+#<rule deploy (dist dist-repo)>
+#+end_example
+
+Unlike makefile rules we don't need to specify a ~target~ (although
+one may be provided for build caching).
+
+Each rule is associated with a function, or more precisely a ~closure~
+with bindings determined by the ~bind~ slot of a project:
+
+#+begin_src shell
+skel show bind
+#+end_src
+
+#+RESULTS:
+: (STASH .stash)
+
+The ~RULE~ class is defined in the ~PROJECT~ protocol:
+
+#+begin_src lisp
+(let ((class (find-class 'project:rule)))
+  (values 
+   (make-instance class)
+   (mapcar 'name (class-slots class))))
+#+end_src
+
+#+RESULTS:
+: #<RULE (LAMBDA (&REST ARGS) IN ALLOCATE-STANDARD-FUNCALLABLE-INSTANCE)>
+: (ID AST)
+**** Simple Rules
+:PROPERTIES:
+:ID:       7160a8be-497e-433c-b27a-6ae1a1c1b443
+:CREATED:  <2026-05-17 Sun 14:50>
+:END:
+#+begin_src lisp
+(let ((class (find-class 'project:simple-rule)))
+  (values 
+   (make-instance class)
+   (mapcar 'name (class-slots class))))
+#+end_src
+
+#+RESULTS:
+: #<SIMPLE-RULE (LAMBDA (&REST ARGS) IN ALLOCATE-STANDARD-FUNCALLABLE-INSTANCE)>
+: (ID AST SOURCE OBJ/PROJECT::TARGET)
+
+**** Interactive Rules
+:PROPERTIES:
+:ID:       e34102c2-332e-4d7d-a3ec-5bc57f1d7777
+:CREATED:  <2026-05-16 Sat 22:37>
+:END:
+#+begin_src lisp
+(let ((class (find-class 'project:interactive-rule)))
+  (values 
+   (make-instance class)
+   (mapcar 'name (class-slots class))))
+#+end_src
+
+#+RESULTS:
+: #<INTERACTIVE-RULE (LAMBDA (&REST ARGS)
+:                      IN
+:                      ALLOCATE-STANDARD-FUNCALLABLE-INSTANCE)>
+: (ID AST INTERACTIVE OBJ/PROJECT::ARGS)
+
+Interactive rules implement the ~COMMAND~ protocol and accept a
+lambda-list and ~INTERACTIVE~ declaration in the body. They are
+commonly used as project-specific subcommands.
 
 * Hacking
 :PROPERTIES:
