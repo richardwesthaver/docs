@@ -285,7 +285,7 @@ skel make install-emacs
 #+end_src
 
 #+RESULTS:
-: #:debug 0.138999
+: #:debug 0.139999
 : ; (#<rule install-emacs>)
 
 *** Core
@@ -347,7 +347,7 @@ Emacs configuration using the =skel= command.
   #+end_src
 
   #+RESULTS:
-  : #:debug 0.136999
+  : #:debug 0.130999
   : ; (#<rule install-emacs>)
 
 The default config supports user customizations in a file with the
@@ -573,7 +573,7 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:10e375b07907 --- A universal project development tool.
+: skel v0.1.1:10e375b07907+ --- A universal project development tool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
@@ -588,10 +588,13 @@ The =skel= tool is an extensible program designed around the idea of
 :ID:       35a5aa3b-1ff1-46ea-9ec7-1d6c9a2386f2
 :CREATED:  <2026-01-03 Sat 20:09>
 :END:
-The library core is built on CLOS. Most important data structures are
-represented with classes, slots, and methods such as the =SK-PROJECT=
-class which is based on the =OBJ:PROJECT= class (a generic project
-type).
+The ~skel/core~ module contains all internal components of the ~skel~
+system. Despite the name, much of this code is ~glue code~ which
+stitches together multiple library protocols.
+
+Most important data structures are represented with classes, slots,
+and methods such as the =SK-PROJECT= class which is based on the
+=OBJ:PROJECT= class (a generic project type).
 
 #+begin_src lisp :results list
 (mapcar 'name (components (find-component :core (find-system :skel))))
@@ -618,9 +621,9 @@ type).
 :ID:       c86d03b4-dc7d-4836-8bdb-58498bd84e46
 :CREATED:  <2026-01-03 Sat 20:09>
 :END:
-In addition to the core objects we provide a set of =SK-COMPONENT=
+In addition to the core objects we provide a set of =COMPONENT=
 definitions which convert core objects to a corresponding external
-representation. For example the =makefile= class defined in
+representation. For example the =MAKEFILE= class defined in
 =comp/makefile.lisp= can be built from or consumed by a project.
 
 #+begin_src lisp :results list
@@ -649,11 +652,13 @@ specialize on skel objects in project domains of particular interest.
 
 There are currently 4 apps in addition to skel itself:
 
-- homer :: Home Management
-- packy :: Package Management
 - krypt :: Secrets Management
+- packy :: Package Management
 - mpk :: Media Management
+- homer :: Home Management
 
+Applications are /compiled in sequence/ such that ~homer~ may depend
+on ~mpk~ which may depend on ~packy~ which may depend on ~krypt~.
 ** Configuration
 :PROPERTIES:
 :ID:       2658a3d1-cfa5-436e-b2b0-9cf42a6f66c6
@@ -661,11 +666,12 @@ There are currently 4 apps in addition to skel itself:
 The ~skel~ tool can be configured at runtime using the CLI flags, or
 via local configuration files. The configuration files are in the
 ~skelfile~ format and are assigned the following locations by default:
-- =*user-skelrc*= :: =$XDG_CONFIG_HOME/skelrc=
 - =*system-skelrc*= :: =/etc/skelrc=
+- =*user-skelrc*= :: =$XDG_CONFIG_HOME/skelrc=
 
-Both files are optional and the user skelrc takes precedence over
-system.
+Configurations are applied to the same object in sequence - starting
+with the system configuration and then the user config. Both are
+optional.
 
 Example =~/.config/skelrc=:
 #+begin_src shell :results output :exports both
@@ -692,14 +698,14 @@ cat ~/.config/skelrc
 :PROPERTIES:
 :ID:       359441da-1b61-4d73-8563-605ea7262b58
 :END:
-Projects are the highest-level objects int the ~skel~ system. A
-project consists of a list of slots which are populated automatically
-or by the user. Once a project is initialized the slots can be
-accessed and a set of high-level operations can be performed.
+Projects are the root objects of the ~skel~ system. A project consists
+of a list of slots which are populated automatically or by the
+user. Once a project is initialized the slots can be accessed and a
+set of high-level operations can be performed.
 
 The easiest way to initialize a project is with a ~skelfile~. These
-files are parsed as a simplified Lisp dialect and generate
-~sk-project~ objects based on their contents.
+files are parsed as ~plists~ and generate ~sk-project~ objects based
+on their contents.
 
 The simplest project looks like this:
 
@@ -726,7 +732,7 @@ Here is a more verbose example, still with only metadata:
 :include ("emacs/emacs.sk")
 #+end_src
 
-Another example with rules and components:
+Another example:
 
 #+begin_src lisp :eval never :name skelfile-simple
 ;;; skelfile @ 2023-10-08.02:37:25 -*- mode: skel; -*-
@@ -737,7 +743,8 @@ Another example with rules and components:
 :license "MPL"
 :vc :hg
 :tags ("lisp")
-:rules ((build () (print (asdf:make :skel/cli)))
+:bind ((target :skel/cli))
+:rules ((build () (print (asdf:make target)))
         (clean () #$rm -rf */*.fasl$#))
 :docs ((:org "readme"))
 :components
@@ -745,7 +752,7 @@ Another example with rules and components:
 :stash "~/.stash"
 #+end_src
 
-The currently accessible ~sk-project~ be easily inferred via the
+The currently accessible ~sk-project~ can be easily inferred via the
 ~init~ protocol:
 #+begin_src lisp :results output replace
 (init :skel) ;; find the top-level skel project
@@ -767,14 +774,14 @@ Slots with :INSTANCE allocation:
   LICENSE                        = "MPL"
   AST                            = NIL
   ID                             = 1784914079056115652
-  VC                             = #<VC/HG:HG-REPO {120A62E183}>
+  VC                             = #<VC/HG:HG-REPO {1221875BB3}>
   SRC                            = #P"/home/ellis/comp/org/"
   STASH                          = #P"/home/ellis/comp/org/.stash/"
   STORE                          = #P"/home/ellis/comp/org/.stash/store/"
   CACHE                          = #P"/home/ellis/comp/org/.stash/cache/"
   COMPONENTS                     = #()
   BIND                           = ((SUBMODS (LIST "graph" "meta" "plan" "docs" "notes" "archive")))
-  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {120A5B12F3}>
+  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {12217FA493}>
   RULES                          = #(#<rule default (build publish deploy dist-html dist-source..
   INCLUDE                        = #()
 #+end_example
