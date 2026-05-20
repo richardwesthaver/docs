@@ -52,19 +52,20 @@
   #+CALL: lisp-package-symbols[:post transpose]("Q")
 
   #+RESULTS:
-  | SQL-EXPRESSION-VECTOR         |
-  | COLUMN-VECTOR                 |
+  | SQL-SORT                      |
+  | NEQ-EXPRESSION                |
+  | DF-SELECT                     |
   | WITH-SQL-STRING               |
-  | WITH-SQL                      |
-  | SQL-PARSER                    |
-  | NEXT-SQL-TOKEN                |
-  | SQL-STRING                    |
-  | SQL-EXPRESSION                |
+  | EXECUTION-CONTEXT             |
+  | EXTRACT-COLUMNS               |
+  | SCAN-EXEC                     |
+  | LITERAL-VALUE-TYPE            |
+  | SQL-BINARY-EXPRESSION         |
   | RECORD-BATCH-FIELDS           |
-  | SELECTION                     |
+  | SQL-TOKEN-ERROR               |
   | COUNT-EXPRESSION              |
   | READ-SQL-STREAM               |
-  | SQL-SELECT                    |
+  | COLUMN-PHYSICAL-EXPRESSION    |
   | SQL-ERROR                     |
   | COLUMN-VALUE                  |
   | SQL-FUNCTION                  |
@@ -75,18 +76,19 @@
   | DF-PROJ                       |
   | DQL-VARIABLE-P                |
   | QUERY-PLAN                    |
-  | SUM-EXPRESSION                |
+  | SQL-STRING                    |
   | LTEQ-EXPRESSION               |
+  | *SQL-KEYWORD-TABLE*           |
   | QUERY-DIALECT-DESIGNATOR      |
-  | AGGREGATE-EXPRESSION-P        |
+  | COLUMN-NAME                   |
   | SELECTION-EXEC                |
   | GET-SQL-SYMBOL                |
-  | DQL-DATA-SOURCE               |
+  | AGGREGATE-EXPRESSION-P        |
   | LITERAL-EXPRESSION            |
   | SELECT                        |
   | LT-EXPRESSION                 |
   | GET-SQL-KEYWORD               |
-  | NEQ-EXPRESSION                |
+  | SQL-TOKEN                     |
   | MAKE-RECORD-BATCH             |
   | QUERY-PARSER                  |
   | MULT-EXPRESSION               |
@@ -95,19 +97,17 @@
   | GTEQ-EXPRESSION               |
   | QUERY-ENGINE                  |
   | SQL-CAST                      |
-  | SQL-TOKEN                     |
   | DQL-ANONYMOUS                 |
   | QUERY-VOP                     |
-  | *SQL-SYMBOL-TABLE*            |
+  | QUERY-EXPRESSION              |
   | SQL-QUERY                     |
-  | FILTER                        |
   | EXTRACT-COLUMNS*              |
-  | AGGREGATE-FUNCTION            |
+  | WITH-SQL                      |
   | TO-FIELD                      |
-  | SQL-TOKEN-ERROR               |
+  | GT-EXPRESSION                 |
   | EQ-EXPRESSION                 |
   | ILLEGAL-SQL-STATE             |
-  | EXECUTE-QUERY                 |
+  | FILTER                        |
   | REGISTER-DATA-SOURCE          |
   | UNARY-EXPRESSION              |
   | READ-SQL-STRING               |
@@ -115,35 +115,35 @@
   | DF-FIELDS                     |
   | ROW-COUNT                     |
   | PROJECTION-PUSHDOWN-OPTIMIZER |
+  | LITERAL-PHYSICAL-EXPRESSION   |
   | MAKE-PHYSICAL-EXPRESSION      |
-  | BINARY-EXPRESSION-NAME        |
+  | NEXT-SQL-TOKEN                |
   | AGGREGATE-FUNCTION-DESIGNATOR |
   | SQL-ALIAS                     |
   | COLUMN-EXPRESSION             |
   | DQL-ANONYMOUS-P               |
-  | *SQL-KEYWORD-TABLE*           |
+  | SQL                           |
   | MAX-EXPRESSION                |
-  | DQL-VARIABLE                  |
-  | SQL-PLANNER                   |
+  | PROJECTION                    |
+  | PHYSICAL-EXPRESSION           |
   | SQL-DATA-SOURCE               |
-  | RECORD-BATCH                  |
-  | MOD-EXPRESSION                |
+  | EXECUTE-QUERY                 |
+  | DQL-DATA-SOURCE               |
   | DF-AGGREGATE                  |
   | RECORD-BATCH-SCHEMA           |
-  | COLUMN-PHYSICAL-EXPRESSION    |
+  | AGGREGATE-FUNCTION            |
   | MATH-EXPRESSION               |
   | MAKE-QUERY                    |
   | DQL                           |
-  | COLUMN-COUNT                  |
-  | COLUMN-DATA                   |
-  | DF-SELECT                     |
   | QUERY-EXPR                    |
+  | COLUMN-DATA                   |
+  | *SQL-SYMBOL-TABLE*            |
+  | COLUMN-COUNT                  |
   | SQL-NUMBER                    |
   | MAX-PHYSICAL-EXPRESSION       |
   | MAKE-SQL-DF                   |
-  | DF-DATA                       |
+  | MOD-EXPRESSION                |
   | COLUMN-TYPE                   |
-  | EXTRACT-COLUMNS               |
   | EXECUTE                       |
   | LOGICAL-QUERY-PLAN            |
   | AGGREGATE-PHYSICAL-EXPRESSION |
@@ -153,12 +153,12 @@
   | AGGREGATE-EXPRESSION          |
   | SCAN-DATA                     |
   | MIN-EXPRESSION                |
-  | *SQL-TOKEN-TYPES*             |
+  | BINARY-EXPRESSION-NAME        |
   | SQL-MATH-EXPRESSION           |
-  | SQL-SORT                      |
+  | SUM-EXPRESSION                |
   | AND-EXPRESSION                |
-  | COLUMN-SIZE                   |
-  | REGISTER-FILE                 |
+  | *SQL-TOKEN-TYPES*             |
+  | BINARY-EXPRESSION             |
   | EVALUATE                      |
   | DQL-QUERY                     |
   | QUERY                         |
@@ -168,45 +168,45 @@
   | COPY-RECORD-BATCH             |
   | WITH-SQL-PARSER               |
   | SQL-OPTIMIZER                 |
-  | BINARY-EXPRESSION             |
-  | SQL-TOKENS                    |
   | REGISTER-DF                   |
+  | SQL-TOKENS                    |
+  | SQL-EXPRESSION-VECTOR         |
   | PARSE-EXPRESSION              |
   | SIMPLE-SQL-ERROR              |
   | PROJECTION-EXEC               |
   | *QUERY-ENGINE*                |
-  | GT-EXPRESSION                 |
-  | SQL-BINARY-EXPRESSION         |
-  | QUERY-EXPRESSION              |
+  | SQL-TOKEN-TYPE-DESIGNATOR     |
+  | SQL-PARSER                    |
+  | RECORD-BATCH                  |
   | PROJ                          |
   | LITERAL-VALUE-VECTOR          |
   | DF-FILTER                     |
   | SQL-IDENTIFIER                |
-  | PROJECTION                    |
   | BINARY-PHYSICAL-EXPRESSION    |
   | RECORD-BATCH-P                |
-  | LITERAL-PHYSICAL-EXPRESSION   |
-  | COLUMN-NAME                   |
+  | SQL-PLANNER                   |
+  | REGISTER-FILE                 |
   | PHYSICAL-QUERY-PLAN           |
   | *LITERAL-VALUE-TYPES*         |
+  | SQL-SELECT                    |
   | *SQL-KEYWORDS*                |
   | LOGICAL-EXPRESSION            |
   | QUERY-OPTIMIZER               |
   | *QUERY-DIALECT*               |
-  | SQL-TOKEN-TYPE-DESIGNATOR     |
+  | DQL-VARIABLE                  |
   | AVG-EXPRESSION                |
+  | COLUMN-VECTOR                 |
   | SUB-EXPRESSION                |
   | AGGREGATE                     |
-  | PHYSICAL-EXPRESSION           |
+  | DF-DATA                       |
   | ADD-EXPRESSION                |
-  | SQL                           |
-  | LITERAL-VALUE-TYPE            |
+  | SELECTION                     |
+  | SQL-EXPRESSION                |
   | CAST-EXPRESSION               |
-  | SCAN-EXEC                     |
+  | COLUMN-SIZE                   |
   | DF-EXEC                       |
   | ALIAS-EXPRESSION              |
   | BINARY-EXPRESSION-OP          |
   | DQL-EXPRESSION                |
-  | EXECUTION-CONTEXT             |
 
 #+END
