@@ -137,9 +137,8 @@ guide]] and further enriched or optimized based on our own expectations.
   | :UTIL            |
   | :XLIB            |
   | :GSTREAMER/TESTS |
-  | :STD/TESTS       |
   | :LOG/TESTS       |
-  | :VC/TESTS        |
+  | :STD/TESTS       |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("std")
@@ -1019,159 +1018,161 @@ Standard macros are defined in =std/macs=.
 #+CALL: lisp-package-symbols[:post transpose]("STD/SYS")
 
 #+RESULTS:
-| WITHOUT-FP-TRAPS                 |
-| STASH-PATHNAME                   |
-| N-LOWTAG-BITS                    |
-| PRIMITIVE-TYPE                   |
-| INFO                             |
-| LOWTAG-LIMIT                     |
-| FUN-SIGNATURE=                   |
-| DESTROY-ARENA                    |
-| LOGICAL-HOST                     |
-| 64-BIT-P                         |
-| *SHOW-FOPS-P*                    |
-| PRIMITIVE-TYPE-NAME              |
-| ARENA-CONTENTS                   |
-| MEMORY-USAGE                     |
-| UNHIDE-ARENA                     |
-| ARENA-BYTES-WASTED               |
-| UNTRACE-PACKAGE                  |
-| LITTLE-ENDIAN-P                  |
-| SAVE-SHARED-OBJECTS              |
-| *MACHINE-TARGETS*                |
-| UNUSE-ARENA                      |
-| SWITCH-TO-ARENA                  |
-| MAYBE-INLINE                     |
-| HEXDUMP                          |
-| +FASL-FILE-VERSION+              |
-| HIDE-ARENA                       |
-| N-FIXNUM-BITS                    |
-| DECLARATION-INFORMATION          |
-| *LINKAGE-NAME-MAP*               |
-| IN-SAME-ARENA                    |
-| CURRENT-MACHINE                  |
-| MAP-IMMOBILE-OBJECTS             |
-| LEXENV-FIND                      |
-| NEW-ARENA                        |
-| MOST-POSITIVE-WORD               |
-| 32-BIT-P                         |
-| AUGMENT-ENVIRONMENT              |
-| CURRENT-SP                       |
-| N-MACHINE-WORD-BYTES             |
-| DEFINE-LOGICAL-PATHNAME          |
-| MAKE-UNBOUND-MARKER              |
-| N-FIXNUM-TAG-BITS                |
-| CPU-VENDOR                       |
-| SHOW-CTYPE-CTOR-CACHE-METRICS    |
-| MAKE-NULL-LEXENV                 |
-| INT-SAP                          |
-| ASM-ROUTINE-INDEX-FROM-ADDR      |
-| TUNE-IMAGE-FOR-DUMP              |
-| SHOW-INFO                        |
-| *FASL-FILE-TYPE*                 |
-| FEATUREP                         |
-| CLOSE-FASL-OUTPUT                |
-| FINALIZE                         |
-| SAVE-LISP-TREE-SHAKE-AND-DIE     |
-| ARENA                            |
-| WIDETAG-MASK                     |
-| CANCEL-FINALIZATION              |
-| *BACKEND-TYPE-PREDICATES*        |
-| DEFAULT-GC-STRATEGY              |
-| WITH-COUNTDOWN                   |
-| VARIABLE-INFORMATION             |
-| CHECK-LOGICAL-HOSTS              |
-| PACKAGE-SYMBOL-NAMES             |
-| *ARENA-EXHAUSTION-HANDLER*       |
-| ENCLOSE                          |
-| MAKE-LOGICAL-HOST                |
-| CURRENT-FP                       |
-| SBCL-HOOKS                       |
-| LOGICAL-PATHNAME-TRANSLATION     |
-| PARSE-EVAL-WHEN-SITUATIONS       |
-| GENERATION-OF                    |
-| LISP-OBJECT-INFO                 |
-| REWIND-ARENA                     |
-| LIST-ALLOCATED-OBJECTS           |
-| CURRENT-LISP-IMPLEMENTATION      |
-| FORGET-SHARED-OBJECTS            |
-| FORGET-SHARED-OBJECT             |
-| *LOGICAL-HOSTS*                  |
-| SHOW-FINALIZERS                  |
-| C-FIND-HEAP->ARENA               |
-| ARENA-P                          |
-| *PHYSICAL-HOST*                  |
-| TIME-REMAINING                   |
-| MACROEXPAND-ALL                  |
-| OPEN-FASL-OUTPUT                 |
-| *FINALIZER-THREAD*               |
-| PRIMITIVE-TYPE-OF                |
-| WITH-PINNED-OBJECTS              |
-| LIST-PACKAGE-SYMBOLS             |
-| DEFINE-LOAD-TIME-GLOBAL          |
-| *EXTERNAL-FORMATS*               |
-| LIST-ALL-SYMBOLS                 |
-| LEXENV-USER-DATA                 |
-| *BACKEND-PRIMITIVE-TYPE-ALIASES* |
-| SAVE-LISP                        |
-| DEFINE-DECLARATION               |
-| DO-INTERNAL-SYMBOLS              |
-| PACKAGE-SYMBOLS                  |
-| *BACKEND-PRIMITIVE-TYPE-NAMES*   |
-| CPU-BRAND                        |
-| FIXNUM-TAG-MASK                  |
-| N-WIDETAG-BITS                   |
-| DEFPRINTER                       |
-| POINTS-TO-ARENA                  |
-| LIST-ALL-LOGICAL-HOST-NAMES      |
-| +WIDETAGS+                       |
-| MAP-ALLOCATED-OBJECTS            |
-| PARSE-MACRO                      |
-| COMPILER-LET                     |
 | MACHINE-TARGET                   |
-| REFERENCES-P                     |
-| *ASSEMBLER-ROUTINES*             |
-| CPUID                            |
-| READ-ONLY-SPACE-OBJ-P            |
-| N-WORD-BYTES                     |
-| WORD-SHIFT                       |
-| FSET                             |
-| *STASH*                          |
-| STORE-PATHNAME                   |
-| DYNAMIC-SPACE-OBJ-P              |
-| LDB-MONITOR                      |
-| FUNCTION-INFORMATION             |
-| CHECK-FASL-FILE-HEADER           |
-| CHECK-LOGICAL-HOST               |
-| LISP-IMPLEMENTATION-ID           |
-| .I                               |
-| GET-LISP-OBJ-ADDRESS             |
-| ARENA-BYTES-USED                 |
-| +LOWTAGS+                        |
-| LISP-MACHINE-ID                  |
-| SHOW-HEAP->ARENA                 |
-| *MACHINE-TARGET*                 |
-| FIND-STASH-DIRECTORY             |
-| *DEFAULT-ARENA-SIZE*             |
-| SOURCE-LOCATION                  |
-| *BACKEND-BYTE-ORDER*             |
-| ARENA-USERDATA                   |
-| *INFO-TYPES*                     |
-| CHECK-FASL-HEADER                |
-| FIND-STORE-DIRECTORY             |
-| DEFGLOBAL                        |
+| ARENA-LENGTH                     |
+| *FASL-FILE-TYPE*                 |
+| OPEN-FASL-OUTPUT                 |
+| DEFINE-LOAD-TIME-GLOBAL          |
+| STASH-PATHNAME                   |
+| N-WIDETAG-BITS                   |
 | UNTRACE-ALL                      |
+| AUGMENT-ENVIRONMENT              |
+| SWITCH-TO-ARENA                  |
+| LOAD-LOGICAL-HOST                |
+| FIND-STORE-DIRECTORY             |
+| +LOWTAGS+                        |
+| N-LOWTAG-BITS                    |
+| COMPILER-LET                     |
+| DEFINE-DECLARATION               |
+| PARSE-MACRO                      |
+| CLOSE-FASL-OUTPUT                |
+| LIST-PACKAGE-SYMBOLS             |
+| DEFPRINTER                       |
+| +WIDETAGS+                       |
+| CPUID                            |
+| STORE-PATHNAME                   |
+| SAVE-LISP                        |
+| HEXDUMP                          |
 | NAME-RESERVED-BY-ANSI-P          |
-| GET-REAL-TIME-SECONDS            |
+| LOGICAL-HOST                     |
+| N-FIXNUM-BITS                    |
+| WIDETAG-MASK                     |
+| MAP-IMMOBILE-OBJECTS             |
+| *INFO-TYPES*                     |
+| LISP-MACHINE-ID                  |
+| *ASSEMBLER-ROUTINES*             |
+| REFERENCES-P                     |
 | GET-ASM-ROUTINE                  |
 | PRINT-ALLOCATED-OBJECTS          |
-| FOLD-IDENTICAL-CODE              |
-| LOAD-AS-FASL                     |
-| ARENA-LENGTH                     |
-| GET-EXTERNAL-FORMAT              |
+| POINTS-TO-ARENA                  |
+| C-FIND-HEAP->ARENA               |
 | LOWTAG-MASK                      |
-| HEXDUMP-OBJECT                   |
+| ARENA-USERDATA                   |
+| SHOW-HEAP->ARENA                 |
+| DEFAULT-GC-STRATEGY              |
+| +FASL-FILE-VERSION+              |
+| LDB-MONITOR                      |
+| N-WORD-BYTES                     |
+| HIDE-ARENA                       |
+| PACKAGE-SYMBOLS                  |
+| *DEFAULT-ARENA-SIZE*             |
+| ARENA-CONTENTS                   |
+| GET-EXTERNAL-FORMAT              |
 | *BACKEND-PREDICATE-TYPES*        |
+| 32-BIT-P                         |
+| *BACKEND-BYTE-ORDER*             |
+| UNTRACE-PACKAGE                  |
+| CURRENT-MACHINE                  |
+| DESTROY-ARENA                    |
+| WITH-PINNED-OBJECTS              |
+| SAVE-SHARED-OBJECTS              |
+| CURRENT-FP                       |
+| .I                               |
+| DECLARATION-INFORMATION          |
+| CHECK-LOGICAL-HOST               |
+| GET-LISP-OBJ-ADDRESS             |
+| CURRENT-LISP-IMPLEMENTATION      |
+| 64-BIT-P                         |
+| IN-SAME-ARENA                    |
+| LISP-IMPLEMENTATION-ID           |
+| FORGET-SHARED-OBJECT             |
+| LOGICAL-PATHNAME-TRANSLATION     |
+| FEATUREP                         |
+| *MACHINE-TARGET*                 |
+| ENCLOSE                          |
+| FORGET-SHARED-OBJECTS            |
+| FINALIZE                         |
+| SHOW-FINALIZERS                  |
+| *BACKEND-PRIMITIVE-TYPE-ALIASES* |
+| *BACKEND-TYPE-PREDICATES*        |
+| *LOGICAL-HOSTS*                  |
+| WORD-SHIFT                       |
+| N-MACHINE-WORD-BYTES             |
+| MEMORY-USAGE                     |
+| INT-SAP                          |
+| TIME-REMAINING                   |
+| *STASH*                          |
+| FIND-STASH-DIRECTORY             |
+| *MACHINE-TARGETS*                |
+| REWIND-ARENA                     |
+| MOST-POSITIVE-WORD               |
+| TUNE-IMAGE-FOR-DUMP              |
+| PRIMITIVE-TYPE                   |
+| UNUSE-ARENA                      |
+| MAKE-LOGICAL-HOST                |
+| MAKE-UNBOUND-MARKER              |
+| DEFINE-LOGICAL-PATHNAME          |
+| UNHIDE-ARENA                     |
+| FUN-SIGNATURE=                   |
+| MAKE-NULL-LEXENV                 |
+| WITHOUT-FP-TRAPS                 |
+| N-FIXNUM-TAG-BITS                |
+| SBCL-HOOKS                       |
+| INFO                             |
+| LIST-ALL-LOGICAL-HOST-NAMES      |
+| CPU-VENDOR                       |
+| SOURCE-LOCATION                  |
+| FSET                             |
+| CURRENT-SP                       |
+| GET-REAL-TIME-SECONDS            |
+| LEXENV-USER-DATA                 |
+| MAYBE-INLINE                     |
+| SHOW-CTYPE-CTOR-CACHE-METRICS    |
+| MAP-ALLOCATED-OBJECTS            |
+| *LINKAGE-NAME-MAP*               |
+| MACROEXPAND-ALL                  |
+| WITH-COUNTDOWN                   |
+| PRIMITIVE-TYPE-OF                |
+| DEFGLOBAL                        |
+| PARSE-EVAL-WHEN-SITUATIONS       |
+| LISP-OBJECT-INFO                 |
+| NEW-ARENA                        |
+| *BACKEND-PRIMITIVE-TYPE-NAMES*   |
+| FUNCTION-INFORMATION             |
+| VARIABLE-INFORMATION             |
+| LOWTAG-LIMIT                     |
+| FOLD-IDENTICAL-CODE              |
+| LEXENV-FIND                      |
+| CHECK-LOGICAL-HOSTS              |
+| READ-ONLY-SPACE-OBJ-P            |
+| PACKAGE-SYMBOL-NAMES             |
+| LIST-ALLOCATED-OBJECTS           |
+| SAVE-LISP-TREE-SHAKE-AND-DIE     |
+| CHECK-FASL-HEADER                |
+| HEXDUMP-OBJECT                   |
+| *EXTERNAL-FORMATS*               |
+| CPU-BRAND                        |
+| LITTLE-ENDIAN-P                  |
+| CANCEL-FINALIZATION              |
+| DEFINE-LOGICAL-HOST-LOADER       |
+| ARENA-BYTES-WASTED               |
+| ARENA-BYTES-USED                 |
+| FIXNUM-TAG-MASK                  |
+| LOAD-AS-FASL                     |
+| *PHYSICAL-HOST*                  |
+| ARENA-P                          |
+| SHOW-INFO                        |
+| LIST-ALL-SYMBOLS                 |
+| ASM-ROUTINE-INDEX-FROM-ADDR      |
+| *SHOW-FOPS-P*                    |
+| ARENA                            |
+| DYNAMIC-SPACE-OBJ-P              |
+| DO-INTERNAL-SYMBOLS              |
+| *ARENA-EXHAUSTION-HANDLER*       |
+| *FINALIZER-THREAD*               |
+| CHECK-FASL-FILE-HEADER           |
+| GENERATION-OF                    |
+| PRIMITIVE-TYPE-NAME              |
 
 ** bit
 :PROPERTIES:
@@ -1346,33 +1347,34 @@ Standard macros are defined in =std/macs=.
 
 #+RESULTS:
 #+begin_example
-(#<STANDARD-METHOD STD/IO:SERIALIZE (CONTAINERFILE (EQL :BYTES)) {1203BF7CE3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (CONTAINERFILE (EQL :STRING)) {1203BF7CD3}>
+(#<STANDARD-METHOD STD/IO:SERIALIZE (CONTAINERFILE (EQL :BYTES)) {1222528163}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (CONTAINERFILE (EQL :STRING)) {1222528153}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                     (EQL :JSON)) {1203BF7953}>
+                                     (EQL :JSON)) {1203B62FB3}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                     (EQL :DOT)) {1203BF7943}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {12038D7B83}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (COOKIE (EQL :STRING)) {1203B71D53}>
+                                     (EQL :DOT)) {1203B62FA3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {12038A74D3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (COOKIE (EQL :STRING)) {1203AED453}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (NET/CODEC/OSC::OSC-DATA
-                                     (EQL :OSC)) {1203BF61D3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :STRING)) {1203BF61C3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :BYTES)) {1203BF61B3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :QRCODE)) {12039334C3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (INTEGER (EQL :BASE64)) {1203932F33}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :BASE64)) {12038AA323}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :BASE64)) {12039334A3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (GIF-STREAM (EQL :GIF)) {1203BF4CC3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (TOML-TABLE (EQL :TOML)) {1203BF2F33}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (LIST (EQL :INI)) {1203933193}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (DAT/HTML::NODE T) {12038D45B3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :XML)) {12038D3053}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :JSON)) {12038D2FE3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :CSV)) {12038AA303}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (GRAPH (EQL :DOT)) {1203BF1773}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :URL)) {12038D0F23}>
+                                     (EQL :OSC)) {1203B61FD3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :STRING)) {1203B61FC3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :BYTES)) {1203B61FB3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :QRCODE)) {1203900023}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (INTEGER (EQL :BASE64)) {12038DFAF3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :BASE64)) {120388A603}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :BASE64)) {1203900003}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (GIF-STREAM (EQL :GIF)) {1203B60C43}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (TOML-TABLE (EQL :TOML)) {1203B46E63}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (LIST (EQL :INI)) {12038DFD43}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (DAT/HTML::NODE T) {12038A4283}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :XML)) {12038A2D23}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :JSON)) {12038A2CB3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :CSV)) {120388A5E3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (GRAPH (EQL :DOT)) {1203B456D3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :URL)) {12038A0BF3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :PUNYCODE)) {12038DFDE3}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (JPEG:JPEG-COMPRESSOR
-                                     (EQL :JPEG)) {1203BF2C53}>)
+                                     (EQL :JPEG)) {1203B46B83}>)
 #+end_example
 
 #+begin_src lisp
@@ -1381,54 +1383,55 @@ Standard macros are defined in =std/macs=.
 
 #+RESULTS:
 #+begin_example
-(#<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :PKGBUILD)) {1203934BF3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME
-                                       (EQL :CONTAINERFILE)) {1203934B73}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :OPENAPI)) {12038D6AA3}>
+(#<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME
+                                       (EQL :CONTAINERFILE)) {12224FD9D3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :AUTHINFO)) {1203900053}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :AUTHINFO)) {1203901573}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :OPENAPI)) {12038A6773}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (JSON-OBJECT
-                                       (EQL :OPENAPI)) {1203BF2DB3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :DBUS)) {1203A24853}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (VECTOR (EQL :OSC)) {12038AA343}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TLV)) {1203A24843}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (SIMPLE-ARRAY (EQL :TLV)) {12038AA1E3}>
+                                       (EQL :OPENAPI)) {1203B46CD3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :DBUS)) {1203982A63}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (VECTOR (EQL :OSC)) {120388A623}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TLV)) {1203982A53}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (SIMPLE-ARRAY (EQL :TLV)) {120388A4C3}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME
-                                       (EQL :SYSTEMD-UNIT)) {1203934AE3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {12038D6023}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :AUTHINFO)) {12039334F3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :AUTHINFO)) {1203934AD3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BASE64)) {1203A24823}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BASE64)) {12039334B3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BIB)) {1203933453}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :BIB)) {1203934AA3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BIB)) {1203A24813}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TOML)) {1203A24803}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :TOML)) {1203933433}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :TOML)) {1203934A83}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {12038D4623}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :INI)) {1203934A63}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :INI)) {1203933423}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :INI)) {1203A247D3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :HTML)) {12038D45A3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :SVG)) {1203933403}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :SVG)) {1203934A43}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :XML)) {1203934A33}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :XML)) {1203A247C3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :XML)) {12039333F3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JSON-SCHEMA)) {12038D2FF3}>
+                                       (EQL :SYSTEMD-UNIT)) {1203901583}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {12038A5CF3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BASE64)) {1203982A33}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BASE64)) {1203900013}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BIB)) {12038DFFB3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :BIB)) {1203901543}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BIB)) {1203982A23}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TOML)) {1203982A13}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :TOML)) {12038DFF93}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :TOML)) {1203901523}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {12038A42F3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :INI)) {1203901503}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :INI)) {12038DFF83}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :INI)) {12039829E3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :HTML)) {12038A4273}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :SVG)) {12038DFF63}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :SVG)) {12039014E3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :XML)) {12039014D3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :XML)) {12039829D3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :XML)) {12038DFF53}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JSON-SCHEMA)) {12038A2CC3}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (JSON-OBJECT
-                                       (EQL :JSON-SCHEMA)) {1203BF2D93}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :JSON)) {1203A247B3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :JSON)) {1203934A13}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :JSON)) {12039333C3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :CSV)) {12039333B3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :CSV)) {12038D2FC3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :CSV)) {1203934A03}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :DOT)) {12039333A3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :ASN1)) {12038D2FB3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :URL)) {12038D0F33}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JPEG)) {12038D2E63}>
+                                       (EQL :JSON-SCHEMA)) {1203B46CB3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :JSON)) {12039829C3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :JSON)) {12039014B3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :JSON)) {12038DFF23}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :CSV)) {12038DFF13}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :CSV)) {12038A2C93}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :CSV)) {12039014A3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :DOT)) {12038DFF03}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :ASN1)) {12038A2C83}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :URL)) {12038A0C03}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :PUNYCODE)) {12038DFDF3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JPEG)) {12038A2B33}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (JPEG:JPEG-DECOMPRESSOR
-                                       (EQL :JPEG)) {1203BF2C63}>)
+                                       (EQL :JPEG)) {1203B46B93}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :PKGBUILD)) {1200A27693}>)
 #+end_example
 
 ** alien
@@ -2381,38 +2384,38 @@ tree formatter
 
 #+RESULTS:
 #+begin_example
-▄ ▀   ▄▀ ▀█    ▄▄▀▄█▀      ██▄▀▄
-  ▄█ ▀ █ ▀▀ ▄  ▀▀▄▀  ▀▀▀▀▄▀  ▄▄▄
-█▄▀▄▄▀ ▄ ▀▄▄ ▀█ ▄▄▄▄ ▄ ▄█ ▀▄▀▀ ▄
-▀ ▀▀▀▄▀▀ ▀▄█▀▄ ▀▄▄██▀ ▀█▄██▀▄█▀▀
- █▀▄▄ ▀        ▄ █▄▀█▀▀    ▀ ▀█ 
- █▀ ▀ ▄█▄▄   █  █▀ ▄▀█▀  ▀█  ▀▀ 
- ▀▄▀▄▄▀ ▀█▀▄▄  ▀    ▄    █   ▄▄ 
- ▀█▀ ▀▀▄ ▄▄ ▄ ▀▄▀█ ▄█  ▀  ▀▀    
-▀ ▄▀▄ █  ▄ █   █▀   ▀▄▀██ ▀▄    
-▄ █▄▀ ▄▀█  ▄ ▄█▀▀▄▀  ▀▀█▄▀▀ ▀ ▄▄
-▄▄ █  ▀  ▄▄ ▀  ▀  ▄▄▀  ▄    ▄ ▀▄
-▄▄ ▀  ▄█   ▄▄ ▄▀█ ▄ ▄█  █▄     █
-▄ █▀▀  ▀  ▀▄ ▄██▄▄ █ █ ▀▀     █ 
-█▄ ▀   ▄   ▀ ▀▀▀   █  ▀▀█  ▀ ▄█▄
-      ▀▀ ▀█  ▄▄ ▀▄▀█   ▄▄█▀▀ ▀ ▀
-▄█ ▄█▄  ▄   ▄▄ ▀   ▄ ▄█  █ ▄▄  ▀
-████████████▄█▄▀▄██▀  ██▀█▀▄▀█▀  ▄▄   ███▀█▀▀█▀▀ ▄▄ ▄▀▄   ▀▄▄▀  ▄█▀▄ ▀▄   ▄ ▄▀         
-███████▀██▄█▄█▀▀███▄▀█▄██████▀▀█ ▄▄█▀██▄██▄█  ▀▄▄▄▀█   ▀  ▄▀      █  ▄ ▀▀ ▄  ▄    ▄ ▄  
-█████▀█▀▀███████▀ ███▄███▀▄▀█▄█▄▀█▀█▀▄ █▄▀▀▀▄▀▄▀▄ █▀▄▀  ▄▄  ▄ ▀ ▀▄ ▀▄ ▀ ▄ ▄▀   ▄       
-███████▀███▀████▄█▄▀█▄█▀ ▄▀▄███▄█▀▀█▀▀ ▀█▀█▀  ██▀██▀ ▄ █ ▀  ▄  ▀▄ ▀ ▄       ▄          
-███████████████▀█ ▀▀█▀██▄█▀▄█▀▄▄█▀▄▄▀█▀█ █▀▄ ▄▄▄ ▄ ▄█▀▀▄  ▀▄█▄  ▀  ▀ ▄  ▄       ▀      
-█████████▄▄▄▀▄ █████▀▄▀███▀▄█ ▀█▄▄████▀▄█▄ █▀▀▄█▄▀▄▄▀▄   ▄ █ ▄▄ ▄▄   ▄▀  ▄▀▀▀     ▄ ▄  
-█████████▄▀▀██▄▄██▄██▄█▀▀▄▀ ▄  █▀█▀ █▀▀▀█▄▀▄███▀▄ ▄▄███▀█▀  █     ▄█▀  ▀  ▄▄   ▄       
-████████████▄███▄█▄▄▄█ █▀▀██▄▄▄▄███  █▄▀ ▀ ▀ ▀ ▀▀ ▀▄▄▀ ▄▄ ▀  ▄▀▄ ▄▀  ▀    ▄▄ ▄▄▄▀  ▀   
-██████████████▀█ ▄▀█▄▀███▀██▄▄ ▀███ ▄▄▀▀██▄▀▀▄█▄▀█ ▄  ▄▀▄    ▄█ ▀   █ ▀ █  ▀    ▀      
-██████████▄█████▀██▄█ ███▄█▀ █▀█▄▄▄▄█▄▄█ ▀ ▀ █▄ █▀█ █ ▀▀▀▀▄▄▄ ▄        █ ▄▄         ▄  
-████▄█████▄███▄███▄██▄███▀ ▀▄█▄██▄▄██ ▄▀█ ▄▄▀  ▄▀█  ▀▀█▀ ▄█   ▄  ▀       ▄             
-█████████▄█▀█████████▀▄ █▀▀██▀▄█▄█▀ ███▀▄     █▀▄▀    ▀▀█▄ ▄ ▀ ▀ ▀▀ ▄      ▄   ▀       
-██████▀██████████████▀ █▄▄▄██ ▀▄▄▀█▄ ▄ ▀▀▄▀█▀    ▀   ▄▀   ▀▄ ▀▀  █▀      ▀ ▀▀          
-███▄███████████▀███ █▄██ ▀▀███ ▀█▀▀██▀▀█▀█▀ ▀ █ ▀▀  ▄█▄█▄▀ █  ▀▀▄▀▀     ▀     ▀▄▀   ▀  
-██████████████▀█ ████████ █▄▄  ▄██▀▀▀█▄  ▀▀▀▄▀█ ███▄ █ ▀▄   ▄▀  ▀▄ █                   
-████████▄███▄███▀████▀▄█████ ▄▀▄▀ █▀ █ █ █▄ ▄▄  █▀▀   ▀▄▀▄     ▄▄ ▄ ▀    ▄    ▄        
+▀  ▀▀▀▀▄▀  ▄▄▄▄ █▀ ▄ ▀ ▄  ▀▄▄  ▀
+▄▄ ▄ ▄█ ▀▄▀▀ ▄█▀▄██ ▄█ ▄▀█▄ ▀▄▀▀
+██▀ ▀█▄██▀▄█▀▀ ▄▄  ▀▄   ▀▀ ▀  ▀█
+▄▀█▀▀    ▀ ▀█  █▄▀█  ▄     ▄ ▀▄█
+ ▄▀█▀  ▀█  ▀▀  █ ▄  █▀██▄  ▀ ▄▀ 
+  ▄    █   ▄▄  ▄█▄▀█▄  ▀ ▀▀ ▄ ▄▄
+ ▄█  ▀  ▀▀    ▄ ▀▄  ▄▀ ▀▀▄▀  █▄▀
+  ▀▄▀██ ▀▄      █ █ ▀▄▄▀ ▀  ▄█▄ 
+▀  ▀▀█▄▀▀ ▀ ▄▄▀ ▀█  █ ▀  ▀▄▀▀▄ ▀
+▄▄▀  ▄    ▄ ▀▄▀▀ █   ▄ ▀▀    ▄▄ 
+▄ ▄█  █▄     █▀▀▄▄▄ ▀█  ▄▀▀ █▄▀ 
+ █ █ ▀▀     █ █ ▀▄       █ ███▀▀
+ █  ▀▀█  ▀ ▄█▄▀▀    ▄█ ▄▄     ▄ 
+▀█   ▄▄█▀▀ ▀ ▀ ▄  ▄     ▀  ▀▀▄ ▀
+ ▄ ▄█  █ ▄▄  ▀▀▀▄█▀▀  █▄  ██▄   
+▀██ ▀▀▀ ▄▄▄▀▄▄ ▄▄ ▀ █   ▄▀▀█▄▀ ▄
+██████▀██ ██▀█▄█▄█▄▀█ ██▄███  ▄▀█▄▄▄█ █▄▄ ▀▀▄▄▄█▀▄ ▀▄ ▀▄  ▀▀▄▀ ▀▄   ▄▀   ▀▀            
+█████▄█████████▀▄██████▄ █ ██▄▀████▀██ ▄▀▄███▄▀▀█▀▄█▀ ▄ █▀ ▄█ ▄    ▀     ▄    ▀        
+███▄▄█████▄██▀▄█▄▄█▀█████ ▄▀██▀██▀ ▀ ███▀▄█ █▄█ ██▄ ▄▀ █ █ █▄▀    ▀  ▀  ▄ ▀▄ ▀   ▀     
+█████████▀██████▄██▄▄█▀█▄█▀█ █▀█▄ ▄▄▀██▀▀▀▄ ▀ ▄▄▄▀▄█   ▀▀     ▀▄   ▄                   
+██████▄▀████████▄▄▀▀▀▄▀ ▄█▄▄▄█ ▀▄██ ▀█ █▀▀ ██ █▄▀ ▀ █▄█▀▄ █ ▀▀  ▀   █         ▀▄   ▄ ▄ 
+███████▄█▀█▄█▀████▀██▄█  ▀█ █▄▀▄██▀▄▀▀  ▄▀██▀██▄█▄▀▄▀ ▄██▀ ▀▀▄█  ▄▀  ▄▀  ▀▀  ▄▀ ▄      
+████▀███▀█▄██▀███▄█▄▄▀██▄▀█▀▀▀█▀▄▄▀▄▄▀  ▀▄▀▄ ▀▄ ▄▀█ █ █▀▄█ ▀▀▀▄  ▀   ▀      ▀ ▄        
+██████▄███████▄▀██▄▄▄████▀▀██▀▄ ▄▄▄██▀▀▀▀▄██  ▀▄▄▄  ▄▄ ▄ ▄  ▀▀  █       ▀▄   ▄   ▄     
+███▄███▄▄██████████▀███▄▄▄▀▄▀█ ██▄ █▄▀█▄ ▀▀▀ █▀ ▄▀█▀▄ ▄▀▀ █▄▀  ▄ ▄▄    ▀               
+███████████▀█▀██▄██▀███▀█▄▀▀█▀ ▀▀▄▀▀▄ █ ▄█▀▀█▀▀▀█▄   ▄▀▀  ▄▀ ▀▄▄▄  ▀▀▀ ▀  ▄            
+████████████▄█▀▀█▄ ██▄███▄█████▀ █▄▄  █▀█▀██▀█▄▀▄  ▀▀  ▄█ ▄    █▄▄      ▄  ▄           
+██████████████████ █▄████████▀ ▀▄▀  ██ █▀▀█▄ ▀▀▀ █ ▄▄  ▀ ▀▄    ▄ ▀▀▄▀  ▄  ▄         ▄  
+███▀██▀██▀██▀▀█ ███████▀████▀▄ ▄█▀███▀▄ ██▄██ █▄ ▄▄ ▀▄ ▄  ▄   █ ▄ ▄ █  ▄▄ ▄▄           
+███▄██▀▄██████▄██▀████▀▄▄ ▀▄▄███▀▄ ▄▀▀▀  █▄▄▄▀  ▀ █▄  ▄█ ▄▄▄ ▀▄ ▀▀  ▀ ▄  ▄             
+██████████████▀██ ███▀█▄▄▄██▀▀▀▀██▄▄█▀  ▀█ ▄▄ █ ▄    ▀ ▀ ▀█▄▀    ▀   ▀    ▀ ▀          
+███▀████████▀▀███▄▄▀▀█▀▀▀▄▀██▀ █▀███▀ ▀▄█▄ ▀▄▄▄ ▀ ▀     ▄▀▄     █      ▄▀▄             
 █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
 █                                                              █
 █                                                              █

@@ -13,14 +13,13 @@ working with =audio= and =video= data.
   #+CALL: lisp-system-packages[:post transpose]("dsp")
 
   #+RESULTS:
-  | DSP/TESTS |
-  | DSP/VID   |
-  | DSP/CORE  |
-  | DSP/AUD   |
-  | DSP/GST   |
-  | DSP-INT   |
-  | DSP       |
-  | DSP/AV    |
+  | DSP/VID  |
+  | DSP/CORE |
+  | DSP/AUD  |
+  | DSP/GST  |
+  | DSP-INT  |
+  | DSP      |
+  | DSP/AV   |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("dsp")
@@ -75,35 +74,36 @@ working with =audio= and =video= data.
   #+RESULTS:
   | AV-DICTIONARY-TO-HASH-TABLE |
   | GST-CONDITION               |
-  | GST-PIPE                    |
+  | AUDIO-CONFIG                |
   | *MEDIA-DIRECTORY*           |
   | WITH-AV-FORMAT-CONTEXT      |
-  | VIDEO-FILE                  |
-  | VIDEO-CODEC                 |
-  | *DEFAULT-MEDIA-PROBE*       |
+  | WITH-AV-PARSER              |
   | AV-ERROR                    |
+  | *DEFAULT-MEDIA-PROBE*       |
   | AV-DICTIONARY-ALIST         |
-  | MEDIA-FILE                  |
+  | AUDIO-CODEC                 |
+  | DSP-ERROR                   |
   | VIDEO-CONFIG                |
-  | AUDIO-FILE                  |
+  | MEDIA-FILE-METADATA         |
   | VIDEO-SYSTEM-CONFIG         |
   | MEDIA-FILE-CODECS           |
   | DSP-CONDITION               |
   | AUDIO-SYSTEM-CONFIG         |
-  | AUDIO-CONFIG                |
-  | WITH-AV-PARSER              |
+  | MEDIA-FILE-FORMAT           |
+  | LOAD-GST                    |
   | MEDIA-META                  |
   | AV-CONTEXT-METADATA         |
   | MEDIA-CODEC                 |
-  | AUDIO-CODEC                 |
-  | DSP-ERROR                   |
+  | VIDEO-CODEC                 |
+  | VIDEO-FILE                  |
   | WITH-AV-CODEC-CONTEXT       |
-  | MEDIA-FILE-FORMAT           |
+  | LOAD-MEDIA-LOGICAL-HOST     |
   | AV-META                     |
-  | LOAD-GST                    |
+  | MEDIA-FILE                  |
   | GST-ERROR                   |
-  | MEDIA-FILE-METADATA         |
+  | GST-PIPE                    |
   | MEDIA-FILE-STREAM-COUNT     |
+  | AUDIO-FILE                  |
   | LOAD-AV                     |
   | IMAGE-FILE                  |
 
@@ -137,8 +137,9 @@ convenience and may be extended or modified by the user.
 #+end_src
 
 #+RESULTS:
-: (("MEDIA:MUSIC;**;*.*.*" #P"/opt/stash/media/music/**/*.*")
-:  ("MEDIA:AUD;**;*.*.*" #P"/opt/stash/media/aud/**/*.*")
-:  ("MEDIA:VID;**;*.*.*" #P"/opt/stash/media/vid/**/*.*")
-:  ("MEDIA:IMG;**;*.*.*" #P"/opt/stash/media/img/**/*.*")
-:  ("MEDIA:SCREENSHOT;**;*.*.*" #P"/opt/stash/media/screenshot/**/*.*"))
+: (("HOME;**;*.*.*" #P"/var/opt/media/")
+:  ("MUSIC;**;*.*.*" #P"/var/opt/media/music/**/*.*")
+:  ("AUD;**;*.*.*" #P"/var/opt/media/aud/**/*.*")
+:  ("VID;**;*.*.*" #P"/var/opt/media/vid/**/*.*")
+:  ("IMG;**;*.*.*" #P"/var/opt/media/img/**/*.*")
+:  ("SCREENSHOT;**;*.*.*" #P"/var/opt/media/screenshot/**/*.*"))

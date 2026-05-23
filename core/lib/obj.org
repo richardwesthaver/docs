@@ -18,6 +18,7 @@ libraries.
   | OBJ/URI/PUNYCODE    |
   | OBJ/META/STEALTH    |
   | OBJ/COLOR           |
+  | OBJ/NODE            |
   | OBJ/SRV             |
   | OBJ/CACHE           |
   | OBJ/CMD             |
@@ -29,7 +30,6 @@ libraries.
   | OBJ/STORE           |
   | OBJ/ID              |
   | OBJ/GRAPH           |
-  | OBJ/TREE            |
   | OBJ/META/OVERLOADED |
   | OBJ/META/STORED     |
   | OBJ/TENSOR          |
@@ -41,10 +41,10 @@ libraries.
   | OBJ/META/FAST       |
   | OBJ/META/FILTERED   |
   | OBJ/META/METHOD     |
+  | OBJ/BTREE           |
   | OBJ-INT             |
   | OBJ/META/LAZY       |
   | OBJ/META/MIX        |
-  | OBJ/TREE/BTREE      |
 
 - dependencies
   #+CALL: lisp-system-dependencies[:post transpose]("obj")
@@ -77,9 +77,8 @@ libraries.
   | :SKEL       |
   | :MODELINE   |
   | :DOC/TESTS  |
-  | :OBJ/TESTS  |
   | :MATH/TESTS |
-  | :RDB/TESTS  |
+  | :OBJ/TESTS  |
 
 - files
   #+CALL: lisp-system-files[:post transpose]("obj")
@@ -114,7 +113,7 @@ libraries.
   | tensor/meta.lisp      |
   | tensor/base.lisp      |
   | tensor/num.lisp       |
-  | tensor/tensor.lisp    |
+  | tensor/template.lisp  |
   | tensor/loop.lisp      |
   | tensor/zeros.lisp     |
   | tensor/ref.lisp       |
@@ -136,8 +135,8 @@ libraries.
   | tensor/rand.lisp      |
   | tensor/map.lisp       |
   | tensor/misc.lisp      |
-  | tree/node.lisp        |
-  | tree/btree.lisp       |
+  | node.lisp             |
+  | btree.lisp            |
   | equiv.lisp            |
   | color/color.lisp      |
   | color/palette.lisp    |
@@ -146,8 +145,7 @@ libraries.
   | color/modus.lisp      |
   | color/theme.lisp      |
   | color/print.lisp      |
-  | time/local.lisp       |
-  | time/util.lisp        |
+  | time.lisp             |
   | uuid.lisp             |
   | ast.lisp              |
   | config.lisp           |

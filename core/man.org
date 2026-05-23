@@ -112,13 +112,13 @@ ls -Ah
 | std            |
 
 - Common Lisp \\
-  The =STD= library lives under the [[vc:core/std][std]] directory, low-level FFI
-  library bindings such as =ROCKSDB= under the [[vc:core/alien][alien]] directory and
-  high-level user libraries like =RDB= under the [[vc:core/lib][lib]] directory. The
-  [[vc:core/skel][skel]] directory contains the source of our multi-purpose project
+  The =STD= library lives under the [[vc:core:std][std]] directory, low-level FFI
+  library bindings such as =ROCKSDB= under the [[vc:core:alien][alien]] directory and
+  high-level user libraries like =RDB= under the [[vc:core:lib][lib]] directory. The
+  [[vc:core:skel][skel]] directory contains the source of our multi-purpose project
   tool =SKEL=.
 - Emacs Lisp \\
-  The [[vc:core/etc/emacs][etc/emacs]] directory contains a complete Emacs configuration.
+  The [[vc:core:etc/emacs][etc/emacs]] directory contains a complete Emacs configuration.
 
 ** Images
 :PROPERTIES:
@@ -245,7 +245,7 @@ others will need to be installed manually or via [[vc:infra][infra]].
 :ID:       dcb3ffff-5388-4387-8a46-553ae0309d70
 :END:
 Bootstrapping from SBCL is quite easy. Once all required dependencies
-are installed, just run [[vc:core/bootstrap.lisp][bootstrap.lisp]]:
+are installed, just run [[vc:core:bootstrap.lisp][bootstrap.lisp]]:
 #+begin_src shell :eval never :exports code
 # clone the source code from a mirror
 git clone https://codeberg.org/c-c/core
@@ -285,7 +285,7 @@ skel make install-emacs
 #+end_src
 
 #+RESULTS:
-: #:debug 0.135999
+: #:debug 0.142999
 : ; (#<rule install-emacs>)
 
 *** Core
@@ -338,21 +338,34 @@ Canonically that would be:
 :PROPERTIES:
 :ID:       6c87dbd0-0a4b-4395-bc70-fff94b680787
 :END:
-If you don't have your own Emacs config you can install the default CC
-Emacs configuration using the =skel= command. 
+If you don't already have your own Emacs config you can install the
+default CC Emacs configuration using the =skel= command.
 
-- Warning :: this will overwrite files in your =.emacs= directory (defaults to =$XDG_CONFIG_HOME/emacs/=:
+- AO [2026-05-22 Fri] the core should is intended to be hacked on
+  using this config /only/ but is subject to change in the future.
+- Warning :: this will overwrite =$XDG_CONFIG_HOME/emacs/=
   #+begin_src shell :dir ~/comp/core/ :results output :exports both
   skel make install-emacs
   #+end_src
 
   #+RESULTS:
-  : #:debug 0.129999
+  : #:debug 0.128999
   : ; (#<rule install-emacs>)
 
-The default config supports user customizations in a file with the
-same name as the current user, so when the current =$USER= is ~ellis~
-then we check for the file =ellis.el= and load it if it exists.
+- the vanilla load sequence is applied first, starting with
+  =early-init.el=, then =init.el=, =default.el=, and finally
+  =config.el=.
+-  load =user-custom-file= if it exists, defaulting to the name of the
+  current user.
+
+**** Defaults
+:PROPERTIES:
+:ID:       38ea6556-ac89-49fc-9d46-87b09c6da776
+:CREATED:  <2026-05-22 Fri 23:23>
+:END:
+Our Emacs configuration philosophy follows the same principles found
+elsewhere - prioritizing built-ins/internals, and first-class support
+for modern Lisp development.
 
 ** Demos
 :PROPERTIES:
@@ -439,7 +452,7 @@ addition to the SBCL =SYS= host.
 #+end_src
 
 #+RESULTS:
-| MEDIA | SYS |
+| ETC | MEDIA | MPK | PACKY | SKEL | SRV | SYS | USER | USR | VAR |
 
 *** VAR
 :PROPERTIES:
@@ -573,7 +586,7 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:5ddc0208101e --- A universal project development tool.
+: skel v0.1.1:9f018bdacb21 --- A universal project development tool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
@@ -773,14 +786,14 @@ Slots with :INSTANCE allocation:
   LICENSE                        = "MPL"
   AST                            = NIL
   ID                             = 1784914079056115652
-  VC                             = #<HG-REPO {12169CD0D3}>
+  VC                             = #<HG-REPO {12150053A3}>
   SRC                            = #P"/home/ellis/comp/org/"
   STASH                          = #P"/home/ellis/comp/org/.stash/"
   STORE                          = #P"/home/ellis/comp/org/.stash/store/"
   CACHE                          = #P"/home/ellis/comp/org/.stash/cache/"
   COMPONENTS                     = #()
   BIND                           = ((SUBMODS (LIST "graph" "meta" "plan" "docs" "notes" "archive")))
-  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {1216950C33}>
+  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {1214F86293}>
   RULES                          = #(#<rule default (build publish deploy dist-html dist-source..
   INCLUDE                        = #()
 #+end_example
