@@ -285,7 +285,7 @@ skel make install-emacs
 #+end_src
 
 #+RESULTS:
-: #:debug 0.142999
+: #:debug 0.133999
 : ; (#<rule install-emacs>)
 
 *** Core
@@ -349,14 +349,39 @@ default CC Emacs configuration using the =skel= command.
   #+end_src
 
   #+RESULTS:
-  : #:debug 0.128999
+  : #:debug 0.127999
   : ; (#<rule install-emacs>)
 
 - the vanilla load sequence is applied first, starting with
-  =early-init.el=, then =init.el=, =default.el=, and finally
-  =config.el=.
--  load =user-custom-file= if it exists, defaulting to the name of the
-  current user.
+  [[vc:core:etc/emacs/early-init.el][early-init.el]], then [[vc:core:etc/emacs/init.el][init.el]]
+- init.el loads [[vc:core:etc/emacs/default.el][default.el]] which initializes all required MELPA packages and
+  local libraries from [[vc:core:etc/emacs/lib][etc/emacs/lib]].
+- the site ~config.el~ is loaded next (optional, user controlled)
+- additionally load =user-custom-file= if it exists, defaulting to the
+  name of the current user (~foo.el~ when =$USER=foo=)
+
+**** Packages
+:PROPERTIES:
+:ID:       0c43a530-5c2b-4df7-a04f-4a23e6793245
+:CREATED:  <2026-05-23 Sat 17:20>
+:END:
+
+The following packages are required:
+
+#+begin_src emacs-lisp :post transpose
+package-selected-packages
+#+end_src
+
+#+RESULTS:
+| hide-mode-line  |
+| auctex          |
+| consult         |
+| cape            |
+| citeproc        |
+| htmlize         |
+| ol-notmuch      |
+| system-packages |
+| org-web-tools   |
 
 **** Defaults
 :PROPERTIES:
@@ -364,8 +389,8 @@ default CC Emacs configuration using the =skel= command.
 :CREATED:  <2026-05-22 Fri 23:23>
 :END:
 Our Emacs configuration philosophy follows the same principles found
-elsewhere - prioritizing built-ins/internals, and first-class support
-for modern Lisp development.
+elsewhere in the core - prioritizing built-ins/internals, and
+first-class support for modern Lisp development.
 
 ** Demos
 :PROPERTIES:
@@ -586,7 +611,7 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:9f018bdacb21 --- A universal project development tool.
+: skel v0.1.1:cff5c9f63d9f --- A universal project development tool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
@@ -786,14 +811,14 @@ Slots with :INSTANCE allocation:
   LICENSE                        = "MPL"
   AST                            = NIL
   ID                             = 1784914079056115652
-  VC                             = #<HG-REPO {12150053A3}>
+  VC                             = #<HG-REPO {1215DB53A3}>
   SRC                            = #P"/home/ellis/comp/org/"
   STASH                          = #P"/home/ellis/comp/org/.stash/"
   STORE                          = #P"/home/ellis/comp/org/.stash/store/"
   CACHE                          = #P"/home/ellis/comp/org/.stash/cache/"
   COMPONENTS                     = #()
   BIND                           = ((SUBMODS (LIST "graph" "meta" "plan" "docs" "notes" "archive")))
-  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {1214F86293}>
+  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {1215D39A73}>
   RULES                          = #(#<rule default (build publish deploy dist-html dist-source..
   INCLUDE                        = #()
 #+end_example
