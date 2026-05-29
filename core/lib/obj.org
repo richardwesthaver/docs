@@ -67,7 +67,6 @@ libraries.
   | :LOG        |
   | :MATH       |
   | :NET        |
-  | :NLP        |
   | :ORGAN      |
   | :POD        |
   | :Q          |
@@ -839,6 +838,7 @@ libraries.
   | SORT-PERMUTE                          |
   | MAKE-CACHE-TABLE                      |
   | RULE                                  |
+  | DOCUMENT                              |
   | DEFSTORE                              |
   | COMMAND-CLASS                         |
   | *INTERACTIVE-KEY-ARGS-P*              |
@@ -1244,7 +1244,7 @@ provide special classes called /metaclasses/.
 :ID:       22c67d1a-e697-409d-9c48-7b906ba3c7a3
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/ast.lisp")
+#+call:file-commentary("~/src/core/lib/obj/ast.lisp")
 
 #+RESULTS:
 #+begin_example
@@ -1270,7 +1270,7 @@ languages.
 :ID:       1f24773d-1b23-4f35-85cb-03aae7a7256f
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/config.lisp")
+#+call:file-commentary("~/src/core/lib/obj/config.lisp")
 
 #+RESULTS:
 #+begin_example
@@ -1309,7 +1309,7 @@ Usage:
 :ID:       16e3e1ee-06db-4530-82cb-20abc0f96063
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/url.lisp")
+#+call:file-commentary("~/src/core/lib/obj/url.lisp")
 
 #+RESULTS:
 : This package mostly just implements the bare-minimum provided by QURI:
@@ -1332,7 +1332,7 @@ Usage:
 :ID:       6729e68c-6ff0-413d-8c67-274f00cf0e23
 :CREATED:  <2025-10-19 Sun 20:15>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/equiv.lisp")
+#+call:file-commentary("~/src/core/lib/obj/equiv.lisp")
 
 #+RESULTS:
 #+begin_example
@@ -1395,7 +1395,7 @@ https://clojure.org/guides/equality
 :ID:       32d49415-8d68-489c-8012-744e86bf47ab
 :CREATED:  <2025-10-19 Sun 20:17>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/cache.lisp")
+#+call:file-commentary("~/src/core/lib/obj/cache.lisp")
 
 #+RESULTS:
 #+begin_example
@@ -1433,7 +1433,7 @@ caching for WM.
 :ID:       ef9a558f-59e1-45a6-9138-cc49443353a9
 :CREATED:  <2025-10-19 Sun 20:15>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/project.lisp")
+#+call:file-commentary("~/src/core/lib/obj/project.lisp")
 
 #+RESULTS:
 #+begin_example
@@ -1455,7 +1455,7 @@ reading or writing projects.
 :ID:       9999800d-7d6c-4ba1-9bb7-64b6b827337c
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/schema.lisp")
+#+call:file-commentary("~/src/core/lib/obj/schema.lisp")
 
 #+RESULTS:
 #+begin_example
@@ -1480,7 +1480,7 @@ interface.
 :ID:       2aab384b-4712-417f-97b3-c2026cb40308
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/secret.lisp")
+#+call:file-commentary("~/src/core/lib/obj/secret.lisp")
 
 #+RESULTS:
 : ref: https://github.com/rotatef/secret-values
@@ -1490,7 +1490,7 @@ interface.
 :ID:       0428d80c-4d61-40b6-85a8-d63a738525de
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/srv.lisp")
+#+call:file-commentary("~/src/core/lib/obj/srv.lisp")
 
 #+RESULTS:
 #+begin_example
@@ -1530,7 +1530,7 @@ Axum: https://github.com/tokio-rs/axum
 :CREATED:  <2025-10-19 Sun 19:55>
 :END:
 
-#+call:file-commentary("~/comp/core/lib/obj/graph.lisp")
+#+call:file-commentary("~/src/core/lib/obj/graph.lisp")
 
 #+RESULTS:
 #+begin_example
@@ -1570,7 +1570,7 @@ If you care about direction, use DIRECTED-GRAPH instead of GRAPH.
 :ID:       4498318b-9d20-464a-99ef-5b24596c6298
 :CREATED:  <2025-10-19 Sun 20:16>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/store.lisp")
+#+call:file-commentary("~/src/core/lib/obj/store.lisp")
 
 #+RESULTS:
 : Based on work from Elephant and XDB.
@@ -1612,7 +1612,7 @@ which are prefixed with =T.= for tensor-specific methods.
 :ID:       fa2620fb-bff7-44ce-95b2-26bf9996539a
 :CREATED:  <2025-07-05 Sat 21:04>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/meta/sealed.lisp")
+#+call:file-commentary("~/src/core/lib/obj/meta/sealed.lisp")
 
 #+RESULTS:
 #+begin_example
@@ -1748,7 +1748,7 @@ the appropriate effective method.
 :ID:       6a2a31cc-6336-4a25-97dc-0e9bf3d31475
 :CREATED:  <2025-07-05 Sat 21:04>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/meta/stored.lisp")
+#+call:file-commentary("~/src/core/lib/obj/meta/stored.lisp")
 
 #+RESULTS:
 : This code is derived from XDB.
@@ -1781,7 +1781,7 @@ the appropriate effective method.
 :ID:       e537a12f-23fe-40fb-954f-58e282eba360
 :CREATED:  <2025-07-05 Sat 21:04>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/meta/dynamic.lisp")
+#+call:file-commentary("~/src/core/lib/obj/meta/dynamic.lisp")
 
 #+RESULTS:
 #+begin_example
@@ -1802,7 +1802,7 @@ threads. Many of our other libs can potentially benefit from this metaclass
 :ID:       c1d953dd-c965-4b22-b8e4-18623a401b19
 :CREATED:  <2025-07-05 Sat 21:05>
 :END:
-#+call:file-commentary("~/comp/core/lib/obj/meta/mix.lisp")
+#+call:file-commentary("~/src/core/lib/obj/meta/mix.lisp")
 
 #+RESULTS:
 #+begin_example

@@ -1,7 +1,7 @@
 #+title: Core User Manual
 #+author: Richard Westhaver
 #+email: ellis@rwest.io
-#+property: header-args:shell :dir ~/comp/core/
+#+property: header-args :dir ~/src/core/ :exports both :eval no
 #+setupfile: ../../clean.theme
 #+texinfo_filename: core.info
 #+texinfo_dir_category: Software development
@@ -92,24 +92,10 @@ ls -Ah
 #+end_src
 
 #+RESULTS:
-| alien          |
-| bootstrap.lisp |
-| core.lisp      |
-| core.sys       |
-| etc            |
-| .hg            |
-| .hgignore      |
-| .hgsub         |
-| .hgsubstate    |
-| ironclad       |
-| lib            |
-| ppcre          |
-| readme.org     |
-| skel           |
-| skelfile       |
-| slime          |
-| .stash         |
-| std            |
+| api.org    |
+| lib        |
+| man.org    |
+| readme.org |
 
 - Common Lisp \\
   The =STD= library lives under the [[vc:core:std][std]] directory, low-level FFI
@@ -264,23 +250,21 @@ The next thing you'll want to take care of is user configuration. You
 can save your configuration at your preferred XDG-compliant location
 (=~/.config/corerc= is recommended).
 
-#+begin_src lisp :var path-to-core="~/comp/core/" path-to-shed="~/comp/shed/" :package user :results output replace
+#+begin_src lisp :var :results output replace :eval never
 ;;; .corerc --- core init file -*- mode: common-lisp; -*-
+(in-package :user)
 (init :xdg) ;; apply user XDG config
 (init :term) ;; detect current terminal
 (init :log :level :debug) ;; enable global logger
-;; index local systems
-(init :sys :sysdefs (append (sysdefs path-to-core t) #+optional (sysdefs path-to-shed t)))
+;; (init :sys :sysdefs (sysdefs path-to-core t))
 #+end_src
-
-#+RESULTS:
 
 The only other development dependency which needs configuring is
 Emacs. This can be done via the =skel= tool, but keep in mind that
 this will overwrite the XDG-compliant emacs configuration directory
 (=~/.config/emacs=) if it exists:
 
-#+begin_src shell :results output replace
+#+begin_src shell :results output replace :eval never
 skel make install-emacs
 #+end_src
 
@@ -344,35 +328,22 @@ default CC Emacs configuration using the =skel= command.
 - AO [2026-05-22 Fri] the core should is intended to be hacked on
   using this config /only/ but is subject to change in the future.
 - Warning :: this will overwrite =$XDG_CONFIG_HOME/emacs/=
-  #+begin_src shell :dir ~/comp/core/ :results output :exports both
+  #+begin_src shell :dir ~/src/core/ :results output :exports both
   skel make install-emacs
   #+end_src
 
   #+RESULTS:
-  : #:debug 0.154
+  : #:debug 0.15
   : ; (#<rule install-emacs>)
 
 - the vanilla load sequence is applied first, starting with
-  [[vc:core:etc/emacs/early-init.el][early-init.el]], then [[vc:core:etc/emacs/init.el][init.el]]
+  early-init.el if provided by the user then [[vc:core:etc/emacs/init.el][init.el]]
 - init.el loads [[vc:core:etc/emacs/default.el][default.el]] which initializes all required MELPA packages and
   local libraries from [[vc:core:etc/emacs/lib][etc/emacs/lib]].
 - the site ~config.el~ is loaded next (optional, user controlled)
 - additionally load =user-custom-file= if it exists, defaulting to the
   name of the current user (~foo.el~ when =$USER=foo=)
-
-**** Packages
-:PROPERTIES:
-:ID:       0c43a530-5c2b-4df7-a04f-4a23e6793245
-:CREATED:  <2026-05-23 Sat 17:20>
-:END:
-
-The following packages are required:
-
-#+begin_src emacs-lisp :post transpose
-package-selected-packages
-#+end_src
-
-#+RESULTS:
+- finally load the =custom-file= ~custom.el~ if it exists
 
 **** Defaults
 :PROPERTIES:
@@ -390,6 +361,17 @@ first-class support for modern Lisp development.
 :END:
 Core demo applications, examples, and tutorials can be found in the
 [[vc:demo][demo]] project with documentation [[comp:docs/demo][available online]].
+
+** Documentation
+:PROPERTIES:
+:ID:       2634e0bd-29b2-4191-9892-766abfa7435e
+:CREATED:  <2025-09-30 Tue 21:48>
+:END:
+AO [2026-04-18 Sat] full-auto API docs are planned but not
+available. They will be located under the [[comp:core/docs/api][api]] directory.
+
+[2026-05-26 Tue] lib docs will be move here
+
 ** Testing
 :PROPERTIES:
 :ID:       c074e53b-846d-45ed-8ddc-70e559ed6f0c
@@ -417,19 +399,6 @@ or from lisp:
 #+begin_src lisp :eval no
   (test-system :core)
 #+end_src
-
-** Documentation
-:PROPERTIES:
-:ID:       2634e0bd-29b2-4191-9892-766abfa7435e
-:CREATED:  <2025-09-30 Tue 21:48>
-:END:
-Module-level documentation is available in the [[comp:docs/core/lib][lib]] directory. This
-documentation is partially auto-generated, but generally reserved for
-extended developer documentation. Not all systems are guaranteed to be
-covered.
-
-AO [2026-04-18 Sat] full-auto API docs are planned but not
-available. They will be located under the [[comp:core/docs/api][api]] directory.
 
 ** Contributing
 :PROPERTIES:
@@ -470,41 +439,6 @@ addition to the SBCL =SYS= host.
 #+RESULTS:
 | ETC | MEDIA | MPK | PACKY | SKEL | SRV | SYS | USER | USR | VAR |
 
-*** VAR
-:PROPERTIES:
-:ID:       d4aba737-7ed5-4548-919e-4f54b48a65f1
-:CREATED:  <2026-05-04 Mon 21:01>
-:END:
-*** SRV
-:PROPERTIES:
-:ID:       c5f3eeef-3a7e-43f7-a87d-41eb53656ad0
-:CREATED:  <2026-05-04 Mon 21:01>
-:END:
-*** ETC
-:PROPERTIES:
-:ID:       c95d90be-377f-4145-8626-56bc6a82a8f6
-:CREATED:  <2026-05-04 Mon 21:31>
-:END:
-*** USR
-:PROPERTIES:
-:ID:       da86a850-3b31-434f-b7fb-eb1868ce7ce1
-:CREATED:  <2026-05-04 Mon 21:01>
-:END:
-*** USER
-:PROPERTIES:
-:ID:       50ddd65b-0114-40a3-9965-c03a1822e7cc
-:CREATED:  <2026-05-04 Mon 21:05>
-:END:
-*** STASH
-:PROPERTIES:
-:ID:       1d9a49b3-c7c6-427c-9cd0-ae9f174d243f
-:CREATED:  <2026-04-18 Sat 22:59>
-:END:
-*** STORE
-:PROPERTIES:
-:ID:       9b0ab705-85ac-45d2-898d-97ce83faa98f
-:CREATED:  <2026-05-04 Mon 21:00>
-:END:
 ** Reader
 :PROPERTIES:
 :ID:       2f1fd6e4-af27-4128-99dc-078216d1105c
@@ -514,6 +448,47 @@ addition to the SBCL =SYS= host.
 :PROPERTIES:
 :ID:       9943ef84-5484-4d3a-b33b-1ac96a9cd59c
 :CREATED:  <2026-04-18 Sat 23:01>
+:END:
+*** Annotations
+:PROPERTIES:
+:ID:       682c3dc1-462a-4f85-87f0-54769cfff59e
+:CREATED:  <2026-05-26 Tue 21:49>
+:END:
+** CLOS
+:PROPERTIES:
+:ID:       9c91fded-bda8-464a-bfde-586d03414bea
+:CREATED:  <2026-05-26 Tue 21:47>
+:END:
+*** Metaclasses
+:PROPERTIES:
+:ID:       3f504910-e86d-494f-b167-0deb6b120c52
+:CREATED:  <2026-05-26 Tue 21:48>
+:END:
+
+*** Templates
+:PROPERTIES:
+:ID:       96ece274-f0ec-404d-ba29-15f66f865946
+:CREATED:  <2026-05-26 Tue 21:48>
+:END:
+** Functions
+:PROPERTIES:
+:ID:       930dec8e-186f-495d-be1a-802d516e4d0b
+:CREATED:  <2026-05-26 Tue 21:46>
+:END:
+*** Kernel Objects
+:PROPERTIES:
+:ID:       759086fb-dea9-4e9a-803a-37230eb961f1
+:CREATED:  <2026-05-26 Tue 21:46>
+:END:
+**** Hooks
+:PROPERTIES:
+:ID:       3ec4e96f-91ef-4f42-ab2c-35933d9ebbc0
+:CREATED:  <2026-05-26 Tue 21:47>
+:END:
+**** Commands
+:PROPERTIES:
+:ID:       5c64d914-633c-4faa-8c3f-a5bd20037b7f
+:CREATED:  <2026-05-26 Tue 21:47>
 :END:
 ** Macros
 :PROPERTIES:
@@ -530,7 +505,7 @@ addition to the SBCL =SYS= host.
 :ID:       3dc4b9cd-56fa-46b9-b747-7a71704e755b
 :CREATED:  <2026-04-18 Sat 22:17>
 :END:
-* Protocols
+** Protocols
 :PROPERTIES:
 :ID:       bc25aea1-1375-405e-b091-6660e21e9916
 :CREATED:  <2025-09-30 Tue 21:56>
@@ -602,7 +577,7 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:415104539322+ --- A universal project development tool.
+: skel v0.1.1:4b1b0c355d96+ --- A universal project development tool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
@@ -660,14 +635,12 @@ representation. For example the =MAKEFILE= class defined in
 
 #+RESULTS:
 - lisp
-- asd
-- cargo
+- rust
+- python
+- emacs
 - box
-- container
-- org
-- dir-locals
-- makefile
-- sys
+- pod
+- make
 - infer
 
 *** Apps
@@ -762,7 +735,8 @@ Here is a more verbose example, still with only metadata:
 
 Another example:
 
-#+begin_src lisp :eval never :name skelfile-simple
+#+name: skelfile-simple
+#+begin_src lisp :eval never
 ;;; skelfile @ 2023-10-08.02:37:25 -*- mode: skel; -*-
 :name skel
 :author "ellis"
@@ -789,12 +763,12 @@ The currently accessible ~sk-project~ can be easily inferred via the
 
 #+RESULTS:
 #+begin_example
-#<project ORG :components 0 :rules 16>
+#<project ORG :components 1 :rules 16>
   [standard-object]
 
 Slots with :INSTANCE allocation:
   NAME                           = ORG
-  PATH                           = #P"/home/ellis/comp/org/skelfile"
+  PATH                           = #P"/home/ellis/src/org/skelfile"
   AUTHOR                         = ("Richard Westhaver" . "ellis@rwest.io")
   VERSION                        = "0.1.0"
   TAGS                           = (ORG DOCS NOTES META PLAN ARCHIVE GRAPH)
@@ -802,14 +776,14 @@ Slots with :INSTANCE allocation:
   LICENSE                        = "MPL"
   AST                            = NIL
   ID                             = 1784914079056115652
-  VC                             = #<HG-REPO {120AD54CE3}>
-  SRC                            = #P"/home/ellis/comp/org/"
-  STASH                          = #P"/home/ellis/comp/org/.stash/"
-  STORE                          = #P"/home/ellis/comp/org/.stash/store/"
-  CACHE                          = #P"/home/ellis/comp/org/.stash/cache/"
-  COMPONENTS                     = #()
+  VC                             = #<HG-REPO {121D4ECAD3}>
+  SRC                            = #P"/home/ellis/src/org/"
+  STASH                          = #P"/home/ellis/src/org/.stash/"
+  STORE                          = #P"/home/ellis/src/org/.stash/store/"
+  CACHE                          = #P"/home/ellis/src/org/.stash/cache/"
+  COMPONENTS                     = #(#<SK-EMACS-LISP-FILE :ID 261b-d524-daf3-a873>)
   BIND                           = ((SUBMODS (LIST "graph" "meta" "plan" "docs" "notes" "archive")))
-  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {120ACD9D53}>
+  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {121D456EA3}>
   RULES                          = #(#<rule default (build publish deploy dist-html dist-source..
   INCLUDE                        = #()
 #+end_example
@@ -834,48 +808,22 @@ skel show rules
 
 #+RESULTS:
 #+begin_example
-#<rule default (data rebuild-core)>
-#<rule bootstrap (data build-core)>
-#<rule data (%stash psl.dat kbd.sxp x11.lisp parquet.json)>
-#<rule all (%stash psl.dat x11.lisp kbd.sxp parquet.thrift rebuild-core deploy)>
-#<rule upstream>
+#<rule default (build publish deploy dist-html dist-source dist-repos)>
+#<rule build (build-css update-docs)>
+#<rule update-docs>
 #<rule clean>
-#<rule update-readme>
-#<rule psl.dat (%stash)>
-#<rule kbd.sxp (%stash)>
-#<rule ccadb.dat (%stash)>
-#<rule rgb.txt (%stash)>
-#<rule x11.lisp (rgb.txt)>
-#<rule parquet.thrift (%stash)>
-#<rule parquet.json (%stash)>
-#<rule freedesktop.org.xml (%stash)>
-#<rule parquet-test-data (%stash)>
-#<rule sndfile-test-data (%stash)>
-#<rule ffmpeg-test-data (%stash)>
-#<rule test-data (ffmpeg-test-data sndfile-test-data parquet-test-data)>
-#<rule %stash>
-#<rule ssl-certs>
-#<rule ssl-client-certs>
-#<rule install-emacs>
-#<rule purge-emacs>
-#<rule build-core (%stash)>
-#<rule rebuild-core (%stash)>
-#<rule compile-core>
-#<rule install-core>
-#<rule install-emacs>
-#<rule run-tests>
-#<rule save-tests>
-#<rule compile-tests>
-#<rule compile-core>
-#<rule coverage>
-#<rule install (install-core)>
-#<rule syms.sxp>
-#<rule dist>
-#<rule dist-repo>
-#<rule dist-source>
-#<rule build-docs>
-#<rule build-core (%stash)>
-#<rule deploy (dist dist-repo)>
+#<rule build-css>
+#<rule deploy-css>
+#<rule browse>
+#<rule publish>
+#<rule deploy-ssh>
+#<rule deploy-cloudflare>
+#<rule deploy (deploy-css)>
+#<rule upstream>
+#<rule dist-repos>
+#<rule dist-source (clean)>
+#<rule push>
+#<rule dist-html>
 #+end_example
 
 Unlike makefile rules we don't need to specify a ~target~ (although
@@ -889,7 +837,7 @@ skel show bind
 #+end_src
 
 #+RESULTS:
-: (STASH .stash)
+: (SUBMODS (LIST graph meta plan docs notes archive))
 
 The ~RULE~ class is defined in the ~PROJECT~ protocol:
 
