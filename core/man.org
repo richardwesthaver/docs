@@ -333,7 +333,11 @@ default CC Emacs configuration using the =skel= command.
   #+end_src
 
   #+RESULTS:
-  : #:debug 0.15
+  : sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+  : sudo: a password is required
+  : sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+  : sudo: a password is required
+  : #:debug 3.428001
   : ; (#<rule install-emacs>)
 
 - the vanilla load sequence is applied first, starting with
@@ -470,25 +474,36 @@ addition to the SBCL =SYS= host.
 :ID:       96ece274-f0ec-404d-ba29-15f66f865946
 :CREATED:  <2026-05-26 Tue 21:48>
 :END:
+
 ** Functions
 :PROPERTIES:
 :ID:       930dec8e-186f-495d-be1a-802d516e4d0b
 :CREATED:  <2026-05-26 Tue 21:46>
 :END:
-*** Kernel Objects
+*** Function Objects
 :PROPERTIES:
 :ID:       759086fb-dea9-4e9a-803a-37230eb961f1
 :CREATED:  <2026-05-26 Tue 21:46>
 :END:
-**** Hooks
+**** Kernel Objects
+:PROPERTIES:
+:ID:       52270622-e05f-4b76-b4d3-72834f5393a7
+:CREATED:  <2026-06-05 Fri 19:33>
+:END:
+***** Hooks
 :PROPERTIES:
 :ID:       3ec4e96f-91ef-4f42-ab2c-35933d9ebbc0
 :CREATED:  <2026-05-26 Tue 21:47>
 :END:
-**** Commands
+***** Commands
 :PROPERTIES:
 :ID:       5c64d914-633c-4faa-8c3f-a5bd20037b7f
 :CREATED:  <2026-05-26 Tue 21:47>
+:END:
+*** Verbs
+:PROPERTIES:
+:ID:       8e4b3e36-dffd-4da1-8e4d-f369a0650793
+:CREATED:  <2026-06-05 Fri 19:34>
 :END:
 ** Macros
 :PROPERTIES:
@@ -577,17 +592,13 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:4b1b0c355d96+ --- A universal project development tool.
+: skel v0.1.1:fd0c4f0ef18b+ --- A universal project development tool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
 [[id:359441da-1b61-4d73-8563-605ea7262b58][projects]].
 
-** Architecture
-:PROPERTIES:
-:ID:       4fd2d7eb-e738-4e2f-8de1-3b8f5671d488
-:END:
-*** Core
+** Core
 :PROPERTIES:
 :ID:       35a5aa3b-1ff1-46ea-9ec7-1d6c9a2386f2
 :CREATED:  <2026-01-03 Sat 20:09>
@@ -619,47 +630,6 @@ and methods such as the =SK-PROJECT= class which is based on the
 - log
 - util
 
-*** Components
-:PROPERTIES:
-:ID:       c86d03b4-dc7d-4836-8bdb-58498bd84e46
-:CREATED:  <2026-01-03 Sat 20:09>
-:END:
-In addition to the core objects we provide a set of =COMPONENT=
-definitions which convert core objects to a corresponding external
-representation. For example the =MAKEFILE= class defined in
-=comp/makefile.lisp= can be built from or consumed by a project.
-
-#+begin_src lisp :results list
-(mapcar 'name (components (find-component :comp (find-system :skel))))
-#+end_src
-
-#+RESULTS:
-- lisp
-- rust
-- python
-- emacs
-- box
-- pod
-- make
-- infer
-
-*** Apps
-:PROPERTIES:
-:ID:       6e3a9575-a6d9-46e7-a0cf-7f4bbde91040
-:CREATED:  <2026-05-04 Mon 21:36>
-:END:
-The ~skel~ system is further extended by built-in ~applications~ which
-specialize on skel objects in project domains of particular interest.
-
-There are currently 4 apps in addition to skel itself:
-
-- krypt :: Secrets Management
-- packy :: Package Management
-- mpk :: Media Management
-- homer :: Home Management
-
-Applications are /compiled in sequence/ such that ~homer~ may depend
-on ~mpk~ which may depend on ~packy~ which may depend on ~krypt~.
 ** Configuration
 :PROPERTIES:
 :ID:       2658a3d1-cfa5-436e-b2b0-9cf42a6f66c6
@@ -680,20 +650,15 @@ cat ~/.config/skelrc
 #+end_src
 
 #+RESULTS:
-#+begin_example
-;;; skelrc @ 2023-10-12.02:58:08 -*- mode: skel; -*-
-:name "Richard Westhaver"
-:email "richard.westhaver@gmail.com"
-:version "0.1.0"
-:fmt :pretty
-:vc :hg
-:auto-insert t
-:license :mpl2
-:logger (:level :info)
-:stash ".stash"
-:store "/opt/store"
-:scripts ("~/.stash/scripts")
-#+end_example
+: ;;; skelrc
+: :name "Richard Westhaver"
+: :email "richard.westhaver@gmail.com"
+: :version "0.1.0"
+: :vc :hg
+: :logger (:level :info)
+: :stash ".stash"
+: :store "/opt/store"
+: :scripts ("~/.stash/scripts")
 
 ** Projects
 :PROPERTIES:
@@ -776,24 +741,44 @@ Slots with :INSTANCE allocation:
   LICENSE                        = "MPL"
   AST                            = NIL
   ID                             = 1784914079056115652
-  VC                             = #<HG-REPO {121D4ECAD3}>
+  VC                             = #<HG-REPO {121E49CAD3}>
   SRC                            = #P"/home/ellis/src/org/"
   STASH                          = #P"/home/ellis/src/org/.stash/"
   STORE                          = #P"/home/ellis/src/org/.stash/store/"
   CACHE                          = #P"/home/ellis/src/org/.stash/cache/"
-  COMPONENTS                     = #(#<SK-EMACS-LISP-FILE :ID 261b-d524-daf3-a873>)
+  COMPONENTS                     = #(#<SK-EMACS-LISP-FILE :ID 11d0-0dcf-545d-5fd2>)
   BIND                           = ((SUBMODS (LIST "graph" "meta" "plan" "docs" "notes" "archive")))
-  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {121D456EA3}>
+  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {121E406EA3}>
   RULES                          = #(#<rule default (build publish deploy dist-html dist-source..
   INCLUDE                        = #()
 #+end_example
 
-*** Components
+** Components
 :PROPERTIES:
-:ID:       bc8d6372-01aa-49e1-a019-d22b03dd7e80
-:CREATED:  <2026-05-16 Sat 22:29>
+:ID:       c86d03b4-dc7d-4836-8bdb-58498bd84e46
+:CREATED:  <2026-01-03 Sat 20:09>
 :END:
-*** Rules
+In addition to the core objects we provide a set of =COMPONENT=
+definitions which convert core objects to a corresponding external
+representation. For example the =MAKEFILE= class defined in
+=comp/makefile.lisp= can be built from or consumed by a project.
+
+#+begin_src lisp :results list
+(mapcar 'name (components (find-component :comp (find-system :skel))))
+#+end_src
+
+#+RESULTS:
+- lisp
+- make
+- rust
+- python
+- emacs
+- shell
+- box
+- pod
+- infer
+
+** Rules
 :PROPERTIES:
 :ID:       0d22af45-3e2a-43f9-af61-2df1e2629cb8
 :CREATED:  <2026-05-16 Sat 22:29>
@@ -851,7 +836,7 @@ The ~RULE~ class is defined in the ~PROJECT~ protocol:
 #+RESULTS:
 : #<RULE (LAMBDA (&REST ARGS) IN ALLOCATE-STANDARD-FUNCALLABLE-INSTANCE)>
 : (ID AST)
-**** Simple Rules
+*** Simple Rules
 :PROPERTIES:
 :ID:       7160a8be-497e-433c-b27a-6ae1a1c1b443
 :CREATED:  <2026-05-17 Sun 14:50>
@@ -867,7 +852,7 @@ The ~RULE~ class is defined in the ~PROJECT~ protocol:
 : #<SIMPLE-RULE (LAMBDA (&REST ARGS) IN ALLOCATE-STANDARD-FUNCALLABLE-INSTANCE)>
 : (ID AST SOURCE OBJ/PROJECT::TARGET)
 
-**** Interactive Rules
+*** Interactive Rules
 :PROPERTIES:
 :ID:       e34102c2-332e-4d7d-a3ec-5bc57f1d7777
 :CREATED:  <2026-05-16 Sat 22:37>
@@ -889,6 +874,79 @@ Interactive rules implement the ~COMMAND~ protocol and accept a
 lambda-list and ~INTERACTIVE~ declaration in the body. They are
 commonly used as project-specific subcommands.
 
+** Apps
+:PROPERTIES:
+:ID:       6e3a9575-a6d9-46e7-a0cf-7f4bbde91040
+:CREATED:  <2026-05-04 Mon 21:36>
+:END:
+The ~skel~ system is further extended by built-in ~applications~ which
+specialize on skel objects in project domains of particular interest.
+
+There are currently 4 app entry points in addition to skel itself:
+
+- krypt :: Secrets Management
+- packy :: Package Management
+- mpk :: Media Management
+- homer :: Home Management
+
+**** TODO Krypt
+:PROPERTIES:
+:ID:       15e88c5c-6162-4be3-8493-8dcb6962028a
+:CREATED:  <2026-06-05 Fri 18:56>
+:END:
+:LOGBOOK:
+- State "TODO"       from              [2026-06-05 Fri 18:57]
+:END:
+
+**** WIP Packy
+:PROPERTIES:
+:ID:       0d6aa855-037d-49a6-9191-ad9d14f9362b
+:CREATED:  <2026-06-05 Fri 18:56>
+:END:
+~packy~ is a package management tool which is based on the ~pkgfile~
+class. Our pkgfiles are read from special lisp files similar to
+~skelfiles~.
+
+Packages may be installed by compiling these objects into [[id:59eb9925-ec78-4202-b42e-53456c04ac27][PKGBUILD]]s
+which are consumed by =makepkg= on [[id:6ef3fb84-6805-46f7-ad13-8929a023b43c][Arch Linux]] systems.
+
+The packy tool will eventually replace [[id:3c814d4d-8635-4c6f-a849-5c7d72db20fe][pacman]] functionality but this
+is still a ways off and not a high priority.
+
+***** Package Format
+:PROPERTIES:
+:ID:       cd3374a2-d78c-4dba-a994-8429c3c237e6
+:CREATED:  <2026-06-05 Fri 20:12>
+:END:
+- tar.zst
+- component-specific formats
+
+***** Package Index
+:PROPERTIES:
+:ID:       8d92783b-2791-44d3-902d-1674673a6ddb
+:CREATED:  <2026-06-05 Fri 20:22>
+:END:
+- packy.compiler.company
+- eventually direct support for lang-specific package managers -
+  cargo/pypi/gobuild/elpa/etc.
+**** TODO MPK
+:PROPERTIES:
+:ID:       0b79cad8-8fc4-4b2f-b93e-84bba67544fe
+:CREATED:  <2026-06-05 Fri 18:57>
+:END:
+:LOGBOOK:
+- State "TODO"       from              [2026-06-05 Fri 18:57]
+:END:
+
+**** TODO Homer
+:PROPERTIES:
+:ID:       1547b3d2-6bb9-4cdf-b3ff-9eb87c79096d
+:CREATED:  <2026-06-05 Fri 18:57>
+:END:
+:LOGBOOK:
+- State "TODO"       from              [2026-06-05 Fri 18:57]
+:END:
+
 * Hacking
 :PROPERTIES:
 :ID:       a2797272-550f-4b96-a0c5-c0660af57d05
@@ -902,5 +960,6 @@ catastrophic if attempts are made to use or modify
 internals. Especially when dealing with ~alien~ objects it's just as
 easy to corrupt your Lisp image as it is to modify it.
 
-When hacking on the source refer to the [[comp:docs/core/lib][library]] docs and take note of
-the file comments, particularly inline tasks.
+When hacking on the source refer to the [[comp:docs/core/mod][module]] docs and take note of
+the inline file comments. For work-in-progress modules take note of
+the core [[comp:plan/tasks/core][project tasks]].
