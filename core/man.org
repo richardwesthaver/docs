@@ -337,7 +337,9 @@ default CC Emacs configuration using the =skel= command.
   : sudo: a password is required
   : sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
   : sudo: a password is required
-  : #:debug 3.428001
+  : sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+  : sudo: a password is required
+  : #:debug 6.19
   : ; (#<rule install-emacs>)
 
 - the vanilla load sequence is applied first, starting with
@@ -728,7 +730,7 @@ The currently accessible ~sk-project~ can be easily inferred via the
 
 #+RESULTS:
 #+begin_example
-#<project ORG :components 1 :rules 16>
+#<project ORG :components 1 :rules 21>
   [standard-object]
 
 Slots with :INSTANCE allocation:
@@ -741,14 +743,14 @@ Slots with :INSTANCE allocation:
   LICENSE                        = "MPL"
   AST                            = NIL
   ID                             = 1784914079056115652
-  VC                             = #<HG-REPO {121E49CAD3}>
+  VC                             = #<HG-REPO {1225F74953}>
   SRC                            = #P"/home/ellis/src/org/"
   STASH                          = #P"/home/ellis/src/org/.stash/"
   STORE                          = #P"/home/ellis/src/org/.stash/store/"
   CACHE                          = #P"/home/ellis/src/org/.stash/cache/"
-  COMPONENTS                     = #(#<SK-EMACS-LISP-FILE :ID 11d0-0dcf-545d-5fd2>)
+  COMPONENTS                     = #(#<SK-EMACS-LISP-FILE :ID 0ea5-9929-36fa-73aa>)
   BIND                           = ((SUBMODS (LIST "graph" "meta" "plan" "docs" "notes" "archive")))
-  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {121E406EA3}>
+  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {1225F154E3}>
   RULES                          = #(#<rule default (build publish deploy dist-html dist-source..
   INCLUDE                        = #()
 #+end_example
@@ -794,10 +796,15 @@ skel show rules
 #+RESULTS:
 #+begin_example
 #<rule default (build publish deploy dist-html dist-source dist-repos)>
-#<rule build (build-css update-docs)>
+#<rule build (build-css update-docs build-graph build-docs)>
+#<rule build-graph>
 #<rule update-docs>
+#<rule build-docs>
+#<rule build-graph>
 #<rule clean>
 #<rule build-css>
+#<rule build-docs>
+#<rule build-graph>
 #<rule deploy-css>
 #<rule browse>
 #<rule publish>

@@ -326,10 +326,11 @@ may be read and written as lists.
 | SET-EQUAL             |
 | CART                  |
 | ZIP-TREE              |
+| PLISTIFY              |
 | CART-ECASE            |
 | CART-TYPECASE         |
 | ASSQ                  |
-| WITH-STACK-LIST*      |
+| CIRCULAR-LIST-P       |
 | MEMQ                  |
 | DECONSIFY             |
 | NUNIONF               |
@@ -350,18 +351,19 @@ may be read and written as lists.
 | MAPTREE-EKI           |
 | LIST-DIMENSIONS       |
 | TOPOLOGICAL-SORT      |
-| CIRCULAR-LIST-P       |
+| MAPTREE-IF            |
 | FLATTEN               |
 | CART-CASE             |
 | PROPER-LIST-LENGTH    |
 | ENSURE-CONS           |
-| MAPTREE-IF            |
+| PLIST-SPLIT           |
 | DAPPENDF              |
 | WITH-DLIST            |
 | ZIPRM                 |
 | ZIPSYM                |
 | SAFE-ENDP             |
 | CART-ETYPECASE        |
+| WITH-STACK-LIST*      |
 | ZIP                   |
 | FLATTEN*              |
 | LET-BINDING-TRANSFORM |
@@ -415,7 +417,7 @@ defined in =std/prim=.
 
 #+RESULTS:
 | NO-KERNEL-ERROR          |
-| KERNEL                   |
+| WITH-SAFE-IO-SYNTAX      |
 | KERNEL-OBJECT            |
 | O!-SYMBOL-TO-G!-SYMBOL   |
 | KERNELP                  |
@@ -430,22 +432,23 @@ defined in =std/prim=.
 | WITH-OPTIMIZATION        |
 | WITH-MARKING             |
 | CALL-WITH-SAFE-IO-SYNTAX |
-| KERNEL-DOCUMENTATION     |
+| G!-SYMBOL-P              |
 | VALUE-HOOK               |
 | READ-LISP-FILE           |
 | CHECK-KERNEL             |
 | FUNCTION-LAMBDA-LIST     |
+| KERNEL                   |
 | READ-LISP-STRING         |
 | DEFKERNEL                |
 | ENSURE-FUNCTION          |
 | KERNEL-INIT-ERROR        |
 | DEFINLINE                |
 | MAKE-KERNEL              |
-| ENSURE-FUNCTIONF         |
-| WITH-SAFE-IO-SYNTAX      |
+| KERNEL-DOCUMENTATION     |
+| DEFMACRO!                |
 | PSWAP                    |
 | CONCAT                   |
-| DEFMACRO!                |
+| ARGLIST                  |
 | *STANDARD-READTABLE*     |
 | BINDING-GENSYMS          |
 | *KERNEL*                 |
@@ -453,7 +456,8 @@ defined in =std/prim=.
 | KERNEL-CLASS             |
 | DESTRUCTURE-CASE         |
 | READ-LISP-UNTIL-END      |
-| G!-SYMBOL-P              |
+| DEFHOOK                  |
+| ENSURE-FUNCTIONF         |
 | MACROFY                  |
 | KERNEL-INFO              |
 | DEFMACRO/G!              |
@@ -462,7 +466,6 @@ defined in =std/prim=.
 | READ-UNTIL-END           |
 | REMOVE-HOOK              |
 | ADD-HOOK                 |
-| DEFHOOK                  |
 
 - =definline= is one of the most commonly used exports - as the name
   suggests it defines a function which is automatically declaimed
@@ -1347,34 +1350,34 @@ Standard macros are defined in =std/macs=.
 
 #+RESULTS:
 #+begin_example
-(#<STANDARD-METHOD STD/IO:SERIALIZE (CONTAINERFILE (EQL :BYTES)) {1221D54A63}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (CONTAINERFILE (EQL :STRING)) {1221D54A53}>
+(#<STANDARD-METHOD STD/IO:SERIALIZE (CONTAINERFILE (EQL :BYTES)) {12270FCF93}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (CONTAINERFILE (EQL :STRING)) {12270FCF83}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                     (EQL :JSON)) {1203B64523}>
+                                     (EQL :JSON)) {1203B1C1E3}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH
-                                     (EQL :DOT)) {1203B64513}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {1203899673}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (COOKIE (EQL :STRING)) {1203AF84C3}>
+                                     (EQL :DOT)) {1203B1C1D3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (ORGAN/GRAPH:ORG-GRAPH T) {120389E863}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (COOKIE (EQL :STRING)) {1203ABD8A3}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (NET/CODEC/OSC::OSC-DATA
-                                     (EQL :OSC)) {1203B62FC3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :STRING)) {1203B62FB3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :BYTES)) {1203B62FA3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :QRCODE)) {12038F2343}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (INTEGER (EQL :BASE64)) {12038F1E13}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :BASE64)) {12038743F3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :BASE64)) {12038F2323}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (GIF-STREAM (EQL :GIF)) {1203B61C33}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (TOML-TABLE (EQL :TOML)) {1203B47E53}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (LIST (EQL :INI)) {12038F2063}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (DAT/HTML::NODE T) {1203886423}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :XML)) {1203884EC3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :JSON)) {1203884E53}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :CSV)) {12038743D3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (GRAPH (EQL :DOT)) {1203B466E3}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :URL)) {1203882D93}>
- #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :PUNYCODE)) {12038F2103}>
+                                     (EQL :OSC)) {1203B19933}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :STRING)) {1203B19923}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (TLV (EQL :BYTES)) {1203B19913}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :QRCODE)) {12038C9EC3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (INTEGER (EQL :BASE64)) {12038C9993}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :BASE64)) {1203844113}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :BASE64)) {12038C9EA3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (GIF-STREAM (EQL :GIF)) {1203B185A3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (TOML-TABLE (EQL :TOML)) {1203B167C3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (LIST (EQL :INI)) {12038C9BE3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (DAT/HTML::NODE T) {120389B633}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :XML)) {120389A0D3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :JSON)) {120389A063}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (VECTOR (EQL :CSV)) {12038440F3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (GRAPH (EQL :DOT)) {1203B15053}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (T (EQL :URL)) {1203857FC3}>
+ #<STANDARD-METHOD STD/IO:SERIALIZE (STRING (EQL :PUNYCODE)) {12038C9C83}>
  #<STANDARD-METHOD STD/IO:SERIALIZE (JPEG:JPEG-COMPRESSOR
-                                     (EQL :JPEG)) {1203B47BA3}>)
+                                     (EQL :JPEG)) {1203B16513}>)
 #+end_example
 
 #+begin_src lisp
@@ -1384,54 +1387,55 @@ Standard macros are defined in =std/macs=.
 #+RESULTS:
 #+begin_example
 (#<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME
-                                       (EQL :CONTAINERFILE)) {1221D2CFD3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :AUTHINFO)) {12038F2373}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :AUTHINFO)) {12038F3913}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :OPENAPI)) {1203898913}>
+                                       (EQL :CONTAINERFILE)) {12270F0FD3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :AUTHINFO)) {12038C9EF3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :AUTHINFO)) {12038CB6A3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :OPENAPI)) {120389DB03}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (JSON-OBJECT
-                                       (EQL :OPENAPI)) {1203B47CF3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :DBUS)) {12039740A3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (VECTOR (EQL :OSC)) {1203874413}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TLV)) {1203974093}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (SIMPLE-ARRAY (EQL :TLV)) {12038742B3}>
+                                       (EQL :OPENAPI)) {1203B16663}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :DBUS)) {120394AF33}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (VECTOR (EQL :OSC)) {1203844133}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TLV)) {120394AF23}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (SIMPLE-ARRAY (EQL :TLV)) {1203843FE3}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME
-                                       (EQL :SYSTEMD-UNIT)) {12038F3923}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {1203887E93}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BASE64)) {1203974073}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BASE64)) {12038F2333}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BIB)) {12038F22D3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :BIB)) {12038F38E3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BIB)) {1203974063}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TOML)) {1203974053}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :TOML)) {12038F22B3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :TOML)) {12038F38C3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {1203886493}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :INI)) {12038F38A3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :INI)) {12038F22A3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :INI)) {1203974023}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :HTML)) {1203886413}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :SVG)) {12038F2283}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :SVG)) {12038F3883}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :XML)) {12038F3873}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :XML)) {1203974013}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :XML)) {12038F2273}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JSON-SCHEMA)) {1203884E63}>
+                                       (EQL :SYSTEMD-UNIT)) {12038CB6B3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :PACMAN-CONFIG)) {120389D083}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BASE64)) {120394AF03}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BASE64)) {12038C9EB3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :BIB)) {12038C9E53}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :BIB)) {12038CB673}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :BIB)) {120394AEF3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :TOML)) {120394AEE3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :TOML)) {12038C9E33}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :TOML)) {12038CB653}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :DESKTOP-ENTRY)) {120389B6A3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :INI)) {12038CB633}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :INI)) {12038C9E23}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :INI)) {120394AEB3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :HTML)) {120389B623}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :SVG)) {12038C9E03}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :SVG)) {12038CB613}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :XML)) {12038CB603}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :XML)) {120394AEA3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :XML)) {12038C9DF3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JSON-SCHEMA)) {120389A073}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (JSON-OBJECT
-                                       (EQL :JSON-SCHEMA)) {1203B47CD3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :JSON)) {1203974003}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :JSON)) {12038F3853}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :JSON)) {12038F2243}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :CSV)) {12038F2233}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :CSV)) {1203884E33}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :CSV)) {12038F3843}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :DOT)) {12038F2223}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :ASN1)) {1203884E23}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :URL)) {1203882DA3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :PUNYCODE)) {12038F2113}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JPEG)) {1203884CD3}>
+                                       (EQL :JSON-SCHEMA)) {1203B16643}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STREAM (EQL :JSON)) {120394AE93}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :JSON)) {12038CB5E3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :JSON)) {12038C9DC3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :CSV)) {12038C9DB3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :CSV)) {120389A043}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :CSV)) {12038CB5D3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :DOT)) {12038C9DA3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :ASN1)) {120389A033}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :URL)) {1203857FD3}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (STRING (EQL :PUNYCODE)) {12038C9C93}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (T (EQL :JPEG)) {1203899EE3}>
  #<STANDARD-METHOD STD/IO:DESERIALIZE (JPEG:JPEG-DECOMPRESSOR
-                                       (EQL :JPEG)) {1203B47BB3}>
- #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :PKGBUILD)) {1200A16163}>)
+                                       (EQL :JPEG)) {1203B16523}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :PKG)) {1200A1F873}>
+ #<STANDARD-METHOD STD/IO:DESERIALIZE (PATHNAME (EQL :PKGBUILD)) {1200A1F843}>)
 #+end_example
 
 ** alien
@@ -2384,38 +2388,38 @@ tree formatter
 
 #+RESULTS:
 #+begin_example
-▄ ▀   ▄▀ ▀█    ▄▄▀▄█▀      ██▄▀▄
-  ▄█ ▀ █ ▀▀ ▄  ▀▀▄▀  ▀▀▀▀▄▀  ▄▄▄
-█▄▀▄▄▀ ▄ ▀▄▄ ▀█ ▄▄▄▄ ▄ ▄█ ▀▄▀▀ ▄
-▀ ▀▀▀▄▀▀ ▀▄█▀▄ ▀▄▄██▀ ▀█▄██▀▄█▀▀
- █▀▄▄ ▀        ▄ █▄▀█▀▀    ▀ ▀█ 
- █▀ ▀ ▄█▄▄   █  █▀ ▄▀█▀  ▀█  ▀▀ 
- ▀▄▀▄▄▀ ▀█▀▄▄  ▀    ▄    █   ▄▄ 
- ▀█▀ ▀▀▄ ▄▄ ▄ ▀▄▀█ ▄█  ▀  ▀▀    
-▀ ▄▀▄ █  ▄ █   █▀   ▀▄▀██ ▀▄    
-▄ █▄▀ ▄▀█  ▄ ▄█▀▀▄▀  ▀▀█▄▀▀ ▀ ▄▄
-▄▄ █  ▀  ▄▄ ▀  ▀  ▄▄▀  ▄    ▄ ▀▄
-▄▄ ▀  ▄█   ▄▄ ▄▀█ ▄ ▄█  █▄     █
-▄ █▀▀  ▀  ▀▄ ▄██▄▄ █ █ ▀▀     █ 
-█▄ ▀   ▄   ▀ ▀▀▀   █  ▀▀█  ▀ ▄█▄
-      ▀▀ ▀█  ▄▄ ▀▄▀█   ▄▄█▀▀ ▀ ▀
-▄█ ▄█▄  ▄   ▄▄ ▀   ▄ ▄█  █ ▄▄  ▀
-████████████▄█▄▀▄██▀  ██▀█▀▄▀█▀  ▄▄   ███▀█▀▀█▀▀ ▄▄ ▄▀▄   ▀▄▄▀  ▄█▀▄ ▀▄   ▄ ▄▀         
-███████▀██▄█▄█▀▀███▄▀█▄██████▀▀█ ▄▄█▀██▄██▄█  ▀▄▄▄▀█   ▀  ▄▀      █  ▄ ▀▀ ▄  ▄    ▄ ▄  
-█████▀█▀▀███████▀ ███▄███▀▄▀█▄█▄▀█▀█▀▄ █▄▀▀▀▄▀▄▀▄ █▀▄▀  ▄▄  ▄ ▀ ▀▄ ▀▄ ▀ ▄ ▄▀   ▄       
-███████▀███▀████▄█▄▀█▄█▀ ▄▀▄███▄█▀▀█▀▀ ▀█▀█▀  ██▀██▀ ▄ █ ▀  ▄  ▀▄ ▀ ▄       ▄          
-███████████████▀█ ▀▀█▀██▄█▀▄█▀▄▄█▀▄▄▀█▀█ █▀▄ ▄▄▄ ▄ ▄█▀▀▄  ▀▄█▄  ▀  ▀ ▄  ▄       ▀      
-█████████▄▄▄▀▄ █████▀▄▀███▀▄█ ▀█▄▄████▀▄█▄ █▀▀▄█▄▀▄▄▀▄   ▄ █ ▄▄ ▄▄   ▄▀  ▄▀▀▀     ▄ ▄  
-█████████▄▀▀██▄▄██▄██▄█▀▀▄▀ ▄  █▀█▀ █▀▀▀█▄▀▄███▀▄ ▄▄███▀█▀  █     ▄█▀  ▀  ▄▄   ▄       
-████████████▄███▄█▄▄▄█ █▀▀██▄▄▄▄███  █▄▀ ▀ ▀ ▀ ▀▀ ▀▄▄▀ ▄▄ ▀  ▄▀▄ ▄▀  ▀    ▄▄ ▄▄▄▀  ▀   
-██████████████▀█ ▄▀█▄▀███▀██▄▄ ▀███ ▄▄▀▀██▄▀▀▄█▄▀█ ▄  ▄▀▄    ▄█ ▀   █ ▀ █  ▀    ▀      
-██████████▄█████▀██▄█ ███▄█▀ █▀█▄▄▄▄█▄▄█ ▀ ▀ █▄ █▀█ █ ▀▀▀▀▄▄▄ ▄        █ ▄▄         ▄  
-████▄█████▄███▄███▄██▄███▀ ▀▄█▄██▄▄██ ▄▀█ ▄▄▀  ▄▀█  ▀▀█▀ ▄█   ▄  ▀       ▄             
-█████████▄█▀█████████▀▄ █▀▀██▀▄█▄█▀ ███▀▄     █▀▄▀    ▀▀█▄ ▄ ▀ ▀ ▀▀ ▄      ▄   ▀       
-██████▀██████████████▀ █▄▄▄██ ▀▄▄▀█▄ ▄ ▀▀▄▀█▀    ▀   ▄▀   ▀▄ ▀▀  █▀      ▀ ▀▀          
-███▄███████████▀███ █▄██ ▀▀███ ▀█▀▀██▀▀█▀█▀ ▀ █ ▀▀  ▄█▄█▄▀ █  ▀▀▄▀▀     ▀     ▀▄▀   ▀  
-██████████████▀█ ████████ █▄▄  ▄██▀▀▀█▄  ▀▀▀▄▀█ ███▄ █ ▀▄   ▄▀  ▀▄ █                   
-████████▄███▄███▀████▀▄█████ ▄▀▄▀ █▀ █ █ █▄ ▄▄  █▀▀   ▀▄▀▄     ▄▄ ▄ ▀    ▄    ▄        
+▀  ▀▀▀▀▄▀  ▄▄▄▄ █▀ ▄ ▀ ▄  ▀▄▄  ▀
+▄▄ ▄ ▄█ ▀▄▀▀ ▄█▀▄██ ▄█ ▄▀█▄ ▀▄▀▀
+██▀ ▀█▄██▀▄█▀▀ ▄▄  ▀▄   ▀▀ ▀  ▀█
+▄▀█▀▀    ▀ ▀█  █▄▀█  ▄     ▄ ▀▄█
+ ▄▀█▀  ▀█  ▀▀  █ ▄  █▀██▄  ▀ ▄▀ 
+  ▄    █   ▄▄  ▄█▄▀█▄  ▀ ▀▀ ▄ ▄▄
+ ▄█  ▀  ▀▀    ▄ ▀▄  ▄▀ ▀▀▄▀  █▄▀
+  ▀▄▀██ ▀▄      █ █ ▀▄▄▀ ▀  ▄█▄ 
+▀  ▀▀█▄▀▀ ▀ ▄▄▀ ▀█  █ ▀  ▀▄▀▀▄ ▀
+▄▄▀  ▄    ▄ ▀▄▀▀ █   ▄ ▀▀    ▄▄ 
+▄ ▄█  █▄     █▀▀▄▄▄ ▀█  ▄▀▀ █▄▀ 
+ █ █ ▀▀     █ █ ▀▄       █ ███▀▀
+ █  ▀▀█  ▀ ▄█▄▀▀    ▄█ ▄▄     ▄ 
+▀█   ▄▄█▀▀ ▀ ▀ ▄  ▄     ▀  ▀▀▄ ▀
+ ▄ ▄█  █ ▄▄  ▀▀▀▄█▀▀  █▄  ██▄   
+▀██ ▀▀▀ ▄▄▄▀▄▄ ▄▄ ▀ █   ▄▀▀█▄▀ ▄
+██████▀██ ██▀█▄█▄█▄▀█ ██▄███  ▄▀█▄▄▄█ █▄▄ ▀▀▄▄▄█▀▄ ▀▄ ▀▄  ▀▀▄▀ ▀▄   ▄▀   ▀▀            
+█████▄█████████▀▄██████▄ █ ██▄▀████▀██ ▄▀▄███▄▀▀█▀▄█▀ ▄ █▀ ▄█ ▄    ▀     ▄    ▀        
+███▄▄█████▄██▀▄█▄▄█▀█████ ▄▀██▀██▀ ▀ ███▀▄█ █▄█ ██▄ ▄▀ █ █ █▄▀    ▀  ▀  ▄ ▀▄ ▀   ▀     
+█████████▀██████▄██▄▄█▀█▄█▀█ █▀█▄ ▄▄▀██▀▀▀▄ ▀ ▄▄▄▀▄█   ▀▀     ▀▄   ▄                   
+██████▄▀████████▄▄▀▀▀▄▀ ▄█▄▄▄█ ▀▄██ ▀█ █▀▀ ██ █▄▀ ▀ █▄█▀▄ █ ▀▀  ▀   █         ▀▄   ▄ ▄ 
+███████▄█▀█▄█▀████▀██▄█  ▀█ █▄▀▄██▀▄▀▀  ▄▀██▀██▄█▄▀▄▀ ▄██▀ ▀▀▄█  ▄▀  ▄▀  ▀▀  ▄▀ ▄      
+████▀███▀█▄██▀███▄█▄▄▀██▄▀█▀▀▀█▀▄▄▀▄▄▀  ▀▄▀▄ ▀▄ ▄▀█ █ █▀▄█ ▀▀▀▄  ▀   ▀      ▀ ▄        
+██████▄███████▄▀██▄▄▄████▀▀██▀▄ ▄▄▄██▀▀▀▀▄██  ▀▄▄▄  ▄▄ ▄ ▄  ▀▀  █       ▀▄   ▄   ▄     
+███▄███▄▄██████████▀███▄▄▄▀▄▀█ ██▄ █▄▀█▄ ▀▀▀ █▀ ▄▀█▀▄ ▄▀▀ █▄▀  ▄ ▄▄    ▀               
+███████████▀█▀██▄██▀███▀█▄▀▀█▀ ▀▀▄▀▀▄ █ ▄█▀▀█▀▀▀█▄   ▄▀▀  ▄▀ ▀▄▄▄  ▀▀▀ ▀  ▄            
+████████████▄█▀▀█▄ ██▄███▄█████▀ █▄▄  █▀█▀██▀█▄▀▄  ▀▀  ▄█ ▄    █▄▄      ▄  ▄           
+██████████████████ █▄████████▀ ▀▄▀  ██ █▀▀█▄ ▀▀▀ █ ▄▄  ▀ ▀▄    ▄ ▀▀▄▀  ▄  ▄         ▄  
+███▀██▀██▀██▀▀█ ███████▀████▀▄ ▄█▀███▀▄ ██▄██ █▄ ▄▄ ▀▄ ▄  ▄   █ ▄ ▄ █  ▄▄ ▄▄           
+███▄██▀▄██████▄██▀████▀▄▄ ▀▄▄███▀▄ ▄▀▀▀  █▄▄▄▀  ▀ █▄  ▄█ ▄▄▄ ▀▄ ▀▀  ▀ ▄  ▄             
+██████████████▀██ ███▀█▄▄▄██▀▀▀▀██▄▄█▀  ▀█ ▄▄ █ ▄    ▀ ▀ ▀█▄▀    ▀   ▀    ▀ ▀          
+███▀████████▀▀███▄▄▀▀█▀▀▀▄▀██▀ █▀███▀ ▀▄█▄ ▀▄▄▄ ▀ ▀     ▄▀▄     █      ▄▀▄             
 █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
 █                                                              █
 █                                                              █
