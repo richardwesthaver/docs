@@ -93,6 +93,7 @@ ls -Ah
 
 #+RESULTS:
 | api.org    |
+| info.org   |
 | lib        |
 | man.org    |
 | readme.org |
@@ -339,7 +340,7 @@ default CC Emacs configuration using the =skel= command.
   : sudo: a password is required
   : sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
   : sudo: a password is required
-  : #:debug 6.19
+  : #:debug 5.631001
   : ; (#<rule install-emacs>)
 
 - the vanilla load sequence is applied first, starting with
@@ -594,7 +595,7 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:fd0c4f0ef18b+ --- A universal project development tool.
+: skel v0.1.1:cd4e46be44f4 --- A universal project development tool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
@@ -730,7 +731,7 @@ The currently accessible ~sk-project~ can be easily inferred via the
 
 #+RESULTS:
 #+begin_example
-#<project ORG :components 1 :rules 21>
+#<project ORG :components 1 :rules 25>
   [standard-object]
 
 Slots with :INSTANCE allocation:
@@ -743,14 +744,14 @@ Slots with :INSTANCE allocation:
   LICENSE                        = "MPL"
   AST                            = NIL
   ID                             = 1784914079056115652
-  VC                             = #<HG-REPO {1225F74953}>
+  VC                             = #<HG-REPO {121DA011E3}>
   SRC                            = #P"/home/ellis/src/org/"
   STASH                          = #P"/home/ellis/src/org/.stash/"
   STORE                          = #P"/home/ellis/src/org/.stash/store/"
   CACHE                          = #P"/home/ellis/src/org/.stash/cache/"
-  COMPONENTS                     = #(#<SK-EMACS-LISP-FILE :ID 0ea5-9929-36fa-73aa>)
+  COMPONENTS                     = #(#<SK-EMACS-LISP-FILE :ID 2323-a82a-9d24-10e2>)
   BIND                           = ((SUBMODS (LIST "graph" "meta" "plan" "docs" "notes" "archive")))
-  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {1225F154E3}>
+  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {121D817403}>
   RULES                          = #(#<rule default (build publish deploy dist-html dist-source..
   INCLUDE                        = #()
 #+end_example
@@ -796,14 +797,18 @@ skel show rules
 #+RESULTS:
 #+begin_example
 #<rule default (build publish deploy dist-html dist-source dist-repos)>
-#<rule build (build-css update-docs build-graph build-docs)>
+#<rule build (build-css update-docs build-graph build-docs build-agenda)>
+#<rule build-graph>
+#<rule build-agenda>
 #<rule build-graph>
 #<rule update-docs>
 #<rule build-docs>
+#<rule build-agenda>
 #<rule build-graph>
 #<rule clean>
 #<rule build-css>
 #<rule build-docs>
+#<rule build-agenda>
 #<rule build-graph>
 #<rule deploy-css>
 #<rule browse>
