@@ -5,7 +5,7 @@
 #+html_link_up: ../
 #+setupfile: ../../clean.theme
 #+location: ~/src/core
-#+BEGIN: project-info :vc t :html t
+#+BEGIN: project-info :vc t :agenda t
 #+CALL: project-details() :dir ~/src/core/
 
 #+RESULTS:
@@ -15,30 +15,28 @@
 | description | The Compiler Company Core                            |
 | id          | 4611004031049662566                                  |
 | root        | ~/src/core/                                          |
-| vc          | :hg [[https://vc.compiler.company/core][vc.compiler.company/core]] :rev [[https://vc.compiler.company/core/rev/fff5143fb95b][fff5143fb95b:1796+]] |
+| vc          | :hg [[https://vc.compiler.company/core][vc.compiler.company/core]] :rev [[https://vc.compiler.company/core/rev/1932168ba3d1][1932168ba3d1:1797+]] |
 | tags        | CORE LISP EMACS                                      |
-| updated     | Sat Jun 06 20:07:42 2026 -0400                       |
+| updated     | Sun Jun 07 20:20:54 2026 -0400                       |
 | langs       | elisp lisp makefile org perl text                    |
-| lines       | 269259 :code 219821 :comment 21828 :blank 27610      |
+| lines       | 269374 :code 219918 :comment 21830 :blank 27626      |
 |-------------+------------------------------------------------------|
-
-#+CALL: project-html-files() :dir ~/src/core/
-
-#+RESULTS:
-| file           | modified            |
-|----------------+---------------------|
-| [[https://compiler.company/core/ironclad/index.html][ironclad/index]] | 2026-05-27 21:35:01 |
-| [[https://compiler.company/core/ppcre/index.html][ppcre/index]]    | 2026-05-27 21:37:22 |
-| [[https://compiler.company/core/index.html][index]]          | 2026-06-06 20:50:59 |
-| [[https://compiler.company/core/slime/index.html][slime/index]]    | 2026-06-01 17:59:46 |
 
 #+CALL: hg-diff-stat() :dir ~/src/core/
 
 #+RESULTS:
-:  etc/emacs/default.el |   6 ++----
-:  etc/emacs/plan.el    |   2 +-
-:  readme.org           |  37 ++++++++++---------------------------
-:  3 files changed, 13 insertions(+), 32 deletions(-)
+#+begin_example
+ etc/emacs/plan.el       |  40 ++++++++++++++++++++++++----------------
+ etc/emacs/skel.el       |  10 ++++++++++
+ etc/emacs/ulang.el      |   8 ++++----
+ lib/box/archiso.lisp    |   4 ++--
+ lib/box/qemu.lisp       |   6 +++++-
+ lib/cli/tools/pkg.lisp  |   2 +-
+ lib/cli/tools/virt.lisp |  11 ++++++++++-
+ skel/comp/box.lisp      |   5 +++++
+ std/sys.lisp            |  20 ++++++++++----------
+ 9 files changed, 71 insertions(+), 35 deletions(-)
+#+end_example
 
 #+CALL: hg-churn() :dir ~/src/core/
 
@@ -76,7 +74,132 @@
 2026-03  21003 ****
 2026-04   7312 *
 2026-05  49533 ***********
-2026-06   3191 
+2026-06   3441 
+#+end_example
+
+#+CALL: project-agenda() :dir ~/src/core/
+
+#+RESULTS:
+#+begin_example
+30 days-agenda (W22-W27):
+Sunday     31 May 2026
+   emacs:      17:56-18:30 Clocked:   (0:34) DONE src/org capture templates                              :core:emacs::
+   emacs:      17:56-18:30 [ DONE src/org capture templates                                              :core:emacs::
+   emacs:      22:47...... NOPE [#A] changelog                                                           :core:emacs::
+   emacs:      22:47...... [ NOPE [#A] changelog                                                         :core:emacs::
+Monday      1 June 2026 W23
+   emacs:      13:45-14:12 Clocked:   (0:27) NOPE [#A] changelog                                         :core:emacs::
+   emacs:      13:45-14:12 [ NOPE [#A] changelog                                                         :core:emacs::
+   core:       19:54...... TODO packy [0/1]                                                               :core:skel::
+   core:       19:54...... [ TODO packy [0/1]                                                             :core:skel::
+   core:       19:55...... TODO pkgfile component                                                         :core:skel::
+   core:       19:55...... [ TODO pkgfile component                                                       :core:skel::
+   lib:        20:29...... TODO Custom Vars                                            :core:lisp:obj::cmd:val:config:
+   lib:        20:29...... [ TODO Custom Vars                                          :core:lisp:obj::cmd:val:config:
+   core:       20:53...... TODO factor out sk prefix classes                                              :core:skel::
+   core:       20:53...... [ TODO factor out sk prefix classes                                            :core:skel::
+   emacs:      22:12...... DONE [#A] skel-shell-mode                                                     :core:emacs::
+   emacs:      22:12...... [ DONE [#A] skel-shell-mode                                                   :core:emacs::
+   emacs:      22:17...... TODO [#B] project-desktops                                                    :core:emacs::
+   emacs:      22:17...... [ TODO [#B] project-desktops                                                  :core:emacs::
+   emacs:      Scheduled:  NOPE [#A] changelog                                                           :core:emacs::
+   emacs:      Scheduled:  DONE agenda views                                                             :core:emacs::
+Tuesday     2 June 2026
+   emacs:      16:53...... DONE [#A] desktop-maybe-enable                                                :core:emacs::
+   emacs:      16:53...... [ DONE [#A] desktop-maybe-enable                                              :core:emacs::
+   emacs:      18:45-19:50 Clocked:   (1:05) DONE [#A] desktop-maybe-enable - State "DONE"       from "TODO"       [2026-06-02 Tue 21:55] :core:emacs::
+   emacs:      18:45-19:50 [ DONE [#A] desktop-maybe-enable                                              :core:emacs::
+   emacs:      21:55...... [ DONE [#A] desktop-maybe-enable                                              :core:emacs::
+   core:       Scheduled:  TODO factor out sk prefix classes                                              :core:skel::
+Wednesday   3 June 2026
+   std:        19:27...... DONE plist-split                                                           :core:lisp:std::
+   std:        19:27...... [ DONE plist-split                                                         :core:lisp:std::
+   std:        19:27...... TODO plistify                                                              :core:lisp:std::
+   std:        19:27...... [ TODO plistify                                                            :core:lisp:std::
+   emacs:      19:28-19:55 Clocked:   (0:27) NOPE [#A] changelog                                         :core:emacs::
+   emacs:      19:28-19:55 [ NOPE [#A] changelog                                                         :core:emacs::
+   graph:      20:20...... TODO org-graph-find                                                       :core:emacs:org::
+   graph:      20:20...... [ TODO org-graph-find                                                     :core:emacs:org::
+   std:        20:25-21:07 Clocked:   (0:42) DONE plist-split - State "DONE"       from "TODO"       [2026-06-04 Thu 22:08] :core:lisp:std::
+   std:        20:25-21:07 [ DONE plist-split                                                         :core:lisp:std::
+   std:        Scheduled:  DONE plist-split                                                           :core:lisp:std::
+Thursday    4 June 2026
+   std:        22:08...... [ DONE plist-split                                                         :core:lisp:std::
+   emacs:      22:11-22:13 Clocked:   (0:02) DONE etags - State "DONE"       from "RESEARCH"   [2026-06-04 Thu 22:13] :core:emacs::
+   emacs:      22:11-22:13 [ DONE etags                                                                  :core:emacs::
+   emacs:      22:13-23:01 Clocked:   (0:48) DONE ispell - State "DONE"       from "RESEARCH"   [2026-06-04 Thu 23:01] :core:emacs::
+   emacs:      22:13-23:01 [ DONE ispell                                                                 :core:emacs::
+   emacs:      22:13...... [ DONE etags                                                                  :core:emacs::
+   emacs:      23:01...... [ DONE ispell                                                                 :core:emacs::
+Friday      5 June 2026
+   lib:        16:11...... [ set LOG_LEVEL as global env var                                              :core:lisp::
+   lib:        16:25...... [ TODO convert with-foreign-object to with-alien in io/mux, test            :core:lisp:io::
+   core:       16:27...... [ TODO xkeyboard extension refactor to use io/kbd                                   :core::
+   core:       16:27...... [ TODO dribble in core config                                                       :core::
+   graph:      16:28...... [ TODO tag nodes                                                    :core:emacs::org:graph:
+   core:       16:30...... [ TODO don't execute babel in archives                                              :core::
+   emacs:      18:50...... [ DONE agenda views                                                           :core:emacs::
+   emacs:      22:10...... [ TODO investigate ox.el                                                      :core:emacs::
+   emacs:      Scheduled:  DONE [#A] skel-shell-mode                                                     :core:emacs::
+   lib:        Scheduled:  DONE qemu/vbox                                                                 :core:lisp::
+Saturday    6 June 2026
+   emacs:      16:18-16:39 Clocked:   (0:21) DONE [#A] skel-shell-mode                                   :core:emacs::
+   emacs:      16:18-16:39 [ DONE [#A] skel-shell-mode                                                   :core:emacs::
+   emacs:      16:49-17:30 Clocked:   (0:41) DONE [#A] skel-shell-mode - Note taken on [2026-06-06 Sat 17:32] \\ :core:emacs::
+   emacs:      16:49-17:30 [ DONE [#A] skel-shell-mode                                                   :core:emacs::
+   emacs:      17:32...... [ DONE [#A] skel-shell-mode                                                   :core:emacs::
+   emacs:      17:32...... [ DONE [#A] skel-shell-mode                                                   :core:emacs::
+   lib:        18:06-18:41 Clocked:   (0:35) DONE qemu/vbox                                               :core:lisp::
+   lib:        18:06-18:41 [ DONE qemu/vbox                                                               :core:lisp::
+   emacs:      18:41...... DONE skel-agenda init                                                         :core:emacs::
+   emacs:      18:41...... [ DONE skel-agenda init                                                       :core:emacs::
+   emacs:      18:44-19:14 Clocked:   (0:30) DONE skel-agenda init                                       :core:emacs::
+   emacs:      18:44-19:14 [ DONE skel-agenda init                                                       :core:emacs::
+   emacs:      19:55-20:20 Clocked:   (0:25) DONE skel-agenda init - State "DONE"       from "WIP"        [2026-06-06 Sat 20:20] :core:emacs::
+   emacs:      19:55-20:20 [ DONE skel-agenda init                                                       :core:emacs::
+   emacs:      20:20...... [ DONE skel-agenda init                                                       :core:emacs::
+Sunday      7 June 2026
+               8:00...... ----------------
+              10:00...... ----------------
+              12:00...... ----------------
+              14:00...... ----------------
+              16:00...... ----------------
+   lib:        17:53...... TODO codec/rpc                                                             :core:lisp:net::
+   lib:        17:53...... [ TODO codec/rpc                                                           :core:lisp:net::
+              18:00...... ----------------
+   lib:        18:40-21:28 Clocked:   (2:48) DONE qemu/vbox - Note taken on [2026-06-07 Sun 21:27] \\     :core:lisp::
+   lib:        18:40-21:28 [ DONE qemu/vbox                                                               :core:lisp::
+              20:00...... ----------------
+   lib:        21:25...... TODO capf                                                                  :core:lisp:obj::
+   lib:        21:25...... [ TODO capf                                                                :core:lisp:obj::
+   lib:        21:27...... [ DONE qemu/vbox                                                               :core:lisp::
+   lib:        21:28...... [ DONE qemu/vbox                                                               :core:lisp::
+              22:04...... now - - - - - - - - - - - - - - - - - - - - - - - - -
+   core:       Sched. 5x:  TODO factor out sk prefix classes                                              :core:skel::
+   lib:        Scheduled:  TODO command parents                                                   :core:lisp:obj::cmd:
+Monday      8 June 2026 W24
+Tuesday     9 June 2026
+Wednesday  10 June 2026
+   lib:        Scheduled:  TODO Custom Vars                                            :core:lisp:obj::cmd:val:config:
+Thursday   11 June 2026
+Friday     12 June 2026
+Saturday   13 June 2026
+Sunday     14 June 2026
+Monday     15 June 2026 W25
+Tuesday    16 June 2026
+Wednesday  17 June 2026
+Thursday   18 June 2026
+Friday     19 June 2026
+Saturday   20 June 2026
+Sunday     21 June 2026
+Monday     22 June 2026 W26
+Tuesday    23 June 2026
+Wednesday  24 June 2026
+Thursday   25 June 2026
+Friday     26 June 2026
+Saturday   27 June 2026
+Sunday     28 June 2026
+Monday     29 June 2026 W27
 #+end_example
 
 #+CALL: project-tasks() :dir ~/src/core/
@@ -161,7 +284,7 @@
 | TODO     | ..[[id:fbb51cc0-134d-4df5-9b58-6067ed8c2fa8][lint]]                                                                   | (lisp syn)                   |
 | TODO     | ..[[id:859c42e3-b305-4ba6-a7c5-6e5ead1e5210][whitespace cleanup]]                                                     | (lisp syn)                   |
 | PROJECT  | .[[id:2d5bcf6e-6652-4e33-b923-d2311896eee8][cry]]                                                                     | (lisp crypto)                |
-| PROJECT  | .[[id:c1500e3b-1d95-4ba2-96d5-8301b02293e2][obj [0/7]​]]                                                               | (lisp obj)                   |
+| PROJECT  | .[[id:c1500e3b-1d95-4ba2-96d5-8301b02293e2][obj [0/8]​]]                                                               | (lisp obj)                   |
 | TODO     | ..[[id:01351f90-e599-41a8-96b2-0138ff3112eb][object schema]]                                                          | (lisp obj schema)            |
 | TODO     | ..[[id:3e6dea77-0cb0-4349-ac65-4e0a4992cfb9][command parents]]                                                        | (lisp obj cmd)               |
 | TODO     | ..[[id:b4879c5f-6557-4213-8b49-aaa5d8893344][Custom Vars]]                                                            | (lisp obj cmd val config)    |
@@ -174,11 +297,13 @@
 | TODO     | ...[[id:a2738b46-2321-4b04-8602-2c1c86b9d8b6][slice loop-path]]                                                       | (lisp obj tensor)            |
 | RESEARCH | ...[[id:bc69db9c-023a-4235-b0a9-e84061cd703e][SB-SIMD]]                                                               | (lisp obj tensor)            |
 | TODO     | ..[[id:9dfe3f93-b0d0-4d9c-bdb6-1bd045037853][color/theme]]                                                            | (lisp obj)                   |
+| TODO     | ..[[id:454dd3be-c9b7-4671-927d-a1b6e795b846][capf]]                                                                   | (lisp obj)                   |
 | RESEARCH | ..[[id:6c07d53d-b5fe-4dc3-86bc-03743ee2c6bc][major-modes]]                                                            | (lisp obj cmd)               |
-| PROJECT  | .[[id:5d088bf7-f201-4875-9167-4293bebbcf46][net [0/6]​]]                                                               | (lisp net)                   |
+| PROJECT  | .[[id:5d088bf7-f201-4875-9167-4293bebbcf46][net [0/7]​]]                                                               | (lisp net)                   |
 | WIP      | ..[[id:9336f242-f237-41a6-82a1-99f1396ab450][dbus]]                                                                   | (lisp net)                   |
 | TODO     | ..[[id:fe592b6f-cde1-43e9-ac5a-81addc124582][fixtures]]                                                               | (lisp net rt)                |
 | TODO     | ..[[id:8e90fe7a-3a22-4af4-b247-64ac6890b94a][tcp]]                                                                    | (lisp net)                   |
+| TODO     | ..[[id:f46c3c69-f91a-479a-82a2-d16ba9c090ef][codec/rpc]]                                                              | (lisp net)                   |
 | TODO     | ..[[id:b86d21fb-edc6-41a6-bed5-deb71b94cb1a][proto/lsp]]                                                              | (lisp net syn)               |
 | TODO     | ..[[id:d238fc1f-24be-447b-a96b-ec35958470fc][udp]]                                                                    | (lisp net)                   |
 | WAIT     | ..[[id:f812f4e7-03c0-4e7a-a602-8947c39eb4ed][net/srv]]                                                                | (net lisp)                   |
@@ -199,8 +324,7 @@
 | WIP      | ..[[id:a1522a85-f8d7-4341-b22c-32fc09bd07a3][virtual streams]]                                                        | (lisp io)                    |
 | PROJECT  | .[[id:1b08ca47-cace-4ce5-a0f2-cd74dcf8c547][math [0/1]​]]                                                              | (lisp math)                  |
 | RESEARCH | ..[[id:39228192-543a-40e1-a97b-81ad89b49785][in-vector iterator]]                                                     | (lisp math)                  |
-| PROJECT  | .[[id:3329b301-f396-48f8-b097-dca46fbfd74d][box [0/1]​]]                                                               | (lisp)                       |
-| RESEARCH | ..[[id:fb5c7fd6-c02d-4c54-9797-edd8b96f6684][qemu/vbox]]                                                              | (lisp)                       |
+| PROJECT  | .[[id:3329b301-f396-48f8-b097-dca46fbfd74d][box [1/1]​]]                                                               | (lisp)                       |
 | PROJECT  | .[[id:10f18d64-0862-4764-ae66-c548ccfdd82c][log [0/2]​]]                                                               | (lisp)                       |
 | TODO     | ..[[id:de06ee9d-6a26-46a2-b123-e8154d3b63c8][log-broadcast-stream]]                                                   | (lisp)                       |
 | TODO     | ..[[id:b79073a2-85b4-46f8-8e24-542012fa3cac][async-db-log-file]]                                                      | (lisp)                       |
@@ -436,13 +560,13 @@
 | [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/lisp-style.el][etc/emacs/lisp-style.el]]                             | 2.1k | 2026-05-31 22:13:37 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/mpk.el][etc/emacs/mpk.el]]                                    | 1.7k | 2026-05-26 16:10:53 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/org-expire.el][etc/emacs/org-expire.el]]                             | 13k  | 2026-05-28 19:32:57 |
-| [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/organ.el][etc/emacs/organ.el]]                                  | 19k  | 2026-05-25 19:05:04 |
-| [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/plan.el][etc/emacs/plan.el]]                                   | 11k  | 2026-06-06 20:40:44 |
+| [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/organ.el][etc/emacs/organ.el]]                                  | 19k  | 2026-06-07 17:25:36 |
+| [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/plan.el][etc/emacs/plan.el]]                                   | 11k  | 2026-06-07 22:01:49 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/publish.el][etc/emacs/publish.el]]                                | 8.6k | 2026-06-05 22:27:05 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/scratch.el][etc/emacs/scratch.el]]                                | 3.4k | 2026-05-24 22:11:52 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/site-start.el][etc/emacs/site-start.el]]                             | 6.1k | 2026-06-05 20:56:16 |
-| [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/skel.el][etc/emacs/skel.el]]                                   | 18k  | 2026-06-06 19:54:46 |
-| [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/ulang.el][etc/emacs/ulang.el]]                                  | 14k  | 2026-06-06 14:33:33 |
+| [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/skel.el][etc/emacs/skel.el]]                                   | 18k  | 2026-06-07 21:34:12 |
+| [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/ulang.el][etc/emacs/ulang.el]]                                  | 14k  | 2026-06-07 20:28:44 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/lisp/etc.translations][etc/lisp/etc.translations]]                           | 1.9k | 2026-05-21 21:26:00 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/lisp/mpk.translations][etc/lisp/mpk.translations]]                           | 384  | 2026-05-21 21:17:33 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/lisp/packy.translations][etc/lisp/packy.translations]]                         | 392  | 2026-05-21 21:21:05 |
@@ -726,13 +850,13 @@
 | [[https://github.com/richardwesthaver/core/blob/default/ironclad/testing/test-vectors/xsalsa20.testvec][ironclad/testing/test-vectors/xsalsa20.testvec]]      | 13k  | 2026-02-11 18:47:16 |
 | [[https://github.com/richardwesthaver/core/blob/default/ironclad/testing/test-vectors/xtea.testvec][ironclad/testing/test-vectors/xtea.testvec]]          | 44k  | 2026-02-11 18:47:16 |
 | [[https://github.com/richardwesthaver/core/blob/default/ironclad/testing/testfuns.lisp][ironclad/testing/testfuns.lisp]]                      | 39k  | 2026-02-11 18:47:16 |
-| [[https://github.com/richardwesthaver/core/blob/default/lib/box/archiso.lisp][lib/box/archiso.lisp]]                                | 8.4k | 2026-04-17 22:49:11 |
+| [[https://github.com/richardwesthaver/core/blob/default/lib/box/archiso.lisp][lib/box/archiso.lisp]]                                | 7.2k | 2026-06-07 20:44:57 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/box/box.sys][lib/box/box.sys]]                                     | 292  | 2026-05-27 21:35:27 |
-| [[https://github.com/richardwesthaver/core/blob/default/lib/box/pkg.lisp][lib/box/pkg.lisp]]                                    | 690  | 2026-05-03 22:10:22 |
+| [[https://github.com/richardwesthaver/core/blob/default/lib/box/pkg.lisp][lib/box/pkg.lisp]]                                    | 676  | 2026-06-07 19:57:34 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/box/proto.lisp][lib/box/proto.lisp]]                                  | 1.5k | 2026-04-17 19:43:38 |
-| [[https://github.com/richardwesthaver/core/blob/default/lib/box/qemu.lisp][lib/box/qemu.lisp]]                                   | 1.8k | 2026-06-06 18:09:49 |
+| [[https://github.com/richardwesthaver/core/blob/default/lib/box/qemu.lisp][lib/box/qemu.lisp]]                                   | 3.3k | 2026-06-07 20:53:23 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/box/qmp.lisp][lib/box/qmp.lisp]]                                    | 976  | 2025-11-13 21:23:28 |
-| [[https://github.com/richardwesthaver/core/blob/default/lib/box/tests.lisp][lib/box/tests.lisp]]                                  | 3.8k | 2026-03-08 23:05:27 |
+| [[https://github.com/richardwesthaver/core/blob/default/lib/box/tests.lisp][lib/box/tests.lisp]]                                  | 4k   | 2026-06-07 19:01:11 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/ansi.lisp][lib/cli/ansi.lisp]]                                   | 18k  | 2026-05-16 22:13:01 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/clap.lisp][lib/cli/clap.lisp]]                                   | 9.5k | 2026-05-15 21:31:31 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/cli.lisp][lib/cli/cli.lisp]]                                    | 2.2k | 2026-03-08 21:51:54 |
@@ -755,14 +879,14 @@
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/media.lisp][lib/cli/tools/media.lisp]]                            | 8.2k | 2026-02-22 21:31:50 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/net.lisp][lib/cli/tools/net.lisp]]                              | 14k  | 2026-05-15 17:22:27 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/pacman.lisp][lib/cli/tools/pacman.lisp]]                           | 4.5k | 2026-04-19 01:59:26 |
-| [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/pkg.lisp][lib/cli/tools/pkg.lisp]]                              | 5.2k | 2026-05-09 19:44:46 |
+| [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/pkg.lisp][lib/cli/tools/pkg.lisp]]                              | 5.3k | 2026-06-07 21:22:45 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/plot.lisp][lib/cli/tools/plot.lisp]]                             | 2k   | 2025-10-11 21:29:05 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/proto.lisp][lib/cli/tools/proto.lisp]]                            | 1.4k | 2026-05-15 17:22:32 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/sbcl.lisp][lib/cli/tools/sbcl.lisp]]                             | 2.9k | 2026-01-26 21:54:02 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/sys.lisp][lib/cli/tools/sys.lisp]]                              | 5.2k | 2026-05-18 17:13:09 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/term.lisp][lib/cli/tools/term.lisp]]                             | 18k  | 2026-05-09 19:45:47 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/tmux.lisp][lib/cli/tools/tmux.lisp]]                             | 34   | 2026-05-09 19:45:06 |
-| [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/virt.lisp][lib/cli/tools/virt.lisp]]                             | 2.3k | 2026-02-24 15:17:32 |
+| [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tools/virt.lisp][lib/cli/tools/virt.lisp]]                             | 5k   | 2026-06-07 21:22:10 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cli/tui.lisp][lib/cli/tui.lisp]]                                    | 2.1k | 2026-04-26 17:35:48 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cry/auth.lisp][lib/cry/auth.lisp]]                                   | 2.6k | 2026-03-07 20:35:34 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/cry/authinfo.lisp][lib/cry/authinfo.lisp]]                               | 1.1k | 2025-07-29 15:15:40 |
@@ -958,7 +1082,7 @@
 | [[https://github.com/richardwesthaver/core/blob/default/lib/obj/color/palette.lisp][lib/obj/color/palette.lisp]]                          | 4.8k | 2026-02-25 20:42:11 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/obj/color/print.lisp][lib/obj/color/print.lisp]]                            | 102  | 2026-01-03 23:52:21 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/obj/color/theme.lisp][lib/obj/color/theme.lisp]]                            | 1.6k | 2025-11-04 14:44:41 |
-| [[https://github.com/richardwesthaver/core/blob/default/lib/obj/color/x11.lisp][lib/obj/color/x11.lisp]]                              | 23k  | 2026-06-06 14:24:04 |
+| [[https://github.com/richardwesthaver/core/blob/default/lib/obj/color/x11.lisp][lib/obj/color/x11.lisp]]                              | 23k  | 2026-06-07 20:46:30 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/obj/config.lisp][lib/obj/config.lisp]]                                 | 2.3k | 2025-10-20 20:16:11 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/obj/db.lisp][lib/obj/db.lisp]]                                     | 20k  | 2026-05-16 23:38:10 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/obj/equiv.lisp][lib/obj/equiv.lisp]]                                  | 2.5k | 2026-03-21 20:56:44 |
@@ -1234,9 +1358,9 @@
 | [[https://github.com/richardwesthaver/core/blob/default/ppcre/tests/tests.lisp][ppcre/tests/tests.lisp]]                              | 5.9k | 2026-02-11 18:47:09 |
 | [[https://github.com/richardwesthaver/core/blob/default/ppcre/util.lisp][ppcre/util.lisp]]                                     | 6.1k | 2026-03-06 19:50:36 |
 | [[https://github.com/richardwesthaver/core/blob/default/ppcre/var.lisp][ppcre/var.lisp]]                                      | 4.1k | 2026-02-11 18:47:09 |
-| [[https://github.com/richardwesthaver/core/blob/default/readme.org][readme.org]]                                          | 1.1k | 2026-06-06 20:50:59 |
+| [[https://github.com/richardwesthaver/core/blob/default/readme.org][readme.org]]                                          | 1.1k | 2026-06-07 21:53:42 |
 | [[https://github.com/richardwesthaver/core/blob/default/skel/cli.lisp][skel/cli.lisp]]                                       | 6.9k | 2026-05-15 21:27:02 |
-| [[https://github.com/richardwesthaver/core/blob/default/skel/comp/box.lisp][skel/comp/box.lisp]]                                  | 1.3k | 2026-05-08 20:25:54 |
+| [[https://github.com/richardwesthaver/core/blob/default/skel/comp/box.lisp][skel/comp/box.lisp]]                                  | 1.5k | 2026-06-07 20:38:29 |
 | [[https://github.com/richardwesthaver/core/blob/default/skel/comp/emacs.lisp][skel/comp/emacs.lisp]]                                | 2.3k | 2026-05-27 22:09:48 |
 | [[https://github.com/richardwesthaver/core/blob/default/skel/comp/infer.lisp][skel/comp/infer.lisp]]                                | 404  | 2026-02-01 19:45:13 |
 | [[https://github.com/richardwesthaver/core/blob/default/skel/comp/lisp.lisp][skel/comp/lisp.lisp]]                                 | 9.2k | 2026-06-02 19:30:13 |
@@ -1430,7 +1554,7 @@
 | [[https://github.com/richardwesthaver/core/blob/default/std/os.lisp][std/os.lisp]]                                         | 23k  | 2026-05-04 22:06:31 |
 | [[https://github.com/richardwesthaver/core/blob/default/std/path.lisp][std/path.lisp]]                                       | 5.7k | 2026-04-17 19:51:49 |
 | [[https://github.com/richardwesthaver/core/blob/default/std/pipe.lisp][std/pipe.lisp]]                                       | 16k  | 2026-01-31 22:55:36 |
-| [[https://github.com/richardwesthaver/core/blob/default/std/pkg.lisp][std/pkg.lisp]]                                        | 46k  | 2026-06-03 21:19:14 |
+| [[https://github.com/richardwesthaver/core/blob/default/std/pkg.lisp][std/pkg.lisp]]                                        | 46k  | 2026-06-07 19:08:50 |
 | [[https://github.com/richardwesthaver/core/blob/default/std/prim.lisp][std/prim.lisp]]                                       | 12k  | 2026-06-02 18:50:27 |
 | [[https://github.com/richardwesthaver/core/blob/default/std/print.lisp][std/print.lisp]]                                      | 33k  | 2026-05-30 15:38:27 |
 | [[https://github.com/richardwesthaver/core/blob/default/std/rand.lisp][std/rand.lisp]]                                       | 1.8k | 2025-08-06 22:14:13 |
@@ -1441,7 +1565,7 @@
 | [[https://github.com/richardwesthaver/core/blob/default/std/stream.lisp][std/stream.lisp]]                                     | 9.7k | 2026-03-31 14:22:59 |
 | [[https://github.com/richardwesthaver/core/blob/default/std/string.lisp][std/string.lisp]]                                     | 26k  | 2026-03-27 20:32:34 |
 | [[https://github.com/richardwesthaver/core/blob/default/std/sym.lisp][std/sym.lisp]]                                        | 4.4k | 2025-10-26 19:10:25 |
-| [[https://github.com/richardwesthaver/core/blob/default/std/sys.lisp][std/sys.lisp]]                                        | 18k  | 2026-05-22 18:18:26 |
+| [[https://github.com/richardwesthaver/core/blob/default/std/sys.lisp][std/sys.lisp]]                                        | 18k  | 2026-06-07 20:30:37 |
 | [[https://github.com/richardwesthaver/core/blob/default/std/task.lisp][std/task.lisp]]                                       | 10k  | 2026-04-22 21:40:27 |
 | [[https://github.com/richardwesthaver/core/blob/default/std/tests/async.lisp][std/tests/async.lisp]]                                | 2.2k | 2026-02-22 22:05:00 |
 | [[https://github.com/richardwesthaver/core/blob/default/std/tests/macs.lisp][std/tests/macs.lisp]]                                 | 2.3k | 2025-09-01 21:26:44 |
