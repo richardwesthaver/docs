@@ -15,27 +15,38 @@
 | description | The Compiler Company Core                            |
 | id          | 4611004031049662566                                  |
 | root        | ~/src/core/                                          |
-| vc          | :hg [[https://vc.compiler.company/core][vc.compiler.company/core]] :rev [[https://vc.compiler.company/core/rev/1932168ba3d1][1932168ba3d1:1797+]] |
+| vc          | :hg [[https://vc.compiler.company/core][vc.compiler.company/core]] :rev [[https://vc.compiler.company/core/rev/ee7e6769bf07][ee7e6769bf07:1799+]] |
 | tags        | CORE LISP EMACS                                      |
-| updated     | Sun Jun 07 20:20:54 2026 -0400                       |
+| updated     | Mon Jun 08 18:58:56 2026 -0400                       |
 | langs       | elisp lisp makefile org perl text                    |
-| lines       | 269374 :code 219918 :comment 21830 :blank 27626      |
+| lines       | 269216 :code 219820 :comment 21801 :blank 27595      |
 |-------------+------------------------------------------------------|
 
 #+CALL: hg-diff-stat() :dir ~/src/core/
 
 #+RESULTS:
 #+begin_example
- etc/emacs/plan.el       |  40 ++++++++++++++++++++++++----------------
- etc/emacs/skel.el       |  10 ++++++++++
- etc/emacs/ulang.el      |   8 ++++----
- lib/box/archiso.lisp    |   4 ++--
- lib/box/qemu.lisp       |   6 +++++-
- lib/cli/tools/pkg.lisp  |   2 +-
- lib/cli/tools/virt.lisp |  11 ++++++++++-
- skel/comp/box.lisp      |   5 +++++
- std/sys.lisp            |  20 ++++++++++----------
- 9 files changed, 71 insertions(+), 35 deletions(-)
+ lib/obj/ast.lisp       |   7 +++++
+ lib/obj/pkg.lisp       |   4 +-
+ lib/obj/project.lisp   |   2 +
+ lib/obj/schema.lisp    |  11 +++++----
+ skel/cli.lisp          |   5 +--
+ skel/comp/emacs.lisp   |   9 -------
+ skel/comp/infer.lisp   |   4 +-
+ skel/comp/lisp.lisp    |   3 --
+ skel/comp/make.lisp    |   2 +-
+ skel/core/obj.lisp     |  60 ++-----------------------------------------------
+ skel/core/print.lisp   |   4 +-
+ skel/core/project.lisp |  12 +++------
+ skel/core/rule.lisp    |   4 ---
+ skel/core/schema.lisp  |   4 +-
+ skel/core/util.lisp    |   2 +-
+ skel/core/var.lisp     |   2 -
+ skel/pkg.lisp          |   3 +-
+ skel/srv.lisp          |   8 +++---
+ skel/tests.lisp        |  16 ++++++------
+ skelfile               |   2 +-
+ 20 files changed, 48 insertions(+), 116 deletions(-)
 #+end_example
 
 #+CALL: hg-churn() :dir ~/src/core/
@@ -74,19 +85,14 @@
 2026-03  21003 ****
 2026-04   7312 *
 2026-05  49533 ***********
-2026-06   3441 
+2026-06   4840 *
 #+end_example
 
 #+CALL: project-agenda() :dir ~/src/core/
 
 #+RESULTS:
 #+begin_example
-30 days-agenda (W22-W27):
-Sunday     31 May 2026
-   emacs:      17:56-18:30 Clocked:   (0:34) DONE src/org capture templates                              :core:emacs::
-   emacs:      17:56-18:30 [ DONE src/org capture templates                                              :core:emacs::
-   emacs:      22:47...... NOPE [#A] changelog                                                           :core:emacs::
-   emacs:      22:47...... [ NOPE [#A] changelog                                                         :core:emacs::
+30 days-agenda (W23-W27):
 Monday      1 June 2026 W23
    emacs:      13:45-14:12 Clocked:   (0:27) NOPE [#A] changelog                                         :core:emacs::
    emacs:      13:45-14:12 [ NOPE [#A] changelog                                                         :core:emacs::
@@ -159,25 +165,30 @@ Saturday    6 June 2026
    emacs:      19:55-20:20 [ DONE skel-agenda init                                                       :core:emacs::
    emacs:      20:20...... [ DONE skel-agenda init                                                       :core:emacs::
 Sunday      7 June 2026
-               8:00...... ----------------
-              10:00...... ----------------
-              12:00...... ----------------
-              14:00...... ----------------
-              16:00...... ----------------
    lib:        17:53...... TODO codec/rpc                                                             :core:lisp:net::
    lib:        17:53...... [ TODO codec/rpc                                                           :core:lisp:net::
-              18:00...... ----------------
    lib:        18:40-21:28 Clocked:   (2:48) DONE qemu/vbox - Note taken on [2026-06-07 Sun 21:27] \\     :core:lisp::
    lib:        18:40-21:28 [ DONE qemu/vbox                                                               :core:lisp::
-              20:00...... ----------------
    lib:        21:25...... TODO capf                                                                  :core:lisp:obj::
    lib:        21:25...... [ TODO capf                                                                :core:lisp:obj::
    lib:        21:27...... [ DONE qemu/vbox                                                               :core:lisp::
    lib:        21:28...... [ DONE qemu/vbox                                                               :core:lisp::
-              22:04...... now - - - - - - - - - - - - - - - - - - - - - - - - -
-   core:       Sched. 5x:  TODO factor out sk prefix classes                                              :core:skel::
    lib:        Scheduled:  TODO command parents                                                   :core:lisp:obj::cmd:
 Monday      8 June 2026 W24
+               8:00...... ----------------
+              10:00...... ----------------
+              12:00...... ----------------
+              14:00...... ----------------
+   core:       14:34-14:40 Clocked:   (0:06) TODO factor out sk prefix classes - Note taken on [2026-06-08 Mon 14:35] \\ :core:skel::
+   core:       14:34-14:40 [ TODO factor out sk prefix classes                                            :core:skel::
+   core:       14:35...... [ TODO factor out sk prefix classes                                            :core:skel::
+   core:       14:50...... Clocked:   (-) TODO factor out sk prefix classes                               :core:skel::
+              16:00...... ----------------
+              18:00...... ----------------
+              19:44...... now - - - - - - - - - - - - - - - - - - - - - - - - -
+              20:00...... ----------------
+   core:       Sched. 6x:  TODO factor out sk prefix classes                                              :core:skel::
+   lib:        Sched. 1x:  TODO command parents                                                   :core:lisp:obj::cmd:
 Tuesday     9 June 2026
 Wednesday  10 June 2026
    lib:        Scheduled:  TODO Custom Vars                                            :core:lisp:obj::cmd:val:config:
@@ -200,6 +211,7 @@ Friday     26 June 2026
 Saturday   27 June 2026
 Sunday     28 June 2026
 Monday     29 June 2026 W27
+Tuesday    30 June 2026
 #+end_example
 
 #+CALL: project-tasks() :dir ~/src/core/
@@ -561,7 +573,7 @@ Monday     29 June 2026 W27
 | [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/mpk.el][etc/emacs/mpk.el]]                                    | 1.7k | 2026-05-26 16:10:53 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/org-expire.el][etc/emacs/org-expire.el]]                             | 13k  | 2026-05-28 19:32:57 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/organ.el][etc/emacs/organ.el]]                                  | 19k  | 2026-06-07 17:25:36 |
-| [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/plan.el][etc/emacs/plan.el]]                                   | 11k  | 2026-06-07 22:01:49 |
+| [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/plan.el][etc/emacs/plan.el]]                                   | 11k  | 2026-06-07 22:11:13 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/publish.el][etc/emacs/publish.el]]                                | 8.6k | 2026-06-05 22:27:05 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/scratch.el][etc/emacs/scratch.el]]                                | 3.4k | 2026-05-24 22:11:52 |
 | [[https://github.com/richardwesthaver/core/blob/default/etc/emacs/site-start.el][etc/emacs/site-start.el]]                             | 6.1k | 2026-06-05 20:56:16 |
@@ -1082,7 +1094,7 @@ Monday     29 June 2026 W27
 | [[https://github.com/richardwesthaver/core/blob/default/lib/obj/color/palette.lisp][lib/obj/color/palette.lisp]]                          | 4.8k | 2026-02-25 20:42:11 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/obj/color/print.lisp][lib/obj/color/print.lisp]]                            | 102  | 2026-01-03 23:52:21 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/obj/color/theme.lisp][lib/obj/color/theme.lisp]]                            | 1.6k | 2025-11-04 14:44:41 |
-| [[https://github.com/richardwesthaver/core/blob/default/lib/obj/color/x11.lisp][lib/obj/color/x11.lisp]]                              | 23k  | 2026-06-07 20:46:30 |
+| [[https://github.com/richardwesthaver/core/blob/default/lib/obj/color/x11.lisp][lib/obj/color/x11.lisp]]                              | 23k  | 2026-06-07 22:16:21 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/obj/config.lisp][lib/obj/config.lisp]]                                 | 2.3k | 2025-10-20 20:16:11 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/obj/db.lisp][lib/obj/db.lisp]]                                     | 20k  | 2026-05-16 23:38:10 |
 | [[https://github.com/richardwesthaver/core/blob/default/lib/obj/equiv.lisp][lib/obj/equiv.lisp]]                                  | 2.5k | 2026-03-21 20:56:44 |
