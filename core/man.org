@@ -339,13 +339,13 @@ default CC Emacs configuration using the =skel= command.
   : sudo: a password is required
   : sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
   : sudo: a password is required
-  : #:debug 7.47
+  : #:debug 6.870001
   : ; (#<SIMPLE-RULE install-emacs>)
 
 - the vanilla load sequence is applied first, starting with
   early-init.el if provided by the user then [[vc:core:etc/emacs/init.el][init.el]]
 - init.el loads [[vc:core:etc/emacs/default.el][default.el]] which initializes all required MELPA packages and
-  local libraries from [[vc:core:etc/emacs/lib][etc/emacs/lib]].
+  local libraries from [[vc:core:etc/emacs/][etc/emacs/]].
 - the site ~config.el~ is loaded next (optional, user controlled)
 - additionally load =user-custom-file= if it exists, defaulting to the
   name of the current user (~foo.el~ when =$USER=foo=)
@@ -594,7 +594,7 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:7e90ce71ac92+ --- A universal project development tool.
+: skel v0.1.1:4da8a49ea455+ --- A universal project development tool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
@@ -745,12 +745,12 @@ Slots with :INSTANCE allocation:
   LICENSE                        = "MPL"
   AST                            = NIL
   ID                             = 1784914079056115652
-  VC                             = #<HG-REPO {121C4F8F53}>
+  VC                             = #<HG-REPO {1203CA8FE3}>
   SRC                            = #P"/home/ellis/src/org/"
   STASH                          = #P"/home/ellis/src/org/.stash/"
   STORE                          = #P"/home/ellis/src/org/.stash/store/"
   CACHE                          = #P"/home/ellis/src/org/.stash/cache/"
-  COMPONENTS                     = #(#<EMACS-LISP-FILE :ID 1091-ba74-f31a-3c23>)
+  COMPONENTS                     = #(#<EMACS-LISP-FILE :ID 1091-ba75-0b6c-698b>)
   BIND                           = ((SUBMODS (LIST "graph" "meta" "plan" "docs" "notes" "archive")))
   RULES                          = #(#<SIMPLE-RULE default build publish deploy dist-html dist-source dis..
 #+end_example
