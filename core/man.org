@@ -94,7 +94,6 @@ ls -Ah
 #+RESULTS:
 | api.org    |
 | info.org   |
-| lib        |
 | man.org    |
 | readme.org |
 
@@ -340,7 +339,7 @@ default CC Emacs configuration using the =skel= command.
   : sudo: a password is required
   : sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
   : sudo: a password is required
-  : #:debug 5.493
+  : #:debug 7.47
   : ; (#<SIMPLE-RULE install-emacs>)
 
 - the vanilla load sequence is applied first, starting with
@@ -595,7 +594,7 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:f9de50d4fc49 --- A universal project development tool.
+: skel v0.1.1:7e90ce71ac92+ --- A universal project development tool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
@@ -729,29 +728,31 @@ The currently accessible ~sk-project~ can be easily inferred via the
 
 #+RESULTS:
 #+begin_example
-#<SKEL-PROJECT ORG :components 1 :rules 25>
+#<SKEL-PROJECT ORG :components 1 :rules 19>
   [standard-object]
 
 Slots with :INSTANCE allocation:
   NAME                           = ORG
+  HOOK                           = #<unbound slot>
+  PROVIDE                        = #<unbound slot>
+  REQUIRE                        = #<unbound slot>
   PATH                           = #P"/home/ellis/src/org/skelfile"
   AUTHOR                         = ("Richard Westhaver" . "ellis@rwest.io")
   VERSION                        = "0.1.0"
   TAGS                           = (ORG DOCS NOTES META PLAN ARCHIVE GRAPH)
+  LINKS                          = #<unbound slot>
   DESCRIPTION                    = "CC Org Files"
   LICENSE                        = "MPL"
   AST                            = NIL
   ID                             = 1784914079056115652
-  VC                             = #<HG-REPO {120DCA90E3}>
+  VC                             = #<HG-REPO {121C4F8F53}>
   SRC                            = #P"/home/ellis/src/org/"
   STASH                          = #P"/home/ellis/src/org/.stash/"
   STORE                          = #P"/home/ellis/src/org/.stash/store/"
   CACHE                          = #P"/home/ellis/src/org/.stash/cache/"
-  COMPONENTS                     = #(#<EMACS-LISP-FILE :ID 1091-ba75-ec55-c2cb>)
+  COMPONENTS                     = #(#<EMACS-LISP-FILE :ID 1091-ba74-f31a-3c23>)
   BIND                           = ((SUBMODS (LIST "graph" "meta" "plan" "docs" "notes" "archive")))
-  PHASES                         = #<HASH-TABLE :TEST EQL :COUNT 3 {120DAB9A93}>
   RULES                          = #(#<SIMPLE-RULE default build publish deploy dist-html dist-source dis..
-  INCLUDE                        = #()
 #+end_example
 
 ** Components
@@ -798,16 +799,10 @@ skel show rules
 #<SIMPLE-RULE build build-css update-docs build-graph build-docs build-agenda>
 #<SIMPLE-RULE build-graph>
 #<SIMPLE-RULE build-agenda>
-#<SIMPLE-RULE build-graph>
 #<SIMPLE-RULE update-docs>
 #<SIMPLE-RULE build-docs>
-#<SIMPLE-RULE build-agenda>
-#<SIMPLE-RULE build-graph>
 #<SIMPLE-RULE clean>
 #<SIMPLE-RULE build-css>
-#<SIMPLE-RULE build-docs>
-#<SIMPLE-RULE build-agenda>
-#<SIMPLE-RULE build-graph>
 #<SIMPLE-RULE deploy-css>
 #<SIMPLE-RULE browse>
 #<SIMPLE-RULE publish>
