@@ -15,16 +15,22 @@
 | description | The Compiler Company Core                            |
 | id          | 4611004031029215733                                  |
 | root        | ~/src/core/                                          |
-| vc          | :hg [[https://vc.compiler.company/core][vc.compiler.company/core]] :rev [[https://vc.compiler.company/core/rev/6c2d9255f440][6c2d9255f440:1818+]] |
+| vc          | :hg [[https://vc.compiler.company/core][vc.compiler.company/core]] :rev [[https://vc.compiler.company/core/rev/9f647b1db72e][9f647b1db72e:1823+]] |
 | tags        | CORE LISP EMACS                                      |
-| updated     | Mon Jun 15 21:51:27 2026 -0400                       |
+| updated     | Tue Jun 16 22:42:55 2026 -0400                       |
 | langs       | elisp lisp makefile org perl text                    |
-| lines       | 269226 :code 219833 :comment 21802 :blank 27591      |
+| lines       | 269274 :code 219887 :comment 21802 :blank 27585      |
 |-------------+------------------------------------------------------|
 
 #+CALL: hg-diff-stat() :dir ~/src/core/
 
 #+RESULTS:
+:  etc/emacs/default.el   |   2 +-
+:  etc/emacs/organ.el     |   6 ++-
+:  etc/emacs/ulang.el     |  21 +++++++++-----
+:  lib/doc/reprex.lisp    |   2 +-
+:  skel/core/project.lisp |  68 ++++++++++++++++++++++---------------------------
+:  5 files changed, 50 insertions(+), 49 deletions(-)
 
 #+CALL: hg-churn() :dir ~/src/core/
 
@@ -62,7 +68,7 @@
 2026-03  21003 ****
 2026-04   7312 *
 2026-05  49533 ***********
-2026-06   7224 *
+2026-06   8373 *
 #+end_example
 
 #+CALL: project-agenda() :dir ~/src/core/
@@ -70,29 +76,6 @@
 #+RESULTS:
 #+begin_example
 30 days-agenda (W24-W28):
-Monday      8 June 2026 W24
-   emacs:      20:21...... [ WIP project capture templates                                               :core:emacs::
-   emacs:      21:09-21:39 Clocked:   (0:30) WIP project capture templates                               :core:emacs::
-   emacs:      21:09-21:39 [ WIP project capture templates                                               :core:emacs::
-   core:       21:47...... DONE elisp reader fixes                                                        :core:skel::
-   core:       21:48...... [ DONE elisp reader fixes                                                      :core:skel::
-   lib:        21:49...... [ TODO dribble config                                                          :core:lisp::
-   lib:        21:52...... [ TODO command parents                                                 :core:lisp:obj::cmd:
-   core:       21:53...... TODO remove sk-print                                                           :core:skel::
-   core:       21:53...... [ TODO remove sk-print                                                         :core:skel::
-Tuesday     9 June 2026
-   core:       19:21-20:10 Clocked:   (0:49) DONE elisp reader fixes - State "DONE"       from "TODO"       [2026-06-09 Tue 20:10] :core:skel::
-   core:       19:21-20:10 [ DONE elisp reader fixes                                                      :core:skel::
-   core:       20:10...... [ DONE elisp reader fixes                                                      :core:skel::
-   core:       20:10...... [ DONE elisp reader fixes                                                      :core:skel::
-   emacs:      20:19-21:17 Clocked:   (0:58) WIP project capture templates                               :core:emacs::
-   emacs:      20:19-21:17 [ WIP project capture templates                                               :core:emacs::
-   core:       21:54...... [ PROJECT packy [0/1]                                                          :core:skel::
-   core:       21:55-22:55 Clocked:   (1:00) WIP pkgfile component                                        :core:skel::
-   core:       21:55-22:55 [ WIP pkgfile component                                                        :core:skel::
-   core:       21:55...... [ PROJECT homer [1/1]                                               :core:skel::lisp:homer:
-   lib:        Scheduled:  TODO command parents                                                   :core:lisp:obj::cmd:
-   core:       Scheduled:  DONE elisp reader fixes                                                        :core:skel::
 Wednesday  10 June 2026
    emacs:      16:40...... DONE [#A] save-registers                                                 :core:emacs::skel:
    emacs:      16:40...... [ DONE [#A] save-registers                                               :core:emacs::skel:
@@ -104,7 +87,7 @@ Wednesday  10 June 2026
    emacs:      17:55...... [ DONE project-save-registers                                                 :core:emacs::
    emacs:      17:57...... DONE outline button-overlays                                                  :core:emacs::
    emacs:      17:57...... [ DONE outline button-overlays                                                :core:emacs::
-   core:       Scheduled:  TODO remove sk-print                                                           :core:skel::
+   core:       Scheduled:  WIP remove sk-print                                                            :core:skel::
 Thursday   11 June 2026
    emacs:      13:06...... [ DONE outline button-overlays                                                :core:emacs::
    emacs:      13:06...... DONE link button overlays                                                     :core:emacs::
@@ -117,36 +100,39 @@ Thursday   11 June 2026
    emacs:      21:04...... [ TODO newsticker init                                                        :core:emacs::
    emacs:      Scheduled:  DONE link button overlays                                                     :core:emacs::
 Friday     12 June 2026
-   emacs:      20:08...... WIP prog-comment-keyword-faces                                                :core:emacs::
-   emacs:      20:08...... [ WIP prog-comment-keyword-faces                                              :core:emacs::
-   emacs:      20:34-22:46 Clocked:   (2:12) WIP prog-comment-keyword-faces - Refiled on [2026-06-13 Sat 11:18] :core:emacs::
-   emacs:      20:34-22:46 [ WIP prog-comment-keyword-faces                                              :core:emacs::
+   emacs:      20:08...... DONE prog-comment-keyword-faces                                               :core:emacs::
+   emacs:      20:08...... [ DONE prog-comment-keyword-faces                                             :core:emacs::
+   emacs:      20:34-22:46 Clocked:   (2:12) DONE prog-comment-keyword-faces - Refiled on [2026-06-13 Sat 11:18] :core:emacs::
+   emacs:      20:34-22:46 [ DONE prog-comment-keyword-faces                                             :core:emacs::
 Saturday   13 June 2026
    lib:         1:06...... TODO syn/gen/cpp                                                           :core:lisp:syn::
    lib:         1:06...... [ TODO syn/gen/cpp                                                         :core:lisp:syn::
    lib:        11:18...... [ TODO syn/gen/cpp                                                         :core:lisp:syn::
-   emacs:      11:18...... [ WIP prog-comment-keyword-faces                                              :core:emacs::
-   emacs:      11:29-12:29 Clocked:   (1:00) WIP new ulang property: pronounce - Note taken on [2026-06-15 Mon 22:01] \\ :core:emacs::
-   emacs:      11:29-12:29 [ WIP new ulang property: pronounce                                           :core:emacs::
-   emacs:      11:29...... WIP new ulang property: pronounce                                             :core:emacs::
-   emacs:      Scheduled:  WIP new ulang property: pronounce                                             :core:emacs::
+   emacs:      11:18...... [ DONE prog-comment-keyword-faces                                             :core:emacs::
+   emacs:      11:29-12:29 Clocked:   (1:00) DONE new ulang property: pronounce - Note taken on [2026-06-15 Mon 22:01] \\ :core:emacs::
+   emacs:      11:29-12:29 [ DONE new ulang property: pronounce                                          :core:emacs::
+   emacs:      11:29...... DONE new ulang property: pronounce                                            :core:emacs::
+   emacs:      Scheduled:  DONE new ulang property: pronounce                                            :core:emacs::
 Sunday     14 June 2026
 Monday     15 June 2026 W25
-               8:00...... ----------------
-              10:00...... ----------------
-              12:00...... ----------------
-              14:00...... ----------------
-              16:00...... ----------------
-              18:00...... ----------------
-              20:00...... ----------------
-   emacs:      22:01...... [ WIP new ulang property: pronounce                                           :core:emacs::
-              22:11...... now - - - - - - - - - - - - - - - - - - - - - - - - -
-   lib:        Sched. 6x:  TODO command parents                                                   :core:lisp:obj::cmd:
-   core:       Sched. 5x:  TODO remove sk-print                                                           :core:skel::
-   emacs:      Sched. 2x:  WIP new ulang property: pronounce                                             :core:emacs::
+   emacs:      22:01...... [ DONE new ulang property: pronounce                                          :core:emacs::
+   emacs:      22:40...... [ DONE new ulang property: pronounce                                          :core:emacs::
 Tuesday    16 June 2026
+   emacs:      18:13-19:51 Clocked:   (1:38) DONE prog-comment-keyword-faces - State "DONE"       from "WIP"        [2026-06-16 Tue 19:51] :core:emacs::
+   emacs:      18:13-19:51 [ DONE prog-comment-keyword-faces                                             :core:emacs::
+   emacs:      18:13...... [ DONE prog-comment-keyword-faces                                             :core:emacs::
+   emacs:      19:51...... [ DONE prog-comment-keyword-faces                                             :core:emacs::
+   core:       21:49-22:21 Clocked:   (0:32) WIP remove sk-print                                          :core:skel::
+   core:       21:49-22:21 [ WIP remove sk-print                                                          :core:skel::
+   core:       21:49...... [ WIP remove sk-print                                                          :core:skel::
+   lib:        22:28...... [ PROJECT doc                                                                  :core:lisp::
+   lib:        22:29...... [ TODO api                                                               :core:lisp::proto:
+   lib:        22:29...... [ TODO org templates                                                           :core:lisp::
    emacs:      Scheduled:  WIP project capture templates                                                 :core:emacs::
 Wednesday  17 June 2026
+   lib:        Sched. 8x:  TODO command parents                                                   :core:lisp:obj::cmd:
+   core:       Sched. 7x:  WIP remove sk-print                                                            :core:skel::
+   emacs:      Sched. 1x:  WIP project capture templates                                                 :core:emacs::
 Thursday   18 June 2026
 Friday     19 June 2026
 Saturday   20 June 2026
@@ -167,6 +153,8 @@ Saturday    4 July 2026
 Sunday      5 July 2026
 Monday      6 July 2026 W28
 Tuesday     7 July 2026
+Wednesday   8 July 2026
+Thursday    9 July 2026
 #+end_example
 
 #+CALL: project-vc-files() :dir ~/src/core/
@@ -344,19 +332,19 @@ Tuesday     7 July 2026
 | [[https://vc.compiler.company/core/file/tip/core.lisp][core.lisp]]                                           | 2.6k | 2026-06-11 22:20:53 |
 | [[https://vc.compiler.company/core/file/tip/core.sys][core.sys]]                                            | 774  | 2026-05-27 20:27:39 |
 | [[https://vc.compiler.company/core/file/tip/etc/corerc][etc/corerc]]                                          | 127  | 2026-06-02 14:54:24 |
-| [[https://vc.compiler.company/core/file/tip/etc/emacs/default.el][etc/emacs/default.el]]                                | 39k  | 2026-06-15 21:09:57 |
+| [[https://vc.compiler.company/core/file/tip/etc/emacs/default.el][etc/emacs/default.el]]                                | 40k  | 2026-06-17 14:24:36 |
 | [[https://vc.compiler.company/core/file/tip/etc/emacs/gen.el][etc/emacs/gen.el]]                                    | 2.3k | 2026-06-02 21:16:44 |
-| [[https://vc.compiler.company/core/file/tip/etc/emacs/graph.el][etc/emacs/graph.el]]                                  | 36k  | 2026-06-13 13:36:14 |
+| [[https://vc.compiler.company/core/file/tip/etc/emacs/graph.el][etc/emacs/graph.el]]                                  | 37k  | 2026-06-15 22:40:01 |
 | [[https://vc.compiler.company/core/file/tip/etc/emacs/inbox.el][etc/emacs/inbox.el]]                                  | 5.6k | 2026-06-13 15:35:34 |
 | [[https://vc.compiler.company/core/file/tip/etc/emacs/lisp-style.el][etc/emacs/lisp-style.el]]                             | 2.1k | 2026-05-31 22:13:37 |
 | [[https://vc.compiler.company/core/file/tip/etc/emacs/mpk.el][etc/emacs/mpk.el]]                                    | 1.7k | 2026-05-26 16:10:53 |
-| [[https://vc.compiler.company/core/file/tip/etc/emacs/org-expire.el][etc/emacs/org-expire.el]]                             | 13k  | 2026-05-28 19:32:57 |
-| [[https://vc.compiler.company/core/file/tip/etc/emacs/organ.el][etc/emacs/organ.el]]                                  | 19k  | 2026-06-08 21:12:32 |
+| [[https://vc.compiler.company/core/file/tip/etc/emacs/org-expire.el][etc/emacs/org-expire.el]]                             | 9.9k | 2026-06-15 22:35:05 |
+| [[https://vc.compiler.company/core/file/tip/etc/emacs/organ.el][etc/emacs/organ.el]]                                  | 19k  | 2026-06-17 15:31:21 |
 | [[https://vc.compiler.company/core/file/tip/etc/emacs/plan.el][etc/emacs/plan.el]]                                   | 11k  | 2026-06-07 22:11:13 |
 | [[https://vc.compiler.company/core/file/tip/etc/emacs/scratch.el][etc/emacs/scratch.el]]                                | 3.4k | 2026-05-24 22:11:52 |
 | [[https://vc.compiler.company/core/file/tip/etc/emacs/site-start.el][etc/emacs/site-start.el]]                             | 6.2k | 2026-06-13 13:23:12 |
-| [[https://vc.compiler.company/core/file/tip/etc/emacs/skel.el][etc/emacs/skel.el]]                                   | 21k  | 2026-06-15 21:07:06 |
-| [[https://vc.compiler.company/core/file/tip/etc/emacs/ulang.el][etc/emacs/ulang.el]]                                  | 17k  | 2026-06-13 23:18:59 |
+| [[https://vc.compiler.company/core/file/tip/etc/emacs/skel.el][etc/emacs/skel.el]]                                   | 22k  | 2026-06-16 16:51:02 |
+| [[https://vc.compiler.company/core/file/tip/etc/emacs/ulang.el][etc/emacs/ulang.el]]                                  | 22k  | 2026-06-17 14:34:15 |
 | [[https://vc.compiler.company/core/file/tip/etc/lisp/etc.translations][etc/lisp/etc.translations]]                           | 1.9k | 2026-05-21 21:26:00 |
 | [[https://vc.compiler.company/core/file/tip/etc/lisp/mpk.translations][etc/lisp/mpk.translations]]                           | 384  | 2026-05-21 21:17:33 |
 | [[https://vc.compiler.company/core/file/tip/etc/lisp/packy.translations][etc/lisp/packy.translations]]                         | 392  | 2026-05-21 21:21:05 |
@@ -368,7 +356,7 @@ Tuesday     7 July 2026
 | [[https://vc.compiler.company/core/file/tip/etc/lisp/var.translations][etc/lisp/var.translations]]                           | 532  | 2026-05-21 20:39:33 |
 | [[https://vc.compiler.company/core/file/tip/etc/script/cmd.lisp][etc/script/cmd.lisp]]                                 | 1k   | 2026-05-08 19:13:37 |
 | [[https://vc.compiler.company/core/file/tip/etc/script/esh.lisp][etc/script/esh.lisp]]                                 | 674  | 2026-05-08 19:09:53 |
-| [[https://vc.compiler.company/core/file/tip/etc/script/gen-autoloads.el][etc/script/gen-autoloads.el]]                         | 198  | 2026-05-31 16:35:20 |
+| [[https://vc.compiler.company/core/file/tip/etc/script/gen-autoloads.el][etc/script/gen-autoloads.el]]                         | 184  | 2026-06-16 21:33:56 |
 | [[https://vc.compiler.company/core/file/tip/etc/script/install.lisp][etc/script/install.lisp]]                             | 555  | 2026-05-22 19:59:42 |
 | [[https://vc.compiler.company/core/file/tip/etc/script/io.lisp][etc/script/io.lisp]]                                  | 3k   | 2026-05-01 21:40:27 |
 | [[https://vc.compiler.company/core/file/tip/etc/script/packy.lisp][etc/script/packy.lisp]]                               | 280  | 2026-05-22 18:29:04 |
@@ -741,18 +729,18 @@ Tuesday     7 July 2026
 | [[https://vc.compiler.company/core/file/tip/lib/dat/xml.lisp][lib/dat/xml.lisp]]                                    | 36k  | 2026-03-23 22:00:03 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/yaml.lisp][lib/dat/yaml.lisp]]                                   | 1.2k | 2025-06-13 14:55:06 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/zip.lisp][lib/dat/zip.lisp]]                                    | 65   | 2026-05-04 17:20:28 |
-| [[https://vc.compiler.company/core/file/tip/lib/doc/doc.sys][lib/doc/doc.sys]]                                     | 541  | 2026-05-27 21:36:47 |
+| [[https://vc.compiler.company/core/file/tip/lib/doc/doc.sys][lib/doc/doc.sys]]                                     | 802  | 2026-06-16 22:42:14 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/file.lisp][lib/doc/file.lisp]]                                   | 10k  | 2026-06-13 14:24:44 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/fuzzy.lisp][lib/doc/fuzzy.lisp]]                                  | 7k   | 2026-05-27 20:06:53 |
-| [[https://vc.compiler.company/core/file/tip/lib/doc/nlp.lisp][lib/doc/nlp.lisp]]                                    | 46k  | 2026-05-27 20:52:18 |
+| [[https://vc.compiler.company/core/file/tip/lib/doc/nlp.lisp][lib/doc/nlp.lisp]]                                    | 46k  | 2026-06-16 22:35:03 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/package.lisp][lib/doc/package.lisp]]                                | 4.1k | 2025-10-31 22:56:52 |
-| [[https://vc.compiler.company/core/file/tip/lib/doc/pkg.lisp][lib/doc/pkg.lisp]]                                    | 2.9k | 2026-06-12 17:09:17 |
-| [[https://vc.compiler.company/core/file/tip/lib/doc/proto.lisp][lib/doc/proto.lisp]]                                  | 3.6k | 2026-06-12 17:08:29 |
+| [[https://vc.compiler.company/core/file/tip/lib/doc/pkg.lisp][lib/doc/pkg.lisp]]                                    | 3k   | 2026-06-16 22:33:52 |
+| [[https://vc.compiler.company/core/file/tip/lib/doc/proto.lisp][lib/doc/proto.lisp]]                                  | 3.6k | 2026-06-16 22:38:53 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/readtable.lisp][lib/doc/readtable.lisp]]                              | 401  | 2026-05-27 21:23:06 |
-| [[https://vc.compiler.company/core/file/tip/lib/doc/reprex.lisp][lib/doc/reprex.lisp]]                                 | 415  | 2025-10-24 21:18:51 |
+| [[https://vc.compiler.company/core/file/tip/lib/doc/reprex.lisp][lib/doc/reprex.lisp]]                                 | 422  | 2026-06-17 14:21:59 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/symbol.lisp][lib/doc/symbol.lisp]]                                 | 5.1k | 2026-06-14 15:22:08 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/system.lisp][lib/doc/system.lisp]]                                 | 2.8k | 2026-05-27 21:06:39 |
-| [[https://vc.compiler.company/core/file/tip/lib/doc/tests.lisp][lib/doc/tests.lisp]]                                  | 2.1k | 2026-05-27 20:36:54 |
+| [[https://vc.compiler.company/core/file/tip/lib/doc/tests.lisp][lib/doc/tests.lisp]]                                  | 2.1k | 2026-06-16 22:33:06 |
 | [[https://vc.compiler.company/core/file/tip/lib/dsp/aud/chroma.lisp][lib/dsp/aud/chroma.lisp]]                             | 1.8k | 2025-07-24 23:03:40 |
 | [[https://vc.compiler.company/core/file/tip/lib/dsp/aud/jack.lisp][lib/dsp/aud/jack.lisp]]                               | 5.8k | 2026-01-12 20:57:49 |
 | [[https://vc.compiler.company/core/file/tip/lib/dsp/aud/pcm.lisp][lib/dsp/aud/pcm.lisp]]                                | 632  | 2025-05-18 20:49:03 |
@@ -871,7 +859,7 @@ Tuesday     7 July 2026
 | [[https://vc.compiler.company/core/file/tip/lib/obj/color/palette.lisp][lib/obj/color/palette.lisp]]                          | 4.8k | 2026-02-25 20:42:11 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/color/print.lisp][lib/obj/color/print.lisp]]                            | 102  | 2026-01-03 23:52:21 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/color/theme.lisp][lib/obj/color/theme.lisp]]                            | 1.6k | 2025-11-04 14:44:41 |
-| [[https://vc.compiler.company/core/file/tip/lib/obj/color/x11.lisp][lib/obj/color/x11.lisp]]                              | 23k  | 2026-06-15 21:14:10 |
+| [[https://vc.compiler.company/core/file/tip/lib/obj/color/x11.lisp][lib/obj/color/x11.lisp]]                              | 23k  | 2026-06-17 14:30:59 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/config.lisp][lib/obj/config.lisp]]                                 | 2.3k | 2025-10-20 20:16:11 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/db.lisp][lib/obj/db.lisp]]                                     | 20k  | 2026-05-16 23:38:10 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/equiv.lisp][lib/obj/equiv.lisp]]                                  | 2.5k | 2026-03-21 20:56:44 |
@@ -1147,9 +1135,9 @@ Tuesday     7 July 2026
 | [[https://vc.compiler.company/core/ppcre/file/tip/tests/tests.lisp][ppcre/tests/tests.lisp]]                              | 5.9k | 2026-02-11 18:47:09 |
 | [[https://vc.compiler.company/core/ppcre/file/tip/util.lisp][ppcre/util.lisp]]                                     | 6.1k | 2026-03-06 19:50:36 |
 | [[https://vc.compiler.company/core/ppcre/file/tip/var.lisp][ppcre/var.lisp]]                                      | 4.1k | 2026-02-11 18:47:09 |
-| [[https://vc.compiler.company/core/file/tip/readme.org][readme.org]]                                          | 1.1k | 2026-06-13 11:47:06 |
+| [[https://vc.compiler.company/core/file/tip/readme.org][readme.org]]                                          | 1.1k | 2026-06-16 22:02:10 |
 | [[https://vc.compiler.company/core/file/tip/registers][registers]]                                           | 57   | 2026-06-11 22:21:38 |
-| [[https://vc.compiler.company/core/file/tip/skel/cli.lisp][skel/cli.lisp]]                                       | 6.7k | 2026-06-08 19:24:24 |
+| [[https://vc.compiler.company/core/file/tip/skel/cli.lisp][skel/cli.lisp]]                                       | 6.8k | 2026-06-16 22:16:58 |
 | [[https://vc.compiler.company/core/file/tip/skel/comp/box.lisp][skel/comp/box.lisp]]                                  | 1.4k | 2026-06-08 18:38:53 |
 | [[https://vc.compiler.company/core/file/tip/skel/comp/emacs.lisp][skel/comp/emacs.lisp]]                                | 2.2k | 2026-06-09 19:29:06 |
 | [[https://vc.compiler.company/core/file/tip/skel/comp/infer.lisp][skel/comp/infer.lisp]]                                | 403  | 2026-06-08 19:21:35 |
@@ -1164,9 +1152,8 @@ Tuesday     7 July 2026
 | [[https://vc.compiler.company/core/file/tip/skel/core/db.lisp][skel/core/db.lisp]]                                   | 2k   | 2026-01-20 18:57:43 |
 | [[https://vc.compiler.company/core/file/tip/skel/core/header.lisp][skel/core/header.lisp]]                               | 1.8k | 2026-06-08 17:44:37 |
 | [[https://vc.compiler.company/core/file/tip/skel/core/log.lisp][skel/core/log.lisp]]                                  | 2.4k | 2026-06-08 17:44:50 |
-| [[https://vc.compiler.company/core/file/tip/skel/core/obj.lisp][skel/core/obj.lisp]]                                  | 5.5k | 2026-06-08 19:36:47 |
-| [[https://vc.compiler.company/core/file/tip/skel/core/print.lisp][skel/core/print.lisp]]                                | 2.9k | 2026-06-08 19:37:38 |
-| [[https://vc.compiler.company/core/file/tip/skel/core/project.lisp][skel/core/project.lisp]]                              | 13k  | 2026-06-13 23:00:24 |
+| [[https://vc.compiler.company/core/file/tip/skel/core/obj.lisp][skel/core/obj.lisp]]                                  | 5.5k | 2026-06-16 22:00:27 |
+| [[https://vc.compiler.company/core/file/tip/skel/core/project.lisp][skel/core/project.lisp]]                              | 15k  | 2026-06-17 18:02:53 |
 | [[https://vc.compiler.company/core/file/tip/skel/core/schema.lisp][skel/core/schema.lisp]]                               | 707  | 2026-06-08 19:36:18 |
 | [[https://vc.compiler.company/core/file/tip/skel/core/util.lisp][skel/core/util.lisp]]                                 | 6.7k | 2026-06-08 21:28:38 |
 | [[https://vc.compiler.company/core/file/tip/skel/core/var.lisp][skel/core/var.lisp]]                                  | 1.9k | 2026-06-08 19:00:54 |
@@ -1206,8 +1193,8 @@ Tuesday     7 July 2026
 | [[https://vc.compiler.company/core/file/tip/skel/packy/proto.lisp][skel/packy/proto.lisp]]                               | 2.2k | 2026-05-16 18:32:21 |
 | [[https://vc.compiler.company/core/file/tip/skel/packy/srv.lisp][skel/packy/srv.lisp]]                                 | 1k   | 2026-06-08 21:33:50 |
 | [[https://vc.compiler.company/core/file/tip/skel/packy/var.lisp][skel/packy/var.lisp]]                                 | 1k   | 2026-06-01 18:34:56 |
-| [[https://vc.compiler.company/core/file/tip/skel/pkg.lisp][skel/pkg.lisp]]                                       | 5.6k | 2026-06-13 22:22:39 |
-| [[https://vc.compiler.company/core/file/tip/skel/skel.sys][skel/skel.sys]]                                       | 1.9k | 2026-06-08 20:19:17 |
+| [[https://vc.compiler.company/core/file/tip/skel/pkg.lisp][skel/pkg.lisp]]                                       | 5.6k | 2026-06-16 22:16:11 |
+| [[https://vc.compiler.company/core/file/tip/skel/skel.sys][skel/skel.sys]]                                       | 1.9k | 2026-06-16 22:15:50 |
 | [[https://vc.compiler.company/core/file/tip/skel/srv.lisp][skel/srv.lisp]]                                       | 902  | 2026-06-08 21:34:28 |
 | [[https://vc.compiler.company/core/file/tip/skel/tests.lisp][skel/tests.lisp]]                                     | 2.9k | 2026-06-13 15:39:13 |
 | [[https://vc.compiler.company/core/file/tip/skelfile][skelfile]]                                            | 7.9k | 2026-06-13 21:50:05 |
@@ -1320,7 +1307,7 @@ Tuesday     7 July 2026
 | [[https://vc.compiler.company/core/file/tip/std/curry.lisp][std/curry.lisp]]                                      | 6.7k | 2026-01-26 22:58:25 |
 | [[https://vc.compiler.company/core/file/tip/std/defpkg.lisp][std/defpkg.lisp]]                                     | 40k  | 2026-03-31 21:59:28 |
 | [[https://vc.compiler.company/core/file/tip/std/defpun.lisp][std/defpun.lisp]]                                     | 42k  | 2026-02-11 13:31:54 |
-| [[https://vc.compiler.company/core/file/tip/std/defsys.lisp][std/defsys.lisp]]                                     | 60k  | 2026-06-14 00:39:01 |
+| [[https://vc.compiler.company/core/file/tip/std/defsys.lisp][std/defsys.lisp]]                                     | 60k  | 2026-06-16 22:32:00 |
 | [[https://vc.compiler.company/core/file/tip/std/file.lisp][std/file.lisp]]                                       | 19k  | 2026-05-18 18:51:55 |
 | [[https://vc.compiler.company/core/file/tip/std/hash.lisp][std/hash.lisp]]                                       | 10k  | 2026-02-01 20:07:55 |
 | [[https://vc.compiler.company/core/file/tip/std/io.lisp][std/io.lisp]]                                         | 9.3k | 2026-03-07 21:57:26 |
