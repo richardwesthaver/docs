@@ -327,20 +327,11 @@ default CC Emacs configuration using the =skel= command.
 
 - AO [2026-05-22 Fri] the core should is intended to be hacked on
   using this config /only/ but is subject to change in the future.
-- Warning :: this will overwrite =$XDG_CONFIG_HOME/emacs/=
-  #+begin_src shell :dir ~/src/core/ :results output :exports both
+- Warning :: this will overwrite =$XDG_CONFIG_HOME/emacs/= and
+  =/usr/share/emacs/site-lisp=.
+  #+begin_src shell :dir ~/src/core/ :results output :exports both :eval never
   skel make install-emacs
   #+end_src
-
-  #+RESULTS:
-  : sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
-  : sudo: a password is required
-  : sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
-  : sudo: a password is required
-  : sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
-  : sudo: a password is required
-  : #:debug 6.870001
-  : ; (#<SIMPLE-RULE install-emacs>)
 
 - the vanilla load sequence is applied first, starting with
   early-init.el if provided by the user then [[vc:core:etc/emacs/init.el][init.el]]
