@@ -1,0 +1,344 @@
+#+TITLE: tenex
+#+VERSION: 0.2.0
+#+ID: 1164491205125749488
+#+LOCATION: /home/ellis/src/shed/tenex/
+#+AUTHOR: Richard Westhaver
+#+EMAIL: ellis@rwest.io
+#+FILETAGS: net http web
+#+SETUPFILE: ../../../clean.theme
+#+TODO:
+HTTP Client Libraries
+
+:rules:
+- build-docs
+:end:
+
+* Systems
+** TENEX
+:PROPERTIES:
+:ID: 4557367049453623104
+:EXPORT_FILE_NAME: api/tenex
+:LOCATION: [[vc:shed/tenex:tenex.sys][tenex.sys]]
+:END:
+*** Packages
+**** TENEX/CLOUDFLARE
+:PROPERTIES:
+:END:
+
+***** *CLOUDFLARE-USER-AGENT​*
+:PROPERTIES:
+:ID: 520050761548
+:CUSTOM_ID: TENEX/CLOUDFLARE:*CLOUDFLARE-USER-AGENT*
+:ALLOC: HEAP IMMOBILE
+:END:
+***** CLOUDFLARE-REQUEST :compiled:function:
+:PROPERTIES:
+:ID: 3803998619472
+:CUSTOM_ID: TENEX/CLOUDFLARE:CLOUDFLARE-REQUEST
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+CLOUDFLARE-REQUEST names a compiled function:
+  Lambda-list: (PATH KEY &REST ARGS)
+  Derived type: (FUNCTION (T T &REST T) *)
+  Source file: /home/ellis/src/shed/tenex/cloudflare.lisp
+#+end_example
+
+:definitions:
+- [[vc:shed/tenex:cloudflare.lisp#l36][cloudflare.lisp:36]]
+:end:
+
+***** CLOUDFLARE-URI :compiled:function:
+:PROPERTIES:
+:ID: 2826865982160
+:CUSTOM_ID: TENEX/CLOUDFLARE:CLOUDFLARE-URI
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+CLOUDFLARE-URI names a compiled function:
+  Lambda-list: (PATH)
+  Derived type: (FUNCTION (T) *)
+  Source file: /home/ellis/src/shed/tenex/cloudflare.lisp
+#+end_example
+
+- Called by
+  - TENEX/CLOUDFLARE:CLOUDFLARE-REQUEST
+
+:definitions:
+- [[vc:shed/tenex:cloudflare.lisp#l34][cloudflare.lisp:34]]
+:end:
+
+***** *CLOUDFLARE-ENDPOINT​* :variable:
+:PROPERTIES:
+:ID: 800585066221
+:CUSTOM_ID: TENEX/CLOUDFLARE:*CLOUDFLARE-ENDPOINT*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+*CLOUDFLARE-ENDPOINT* names a special variable:
+  Value: "https://api.cloudflare.com/client/v4/"
+#+end_example
+
+- Referenced by
+  - TENEX/CLOUDFLARE:CLOUDFLARE-URI
+
+:definitions:
+- [[vc:shed/tenex:cloudflare.lisp][cloudflare.lisp]]
+:end:
+
+***** *CLOUDFLARE-API-VERSION​* :variable:
+:PROPERTIES:
+:ID: 2212759523033
+:CUSTOM_ID: TENEX/CLOUDFLARE:*CLOUDFLARE-API-VERSION*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+*CLOUDFLARE-API-VERSION* names a special variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- [[vc:shed/tenex:cloudflare.lisp][cloudflare.lisp]]
+:end:
+
+**** TENEX-INT
+:PROPERTIES:
+:END:
+
+***** *TENEX-PACKAGES​* :variable:
+:PROPERTIES:
+:ID: 3565403031840
+:CUSTOM_ID: TENEX-INT:*TENEX-PACKAGES*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+*TENEX-PACKAGES* names a special variable:
+  Value: NIL
+#+end_example
+
+:definitions:
+- [[vc:shed/tenex:pkg.lisp][pkg.lisp]]
+:end:
+
+**** TENEX/NWS
+:PROPERTIES:
+:END:
+
+***** *NWS-ENDPOINT​*
+:PROPERTIES:
+:ID: 2498812273151
+:CUSTOM_ID: TENEX/NWS:*NWS-ENDPOINT*
+:ALLOC: HEAP IMMOBILE
+:END:
+**** TENEX/TRANSMISSION
+:PROPERTIES:
+:END:
+**** TENEX/DISCORD
+:PROPERTIES:
+:END:
+
+***** *DISCORD-USER-AGENT​* :variable:
+:PROPERTIES:
+:ID: 4236625520713
+:CUSTOM_ID: TENEX/DISCORD:*DISCORD-USER-AGENT*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+*DISCORD-USER-AGENT* names a special variable:
+  Value: "DiscordBot (https://compiler.company,0.1.0)"
+#+end_example
+
+- Referenced by
+  - TENEX/DISCORD::DISCORD-HEADERS
+
+:definitions:
+- [[vc:shed/tenex:discord.lisp][discord.lisp]]
+:end:
+
+***** DISCORD-REQUEST :compiled:function:
+:PROPERTIES:
+:ID: 3538365207235
+:CUSTOM_ID: TENEX/DISCORD:DISCORD-REQUEST
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+DISCORD-REQUEST names a compiled function:
+  Lambda-list: (PATH &REST ARGS)
+  Derived type: (FUNCTION (T &REST T) *)
+  Source file: /home/ellis/src/shed/tenex/discord.lisp
+#+end_example
+
+:definitions:
+- [[vc:shed/tenex:discord.lisp#l36][discord.lisp:36]]
+:end:
+
+***** *DISCORD-ENDPOINT​* :variable:
+:PROPERTIES:
+:ID: 2828126195961
+:CUSTOM_ID: TENEX/DISCORD:*DISCORD-ENDPOINT*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+*DISCORD-ENDPOINT* names a special variable:
+  Value: "https://discord.com/api/v10/"
+#+end_example
+
+- Referenced by
+  - TENEX/DISCORD:DISCORD-URI
+
+:definitions:
+- [[vc:shed/tenex:discord.lisp][discord.lisp]]
+:end:
+
+***** *DISCORD-API-VERSION​* :variable:
+:PROPERTIES:
+:ID: 425279430809
+:CUSTOM_ID: TENEX/DISCORD:*DISCORD-API-VERSION*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+*DISCORD-API-VERSION* names a special variable:
+  Value: 10
+#+end_example
+
+:definitions:
+- [[vc:shed/tenex:discord.lisp][discord.lisp]]
+:end:
+
+***** DISCORD-URI :compiled:function:
+:PROPERTIES:
+:ID: 2753015356901
+:CUSTOM_ID: TENEX/DISCORD:DISCORD-URI
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+DISCORD-URI names a compiled function:
+  Lambda-list: (PATH)
+  Derived type: (FUNCTION (T) *)
+  Source file: /home/ellis/src/shed/tenex/discord.lisp
+#+end_example
+
+- Called by
+  - TENEX/DISCORD:DISCORD-REQUEST
+
+:definitions:
+- [[vc:shed/tenex:discord.lisp#l34][discord.lisp:34]]
+:end:
+
+**** TENEX
+:PROPERTIES:
+:END:
+
+*** Components
+**** pkg :lisp:
+:PROPERTIES:
+:SUMMARY: Tenex Packages
+:LOCATION: [[vc:shed/tenex:pkg.lisp][pkg.lisp]]
+:END:
+:tasks:
+- TODO 2025-07-12 :: macro for registering submodules
+:end:
+
+**** proto :lisp:
+:PROPERTIES:
+:SUMMARY: Tenex Client Protocol
+:LOCATION: [[vc:shed/tenex:proto.lisp][proto.lisp]]
+:END:
+**** nws :lisp:
+:PROPERTIES:
+:SUMMARY: National Weather Service
+:LOCATION: [[vc:shed/tenex:nws.lisp][nws.lisp]]
+:END:
+**** cloudflare :lisp:
+:PROPERTIES:
+:SUMMARY: Cloudflare API
+:LOCATION: [[vc:shed/tenex:cloudflare.lisp][cloudflare.lisp]]
+:END:
+ref: https://developers.cloudflare.com/fundamentals/api/
+
+pages: https://developers.cloudflare.com/api/resources/pages/
+
+logs: https://developers.cloudflare.com/api/resources/logs/
+
+dns: https://developers.cloudflare.com/api/resources/dns/
+
+r2: https://developers.cloudflare.com/api/resources/r2/
+
+**** discord :lisp:
+:PROPERTIES:
+:SUMMARY: Tenex Discord Packages
+:LOCATION: [[vc:shed/tenex:discord.lisp][discord.lisp]]
+:END:
+:change-log https://discord.com/developers/docs/change-log
+
+**** transmission :lisp:
+:PROPERTIES:
+:SUMMARY: Transmission RPC
+:LOCATION: [[vc:shed/tenex:transmission.lisp][transmission.lisp]]
+:END:
+Transmission RPC
+
+ref: https://github.com/transmission/transmission/blob/main/docs/rpc-spec.md
+
+#| Requests support three keys:
+
+A required method string telling the name of the method to invoke
+
+An optional arguments object of key/value pairs. The keys allowed are defined
+by the method.
+
+An optional tag number used by clients to track responses. If provided by a
+request, the response MUST include the same tag.
+
+{
+"arguments": {
+"fields": [
+"version"
+]
+},
+"method": "session-get",
+"tag": 912313
+}
+
+|#
+
+#| Responses to a request will include:
+
+A required result string whose value MUST be success on success, or an error
+string on failure.
+
+An optional arguments object of key/value pairs. Its keys contents are defined
+by the method and arguments of the original request.
+
+An optional tag number.
+
+{
+"arguments": {
+"version": "2.93 (3c5870d4f5)"
+},
+"result": "success",
+"tag": 912313
+}
+
+|#
+
+Request/Response tags are represented via the ID superclass
+
+Most transmission servers require a X-Transmission-Session-Id header to
+prevent CSRF attacks. When you get a 409 error from the server, pull the
+session id from the response and retry.
+
+If you use authentication ALWAYS use HTTPS connection. Basic auth is used:
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization#basic
+
+:outline:
+- Response
+- Request
+- Vars
+:end:
+
+:tasks:
+- ref 2026-07-04 :: https://github.com/j0rsa/transmission-rpc/blob/main/src/types/response.rs
+- ref 2026-07-04 :: https://github.com/j0rsa/transmission-rpc/blob/main/src/types/request.rs
+:end:
+
