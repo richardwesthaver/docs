@@ -23,7 +23,8 @@ We may support other targets for specific purposes but when talking
 about an *operator machine* we are refering specifically to the
 ~x86_64~ core linux build with all of our libraries
 pre-installed. There is no guarantee that the core software suite will
-function correctly outside of our environment.
+function correctly outside of the environment specified within this
+guide.
 
 * Overview
 :PROPERTIES:
@@ -32,14 +33,16 @@ function correctly outside of our environment.
 :END:
 The project [[vc:infra:skelfile][skelfile]] pulls in our utilities from [[vc:infra:util.lisp][util.lisp]] in the
 project root and contains a long list of rules which use the files in
-the [[vc:infra:scripts][scripts]] directory. These rules are called via the =skel= cli tool
+the [[vc:infra:scripts][scripts]] directory. These rules are called via the [[comp:docs/core/man#skel][skel]] cli tool
 to build all of our dependencies from source, package, and deploy
 them.
 
 There are several sub-projects inside infra:
 - [[vc:infra/home][home]] :: home directory management
+- [[vc:infra/etc][etc]] :: system config management
 - [[vc:infra/pod][pod]] :: [[id:89199dcd-fabd-4952-b5e9-1b3ffaf06e6b][Podman]] containers
 - [[vc:infra/box][box]] :: [[id:06ee60a3-9a98-40d2-893b-39ce992fc0dc][Archiso]] and [[id:c4f26ef4-a936-4cf3-8218-4d23dbd9b33a][QEMU]] configs
+- [[vc:infra/packy][packy]] :: package definitions
 
 ** Requirements
 :PROPERTIES:
@@ -72,7 +75,7 @@ There are several sub-projects inside infra:
 :END:
 Several containers are hosted publicly and can be retrieved using
 =podman import=:
-#+begin_src shell
+#+begin_src shell :eval no
 podman import https://packy.compiler.company/pod/op.tar.zst
 #+end_src
 
@@ -122,3 +125,23 @@ sudo pacman-key --finger 196FA2C31A5821D0
   #+end_src
 
   #+RESULTS:
+
+* TODO Installation
+:PROPERTIES:
+:CREATED:  <2026-07-11 Sat 23:46>
+:ID:       0cafa9ae-4b1c-43fc-a7e8-a2c016bde869
+:CUSTOM_ID: Installation
+:END:
+:LOGBOOK:
+- State "TODO"       from              [2026-07-11 Sat 23:47]
+:END:
+*Core Linux* is the moniker used for our flavor of Linux, based on and
+bootstrapped from Arch Linux. This section covers the installation
+process starting from a live system booted from a Core Linux
+installation medium.
+
+At time of writing ([2026-07-12 Sun]) the installation process is
+identical to that of Arch Linux and we will often reference the Arch
+Linux [[https://wiki.archlinux.org/title/Installation_guide][Installation Guide]] wherever non-CC-specific instruction is
+needed. We will be making incremental changes to this process over
+time and build out the sections that follow accordingly.

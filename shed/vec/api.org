@@ -14,128 +14,9 @@ Vector Path Manipulation Library
 :end:
 
 * Systems
-** VEC/AA/MISC
-:PROPERTIES:
-:ID: 112022881928269063
-:EXPORT_FILE_NAME: api/vec/aa/misc
-:LOCATION: [[vc:shed/vec:vec.sys][vec.sys]]
-:END:
-*** Components
-**** aa-misc :lisp:
-:PROPERTIES:
-:SUMMARY: Miscellaneous AA code
-:LOCATION: [[vc:shed/vec:aa-misc.lisp][aa-misc.lisp]]
-:END:
-Copyright (C) 2007-2013  Frédéric Jolliton <frederic@jolliton.com>
-This code is licensed under the MIT license.
-
-:outline:
-- load/save/display
-- Rendering
-:end:
-
-:tasks:
-- WARNING 2026-07-04 :: Run external program.
-:end:
-
-
-** VEC/PATHS/TTF
-:PROPERTIES:
-:ID: 3323099618594592546
-:EXPORT_FILE_NAME: api/vec/paths/ttf
-:LOCATION: [[vc:shed/vec:vec.sys][vec.sys]]
-:END:
-*** Packages
-**** VEC/PATHS/TTF
-:PROPERTIES:
-:END:
-
-***** MAKE-STRING-PATH :compiled:function:
-:PROPERTIES:
-:ID: 3554371299921
-:CUSTOM_ID: VEC/PATHS/TTF:MAKE-STRING-PATH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-STRING-PATH names a compiled function:
-  Lambda-list: (FONT-LOADER TEXT &KEY (POSITION (MAKE-POINT 0 0)) (SIZE 12)
-                (HALIGN LEFT) (VALIGN BASELINE) (INVERTED T) (KERNING T))
-  Derived type: (FUNCTION
-                 (T T &KEY (:POSITION T) (:SIZE T) (:HALIGN T) (:VALIGN T)
-                  (:INVERTED T) (:KERNING T))
-                 *)
-  Source file: /home/ellis/src/shed/vec/ttf.lisp
-#+end_example
-
-:definitions:
-- [[vc:shed/vec:ttf.lisp#l78][ttf.lisp:78]]
-:end:
-
-***** PATHS-FROM-GLYPH :compiled:function:
-:PROPERTIES:
-:ID: 3402547743497
-:CUSTOM_ID: VEC/PATHS/TTF:PATHS-FROM-GLYPH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATHS-FROM-GLYPH names a compiled function:
-  Lambda-list: (GLYPH &KEY (OFFSET (MAKE-POINT 0 0)) (SCALE-X 1.0)
-                (SCALE-Y 1.0) (AUTO-ORIENT NIL))
-  Derived type: (FUNCTION
-                 (T &KEY (:OFFSET T) (:SCALE-X T) (:SCALE-Y T)
-                  (:AUTO-ORIENT T))
-                 (VALUES LIST &OPTIONAL))
-  Documentation:
-    Extract paths from a glyph.
-  Source file: /home/ellis/src/shed/vec/ttf.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS/TTF:PATHS-FROM-STRING
-
-:definitions:
-- [[vc:shed/vec:ttf.lisp#l18][ttf.lisp:18]]
-:end:
-
-***** PATHS-FROM-STRING :compiled:function:
-:PROPERTIES:
-:ID: 1108786904560
-:CUSTOM_ID: VEC/PATHS/TTF:PATHS-FROM-STRING
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATHS-FROM-STRING names a compiled function:
-  Lambda-list: (FONT-LOADER TEXT &KEY (OFFSET (MAKE-POINT 0 0)) (SCALE-X 1.0)
-                (SCALE-Y 1.0) (KERNING T) (AUTO-ORIENT NIL))
-  Derived type: (FUNCTION
-                 (T T &KEY (:OFFSET T) (:SCALE-X T) (:SCALE-Y T) (:KERNING T)
-                  (:AUTO-ORIENT T))
-                 (VALUES T &OPTIONAL))
-  Documentation:
-    Extract paths from a string.
-  Source file: /home/ellis/src/shed/vec/ttf.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS/TTF:MAKE-STRING-PATH
-
-:definitions:
-- [[vc:shed/vec:ttf.lisp#l51][ttf.lisp:51]]
-:end:
-
-
-*** Components
-**** ttf :lisp:
-:PROPERTIES:
-:LOCATION: [[vc:shed/vec:ttf.lisp][ttf.lisp]]
-:END:
-Copyright (C) 2007-2013  Frédéric Jolliton <frederic@jolliton.com>
-This code is licensed under the MIT license.
-
-
 ** VEC
 :PROPERTIES:
-:ID: 460916180420574097
+:ID: 1762783602632574076
 :EXPORT_FILE_NAME: api/vec
 :LOCATION: [[vc:shed/vec:vec.sys][vec.sys]]
 :END:
@@ -146,7 +27,7 @@ This code is licensed under the MIT license.
 
 ***** P+ :compiled:function:
 :PROPERTIES:
-:ID: 4294982716651
+:ID: 4294982716975
 :CUSTOM_ID: VEC/PATHS:P+
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -175,9 +56,9 @@ P+ names a compiled function:
 - [[vc:shed/vec:paths.lisp#l87][paths.lisp:87]]
 :end:
 
-***** PATH-ITERATOR-NEXT :generic-function:function:
+***** PATH-ITERATOR-NEXT :generic:function:
 :PROPERTIES:
-:ID: 2398813454989
+:ID: 2398813455056
 :CUSTOM_ID: VEC/PATHS:PATH-ITERATOR-NEXT
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -224,7 +105,7 @@ PATH-ITERATOR-NEXT names a generic function:
 
 ***** PATH-CONCATENATE :compiled:function:
 :PROPERTIES:
-:ID: 3084743718498
+:ID: 3084743718510
 :CUSTOM_ID: VEC/PATHS:PATH-CONCATENATE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -246,7 +127,7 @@ PATH-CONCATENATE names a compiled function:
 
 ***** DASH-PATH :compiled:function:
 :PROPERTIES:
-:ID: 2473203991277
+:ID: 2473203990592
 :CUSTOM_ID: VEC/PATHS:DASH-PATH
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -266,7 +147,7 @@ DASH-PATH names a compiled function:
 
 ***** MAKE-CIRCLE-PATH :compiled:function:
 :PROPERTIES:
-:ID: 1712373463031
+:ID: 1712373462261
 :CUSTOM_ID: VEC/PATHS:MAKE-CIRCLE-PATH
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -291,7 +172,7 @@ MAKE-CIRCLE-PATH names a compiled function:
 
 ***** PATH-SCALE :compiled:function:
 :PROPERTIES:
-:ID: 2408852990938
+:ID: 2408852990275
 :CUSTOM_ID: VEC/PATHS:PATH-SCALE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -317,7 +198,7 @@ PATH-SCALE names a compiled function:
 
 ***** MAKE-CATMULL-ROM :compiled:function:
 :PROPERTIES:
-:ID: 2124352520426
+:ID: 2124352520527
 :CUSTOM_ID: VEC/PATHS:MAKE-CATMULL-ROM
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -337,7 +218,7 @@ MAKE-CATMULL-ROM names a compiled function:
 
 ***** POINT-Y :compiled:function:
 :PROPERTIES:
-:ID: 3473765244962
+:ID: 3473765245743
 :CUSTOM_ID: VEC/PATHS:POINT-Y
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -382,7 +263,7 @@ POINT-Y names a compiled function:
 
 ***** MAKE-STRAIGHT-LINE :compiled:function:
 :PROPERTIES:
-:ID: 2482730731919
+:ID: 2482730731546
 :CUSTOM_ID: VEC/PATHS:MAKE-STRAIGHT-LINE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -413,7 +294,7 @@ MAKE-STRAIGHT-LINE names a compiled function:
 
 ***** MAKE-REGULAR-POLYGON-PATH :compiled:function:
 :PROPERTIES:
-:ID: 2706577469548
+:ID: 2706577469971
 :CUSTOM_ID: VEC/PATHS:MAKE-REGULAR-POLYGON-PATH
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -431,7 +312,7 @@ MAKE-REGULAR-POLYGON-PATH names a compiled function:
 
 ***** POINT-ANGLE :compiled:function:
 :PROPERTIES:
-:ID: 2468379607482
+:ID: 2468379607281
 :CUSTOM_ID: VEC/PATHS:POINT-ANGLE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -458,7 +339,7 @@ POINT-ANGLE names a compiled function:
 
 ***** PATH-REVERSE :compiled:function:
 :PROPERTIES:
-:ID: 656618805842
+:ID: 656618805950
 :CUSTOM_ID: VEC/PATHS:PATH-REVERSE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -481,7 +362,7 @@ PATH-REVERSE names a compiled function:
 
 ***** MAKE-SIMPLE-PATH :compiled:function:
 :PROPERTIES:
-:ID: 2694376189019
+:ID: 2694376189349
 :CUSTOM_ID: VEC/PATHS:MAKE-SIMPLE-PATH
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -503,7 +384,7 @@ MAKE-SIMPLE-PATH names a compiled function:
 
 ***** PATH-TRANSFORM-AS-MARKER :compiled:function:
 :PROPERTIES:
-:ID: 180327276712
+:ID: 180327276820
 :CUSTOM_ID: VEC/PATHS:PATH-TRANSFORM-AS-MARKER
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -525,9 +406,9 @@ PATH-TRANSFORM-AS-MARKER names a compiled function:
 - [[vc:shed/vec:paths.lisp#l555][paths.lisp:555]]
 :end:
 
-***** *BEZIER-ANGLE-TOLERANCE​* :variable:
+***** *BEZIER-ANGLE-TOLERANCE​* :var:
 :PROPERTIES:
-:ID: 2235352898783
+:ID: 2235352899136
 :CUSTOM_ID: VEC/PATHS:*BEZIER-ANGLE-TOLERANCE*
 :ALLOC: HEAP IMMOBILE
 :END: 
@@ -548,7 +429,7 @@ PATH-TRANSFORM-AS-MARKER names a compiled function:
 
 ***** MAKE-BEZIER-CURVE :compiled:function:
 :PROPERTIES:
-:ID: 3458190304129
+:ID: 3458190303279
 :CUSTOM_ID: VEC/PATHS:MAKE-BEZIER-CURVE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -569,7 +450,7 @@ MAKE-BEZIER-CURVE names a compiled function:
 
 ***** P- :compiled:function:
 :PROPERTIES:
-:ID: 4329343280490
+:ID: 4329343280342
 :CUSTOM_ID: VEC/PATHS:P-
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -594,7 +475,7 @@ P- names a compiled function:
 
 ***** MAKE-DISCRETE-PATH :compiled:function:
 :PROPERTIES:
-:ID: 1700988003302
+:ID: 1700988003187
 :CUSTOM_ID: VEC/PATHS:MAKE-DISCRETE-PATH
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -616,7 +497,7 @@ MAKE-DISCRETE-PATH names a compiled function:
 
 ***** PATH-REPLACE :compiled:function:
 :PROPERTIES:
-:ID: 2532245275441
+:ID: 2532245274936
 :CUSTOM_ID: VEC/PATHS:PATH-REPLACE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -638,7 +519,7 @@ PATH-REPLACE names a compiled function:
 
 ***** CLIP-PATH :compiled:function:
 :PROPERTIES:
-:ID: 1453812939482
+:ID: 1453812939395
 :CUSTOM_ID: VEC/PATHS:CLIP-PATH
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -658,7 +539,7 @@ CLIP-PATH names a compiled function:
 
 ***** PATH-ANNOTATED :compiled:function:
 :PROPERTIES:
-:ID: 306890780749
+:ID: 306890781670
 :CUSTOM_ID: VEC/PATHS:PATH-ANNOTATED
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -686,7 +567,7 @@ PATH-ANNOTATED names a compiled function:
 
 ***** PATH-REVERSED :compiled:function:
 :PROPERTIES:
-:ID: 3809756782890
+:ID: 3809756782885
 :CUSTOM_ID: VEC/PATHS:PATH-REVERSED
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -705,9 +586,9 @@ PATH-REVERSED names a compiled function:
 - [[vc:shed/vec:paths.lisp#l472][paths.lisp:472]]
 :end:
 
-***** *ARC-LENGTH-TOLERANCE​* :variable:
+***** *ARC-LENGTH-TOLERANCE​* :var:
 :PROPERTIES:
-:ID: 2774055818316
+:ID: 2774055818824
 :CUSTOM_ID: VEC/PATHS:*ARC-LENGTH-TOLERANCE*
 :ALLOC: HEAP IMMOBILE
 :END: 
@@ -724,7 +605,7 @@ PATH-REVERSED names a compiled function:
 
 ***** FILTER-DISTINCT :compiled:function:
 :PROPERTIES:
-:ID: 2316420371621
+:ID: 2316420371510
 :CUSTOM_ID: VEC/PATHS:FILTER-DISTINCT
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -745,7 +626,7 @@ FILTER-DISTINCT names a compiled function:
 
 ***** POINT-NORM :compiled:function:
 :PROPERTIES:
-:ID: 880223753291
+:ID: 880223753562
 :CUSTOM_ID: VEC/PATHS:POINT-NORM
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -772,7 +653,7 @@ POINT-NORM names a compiled function:
 
 ***** PATH-CLONE :compiled:function:
 :PROPERTIES:
-:ID: 2949961033262
+:ID: 2949961033634
 :CUSTOM_ID: VEC/PATHS:PATH-CLONE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -792,7 +673,7 @@ PATH-CLONE names a compiled function:
 
 ***** PATH-ROTATE :compiled:function:
 :PROPERTIES:
-:ID: 248477443859
+:ID: 248477443613
 :CUSTOM_ID: VEC/PATHS:PATH-ROTATE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -816,7 +697,7 @@ PATH-ROTATE names a compiled function:
 
 ***** POINT-DISTANCE :compiled:function:
 :PROPERTIES:
-:ID: 4305315463181
+:ID: 4305315463663
 :CUSTOM_ID: VEC/PATHS:POINT-DISTANCE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -843,7 +724,7 @@ POINT-DISTANCE names a compiled function:
 
 ***** PATH-SIZE :compiled:function:
 :PROPERTIES:
-:ID: 3272773254646
+:ID: 3272773254969
 :CUSTOM_ID: VEC/PATHS:PATH-SIZE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -866,7 +747,7 @@ PATH-SIZE names a compiled function:
 
 ***** PATH-LAST-KNOT :compiled:function:
 :PROPERTIES:
-:ID: 3429020583570
+:ID: 3429020583493
 :CUSTOM_ID: VEC/PATHS:PATH-LAST-KNOT
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -886,7 +767,7 @@ PATH-LAST-KNOT names a compiled function:
 
 ***** POINT-ROTATE :compiled:function:
 :PROPERTIES:
-:ID: 3768638222830
+:ID: 3768638223314
 :CUSTOM_ID: VEC/PATHS:POINT-ROTATE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -917,7 +798,7 @@ POINT-ROTATE names a compiled function:
 
 ***** PATH-ITERATOR-SEGMENTED :compiled:function:
 :PROPERTIES:
-:ID: 3019996738819
+:ID: 3019996739566
 :CUSTOM_ID: VEC/PATHS:PATH-ITERATOR-SEGMENTED
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -942,7 +823,7 @@ PATH-ITERATOR-SEGMENTED names a compiled function:
 
 ***** P* :compiled:function:
 :PROPERTIES:
-:ID: 4277802434850
+:ID: 4277802435274
 :CUSTOM_ID: VEC/PATHS:P*
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -974,7 +855,7 @@ P* names a compiled function:
 
 ***** PATH-TRANSLATE :compiled:function:
 :PROPERTIES:
-:ID: 1353987750751
+:ID: 1353987750619
 :CUSTOM_ID: VEC/PATHS:PATH-TRANSLATE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -999,7 +880,7 @@ PATH-TRANSLATE names a compiled function:
 
 ***** PATH-EXTEND :compiled:function:
 :PROPERTIES:
-:ID: 2027717920837
+:ID: 2027717920981
 :CUSTOM_ID: VEC/PATHS:PATH-EXTEND
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1032,7 +913,7 @@ PATH-EXTEND names a compiled function:
 
 ***** CLIP-PATH/PATH :compiled:function:
 :PROPERTIES:
-:ID: 1720814574437
+:ID: 1720814574293
 :CUSTOM_ID: VEC/PATHS:CLIP-PATH/PATH
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1049,7 +930,7 @@ CLIP-PATH/PATH names a compiled function:
 
 ***** MAKE-ARC :compiled:function:
 :PROPERTIES:
-:ID: 2394821523387
+:ID: 2394821522762
 :CUSTOM_ID: VEC/PATHS:MAKE-ARC
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1077,7 +958,7 @@ MAKE-ARC names a compiled function:
 
 ***** PATH-RESET :compiled:function:
 :PROPERTIES:
-:ID: 3366681103988
+:ID: 3366681103532
 :CUSTOM_ID: VEC/PATHS:PATH-RESET
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1104,7 +985,7 @@ PATH-RESET names a compiled function:
 
 ***** STROKE-PATH :compiled:function:
 :PROPERTIES:
-:ID: 1507105898721
+:ID: 1507105899213
 :CUSTOM_ID: VEC/PATHS:STROKE-PATH
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1124,7 +1005,7 @@ STROKE-PATH names a compiled function:
 
 ***** MAKE-RECTANGLE-PATH :compiled:function:
 :PROPERTIES:
-:ID: 179269683970
+:ID: 179269683257
 :CUSTOM_ID: VEC/PATHS:MAKE-RECTANGLE-PATH
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1145,7 +1026,7 @@ MAKE-RECTANGLE-PATH names a compiled function:
 
 ***** MAKE-RECTANGLE-PATH/CENTER :compiled:function:
 :PROPERTIES:
-:ID: 1516396138993
+:ID: 1516396139192
 :CUSTOM_ID: VEC/PATHS:MAKE-RECTANGLE-PATH/CENTER
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1165,7 +1046,7 @@ MAKE-RECTANGLE-PATH/CENTER names a compiled function:
 
 ***** PATH-ORIENT :compiled:function:
 :PROPERTIES:
-:ID: 1038718090795
+:ID: 1038718090889
 :CUSTOM_ID: VEC/PATHS:PATH-ORIENT
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1188,9 +1069,9 @@ PATH-ORIENT names a compiled function:
 - [[vc:shed/vec:paths.lisp#l209][paths.lisp:209]]
 :end:
 
-***** PATH-ITERATOR-RESET :generic-function:function:
+***** PATH-ITERATOR-RESET :generic:function:
 :PROPERTIES:
-:ID: 2806879299598
+:ID: 2806879299933
 :CUSTOM_ID: VEC/PATHS:PATH-ITERATOR-RESET
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1224,7 +1105,7 @@ PATH-ITERATOR-RESET names a generic function:
 
 ***** MAKE-POINT :compiled:function:
 :PROPERTIES:
-:ID: 2255752535175
+:ID: 2255752536045
 :CUSTOM_ID: VEC/PATHS:MAKE-POINT
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1269,7 +1150,7 @@ MAKE-POINT names a compiled function:
 
 ***** PATH-CLEAR :compiled:function:
 :PROPERTIES:
-:ID: 3308249195999
+:ID: 3308249195719
 :CUSTOM_ID: VEC/PATHS:PATH-CLEAR
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1290,9 +1171,9 @@ PATH-CLEAR names a compiled function:
 - [[vc:shed/vec:paths.lisp#l145][paths.lisp:145]]
 :end:
 
-***** *BEZIER-DISTANCE-TOLERANCE​* :variable:
+***** *BEZIER-DISTANCE-TOLERANCE​* :var:
 :PROPERTIES:
-:ID: 2958655715039
+:ID: 2958655714312
 :CUSTOM_ID: VEC/PATHS:*BEZIER-DISTANCE-TOLERANCE*
 :ALLOC: HEAP IMMOBILE
 :END: 
@@ -1313,7 +1194,7 @@ PATH-CLEAR names a compiled function:
 
 ***** POINT-X :compiled:function:
 :PROPERTIES:
-:ID: 3490945527504
+:ID: 3490945527506
 :CUSTOM_ID: VEC/PATHS:POINT-X
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1358,7 +1239,7 @@ POINT-X names a compiled function:
 
 ***** PATH-ITERATOR :compiled:function:
 :PROPERTIES:
-:ID: 3102615081351
+:ID: 3102615081663
 :CUSTOM_ID: VEC/PATHS:PATH-ITERATOR
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1378,7 +1259,7 @@ PATH-ITERATOR names a compiled function:
 
 ***** CREATE-PATH :compiled:function:
 :PROPERTIES:
-:ID: 2396473860181
+:ID: 2396473860349
 :CUSTOM_ID: VEC/PATHS:CREATE-PATH
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1420,7 +1301,7 @@ CREATE-PATH names a compiled function:
 
 ***** MAKE-STRING-PATH :compiled:function:
 :PROPERTIES:
-:ID: 3554371299921
+:ID: 3554371299898
 :CUSTOM_ID: VEC/PATHS/TTF:MAKE-STRING-PATH
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1441,7 +1322,7 @@ MAKE-STRING-PATH names a compiled function:
 
 ***** PATHS-FROM-GLYPH :compiled:function:
 :PROPERTIES:
-:ID: 3402547743497
+:ID: 3402547743663
 :CUSTOM_ID: VEC/PATHS/TTF:PATHS-FROM-GLYPH
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1467,7 +1348,7 @@ PATHS-FROM-GLYPH names a compiled function:
 
 ***** PATHS-FROM-STRING :compiled:function:
 :PROPERTIES:
-:ID: 1108786904560
+:ID: 1108786904258
 :CUSTOM_ID: VEC/PATHS/TTF:PATHS-FROM-STRING
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1497,7 +1378,7 @@ PATHS-FROM-STRING names a compiled function:
 
 ***** UPDATE-STATE :compiled:function:
 :PROPERTIES:
-:ID: 3310018596799
+:ID: 3310018596117
 :CUSTOM_ID: VEC:UPDATE-STATE
 :ALLOC: HEAP DYNAMIC
 :END: 
@@ -1524,1612 +1405,4 @@ UPDATE-STATE names a compiled function:
 :END:
 Copyright (C) 2007-2013  Frédéric Jolliton <frederic@jolliton.com>
 This code is licensed under the MIT license.
-
-
-** VEC/PATHS
-:PROPERTIES:
-:ID: 2610680767758980402
-:EXPORT_FILE_NAME: api/vec/paths
-:LOCATION: [[vc:shed/vec:vec.sys][vec.sys]]
-:END:
-*** Packages
-**** VEC/PATHS
-:PROPERTIES:
-:END:
-
-***** P+ :compiled:function:
-:PROPERTIES:
-:ID: 4294982716651
-:CUSTOM_ID: VEC/PATHS:P+
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-P+ names a compiled function:
-  Lambda-list: (P1 P2)
-  Derived type: (FUNCTION (T T) (VALUES CONS &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::DASH-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-  - VEC/PATHS:MAKE-CIRCLE-PATH
-  - (INTERPOLATION-TRANSLATE (BEZIER T))
-  - (INTERPOLATION-TRANSLATE (CATMULL-ROM T))
-  - (INTERPOLATION-SEGMENT (ARC T T T))
-  - VEC/PATHS::SVG-ARC-PARAMETERS/REVERSE
-  - VEC/PATHS:PATH-TRANSFORM-AS-MARKER
-  - VEC/PATHS:PATH-TRANSLATE
-  - VEC/PATHS/TTF:PATHS-FROM-STRING
-  - VEC/PATHS/TTF:PATHS-FROM-GLYPH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l87][paths.lisp:87]]
-:end:
-
-***** PATH-ITERATOR-NEXT :generic-function:function:
-:PROPERTIES:
-:ID: 2398813454989
-:CUSTOM_ID: VEC/PATHS:PATH-ITERATOR-NEXT
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-ITERATOR-NEXT names a generic function:
-  Lambda-list: (ITERATOR)
-  Derived type: (FUNCTION (T) *)
-  Documentation:
-    Move the iterator to the next knot, and return
-    3 values: INTERPOLATION, KNOT and END-P. INTERPOLATION is the
-    interpolation between the previous knot and the current one. For
-    the first iteration, INTERPOLATION is usually the implicit
-    straight line between the last knot and the first knot. KNOT and
-    INTERPOLATION are null if the path is empty. END-P is true if the
-    knot is the last on the path or if the path is empty.
-  Method-combination: STANDARD
-  Methods:
-    (PATH-ITERATOR-NEXT (FILTER-DISTINCT-STATE))
-    (PATH-ITERATOR-NEXT (PI-SEGMENTED-STATE))
-    (PATH-ITERATOR-NEXT (PATH-ITERATOR-STATE))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC:UPDATE-STATE
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::CLIP-PATH/PATH/1
-  - VEC/PATHS::CLIP-PATH/1
-  - VEC/PATHS::DASH-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-  - (PATH-ITERATOR-NEXT (FILTER-DISTINCT-STATE))
-  - VEC/PATHS::PATH-FROM-ITERATOR
-
-:definitions:
-- [[vc:shed/vec:paths.lisp][paths.lisp]]
-  - (ITERATOR)
-- [[vc:shed/vec:paths.lisp][paths.lisp]]
-  - VEC/PATHS::PI-SEGMENTED-STATE
-- [[vc:shed/vec:paths.lisp][paths.lisp]]
-  - VEC/PATHS::PATH-ITERATOR-STATE
-- [[vc:shed/vec:paths.lisp][paths.lisp]]
-  - VEC/PATHS::FILTER-DISTINCT-STATE
-:end:
-
-***** PATH-CONCATENATE :compiled:function:
-:PROPERTIES:
-:ID: 3084743718498
-:CUSTOM_ID: VEC/PATHS:PATH-CONCATENATE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-CONCATENATE names a compiled function:
-  Lambda-list: (PATH INTERPOLATION OTHER-PATH)
-  Derived type: (FUNCTION (T T T) (VALUES NULL &OPTIONAL))
-  Documentation:
-    Append OTHER-PATH to PATH, joined by INTERPOLATION.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-REPLACE
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l165][paths.lisp:165]]
-:end:
-
-***** DASH-PATH :compiled:function:
-:PROPERTIES:
-:ID: 2473203991277
-:CUSTOM_ID: VEC/PATHS:DASH-PATH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-DASH-PATH names a compiled function:
-  Lambda-list: (PATHS &REST ARGS)
-  Derived type: (FUNCTION (T &REST T) (VALUES LIST &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l1512][paths.lisp:1512]]
-:end:
-
-***** MAKE-CIRCLE-PATH :compiled:function:
-:PROPERTIES:
-:ID: 1712373463031
-:CUSTOM_ID: VEC/PATHS:MAKE-CIRCLE-PATH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-CIRCLE-PATH names a compiled function:
-  Lambda-list: (CX CY RADIUS &OPTIONAL (RADIUS-Y RADIUS) (X-AXIS-ROTATION 0.0))
-  Derived type: (FUNCTION (T T T &OPTIONAL T T)
-                 (VALUES VEC/PATHS::PATH &OPTIONAL))
-  Documentation:
-    Construct a path to represent a circle centered at CX,CY of
-    the specified RADIUS.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::STROKE-PATH/1
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l1087][paths.lisp:1087]]
-:end:
-
-***** PATH-SCALE :compiled:function:
-:PROPERTIES:
-:ID: 2408852990938
-:CUSTOM_ID: VEC/PATHS:PATH-SCALE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-SCALE names a compiled function:
-  Lambda-list: (PATH SCALE-X SCALE-Y &OPTIONAL CENTER)
-  Derived type: (FUNCTION (T T T &OPTIONAL T)
-                 (VALUES (OR LIST VEC/PATHS::PATH) &OPTIONAL))
-  Documentation:
-    Scale the whole path by (SCALE-X,SCALE-Y) from CENTER (which
-    is the origin if unspecified.) Warning: not all interpolations
-    support non uniform scaling (when scale-x /= scale-y).
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-TRANSFORM-AS-MARKER
-  - VEC/PATHS:PATH-SCALE
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l519][paths.lisp:519]]
-:end:
-
-***** MAKE-CATMULL-ROM :compiled:function:
-:PROPERTIES:
-:ID: 2124352520426
-:CUSTOM_ID: VEC/PATHS:MAKE-CATMULL-ROM
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-CATMULL-ROM names a compiled function:
-  Lambda-list: (HEAD CONTROL-POINTS QUEUE)
-  Derived type: (FUNCTION (T T T) *)
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - (INTERPOLATION-CLONE (CATMULL-ROM))
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l797][paths.lisp:797]]
-:end:
-
-***** POINT-Y :compiled:function:
-:PROPERTIES:
-:ID: 3473765244962
-:CUSTOM_ID: VEC/PATHS:POINT-Y
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-POINT-Y names a compiled function:
-  Lambda-list: (POINT)
-  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
-  Inline proclamation: INLINE (inline expansion available)
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC:UPDATE-STATE
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::CLIP-PATH/PATH/1
-  - VEC/PATHS::CLIP-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-  - (INTERPOLATION-NORMAL (BEZIER T T T))
-  - VEC/PATHS::DISCRETE-BEZIER-CURVE
-  - VEC/PATHS::EVALUATE-BEZIER
-  - VEC/PATHS::SPLIT-BEZIER
-  - (INTERPOLATION-NORMAL (CATMULL-ROM T T T))
-  - (INTERPOLATION-SEGMENT (CATMULL-ROM T T T))
-  - (INTERPOLATION-NORMAL (ARC T T T))
-  - VEC/PATHS::SVG-ARC-PARAMETERS
-  - (INTERPOLATION-NORMAL ((EQL STRAIGHT-LINE) T T T))
-  - VEC/PATHS:PATH-TRANSLATE
-  - VEC/PATHS::PATH-GUESS-ORIENTATION
-  - VEC/PATHS::POINT-MIDDLE
-  - VEC/PATHS:POINT-DISTANCE
-  - VEC/PATHS:POINT-NORM
-  - VEC/PATHS:POINT-ANGLE
-  - VEC/PATHS:POINT-ROTATE
-  - VEC/PATHS:P*
-  - VEC/PATHS:P-
-  - VEC/PATHS:P+
-  - VEC/PATHS/TTF:PATHS-FROM-GLYPH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l85][paths.lisp:85]]
-:end:
-
-***** MAKE-STRAIGHT-LINE :compiled:function:
-:PROPERTIES:
-:ID: 2482730731919
-:CUSTOM_ID: VEC/PATHS:MAKE-STRAIGHT-LINE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-STRAIGHT-LINE names a compiled function:
-  Lambda-list: ()
-  Derived type: (FUNCTION NIL (VALUES (MEMBER :STRAIGHT-LINE) &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::CLIP-PATH/1
-  - VEC/PATHS::DASH-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-  - VEC/PATHS:MAKE-SIMPLE-PATH
-  - VEC/PATHS:MAKE-REGULAR-POLYGON-PATH
-  - VEC/PATHS:MAKE-RECTANGLE-PATH
-  - VEC/PATHS:MAKE-DISCRETE-PATH
-  - (INTERPOLATION-CLONE ((EQL STRAIGHT-LINE)))
-  - (PATH-ITERATOR-NEXT (PI-SEGMENTED-STATE))
-  - VEC/PATHS:PATH-RESET
-  - VEC/PATHS/TTF:PATHS-FROM-GLYPH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l598][paths.lisp:598]]
-:end:
-
-***** MAKE-REGULAR-POLYGON-PATH :compiled:function:
-:PROPERTIES:
-:ID: 2706577469548
-:CUSTOM_ID: VEC/PATHS:MAKE-REGULAR-POLYGON-PATH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-REGULAR-POLYGON-PATH names a compiled function:
-  Lambda-list: (X Y RADIUS SIDES &OPTIONAL (START-ANGLE 0.0))
-  Derived type: (FUNCTION (T T T T &OPTIONAL T)
-                 (VALUES VEC/PATHS::PATH &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l1137][paths.lisp:1137]]
-:end:
-
-***** POINT-ANGLE :compiled:function:
-:PROPERTIES:
-:ID: 2468379607482
-:CUSTOM_ID: VEC/PATHS:POINT-ANGLE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-POINT-ANGLE names a compiled function:
-  Lambda-list: (POINT)
-  Derived type: (FUNCTION (T)
-                 (VALUES
-                  (OR (DOUBLE-FLOAT -3.141592653589793d0 3.141592653589793d0)
-                      (SINGLE-FLOAT -3.1415927 3.1415927))
-                  &OPTIONAL))
-  Documentation:
-    Compute the angle of POINT relatively to the X axis.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS::SVG-ARC-PARAMETERS
-  - VEC/PATHS:PATH-TRANSFORM-AS-MARKER
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l107][paths.lisp:107]]
-:end:
-
-***** PATH-REVERSE :compiled:function:
-:PROPERTIES:
-:ID: 656618805842
-:CUSTOM_ID: VEC/PATHS:PATH-REVERSE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-REVERSE names a compiled function:
-  Lambda-list: (PATH)
-  Derived type: (FUNCTION (T) (VALUES VEC/PATHS::PATH &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-SCALE
-  - VEC/PATHS:PATH-REVERSED
-  - VEC/PATHS:PATH-ORIENT
-  - VEC/PATHS/TTF:PATHS-FROM-GLYPH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l453][paths.lisp:453]]
-:end:
-
-***** MAKE-SIMPLE-PATH :compiled:function:
-:PROPERTIES:
-:ID: 2694376189019
-:CUSTOM_ID: VEC/PATHS:MAKE-SIMPLE-PATH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-SIMPLE-PATH names a compiled function:
-  Lambda-list: (POINTS &OPTIONAL (TYPE OPEN-POLYLINE))
-  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES VEC/PATHS::PATH &OPTIONAL))
-  Documentation:
-    Create a path with only straight line, by specifying only knots.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l1146][paths.lisp:1146]]
-:end:
-
-***** PATH-TRANSFORM-AS-MARKER :compiled:function:
-:PROPERTIES:
-:ID: 180327276712
-:CUSTOM_ID: VEC/PATHS:PATH-TRANSFORM-AS-MARKER
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-TRANSFORM-AS-MARKER names a compiled function:
-  Lambda-list: (PATH PATH-REFERENCE SIDE &KEY (OFFSET 0.0) (SCALE 1.0)
-                (ANGLE 0.0))
-  Derived type: (FUNCTION (T T T &KEY (:OFFSET T) (:SCALE T) (:ANGLE T))
-                 (VALUES T &OPTIONAL))
-  Documentation:
-    Translate, rotate and scale PATH representing a marker such
-    that it is adapted to the PATH-REFERENCE. If SIDE is false, it is
-    placed at the start of the path, otherwise it is placed at the
-    end of the path.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l555][paths.lisp:555]]
-:end:
-
-***** *BEZIER-ANGLE-TOLERANCE​* :variable:
-:PROPERTIES:
-:ID: 2235352898783
-:CUSTOM_ID: VEC/PATHS:*BEZIER-ANGLE-TOLERANCE*
-:ALLOC: HEAP IMMOBILE
-:END: 
-#+begin_example
-*BEZIER-ANGLE-TOLERANCE* names a special variable:
-  Value: 0.05
-  Documentation:
-    The default angle tolerance (in radian) used when rendering
-    Bezier curves
-#+end_example
-
-- Referenced by
-  - VEC/PATHS::DISCRETE-BEZIER-CURVE
-
-:definitions:
-- [[vc:shed/vec:paths.lisp][paths.lisp]]
-:end:
-
-***** MAKE-BEZIER-CURVE :compiled:function:
-:PROPERTIES:
-:ID: 3458190304129
-:CUSTOM_ID: VEC/PATHS:MAKE-BEZIER-CURVE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-BEZIER-CURVE names a compiled function:
-  Lambda-list: (CONTROL-POINTS)
-  Derived type: (FUNCTION (T) *)
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - (INTERPOLATION-CLONE (BEZIER))
-  - VEC/PATHS/TTF:PATHS-FROM-GLYPH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l904][paths.lisp:904]]
-:end:
-
-***** P- :compiled:function:
-:PROPERTIES:
-:ID: 4329343280490
-:CUSTOM_ID: VEC/PATHS:P-
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-P- names a compiled function:
-  Lambda-list: (P1 P2)
-  Derived type: (FUNCTION (T T) (VALUES CONS &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS::CLIP-PATH/PATH/1
-  - VEC/PATHS::DASH-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-  - VEC/PATHS:MAKE-CIRCLE-PATH
-  - VEC/PATHS::SVG-ARC-PARAMETERS
-  - VEC/PATHS/TTF:MAKE-STRING-PATH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l92][paths.lisp:92]]
-:end:
-
-***** MAKE-DISCRETE-PATH :compiled:function:
-:PROPERTIES:
-:ID: 1700988003302
-:CUSTOM_ID: VEC/PATHS:MAKE-DISCRETE-PATH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-DISCRETE-PATH names a compiled function:
-  Lambda-list: (PATH)
-  Derived type: (FUNCTION (T) (VALUES VEC/PATHS::PATH &OPTIONAL))
-  Documentation:
-    Construct a path with only straight lines.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l1055][paths.lisp:1055]]
-:end:
-
-***** PATH-REPLACE :compiled:function:
-:PROPERTIES:
-:ID: 2532245275441
-:CUSTOM_ID: VEC/PATHS:PATH-REPLACE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-REPLACE names a compiled function:
-  Lambda-list: (PATH OTHER-PATH)
-  Derived type: (FUNCTION (T T) *)
-  Documentation:
-    Replace PATH with contents of OTHER-PATH.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS::STROKE-PATH/1
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l176][paths.lisp:176]]
-:end:
-
-***** CLIP-PATH :compiled:function:
-:PROPERTIES:
-:ID: 1453812939482
-:CUSTOM_ID: VEC/PATHS:CLIP-PATH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-CLIP-PATH names a compiled function:
-  Lambda-list: (PATHS &REST ARGS)
-  Derived type: (FUNCTION (T &REST T) (VALUES LIST &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS::CLIP-PATH/PATH/1
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l1563][paths.lisp:1563]]
-:end:
-
-***** PATH-ANNOTATED :compiled:function:
-:PROPERTIES:
-:ID: 306890780749
-:CUSTOM_ID: VEC/PATHS:PATH-ANNOTATED
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-ANNOTATED names a compiled function:
-  Lambda-list: (PATHS &KEY (INCLUDE-TANGENTS NIL) (DECIMATE-KNOTS T)
-                (ASSUME-TYPE NIL))
-  Derived type: (FUNCTION
-                 (T &KEY (:INCLUDE-TANGENTS T) (:DECIMATE-KNOTS T)
-                  (:ASSUME-TYPE T))
-                 (VALUES CONS &OPTIONAL))
-  Documentation:
-    Annotate the path with visual effect (like color for each type
-    of interpolation, circle to represent knots,..)
-    
-    path -- a path or a list of path
-    
-    Return a list of (color . paths).
-  Source file: /home/ellis/src/shed/vec/annotation.lisp
-#+end_example
-
-:definitions:
-- [[vc:shed/vec:annotation.lisp#l11][annotation.lisp:11]]
-:end:
-
-***** PATH-REVERSED :compiled:function:
-:PROPERTIES:
-:ID: 3809756782890
-:CUSTOM_ID: VEC/PATHS:PATH-REVERSED
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-REVERSED names a compiled function:
-  Lambda-list: (PATH)
-  Derived type: (FUNCTION (T) (VALUES VEC/PATHS::PATH &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::STROKE-PATH/1
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l472][paths.lisp:472]]
-:end:
-
-***** *ARC-LENGTH-TOLERANCE​* :variable:
-:PROPERTIES:
-:ID: 2774055818316
-:CUSTOM_ID: VEC/PATHS:*ARC-LENGTH-TOLERANCE*
-:ALLOC: HEAP IMMOBILE
-:END: 
-#+begin_example
-*ARC-LENGTH-TOLERANCE* names a special variable:
-  Value: 1.0
-  Documentation:
-    The maximum length of segment describing an arc.
-#+end_example
-
-:definitions:
-- [[vc:shed/vec:paths.lisp][paths.lisp]]
-:end:
-
-***** FILTER-DISTINCT :compiled:function:
-:PROPERTIES:
-:ID: 2316420371621
-:CUSTOM_ID: VEC/PATHS:FILTER-DISTINCT
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-FILTER-DISTINCT names a compiled function:
-  Lambda-list: (ITERATOR &OPTIONAL (PRESERVE-CYCLIC-END-P NIL))
-  Derived type: (FUNCTION (T &OPTIONAL T) *)
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS::CLIP-PATH/PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l358][paths.lisp:358]]
-:end:
-
-***** POINT-NORM :compiled:function:
-:PROPERTIES:
-:ID: 880223753291
-:CUSTOM_ID: VEC/PATHS:POINT-NORM
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-POINT-NORM names a compiled function:
-  Lambda-list: (POINT)
-  Derived type: (FUNCTION (T)
-                 (VALUES
-                  (OR FLOAT (COMPLEX SINGLE-FLOAT) (COMPLEX DOUBLE-FLOAT))
-                  &OPTIONAL))
-  Documentation:
-    Compute the distance of POINT from origin.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS::DASH-PATH/1
-  - (INTERPOLATION-NORMAL (ARC T T T))
-  - VEC/PATHS::SVG-ARC-PARAMETERS
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l111][paths.lisp:111]]
-:end:
-
-***** PATH-CLONE :compiled:function:
-:PROPERTIES:
-:ID: 2949961033262
-:CUSTOM_ID: VEC/PATHS:PATH-CLONE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-CLONE names a compiled function:
-  Lambda-list: (PATH)
-  Derived type: (FUNCTION (T) (VALUES VEC/PATHS::PATH &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-REVERSED
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l441][paths.lisp:441]]
-:end:
-
-***** PATH-ROTATE :compiled:function:
-:PROPERTIES:
-:ID: 248477443859
-:CUSTOM_ID: VEC/PATHS:PATH-ROTATE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-ROTATE names a compiled function:
-  Lambda-list: (PATH ANGLE &OPTIONAL CENTER)
-  Derived type: (FUNCTION (T T &OPTIONAL T) (VALUES T &OPTIONAL))
-  Documentation:
-    Rotate the whole path by ANGLE radian around CENTER (which is
-    the origin if unspecified.)
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-TRANSFORM-AS-MARKER
-  - VEC/PATHS:PATH-ROTATE
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l503][paths.lisp:503]]
-:end:
-
-***** POINT-DISTANCE :compiled:function:
-:PROPERTIES:
-:ID: 4305315463181
-:CUSTOM_ID: VEC/PATHS:POINT-DISTANCE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-POINT-DISTANCE names a compiled function:
-  Lambda-list: (P1 P2)
-  Derived type: (FUNCTION (T T)
-                 (VALUES
-                  (OR FLOAT (COMPLEX SINGLE-FLOAT) (COMPLEX DOUBLE-FLOAT))
-                  &OPTIONAL))
-  Documentation:
-    Compute the distance between P1 and P2.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::STROKE-PATH/1
-  - (PATH-ITERATOR-NEXT (FILTER-DISTINCT-STATE))
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l116][paths.lisp:116]]
-:end:
-
-***** PATH-SIZE :compiled:function:
-:PROPERTIES:
-:ID: 3272773254646
-:CUSTOM_ID: VEC/PATHS:PATH-SIZE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-SIZE names a compiled function:
-  Lambda-list: (PATH)
-  Derived type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 44) &OPTIONAL))
-  Documentation:
-    Return the number of knots on the path.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::PATH-END-INFO
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l181][paths.lisp:181]]
-:end:
-
-***** PATH-LAST-KNOT :compiled:function:
-:PROPERTIES:
-:ID: 3429020583570
-:CUSTOM_ID: VEC/PATHS:PATH-LAST-KNOT
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-LAST-KNOT names a compiled function:
-  Lambda-list: (PATH)
-  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
-  Documentation:
-    Return the last knot of the path. Return NIL if the path is
-    empty.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l185][paths.lisp:185]]
-:end:
-
-***** POINT-ROTATE :compiled:function:
-:PROPERTIES:
-:ID: 3768638222830
-:CUSTOM_ID: VEC/PATHS:POINT-ROTATE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-POINT-ROTATE names a compiled function:
-  Lambda-list: (POINT ANGLE)
-  Derived type: (FUNCTION (T T) (VALUES CONS &OPTIONAL))
-  Documentation:
-    Rotate POINT by ANGLE radian around the origin.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS::DASH-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-  - VEC/PATHS:MAKE-CIRCLE-PATH
-  - (INTERPOLATION-ROTATE (BEZIER T))
-  - (INTERPOLATION-ROTATE (CATMULL-ROM T))
-  - (INTERPOLATION-NORMAL (ARC T T T))
-  - (INTERPOLATION-SEGMENT (ARC T T T))
-  - VEC/PATHS::SVG-ARC-PARAMETERS
-  - VEC/PATHS::SVG-ARC-PARAMETERS/REVERSE
-  - VEC/PATHS:PATH-ROTATE
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l100][paths.lisp:100]]
-:end:
-
-***** PATH-ITERATOR-SEGMENTED :compiled:function:
-:PROPERTIES:
-:ID: 3019996738819
-:CUSTOM_ID: VEC/PATHS:PATH-ITERATOR-SEGMENTED
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-ITERATOR-SEGMENTED names a compiled function:
-  Lambda-list: (PATH &OPTIONAL (PREDICATE (CONSTANTLY T)))
-  Derived type: (FUNCTION (T &OPTIONAL T)
-                 (VALUES VEC/PATHS::PI-SEGMENTED-STATE &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC:UPDATE-STATE
-  - VEC/PATHS::CLIP-PATH/PATH/1
-  - VEC/PATHS::CLIP-PATH/1
-  - VEC/PATHS::DASH-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l284][paths.lisp:284]]
-:end:
-
-***** P* :compiled:function:
-:PROPERTIES:
-:ID: 4277802434850
-:CUSTOM_ID: VEC/PATHS:P*
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-P* names a compiled function:
-  Lambda-list: (POINT SCALE &OPTIONAL (SCALE-Y SCALE))
-  Derived type: (FUNCTION (T T &OPTIONAL T) (VALUES CONS &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::DASH-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-  - (INTERPOLATION-SCALE (BEZIER T T))
-  - (INTERPOLATION-SCALE (CATMULL-ROM T T))
-  - (INTERPOLATION-NORMAL (ARC T T T))
-  - (INTERPOLATION-SEGMENT (ARC T T T))
-  - VEC/PATHS::SVG-ARC-PARAMETERS
-  - VEC/PATHS::SVG-ARC-PARAMETERS/REVERSE
-  - VEC/PATHS:PATH-TRANSFORM-AS-MARKER
-  - VEC/PATHS:PATH-SCALE
-  - VEC/PATHS:PATH-ROTATE
-  - VEC/PATHS/TTF:MAKE-STRING-PATH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l96][paths.lisp:96]]
-:end:
-
-***** PATH-TRANSLATE :compiled:function:
-:PROPERTIES:
-:ID: 1353987750751
-:CUSTOM_ID: VEC/PATHS:PATH-TRANSLATE
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-TRANSLATE names a compiled function:
-  Lambda-list: (PATH VECTOR)
-  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
-  Documentation:
-    Translate the whole path accordingly to VECTOR.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-TRANSFORM-AS-MARKER
-  - VEC/PATHS:PATH-SCALE
-  - VEC/PATHS:PATH-ROTATE
-  - VEC/PATHS:PATH-TRANSLATE
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l491][paths.lisp:491]]
-:end:
-
-***** PATH-EXTEND :compiled:function:
-:PROPERTIES:
-:ID: 2027717920837
-:CUSTOM_ID: VEC/PATHS:PATH-EXTEND
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-EXTEND names a compiled function:
-  Lambda-list: (PATH INTERPOLATION KNOT)
-  Derived type: (FUNCTION (T T T) (VALUES (MEMBER :UNKNOWN) &OPTIONAL))
-  Documentation:
-    Extend the path to KNOT, with INTERPOLATION.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::CLIP-PATH/1
-  - VEC/PATHS::DASH-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-  - VEC/PATHS:MAKE-SIMPLE-PATH
-  - VEC/PATHS:MAKE-REGULAR-POLYGON-PATH
-  - VEC/PATHS:MAKE-RECTANGLE-PATH
-  - VEC/PATHS:MAKE-CIRCLE-PATH
-  - VEC/PATHS:MAKE-DISCRETE-PATH
-  - VEC/PATHS::PATH-FROM-ITERATOR
-  - VEC/PATHS:PATH-CONCATENATE
-  - VEC/PATHS/TTF:PATHS-FROM-GLYPH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l157][paths.lisp:157]]
-:end:
-
-***** CLIP-PATH/PATH :compiled:function:
-:PROPERTIES:
-:ID: 1720814574437
-:CUSTOM_ID: VEC/PATHS:CLIP-PATH/PATH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-CLIP-PATH/PATH names a compiled function:
-  Lambda-list: (PATHS &REST ARGS)
-  Derived type: (FUNCTION (T &REST T) (VALUES LIST &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l1585][paths.lisp:1585]]
-:end:
-
-***** MAKE-ARC :compiled:function:
-:PROPERTIES:
-:ID: 2394821523387
-:CUSTOM_ID: VEC/PATHS:MAKE-ARC
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-ARC names a compiled function:
-  Lambda-list: (RX RY &KEY (X-AXIS-ROTATION 0.0) (LARGE-ARC-FLAG NIL)
-                (SWEEP-FLAG NIL))
-  Derived type: (FUNCTION
-                 (T T &KEY (:X-AXIS-ROTATION T) (:LARGE-ARC-FLAG T)
-                  (:SWEEP-FLAG T))
-                 *)
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS::DASH-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-  - VEC/PATHS:MAKE-RECTANGLE-PATH
-  - VEC/PATHS:MAKE-CIRCLE-PATH
-  - (INTERPOLATION-CLONE (ARC))
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l644][paths.lisp:644]]
-:end:
-
-***** PATH-RESET :compiled:function:
-:PROPERTIES:
-:ID: 3366681103988
-:CUSTOM_ID: VEC/PATHS:PATH-RESET
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-RESET names a compiled function:
-  Lambda-list: (PATH KNOT)
-  Derived type: (FUNCTION (T T) (VALUES (UNSIGNED-BYTE 44) &OPTIONAL))
-  Documentation:
-    Reset the path such that it is a single knot.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::CLIP-PATH/1
-  - VEC/PATHS::DASH-PATH/1
-  - VEC/PATHS:MAKE-RECTANGLE-PATH
-  - VEC/PATHS:MAKE-DISCRETE-PATH
-  - VEC/PATHS/TTF:PATHS-FROM-GLYPH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l151][paths.lisp:151]]
-:end:
-
-***** STROKE-PATH :compiled:function:
-:PROPERTIES:
-:ID: 1507105898721
-:CUSTOM_ID: VEC/PATHS:STROKE-PATH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-STROKE-PATH names a compiled function:
-  Lambda-list: (PATHS &REST ARGS)
-  Derived type: (FUNCTION (T &REST T) (VALUES LIST &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l1410][paths.lisp:1410]]
-:end:
-
-***** MAKE-RECTANGLE-PATH :compiled:function:
-:PROPERTIES:
-:ID: 179269683970
-:CUSTOM_ID: VEC/PATHS:MAKE-RECTANGLE-PATH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-RECTANGLE-PATH names a compiled function:
-  Lambda-list: (X1 Y1 X2 Y2 &KEY (ROUND NIL) (ROUND-X NIL) (ROUND-Y NIL))
-  Derived type: (FUNCTION (T T T T &KEY (:ROUND T) (:ROUND-X T) (:ROUND-Y T))
-                 (VALUES VEC/PATHS::PATH &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:MAKE-RECTANGLE-PATH/CENTER
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l1105][paths.lisp:1105]]
-:end:
-
-***** MAKE-RECTANGLE-PATH/CENTER :compiled:function:
-:PROPERTIES:
-:ID: 1516396138993
-:CUSTOM_ID: VEC/PATHS:MAKE-RECTANGLE-PATH/CENTER
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-RECTANGLE-PATH/CENTER names a compiled function:
-  Lambda-list: (X Y DX DY &REST ARGS)
-  Derived type: (FUNCTION (T T T T &REST T) (VALUES VEC/PATHS::PATH &OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS::STROKE-PATH/1
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l1134][paths.lisp:1134]]
-:end:
-
-***** PATH-ORIENT :compiled:function:
-:PROPERTIES:
-:ID: 1038718090795
-:CUSTOM_ID: VEC/PATHS:PATH-ORIENT
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-ORIENT names a compiled function:
-  Lambda-list: (PATH ORIENTATION &OPTIONAL OTHER-PATHS)
-  Derived type: (FUNCTION (T T &OPTIONAL T) (VALUES &OPTIONAL))
-  Documentation:
-    Orient the path in the given orientation.
-    
-    If OTHER-PATHS is specified, then the paths are reversed
-    inconditionnaly if PATH is also reversed.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS/TTF:PATHS-FROM-GLYPH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l209][paths.lisp:209]]
-:end:
-
-***** PATH-ITERATOR-RESET :generic-function:function:
-:PROPERTIES:
-:ID: 2806879299598
-:CUSTOM_ID: VEC/PATHS:PATH-ITERATOR-RESET
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-ITERATOR-RESET names a generic function:
-  Lambda-list: (ITERATOR)
-  Derived type: (FUNCTION (T) *)
-  Documentation:
-    Reset the iterator before the first knot.
-  Method-combination: STANDARD
-  Methods:
-    (PATH-ITERATOR-RESET (FILTER-DISTINCT-STATE))
-    (PATH-ITERATOR-RESET (PI-SEGMENTED-STATE))
-    (PATH-ITERATOR-RESET (PATH-ITERATOR-STATE))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - (PATH-ITERATOR-RESET (FILTER-DISTINCT-STATE))
-
-:definitions:
-- [[vc:shed/vec:paths.lisp][paths.lisp]]
-  - (ITERATOR)
-- [[vc:shed/vec:paths.lisp][paths.lisp]]
-  - VEC/PATHS::PI-SEGMENTED-STATE
-- [[vc:shed/vec:paths.lisp][paths.lisp]]
-  - VEC/PATHS::PATH-ITERATOR-STATE
-- [[vc:shed/vec:paths.lisp][paths.lisp]]
-  - VEC/PATHS::FILTER-DISTINCT-STATE
-:end:
-
-***** MAKE-POINT :compiled:function:
-:PROPERTIES:
-:ID: 2255752535175
-:CUSTOM_ID: VEC/PATHS:MAKE-POINT
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-POINT names a compiled function:
-  Lambda-list: (X Y)
-  Derived type: (FUNCTION (T T) (VALUES CONS &OPTIONAL))
-  Inline proclamation: INLINE (inline expansion available)
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS::CLIP-PATH/1
-  - VEC/PATHS::DASH-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-  - VEC/PATHS:MAKE-REGULAR-POLYGON-PATH
-  - VEC/PATHS:MAKE-RECTANGLE-PATH
-  - VEC/PATHS:MAKE-CIRCLE-PATH
-  - (INTERPOLATION-NORMAL (BEZIER T T T))
-  - (INTERPOLATION-SEGMENT (BEZIER T T T))
-  - VEC/PATHS::EVALUATE-BEZIER
-  - VEC/PATHS::SPLIT-BEZIER
-  - (INTERPOLATION-NORMAL (CATMULL-ROM T T T))
-  - (INTERPOLATION-SEGMENT (CATMULL-ROM T T T))
-  - (INTERPOLATION-NORMAL (ARC T T T))
-  - (INTERPOLATION-SEGMENT (ARC T T T))
-  - VEC/PATHS::SVG-ARC-PARAMETERS
-  - VEC/PATHS::SVG-ARC-PARAMETERS/REVERSE
-  - (INTERPOLATION-NORMAL ((EQL STRAIGHT-LINE) T T T))
-  - VEC/PATHS::POINT-MIDDLE
-  - VEC/PATHS:POINT-ROTATE
-  - VEC/PATHS:P*
-  - VEC/PATHS:P-
-  - VEC/PATHS:P+
-  - VEC/PATHS/TTF:MAKE-STRING-PATH
-  - VEC/PATHS/TTF:PATHS-FROM-STRING
-  - VEC/PATHS/TTF:PATHS-FROM-GLYPH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l83][paths.lisp:83]]
-:end:
-
-***** PATH-CLEAR :compiled:function:
-:PROPERTIES:
-:ID: 3308249195999
-:CUSTOM_ID: VEC/PATHS:PATH-CLEAR
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-CLEAR names a compiled function:
-  Lambda-list: (PATH)
-  Derived type: (FUNCTION (T) (VALUES (INTEGER 0 0) &OPTIONAL))
-  Documentation:
-    Clear the path such that it is empty.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-REPLACE
-  - VEC/PATHS:PATH-RESET
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l145][paths.lisp:145]]
-:end:
-
-***** *BEZIER-DISTANCE-TOLERANCE​* :variable:
-:PROPERTIES:
-:ID: 2958655715039
-:CUSTOM_ID: VEC/PATHS:*BEZIER-DISTANCE-TOLERANCE*
-:ALLOC: HEAP IMMOBILE
-:END: 
-#+begin_example
-*BEZIER-DISTANCE-TOLERANCE* names a special variable:
-  Value: 0.5
-  Documentation:
-    The default distance tolerance used when rendering Bezier
-    curves.
-#+end_example
-
-- Referenced by
-  - VEC/PATHS::DISCRETE-BEZIER-CURVE
-
-:definitions:
-- [[vc:shed/vec:paths.lisp][paths.lisp]]
-:end:
-
-***** POINT-X :compiled:function:
-:PROPERTIES:
-:ID: 3490945527504
-:CUSTOM_ID: VEC/PATHS:POINT-X
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-POINT-X names a compiled function:
-  Lambda-list: (POINT)
-  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
-  Inline proclamation: INLINE (inline expansion available)
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC:UPDATE-STATE
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::CLIP-PATH/PATH/1
-  - VEC/PATHS::CLIP-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-  - (INTERPOLATION-NORMAL (BEZIER T T T))
-  - VEC/PATHS::DISCRETE-BEZIER-CURVE
-  - VEC/PATHS::EVALUATE-BEZIER
-  - VEC/PATHS::SPLIT-BEZIER
-  - (INTERPOLATION-NORMAL (CATMULL-ROM T T T))
-  - (INTERPOLATION-SEGMENT (CATMULL-ROM T T T))
-  - (INTERPOLATION-NORMAL (ARC T T T))
-  - VEC/PATHS::SVG-ARC-PARAMETERS
-  - (INTERPOLATION-NORMAL ((EQL STRAIGHT-LINE) T T T))
-  - VEC/PATHS:PATH-TRANSLATE
-  - VEC/PATHS::PATH-GUESS-ORIENTATION
-  - VEC/PATHS::POINT-MIDDLE
-  - VEC/PATHS:POINT-DISTANCE
-  - VEC/PATHS:POINT-NORM
-  - VEC/PATHS:POINT-ANGLE
-  - VEC/PATHS:POINT-ROTATE
-  - VEC/PATHS:P*
-  - VEC/PATHS:P-
-  - VEC/PATHS:P+
-  - VEC/PATHS/TTF:PATHS-FROM-GLYPH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l84][paths.lisp:84]]
-:end:
-
-***** PATH-ITERATOR :compiled:function:
-:PROPERTIES:
-:ID: 3102615081351
-:CUSTOM_ID: VEC/PATHS:PATH-ITERATOR
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATH-ITERATOR names a compiled function:
-  Lambda-list: (PATH)
-  Derived type: (FUNCTION (T) (VALUES VEC/PATHS::PATH-ITERATOR-STATE&OPTIONAL))
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l248][paths.lisp:248]]
-:end:
-
-***** CREATE-PATH :compiled:function:
-:PROPERTIES:
-:ID: 2396473860181
-:CUSTOM_ID: VEC/PATHS:CREATE-PATH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-CREATE-PATH names a compiled function:
-  Lambda-list: (TYPE)
-  Derived type: (FUNCTION (T) (VALUES VEC/PATHS::PATH &OPTIONAL))
-  Documentation:
-    Create a new path of the given type. The type must be one of
-    the following keyword:
-    
-    :open-polyline -- An open polyline path,
-    :closed-polyline -- A closed polyline path,
-    :polygon -- Like :closed-polyline, but implicitly filled.
-  Source file: /home/ellis/src/shed/vec/paths.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS:PATH-ANNOTATED
-  - VEC/PATHS::CLIP-PATH/1
-  - VEC/PATHS::DASH-PATH/1
-  - VEC/PATHS::STROKE-PATH/1
-  - VEC/PATHS:MAKE-SIMPLE-PATH
-  - VEC/PATHS:MAKE-REGULAR-POLYGON-PATH
-  - VEC/PATHS:MAKE-RECTANGLE-PATH
-  - VEC/PATHS:MAKE-CIRCLE-PATH
-  - VEC/PATHS:MAKE-DISCRETE-PATH
-  - VEC/PATHS:PATH-CLONE
-  - VEC/PATHS::PATH-FROM-ITERATOR
-  - VEC/PATHS/TTF:PATHS-FROM-GLYPH
-
-:definitions:
-- [[vc:shed/vec:paths.lisp#l135][paths.lisp:135]]
-:end:
-
-**** VEC/PATHS/TTF
-:PROPERTIES:
-:END:
-
-***** MAKE-STRING-PATH :compiled:function:
-:PROPERTIES:
-:ID: 3554371299921
-:CUSTOM_ID: VEC/PATHS/TTF:MAKE-STRING-PATH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-MAKE-STRING-PATH names a compiled function:
-  Lambda-list: (FONT-LOADER TEXT &KEY (POSITION (MAKE-POINT 0 0)) (SIZE 12)
-                (HALIGN LEFT) (VALIGN BASELINE) (INVERTED T) (KERNING T))
-  Derived type: (FUNCTION
-                 (T T &KEY (:POSITION T) (:SIZE T) (:HALIGN T) (:VALIGN T)
-                  (:INVERTED T) (:KERNING T))
-                 *)
-  Source file: /home/ellis/src/shed/vec/ttf.lisp
-#+end_example
-
-:definitions:
-- [[vc:shed/vec:ttf.lisp#l78][ttf.lisp:78]]
-:end:
-
-***** PATHS-FROM-GLYPH :compiled:function:
-:PROPERTIES:
-:ID: 3402547743497
-:CUSTOM_ID: VEC/PATHS/TTF:PATHS-FROM-GLYPH
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATHS-FROM-GLYPH names a compiled function:
-  Lambda-list: (GLYPH &KEY (OFFSET (MAKE-POINT 0 0)) (SCALE-X 1.0)
-                (SCALE-Y 1.0) (AUTO-ORIENT NIL))
-  Derived type: (FUNCTION
-                 (T &KEY (:OFFSET T) (:SCALE-X T) (:SCALE-Y T)
-                  (:AUTO-ORIENT T))
-                 (VALUES LIST &OPTIONAL))
-  Documentation:
-    Extract paths from a glyph.
-  Source file: /home/ellis/src/shed/vec/ttf.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS/TTF:PATHS-FROM-STRING
-
-:definitions:
-- [[vc:shed/vec:ttf.lisp#l18][ttf.lisp:18]]
-:end:
-
-***** PATHS-FROM-STRING :compiled:function:
-:PROPERTIES:
-:ID: 1108786904560
-:CUSTOM_ID: VEC/PATHS/TTF:PATHS-FROM-STRING
-:ALLOC: HEAP DYNAMIC
-:END: 
-#+begin_example
-PATHS-FROM-STRING names a compiled function:
-  Lambda-list: (FONT-LOADER TEXT &KEY (OFFSET (MAKE-POINT 0 0)) (SCALE-X 1.0)
-                (SCALE-Y 1.0) (KERNING T) (AUTO-ORIENT NIL))
-  Derived type: (FUNCTION
-                 (T T &KEY (:OFFSET T) (:SCALE-X T) (:SCALE-Y T) (:KERNING T)
-                  (:AUTO-ORIENT T))
-                 (VALUES T &OPTIONAL))
-  Documentation:
-    Extract paths from a string.
-  Source file: /home/ellis/src/shed/vec/ttf.lisp
-#+end_example
-
-- Called by
-  - VEC/PATHS/TTF:MAKE-STRING-PATH
-
-:definitions:
-- [[vc:shed/vec:ttf.lisp#l51][ttf.lisp:51]]
-:end:
-
-
-*** Components
-**** pkg :lisp:
-:PROPERTIES:
-:SUMMARY: vec packages
-:LOCATION: [[vc:shed/vec:pkg.lisp][pkg.lisp]]
-:END:
-**** paths :lisp:
-:PROPERTIES:
-:LOCATION: [[vc:shed/vec:paths.lisp][paths.lisp]]
-:END:
-Copyright (C) 2007-2013  Frédéric Jolliton <frederic@jolliton.com>
-This code is licensed under the MIT license.
-This file provides facilities to create and manipulate vectorial paths.
-
-:outline:
-- Clip path
-- Dash
-- Stroke
-- Transformations
-- Building paths
-- Bezier curves
-- Catmull-Rom
-- Arc (SVG style)
-- Straight lines
-- Interpolations
-- Misc
-- Iterate distinct
-- Segmented iterator
-- Classic iterator
-- Iterators
-- Paths
-- Points
-- Math utilities
-:end:
-
-:tasks:
-- Note 2026-07-04 :: I use PI prefix instead of PATH-ITERATOR to shorten names.
-:end:
-
-**** annotation :lisp:
-:PROPERTIES:
-:SUMMARY: Path Annotations
-:LOCATION: [[vc:shed/vec:annotation.lisp][annotation.lisp]]
-:END:
-Copyright (C) 2007-2013  Frédéric Jolliton <frederic@jolliton.com>
-This code is licensed under the MIT license.
-
-:outline:
-- Path annotation
-:end:
-
-*** Modules
-**** VEC/PATHS/TTF :SYS:
-- REQUIRE
-  #+begin_src lisp-data :eval no
-  (:VEC/PATHS :DAT)
-  #+end_src
-- COMPONENTS
-  #+begin_src lisp-data :eval no
-  ((:FILE "ttf"))
-  #+end_src
-
-
-** VEC/AA
-:PROPERTIES:
-:ID: 104308992694494134
-:EXPORT_FILE_NAME: api/vec/aa
-:LOCATION: [[vc:shed/vec:vec.sys][vec.sys]]
-:END:
-*** Components
-**** aa :lisp:
-:PROPERTIES:
-:SUMMARY: Anti-aliasing
-:LOCATION: [[vc:shed/vec:aa.lisp][aa.lisp]]
-:END:
-Copyright (C) 2007-2013  Frédéric Jolliton <frederic@jolliton.com>
-This code is licensed under the MIT license.
-This file implement the AA algorithm from the AntiGrain project
-(https://agg.sourceforge.net/antigrain.com/).
-
-Changelogs:
-
-2007-03-11: Extended the protocol to provide a way to sweep only
-a rectangular zone of the resulting state. This was
-done with some new functions: FREEZE-STATE,
-SCANLINE-SWEEP, SCANLINE-Y and CELLS-SWEEP/RECTANGLE.
-The function CELLS-SWEEP is now based on them.
-
-2007-02-25: Released under LLGPL this time. Future changes made
-in this file will be thus covered by this license.
-
-2007-01-20: Minors updates to comments and code.
-
-2007-01-11: I chose to release the code in this file in public
-domain. You can do whatever you want with the code.
-
-2007-01-07: fixed 2 bugs related to cells reuse. The first bug
-was that the cell after the last reused one was kept
-in the list. The second bug occured when the latest
-cell (the current one) was empty. The code was
-failing to correctly eliminate unused cells in such
-case.
-
-2007-01-05: +cell-width+ is no longer passed as parameter to let
-the CL compiler optimize various computation
-involving this value. Added docstrings and
-(hopefully) clarified some points.
-
-2006-12-31: moved examples to a separate file
-
-2006-12-30: added animated GIF (using Skippy) example
-
-2006-12-30: cleaned the code, factorized, simplified
-
-2006-12-30: map-grid-spans rewritten in term of map-line-spans
-
-2006-12-30: first release
-
-About AntiGrain: "Anti-Grain Geometry (AGG) is an Open Source,
-free of charge graphic library, written in industrially standard
-C++." "A High Quality Rendering Engine for C++". Its main author
-is Maxim Shemanarev. Project home page is at
-https://agg.sourceforge.net/antigrain.com/
-
-How to use it:
-
-1) create a state with MAKE-STATE, or reuse a previous state by
-calling STATE-RESET on it.
-
-2) call LINE-F (or LINE) to draw each line of one or several
-closed polygons. It is very important to close them to get a
-coherent result. Note that nothing is really drawn at this
-stage (not until the call to CELLS-SWEEP.)
-
-3) finally, call CELLS-SWEEP to let it call your own function for
-each pixels covered by the polygon(s), where the callback
-function take 3 arguments: x, y, alpha. Pixels are scanned on
-increasing y, then on increasing x. Optionnaly, CELLS-SWEEP
-can take another callback function as parameter. See its
-documentation for details.
-
-The alpha value passed to the callback function can be used in
-various way. Usually you want:
-
-(defun normalize-alpha (alpha)
-(min 255 (abs alpha)))
-
-to get a normalized alpha value between 0 and 255. But you may
-also be interested by:
-
-(defun even-odd-alpha (alpha)
-(let ((value (mod alpha 512)))
-(min 255 (if (< value 256) value (- 512 value)))))
-
-to simulate "even/odd" fill. You can also use the alpha value
-to render polygons without anti-aliasing by using:
-
-(defun bool-alpha (value)
-(if (>= (abs value) 128) 255 0))
-
-or, for "even/odd" fill:
-
-(defun bool-even-odd-alpha (value)
-(if (<= 128 (mod (abs value) 256) 384) 255 0))
-
-Note: Drawing direction (clockwise or counter-clockwise) is only
-important if polygons overlap during a single
-cells-state. Opposite directions produce hole at the intersection
-(coverage is canceled), while identical directions does not
-(coverage overflow.)
-
-The latest version can be downloaded from:
-
-https://tuxee.net/cl-aa.lisp
-https://tuxee.net/cl-aa-sample.lisp
-
-See also:
-
-https://projects.tuxee.net/cl-aa-path/
-
-See examples of output at:
-
-https://tuxee.net/cl-aa-1.png
-https://tuxee.net/cl-aa-2.png (this one was a bug.)
-https://tuxee.net/cl-aa-3.png
-https://tuxee.net/cl-aa-4.png
-https://tuxee.net/cl-aa-5.png (when testing transparency, but looks bad.)
-https://tuxee.net/cl-aa-6.png
-https://tuxee.net/cl-aa-7.png
-https://tuxee.net/cl-aa-8.png
-https://tuxee.net/cl-aa-stroke-0.png (using stroke functions not provided here.)
-https://tuxee.net/cl-aa-stroke-1.png
-https://tuxee.net/cl-aa-stroke-2.png
-https://tuxee.net/cl-aa-skippy-1.gif (animated GIF, thanks to Skippy library)
-https://tuxee.net/cl-aa-skippy-2.gif
-
-The code is absolutely NOT optimized in any way. It was mainly to
-figure how the algorithm was working. Also, I don't have tested
-many corner cases. It is absolutely NOT for production use.
-
-About the example, note that the resulting image is exported as a
-PNM file. Not great, but no need for any external lib. You can
-use pnmtopng to convert it to PNG afterward.
-
-Inspiration come from agg/include/agg_rasterizer_cells_aa.h and
-agg/include/agg_rasterizer_scanline_aa.h sources files from the
-AntiGrain project (version 2.5 at this date.)
-
-For animated GIF, see Zach Beane's Skippy project at:
-https://www.cliki.net/Skippy
-
-Naming convention:
-foo-m for fixed-point mantissa,
-foo-f for fixed-point fractional part.
-
-:outline:
-- cell
-- Utility function
-:end:
-
-**** aa-bin :lisp:
-:PROPERTIES:
-:LOCATION: [[vc:shed/vec:aa-bin.lisp][aa-bin.lisp]]
-:END:
-Copyright (C) 2007-2013  Frédéric Jolliton <frederic@jolliton.com>
-This code is licensed under the MIT license.
-See https://projects.tuxee.net/cl-vectors/
-
-The name 'cl-aa-bin' is derived from 'cl-aa' which is the library
-used to rasterize antialiased polygons. The '-bin' version
-doesn't perform antialiasing (the alpha value is always a
-multiple of 256), but support the same protocol (drop-in
-replacement) hence the choice of the name.
-
-The aa-bin algorithm is faster and more accurate than when using
-the original 'cl-aa' algorithm as a non-antialiasing rasterizer.
-
-The algorithm compute all the pixels whose "center" (assuming a
-"pixel is a little square"..) are inside the polygon to
-rasterize.
-
-*** Modules
-**** VEC/AA/MISC :SYS:
-- COMPONENTS
-  #+begin_src lisp-data :eval no
-  ((:FILE "aa-misc"))
-  #+end_src
 
