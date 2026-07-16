@@ -14,11 +14,11 @@
 | description | The Compiler Company Core                           |
 | id          | 4611004031029215733                                 |
 | root        | ~/src/core/                                         |
-| vc          | :hg [[https://vc.compiler.company/core][vc.compiler.company/core]] :rev [[https://vc.compiler.company/core/rev/ab2fa0141d17][ab2fa0141d17:1927]] |
+| vc          | :hg [[https://vc.compiler.company/core][vc.compiler.company/core]] :rev [[https://vc.compiler.company/core/rev/4148528e393e][4148528e393e:1935]] |
 | tags        | CORE LISP EMACS                                     |
-| updated     | Mon Jul 13 20:09:13 2026 -0400                      |
+| updated     | Wed Jul 15 22:06:10 2026 -0400                      |
 | langs       | elisp lisp org text                                 |
-| lines       | 266793 :code 217732 :comment 21919 :blank 27142     |
+| lines       | 266817 :code 217793 :comment 21910 :blank 27114     |
 |-------------+-----------------------------------------------------|
 
 #+CALL: hg-diff-stat() :dir ~/src/core/
@@ -30,9 +30,6 @@
 #+RESULTS:
 #+begin_example
 30 days-agenda (W28-W32):
-Monday      6 July 2026 W28
-Tuesday     7 July 2026
-Wednesday   8 July 2026
 Thursday    9 July 2026
 Friday     10 July 2026
 Saturday   11 July 2026
@@ -42,11 +39,13 @@ Saturday   11 July 2026
    emacs:      19:37...... [ NOPE [#C] org-timeline upgrades [0/3]                                   :core:emacs::org:
 Sunday     12 July 2026
 Monday     13 July 2026 W29
-   lib:        Sched.34x:  TODO command parents                                                   :core:lisp:obj::cmd:
-   emacs:      Sched.27x:  WIP project capture templates                                                 :core:emacs::
 Tuesday    14 July 2026
+   core:       21:50...... TODO homer/org                                                      :core:skel:lisp:homer::
+   core:       21:50...... [ TODO homer/org                                                    :core:skel:lisp:homer::
 Wednesday  15 July 2026
 Thursday   16 July 2026
+   lib:        Sched.37x:  TODO command parents                                                   :core:lisp:obj::cmd:
+   emacs:      Sched.30x:  WIP project capture templates                                                 :core:emacs::
 Friday     17 July 2026
 Saturday   18 July 2026
 Sunday     19 July 2026
@@ -66,6 +65,9 @@ Saturday    1 August 2026
 Sunday      2 August 2026
 Monday      3 August 2026 W32
 Tuesday     4 August 2026
+Wednesday   5 August 2026
+Thursday    6 August 2026
+Friday      7 August 2026
 #+end_example
 
 #+CALL: hg-churn() :dir ~/src/core/
@@ -88,13 +90,13 @@ Tuesday     4 August 2026
 2024-11  28112 *****
 2024-12  14002 **
 2025-01   6372 *
-2025-02 268444 ******************************************************
+2025-02 268444 *****************************************************
 2025-03  12410 **
 2025-04  13766 **
 2025-05  59220 ***********
 2025-06  41588 ********
 2025-07  16728 ***
-2025-08  15034 ***
+2025-08  15034 **
 2025-09  21740 ****
 2025-10  10504 **
 2025-11  18331 ***
@@ -105,7 +107,7 @@ Tuesday     4 August 2026
 2026-04   7312 *
 2026-05  49533 *********
 2026-06  13439 **
-2026-07 302527 *************************************************************
+2026-07 306158 *************************************************************
 #+end_example
 
 #+CALL: project-vc-files() :dir ~/src/core/
@@ -247,7 +249,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/alien/tree-sitter/api.lisp][alien/tree-sitter/api.lisp]]                                    | 7.1k | 2026-07-09 17:18:27 |
 | [[https://vc.compiler.company/core/file/tip/alien/tree-sitter/constants.lisp][alien/tree-sitter/constants.lisp]]                              | 246  | 2026-04-18 14:32:57 |
 | [[https://vc.compiler.company/core/file/tip/alien/tree-sitter/ffi.lisp][alien/tree-sitter/ffi.lisp]]                                    | 8.6k | 2026-02-24 19:33:02 |
-| [[https://vc.compiler.company/core/file/tip/alien/tree-sitter/lang.lisp][alien/tree-sitter/lang.lisp]]                                   | 2.1k | 2026-05-08 19:41:14 |
+| [[https://vc.compiler.company/core/file/tip/alien/tree-sitter/lang.lisp][alien/tree-sitter/lang.lisp]]                                   | 2.1k | 2026-07-15 21:27:22 |
 | [[https://vc.compiler.company/core/file/tip/alien/tree-sitter/pkg.lisp][alien/tree-sitter/pkg.lisp]]                                    | 3.2k | 2026-07-09 17:18:43 |
 | [[https://vc.compiler.company/core/file/tip/alien/tree-sitter/tests.lisp][alien/tree-sitter/tests.lisp]]                                  | 1.9k | 2026-07-09 17:18:52 |
 | [[https://vc.compiler.company/core/file/tip/alien/tree-sitter/tree-sitter.sys][alien/tree-sitter/tree-sitter.sys]]                             | 334  | 2026-04-05 22:33:01 |
@@ -277,7 +279,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/alien/zstd/tests.lisp][alien/zstd/tests.lisp]]                                         | 5.2k | 2026-04-12 19:31:00 |
 | [[https://vc.compiler.company/core/file/tip/alien/zstd/util.lisp][alien/zstd/util.lisp]]                                          | 410  | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/core/file/tip/alien/zstd/zstd.sys][alien/zstd/zstd.sys]]                                           | 292  | 2026-02-14 21:11:10 |
-| [[https://vc.compiler.company/core/file/tip/bootstrap.lisp][bootstrap.lisp]]                                                | 2.4k | 2026-07-13 18:03:50 |
+| [[https://vc.compiler.company/core/file/tip/bootstrap.lisp][bootstrap.lisp]]                                                | 2.4k | 2026-07-15 20:34:10 |
 | [[https://vc.compiler.company/core/file/tip/core.lisp][core.lisp]]                                                     | 2.6k | 2026-06-19 16:03:42 |
 | [[https://vc.compiler.company/core/file/tip/core.sys][core.sys]]                                                      | 774  | 2026-05-27 20:27:39 |
 | [[https://vc.compiler.company/core/file/tip/etc/corerc][etc/corerc]]                                                    | 127  | 2026-06-02 14:54:24 |
@@ -357,7 +359,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/etc/lisp/srv.translations][etc/lisp/srv.translations]]                                     | 153  | 2026-05-21 20:16:21 |
 | [[https://vc.compiler.company/core/file/tip/etc/lisp/sys.translations][etc/lisp/sys.translations]]                                     | 397  | 2026-05-22 18:15:53 |
 | [[https://vc.compiler.company/core/file/tip/etc/lisp/user.translations][etc/lisp/user.translations]]                                    | 261  | 2026-05-21 18:26:04 |
-| [[https://vc.compiler.company/core/file/tip/etc/lisp/usr.translations][etc/lisp/usr.translations]]                                     | 374  | 2026-05-21 20:41:34 |
+| [[https://vc.compiler.company/core/file/tip/etc/lisp/usr.translations][etc/lisp/usr.translations]]                                     | 375  | 2026-07-15 21:00:14 |
 | [[https://vc.compiler.company/core/file/tip/etc/lisp/var.translations][etc/lisp/var.translations]]                                     | 532  | 2026-05-21 20:39:33 |
 | [[https://vc.compiler.company/core/file/tip/etc/script/calc.lisp][etc/script/calc.lisp]]                                          | 401  | 2026-07-09 22:44:15 |
 | [[https://vc.compiler.company/core/file/tip/etc/script/cmd.lisp][etc/script/cmd.lisp]]                                           | 1k   | 2026-05-08 19:13:37 |
@@ -367,7 +369,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/etc/script/io.lisp][etc/script/io.lisp]]                                            | 3k   | 2026-05-01 21:40:27 |
 | [[https://vc.compiler.company/core/file/tip/etc/script/packy.lisp][etc/script/packy.lisp]]                                         | 280  | 2026-05-22 18:29:04 |
 | [[https://vc.compiler.company/core/file/tip/etc/script/perf.lisp][etc/script/perf.lisp]]                                          | 518  | 2026-05-15 21:50:02 |
-| [[https://vc.compiler.company/core/file/tip/lib/box/archiso.lisp][lib/box/archiso.lisp]]                                          | 7.2k | 2026-06-07 20:44:57 |
+| [[https://vc.compiler.company/core/file/tip/lib/box/archiso.lisp][lib/box/archiso.lisp]]                                          | 7.2k | 2026-07-15 21:31:20 |
 | [[https://vc.compiler.company/core/file/tip/lib/box/box.sys][lib/box/box.sys]]                                               | 297  | 2026-07-11 23:20:40 |
 | [[https://vc.compiler.company/core/file/tip/lib/box/pkg.lisp][lib/box/pkg.lisp]]                                              | 687  | 2026-07-11 23:21:04 |
 | [[https://vc.compiler.company/core/file/tip/lib/box/proto.lisp][lib/box/proto.lisp]]                                            | 1.5k | 2026-07-11 22:22:00 |
@@ -380,7 +382,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/cli/cli.sys][lib/cli/cli.sys]]                                               | 2k   | 2026-06-28 00:14:40 |
 | [[https://vc.compiler.company/core/file/tip/lib/cli/ed.lisp][lib/cli/ed.lisp]]                                               | 22k  | 2026-07-10 18:47:48 |
 | [[https://vc.compiler.company/core/file/tip/lib/cli/env.lisp][lib/cli/env.lisp]]                                              | 2.7k | 2026-07-02 15:24:29 |
-| [[https://vc.compiler.company/core/file/tip/lib/cli/linedit.lisp][lib/cli/linedit.lisp]]                                          | 41k  | 2026-06-13 15:36:12 |
+| [[https://vc.compiler.company/core/file/tip/lib/cli/linedit.lisp][lib/cli/linedit.lisp]]                                          | 41k  | 2026-07-15 21:36:12 |
 | [[https://vc.compiler.company/core/file/tip/lib/cli/main.lisp][lib/cli/main.lisp]]                                             | 2.7k | 2026-05-15 21:27:48 |
 | [[https://vc.compiler.company/core/file/tip/lib/cli/pkg.lisp][lib/cli/pkg.lisp]]                                              | 4.7k | 2026-06-17 21:13:52 |
 | [[https://vc.compiler.company/core/file/tip/lib/cli/progress.lisp][lib/cli/progress.lisp]]                                         | 7.4k | 2026-05-21 19:23:58 |
@@ -448,7 +450,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/dat/json.lisp][lib/dat/json.lisp]]                                             | 22k  | 2025-11-02 16:29:04 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/m3u.lisp][lib/dat/m3u.lisp]]                                              | 247  | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/midi.lisp][lib/dat/midi.lisp]]                                             | 29k  | 2026-06-27 01:06:48 |
-| [[https://vc.compiler.company/core/file/tip/lib/dat/mime.lisp][lib/dat/mime.lisp]]                                             | 6.4k | 2026-07-10 19:30:56 |
+| [[https://vc.compiler.company/core/file/tip/lib/dat/mime.lisp][lib/dat/mime.lisp]]                                             | 6.4k | 2026-07-15 21:42:06 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/parquet/gen.lisp][lib/dat/parquet/gen.lisp]]                                      | 11k  | 2026-02-25 21:41:02 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/parquet/io.lisp][lib/dat/parquet/io.lisp]]                                       | 1.7k | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/parquet/obj.lisp][lib/dat/parquet/obj.lisp]]                                      | 225  | 2025-05-18 20:49:03 |
@@ -457,30 +459,30 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/dat/parquet/rle.lisp][lib/dat/parquet/rle.lisp]]                                      | 1.1k | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/parquet/tcompact.lisp][lib/dat/parquet/tcompact.lisp]]                                 | 6.1k | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/parquet/thrift.lisp][lib/dat/parquet/thrift.lisp]]                                   | 44k  | 2025-05-18 20:49:03 |
-| [[https://vc.compiler.company/core/file/tip/lib/dat/pkg.lisp][lib/dat/pkg.lisp]]                                              | 12k  | 2026-07-09 16:54:51 |
+| [[https://vc.compiler.company/core/file/tip/lib/dat/pkg.lisp][lib/dat/pkg.lisp]]                                              | 12k  | 2026-07-15 20:07:35 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/png.lisp][lib/dat/png.lisp]]                                              | 13k  | 2026-02-25 18:15:05 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/qrcode.lisp][lib/dat/qrcode.lisp]]                                           | 66k  | 2026-06-27 01:08:56 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/svg.lisp][lib/dat/svg.lisp]]                                              | 29k  | 2026-02-22 21:26:54 |
-| [[https://vc.compiler.company/core/file/tip/lib/dat/tar.lisp][lib/dat/tar.lisp]]                                              | 60k  | 2026-05-15 17:22:38 |
+| [[https://vc.compiler.company/core/file/tip/lib/dat/tar.lisp][lib/dat/tar.lisp]]                                              | 60k  | 2026-07-15 21:36:44 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/tests.lisp][lib/dat/tests.lisp]]                                            | 10k  | 2026-06-24 22:00:15 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/toml.lisp][lib/dat/toml.lisp]]                                             | 11k  | 2026-05-11 19:30:30 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/ttf.lisp][lib/dat/ttf.lisp]]                                              | 95k  | 2026-06-13 15:36:49 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/xml.lisp][lib/dat/xml.lisp]]                                              | 36k  | 2026-07-10 18:11:05 |
 | [[https://vc.compiler.company/core/file/tip/lib/dat/yaml.lisp][lib/dat/yaml.lisp]]                                             | 1.2k | 2025-06-13 14:55:06 |
-| [[https://vc.compiler.company/core/file/tip/lib/dat/zip.lisp][lib/dat/zip.lisp]]                                              | 65   | 2026-05-04 17:20:28 |
+| [[https://vc.compiler.company/core/file/tip/lib/dat/zip.lisp][lib/dat/zip.lisp]]                                              | 1.3k | 2026-07-15 20:07:56 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/core.lisp][lib/doc/core.lisp]]                                             | 467  | 2026-06-27 23:24:21 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/doc.sys][lib/doc/doc.sys]]                                               | 1.1k | 2026-07-04 16:32:02 |
-| [[https://vc.compiler.company/core/file/tip/lib/doc/file.lisp][lib/doc/file.lisp]]                                             | 18k  | 2026-07-04 16:27:38 |
+| [[https://vc.compiler.company/core/file/tip/lib/doc/file.lisp][lib/doc/file.lisp]]                                             | 18k  | 2026-07-15 21:36:53 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/fuzzy.lisp][lib/doc/fuzzy.lisp]]                                            | 7.1k | 2026-07-04 16:32:14 |
-| [[https://vc.compiler.company/core/file/tip/lib/doc/nlp.lisp][lib/doc/nlp.lisp]]                                              | 48k  | 2026-07-04 16:32:20 |
-| [[https://vc.compiler.company/core/file/tip/lib/doc/package.lisp][lib/doc/package.lisp]]                                          | 5.3k | 2026-07-04 16:32:24 |
-| [[https://vc.compiler.company/core/file/tip/lib/doc/pkg.lisp][lib/doc/pkg.lisp]]                                              | 3.3k | 2026-07-03 21:14:31 |
+| [[https://vc.compiler.company/core/file/tip/lib/doc/nlp.lisp][lib/doc/nlp.lisp]]                                              | 48k  | 2026-07-14 15:33:49 |
+| [[https://vc.compiler.company/core/file/tip/lib/doc/package.lisp][lib/doc/package.lisp]]                                          | 7k   | 2026-07-15 21:11:15 |
+| [[https://vc.compiler.company/core/file/tip/lib/doc/pkg.lisp][lib/doc/pkg.lisp]]                                              | 3.3k | 2026-07-15 21:36:57 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/project.lisp][lib/doc/project.lisp]]                                          | 5.5k | 2026-07-10 20:53:18 |
-| [[https://vc.compiler.company/core/file/tip/lib/doc/proto.lisp][lib/doc/proto.lisp]]                                            | 5.4k | 2026-07-03 21:14:28 |
+| [[https://vc.compiler.company/core/file/tip/lib/doc/proto.lisp][lib/doc/proto.lisp]]                                            | 5k   | 2026-07-14 19:17:10 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/readtable.lisp][lib/doc/readtable.lisp]]                                        | 401  | 2026-05-27 21:23:06 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/reprex.lisp][lib/doc/reprex.lisp]]                                           | 630  | 2026-06-24 22:31:30 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/srv.lisp][lib/doc/srv.lisp]]                                              | 320  | 2026-06-28 21:02:07 |
-| [[https://vc.compiler.company/core/file/tip/lib/doc/symbol.lisp][lib/doc/symbol.lisp]]                                           | 11k  | 2026-07-06 20:45:10 |
+| [[https://vc.compiler.company/core/file/tip/lib/doc/symbol.lisp][lib/doc/symbol.lisp]]                                           | 11k  | 2026-07-14 18:56:49 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/system.lisp][lib/doc/system.lisp]]                                           | 8k   | 2026-07-10 22:21:11 |
 | [[https://vc.compiler.company/core/file/tip/lib/doc/tests.lisp][lib/doc/tests.lisp]]                                            | 2.7k | 2026-07-04 16:32:54 |
 | [[https://vc.compiler.company/core/file/tip/lib/dsp/aud/chroma.lisp][lib/dsp/aud/chroma.lisp]]                                       | 1.8k | 2025-07-24 23:03:40 |
@@ -497,23 +499,23 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/dsp/var.lisp][lib/dsp/var.lisp]]                                              | 688  | 2026-05-22 18:04:43 |
 | [[https://vc.compiler.company/core/file/tip/lib/dsp/vid/pkg.lisp][lib/dsp/vid/pkg.lisp]]                                          | 100  | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/chunky.lisp][lib/io/chunky.lisp]]                                            | 34k  | 2026-05-15 17:22:49 |
-| [[https://vc.compiler.company/core/file/tip/lib/io/deflate.lisp][lib/io/deflate.lisp]]                                           | 141k | 2026-06-13 15:36:54 |
+| [[https://vc.compiler.company/core/file/tip/lib/io/deflate.lisp][lib/io/deflate.lisp]]                                           | 141k | 2026-07-15 20:29:13 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/disk/btrfs.lisp][lib/io/disk/btrfs.lisp]]                                        | 1.7k | 2026-05-15 17:22:53 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/disk/proto.lisp][lib/io/disk/proto.lisp]]                                        | 816  | 2026-02-05 18:25:01 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/disk/util.lisp][lib/io/disk/util.lisp]]                                         | 8.7k | 2026-02-05 18:53:24 |
-| [[https://vc.compiler.company/core/file/tip/lib/io/fast.lisp][lib/io/fast.lisp]]                                              | 18k  | 2026-02-23 20:12:50 |
+| [[https://vc.compiler.company/core/file/tip/lib/io/fast.lisp][lib/io/fast.lisp]]                                              | 18k  | 2026-07-15 20:53:16 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/flate.lisp][lib/io/flate.lisp]]                                             | 10k  | 2026-05-18 17:36:11 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/io.lisp][lib/io/io.lisp]]                                                | 39   | 2026-03-08 19:22:20 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/io.sys][lib/io/io.sys]]                                                 | 2.3k | 2026-07-13 18:09:31 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/kbd.lisp][lib/io/kbd.lisp]]                                               | 30k  | 2026-06-22 18:41:08 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/lzw.lisp][lib/io/lzw.lisp]]                                               | 14k  | 2026-03-06 21:26:04 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/mux.lisp][lib/io/mux.lisp]]                                               | 20k  | 2026-04-12 17:19:16 |
-| [[https://vc.compiler.company/core/file/tip/lib/io/pkg.lisp][lib/io/pkg.lisp]]                                               | 13k  | 2026-06-28 00:12:06 |
+| [[https://vc.compiler.company/core/file/tip/lib/io/pkg.lisp][lib/io/pkg.lisp]]                                               | 13k  | 2026-07-15 20:49:02 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/proto.lisp][lib/io/proto.lisp]]                                             | 972  | 2026-05-15 17:23:13 |
-| [[https://vc.compiler.company/core/file/tip/lib/io/smart-buffer.lisp][lib/io/smart-buffer.lisp]]                                      | 4.3k | 2026-03-02 20:17:48 |
+| [[https://vc.compiler.company/core/file/tip/lib/io/smart-buffer.lisp][lib/io/smart-buffer.lisp]]                                      | 4.3k | 2026-07-15 21:39:58 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/socket.lisp][lib/io/socket.lisp]]                                            | 12k  | 2026-04-10 21:50:55 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/static.lisp][lib/io/static.lisp]]                                            | 17k  | 2026-06-13 15:36:57 |
-| [[https://vc.compiler.company/core/file/tip/lib/io/stream.lisp][lib/io/stream.lisp]]                                            | 31k  | 2026-04-12 19:58:50 |
+| [[https://vc.compiler.company/core/file/tip/lib/io/stream.lisp][lib/io/stream.lisp]]                                            | 32k  | 2026-07-14 19:50:37 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/swap-bytes.lisp][lib/io/swap-bytes.lisp]]                                        | 5.9k | 2026-03-09 20:05:21 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/sys.lisp][lib/io/sys.lisp]]                                               | 15k  | 2026-05-15 17:23:18 |
 | [[https://vc.compiler.company/core/file/tip/lib/io/tests.lisp][lib/io/tests.lisp]]                                             | 4.8k | 2026-07-12 21:43:19 |
@@ -559,6 +561,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/cipher/xtea.lisp][lib/ironclad/cipher/xtea.lisp]]                                 | 2.7k | 2026-06-26 17:55:16 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/common.lisp][lib/ironclad/common.lisp]]                                      | 22k  | 2026-07-13 20:02:02 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/condition.lisp][lib/ironclad/condition.lisp]]                                   | 11k  | 2026-06-26 17:50:28 |
+| [[https://vc.compiler.company/core/file/tip/lib/ironclad/cpu-features.lisp][lib/ironclad/cpu-features.lisp]]                                | 1.1k | 2026-06-26 17:57:06 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/digest/adler32.lisp][lib/ironclad/digest/adler32.lisp]]                              | 2.1k | 2026-06-26 17:50:13 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/digest/blake2.lisp][lib/ironclad/digest/blake2.lisp]]                               | 11k  | 2026-06-26 17:50:10 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/digest/blake2s.lisp][lib/ironclad/digest/blake2s.lisp]]                              | 12k  | 2026-06-26 17:50:07 |
@@ -583,8 +586,9 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/digest/tiger.lisp][lib/ironclad/digest/tiger.lisp]]                                | 42k  | 2026-06-26 17:48:56 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/digest/tree-hash.lisp][lib/ironclad/digest/tree-hash.lisp]]                            | 5k   | 2026-06-26 17:48:48 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/digest/whirlpool.lisp][lib/ironclad/digest/whirlpool.lisp]]                            | 12k  | 2026-06-26 17:48:38 |
+| [[https://vc.compiler.company/core/file/tip/lib/ironclad/fndb.lisp][lib/ironclad/fndb.lisp]]                                        | 4.5k | 2026-06-26 17:57:10 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/generic.lisp][lib/ironclad/generic.lisp]]                                     | 11k  | 2026-07-13 18:15:16 |
-| [[https://vc.compiler.company/core/file/tip/lib/ironclad/ironclad.sys][lib/ironclad/ironclad.sys]]                                     | 20k  | 2026-07-13 18:28:40 |
+| [[https://vc.compiler.company/core/file/tip/lib/ironclad/ironclad.sys][lib/ironclad/ironclad.sys]]                                     | 20k  | 2026-07-15 17:15:36 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/kdf/argon2.lisp][lib/ironclad/kdf/argon2.lisp]]                                  | 16k  | 2026-07-12 13:58:31 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/kdf/bcrypt.lisp][lib/ironclad/kdf/bcrypt.lisp]]                                  | 6.8k | 2026-06-26 17:55:37 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/kdf/hmac.lisp][lib/ironclad/kdf/hmac.lisp]]                                    | 1.6k | 2026-06-26 17:55:44 |
@@ -602,10 +606,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/mac/siphash.lisp][lib/ironclad/mac/siphash.lisp]]                                 | 7.8k | 2026-06-26 17:56:54 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/mac/skein-mac.lisp][lib/ironclad/mac/skein-mac.lisp]]                               | 4.8k | 2026-06-26 17:56:58 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/math.lisp][lib/ironclad/math.lisp]]                                        | 12k  | 2026-06-26 17:50:47 |
-| [[https://vc.compiler.company/core/file/tip/lib/ironclad/opt/sbcl/cpu-features.lisp][lib/ironclad/opt/sbcl/cpu-features.lisp]]                       | 1.1k | 2026-06-26 17:57:06 |
-| [[https://vc.compiler.company/core/file/tip/lib/ironclad/opt/sbcl/fndb.lisp][lib/ironclad/opt/sbcl/fndb.lisp]]                               | 4.5k | 2026-06-26 17:57:10 |
-| [[https://vc.compiler.company/core/file/tip/lib/ironclad/opt/sbcl/x86oid-vm.lisp][lib/ironclad/opt/sbcl/x86oid-vm.lisp]]                          | 41k  | 2026-07-09 21:52:43 |
-| [[https://vc.compiler.company/core/file/tip/lib/ironclad/pkg.lisp][lib/ironclad/pkg.lisp]]                                         | 8.6k | 2026-07-13 18:30:44 |
+| [[https://vc.compiler.company/core/file/tip/lib/ironclad/pkg.lisp][lib/ironclad/pkg.lisp]]                                         | 8.5k | 2026-07-15 17:14:56 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/pki/curve25519.lisp][lib/ironclad/pki/curve25519.lisp]]                              | 6.2k | 2026-07-12 14:04:26 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/pki/curve448.lisp][lib/ironclad/pki/curve448.lisp]]                                | 6.1k | 2026-07-12 14:04:38 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/pki/dsa.lisp][lib/ironclad/pki/dsa.lisp]]                                     | 7.1k | 2026-07-12 14:05:04 |
@@ -780,6 +781,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/tests/scrypt.lisp][lib/ironclad/tests/scrypt.lisp]]                                | 2.3k | 2026-07-12 14:39:10 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/text.lisp][lib/ironclad/text.lisp]]                                        | 612  | 2026-07-06 19:33:59 |
 | [[https://vc.compiler.company/core/file/tip/lib/ironclad/util.lisp][lib/ironclad/util.lisp]]                                        | 4k   | 2026-07-09 22:03:23 |
+| [[https://vc.compiler.company/core/file/tip/lib/ironclad/x86oid-vm.lisp][lib/ironclad/x86oid-vm.lisp]]                                   | 41k  | 2026-07-09 21:52:43 |
 | [[https://vc.compiler.company/core/file/tip/lib/log/alien.lisp][lib/log/alien.lisp]]                                            | 2.5k | 2026-07-12 14:06:51 |
 | [[https://vc.compiler.company/core/file/tip/lib/log/cfg.lisp][lib/log/cfg.lisp]]                                              | 2.2k | 2026-04-19 19:33:53 |
 | [[https://vc.compiler.company/core/file/tip/lib/log/condition.lisp][lib/log/condition.lisp]]                                        | 427  | 2026-05-15 17:23:30 |
@@ -832,7 +834,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/net/obj.lisp][lib/net/obj.lisp]]                                              | 9.2k | 2026-03-24 18:28:28 |
 | [[https://vc.compiler.company/core/file/tip/lib/net/pkg.lisp][lib/net/pkg.lisp]]                                              | 15k  | 2026-07-09 17:28:41 |
 | [[https://vc.compiler.company/core/file/tip/lib/net/proto/crew.lisp][lib/net/proto/crew.lisp]]                                       | 34k  | 2026-01-07 20:52:34 |
-| [[https://vc.compiler.company/core/file/tip/lib/net/proto/dbus.lisp][lib/net/proto/dbus.lisp]]                                       | 42k  | 2026-03-28 19:27:08 |
+| [[https://vc.compiler.company/core/file/tip/lib/net/proto/dbus.lisp][lib/net/proto/dbus.lisp]]                                       | 41k  | 2026-07-15 22:02:59 |
 | [[https://vc.compiler.company/core/file/tip/lib/net/proto/dict.lisp][lib/net/proto/dict.lisp]]                                       | 1.1k | 2026-03-21 21:34:14 |
 | [[https://vc.compiler.company/core/file/tip/lib/net/proto/dm.lisp][lib/net/proto/dm.lisp]]                                         | 1k   | 2026-03-21 21:37:54 |
 | [[https://vc.compiler.company/core/file/tip/lib/net/proto/dns.lisp][lib/net/proto/dns.lisp]]                                        | 4.6k | 2026-03-08 22:59:52 |
@@ -861,7 +863,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/obj/color/palette.lisp][lib/obj/color/palette.lisp]]                                    | 4.8k | 2026-02-25 20:42:11 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/color/print.lisp][lib/obj/color/print.lisp]]                                      | 102  | 2026-01-03 23:52:21 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/color/theme.lisp][lib/obj/color/theme.lisp]]                                      | 1.6k | 2025-11-04 14:44:41 |
-| [[https://vc.compiler.company/core/file/tip/lib/obj/color/x11.lisp][lib/obj/color/x11.lisp]]                                        | 23k  | 2026-07-13 20:09:20 |
+| [[https://vc.compiler.company/core/file/tip/lib/obj/color/x11.lisp][lib/obj/color/x11.lisp]]                                        | 23k  | 2026-07-15 22:06:16 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/config.lisp][lib/obj/config.lisp]]                                           | 2.3k | 2025-10-20 20:16:11 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/db.lisp][lib/obj/db.lisp]]                                               | 20k  | 2026-06-20 22:53:34 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/equiv.lisp][lib/obj/equiv.lisp]]                                            | 2.5k | 2026-03-21 20:56:44 |
@@ -921,7 +923,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/obj/uri/domain.lisp][lib/obj/uri/domain.lisp]]                                       | 9.4k | 2026-05-22 21:05:55 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/uri/intern.lisp][lib/obj/uri/intern.lisp]]                                       | 3.4k | 2025-09-19 19:36:08 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/uri/mask.lisp][lib/obj/uri/mask.lisp]]                                         | 27k  | 2026-06-13 15:37:18 |
-| [[https://vc.compiler.company/core/file/tip/lib/obj/uri/parse.lisp][lib/obj/uri/parse.lisp]]                                        | 11k  | 2026-05-22 21:01:01 |
+| [[https://vc.compiler.company/core/file/tip/lib/obj/uri/parse.lisp][lib/obj/uri/parse.lisp]]                                        | 11k  | 2026-07-15 21:38:50 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/uri/path.lisp][lib/obj/uri/path.lisp]]                                         | 11k  | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/uri/print.lisp][lib/obj/uri/print.lisp]]                                        | 7.6k | 2025-10-10 22:24:02 |
 | [[https://vc.compiler.company/core/file/tip/lib/obj/uri/punycode.lisp][lib/obj/uri/punycode.lisp]]                                     | 6.7k | 2026-05-22 21:10:55 |
@@ -1030,10 +1032,10 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/rdb/query.lisp][lib/rdb/query.lisp]]                                            | 538  | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/core/file/tip/lib/rdb/rdb.lisp][lib/rdb/rdb.lisp]]                                              | 32k  | 2026-03-28 23:25:05 |
 | [[https://vc.compiler.company/core/file/tip/lib/rdb/rdb.sys][lib/rdb/rdb.sys]]                                               | 497  | 2026-05-27 21:37:08 |
-| [[https://vc.compiler.company/core/file/tip/lib/rdb/rocksdb.lisp][lib/rdb/rocksdb.lisp]]                                          | 24k  | 2025-08-13 18:21:09 |
+| [[https://vc.compiler.company/core/file/tip/lib/rdb/rocksdb.lisp][lib/rdb/rocksdb.lisp]]                                          | 24k  | 2026-07-15 21:43:15 |
 | [[https://vc.compiler.company/core/file/tip/lib/rdb/schema.lisp][lib/rdb/schema.lisp]]                                           | 1.1k | 2025-09-17 18:01:13 |
 | [[https://vc.compiler.company/core/file/tip/lib/rdb/srv.lisp][lib/rdb/srv.lisp]]                                              | 194  | 2025-09-11 16:17:30 |
-| [[https://vc.compiler.company/core/file/tip/lib/rdb/store.lisp][lib/rdb/store.lisp]]                                            | 40k  | 2026-03-28 22:59:36 |
+| [[https://vc.compiler.company/core/file/tip/lib/rdb/store.lisp][lib/rdb/store.lisp]]                                            | 40k  | 2026-07-14 14:43:30 |
 | [[https://vc.compiler.company/core/file/tip/lib/rdb/tests.lisp][lib/rdb/tests.lisp]]                                            | 7.3k | 2026-03-01 19:53:39 |
 | [[https://vc.compiler.company/core/file/tip/lib/rt/cfg.lisp][lib/rt/cfg.lisp]]                                               | 510  | 2025-08-18 19:49:48 |
 | [[https://vc.compiler.company/core/file/tip/lib/rt/condition.lisp][lib/rt/condition.lisp]]                                         | 610  | 2025-06-08 18:28:16 |
@@ -1054,7 +1056,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-buffer-streams.lisp][lib/swank/ext/swank-buffer-streams.lisp]]                       | 1.2k | 2026-06-26 18:06:49 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-c-p-c.lisp][lib/swank/ext/swank-c-p-c.lisp]]                                | 11k  | 2026-06-26 18:07:01 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-clipboard.lisp][lib/swank/ext/swank-clipboard.lisp]]                            | 2.1k | 2026-06-26 18:06:55 |
-| [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-fancy-inspector.lisp][lib/swank/ext/swank-fancy-inspector.lisp]]                      | 43k  | 2026-06-26 18:07:11 |
+| [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-fancy-inspector.lisp][lib/swank/ext/swank-fancy-inspector.lisp]]                      | 43k  | 2026-07-14 20:58:51 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-fuzzy.lisp][lib/swank/ext/swank-fuzzy.lisp]]                                | 33k  | 2026-06-26 18:07:18 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-hyperdoc.lisp][lib/swank/ext/swank-hyperdoc.lisp]]                             | 824  | 2026-06-01 17:59:46 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-indentation.lisp][lib/swank/ext/swank-indentation.lisp]]                          | 5.9k | 2026-06-26 18:07:34 |
@@ -1069,14 +1071,14 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-sbcl-exts.lisp][lib/swank/ext/swank-sbcl-exts.lisp]]                            | 3.2k | 2026-07-07 19:36:53 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-snapshot.lisp][lib/swank/ext/swank-snapshot.lisp]]                             | 2.4k | 2026-06-26 18:09:19 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-sprof.lisp][lib/swank/ext/swank-sprof.lisp]]                                | 6.5k | 2026-06-26 18:09:28 |
-| [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-trace-dialog.lisp][lib/swank/ext/swank-trace-dialog.lisp]]                         | 8.7k | 2026-06-26 18:09:37 |
+| [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-trace-dialog.lisp][lib/swank/ext/swank-trace-dialog.lisp]]                         | 8.5k | 2026-07-14 20:55:50 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/ext/swank-util.lisp][lib/swank/ext/swank-util.lisp]]                                 | 1.8k | 2026-06-26 18:09:42 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/gray.lisp][lib/swank/gray.lisp]]                                           | 8k   | 2026-06-26 18:04:36 |
-| [[https://vc.compiler.company/core/file/tip/lib/swank/loader.lisp][lib/swank/loader.lisp]]                                         | 11k  | 2026-07-10 19:20:23 |
+| [[https://vc.compiler.company/core/file/tip/lib/swank/loader.lisp][lib/swank/loader.lisp]]                                         | 11k  | 2026-07-15 21:32:38 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/metering.lisp][lib/swank/metering.lisp]]                                       | 49k  | 2026-06-01 17:59:46 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/nregex.lisp][lib/swank/nregex.lisp]]                                         | 20k  | 2026-06-01 17:59:46 |
-| [[https://vc.compiler.company/core/file/tip/lib/swank/pkg.lisp][lib/swank/pkg.lisp]]                                            | 5.6k | 2026-07-10 19:52:39 |
-| [[https://vc.compiler.company/core/file/tip/lib/swank/rpc.lisp][lib/swank/rpc.lisp]]                                            | 5.1k | 2026-07-10 19:18:41 |
+| [[https://vc.compiler.company/core/file/tip/lib/swank/pkg.lisp][lib/swank/pkg.lisp]]                                            | 5.2k | 2026-07-15 21:33:04 |
+| [[https://vc.compiler.company/core/file/tip/lib/swank/rpc.lisp][lib/swank/rpc.lisp]]                                            | 5.1k | 2026-07-14 19:51:49 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/sbcl.lisp][lib/swank/sbcl.lisp]]                                           | 78k  | 2026-07-10 19:24:45 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/select-match.lisp][lib/swank/select-match.lisp]]                                   | 8.7k | 2026-07-10 18:17:39 |
 | [[https://vc.compiler.company/core/file/tip/lib/swank/source-file-cache.lisp][lib/swank/source-file-cache.lisp]]                              | 5.2k | 2026-06-26 18:01:56 |
@@ -1168,10 +1170,10 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/skel/homer/cfg.lisp][skel/homer/cfg.lisp]]                                           | 5.3k | 2026-06-09 12:46:35 |
 | [[https://vc.compiler.company/core/file/tip/skel/homer/cli.lisp][skel/homer/cli.lisp]]                                           | 3k   | 2026-06-09 13:15:10 |
 | [[https://vc.compiler.company/core/file/tip/skel/homer/log.lisp][skel/homer/log.lisp]]                                           | 76   | 2025-08-22 16:42:50 |
-| [[https://vc.compiler.company/core/file/tip/skel/homer/pkg.lisp][skel/homer/pkg.lisp]]                                           | 1.1k | 2026-06-09 12:59:39 |
+| [[https://vc.compiler.company/core/file/tip/skel/homer/pkg.lisp][skel/homer/pkg.lisp]]                                           | 1.1k | 2026-07-14 14:19:03 |
 | [[https://vc.compiler.company/core/file/tip/skel/homer/srv.lisp][skel/homer/srv.lisp]]                                           | 3.2k | 2026-05-03 21:45:03 |
 | [[https://vc.compiler.company/core/file/tip/skel/homer/task.lisp][skel/homer/task.lisp]]                                          | 2.4k | 2026-06-09 13:17:52 |
-| [[https://vc.compiler.company/core/file/tip/skel/homer/util.lisp][skel/homer/util.lisp]]                                          | 2.8k | 2026-01-27 22:19:21 |
+| [[https://vc.compiler.company/core/file/tip/skel/homer/util.lisp][skel/homer/util.lisp]]                                          | 2.8k | 2026-07-15 21:31:03 |
 | [[https://vc.compiler.company/core/file/tip/skel/homer/var.lisp][skel/homer/var.lisp]]                                           | 308  | 2026-03-28 21:17:59 |
 | [[https://vc.compiler.company/core/file/tip/skel/krypt/cfg.lisp][skel/krypt/cfg.lisp]]                                           | 2.3k | 2026-05-18 17:43:11 |
 | [[https://vc.compiler.company/core/file/tip/skel/krypt/cli.lisp][skel/krypt/cli.lisp]]                                           | 549  | 2026-05-17 18:45:09 |
@@ -1179,15 +1181,15 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/skel/krypt/pkg.lisp][skel/krypt/pkg.lisp]]                                           | 1.1k | 2026-05-18 17:49:31 |
 | [[https://vc.compiler.company/core/file/tip/skel/krypt/util.lisp][skel/krypt/util.lisp]]                                          | 516  | 2026-05-18 17:44:27 |
 | [[https://vc.compiler.company/core/file/tip/skel/krypt/var.lisp][skel/krypt/var.lisp]]                                           | 511  | 2026-05-18 17:42:18 |
-| [[https://vc.compiler.company/core/file/tip/skel/mpk/cfg.lisp][skel/mpk/cfg.lisp]]                                             | 2.9k | 2026-05-03 21:45:38 |
+| [[https://vc.compiler.company/core/file/tip/skel/mpk/cfg.lisp][skel/mpk/cfg.lisp]]                                             | 2.9k | 2026-07-14 14:58:38 |
 | [[https://vc.compiler.company/core/file/tip/skel/mpk/clean.lisp][skel/mpk/clean.lisp]]                                           | 679  | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/core/file/tip/skel/mpk/cli.lisp][skel/mpk/cli.lisp]]                                             | 1.5k | 2026-02-13 21:36:35 |
 | [[https://vc.compiler.company/core/file/tip/skel/mpk/db.lisp][skel/mpk/db.lisp]]                                              | 9.3k | 2026-02-21 20:35:33 |
-| [[https://vc.compiler.company/core/file/tip/skel/mpk/metro.lisp][skel/mpk/metro.lisp]]                                           | 1.1k | 2025-10-10 17:43:32 |
+| [[https://vc.compiler.company/core/file/tip/skel/mpk/metro.lisp][skel/mpk/metro.lisp]]                                           | 1.1k | 2026-07-14 14:58:46 |
 | [[https://vc.compiler.company/core/file/tip/skel/mpk/mpd.lisp][skel/mpk/mpd.lisp]]                                             | 26k  | 2026-03-22 19:39:08 |
 | [[https://vc.compiler.company/core/file/tip/skel/mpk/mpk.lisp][skel/mpk/mpk.lisp]]                                             | 365  | 2025-11-08 20:50:53 |
 | [[https://vc.compiler.company/core/file/tip/skel/mpk/net.lisp][skel/mpk/net.lisp]]                                             | 176  | 2025-05-18 20:49:03 |
-| [[https://vc.compiler.company/core/file/tip/skel/mpk/pkg.lisp][skel/mpk/pkg.lisp]]                                             | 3.4k | 2026-05-13 20:56:15 |
+| [[https://vc.compiler.company/core/file/tip/skel/mpk/pkg.lisp][skel/mpk/pkg.lisp]]                                             | 3.1k | 2026-07-14 14:59:59 |
 | [[https://vc.compiler.company/core/file/tip/skel/mpk/proto.lisp][skel/mpk/proto.lisp]]                                           | 2.7k | 2026-06-08 17:54:35 |
 | [[https://vc.compiler.company/core/file/tip/skel/mpk/util.lisp][skel/mpk/util.lisp]]                                            | 3.5k | 2025-10-14 22:16:50 |
 | [[https://vc.compiler.company/core/file/tip/skel/mpk/var.lisp][skel/mpk/var.lisp]]                                             | 1.3k | 2026-02-21 21:07:06 |
@@ -1201,14 +1203,14 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/skel/packy/proto.lisp][skel/packy/proto.lisp]]                                         | 2.2k | 2026-05-16 18:32:21 |
 | [[https://vc.compiler.company/core/file/tip/skel/packy/srv.lisp][skel/packy/srv.lisp]]                                           | 1k   | 2026-06-08 21:33:50 |
 | [[https://vc.compiler.company/core/file/tip/skel/packy/var.lisp][skel/packy/var.lisp]]                                           | 1k   | 2026-06-01 18:34:56 |
-| [[https://vc.compiler.company/core/file/tip/skel/pkg.lisp][skel/pkg.lisp]]                                                 | 3.8k | 2026-07-05 16:22:55 |
+| [[https://vc.compiler.company/core/file/tip/skel/pkg.lisp][skel/pkg.lisp]]                                                 | 3.6k | 2026-07-14 14:22:59 |
 | [[https://vc.compiler.company/core/file/tip/skel/skel.sys][skel/skel.sys]]                                                 | 2.8k | 2026-07-05 16:42:29 |
 | [[https://vc.compiler.company/core/file/tip/skel/tests.lisp][skel/tests.lisp]]                                               | 2.4k | 2026-07-05 16:10:56 |
 | [[https://vc.compiler.company/core/file/tip/skelfile][skelfile]]                                                      | 7.5k | 2026-07-12 11:12:55 |
 | [[https://vc.compiler.company/core/file/tip/std/alien.lisp][std/alien.lisp]]                                                | 49k  | 2026-06-13 15:39:16 |
 | [[https://vc.compiler.company/core/file/tip/std/array.lisp][std/array.lisp]]                                                | 23k  | 2025-11-30 21:41:48 |
 | [[https://vc.compiler.company/core/file/tip/std/async.lisp][std/async.lisp]]                                                | 6.1k | 2026-02-22 21:56:27 |
-| [[https://vc.compiler.company/core/file/tip/std/bit.lisp][std/bit.lisp]]                                                  | 24k  | 2026-07-13 20:08:31 |
+| [[https://vc.compiler.company/core/file/tip/std/bit.lisp][std/bit.lisp]]                                                  | 24k  | 2026-07-15 20:55:04 |
 | [[https://vc.compiler.company/core/file/tip/std/comp.lisp][std/comp.lisp]]                                                 | 36k  | 2026-07-12 13:43:20 |
 | [[https://vc.compiler.company/core/file/tip/std/condition.lisp][std/condition.lisp]]                                            | 24k  | 2026-06-26 22:48:20 |
 | [[https://vc.compiler.company/core/file/tip/std/core.lisp][std/core.lisp]]                                                 | 18k  | 2026-06-27 21:52:43 |
@@ -1216,7 +1218,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/std/defpkg.lisp][std/defpkg.lisp]]                                               | 40k  | 2026-03-31 21:59:28 |
 | [[https://vc.compiler.company/core/file/tip/std/defpun.lisp][std/defpun.lisp]]                                               | 42k  | 2026-02-11 13:31:54 |
 | [[https://vc.compiler.company/core/file/tip/std/defsys.lisp][std/defsys.lisp]]                                               | 63k  | 2026-07-13 18:08:44 |
-| [[https://vc.compiler.company/core/file/tip/std/file.lisp][std/file.lisp]]                                                 | 19k  | 2026-07-10 18:56:06 |
+| [[https://vc.compiler.company/core/file/tip/std/file.lisp][std/file.lisp]]                                                 | 20k  | 2026-07-15 21:30:38 |
 | [[https://vc.compiler.company/core/file/tip/std/hash.lisp][std/hash.lisp]]                                                 | 11k  | 2026-06-28 00:01:41 |
 | [[https://vc.compiler.company/core/file/tip/std/io.lisp][std/io.lisp]]                                                   | 9.3k | 2026-03-07 21:57:26 |
 | [[https://vc.compiler.company/core/file/tip/std/kernel.lisp][std/kernel.lisp]]                                               | 11k  | 2026-03-29 19:59:02 |
@@ -1228,7 +1230,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/std/macs/pan.lisp][std/macs/pan.lisp]]                                             | 2.6k | 2026-02-26 21:30:22 |
 | [[https://vc.compiler.company/core/file/tip/std/macs/sugar.lisp][std/macs/sugar.lisp]]                                           | 15k  | 2026-06-15 20:12:26 |
 | [[https://vc.compiler.company/core/file/tip/std/macs/unit.lisp][std/macs/unit.lisp]]                                            | 2k   | 2025-11-21 20:51:49 |
-| [[https://vc.compiler.company/core/file/tip/std/meta.lisp][std/meta.lisp]]                                                 | 25k  | 2026-07-09 17:05:56 |
+| [[https://vc.compiler.company/core/file/tip/std/meta.lisp][std/meta.lisp]]                                                 | 25k  | 2026-07-15 22:05:56 |
 | [[https://vc.compiler.company/core/file/tip/std/named-readtables.lisp][std/named-readtables.lisp]]                                     | 36k  | 2026-06-13 15:39:20 |
 | [[https://vc.compiler.company/core/file/tip/std/num/float.lisp][std/num/float.lisp]]                                            | 6.9k | 2026-06-26 21:07:50 |
 | [[https://vc.compiler.company/core/file/tip/std/num/leb128.lisp][std/num/leb128.lisp]]                                           | 4.8k | 2025-10-21 17:26:36 |
@@ -1237,7 +1239,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/std/os.lisp][std/os.lisp]]                                                   | 23k  | 2026-06-27 21:53:10 |
 | [[https://vc.compiler.company/core/file/tip/std/path.lisp][std/path.lisp]]                                                 | 5.7k | 2026-04-17 19:51:49 |
 | [[https://vc.compiler.company/core/file/tip/std/pipe.lisp][std/pipe.lisp]]                                                 | 16k  | 2026-07-13 20:01:14 |
-| [[https://vc.compiler.company/core/file/tip/std/pkg.lisp][std/pkg.lisp]]                                                  | 51k  | 2026-07-13 20:01:20 |
+| [[https://vc.compiler.company/core/file/tip/std/pkg.lisp][std/pkg.lisp]]                                                  | 51k  | 2026-07-15 21:40:18 |
 | [[https://vc.compiler.company/core/file/tip/std/ppcre/api.lisp][std/ppcre/api.lisp]]                                            | 54k  | 2026-07-09 17:10:03 |
 | [[https://vc.compiler.company/core/file/tip/std/ppcre/charmap.lisp][std/ppcre/charmap.lisp]]                                        | 5.4k | 2026-02-11 18:47:09 |
 | [[https://vc.compiler.company/core/file/tip/std/ppcre/charset.lisp][std/ppcre/charset.lisp]]                                        | 8.6k | 2026-02-11 18:47:09 |
@@ -1260,9 +1262,9 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/std/readtable.lisp][std/readtable.lisp]]                                            | 8.2k | 2026-05-02 14:58:27 |
 | [[https://vc.compiler.company/core/file/tip/std/seq.lisp][std/seq.lisp]]                                                  | 57k  | 2026-04-22 21:39:36 |
 | [[https://vc.compiler.company/core/file/tip/std/std.asd][std/std.asd]]                                                   | 1.9k | 2026-07-09 16:57:06 |
-| [[https://vc.compiler.company/core/file/tip/std/std.sys][std/std.sys]]                                                   | 8.6k | 2026-07-12 13:02:33 |
+| [[https://vc.compiler.company/core/file/tip/std/std.sys][std/std.sys]]                                                   | 9k   | 2026-07-15 22:05:46 |
 | [[https://vc.compiler.company/core/file/tip/std/stream.lisp][std/stream.lisp]]                                               | 14k  | 2026-07-13 18:30:01 |
-| [[https://vc.compiler.company/core/file/tip/std/string.lisp][std/string.lisp]]                                               | 26k  | 2026-03-27 20:32:34 |
+| [[https://vc.compiler.company/core/file/tip/std/string.lisp][std/string.lisp]]                                               | 26k  | 2026-07-15 21:35:20 |
 | [[https://vc.compiler.company/core/file/tip/std/sym.lisp][std/sym.lisp]]                                                  | 5.6k | 2026-07-09 21:55:30 |
 | [[https://vc.compiler.company/core/file/tip/std/task.lisp][std/task.lisp]]                                                 | 10k  | 2026-04-22 21:40:27 |
 | [[https://vc.compiler.company/core/file/tip/std/tests/async.lisp][std/tests/async.lisp]]                                          | 2.2k | 2026-07-05 17:24:46 |
@@ -1274,7 +1276,7 @@ Tuesday     4 August 2026
 | [[https://vc.compiler.company/core/file/tip/std/tests/seq.lisp][std/tests/seq.lisp]]                                            | 2.3k | 2026-03-13 17:22:52 |
 | [[https://vc.compiler.company/core/file/tip/std/tests/task.lisp][std/tests/task.lisp]]                                           | 824  | 2026-04-22 21:40:59 |
 | [[https://vc.compiler.company/core/file/tip/std/tests/thread.lisp][std/tests/thread.lisp]]                                         | 4.5k | 2025-11-25 17:14:29 |
-| [[https://vc.compiler.company/core/file/tip/std/thread.lisp][std/thread.lisp]]                                               | 52k  | 2026-07-05 17:37:00 |
-| [[https://vc.compiler.company/core/file/tip/std/type.lisp][std/type.lisp]]                                                 | 13k  | 2026-07-13 20:03:29 |
+| [[https://vc.compiler.company/core/file/tip/std/thread.lisp][std/thread.lisp]]                                               | 52k  | 2026-07-15 21:53:58 |
+| [[https://vc.compiler.company/core/file/tip/std/type.lisp][std/type.lisp]]                                                 | 13k  | 2026-07-15 20:33:17 |
 
 #+END:

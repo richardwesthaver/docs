@@ -18,7 +18,7 @@
 | tags        | SHED                                               |
 | updated     | Sat Jun 06 22:23:02 2026 -0400                     |
 | langs       | elisp lisp org                                     |
-| lines       | 64055 :code 51178 :comment 6262 :blank 6615        |
+| lines       | 67109 :code 53518 :comment 6322 :blank 7269        |
 |-------------+----------------------------------------------------|
 
 #+CALL: hg-diff-stat() :dir ~/src/shed/
@@ -47,9 +47,10 @@
  vec/vec.lisp        |   15 +-
  9 files changed, 277 insertions(+), 263 deletions(-)
  wm/bindings.lisp |   2 +-
- wm/readme.org    |  11 ++++++++++-
- wm/skelfile      |  17 ++++++++++++++++-
- 3 files changed, 27 insertions(+), 3 deletions(-)
+ wm/readme.org    |  13 +++++++++++--
+ wm/skelfile      |  28 +++++++++++++++++++++++++---
+ wm/wm.sys        |  34 ++++++++++++++++++++++++++++++++--
+ 4 files changed, 69 insertions(+), 8 deletions(-)
  xlib/common.lisp             |   2 +
  xlib/extensions/xrender.lisp |  35 +++++++++----------
  xlib/gcontext.lisp           |   2 +
@@ -58,8 +59,8 @@
  xlib/manager.lisp            |  32 +++++++++---------
  xlib/skelfile                |  25 +++++++++++--
  xlib/xlib.lisp               |  75 ++++++++++++++++++++++---------------------
- xlib/xlib.sys                |   4 +-
- 9 files changed, 103 insertions(+), 78 deletions(-)
+ xlib/xlib.sys                |   6 +--
+ 9 files changed, 104 insertions(+), 79 deletions(-)
 #+end_example
 
 #+CALL: hg-churn() :dir ~/src/shed/
@@ -97,6 +98,7 @@
 | [[https://vc.compiler.company/shed/attic/file/tip/early-init.el][attic/early-init.el]]               | 1.8k | 2026-05-24 18:09:17 |
 | [[https://vc.compiler.company/shed/attic/file/tip/exec-path-from-shell.el][attic/exec-path-from-shell.el]]     | 11k  | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/shed/attic/file/tip/ignition.lisp][attic/ignition.lisp]]               | 3.9k | 2025-09-19 18:34:06 |
+| [[https://vc.compiler.company/shed/attic/file/tip/ironclad.org][attic/ironclad.org]]                | 67k  | 2026-07-10 14:21:51 |
 | [[https://vc.compiler.company/shed/attic/file/tip/lapack-ffi-gen.lisp][attic/lapack-ffi-gen.lisp]]         | 3.6k | 2026-02-24 18:18:11 |
 | [[https://vc.compiler.company/shed/attic/file/tip/lib/alien.org][attic/lib/alien.org]]               | 1.5k | 2026-06-22 19:22:55 |
 | [[https://vc.compiler.company/shed/attic/file/tip/lib/dsp.org][attic/lib/dsp.org]]                 | 1.3k | 2026-06-22 19:20:35 |
@@ -110,7 +112,10 @@
 | [[https://vc.compiler.company/shed/attic/file/tip/matroska/pkg.lisp][attic/matroska/pkg.lisp]]           | 1.7k | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/shed/attic/file/tip/matroska/tests.lisp][attic/matroska/tests.lisp]]         | 232  | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/shed/attic/file/tip/old.el][attic/old.el]]                      | 19k  | 2026-05-31 21:53:54 |
+| [[https://vc.compiler.company/shed/attic/file/tip/ppcre.asd][attic/ppcre.asd]]                   | 1.3k | 2026-02-27 18:06:48 |
+| [[https://vc.compiler.company/shed/attic/file/tip/ppcre.sys][attic/ppcre.sys]]                   | 713  | 2026-02-14 22:14:35 |
 | [[https://vc.compiler.company/shed/attic/file/tip/ratpoison.lisp][attic/ratpoison.lisp]]              | 1.6k | 2026-02-25 16:59:23 |
+| [[https://vc.compiler.company/shed/attic/file/tip/readme.org][attic/readme.org]]                  | 1.3k | 2026-07-07 19:39:27 |
 | [[https://vc.compiler.company/shed/attic/file/tip/rs/ast.lisp][attic/rs/ast.lisp]]                 | 2.5k | 2025-08-10 17:51:49 |
 | [[https://vc.compiler.company/shed/attic/file/tip/rs/pkg.lisp][attic/rs/pkg.lisp]]                 | 2.2k | 2025-10-10 17:52:04 |
 | [[https://vc.compiler.company/shed/attic/file/tip/rs/print.lisp][attic/rs/print.lisp]]               | 101  | 2025-05-18 20:49:03 |
@@ -130,7 +135,10 @@
 | [[https://vc.compiler.company/shed/attic/file/tip/sbcl-pprint-patch.lisp][attic/sbcl-pprint-patch.lisp]]      | 12k  | 2026-02-28 22:23:07 |
 | [[https://vc.compiler.company/shed/attic/file/tip/skt-config.el][attic/skt-config.el]]               | 5.2k | 2026-06-01 16:50:09 |
 | [[https://vc.compiler.company/shed/attic/file/tip/skt.el][attic/skt.el]]                      | 17k  | 2026-06-06 18:38:36 |
+| [[https://vc.compiler.company/shed/attic/file/tip/slime-asdf.el][attic/slime-asdf.el]]               | 12k  | 2026-06-01 17:59:46 |
 | [[https://vc.compiler.company/shed/attic/file/tip/slime-autoloads.el][attic/slime-autoloads.el]]          | 1.5k | 2026-05-25 14:31:58 |
+| [[https://vc.compiler.company/shed/attic/file/tip/swank-asdf.lisp][attic/swank-asdf.lisp]]             | 20k  | 2026-06-26 18:06:38 |
+| [[https://vc.compiler.company/shed/attic/file/tip/swank-quicklisp.lisp][attic/swank-quicklisp.lisp]]        | 640  | 2026-06-26 18:08:53 |
 | [[https://vc.compiler.company/shed/attic/file/tip/sxp.el][attic/sxp.el]]                      | 2.6k | 2025-05-18 20:49:03 |
 | [[https://vc.compiler.company/shed/attic/file/tip/tempo0.lisp][attic/tempo0.lisp]]                 | 4k   | 2026-03-22 22:32:59 |
 | [[https://vc.compiler.company/shed/attic/file/tip/uml-mode.el][attic/uml-mode.el]]                 | 22k  | 2025-05-18 20:49:03 |
@@ -218,7 +226,7 @@
 | [[https://vc.compiler.company/shed/edi/file/tip/readme.org][edi/readme.org]]                    | 1010 | 2026-07-04 17:24:56 |
 | [[https://vc.compiler.company/shed/file/tip/readme.org][readme.org]]                        | 384  | 2026-02-14 23:00:52 |
 | [[https://vc.compiler.company/shed/file/tip/skelfile][skelfile]]                          | 1.9k | 2026-06-06 22:18:30 |
-| [[https://vc.compiler.company/shed/tenex/file/tip/.stash/api.org][tenex/.stash/api.org]]              | 7.3k | 2026-07-05 13:51:30 |
+| [[https://vc.compiler.company/shed/tenex/file/tip/.stash/api.org][tenex/.stash/api.org]]              | 7.2k | 2026-07-12 16:07:10 |
 | [[https://vc.compiler.company/shed/tenex/file/tip/cloudflare.lisp][tenex/cloudflare.lisp]]             | 1k   | 2026-07-05 13:51:18 |
 | [[https://vc.compiler.company/shed/tenex/file/tip/discord.lisp][tenex/discord.lisp]]                | 995  | 2026-07-04 17:22:49 |
 | [[https://vc.compiler.company/shed/tenex/file/tip/nws.lisp][tenex/nws.lisp]]                    | 184  | 2026-07-04 17:20:45 |
@@ -229,7 +237,7 @@
 | [[https://vc.compiler.company/shed/tenex/file/tip/tenex.sys][tenex/tenex.sys]]                   | 215  | 2025-11-10 22:06:28 |
 | [[https://vc.compiler.company/shed/tenex/file/tip/transmission.lisp][tenex/transmission.lisp]]           | 3.1k | 2026-07-04 17:22:15 |
 | [[https://vc.compiler.company/shed/vec/file/tip/.hgignore][vec/.hgignore]]                     | 9    | 2026-02-03 21:01:19 |
-| [[https://vc.compiler.company/shed/vec/file/tip/.stash/api.org][vec/.stash/api.org]]                | 81k  | 2026-07-05 14:06:02 |
+| [[https://vc.compiler.company/shed/vec/file/tip/.stash/api.org][vec/.stash/api.org]]                | 36k  | 2026-07-12 16:07:12 |
 | [[https://vc.compiler.company/shed/vec/file/tip/aa-bin.lisp][vec/aa-bin.lisp]]                   | 5.6k | 2026-07-05 14:00:30 |
 | [[https://vc.compiler.company/shed/vec/file/tip/aa-misc.lisp][vec/aa-misc.lisp]]                  | 9.5k | 2026-07-05 13:44:00 |
 | [[https://vc.compiler.company/shed/vec/file/tip/aa.lisp][vec/aa.lisp]]                       | 21k  | 2026-07-05 14:00:01 |
@@ -242,7 +250,7 @@
 | [[https://vc.compiler.company/shed/vec/file/tip/vec.lisp][vec/vec.lisp]]                      | 1.2k | 2026-07-05 13:58:09 |
 | [[https://vc.compiler.company/shed/vec/file/tip/vec.sys][vec/vec.sys]]                       | 615  | 2026-02-09 22:10:42 |
 | [[https://vc.compiler.company/shed/wm/file/tip/.hgignore][wm/.hgignore]]                      | 45   | 2025-11-10 22:48:29 |
-| [[https://vc.compiler.company/shed/wm/file/tip/.stash/api.org][wm/.stash/api.org]]                 | 325k | 2026-07-05 13:52:02 |
+| [[https://vc.compiler.company/shed/wm/file/tip/.stash/api.org][wm/.stash/api.org]]                 | 348k | 2026-07-12 15:40:25 |
 | [[https://vc.compiler.company/shed/wm/file/tip/.stash/wm][wm/.stash/wm]]                      | 28M  | 2026-06-03 19:25:06 |
 | [[https://vc.compiler.company/shed/wm/file/tip/bindings.lisp][wm/bindings.lisp]]                  | 7.1k | 2026-07-04 16:53:49 |
 | [[https://vc.compiler.company/shed/wm/file/tip/color.lisp][wm/color.lisp]]                     | 18k  | 2026-01-07 22:04:00 |
@@ -275,18 +283,17 @@
 | [[https://vc.compiler.company/shed/wm/file/tip/modeline/hostname.lisp][wm/modeline/hostname.lisp]]         | 341  | 2026-01-01 20:12:35 |
 | [[https://vc.compiler.company/shed/wm/file/tip/modeline/maildir.lisp][wm/modeline/maildir.lisp]]          | 3k   | 2026-01-10 20:05:07 |
 | [[https://vc.compiler.company/shed/wm/file/tip/modeline/mem.lisp][wm/modeline/mem.lisp]]              | 2.4k | 2026-01-06 21:16:30 |
-| [[https://vc.compiler.company/shed/wm/file/tip/modeline/modeline.sys][wm/modeline/modeline.sys]]          | 309  | 2026-02-12 20:17:27 |
 | [[https://vc.compiler.company/shed/wm/file/tip/modeline/net.lisp][wm/modeline/net.lisp]]              | 2.7k | 2026-01-13 21:16:38 |
 | [[https://vc.compiler.company/shed/wm/file/tip/modeline/pkg.lisp][wm/modeline/pkg.lisp]]              | 853  | 2026-01-22 13:20:56 |
 | [[https://vc.compiler.company/shed/wm/file/tip/modeline/tray.lisp][wm/modeline/tray.lisp]]             | 28k  | 2026-01-28 14:59:21 |
 | [[https://vc.compiler.company/shed/wm/file/tip/pkg.lisp][wm/pkg.lisp]]                       | 9.7k | 2026-04-13 20:31:21 |
 | [[https://vc.compiler.company/shed/wm/file/tip/prim.lisp][wm/prim.lisp]]                      | 55k  | 2026-02-20 19:11:37 |
-| [[https://vc.compiler.company/shed/wm/file/tip/readme.org][wm/readme.org]]                     | 21k  | 2026-06-09 21:47:06 |
+| [[https://vc.compiler.company/shed/wm/file/tip/readme.org][wm/readme.org]]                     | 21k  | 2026-07-12 15:31:52 |
 | [[https://vc.compiler.company/shed/wm/file/tip/remap-keys.lisp][wm/remap-keys.lisp]]                | 4k   | 2026-01-29 15:39:23 |
 | [[https://vc.compiler.company/shed/wm/file/tip/replace-class.lisp][wm/replace-class.lisp]]             | 3.9k | 2026-02-03 20:11:32 |
 | [[https://vc.compiler.company/shed/wm/file/tip/screen.lisp][wm/screen.lisp]]                    | 19k  | 2026-02-20 19:09:15 |
 | [[https://vc.compiler.company/shed/wm/file/tip/selection.lisp][wm/selection.lisp]]                 | 5k   | 2026-02-20 19:10:39 |
-| [[https://vc.compiler.company/shed/wm/file/tip/skelfile][wm/skelfile]]                       | 1.9k | 2026-07-05 13:50:26 |
+| [[https://vc.compiler.company/shed/wm/file/tip/skelfile][wm/skelfile]]                       | 2.2k | 2026-07-12 15:36:23 |
 | [[https://vc.compiler.company/shed/wm/file/tip/tests.lisp][wm/tests.lisp]]                     | 10k  | 2026-01-29 18:50:45 |
 | [[https://vc.compiler.company/shed/wm/file/tip/tile-group.lisp][wm/tile-group.lisp]]                | 61k  | 2026-01-30 17:50:56 |
 | [[https://vc.compiler.company/shed/wm/file/tip/tile-window.lisp][wm/tile-window.lisp]]               | 22k  | 2026-01-30 17:51:08 |
@@ -299,15 +306,14 @@
 | [[https://vc.compiler.company/shed/wm/file/tip/util/pkg.lisp][wm/util/pkg.lisp]]                  | 2k   | 2026-01-28 22:18:09 |
 | [[https://vc.compiler.company/shed/wm/file/tip/util/screenshot.lisp][wm/util/screenshot.lisp]]           | 6.4k | 2026-04-02 21:54:52 |
 | [[https://vc.compiler.company/shed/wm/file/tip/util/ttf-fonts.lisp][wm/util/ttf-fonts.lisp]]            | 1.2k | 2026-01-13 19:59:04 |
-| [[https://vc.compiler.company/shed/wm/file/tip/util/util.sys][wm/util/util.sys]]                  | 401  | 2026-02-12 20:15:47 |
 | [[https://vc.compiler.company/shed/wm/file/tip/util/windows.lisp][wm/util/windows.lisp]]              | 12k  | 2026-01-28 22:09:19 |
 | [[https://vc.compiler.company/shed/wm/file/tip/window-placement.lisp][wm/window-placement.lisp]]          | 11k  | 2026-01-22 18:57:23 |
 | [[https://vc.compiler.company/shed/wm/file/tip/window.lisp][wm/window.lisp]]                    | 54k  | 2026-02-20 19:13:20 |
 | [[https://vc.compiler.company/shed/wm/file/tip/wm.lisp][wm/wm.lisp]]                        | 11k  | 2026-02-20 19:33:34 |
-| [[https://vc.compiler.company/shed/wm/file/tip/wm.sys][wm/wm.sys]]                         | 1.1k | 2026-04-13 20:32:37 |
+| [[https://vc.compiler.company/shed/wm/file/tip/wm.sys][wm/wm.sys]]                         | 1.8k | 2026-07-12 15:56:23 |
 | [[https://vc.compiler.company/shed/wm/file/tip/wse.lisp][wm/wse.lisp]]                       | 4.2k | 2026-02-03 22:07:19 |
 | [[https://vc.compiler.company/shed/xlib/file/tip/.hgignore][xlib/.hgignore]]                    | 21   | 2025-12-30 20:54:56 |
-| [[https://vc.compiler.company/shed/xlib/file/tip/.stash/api.org][xlib/.stash/api.org]]               | 937k | 2026-07-05 13:53:01 |
+| [[https://vc.compiler.company/shed/xlib/file/tip/.stash/api.org][xlib/.stash/api.org]]               | 928k | 2026-07-12 16:06:34 |
 | [[https://vc.compiler.company/shed/xlib/file/tip/LICENSE][xlib/LICENSE]]                      | 0    | 2026-01-06 22:40:35 |
 | [[https://vc.compiler.company/shed/xlib/file/tip/attributes.lisp][xlib/attributes.lisp]]              | 22k  | 2026-02-02 19:25:43 |
 | [[https://vc.compiler.company/shed/xlib/file/tip/buffer.lisp][xlib/buffer.lisp]]                  | 43k  | 2026-01-28 14:38:50 |
@@ -354,6 +360,6 @@
 | [[https://vc.compiler.company/shed/xlib/file/tip/translate.lisp][xlib/translate.lisp]]               | 13k  | 2026-02-07 19:00:21 |
 | [[https://vc.compiler.company/shed/xlib/file/tip/truetype.lisp][xlib/truetype.lisp]]                | 29k  | 2026-01-28 22:11:04 |
 | [[https://vc.compiler.company/shed/xlib/file/tip/xlib.lisp][xlib/xlib.lisp]]                    | 34k  | 2026-06-27 20:40:46 |
-| [[https://vc.compiler.company/shed/xlib/file/tip/xlib.sys][xlib/xlib.sys]]                     | 1.5k | 2026-07-04 15:58:11 |
+| [[https://vc.compiler.company/shed/xlib/file/tip/xlib.sys][xlib/xlib.sys]]                     | 1.5k | 2026-07-12 15:56:36 |
 
 #+END
