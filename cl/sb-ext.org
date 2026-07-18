@@ -1,4 +1,4 @@
-#+setupfile: ../../clean.theme
+#+SETUPFILE: ../../clean.theme
 * SB-EXT
 :PROPERTIES:
 :CUSTOM_ID: SB-EXT
@@ -11,56 +11,57 @@ public: miscellaneous supported extensions to the ANSI Lisp spec
   - COMMON-LISP
 
 - dependents
-  - [[#SB-ACLREPL][SB-ACLREPL]]
-  - [[#SB-SPROF][SB-SPROF]]
-  - [[#SB-EVAL][SB-EVAL]]
-  - [[#SB-DEBUG][SB-DEBUG]]
-  - [[#SB-FORMAT][SB-FORMAT]]
-  - [[#SB-SYS][SB-SYS]]
-  - [[#SB-BIGNUM][SB-BIGNUM]]
-  - [[#SB-CONCURRENCY][SB-CONCURRENCY]]
-  - [[#SB-ASSEM][SB-ASSEM]]
-  - [[#SB-UNIX][SB-UNIX]]
-  - [[#SB-GRAY][SB-GRAY]]
-  - [[#SB-KERNEL][SB-KERNEL]]
-  - [[#SB-PCL][SB-PCL]]
-  - [[#STD-USER][STD-USER]]
-  - [[#SB-PROFILE][SB-PROFILE]]
-  - [[#PK-USER][PK-USER]]
-  - [[#OBJ/URL][OBJ/URL]]
-  - [[#SB-X86-64-ASM][SB-X86-64-ASM]]
-  - [[#SB-ALIEN][SB-ALIEN]]
-  - [[#SKEL/CLI][SKEL/CLI]]
-  - [[#SB-WALKER][SB-WALKER]]
-  - [[#SB-C][SB-C]]
-  - [[#SB-REGALLOC][SB-REGALLOC]]
-  - [[#SKEL/HOMER/CLI][SKEL/HOMER/CLI]]
-  - [[#SB-FASL][SB-FASL]]
-  - [[#STD/STRING][STD/STRING]]
-  - [[#MK-USER][MK-USER]]
-  - [[#SB-DISASSEM][SB-DISASSEM]]
-  - [[#SB-APROF][SB-APROF]]
-  - [[#SB-PRETTY][SB-PRETTY]]
-  - [[#SK-USER][SK-USER]]
-  - [[#SB-BROTHERTREE][SB-BROTHERTREE]]
-  - [[#SB-LOCKLESS][SB-LOCKLESS]]
-  - [[#CORE][CORE]]
-  - [[#HR-USER][HR-USER]]
-  - [[#SB-BSD-SOCKETS-INTERNAL][SB-BSD-SOCKETS-INTERNAL]]
-  - [[#KR-USER][KR-USER]]
-  - [[#DAT/TAR][DAT/TAR]]
-  - [[#COMMON-LISP-USER][COMMON-LISP-USER]]
-  - [[#SB-VM][SB-VM]]
-  - [[#SB-IMPL][SB-IMPL]]
-  - [[#SB-DI][SB-DI]]
+  - [[id:38][SB-SPROF]]
+  - [[id:28][SB-EVAL]]
+  - [[id:11][SB-DEBUG]]
+  - [[id:24][SB-FORMAT]]
+  - [[id:5][SB-SYS]]
+  - [[id:23][SB-BIGNUM]]
+  - [[id:84][SB-CONCURRENCY]]
+  - [[id:22][SB-ASSEM]]
+  - [[id:10][SB-UNIX]]
+  - [[id:33][SB-GRAY]]
+  - [[id:4][SB-KERNEL]]
+  - [[id:14][SB-PCL]]
+  - [[id:136][STD-USER]]
+  - [[id:36][SB-PROFILE]]
+  - [[id:477][PK-USER]]
+  - [[id:227][OBJ/URL]]
+  - [[id:35][SB-X86-64-ASM]]
+  - [[id:18][SB-ALIEN]]
+  - [[id:471][SKEL/CLI]]
+  - [[id:34][SB-WALKER]]
+  - [[id:12][SB-C]]
+  - [[id:26][SB-REGALLOC]]
+  - [[id:481][SKEL/HOMER/CLI]]
+  - [[id:21][SB-FASL]]
+  - [[id:109][STD/STRING]]
+  - [[id:489][MK-USER]]
+  - [[id:25][SB-DISASSEM]]
+  - [[id:9][SB-APROF]]
+  - [[id:20][SB-PRETTY]]
+  - [[id:474][SK-USER]]
+  - [[id:31][SB-BROTHERTREE]]
+  - [[id:27][SB-LOCKLESS]]
+  - [[id:490][CORE]]
+  - [[id:483][HR-USER]]
+  - [[id:81][SB-BSD-SOCKETS-INTERNAL]]
+  - [[id:479][KR-USER]]
+  - [[id:305][DAT/TAR]]
+  - [[id:3][COMMON-LISP-USER]]
+  - [[id:6][SB-VM]]
+  - [[id:7][SB-IMPL]]
+  - [[id:15][SB-DI]]
 
 ** SIMD-PACK-512 :class:
 :PROPERTIES:
 :ID: 3287912861776
 :CUSTOM_ID: SB-EXT:SIMD-PACK-512
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIMD-PACK-512 names the built-in-class #<BUILT-IN-CLASS SB-EXT:SIMD-PACK-512>:
   Class precedence-list: SIMD-PACK-512, T
   Direct superclasses: T
@@ -70,6 +71,7 @@ SIMD-PACK-512 names the built-in-class #<BUILT-IN-CLASS SB-EXT:SIMD-PACK-512>:
 
 SIMD-PACK-512 names a primitive type-specifier:
   Lambda-list: (&OPTIONAL (ELEMENT-TYPE-SPEC (QUOTE *)))
+
 #+end_example
 
 :definitions:
@@ -80,8 +82,10 @@ SIMD-PACK-512 names a primitive type-specifier:
 :ID: 208802999320
 :CUSTOM_ID: SB-EXT:GET-TIME-OF-DAY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GET-TIME-OF-DAY names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL
@@ -91,13 +95,14 @@ GET-TIME-OF-DAY names a compiled function:
     the UNIX epoch (January 1st 1970.)
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;UNIX.LISP
+
 #+end_example
 
 - Called by
   - RT/TRACING::%%GET-TIME-USEC
   - RT/TRACING::%%START-CLOCK
   - OBJ/TIME::GET-CURRENT-TIMETAG
-  - [[id:3553401590333][UNIX-TIME]]
+  - [[id:3553401589994][UNIX-TIME]]
   - OBJ/TIME::%GET-CURRENT-TIME
 
 :definitions:
@@ -108,8 +113,10 @@ GET-TIME-OF-DAY names a compiled function:
 :ID: 1700475392559
 :CUSTOM_ID: SB-EXT:PROCESS-INPUT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-INPUT names a compiled function:
   An accessor for SB-IMPL::PROCESS
   Lambda-list: (INSTANCE)
@@ -123,11 +130,12 @@ PROCESS-INPUT names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (T SB-IMPL::PROCESS) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 - Called by
   - UIOP/LAUNCH-PROGRAM:LAUNCH-PROGRAM
-  - [[id:3634390899053][GNUPLOT-SEND]]
+  - [[id:3634390898700][GNUPLOT-SEND]]
   - CLI/TOOLS/TERM::INIT-TMUX-CONTROLLER
 
 :definitions:
@@ -138,8 +146,10 @@ PROCESS-INPUT names a compiled function:
 :ID: 3988418167207
 :CUSTOM_ID: SB-EXT:PROCESS-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-P names a compiled function:
   A predicate for SB-IMPL::PROCESS
   Lambda-list: (OBJECT)
@@ -147,6 +157,7 @@ PROCESS-P names a compiled function:
   Documentation:
     T if OBJECT is a PROCESS, NIL otherwise.
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 :definitions:
@@ -157,8 +168,10 @@ PROCESS-P names a compiled function:
 :ID: 295547775162
 :CUSTOM_ID: SB-EXT:NATIVE-PATHNAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NATIVE-PATHNAME names a compiled function:
   Lambda-list: (PATHSPEC)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
@@ -166,6 +179,7 @@ NATIVE-PATHNAME names a compiled function:
     Convert PATHSPEC (a pathname designator) into a pathname, assuming
     the operating system native pathname conventions.
   Source file: SYS:SRC;CODE;TARGET-PATHNAME.LISP
+
 #+end_example
 
 :definitions:
@@ -176,13 +190,16 @@ NATIVE-PATHNAME names a compiled function:
 :ID: 3808842397081
 :CUSTOM_ID: SB-EXT:OVERWRITE
 :ALLOC: HEAP IMMOBILE
-:END:** STEP-FORM-CONDITION :condition:class:
+:END:
+** STEP-FORM-CONDITION :condition:class:
 :PROPERTIES:
 :ID: 4339976732021
 :CUSTOM_ID: SB-EXT:STEP-FORM-CONDITION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STEP-FORM-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:STEP-FORM-CONDITION>:
   Documentation:
     Condition signalled by code compiled with
@@ -197,6 +214,7 @@ STEP-FORM-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:S
     SB-KERNEL::ARGS
       Initargs: :ARGS
       Readers: STEP-CONDITION-ARGS
+
 #+end_example
 
 :definitions:
@@ -207,12 +225,15 @@ STEP-FORM-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:S
 :ID: 2765882635148
 :CUSTOM_ID: SB-EXT:DEPRECATION-CONDITION-RUNTIME-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEPRECATION-CONDITION-RUNTIME-ERROR names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -223,8 +244,10 @@ DEPRECATION-CONDITION-RUNTIME-ERROR names a compiled function:
 :ID: 3478317766966
 :CUSTOM_ID: SB-EXT:%MAKE-SIMD-PACK-256-SINGLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MAKE-SIMD-PACK-256-SINGLE names a compiled function:
   Lambda-list: (A B C D E F G H)
   Declared type: (FUNCTION
@@ -233,6 +256,7 @@ DEPRECATION-CONDITION-RUNTIME-ERROR names a compiled function:
                   (VALUES (SB-EXT:SIMD-PACK-256 SINGLE-FLOAT) &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -245,14 +269,17 @@ DEPRECATION-CONDITION-RUNTIME-ERROR names a compiled function:
 :ID: 1054720560246
 :CUSTOM_ID: SB-EXT:*MUFFLED-WARNINGS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*MUFFLED-WARNINGS* names a special variable:
+
+*MUFFLED-WARNINGS* names a special variable:
   Value: SB-KERNEL:UNINTERESTING-REDEFINITION
   Documentation:
     A type that ought to specify a subtype of WARNING.  Whenever a
     warning is signaled, if the warning is of this type and is not
     handled by any other handler, it will be muffled.
+
 #+end_example
 
 :definitions:
@@ -263,19 +290,23 @@ DEPRECATION-CONDITION-RUNTIME-ERROR names a compiled function:
 :ID: 2160000670403
 :CUSTOM_ID: SB-EXT:RETRY
 :ALLOC: HEAP IMMOBILE
-:END:** FOLD-IDENTICAL-CODE :compiled:function:
+:END:
+** FOLD-IDENTICAL-CODE :compiled:function:
 :PROPERTIES:
 :ID: 2595325241110
 :CUSTOM_ID: SB-EXT:FOLD-IDENTICAL-CODE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FOLD-IDENTICAL-CODE names a compiled function:
   Lambda-list: (&KEY AGGRESSIVE PRESERVE-DOCSTRINGS (PRINT NIL))
   Derived type: (FUNCTION
                  (&KEY (:AGGRESSIVE T) (:PRESERVE-DOCSTRINGS T) (:PRINT T))
                  (VALUES NULL &OPTIONAL))
   Source file: SYS:SRC;CODE;ICF.LISP
+
 #+end_example
 
 :definitions:
@@ -286,14 +317,17 @@ FOLD-IDENTICAL-CODE names a compiled function:
 :ID: 1198724637558
 :CUSTOM_ID: SB-EXT:DESCRIBE-COMPILER-POLICY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DESCRIBE-COMPILER-POLICY names a compiled function:
   Lambda-list: (&OPTIONAL SPEC)
   Derived type: (FUNCTION (&OPTIONAL T) (VALUES &OPTIONAL))
   Documentation:
     Print all global optimization settings, augmented by SPEC.
   Source file: SYS:SRC;CODE;DESCRIBE-POLICY.LISP
+
 #+end_example
 
 :definitions:
@@ -304,8 +338,10 @@ DESCRIBE-COMPILER-POLICY names a compiled function:
 :ID: 3633740498404
 :CUSTOM_ID: SB-EXT:DEFINE-SOURCE-CONTEXT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINE-SOURCE-CONTEXT names a macro:
   Lambda-list: (NAME LAMBDA-LIST &BODY BODY)
   Documentation:
@@ -315,6 +351,7 @@ DEFINE-SOURCE-CONTEXT names a macro:
     style lambda-list used to parse the arguments. The Body should return a
     list of subforms suitable for a "~{~S ~}" format string.
   Source file: SYS:SRC;COMPILER;IR1REPORT.LISP
+
 #+end_example
 
 :definitions:
@@ -325,17 +362,21 @@ DEFINE-SOURCE-CONTEXT names a macro:
 :ID: 2820642927698
 :CUSTOM_ID: SB-EXT:END-BLOCK
 :ALLOC: HEAP IMMOBILE
-:END:** DEPRECATION-CONDITION-VERSION :compiled:function:
+:END:
+** DEPRECATION-CONDITION-VERSION :compiled:function:
 :PROPERTIES:
 :ID: 4304314175374
 :CUSTOM_ID: SB-EXT:DEPRECATION-CONDITION-VERSION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEPRECATION-CONDITION-VERSION names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -346,8 +387,10 @@ DEPRECATION-CONDITION-VERSION names a compiled function:
 :ID: 3099161860850
 :CUSTOM_ID: SB-EXT:STRING-TO-OCTETS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STRING-TO-OCTETS names a compiled function:
   Lambda-list: (STRING &KEY (EXTERNAL-FORMAT DEFAULT) (START 0) END
                        NULL-TERMINATE)
@@ -380,6 +423,7 @@ STRING-TO-OCTETS names a compiled function:
     STRING (or the subsequence bounded by START and END).
   Known attributes: flushable, unsafely-flushable
   Source file: SYS:SRC;CODE;OCTETS.LISP
+
 #+end_example
 
 - Called by
@@ -421,7 +465,7 @@ STRING-TO-OCTETS names a compiled function:
   - NET/SRV/HTTP::SEND-BAD-REQUEST-RESPONSE
   - NET/SRV/HTTP::SEND-HTTP-RESPONSE
   - NET/SRV/HTTP::START-HTTP-OUTPUT
-  - [[id:2460044734616][REQ]]
+  - NET/REQ::REQ
   - NET/REQ::ENSURE-SOCKS5-CONNECTED
   - NET/REQ::BUILD-COOKIE-HEADERS
   - NET/REQ::WRITE-MULTIPART-CONTENT
@@ -435,9 +479,9 @@ STRING-TO-OCTETS names a compiled function:
   - NET/PROTO/SWANK::SLIME-NET-SEND
   - NET/CODEC/DBUS::PACK-STRING
   - NET/CORE::%SOCKADDR
-  - [[id:3818252389684][HS256-DIGEST]]
+  - CRY/JWT:HS256-DIGEST
   - CRY/JWT::BASE64-ENCODE
-  - [[id:1422193928009][MAKE-PASSWORD-HASH]]
+  - CRY/PASSWORD:MAKE-PASSWORD-HASH
   - (WRITE-GNU-LONG-NAME-ENTRY (T T))
   - (WRITE-GNU-LONG-LINK-NAME-ENTRY (T T))
   - DAT/TAR::ATTRIBUTE-PAIR-TO-OCTETS
@@ -463,7 +507,7 @@ STRING-TO-OCTETS names a compiled function:
   - DAT/PARQUET::TCOMPACT-ENCODE-STRING
   - (STREAM-WRITE-STRING (STATIC-STREAM T))
   - OBJ/UUID::DIGEST-UUID
-  - [[id:1329217074005][URL-ENCODE]]
+  - [[id:1329217073774][URL-ENCODE]]
   - (KEYCTL-KDF-PARAMS-OTHERINFO)
   - (KEYCTL-KDF-PARAMS-HASHNAME)
   - SWANK/RPC::ENCODING-ERROR
@@ -483,12 +527,15 @@ STRING-TO-OCTETS names a compiled function:
 :ID: 3114484607956
 :CUSTOM_ID: SB-EXT:MOST-POSITIVE-WORD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MOST-POSITIVE-WORD names a constant variable:
   Value: 18446744073709551615
   Documentation:
     The most positive integer that is of type SB-EXT:WORD.
+
 #+end_example
 
 - Referenced by
@@ -504,8 +551,10 @@ MOST-POSITIVE-WORD names a constant variable:
 :ID: 2792440466464
 :CUSTOM_ID: SB-EXT:IMPLICIT-GENERIC-FUNCTION-WARNING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 IMPLICIT-GENERIC-FUNCTION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:IMPLICIT-GENERIC-FUNCTION-WARNING>:
   Class precedence-list: IMPLICIT-GENERIC-FUNCTION-WARNING, STYLE-WARNING,
                          WARNING, CONDITION, SB-PCL::SLOT-OBJECT, T
@@ -515,6 +564,7 @@ IMPLICIT-GENERIC-FUNCTION-WARNING names the condition-class #<SB-PCL::CONDITION-
     SB-KERNEL::NAME
       Initargs: :NAME
       Readers: IMPLICIT-GENERIC-FUNCTION-NAME
+
 #+end_example
 
 :definitions:
@@ -525,10 +575,13 @@ IMPLICIT-GENERIC-FUNCTION-WARNING names the condition-class #<SB-PCL::CONDITION-
 :ID: 3978449930683
 :CUSTOM_ID: SB-EXT:SINGLE-FLOAT-NEGATIVE-INFINITY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SINGLE-FLOAT-NEGATIVE-INFINITY names a constant variable:
   Value: #.SINGLE-FLOAT-NEGATIVE-INFINITY
+
 #+end_example
 
 :definitions:
@@ -539,14 +592,17 @@ SINGLE-FLOAT-NEGATIVE-INFINITY names a constant variable:
 :ID: 2406656535904
 :CUSTOM_ID: SB-EXT:%MAKE-SIMD-PACK-UB64
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MAKE-SIMD-PACK-UB64 names a compiled function:
   Lambda-list: (LOW HIGH)
   Declared type: (FUNCTION ((UNSIGNED-BYTE 64) (UNSIGNED-BYTE 64))
                   (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 64)) &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -559,8 +615,10 @@ SINGLE-FLOAT-NEGATIVE-INFINITY names a constant variable:
 :ID: 1834916598900
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-DOUBLES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-DOUBLES names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK)
@@ -568,6 +626,7 @@ SINGLE-FLOAT-NEGATIVE-INFINITY names a constant variable:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK.LISP
+
 #+end_example
 
 :definitions:
@@ -580,8 +639,10 @@ SINGLE-FLOAT-NEGATIVE-INFINITY names a constant variable:
 :ID: 2110984568587
 :CUSTOM_ID: SB-EXT:%MAKE-SIMD-PACK-512-UB32
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MAKE-SIMD-PACK-512-UB32 names a compiled function:
   Lambda-list: (P0 P1 P2 P3 P4 P5 P6 P7 P8 P9 P10 P11 P12 P13 P14 P15)
   Declared type: (FUNCTION
@@ -594,6 +655,7 @@ SINGLE-FLOAT-NEGATIVE-INFINITY names a constant variable:
                   (VALUES (SB-EXT:SIMD-PACK-512 (UNSIGNED-BYTE 32)) &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-512.LISP
+
 #+end_example
 
 :definitions:
@@ -606,14 +668,17 @@ SINGLE-FLOAT-NEGATIVE-INFINITY names a constant variable:
 :ID: 1149305243893
 :CUSTOM_ID: SB-EXT:PROCESS-EXIT-CODE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-EXIT-CODE names a compiled function:
   Lambda-list: (PROCESS)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Documentation:
     The exit code or the signal of a stopped process.
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 - Called by
@@ -633,69 +698,69 @@ PROCESS-EXIT-CODE names a compiled function:
   - (VC-PULL (GIT-REPO))
   - (VC-CLONE (GIT-REPO T))
   - (VC-INIT (GIT-REPO))
-  - [[id:1894505708983][RUN-DOT]]
+  - [[id:1894505708546][RUN-DOT]]
   - CLI/TOOLS/FS::RUN-RCLONE
   - CLI/TOOLS/FS::RUN-BTRFS
   - CLI/TOOLS/MAIL::RUN-OFFLINEIMAP*
   - CLI/TOOLS/MAIL::RUN-NOTMUCH*
   - CLI/TOOLS/MEDIA::RUN-PICARD
   - CLI/TOOLS/MEDIA::RUN-WIREPLUMBER
-  - [[id:1687205762813][RUN-MPV]]
-  - [[id:2518889831848][RUN-FFMPEG]]
+  - [[id:1687205762122][RUN-MPV]]
+  - [[id:2518889831978][RUN-FFMPEG]]
   - CLI/TOOLS/MEDIA::RUN-FLAMEGRAPH.PL
   - CLI/TOOLS/NET::RUN-RSYNC
-  - [[id:4023852674514][RUN-TRANSMISSION-DAEMON]]
-  - [[id:2797832193531][RUN-TRANSMISSION-REMOTE]]
-  - [[id:1169381475933][RUN-CADDY*]]
-  - [[id:399332567433][YTDL-JSON]]
-  - [[id:1447885832504][YTDL-LIST]]
-  - [[id:44615966125][YTDL-USER-AGENT]]
-  - [[id:3154016486823][YTDL-EXTRACTORS]]
-  - [[id:1098763533844][RUN-YTDL]]
+  - [[id:4023852674460][RUN-TRANSMISSION-DAEMON]]
+  - [[id:2797832193386][RUN-TRANSMISSION-REMOTE]]
+  - [[id:1169381475329][RUN-CADDY*]]
+  - [[id:399332567933][YTDL-JSON]]
+  - [[id:1447885832273][YTDL-LIST]]
+  - [[id:44615966485][YTDL-USER-AGENT]]
+  - [[id:3154016486832][YTDL-EXTRACTORS]]
+  - [[id:1098763533675][RUN-YTDL]]
   - CLI/TOOLS/NET::RUN-NMAP*
-  - [[id:1581110514165][RUN-EASYRSA]]
+  - [[id:1581110513818][RUN-EASYRSA]]
   - CLI/TOOLS/NET::RUN-DNSMASQ
   - CLI/TOOLS/NET::RUN-WG*
-  - [[id:1292840832138][RUN-IP]]
-  - [[id:1244988784982][RUN-BROWSER]]
-  - [[id:2484457047674][RUN-CORE]]
-  - [[id:3642491846817][RUN-SBCL]]
-  - [[id:3810691606265][RUN-BUSCTL]]
-  - [[id:3679037145149][RUN-MACHINECTL]]
-  - [[id:4371988805741][RUN-USERDBCTL]]
-  - [[id:199459979923][RUN-HOMECTL]]
-  - [[id:729526112327][RUN-LOGINCTL]]
-  - [[id:3280819568512][RUN-RESOLVECTL]]
-  - [[id:1008777860747][RUN-NETWORKCTL]]
-  - [[id:643426753427][RUN-JOURNALCTL]]
-  - [[id:1286404844430][RUN-SYSTEMCTL]]
-  - [[id:1334083052359][QEMU-IMG]]
-  - [[id:1494553078052][RUN-QEMU]]
+  - [[id:1292840832937][RUN-IP]]
+  - [[id:1244988785170][RUN-BROWSER]]
+  - [[id:2484457047641][RUN-CORE]]
+  - [[id:3642491847140][RUN-SBCL]]
+  - [[id:3810691606409][RUN-BUSCTL]]
+  - [[id:3679037145876][RUN-MACHINECTL]]
+  - [[id:4371988805721][RUN-USERDBCTL]]
+  - [[id:199459980175][RUN-HOMECTL]]
+  - [[id:729526112769][RUN-LOGINCTL]]
+  - [[id:3280819567616][RUN-RESOLVECTL]]
+  - [[id:1008777860446][RUN-NETWORKCTL]]
+  - [[id:643426752567][RUN-JOURNALCTL]]
+  - [[id:1286404843520][RUN-SYSTEMCTL]]
+  - [[id:1334083051542][QEMU-IMG]]
+  - [[id:1494553078394][RUN-QEMU]]
   - CLI/TOOLS/VIRT::RUN-MKARCHISO
-  - [[id:2580849120646][RUN-BUILDAH]]
-  - [[id:1284205763984][RUN-PODMAN]]
-  - [[id:2510251664162][RUN-XVFB-RUN]]
+  - [[id:2580849120449][RUN-BUILDAH]]
+  - [[id:1284205764395][RUN-PODMAN]]
+  - [[id:2510251663790][RUN-XVFB-RUN]]
   - CLI/TOOLS/BUILD::RUN-NPX
-  - [[id:1449180910000][RUN-GO]]
+  - [[id:1449180910266][RUN-GO]]
   - CLI/TOOLS/BUILD::RUN-UV
-  - [[id:2123246777867][RUN-RUSTUP]]
-  - [[id:2586149511345][RUN-CARGO]]
-  - [[id:3179275839658][RUN-MESON]]
-  - [[id:567011955211][RUN-NINJA]]
-  - [[id:2729389317602][RUN-CMAKE]]
-  - [[id:2282731159908][RUN-MAKE]]
-  - [[id:4056870646496][RUN-LLDB]]
-  - [[id:197551050261][RUN-GDB]]
-  - [[id:2522068513286][RUN-NVCC]]
-  - [[id:1259037788876][RUN-LD]]
-  - [[id:1104867127566][RUN-CC]]
+  - [[id:2123246778108][RUN-RUSTUP]]
+  - [[id:2586149511624][RUN-CARGO]]
+  - [[id:3179275839956][RUN-MESON]]
+  - [[id:567011955247][RUN-NINJA]]
+  - [[id:2729389317439][RUN-CMAKE]]
+  - [[id:2282731159887][RUN-MAKE]]
+  - [[id:4056870645946][RUN-LLDB]]
+  - [[id:197551049996][RUN-GDB]]
+  - [[id:2522068512881][RUN-NVCC]]
+  - [[id:1259037788970][RUN-LD]]
+  - [[id:1104867128006][RUN-CC]]
   - CLI/TOOLS/PACMAN::RUN-MAKEPKG
   - CLI/TOOLS/PACMAN::RUN-MKARCHROOT
-  - [[id:3030366317482][RUN-PACMAN]]
-  - [[id:2330418724938][RUN-TMUX]]
-  - [[id:1767981764663][RUN-FBTERM]]
-  - [[id:222145079451][RUN-SCRIPTREPLAY]]
-  - [[id:2098589947638][RUN-SCRIPT]]
+  - [[id:3030366317340][RUN-PACMAN]]
+  - [[id:2330418725431][RUN-TMUX]]
+  - [[id:1767981765418][RUN-FBTERM]]
+  - [[id:222145080039][RUN-SCRIPTREPLAY]]
+  - [[id:2098589947708][RUN-SCRIPT]]
   - STD/DEFSYS::COMPILE-GROVEL-COMPONENT
 
 :definitions:
@@ -706,13 +771,16 @@ PROCESS-EXIT-CODE names a compiled function:
 :ID: 3048618946151
 :CUSTOM_ID: SB-EXT:*INLINE-EXPANSION-LIMIT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*INLINE-EXPANSION-LIMIT* names a special variable:
+
+*INLINE-EXPANSION-LIMIT* names a special variable:
   Value: 50
   Documentation:
     an upper limit on the number of inline function calls that will be expanded
     in any given code object (single function or block compilation)
+
 #+end_example
 
 :definitions:
@@ -723,10 +791,13 @@ PROCESS-EXIT-CODE names a compiled function:
 :ID: 3500005293849
 :CUSTOM_ID: SB-EXT:DOUBLE-FLOAT-POSITIVE-INFINITY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DOUBLE-FLOAT-POSITIVE-INFINITY names a constant variable:
   Value: #.DOUBLE-FLOAT-POSITIVE-INFINITY
+
 #+end_example
 
 :definitions:
@@ -737,8 +808,10 @@ DOUBLE-FLOAT-POSITIVE-INFINITY names a constant variable:
 :ID: 3847427965697
 :CUSTOM_ID: SB-EXT:PACKAGE-IMPLEMENTS-LIST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PACKAGE-IMPLEMENTS-LIST names a compiled function:
   Lambda-list: (PACKAGE)
   Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
@@ -746,6 +819,7 @@ PACKAGE-IMPLEMENTS-LIST names a compiled function:
     Returns the packages that PACKAGE is an implementation package
     of. Signals an error if PACKAGE is not a valid package designator.
   Source file: SYS:SRC;CODE;TARGET-PACKAGE.LISP
+
 #+end_example
 
 - Called by
@@ -760,14 +834,17 @@ PACKAGE-IMPLEMENTS-LIST names a compiled function:
 :ID: 2622497059970
 :CUSTOM_ID: SB-EXT:ENABLE-DEBUGGER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ENABLE-DEBUGGER names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
   Documentation:
     Restore the debugger if it has been turned off by DISABLE-DEBUGGER.
   Source file: SYS:SRC;CODE;DEBUG.LISP
+
 #+end_example
 
 - Called by
@@ -786,11 +863,13 @@ ENABLE-DEBUGGER names a compiled function:
 :ID: 2288379267831
 :CUSTOM_ID: SB-EXT:SEARCH-ROOTS
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 SEARCH-ROOTS names a compiled function:
   Lambda-list: (WEAK-POINTERS &KEY (CRITERION OLDEST)
-,                (IGNORE (QUOTE (* ** *** / // ///))) (PRINT T))
+                (IGNORE (QUOTE (* ** *** / // ///))) (PRINT T))
   Declared type: (FUNCTION
                   ((OR LIST SB-EXT:WEAK-POINTER) &KEY
                    (:CRITERION (MEMBER :STATIC :PSEUDO-STATIC :OLDEST))
@@ -879,6 +958,7 @@ SEARCH-ROOTS names a compiled function:
     
     Experimental: subject to change without prior notice.
   Source file: SYS:SRC;CODE;TRACEROOT.LISP
+
 #+end_example
 
 :definitions:
@@ -891,8 +971,10 @@ SEARCH-ROOTS names a compiled function:
 :ID: 1734527872006
 :CUSTOM_ID: SB-EXT:COMPARE-AND-SWAP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPARE-AND-SWAP names a macro:
   Lambda-list: (PLACE OLD NEW)
   Documentation:
@@ -921,6 +1003,7 @@ COMPARE-AND-SWAP names a macro:
     Additionally, the PLACE can be a anything for which a CAS-function has
     been defined.
   Source file: SYS:SRC;CODE;MACROS.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -935,15 +1018,18 @@ COMPARE-AND-SWAP names a macro:
 :ID: 1014354792769
 :CUSTOM_ID: SB-EXT:*EXIT-TIMEOUT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*EXIT-TIMEOUT* names a special variable:
+
+*EXIT-TIMEOUT* names a special variable:
   Declared type: (OR REAL NULL)
   Value: 60
   Documentation:
     Default amount of seconds, if any, EXIT should wait for other
     threads to finish after terminating them. Default value is 60. NIL
     means to wait indefinitely.
+
 #+end_example
 
 :definitions:
@@ -954,9 +1040,11 @@ COMPARE-AND-SWAP names a macro:
 :ID: 1807172090260
 :CUSTOM_ID: SB-EXT:*DERIVE-FUNCTION-TYPES*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*DERIVE-FUNCTION-TYPES* names a special variable:
+
+*DERIVE-FUNCTION-TYPES* names a special variable:
   Value: NIL
   Documentation:
     Should the compiler assume that function types will never change,
@@ -964,6 +1052,7 @@ COMPARE-AND-SWAP names a macro:
     to optimize code which uses those definitions? Setting this true
     gives non-ANSI, early-CMU-CL behavior. It can be useful for improving
     the efficiency of stable code.
+
 #+end_example
 
 :definitions:
@@ -974,12 +1063,15 @@ COMPARE-AND-SWAP names a macro:
 :ID: 2838845391334
 :CUSTOM_ID: SB-EXT:DEPRECATION-CONDITION-NAMESPACE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEPRECATION-CONDITION-NAMESPACE names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -990,8 +1082,10 @@ DEPRECATION-CONDITION-NAMESPACE names a compiled function:
 :ID: 2431397215011
 :CUSTOM_ID: SB-EXT:OCTETS-TO-STRING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 OCTETS-TO-STRING names a compiled function:
   Lambda-list: (VECTOR &KEY (EXTERNAL-FORMAT DEFAULT) (START 0) END)
   Declared type: (FUNCTION
@@ -1016,6 +1110,7 @@ OCTETS-TO-STRING names a compiled function:
     subsequence bounded by START and END).
   Known attributes: flushable, unsafely-flushable
   Source file: SYS:SRC;CODE;OCTETS.LISP
+
 #+end_example
 
 - Called by
@@ -1023,7 +1118,7 @@ OCTETS-TO-STRING names a compiled function:
   - SB-POSIX:MKSTEMP
   - SB-POSIX:MKTEMP
   - SKEL/MPK/DB:GET-METADATA*
-  - [[id:845534044792][SK-LOG-LIST]]
+  - [[id:845534044901][SK-LOG-LIST]]
   - ORGAN/DB::OG-VALUES
   - (GET-VAL (RDB STRING))
   - RDB::TRANSACTION-NAME-RAW
@@ -1037,18 +1132,18 @@ OCTETS-TO-STRING names a compiled function:
   - NET/SRV/HTTP::RAW-POST-DATA
   - NET/REQ::DECODE-BODY
   - NET/REQ::DETECT-CHARSET-FROM-HTML
-  - [[id:3903738469583][PARSE-SET-COOKIE-HEADER]]
+  - [[id:3903738469649][PARSE-SET-COOKIE-HEADER]]
   - NET/COOKIE::PARSE-COOKIE-DATE
   - NET/PROTO/DBUS::PARSE-AUTHENTICATION-RESPONSE
   - NET/PROTO/DBUS::UNESCAPE-SERVER-ADDRESSES-STRING
-  - [[id:703352616684][MAKE-MULTIPART-PARSER]]
+  - [[id:703352616845][MAKE-MULTIPART-PARSER]]
   - NET/PROTO/SWANK::SLIME-NET-READ
   - NET/CODEC/DBUS::UNPACK-STRING
   - (SERIALIZE (TLV (EQL STRING)))
-  - [[id:2199542550871][JWT-DECODE]]
+  - CRY/JWT:JWT-DECODE
   - (SLOT-UNBOUND (T GNU-LONG-NAME-ENTRY (EQL LONG-NAME)))
   - (SLOT-UNBOUND (T GNU-LONG-LINK-NAME-ENTRY (EQL LONG-LINK-NAME)))
-  - [[id:164355415698][READ-ATTRIBUTE]]
+  - DAT/TAR:READ-ATTRIBUTE
   - DAT/TAR::READ-ATTRIBUTE-LENGTH
   - DAT/TAR::GNU-HEADER-READ-%%PADDING-FROM-BUFFER
   - DAT/TAR::GNU-HEADER-READ-LONGNAMES-FROM-BUFFER
@@ -1067,14 +1162,14 @@ OCTETS-TO-STRING names a compiled function:
   - DAT/TAR::V7-HEADER-READ-%%PADDING-FROM-BUFFER
   - DAT/TAR::V7-HEADER-READ-LINKNAME-FROM-BUFFER
   - DAT/TAR::V7-HEADER-READ-NAME-FROM-BUFFER
-  - [[id:1048245829781][DECODE-ASN1-TIME]]
+  - DAT/ASN1:DECODE-ASN1-TIME
   - (DECODE-ASN1-STRING (T (EQL 30)))
   - (DECODE-ASN1-STRING (T (EQL 20)))
   - (DECODE-ASN1-STRING (T (EQL 28)))
   - (DECODE-ASN1-STRING (T (EQL 12)))
   - (DECODE-ASN1-STRING (T (EQL 19)))
   - (DECODE-ASN1-STRING (T (EQL 22)))
-  - [[id:4065675793341][URL-DECODE]]
+  - [[id:4065675792800][URL-DECODE]]
   - SWANK/RPC:READ-PACKET
   - [[id:1738185336751][UTF8-TO-STRING]]
 
@@ -1090,8 +1185,10 @@ OCTETS-TO-STRING names a compiled function:
 :ID: 4129275452320
 :CUSTOM_ID: SB-EXT:WEAK-POINTER-VALUE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WEAK-POINTER-VALUE names a compiled function:
   Lambda-list: (WEAK-POINTER)
   Derived type: (FUNCTION (SB-EXT:WEAK-POINTER) (VALUES T BOOLEAN &OPTIONAL))
@@ -1101,13 +1198,14 @@ WEAK-POINTER-VALUE names a compiled function:
     returns the values NIL and NIL.
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;WEAK.LISP
+
 #+end_example
 
 - Called by
   - SB-INTROSPECT:MAP-ROOT
   - SB-INTROSPECT::COLLECT-XREF
   - OBJ/CACHE::MAP-CACHE
-  - [[id:894864018780][GET-CACHE]]
+  - [[id:894864018938][GET-CACHE]]
   - (EMACS-INSPECT (WEAK-POINTER))
   - [[id:1805801775833][DEEP-SIZE]]
 
@@ -1119,14 +1217,17 @@ WEAK-POINTER-VALUE names a compiled function:
 :ID: 1579958735003
 :CUSTOM_ID: SB-EXT:WITHOUT-PACKAGE-LOCKS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITHOUT-PACKAGE-LOCKS names a macro:
   Lambda-list: (&BODY BODY)
   Documentation:
     Ignores all runtime package lock violations during the execution of
     body. Body can begin with declarations.
   Source file: SYS:SRC;CODE;PACKAGE.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -1142,8 +1243,10 @@ WITHOUT-PACKAGE-LOCKS names a macro:
 :ID: 889583496602
 :CUSTOM_ID: SB-EXT:GET-BYTES-CONSED
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GET-BYTES-CONSED names a compiled function:
   Lambda-list: ()
   Declared type: (FUNCTION NIL (VALUES UNSIGNED-BYTE &OPTIONAL))
@@ -1156,6 +1259,7 @@ GET-BYTES-CONSED names a compiled function:
     more microefficient interface and submit it as a patch.
   Known attributes: flushable, unsafely-flushable
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 :definitions:
@@ -1168,8 +1272,10 @@ GET-BYTES-CONSED names a compiled function:
 :ID: 3811910378216
 :CUSTOM_ID: SB-EXT:PROCESS-PLIST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-PLIST names a compiled function:
   An accessor for SB-IMPL::PROCESS
   Lambda-list: (INSTANCE)
@@ -1183,6 +1289,7 @@ PROCESS-PLIST names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (T SB-IMPL::PROCESS) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 :definitions:
@@ -1193,8 +1300,10 @@ PROCESS-PLIST names a compiled function:
 :ID: 3760419664463
 :CUSTOM_ID: SB-EXT:PACKAGE-LOCKED-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PACKAGE-LOCKED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:PACKAGE-LOCKED-ERROR>:
   Documentation:
     Subtype of SB-EXT:PACKAGE-LOCK-VIOLATION. An error of this type is
@@ -1206,6 +1315,7 @@ PACKAGE-LOCKED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:
   Direct superclasses: PACKAGE-LOCK-VIOLATION
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -1216,8 +1326,10 @@ PACKAGE-LOCKED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:
 :ID: 1013953461356
 :CUSTOM_ID: SB-EXT:WITH-LOCKED-HASH-TABLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-LOCKED-HASH-TABLE names a macro:
   Lambda-list: ((HASH-TABLE) &BODY BODY)
   Documentation:
@@ -1228,6 +1340,7 @@ WITH-LOCKED-HASH-TABLE names a macro:
     of hash-table accesses not surrounded by WITH-LOCKED-HASH-TABLE is
     unspecified.
   Source file: SYS:SRC;CODE;TARGET-EXTENSIONS.LISP
+
 #+end_example
 
 :definitions:
@@ -1238,8 +1351,10 @@ WITH-LOCKED-HASH-TABLE names a macro:
 :ID: 3229368522554
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-256-DOUBLES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-256-DOUBLES names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-256)
@@ -1248,6 +1363,7 @@ WITH-LOCKED-HASH-TABLE names a macro:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-256.LISP
+
 #+end_example
 
 :definitions:
@@ -1260,8 +1376,10 @@ WITH-LOCKED-HASH-TABLE names a macro:
 :ID: 2879651507717
 :CUSTOM_ID: SB-EXT:ADD-IMPLEMENTATION-PACKAGE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ADD-IMPLEMENTATION-PACKAGE names a compiled function:
   Lambda-list: (PACKAGES-TO-ADD &OPTIONAL (PACKAGE *PACKAGE*))
   Derived type: (FUNCTION (T &OPTIONAL T) (VALUES LIST &OPTIONAL))
@@ -1270,6 +1388,7 @@ ADD-IMPLEMENTATION-PACKAGE names a compiled function:
     an error if PACKAGE or any of the PACKAGES-TO-ADD is not a valid
     package designator.
   Source file: SYS:SRC;CODE;TARGET-PACKAGE.LISP
+
 #+end_example
 
 - Called by
@@ -1283,8 +1402,10 @@ ADD-IMPLEMENTATION-PACKAGE names a compiled function:
 :ID: 2563836474790
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-256-UB64S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-256-UB64S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-256)
@@ -1293,6 +1414,7 @@ ADD-IMPLEMENTATION-PACKAGE names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-256.LISP
+
 #+end_example
 
 :definitions:
@@ -1305,8 +1427,10 @@ ADD-IMPLEMENTATION-PACKAGE names a compiled function:
 :ID: 1924222979765
 :CUSTOM_ID: SB-EXT:SEED-RANDOM-STATE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SEED-RANDOM-STATE names a compiled function:
   Lambda-list: (&OPTIONAL STATE)
   Declared type: (FUNCTION
@@ -1347,6 +1471,7 @@ SEED-RANDOM-STATE names a compiled function:
     <http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html>
   Known attributes: flushable, unsafely-flushable
   Source file: SYS:SRC;CODE;TARGET-RANDOM.LISP
+
 #+end_example
 
 :definitions:
@@ -1359,8 +1484,10 @@ SEED-RANDOM-STATE names a compiled function:
 :ID: 1310930604506
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-UB32S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-UB32S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK)
@@ -1369,6 +1496,7 @@ SEED-RANDOM-STATE names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK.LISP
+
 #+end_example
 
 :definitions:
@@ -1381,8 +1509,10 @@ SEED-RANDOM-STATE names a compiled function:
 :ID: 1513292753699
 :CUSTOM_ID: SB-EXT:DYNAMIC-SPACE-SIZE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DYNAMIC-SPACE-SIZE names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
@@ -1390,6 +1520,7 @@ DYNAMIC-SPACE-SIZE names a compiled function:
     Size of the dynamic space in bytes.
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 :definitions:
@@ -1400,14 +1531,17 @@ DYNAMIC-SPACE-SIZE names a compiled function:
 :ID: 3477259528639
 :CUSTOM_ID: SB-EXT:*EFFICIENCY-NOTE-LIMIT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*EFFICIENCY-NOTE-LIMIT* names a special variable:
+
+*EFFICIENCY-NOTE-LIMIT* names a special variable:
   Declared type: (OR NULL (UNSIGNED-BYTE 44))
   Value: 2
   Documentation:
     This is the maximum number of possible optimization alternatives will be
     mentioned in a particular efficiency note. NIL means no limit.
+
 #+end_example
 
 :definitions:
@@ -1418,8 +1552,10 @@ DYNAMIC-SPACE-SIZE names a compiled function:
 :ID: 3640870826718
 :CUSTOM_ID: SB-EXT:NAME-CONFLICT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NAME-CONFLICT names a compiled function:
   Lambda-list: (PACKAGE FUNCTION DATUM &REST SYMBOLS)
   Derived type: (FUNCTION (T T T &REST T) *)
@@ -1441,6 +1577,7 @@ NAME-CONFLICT names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:NAME-CO
     SB-IMPL::SYMBOLS
       Initargs: :SYMBOLS
       Readers: NAME-CONFLICT-SYMBOLS
+
 #+end_example
 
 :definitions:
@@ -1451,8 +1588,10 @@ NAME-CONFLICT names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:NAME-CO
 :ID: 3699721434453
 :CUSTOM_ID: SB-EXT:TIMER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TIMER names the structure-class #<STRUCTURE-CLASS SB-EXT:TIMER>:
   Documentation:
     Timer type. Do not rely on timers being structs as it may change in
@@ -1486,6 +1625,7 @@ TIMER names the structure-class #<STRUCTURE-CLASS SB-EXT:TIMER>:
     SB-IMPL::CANCEL-FUNCTION
       Type: (OR NULL FUNCTION)
       Initform: NIL
+
 #+end_example
 
 :definitions:
@@ -1498,8 +1638,10 @@ TIMER names the structure-class #<STRUCTURE-CLASS SB-EXT:TIMER>:
 :ID: 584233629212
 :CUSTOM_ID: SB-EXT:FILE-EXISTS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FILE-EXISTS names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:FILE-EXISTS>:
   Class precedence-list: FILE-EXISTS, SB-INT:SIMPLE-FILE-ERROR,
                          SIMPLE-CONDITION, FILE-ERROR, ERROR, SERIOUS-CONDITION,
@@ -1507,6 +1649,7 @@ FILE-EXISTS names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:FILE-EXIS
   Direct superclasses: SB-INT:SIMPLE-FILE-ERROR
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -1517,8 +1660,10 @@ FILE-EXISTS names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:FILE-EXIS
 :ID: 2777616146352
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-512-UB16S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-512-UB16S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-512)
@@ -1541,6 +1686,7 @@ FILE-EXISTS names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:FILE-EXIS
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-512.LISP
+
 #+end_example
 
 :definitions:
@@ -1553,8 +1699,10 @@ FILE-EXISTS names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:FILE-EXIS
 :ID: 936461926173
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-512-SB32S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-512-SB32S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-512)
@@ -1567,6 +1715,7 @@ FILE-EXISTS names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:FILE-EXIS
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-512.LISP
+
 #+end_example
 
 :definitions:
@@ -1579,12 +1728,15 @@ FILE-EXISTS names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:FILE-EXIS
 :ID: 878384877623
 :CUSTOM_ID: SB-EXT:SET-MACRO-POLICY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SET-MACRO-POLICY names a compiled function:
   Lambda-list: (LIST)
   Derived type: (FUNCTION (T) (VALUES SB-C:POLICY &OPTIONAL))
   Source file: SYS:SRC;COMPILER;POLICY.LISP
+
 #+end_example
 
 :definitions:
@@ -1595,8 +1747,10 @@ SET-MACRO-POLICY names a compiled function:
 :ID: 2013982305334
 :CUSTOM_ID: SB-EXT:PROCESS-OUTPUT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-OUTPUT names a compiled function:
   An accessor for SB-IMPL::PROCESS
   Lambda-list: (INSTANCE)
@@ -1610,20 +1764,21 @@ PROCESS-OUTPUT names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (T SB-IMPL::PROCESS) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 - Called by
   - UIOP/LAUNCH-PROGRAM:LAUNCH-PROGRAM
   - (ID (HG-REPO))
   - (ID (GIT-REPO))
-  - [[id:4228979111152][NOTMUCH-ADDRESS]]
-  - [[id:4346410973387][NOTMUCH-COUNT]]
-  - [[id:873064480850][NOTMUCH-SHOW]]
-  - [[id:3474792723808][NOTMUCH-SEARCH]]
+  - [[id:4228979111704][NOTMUCH-ADDRESS]]
+  - [[id:4346410973204][NOTMUCH-COUNT]]
+  - [[id:873064481204][NOTMUCH-SHOW]]
+  - [[id:3474792724106][NOTMUCH-SEARCH]]
   - CLI/TOOLS/NET::RUN-WG*
-  - [[id:1292840832138][RUN-IP]]
-  - [[id:1244988784982][RUN-BROWSER]]
-  - [[id:1259037788876][RUN-LD]]
+  - [[id:1292840832937][RUN-IP]]
+  - [[id:1244988785170][RUN-BROWSER]]
+  - [[id:1259037788970][RUN-LD]]
   - CLI/TOOLS/TERM::INIT-TMUX-CONTROLLER
   - [[id:1655350655694][SUDO-P]]
 
@@ -1635,8 +1790,10 @@ PROCESS-OUTPUT names a compiled function:
 :ID: 3547076095310
 :CUSTOM_ID: SB-EXT:UNENCAPSULATED-FUNCTION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 UNENCAPSULATED-FUNCTION names a compiled function:
   Lambda-list: (FUNCTION)
   Derived type: (FUNCTION (T) (VALUES FUNCTION &OPTIONAL))
@@ -1649,10 +1806,11 @@ UNENCAPSULATED-FUNCTION names a compiled function:
     function even in the presence of encapsulations. For generic
     functions, this is currently always the case.
   Source file: SYS:SRC;CODE;FDEFINITION.LISP
+
 #+end_example
 
 - Called by
-  - [[id:1273945945123][FUNCTION-LAMBDA-LIST]]
+  - [[id:1273945945456][FUNCTION-LAMBDA-LIST]]
   - SB-INTROSPECT:FIND-DEFINITION-SOURCES-BY-NAME
 
 :definitions:
@@ -1663,8 +1821,10 @@ UNENCAPSULATED-FUNCTION names a compiled function:
 :ID: 1577436143037
 :CUSTOM_ID: SB-EXT:POSIX-GETENV
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 POSIX-GETENV names a compiled function:
   Lambda-list: (NAME)
   Declared type: (FUNCTION (T) (VALUES (OR SIMPLE-STRING NULL) &OPTIONAL))
@@ -1672,12 +1832,13 @@ POSIX-GETENV names a compiled function:
     Return the value part of the environment string name=value which
     corresponds to NAME, or NIL if there is none. See getenv(3).
   Source file: SYS:SRC;CODE;UNIX.LISP
+
 #+end_example
 
 - Called by
   - SB-GROVEL::RUN-C-COMPILER
   - UIOP/OS:GETENV
-  - [[id:832662729929][SET-TERMINAL]]
+  - [[id:832662730408][SET-TERMINAL]]
 
 :definitions:
 - SYS:SRC;CODE;UNIX.LISP
@@ -1687,9 +1848,12 @@ POSIX-GETENV names a compiled function:
 :ID: 2143588533358
 :CUSTOM_ID: SB-EXT:GLOBAL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GLOBAL names an SBCL-specific declaration.
+
 #+end_example
 
 :definitions:
@@ -1701,8 +1865,10 @@ GLOBAL names an SBCL-specific declaration.
 :ID: 3839948421469
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-512-SB64S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-512-SB64S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-512)
@@ -1712,6 +1878,7 @@ GLOBAL names an SBCL-specific declaration.
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-512.LISP
+
 #+end_example
 
 :definitions:
@@ -1724,14 +1891,17 @@ GLOBAL names an SBCL-specific declaration.
 :ID: 2906687023790
 :CUSTOM_ID: SB-EXT:WITH-UNLOCKED-PACKAGES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-UNLOCKED-PACKAGES names a macro:
   Lambda-list: ((&REST PACKAGES) &BODY FORMS)
   Documentation:
     Unlocks PACKAGES for the dynamic scope of the body. Signals an
     error if any of PACKAGES is not a valid package designator.
   Source file: SYS:SRC;CODE;TARGET-PACKAGE.LISP
+
 #+end_example
 
 :definitions:
@@ -1742,8 +1912,10 @@ WITH-UNLOCKED-PACKAGES names a macro:
 :ID: 3416376757071
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-SB32S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-SB32S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK)
@@ -1752,6 +1924,7 @@ WITH-UNLOCKED-PACKAGES names a macro:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK.LISP
+
 #+end_example
 
 :definitions:
@@ -1764,8 +1937,10 @@ WITH-UNLOCKED-PACKAGES names a macro:
 :ID: 3831540437664
 :CUSTOM_ID: SB-EXT:READTABLE-NORMALIZATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 READTABLE-NORMALIZATION names a compiled function:
   Lambda-list: (READTABLE)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
@@ -1783,6 +1958,7 @@ READTABLE-NORMALIZATION names a compiled function:
     Pass T to make READTABLE normalize symbols to NFKC (the default behavior),
     and NIL to suppress normalization.
   Source file: SYS:SRC;CODE;READER.LISP
+
 #+end_example
 
 :definitions:
@@ -1793,8 +1969,10 @@ READTABLE-NORMALIZATION names a compiled function:
 :ID: 2764740157741
 :CUSTOM_ID: SB-EXT:WITH-TIMEOUT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-TIMEOUT names a macro:
   Lambda-list: (EXPIRES &BODY BODY)
   Documentation:
@@ -1820,6 +1998,7 @@ WITH-TIMEOUT names a macro:
     code -- and in essence proofing everything will make the system
     uninterruptible.
   Source file: SYS:SRC;CODE;TIMER.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -1833,8 +2012,10 @@ WITH-TIMEOUT names a macro:
 :ID: 1088549180856
 :CUSTOM_ID: SB-EXT:SET-SBCL-SOURCE-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SET-SBCL-SOURCE-LOCATION names a compiled function:
   Lambda-list: (PATHNAME)
   Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
@@ -1844,6 +2025,7 @@ SET-SBCL-SOURCE-LOCATION names a compiled function:
     existing translations for "SYS:SRC;", "SYS:CONTRIB;", and
     "SYS:OUTPUT;". Other "SYS:" translations are preserved.
   Source file: SYS:SRC;CODE;TARGET-PATHNAME.LISP
+
 #+end_example
 
 :definitions:
@@ -1854,15 +2036,17 @@ SET-SBCL-SOURCE-LOCATION names a compiled function:
 :ID: 3185268536375
 :CUSTOM_ID: SB-EXT:ARRAY-STORAGE-VECTOR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ARRAY-STORAGE-VECTOR names a compiled function:
   Lambda-list: (ARRAY)
-,  Declared type: (FUNCTION (ARRAY) (VALUES (SIMPLE-ARRAY * (*)) &OPTIONAL))
+  Declared type: (FUNCTION (ARRAY) (VALUES (SIMPLE-ARRAY * (*)) &OPTIONAL))
   Documentation:
     Returns the underlying storage vector of ARRAY, which must be a non-displaced array.
     
-,    In SBCL, if ARRAY is a of type (SIMPLE-ARRAY * (*)), it is its own storage
+    In SBCL, if ARRAY is a of type (SIMPLE-ARRAY * (*)), it is its own storage
     vector. Multidimensional arrays, arrays with fill pointers, and adjustable
     arrays have an underlying storage vector with the same ARRAY-ELEMENT-TYPEas
     ARRAY, which this function returns.
@@ -1872,6 +2056,7 @@ ARRAY-STORAGE-VECTOR names a compiled function:
     > cause this function to be removed without further warning.
   Known attributes: unwind, any
   Source file: SYS:SRC;CODE;ARRAY.LISP
+
 #+end_example
 
 - Called by
@@ -1893,8 +2078,10 @@ ARRAY-STORAGE-VECTOR names a compiled function:
 :ID: 2747424159952
 :CUSTOM_ID: SB-EXT:PROCESS-STATUS-HOOK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-STATUS-HOOK names a compiled function:
   An accessor for SB-IMPL::PROCESS
   Lambda-list: (INSTANCE)
@@ -1909,6 +2096,7 @@ PROCESS-STATUS-HOOK names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (T SB-IMPL::PROCESS) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 :definitions:
@@ -1919,8 +2107,10 @@ PROCESS-STATUS-HOOK names a compiled function:
 :ID: 2843668405277
 :CUSTOM_ID: SB-EXT:BYTES-CONSED-BETWEEN-GCS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BYTES-CONSED-BETWEEN-GCS names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
@@ -1939,6 +2129,7 @@ BYTES-CONSED-BETWEEN-GCS names a compiled function:
   Derived type: (FUNCTION ((UNSIGNED-BYTE 62))
                  (VALUES (UNSIGNED-BYTE 62) &OPTIONAL))
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 :definitions:
@@ -1949,8 +2140,10 @@ BYTES-CONSED-BETWEEN-GCS names a compiled function:
 :ID: 2037564689597
 :CUSTOM_ID: SB-EXT:HASH-TABLE-WEAKNESS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 HASH-TABLE-WEAKNESS names a compiled function:
   Lambda-list: (HT)
   Derived type: (FUNCTION (T) (VALUES SYMBOL &OPTIONAL))
@@ -1958,6 +2151,7 @@ HASH-TABLE-WEAKNESS names a compiled function:
     Return the WEAKNESS of HASH-TABLE which is one of NIL, :KEY,
     :VALUE, :KEY-AND-VALUE, :KEY-OR-VALUE.
   Source file: SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+
 #+end_example
 
 - Called by
@@ -1971,14 +2165,17 @@ HASH-TABLE-WEAKNESS names a compiled function:
 :ID: 4105294548907
 :CUSTOM_ID: SB-EXT:LIST-ALL-TIMERS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LIST-ALL-TIMERS names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES LIST &OPTIONAL))
   Documentation:
     Return a list of all timers in the system.
   Source file: SYS:SRC;CODE;TIMER.LISP
+
 #+end_example
 
 :definitions:
@@ -1989,8 +2186,10 @@ LIST-ALL-TIMERS names a compiled function:
 :ID: 2080736525229
 :CUSTOM_ID: SB-EXT:ATOMIC-INCF
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ATOMIC-INCF names a macro:
   Lambda-list: (PLACE &OPTIONAL (DIFF 1))
   Documentation:
@@ -2023,6 +2222,7 @@ ATOMIC-INCF names a macro:
     
     EXPERIMENTAL: Interface subject to change.
   Source file: SYS:SRC;CODE;MACROS.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -2037,8 +2237,10 @@ ATOMIC-INCF names a macro:
 :ID: 1481899105358
 :CUSTOM_ID: SB-EXT:FLOAT-NAN-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FLOAT-NAN-P names a compiled function:
   Lambda-list: (X)
   Declared type: (FUNCTION (FLOAT) (VALUES BOOLEAN &OPTIONAL))
@@ -2047,6 +2249,7 @@ FLOAT-NAN-P names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;FLOAT.LISP
+
 #+end_example
 
 - Called by
@@ -2062,8 +2265,10 @@ FLOAT-NAN-P names a compiled function:
 :ID: 622947949332
 :CUSTOM_ID: SB-EXT:INVALID-FASL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INVALID-FASL names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:INVALID-FASL>:
   Class precedence-list: INVALID-FASL, ERROR, SERIOUS-CONDITION, CONDITION,
                          SB-PCL::SLOT-OBJECT, T
@@ -2079,6 +2284,7 @@ INVALID-FASL names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:INVALID-
     SB-FASL::EXPECTED
       Initargs: :EXPECTED
       Readers: SB-FASL::INVALID-FASL-EXPECTED
+
 #+end_example
 
 :definitions:
@@ -2089,14 +2295,17 @@ INVALID-FASL names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:INVALID-
 :ID: 4054488904768
 :CUSTOM_ID: SB-EXT:*STACK-ALLOCATE-DYNAMIC-EXTENT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*STACK-ALLOCATE-DYNAMIC-EXTENT* names a special variable:
+
+*STACK-ALLOCATE-DYNAMIC-EXTENT* names a special variable:
   Value: T
   Documentation:
     If true (the default), the compiler believes DYNAMIC-EXTENT declarations
     and stack allocates otherwise inaccessible parts of the object whenever
     possible.
+
 #+end_example
 
 :definitions:
@@ -2107,8 +2316,10 @@ INVALID-FASL names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:INVALID-
 :ID: 690227269623
 :CUSTOM_ID: SB-EXT:%MAKE-SIMD-PACK-256-UB64
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MAKE-SIMD-PACK-256-UB64 names a compiled function:
   Lambda-list: (A B C D)
   Declared type: (FUNCTION
@@ -2117,6 +2328,7 @@ INVALID-FASL names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:INVALID-
                   (VALUES (SB-EXT:SIMD-PACK-256 (UNSIGNED-BYTE 64)) &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -2129,8 +2341,10 @@ INVALID-FASL names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:INVALID-
 :ID: 1720383583590
 :CUSTOM_ID: SB-EXT:SIMD-PACK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIMD-PACK names the built-in-class #<BUILT-IN-CLASS SB-EXT:SIMD-PACK>:
   Class precedence-list: SIMD-PACK, T
   Direct superclasses: T
@@ -2140,6 +2354,7 @@ SIMD-PACK names the built-in-class #<BUILT-IN-CLASS SB-EXT:SIMD-PACK>:
 
 SIMD-PACK names a primitive type-specifier:
   Lambda-list: (&OPTIONAL (ELEMENT-TYPE-SPEC (QUOTE *)))
+
 #+end_example
 
 :definitions:
@@ -2150,8 +2365,10 @@ SIMD-PACK names a primitive type-specifier:
 :ID: 3181790966546
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-SB16S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-SB16S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK)
@@ -2161,6 +2378,7 @@ SIMD-PACK names a primitive type-specifier:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK.LISP
+
 #+end_example
 
 :definitions:
@@ -2173,14 +2391,17 @@ SIMD-PACK names a primitive type-specifier:
 :ID: 908087101047
 :CUSTOM_ID: SB-EXT:HEAP-ALLOCATED-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 HEAP-ALLOCATED-P names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (T)
                  (VALUES (MEMBER :STATIC NIL :READ-ONLY :IMMOBILE :DYNAMIC)
                          &OPTIONAL))
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 - Called by
@@ -2195,9 +2416,11 @@ HEAP-ALLOCATED-P names a compiled function:
 :ID: 898020579619
 :CUSTOM_ID: SB-EXT:*SAVE-HOOKS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*SAVE-HOOKS* names a global variable:
+
+*SAVE-HOOKS* names a global variable:
   Declared type: LIST
   Declared always-bound.
   Value: (SWANK/BACKEND:DEINIT-LOG-OUTPUT EXIT-THREAD-POOLS
@@ -2207,6 +2430,7 @@ HEAP-ALLOCATED-P names a compiled function:
     order before creating a saved core image.
     
     Unused by SBCL itself: reserved for user and applications.
+
 #+end_example
 
 :definitions:
@@ -2217,13 +2441,16 @@ HEAP-ALLOCATED-P names a compiled function:
 :ID: 3449004972507
 :CUSTOM_ID: SB-EXT:*MODULE-PROVIDER-FUNCTIONS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*MODULE-PROVIDER-FUNCTIONS* names a special variable:
+
+*MODULE-PROVIDER-FUNCTIONS* names a special variable:
   Value: (STD/DEFSYS::MODULE-PROVIDE-SYSTEM ASDF/OPERATE:MODULE-PROVIDE-ASDF
                                             SB-IMPL::MODULE-PROVIDE-CONTRIB)
   Documentation:
     See REQUIRE.
+
 #+end_example
 
 - Set by
@@ -2240,8 +2467,10 @@ HEAP-ALLOCATED-P names a compiled function:
 :ID: 1665324260694
 :CUSTOM_ID: SB-EXT:STEP-INTO
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STEP-INTO names a compiled function:
   Lambda-list: (CONDITION)
   Derived type: (FUNCTION (T) *)
@@ -2250,6 +2479,7 @@ STEP-INTO names a compiled function:
     condition, stepping into the current form. Signals a CONTROL-ERROR if
     the restart does not exist.
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -2260,13 +2490,16 @@ STEP-INTO names a compiled function:
 :ID: 3493707513343
 :CUSTOM_ID: SB-EXT:*BLOCK-COMPILE-DEFAULT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*BLOCK-COMPILE-DEFAULT* names a special variable:
+
+*BLOCK-COMPILE-DEFAULT* names a special variable:
   Declared type: (MEMBER :SPECIFIED T NIL)
   Value: NIL
   Documentation:
     The default value for the :Block-Compile argument to COMPILE-FILE.
+
 #+end_example
 
 :definitions:
@@ -2277,8 +2510,10 @@ STEP-INTO names a compiled function:
 :ID: 2760129084174
 :CUSTOM_ID: SB-EXT:GENERATION-BYTES-ALLOCATED
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GENERATION-BYTES-ALLOCATED names a compiled function:
   Lambda-list: (GENERATION)
   Derived type: (FUNCTION ((MOD 7)) (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
@@ -2288,6 +2523,7 @@ GENERATION-BYTES-ALLOCATED names a compiled function:
     
     Experimental: interface subject to change.
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 :definitions:
@@ -2298,8 +2534,10 @@ GENERATION-BYTES-ALLOCATED names a compiled function:
 :ID: 2115691816522
 :CUSTOM_ID: SB-EXT:QUIT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 QUIT names a compiled function:
   Lambda-list: (&KEY RECKLESSLY-P (UNIX-STATUS 0))
   Derived type: (FUNCTION (&KEY (:RECKLESSLY-P T) (:UNIX-STATUS T)) *)
@@ -2307,10 +2545,11 @@ QUIT names a compiled function:
     Calls (SB-EXT:EXIT :CODE UNIX-STATUS :ABORT RECKLESSLY-P),
     see documentation for SB-EXT:EXIT.
   Source file: SYS:SRC;CODE;COLD-INIT.LISP
+
 #+end_example
 
 - Called by
-  - [[id:618956223832][INSTALL-REPL]]
+  - [[id:618956223738][INSTALL-REPL]]
   - STD/CORE::HANDLE-SERIOUS-CONDITION
 
 :definitions:
@@ -2321,8 +2560,10 @@ QUIT names a compiled function:
 :ID: 2053433303558
 :CUSTOM_ID: SB-EXT:MAKE-TIMER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-TIMER names a compiled function:
   A constructor for SB-EXT:TIMER
   Lambda-list: (FUNCTION &KEY NAME (THREAD *CURRENT-THREAD*))
@@ -2341,6 +2582,7 @@ MAKE-TIMER names a compiled function:
     apply. In that case, FUNCTION runs with interrupts disabled but
     WITH-INTERRUPTS is allowed.
   Source file: SYS:SRC;CODE;TIMER.LISP
+
 #+end_example
 
 - Called by
@@ -2356,8 +2598,10 @@ MAKE-TIMER names a compiled function:
 :ID: 3972429297287
 :CUSTOM_ID: SB-EXT:PROCESS-PID
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-PID names a compiled function:
   An accessor for SB-IMPL::PROCESS
   Lambda-list: (INSTANCE)
@@ -2366,6 +2610,7 @@ PROCESS-PID names a compiled function:
   Documentation:
     The pid of the child process.
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 - Called by
@@ -2379,8 +2624,10 @@ PROCESS-PID names a compiled function:
 :ID: 3274483728397
 :CUSTOM_ID: SB-EXT:MAP-DIRECTORY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAP-DIRECTORY names a compiled function:
   Lambda-list: (FUNCTION DIRECTORY &KEY (FILES T) (DIRECTORIES T)
                 (CLASSIFY-SYMLINKS T) (ERRORP T))
@@ -2417,10 +2664,11 @@ MAP-DIRECTORY names a compiled function:
     
     Experimental: interface subject to change.
   Source file: SYS:SRC;CODE;FILESYS.LISP
+
 #+end_example
 
 - Called by
-  - [[id:3855052134118][TREE-SITTER-LANGUAGE-FILES]]
+  - TREE-SITTER:TREE-SITTER-LANGUAGE-FILES
 
 :definitions:
 - SYS:SRC;CODE;FILESYS.LISP
@@ -2430,14 +2678,17 @@ MAP-DIRECTORY names a compiled function:
 :ID: 1127213655687
 :CUSTOM_ID: SB-EXT:CANCEL-FINALIZATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CANCEL-FINALIZATION names a compiled function:
   Lambda-list: (OBJECT)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Documentation:
     Cancel all finalizations for OBJECT, returning T if it had a finalizer.
   Source file: SYS:SRC;CODE;FINAL.LISP
+
 #+end_example
 
 - Called by
@@ -2452,13 +2703,16 @@ CANCEL-FINALIZATION names a compiled function:
 :ID: 3844267225392
 :CUSTOM_ID: SB-EXT:RENAME
 :ALLOC: HEAP IMMOBILE
-:END:** %SIMD-PACK-256-UB32S :compiled:function:
+:END:
+** %SIMD-PACK-256-UB32S :compiled:function:
 :PROPERTIES:
 :ID: 2306256753271
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-256-UB32S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-256-UB32S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-256)
@@ -2469,6 +2723,7 @@ CANCEL-FINALIZATION names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-256.LISP
+
 #+end_example
 
 :definitions:
@@ -2481,9 +2736,11 @@ CANCEL-FINALIZATION names a compiled function:
 :ID: 51090881940
 :CUSTOM_ID: SB-EXT:*EVALUATOR-MODE*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*EVALUATOR-MODE* names a special variable:
+
+*EVALUATOR-MODE* names a special variable:
   Declared type: (MEMBER :INTERPRET :COMPILE)
   Declared always-bound.
   Value: :COMPILE
@@ -2491,6 +2748,7 @@ CANCEL-FINALIZATION names a compiled function:
     Toggle between different evaluator implementations. If set to :COMPILE,
     an implementation of EVAL that calls the compiler will be used. If set
     to :INTERPRET, an interpreter will be used.
+
 #+end_example
 
 :definitions:
@@ -2503,8 +2761,10 @@ CANCEL-FINALIZATION names a compiled function:
 :ID: 2729242156615
 :CUSTOM_ID: SB-EXT:TIMEOUT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TIMEOUT names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:TIMEOUT>:
   Documentation:
     Signaled when an operation does not complete within an allotted timebudget.
@@ -2517,6 +2777,7 @@ TIMEOUT names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:TIMEOUT>:
       Initargs: :SECONDS
       Initform: 'NIL
       Readers: SB-KERNEL::TIMEOUT-SECONDS
+
 #+end_example
 
 :definitions:
@@ -2527,9 +2788,12 @@ TIMEOUT names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:TIMEOUT>:
 :ID: 2455877797677
 :CUSTOM_ID: SB-EXT:ENABLE-PACKAGE-LOCKS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ENABLE-PACKAGE-LOCKS names an SBCL-specific declaration.
+
 #+end_example
 
 :definitions:
@@ -2541,8 +2805,10 @@ ENABLE-PACKAGE-LOCKS names an SBCL-specific declaration.
 :ID: 3130328749152
 :CUSTOM_ID: SB-EXT:WITH-CURRENT-SOURCE-FORM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-CURRENT-SOURCE-FORM names a macro:
   Lambda-list: ((&REST FORMS) &BODY BODY)
   Documentation:
@@ -2561,6 +2827,7 @@ WITH-CURRENT-SOURCE-FORM names a macro:
     
     NOTE: This interface is experimental and subject to change.
   Source file: SYS:SRC;CODE;EARLY-EXTENSIONS.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -2574,12 +2841,15 @@ WITH-CURRENT-SOURCE-FORM names a macro:
 :ID: 558435568909
 :CUSTOM_ID: SB-EXT:*INSPECTED*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*INSPECTED* names a special variable:
+
+*INSPECTED* names a special variable:
   Currently unbound.
   Documentation:
     the value currently being inspected in CL:INSPECT
+
 #+end_example
 
 :definitions:
@@ -2590,8 +2860,10 @@ WITH-CURRENT-SOURCE-FORM names a macro:
 :ID: 383618555705
 :CUSTOM_ID: SB-EXT:PROCESS-PTY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-PTY names a compiled function:
   An accessor for SB-IMPL::PROCESS
   Lambda-list: (INSTANCE)
@@ -2605,6 +2877,7 @@ PROCESS-PTY names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (T SB-IMPL::PROCESS) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 :definitions:
@@ -2615,8 +2888,10 @@ PROCESS-PTY names a compiled function:
 :ID: 4087263288506
 :CUSTOM_ID: SB-EXT:SCHEDULE-TIMER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SCHEDULE-TIMER names a compiled function:
   Lambda-list: (TIMER TIME &KEY REPEAT-INTERVAL ABSOLUTE-P
                 (CATCH-UP NIL CATCH-UP-P))
@@ -2637,6 +2912,7 @@ SCHEDULE-TIMER names a compiled function:
     as a suspend and resume cycle of the computer. The default is NIL,
     i.e. do not catch up.
   Source file: SYS:SRC;CODE;TIMER.LISP
+
 #+end_example
 
 - Called by
@@ -2652,20 +2928,23 @@ SCHEDULE-TIMER names a compiled function:
 :ID: 2082377994102
 :CUSTOM_ID: SB-EXT:*USERINIT-PATHNAME-FUNCTION*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*USERINIT-PATHNAME-FUNCTION* names a global variable:
+
+*USERINIT-PATHNAME-FUNCTION* names a global variable:
   Declared always-bound.
-  Value: #<FUNCTION USER-INIT-FILE>
+  Value: #<FUNCTION SB-IMPL::USERINIT-PATHNAME>
   Documentation:
     Designator for a function of zero arguments called to obtain a
     pathname designator or a stream for the default userinit file, or NIL.
     If the function returns NIL, no userinit file is used unless one has
     been specified on the command-line.
+
 #+end_example
 
 - Set by
-  - [[id:3961632409052][MAKE-TOPLEVEL-INIT]]
+  - [[id:3961632409157][MAKE-TOPLEVEL-INIT]]
 
 - Referenced by
   - STD/CORE::SYS-CONFIG-PATH
@@ -2679,15 +2958,18 @@ SCHEDULE-TIMER names a compiled function:
 :ID: 4031353970960
 :CUSTOM_ID: SB-EXT:*AFTER-GC-HOOKS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*AFTER-GC-HOOKS* names a global variable:
+
+*AFTER-GC-HOOKS* names a global variable:
   Declared always-bound.
   Value: NIL
   Documentation:
     Called after each garbage collection, except for garbage collections
     triggered during thread exits. In a multithreaded environment these hooksmay
     run in any thread.
+
 #+end_example
 
 :definitions:
@@ -2698,8 +2980,10 @@ SCHEDULE-TIMER names a compiled function:
 :ID: 878502998894
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-256-SB16S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-256-SB16S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-256)
@@ -2712,6 +2996,7 @@ SCHEDULE-TIMER names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-256.LISP
+
 #+end_example
 
 :definitions:
@@ -2724,8 +3009,10 @@ SCHEDULE-TIMER names a compiled function:
 :ID: 4203530461294
 :CUSTOM_ID: SB-EXT:NATIVE-NAMESTRING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NATIVE-NAMESTRING names a compiled function:
   Lambda-list: (PATHNAME &KEY AS-FILE)
   Derived type: (FUNCTION
@@ -2740,6 +3027,7 @@ NATIVE-NAMESTRING names a compiled function:
     construct a string that names the directory according to the file
     system's syntax for files.
   Source file: SYS:SRC;CODE;TARGET-PATHNAME.LISP
+
 #+end_example
 
 - Called by
@@ -2762,8 +3050,10 @@ NATIVE-NAMESTRING names a compiled function:
 :ID: 2481837387978
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-512-DOUBLES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-512-DOUBLES names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-512)
@@ -2773,6 +3063,7 @@ NATIVE-NAMESTRING names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-512.LISP
+
 #+end_example
 
 :definitions:
@@ -2785,8 +3076,10 @@ NATIVE-NAMESTRING names a compiled function:
 :ID: 4276485930104
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-256-SB64S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-256-SB64S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-256)
@@ -2795,6 +3088,7 @@ NATIVE-NAMESTRING names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-256.LISP
+
 #+end_example
 
 :definitions:
@@ -2807,15 +3101,18 @@ NATIVE-NAMESTRING names a compiled function:
 :ID: 646512317214
 :CUSTOM_ID: SB-EXT:*PRINT-VECTOR-LENGTH*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*PRINT-VECTOR-LENGTH* names a special variable:
+
+*PRINT-VECTOR-LENGTH* names a special variable:
   Declared type: (OR UNSIGNED-BYTE NULL)
   Declared always-bound.
   Value: 200
   Documentation:
-,    Like *PRINT-LENGTH* but works on strings and bit-vectors.
+    Like *PRINT-LENGTH* but works on strings and bit-vectors.
     Does not affect the cases that are already controlled by *PRINT-LENGTH*
+
 #+end_example
 
 - Bound by
@@ -2836,13 +3133,16 @@ NATIVE-NAMESTRING names a compiled function:
 :ID: 991590404969
 :CUSTOM_ID: SB-EXT:SUPERSEDE
 :ALLOC: HEAP IMMOBILE
-:END:** STEP-VALUES-CONDITION :condition:class:
+:END:
+** STEP-VALUES-CONDITION :condition:class:
 :PROPERTIES:
 :ID: 1694511394708
 :CUSTOM_ID: SB-EXT:STEP-VALUES-CONDITION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STEP-VALUES-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:STEP-VALUES-CONDITION>:
   Documentation:
     Condition signalled by code compiled with
@@ -2855,6 +3155,7 @@ STEP-VALUES-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT
   Direct superclasses: SB-KERNEL::STEP-RESULT-CONDITION
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -2865,8 +3166,10 @@ STEP-VALUES-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT
 :ID: 1844730436805
 :CUSTOM_ID: SB-EXT:PRINT-UNREADABLY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PRINT-UNREADABLY names a compiled function:
   Lambda-list: (&OPTIONAL CONDITION)
   Derived type: (FUNCTION (&OPTIONAL T) *)
@@ -2874,6 +3177,7 @@ PRINT-UNREADABLY names a compiled function:
     Transfer control to a restart named SB-EXT:PRINT-UNREADABLY, or
     return NIL if none exists.
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -2884,8 +3188,10 @@ PRINT-UNREADABLY names a compiled function:
 :ID: 639509922258
 :CUSTOM_ID: SB-EXT:TRULY-THE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TRULY-THE names a special operator:
   Lambda-list: (VALUE-TYPE FORM)
   Documentation:
@@ -2902,6 +3208,7 @@ TRULY-THE names a special operator:
   Lambda-list: (TYPE PLACE)
   (undocumented)
   Source file: SYS:SRC;CODE;DEFSETFS.LISP
+
 #+end_example
 
 :definitions:
@@ -2913,8 +3220,10 @@ TRULY-THE names a special operator:
 :ID: 2721330442683
 :CUSTOM_ID: SB-EXT:GENERATION-NUMBER-OF-GCS-BEFORE-PROMOTION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GENERATION-NUMBER-OF-GCS-BEFORE-PROMOTION names a compiled function:
   Lambda-list: (GENERATION)
   Derived type: (FUNCTION ((MOD 7)) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
@@ -2930,6 +3239,7 @@ GENERATION-NUMBER-OF-GCS-BEFORE-PROMOTION names a compiled function:
   Lambda-list: (VALUE GENERATION)
   Derived type: (FUNCTION (T (MOD 7)) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 :definitions:
@@ -2940,8 +3250,10 @@ GENERATION-NUMBER-OF-GCS-BEFORE-PROMOTION names a compiled function:
 :ID: 1162346546376
 :CUSTOM_ID: SB-EXT:MAKE-WEAK-VECTOR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-WEAK-VECTOR names a compiled function:
   Lambda-list: (LENGTH &KEY (INITIAL-CONTENTS NIL CONTENTS-P)
                        (INITIAL-ELEMENT NIL ELEMENT-P))
@@ -2951,6 +3263,7 @@ MAKE-WEAK-VECTOR names a compiled function:
                   (VALUES SIMPLE-VECTOR &OPTIONAL))
   Known attributes: flushable, unsafely-flushable
   Source file: SYS:SRC;CODE;WEAK.LISP
+
 #+end_example
 
 :definitions:
@@ -2963,12 +3276,15 @@ MAKE-WEAK-VECTOR names a compiled function:
 :ID: 485601748321
 :CUSTOM_ID: SB-EXT:WEAK-VECTOR-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WEAK-VECTOR-P names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;WEAK.LISP
+
 #+end_example
 
 :definitions:
@@ -2979,8 +3295,10 @@ WEAK-VECTOR-P names a compiled function:
 :ID: 177775739033
 :CUSTOM_ID: SB-EXT:STEP-CONTINUE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STEP-CONTINUE names a compiled function:
   Lambda-list: (CONDITION)
   Derived type: (FUNCTION (T) *)
@@ -2989,6 +3307,7 @@ STEP-CONTINUE names a compiled function:
     the condition, continuing execution without stepping. Signals a
     CONTROL-ERROR if the restart does not exist.
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -2999,8 +3318,10 @@ STEP-CONTINUE names a compiled function:
 :ID: 2543240020551
 :CUSTOM_ID: SB-EXT:%MAKE-SIMD-PACK-UB32
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MAKE-SIMD-PACK-UB32 names a compiled function:
   Lambda-list: (W X Y Z)
   Declared type: (FUNCTION
@@ -3010,6 +3331,7 @@ STEP-CONTINUE names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK.LISP
+
 #+end_example
 
 :definitions:
@@ -3022,8 +3344,10 @@ STEP-CONTINUE names a compiled function:
 :ID: 252673325738
 :CUSTOM_ID: SB-EXT:PROCESS-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-ERROR names a compiled function:
   An accessor for SB-IMPL::PROCESS
   Lambda-list: (INSTANCE)
@@ -3037,13 +3361,14 @@ PROCESS-ERROR names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (T SB-IMPL::PROCESS) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 - Called by
   - UIOP/LAUNCH-PROGRAM:LAUNCH-PROGRAM
   - CLI/TOOLS/PACMAN::RUN-MAKEPKG
   - CLI/TOOLS/PACMAN::RUN-MKARCHROOT
-  - [[id:3030366317482][RUN-PACMAN]]
+  - [[id:3030366317340][RUN-PACMAN]]
 
 :definitions:
 - SYS:SRC;CODE;RUN-PROGRAM.LISP
@@ -3053,9 +3378,12 @@ PROCESS-ERROR names a compiled function:
 :ID: 420096686552
 :CUSTOM_ID: SB-EXT:ALWAYS-BOUND
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ALWAYS-BOUND names an SBCL-specific declaration.
+
 #+end_example
 
 :definitions:
@@ -3067,26 +3395,28 @@ ALWAYS-BOUND names an SBCL-specific declaration.
 :ID: 3228927849044
 :CUSTOM_ID: SB-EXT:GET-CAS-EXPANSION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GET-CAS-EXPANSION names a compiled function:
   Lambda-list: (PLACE &OPTIONAL ENVIRONMENT)
   Derived type: (FUNCTION (T &OPTIONAL T) *)
   Documentation:
     Analogous to GET-SETF-EXPANSION. Returns the following six values:
     
-,    * list of temporary variables
+    * list of temporary variables
     
-,    * list of value-forms whose results those variable must be bound
+    * list of value-forms whose results those variable must be bound
     
-,    * temporary variable for the old value of PLACE
+    * temporary variable for the old value of PLACE
     
-,    * temporary variable for the new value of PLACE
+    * temporary variable for the new value of PLACE
     
-,    * form using the aforementioned temporaries which performs the
+    * form using the aforementioned temporaries which performs the
       compare-and-swap operation on PLACE
     
-,    * form using the aforementioned temporaries with which to perform avolatile
+    * form using the aforementioned temporaries with which to perform avolatile
       read of PLACE
     
     Example:
@@ -3100,7 +3430,7 @@ GET-CAS-EXPANSION names a compiled function:
           (multiple-value-bind (vars vals old new cas-form read-form)
               (get-cas-expansion place env)
            (let ((delta-value (gensym "DELTA")))
-,             `(let* (,@(mapcar 'list vars vals)
+             `(let* (,@(mapcar 'list vars vals)
                      (,old ,read-form)
                      (,delta-value ,delta)
                      (,new (+ ,old ,delta-value)))
@@ -3110,6 +3440,7 @@ GET-CAS-EXPANSION names a compiled function:
     
     EXPERIMENTAL: Interface subject to change.
   Source file: SYS:SRC;CODE;MACROS.LISP
+
 #+end_example
 
 :definitions:
@@ -3120,12 +3451,15 @@ GET-CAS-EXPANSION names a compiled function:
 :ID: 569555465161
 :CUSTOM_ID: SB-EXT:IMPLICIT-GENERIC-FUNCTION-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 IMPLICIT-GENERIC-FUNCTION-NAME names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -3136,12 +3470,15 @@ IMPLICIT-GENERIC-FUNCTION-NAME names a compiled function:
 :ID: 1036098890195
 :CUSTOM_ID: SB-EXT:DEFCONSTANT-UNEQL-NEW-VALUE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFCONSTANT-UNEQL-NEW-VALUE names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -3152,8 +3489,10 @@ DEFCONSTANT-UNEQL-NEW-VALUE names a compiled function:
 :ID: 342590114868
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-512-SINGLES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-512-SINGLES names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-512)
@@ -3165,6 +3504,7 @@ DEFCONSTANT-UNEQL-NEW-VALUE names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-512.LISP
+
 #+end_example
 
 :definitions:
@@ -3177,8 +3517,10 @@ DEFCONSTANT-UNEQL-NEW-VALUE names a compiled function:
 :ID: 3014420335093
 :CUSTOM_ID: SB-EXT:GENERATION-NUMBER-OF-GCS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GENERATION-NUMBER-OF-GCS names a compiled function:
   Lambda-list: (GENERATION)
   Derived type: (FUNCTION ((MOD 7)) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
@@ -3188,6 +3530,7 @@ GENERATION-NUMBER-OF-GCS names a compiled function:
     
     Experimental: interface subject to change.
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 :definitions:
@@ -3198,14 +3541,17 @@ GENERATION-NUMBER-OF-GCS names a compiled function:
 :ID: 3201794260764
 :CUSTOM_ID: SB-EXT:*COMPILE-PROGRESS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*COMPILE-PROGRESS* names a special variable:
+
+*COMPILE-PROGRESS* names a special variable:
   Value: NIL
   Documentation:
-,    When this is true, the compiler prints to *STANDARD-OUTPUT* progress
+    When this is true, the compiler prints to *STANDARD-OUTPUT* progress
     information about the phases of compilation of each function. (This
     is useful mainly in large block compilations.)
+
 #+end_example
 
 :definitions:
@@ -3216,8 +3562,10 @@ GENERATION-NUMBER-OF-GCS names a compiled function:
 :ID: 2380550134518
 :CUSTOM_ID: SB-EXT:UNKNOWN-KEYWORD-ARGUMENT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 UNKNOWN-KEYWORD-ARGUMENT names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:UNKNOWN-KEYWORD-ARGUMENT>:
   Class precedence-list: UNKNOWN-KEYWORD-ARGUMENT, PROGRAM-ERROR, ERROR,
                          SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
@@ -3227,6 +3575,7 @@ UNKNOWN-KEYWORD-ARGUMENT names the condition-class #<SB-PCL::CONDITION-CLASS SB-
     SB-KERNEL::NAME
       Initargs: :NAME
       Readers: UNKNOWN-KEYWORD-ARGUMENT-NAME
+
 #+end_example
 
 :definitions:
@@ -3237,8 +3586,10 @@ UNKNOWN-KEYWORD-ARGUMENT names the condition-class #<SB-PCL::CONDITION-CLASS SB-
 :ID: 1051072526134
 :CUSTOM_ID: SB-EXT:PROCESS-CORE-DUMPED
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-CORE-DUMPED names a compiled function:
   An accessor for SB-IMPL::PROCESS
   Lambda-list: (INSTANCE)
@@ -3252,6 +3603,7 @@ PROCESS-CORE-DUMPED names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (T SB-IMPL::PROCESS) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 :definitions:
@@ -3262,8 +3614,10 @@ PROCESS-CORE-DUMPED names a compiled function:
 :ID: 2896847230767
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-256-UB8S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-256-UB8S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-256)
@@ -3281,6 +3635,7 @@ PROCESS-CORE-DUMPED names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-256.LISP
+
 #+end_example
 
 :definitions:
@@ -3293,8 +3648,10 @@ PROCESS-CORE-DUMPED names a compiled function:
 :ID: 3588275098599
 :CUSTOM_ID: SB-EXT:PACKAGE-IMPLEMENTED-BY-LIST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PACKAGE-IMPLEMENTED-BY-LIST names a compiled function:
   Lambda-list: (PACKAGE)
   Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
@@ -3302,6 +3659,7 @@ PACKAGE-IMPLEMENTED-BY-LIST names a compiled function:
     Returns a list containing the implementation packages of
     PACKAGE. Signals an error if PACKAGE is not a valid package designator.
   Source file: SYS:SRC;CODE;TARGET-PACKAGE.LISP
+
 #+end_example
 
 - Called by
@@ -3315,8 +3673,10 @@ PACKAGE-IMPLEMENTED-BY-LIST names a compiled function:
 :ID: 1080120127232
 :CUSTOM_ID: SB-EXT:CODE-DELETION-NOTE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-DELETION-NOTE names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:CODE-DELETION-NOTE>:
   Documentation:
     A condition type signalled when the compiler deletes code that the user
@@ -3327,6 +3687,7 @@ CODE-DELETION-NOTE names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:CO
   Direct superclasses: SB-INT:SIMPLE-COMPILER-NOTE
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -3337,8 +3698,10 @@ CODE-DELETION-NOTE names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:CO
 :ID: 4380803464576
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-SB64S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-SB64S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK)
@@ -3346,6 +3709,7 @@ CODE-DELETION-NOTE names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:CO
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK.LISP
+
 #+end_example
 
 :definitions:
@@ -3358,8 +3722,10 @@ CODE-DELETION-NOTE names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:CO
 :ID: 2310465645318
 :CUSTOM_ID: SB-EXT:EXIT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 EXIT names a compiled function:
   Lambda-list: (&KEY CODE ABORT (TIMEOUT *EXIT-TIMEOUT*))
   Declared type: (FUNCTION
@@ -3375,7 +3741,7 @@ EXIT names a compiled function:
     defaults to 0 when ABORT is false, and 1 when it is true.
     
     When ABORT is false (the default), current thread is first unwound,
-,    *EXIT-HOOKS* are run, other threads are terminated, and standard
+    *EXIT-HOOKS* are run, other threads are terminated, and standard
     output streams are flushed before SBCL calls exit(3) -- at which point
     atexit(3) functions will run. If multiple threads call EXIT with ABORT
     being false, the first one to call it will complete the protocol.
@@ -3387,7 +3753,7 @@ EXIT names a compiled function:
     Recursive calls to EXIT cause EXIT to behave as if ABORT was true.
     
     TIMEOUT controls waiting for other threads to terminate when ABORT is
-,    NIL. Once current thread has been unwound and *EXIT-HOOKS* have been
+    NIL. Once current thread has been unwound and *EXIT-HOOKS* have been
     run, spawning new threads is prevented and all other threads are
     terminated by calling SB-THREAD:TERMINATE-THREAD on them. The system
     then waits for them to finish using SB-THREAD:JOIN-THREAD, waiting at
@@ -3454,11 +3820,10 @@ EXIT names the structure-class #<STRUCTURE-CLASS SB-EXT:EXIT>:
     SB-C::NLX-INFO
       Type: (OR SB-C::NLX-INFO NULL)
       Initform: NIL
+
 #+end_example
 
 - Called by
-  - SB-ACLREPL::PROCESS-CMD
-  - SB-ACLREPL::EXIT-CMD
   - [[id:2115691816522][QUIT]]
   - SKEL/CLI::START-SKEL
   - SKEL/MPK/CLI::START-MPK
@@ -3475,8 +3840,10 @@ EXIT names the structure-class #<STRUCTURE-CLASS SB-EXT:EXIT>:
 :ID: 863463242474
 :CUSTOM_ID: SB-EXT:%MAKE-SIMD-PACK-SINGLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MAKE-SIMD-PACK-SINGLE names a compiled function:
   Lambda-list: (X Y Z W)
   Declared type: (FUNCTION
@@ -3484,6 +3851,7 @@ EXIT names the structure-class #<STRUCTURE-CLASS SB-EXT:EXIT>:
                   (VALUES (SB-EXT:SIMD-PACK SINGLE-FLOAT) &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -3499,12 +3867,15 @@ EXIT names the structure-class #<STRUCTURE-CLASS SB-EXT:EXIT>:
 :ID: 4227795453177
 :CUSTOM_ID: SB-EXT:DEFCONSTANT-UNEQL-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFCONSTANT-UNEQL-NAME names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -3515,8 +3886,10 @@ DEFCONSTANT-UNEQL-NAME names a compiled function:
 :ID: 3963788730314
 :CUSTOM_ID: SB-EXT:UNLOCK-PACKAGE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 UNLOCK-PACKAGE names a compiled function:
   Lambda-list: (PACKAGE)
   Derived type: (FUNCTION (T) (VALUES (MEMBER T) &OPTIONAL))
@@ -3524,6 +3897,7 @@ UNLOCK-PACKAGE names a compiled function:
     Unlocks PACKAGE and returns T. Has no effect if PACKAGE was already
     unlocked. Signals an error if PACKAGE is not a valid package designator.
   Source file: SYS:SRC;CODE;TARGET-PACKAGE.LISP
+
 #+end_example
 
 - Called by
@@ -3538,8 +3912,10 @@ UNLOCK-PACKAGE names a compiled function:
 :ID: 68888385311
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-512-SB16S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-512-SB16S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-512)
@@ -3557,6 +3933,7 @@ UNLOCK-PACKAGE names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-512.LISP
+
 #+end_example
 
 :definitions:
@@ -3569,9 +3946,12 @@ UNLOCK-PACKAGE names a compiled function:
 :ID: 2368429408252
 :CUSTOM_ID: SB-EXT:UNMUFFLE-CONDITIONS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 UNMUFFLE-CONDITIONS names an SBCL-specific declaration.
+
 #+end_example
 
 :definitions:
@@ -3583,10 +3963,13 @@ UNMUFFLE-CONDITIONS names an SBCL-specific declaration.
 :ID: 1072212768912
 :CUSTOM_ID: SB-EXT:SHORT-FLOAT-POSITIVE-INFINITY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SHORT-FLOAT-POSITIVE-INFINITY names a constant variable:
   Value: #.SINGLE-FLOAT-POSITIVE-INFINITY
+
 #+end_example
 
 :definitions:
@@ -3597,9 +3980,12 @@ SHORT-FLOAT-POSITIVE-INFINITY names a constant variable:
 :ID: 1066595871917
 :CUSTOM_ID: SB-EXT:DEPRECATED
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEPRECATED names an SBCL-specific declaration.
+
 #+end_example
 
 :definitions:
@@ -3611,11 +3997,14 @@ DEPRECATED names an SBCL-specific declaration.
 :ID: 2445860347894
 :CUSTOM_ID: SB-EXT:*FORCIBLY-TERMINATE-THREADS-ON-EXIT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*FORCIBLY-TERMINATE-THREADS-ON-EXIT* names a global variable:
+
+*FORCIBLY-TERMINATE-THREADS-ON-EXIT* names a global variable:
   Declared always-bound.
   Value: T
+
 #+end_example
 
 :definitions:
@@ -3626,8 +4015,10 @@ DEPRECATED names an SBCL-specific declaration.
 :ID: 1535901334805
 :CUSTOM_ID: SB-EXT:SPIN-LOOP-HINT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SPIN-LOOP-HINT names a compiled function:
   Lambda-list: ()
   Declared type: (FUNCTION NIL (VALUES &OPTIONAL))
@@ -3635,6 +4026,7 @@ SPIN-LOOP-HINT names a compiled function:
     Hints the processor that the current thread is spin-looping.
   Known attributes: always-translatable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -3647,8 +4039,10 @@ SPIN-LOOP-HINT names a compiled function:
 :ID: 4324069349841
 :CUSTOM_ID: SB-EXT:DISABLE-DEBUGGER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DISABLE-DEBUGGER names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
@@ -3656,6 +4050,7 @@ DISABLE-DEBUGGER names a compiled function:
     When invoked, this function will turn off both the SBCL debugger
     and LDB (the low-level debugger).  See also ENABLE-DEBUGGER.
   Source file: SYS:SRC;CODE;DEBUG.LISP
+
 #+end_example
 
 - Called by
@@ -3674,14 +4069,17 @@ DISABLE-DEBUGGER names a compiled function:
 :ID: 851691832629
 :CUSTOM_ID: SB-EXT:TIMER-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TIMER-NAME names a compiled function:
   Lambda-list: (TIMER)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Documentation:
     Return the name of TIMER.
   Source file: SYS:SRC;CODE;TIMER.LISP
+
 #+end_example
 
 :definitions:
@@ -3692,9 +4090,12 @@ TIMER-NAME names a compiled function:
 :ID: 3626770074364
 :CUSTOM_ID: SB-EXT:MUFFLE-CONDITIONS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MUFFLE-CONDITIONS names an SBCL-specific declaration.
+
 #+end_example
 
 :definitions:
@@ -3706,12 +4107,15 @@ MUFFLE-CONDITIONS names an SBCL-specific declaration.
 :ID: 3938653693983
 :CUSTOM_ID: SB-EXT:DEPRECATION-CONDITION-SOFTWARE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEPRECATION-CONDITION-SOFTWARE names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -3722,12 +4126,15 @@ DEPRECATION-CONDITION-SOFTWARE names a compiled function:
 :ID: 2319351775141
 :CUSTOM_ID: SB-EXT:*DISASSEMBLE-ANNOTATE*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*DISASSEMBLE-ANNOTATE* names a special variable:
+
+*DISASSEMBLE-ANNOTATE* names a special variable:
   Value: NIL
   Documentation:
     Annotate DISASSEMBLE output with source code.
+
 #+end_example
 
 :definitions:
@@ -3738,12 +4145,15 @@ DEPRECATION-CONDITION-SOFTWARE names a compiled function:
 :ID: 2384038515174
 :CUSTOM_ID: SB-EXT:NAME-CONFLICT-SYMBOLS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NAME-CONFLICT-SYMBOLS names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -3754,8 +4164,10 @@ NAME-CONFLICT-SYMBOLS names a compiled function:
 :ID: 3564592248539
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-512-UB32S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-512-UB32S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-512)
@@ -3770,6 +4182,7 @@ NAME-CONFLICT-SYMBOLS names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-512.LISP
+
 #+end_example
 
 :definitions:
@@ -3782,12 +4195,15 @@ NAME-CONFLICT-SYMBOLS names a compiled function:
 :ID: 2772571792402
 :CUSTOM_ID: SB-EXT:DEFCONSTANT-UNEQL-OLD-VALUE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFCONSTANT-UNEQL-OLD-VALUE names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -3798,14 +4214,17 @@ DEFCONSTANT-UNEQL-OLD-VALUE names a compiled function:
 :ID: 2525314616150
 :CUSTOM_ID: SB-EXT:WORD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WORD names a type-specifier:
   Lambda-list: ()
   Expansion: (UNSIGNED-BYTE 64)
 
 WORD names an alien type:
   Expansion: #<ALIEN-TYPE (UNSIGNED 64)>
+
 #+end_example
 
 :definitions:
@@ -3817,8 +4236,10 @@ WORD names an alien type:
 :ID: 3064844261516
 :CUSTOM_ID: SB-EXT:REMOVE-PACKAGE-LOCAL-NICKNAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 REMOVE-PACKAGE-LOCAL-NICKNAME names a compiled function:
   Lambda-list: (OLD-NICKNAME &OPTIONAL (PACKAGE-DESIGNATOR (SANE-PACKAGE)))
   Derived type: (FUNCTION (T &OPTIONAL T) (VALUES BOOLEAN &OPTIONAL))
@@ -3829,6 +4250,7 @@ REMOVE-PACKAGE-LOCAL-NICKNAME names a compiled function:
     
     Experimental: interface subject to change.
   Source file: SYS:SRC;CODE;TARGET-PACKAGE.LISP
+
 #+end_example
 
 :definitions:
@@ -3839,8 +4261,10 @@ REMOVE-PACKAGE-LOCAL-NICKNAME names a compiled function:
 :ID: 1156355022169
 :CUSTOM_ID: SB-EXT:READTABLE-BASE-CHAR-PREFERENCE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 READTABLE-BASE-CHAR-PREFERENCE names a compiled function:
   Lambda-list: (READTABLE)
   Derived type: (FUNCTION (T)
@@ -3861,6 +4285,7 @@ READTABLE-BASE-CHAR-PREFERENCE names a compiled function:
   Documentation:
     Sets the READTABLE-BASE-CHAR-PREFERENCE of the given READTABLE.
   Source file: SYS:SRC;CODE;READER.LISP
+
 #+end_example
 
 :definitions:
@@ -3871,8 +4296,10 @@ READTABLE-BASE-CHAR-PREFERENCE names a compiled function:
 :ID: 2467128031655
 :CUSTOM_ID: SB-EXT:PACKAGE-LOCKED-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PACKAGE-LOCKED-P names a compiled function:
   Lambda-list: (PACKAGE)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
@@ -3880,6 +4307,7 @@ PACKAGE-LOCKED-P names a compiled function:
     Returns T when PACKAGE is locked, NIL otherwise. Signals an error
     if PACKAGE doesn't designate a valid package.
   Source file: SYS:SRC;CODE;TARGET-PACKAGE.LISP
+
 #+end_example
 
 - Called by
@@ -3893,8 +4321,10 @@ PACKAGE-LOCKED-P names a compiled function:
 :ID: 1155233428368
 :CUSTOM_ID: SB-EXT:LOCK-PACKAGE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LOCK-PACKAGE names a compiled function:
   Lambda-list: (PACKAGE)
   Derived type: (FUNCTION (T) (VALUES (MEMBER T) &OPTIONAL))
@@ -3902,6 +4332,7 @@ LOCK-PACKAGE names a compiled function:
     Locks PACKAGE and returns T. Has no effect if PACKAGE was already
     locked. Signals an error if PACKAGE is not a valid package designator.
   Source file: SYS:SRC;CODE;TARGET-PACKAGE.LISP
+
 #+end_example
 
 - Called by
@@ -3917,8 +4348,10 @@ LOCK-PACKAGE names a compiled function:
 :ID: 3352318613225
 :CUSTOM_ID: SB-EXT:SIMD-PACK-256
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIMD-PACK-256 names the built-in-class #<BUILT-IN-CLASS SB-EXT:SIMD-PACK-256>:
   Class precedence-list: SIMD-PACK-256, T
   Direct superclasses: T
@@ -3928,6 +4361,7 @@ SIMD-PACK-256 names the built-in-class #<BUILT-IN-CLASS SB-EXT:SIMD-PACK-256>:
 
 SIMD-PACK-256 names a primitive type-specifier:
   Lambda-list: (&OPTIONAL (ELEMENT-TYPE-SPEC (QUOTE *)))
+
 #+end_example
 
 :definitions:
@@ -3938,14 +4372,17 @@ SIMD-PACK-256 names a primitive type-specifier:
 :ID: 2828837961426
 :CUSTOM_ID: SB-EXT:%MAKE-SIMD-PACK-DOUBLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MAKE-SIMD-PACK-DOUBLE names a compiled function:
   Lambda-list: (LOW HIGH)
   Declared type: (FUNCTION (DOUBLE-FLOAT DOUBLE-FLOAT)
                   (VALUES (SB-EXT:SIMD-PACK DOUBLE-FLOAT) &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -3958,14 +4395,17 @@ SIMD-PACK-256 names a primitive type-specifier:
 :ID: 2009109824102
 :CUSTOM_ID: SB-EXT:*PRINT-CIRCLE-NOT-SHARED*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*PRINT-CIRCLE-NOT-SHARED* names a special variable:
+
+*PRINT-CIRCLE-NOT-SHARED* names a special variable:
   Declared always-bound.
   Value: NIL
   Documentation:
-,    If this variable and *PRINT-CIRCLE* are both T only circular
+    If this variable and *PRINT-CIRCLE* are both T only circular
     structures are printed with #n#.
+
 #+end_example
 
 - Bound by
@@ -3984,13 +4424,16 @@ SIMD-PACK-256 names a primitive type-specifier:
 :ID: 1280841764277
 :CUSTOM_ID: SB-EXT:COMPILE-FILE-LINE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPILE-FILE-LINE names a macro:
   Lambda-list: ()
   Documentation:
     Return line# and column# of this macro invocation as multiple values.
   Source file: SYS:SRC;COMPILER;TARGET-MAIN.LISP
+
 #+end_example
 
 :definitions:
@@ -4001,8 +4444,10 @@ COMPILE-FILE-LINE names a macro:
 :ID: 3966906884841
 :CUSTOM_ID: SB-EXT:%MAKE-SIMD-PACK-512-UB64
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MAKE-SIMD-PACK-512-UB64 names a compiled function:
   Lambda-list: (A B C D E F G H)
   Declared type: (FUNCTION
@@ -4012,6 +4457,7 @@ COMPILE-FILE-LINE names a macro:
                   (VALUES (SB-EXT:SIMD-PACK-512 (UNSIGNED-BYTE 64)) &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -4024,8 +4470,10 @@ COMPILE-FILE-LINE names a macro:
 :ID: 3312689615135
 :CUSTOM_ID: SB-EXT:STEP-NEXT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STEP-NEXT names a compiled function:
   Lambda-list: (CONDITION)
   Derived type: (FUNCTION (T) *)
@@ -4035,6 +4483,7 @@ STEP-NEXT names a compiled function:
     stepping with the next form. Signals CONTROL-ERROR if the restart does
     not exist.
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -4045,8 +4494,10 @@ STEP-NEXT names a compiled function:
 :ID: 1038794356280
 :CUSTOM_ID: SB-EXT:DEFCONSTANT-UNEQL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFCONSTANT-UNEQL names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:DEFCONSTANT-UNEQL>:
   Class precedence-list: DEFCONSTANT-UNEQL, SB-INT:REFERENCE-CONDITION, ERROR,
                          SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
@@ -4062,6 +4513,7 @@ DEFCONSTANT-UNEQL names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:DEF
     SB-KERNEL::NEW-VALUE
       Initargs: :NEW-VALUE
       Readers: DEFCONSTANT-UNEQL-NEW-VALUE
+
 #+end_example
 
 :definitions:
@@ -4072,12 +4524,15 @@ DEFCONSTANT-UNEQL names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:DEF
 :ID: 2021387907902
 :CUSTOM_ID: SB-EXT:DEPRECATION-CONDITION-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEPRECATION-CONDITION-NAME names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -4088,8 +4543,10 @@ DEPRECATION-CONDITION-NAME names a compiled function:
 :ID: 2196639985215
 :CUSTOM_ID: SB-EXT:SAVE-LISP-AND-DIE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAVE-LISP-AND-DIE names a compiled function:
   Lambda-list: (CORE-FILE-NAME &KEY
                 (TOPLEVEL (FUNCTION TOPLEVEL-INIT) TOPLEVEL-SUPPLIED)
@@ -4205,7 +4662,7 @@ SAVE-LISP-AND-DIE names a compiled function:
     documentation for details.
     
     On threaded platforms only a single thread may remain running after
-,    SB-EXT:*SAVE-HOOKS* have run. Applications using multiple threads can
+    SB-EXT:*SAVE-HOOKS* have run. Applications using multiple threads can
     be SAVE-LISP-AND-DIE friendly by registering a save-hook that quits
     any additional threads, and an init-hook that restarts them.
     
@@ -4224,6 +4681,7 @@ SAVE-LISP-AND-DIE names a compiled function:
     seem to be good quick fixes for either limitation and no one has been
     sufficiently motivated to do lengthy fixes.
   Source file: SYS:SRC;CODE;SAVE.LISP
+
 #+end_example
 
 - Called by
@@ -4241,8 +4699,10 @@ SAVE-LISP-AND-DIE names a compiled function:
 :ID: 3431179006008
 :CUSTOM_ID: SB-EXT:REMOVE-IMPLEMENTATION-PACKAGE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 REMOVE-IMPLEMENTATION-PACKAGE names a compiled function:
   Lambda-list: (PACKAGES-TO-REMOVE &OPTIONAL (PACKAGE *PACKAGE*))
   Derived type: (FUNCTION (T &OPTIONAL T) (VALUES LIST &OPTIONAL))
@@ -4251,6 +4711,7 @@ REMOVE-IMPLEMENTATION-PACKAGE names a compiled function:
     PACKAGE. Signals an error if PACKAGE or any of the PACKAGES-TO-REMOVE
     is not a valid package designator.
   Source file: SYS:SRC;CODE;TARGET-PACKAGE.LISP
+
 #+end_example
 
 :definitions:
@@ -4261,14 +4722,16 @@ REMOVE-IMPLEMENTATION-PACKAGE names a compiled function:
 :ID: 2988431489329
 :CUSTOM_ID: SB-EXT:*INVOKE-DEBUGGER-HOOK*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*INVOKE-DEBUGGER-HOOK* names a special variable:
-  Value: #<FUNCTION SWANK/SBCL::SWANK-INVOKE-DEBUGGER-HOOK {1203F801CB}>
+
+*INVOKE-DEBUGGER-HOOK* names a special variable:
+  Value: NIL
   Documentation:
     This is either NIL or a designator for a function of two arguments,
     to be run when the debugger is about to be entered. The function is
-,    run with *INVOKE-DEBUGGER-HOOK* bound to NIL to minimize
+    run with *INVOKE-DEBUGGER-HOOK* bound to NIL to minimize
     recursive errors, and receives as arguments the condition that
     triggered debugger entry and the previous value of
     *INVOKE-DEBUGGER-HOOK*.
@@ -4276,6 +4739,7 @@ REMOVE-IMPLEMENTATION-PACKAGE names a compiled function:
     This mechanism is an SBCL extension similar to the standard *DEBUGGER-HOOK*.
     In contrast to *DEBUGGER-HOOK*, it is observed by INVOKE-DEBUGGER even when
     called by BREAK.
+
 #+end_example
 
 - Set by
@@ -4292,14 +4756,17 @@ REMOVE-IMPLEMENTATION-PACKAGE names a compiled function:
 :ID: 3273654542310
 :CUSTOM_ID: SB-EXT:PRIMITIVE-OBJECT-SIZE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PRIMITIVE-OBJECT-SIZE names a compiled function:
   Lambda-list: (OBJECT)
   Declared type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
   Documentation:
     Return number of bytes of heap or stack directly consumed by OBJECT
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 - Called by
@@ -4315,8 +4782,10 @@ PRIMITIVE-OBJECT-SIZE names a compiled function:
 :ID: 321110503995
 :CUSTOM_ID: SB-EXT:DEFGLOBAL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFGLOBAL names a macro:
   Lambda-list: (NAME VALUE &OPTIONAL (DOC NIL))
   Documentation:
@@ -4330,6 +4799,7 @@ DEFGLOBAL names a macro:
     
     See also the declarations SB-EXT:GLOBAL and SB-EXT:ALWAYS-BOUND.
   Source file: SYS:SRC;CODE;MACROS.LISP
+
 #+end_example
 
 :definitions:
@@ -4340,8 +4810,10 @@ DEFGLOBAL names a macro:
 :ID: 3611027978155
 :CUSTOM_ID: SB-EXT:ADD-PACKAGE-LOCAL-NICKNAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ADD-PACKAGE-LOCAL-NICKNAME names a compiled function:
   Lambda-list: (LOCAL-NICKNAME ACTUAL-PACKAGE &OPTIONAL
                 (PACKAGE-DESIGNATOR (SANE-PACKAGE)))
@@ -4370,6 +4842,7 @@ ADD-PACKAGE-LOCAL-NICKNAME names a compiled function:
     
     Experimental: interface subject to change.
   Source file: SYS:SRC;CODE;TARGET-PACKAGE.LISP
+
 #+end_example
 
 - Called by
@@ -4383,12 +4856,15 @@ ADD-PACKAGE-LOCAL-NICKNAME names a compiled function:
 :ID: 2315794390343
 :CUSTOM_ID: SB-EXT:EVAL-TLF
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 EVAL-TLF names a compiled function:
   Lambda-list: (ORIGINAL-EXP TLF-INDEX &OPTIONAL LEXENV)
   Derived type: (FUNCTION (T T &OPTIONAL T) *)
   Source file: SYS:SRC;CODE;EVAL.LISP
+
 #+end_example
 
 :definitions:
@@ -4399,8 +4875,10 @@ EVAL-TLF names a compiled function:
 :ID: 3835585463221
 :CUSTOM_ID: SB-EXT:%MAKE-SIMD-PACK-512-DOUBLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MAKE-SIMD-PACK-512-DOUBLE names a compiled function:
   Lambda-list: (A B C D E F G H)
   Declared type: (FUNCTION
@@ -4409,6 +4887,7 @@ EVAL-TLF names a compiled function:
                   (VALUES (SB-EXT:SIMD-PACK-512 DOUBLE-FLOAT) &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -4421,8 +4900,10 @@ EVAL-TLF names a compiled function:
 :ID: 3811598358411
 :CUSTOM_ID: SB-EXT:%MAKE-SIMD-PACK-512-SINGLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MAKE-SIMD-PACK-512-SINGLE names a compiled function:
   Lambda-list: (A B C D E F G H I J K L M N P Q)
   Declared type: (FUNCTION
@@ -4433,6 +4914,7 @@ EVAL-TLF names a compiled function:
                   (VALUES (SB-EXT:SIMD-PACK-512 SINGLE-FLOAT) &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -4445,8 +4927,10 @@ EVAL-TLF names a compiled function:
 :ID: 2891990172019
 :CUSTOM_ID: SB-EXT:LATE-DEPRECATION-WARNING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LATE-DEPRECATION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:LATE-DEPRECATION-WARNING>:
   Documentation:
     This warning is signaled when the use of a variable,
@@ -4459,6 +4943,7 @@ LATE-DEPRECATION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASS SB-
   Direct superclasses: WARNING, DEPRECATION-CONDITION
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -4469,8 +4954,10 @@ LATE-DEPRECATION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASS SB-
 :ID: 2358182903367
 :CUSTOM_ID: SB-EXT:TYPEXPAND-ALL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TYPEXPAND-ALL names a compiled function:
   Lambda-list: (TYPE-SPECIFIER &OPTIONAL ENV)
   Derived type: (FUNCTION (T &OPTIONAL (OR SB-C::ABSTRACT-LEXENV NULL)) *)
@@ -4478,6 +4965,7 @@ TYPEXPAND-ALL names a compiled function:
     Takes and expands a type specifier recursively like
     SB-CLTL2:MACROEXPAND-ALL.
   Source file: SYS:SRC;CODE;TYPEP.LISP
+
 #+end_example
 
 :definitions:
@@ -4488,8 +4976,10 @@ TYPEXPAND-ALL names a compiled function:
 :ID: 1624813194392
 :CUSTOM_ID: SB-EXT:DECIMAL-WITH-GROUPED-DIGITS-WIDTH
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DECIMAL-WITH-GROUPED-DIGITS-WIDTH names a compiled function:
   Lambda-list: (VALUE &KEY (COMMA-INTERVAL 3))
   Declared type: (FUNCTION
@@ -4497,6 +4987,7 @@ DECIMAL-WITH-GROUPED-DIGITS-WIDTH names a compiled function:
                    (:COMMA-INTERVAL (INTEGER 1 17592186044415)))
                   (VALUES (UNSIGNED-BYTE 44) &OPTIONAL))
   Source file: SYS:SRC;CODE;ROOM.LISP
+
 #+end_example
 
 :definitions:
@@ -4509,8 +5000,10 @@ DECIMAL-WITH-GROUPED-DIGITS-WIDTH names a compiled function:
 :ID: 1059920626751
 :CUSTOM_ID: SB-EXT:TYPEXPAND
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TYPEXPAND names a compiled function:
   Lambda-list: (TYPE-SPECIFIER &OPTIONAL ENV)
   Derived type: (FUNCTION (T &OPTIONAL T) (VALUES T BOOLEAN &OPTIONAL))
@@ -4519,6 +5012,7 @@ TYPEXPAND names a compiled function:
     Returns two values: the expansion, and a boolean that is true when
     expansion happened.
   Source file: SYS:SRC;CODE;TYPE.LISP
+
 #+end_example
 
 :definitions:
@@ -4529,12 +5023,15 @@ TYPEXPAND names a compiled function:
 :ID: 3719391959331
 :CUSTOM_ID: SB-EXT:NAME-CONFLICT-DATUM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NAME-CONFLICT-DATUM names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -4545,8 +5042,10 @@ NAME-CONFLICT-DATUM names a compiled function:
 :ID: 2632686711103
 :CUSTOM_ID: SB-EXT:PACKAGE-LOCK-VIOLATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PACKAGE-LOCK-VIOLATION names a compiled function:
   Lambda-list: (PACKAGE &KEY (SYMBOL NIL SYMBOL-P) FORMAT-CONTROL
                 FORMAT-ARGUMENTS)
@@ -4569,6 +5068,7 @@ PACKAGE-LOCK-VIOLATION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EX
     SB-KERNEL::CURRENT-PACKAGE
       Initform: '*PACKAGE*
       Readers: SB-KERNEL::PACKAGE-LOCK-VIOLATION-IN-PACKAGE
+
 #+end_example
 
 :definitions:
@@ -4580,17 +5080,22 @@ PACKAGE-LOCK-VIOLATION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EX
 :ID: 3077134139617
 :CUSTOM_ID: SB-EXT:MAYBE-INLINE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAYBE-INLINE names an SBCL-specific declaration.
+
 #+end_example
 ** READER-PACKAGE-DOES-NOT-EXIST :condition:class:
 :PROPERTIES:
 :ID: 2151222434298
 :CUSTOM_ID: SB-EXT:READER-PACKAGE-DOES-NOT-EXIST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 READER-PACKAGE-DOES-NOT-EXIST names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:READER-PACKAGE-DOES-NOT-EXIST>:
   Class precedence-list: READER-PACKAGE-DOES-NOT-EXIST,
                          SB-INT:SIMPLE-READER-PACKAGE-ERROR,
@@ -4603,6 +5108,7 @@ READER-PACKAGE-DOES-NOT-EXIST names the condition-class #<SB-PCL::CONDITION-CLAS
                        PACKAGE-DOES-NOT-EXIST
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -4613,17 +5119,21 @@ READER-PACKAGE-DOES-NOT-EXIST names the condition-class #<SB-PCL::CONDITION-CLAS
 :ID: 4089730434583
 :CUSTOM_ID: SB-EXT:PURIFY
 :ALLOC: HEAP IMMOBILE
-:END:** UNKNOWN-KEYWORD-ARGUMENT-NAME :compiled:function:
+:END:
+** UNKNOWN-KEYWORD-ARGUMENT-NAME :compiled:function:
 :PROPERTIES:
 :ID: 2832702234746
 :CUSTOM_ID: SB-EXT:UNKNOWN-KEYWORD-ARGUMENT-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 UNKNOWN-KEYWORD-ARGUMENT-NAME names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -4634,8 +5144,10 @@ UNKNOWN-KEYWORD-ARGUMENT-NAME names a compiled function:
 :ID: 1355828537784
 :CUSTOM_ID: SB-EXT:GENERATION-MINIMUM-AGE-BEFORE-GC
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
   Lambda-list: (GENERATION)
   Derived type: (FUNCTION ((MOD 7)) (VALUES DOUBLE-FLOAT &OPTIONAL))
@@ -4652,6 +5164,7 @@ GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
   Lambda-list: (VALUE GENERATION)
   Derived type: (FUNCTION (T (MOD 7)) (VALUES DOUBLE-FLOAT &OPTIONAL))
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 :definitions:
@@ -4662,14 +5175,17 @@ GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
 :ID: 1524658767332
 :CUSTOM_ID: SB-EXT:*GC-REAL-TIME*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*GC-REAL-TIME* names a special variable:
+
+*GC-REAL-TIME* names a special variable:
   Declared type: (UNSIGNED-BYTE 44)
-  Value: 24620984
+  Value: 612000
   Documentation:
     Total real time spent doing garbage collection (as reported by
     GET-INTERNAL-REAL-TIME.) Initialized to zero on startup.
+
 #+end_example
 
 :definitions:
@@ -4680,9 +5196,11 @@ GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
 :ID: 328363572442
 :CUSTOM_ID: SB-EXT:*INIT-HOOKS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*INIT-HOOKS* names a global variable:
+
+*INIT-HOOKS* names a global variable:
   Declared type: LIST
   Declared always-bound.
   Value: (SB-SIMD-INTERNALS::UPDATE-IDISPATCH-INDICES)
@@ -4693,6 +5211,7 @@ GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
     thread have been started.
     
     Unused by SBCL itself: reserved for user and applications.
+
 #+end_example
 
 :definitions:
@@ -4703,8 +5222,10 @@ GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
 :ID: 2829682368426
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-256-SB8S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-256-SB8S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-256)
@@ -4722,6 +5243,7 @@ GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-256.LISP
+
 #+end_example
 
 :definitions:
@@ -4734,10 +5256,13 @@ GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
 :ID: 2206921999651
 :CUSTOM_ID: SB-EXT:*DEFAULT-C-STRING-EXTERNAL-FORMAT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*DEFAULT-C-STRING-EXTERNAL-FORMAT* names a special variable:
+
+*DEFAULT-C-STRING-EXTERNAL-FORMAT* names a special variable:
   Value: :UTF-8
+
 #+end_example
 
 - Referenced by
@@ -4753,13 +5278,16 @@ GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
 :ID: 105080381188
 :CUSTOM_ID: SB-EXT:*RUNTIME-PATHNAME*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*RUNTIME-PATHNAME* names a global variable:
+
+*RUNTIME-PATHNAME* names a global variable:
   Declared always-bound.
   Value: #P"/usr/bin/core"
   Documentation:
     The absolute pathname of the running SBCL runtime.
+
 #+end_example
 
 - Referenced by
@@ -4773,13 +5301,16 @@ GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
 :ID: 3128522989118
 :CUSTOM_ID: SB-EXT:WEAK-POINTER-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WEAK-POINTER-P names a compiled function:
   Lambda-list: (OBJECT)
   Declared type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable, predicate
   Source file: SYS:SRC;CODE;PRED.LISP
+
 #+end_example
 
 - Called by
@@ -4798,8 +5329,10 @@ WEAK-POINTER-P names a compiled function:
 :ID: 3005869752955
 :CUSTOM_ID: SB-EXT:PROCESS-STATUS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-STATUS names a compiled function:
   Lambda-list: (PROCESS)
   Derived type: (FUNCTION (T)
@@ -4813,6 +5346,7 @@ PROCESS-STATUS names a compiled function:
 PROCESS-STATUS names a type-specifier:
   Lambda-list: ()
   Expansion: (MEMBER :RUNNING :STOPPED :EXITED :SIGNALED)
+
 #+end_example
 
 - Called by
@@ -4827,8 +5361,10 @@ PROCESS-STATUS names a type-specifier:
 :ID: 3190192227539
 :CUSTOM_ID: SB-EXT:CAS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CAS names a macro:
   Lambda-list: (PLACE OLD NEW)
   Documentation:
@@ -4837,7 +5373,7 @@ CAS names a macro:
     Additionally DEFUN, DEFGENERIC, DEFMETHOD, FLET, and LABELS can be alsoused to
     define CAS-functions analogously to SETF-functions:
     
-,        (defvar *foo* nil)
+        (defvar *foo* nil)
     
         (defun (cas foo) (old new)
           (cas (symbol-value '*foo*) old new))
@@ -4849,6 +5385,7 @@ CAS names a macro:
     
     EXPERIMENTAL: Interface subject to change.
   Source file: SYS:SRC;CODE;MACROS.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -4866,20 +5403,23 @@ CAS names a macro:
 :ID: 3359564586778
 :CUSTOM_ID: SB-EXT:*SYSINIT-PATHNAME-FUNCTION*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*SYSINIT-PATHNAME-FUNCTION* names a global variable:
+
+*SYSINIT-PATHNAME-FUNCTION* names a global variable:
   Declared always-bound.
-  Value: #<FUNCTION SYS-INIT-FILE>
+  Value: #<FUNCTION SB-IMPL::SYSINIT-PATHNAME>
   Documentation:
     Designator for a function of zero arguments called to obtain a
     pathname designator for the default sysinit file, or NIL. If the
     function returns NIL, no sysinit file is used unless one has been
     specified on the command-line.
+
 #+end_example
 
 - Set by
-  - [[id:3961632409052][MAKE-TOPLEVEL-INIT]]
+  - [[id:3961632409157][MAKE-TOPLEVEL-INIT]]
 
 :definitions:
 - SYS:SRC;CODE;TOPLEVEL.LISP
@@ -4889,8 +5429,10 @@ CAS names a macro:
 :ID: 2003549890289
 :CUSTOM_ID: SB-EXT:PACKAGE-LOCALLY-NICKNAMED-BY-LIST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PACKAGE-LOCALLY-NICKNAMED-BY-LIST names a compiled function:
   Lambda-list: (PACKAGE-DESIGNATOR)
   Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
@@ -4900,6 +5442,7 @@ PACKAGE-LOCALLY-NICKNAMED-BY-LIST names a compiled function:
     
     Experimental: interface subject to change.
   Source file: SYS:SRC;CODE;TARGET-PACKAGE.LISP
+
 #+end_example
 
 - Called by
@@ -4913,13 +5456,16 @@ PACKAGE-LOCALLY-NICKNAMED-BY-LIST names a compiled function:
 :ID: 462792188416
 :CUSTOM_ID: SB-EXT:SIMD-PACK-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIMD-PACK-P names a compiled function:
   Lambda-list: (OBJECT)
   Declared type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable, predicate
   Source file: SYS:SRC;CODE;PRED.LISP
+
 #+end_example
 
 - Called by
@@ -5004,16 +5550,19 @@ SIMD-PACK-P names a compiled function:
 :ID: 3357513441534
 :CUSTOM_ID: SB-EXT:*GC-RUN-TIME*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*GC-RUN-TIME* names a special variable:
+
+*GC-RUN-TIME* names a special variable:
   Declared type: (UNSIGNED-BYTE 44)
-  Value: 24560189
+  Value: 612348
   Documentation:
     Total CPU time spent doing garbage collection (as reported by
     GET-INTERNAL-RUN-TIME.) Initialized to zero on startup. It is safe to bind
     this to zero in order to measure GC time inside a certain section of code,but
     doing so may interfere with results reported by eg. TIME.
+
 #+end_example
 
 - Set by
@@ -5030,8 +5579,10 @@ SIMD-PACK-P names a compiled function:
 :ID: 1866162530416
 :CUSTOM_ID: SB-EXT:PACKAGE-DOES-NOT-EXIST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PACKAGE-DOES-NOT-EXIST names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:PACKAGE-DOES-NOT-EXIST>:
   Class precedence-list: PACKAGE-DOES-NOT-EXIST, SB-KERNEL:SIMPLE-PACKAGE-ERROR,
                          SIMPLE-CONDITION, PACKAGE-ERROR, ERROR,
@@ -5039,6 +5590,7 @@ PACKAGE-DOES-NOT-EXIST names the condition-class #<SB-PCL::CONDITION-CLASS SB-EX
   Direct superclasses: SB-KERNEL:SIMPLE-PACKAGE-ERROR
   Direct subclasses: READER-PACKAGE-DOES-NOT-EXIST
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -5049,8 +5601,10 @@ PACKAGE-DOES-NOT-EXIST names the condition-class #<SB-PCL::CONDITION-CLASS SB-EX
 :ID: 474241193039
 :CUSTOM_ID: SB-EXT:ATOMIC-POP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ATOMIC-POP names a macro:
   Lambda-list: (PLACE)
   Documentation:
@@ -5060,6 +5614,7 @@ ATOMIC-POP names a macro:
     
     Works on all CASable places.
   Source file: SYS:SRC;CODE;MACROS.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -5073,8 +5628,10 @@ ATOMIC-POP names a macro:
 :ID: 2840946264679
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-256-UB16S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-256-UB16S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-256)
@@ -5089,6 +5646,7 @@ ATOMIC-POP names a macro:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-256.LISP
+
 #+end_example
 
 :definitions:
@@ -5101,8 +5659,10 @@ ATOMIC-POP names a macro:
 :ID: 4706161207
 :CUSTOM_ID: SB-EXT:RUN-PROGRAM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 RUN-PROGRAM names a compiled function:
   Lambda-list: (PROGRAM ARGS &KEY (ENV NIL ENV-P)
                 (ENVIRONMENT
@@ -5269,94 +5829,94 @@ RUN-PROGRAM names a compiled function:
         > consistently display a console window or use the :WINDOW
         > :HIDE option to consistently hide the console window.
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 - Called by
-  - SB-ACLREPL::SHELL-CMD
   - (PERFORM (COMPILE-OP GROVEL-CONSTANTS-FILE))
   - SB-GROVEL::RUN-C-COMPILER
   - UIOP/LAUNCH-PROGRAM:LAUNCH-PROGRAM
   - SKEL/MPK/MPD:ENSURE-MPD
   - (BUILD (ARCHISO-CONFIG))
-  - [[id:3649437562315][HG-FAST-EXPORT]]
-  - [[id:2300807228903][RUN-HG-COMMAND]]
-  - [[id:3717357089013][RUN-GIT-COMMAND]]
+  - [[id:3649437562328][HG-FAST-EXPORT]]
+  - [[id:2300807228524][RUN-HG-COMMAND]]
+  - [[id:3717357089060][RUN-GIT-COMMAND]]
   - (START (CADDY-SERVICE))
-  - [[id:3582619521409][ENSURE-SUDO]]
-  - [[id:2885845283861][CALL-WITH-SUDO]]
-  - [[id:1894505708983][RUN-DOT]]
-  - [[id:2275593494821][OPEN-GNUPLOT]]
+  - [[id:3582619521733][ENSURE-SUDO]]
+  - [[id:2885845284181][CALL-WITH-SUDO]]
+  - [[id:1894505708546][RUN-DOT]]
+  - [[id:2275593494599][OPEN-GNUPLOT]]
   - CLI/TOOLS/FS::RUN-RCLONE
   - CLI/TOOLS/FS::RUN-BTRFS
   - CLI/TOOLS/MAIL::RUN-OFFLINEIMAP*
   - CLI/TOOLS/MAIL::%NOTMUCH
   - CLI/TOOLS/MEDIA::RUN-PICARD
   - CLI/TOOLS/MEDIA::RUN-WIREPLUMBER
-  - [[id:1687205762813][RUN-MPV]]
-  - [[id:2518889831848][RUN-FFMPEG]]
+  - [[id:1687205762122][RUN-MPV]]
+  - [[id:2518889831978][RUN-FFMPEG]]
   - CLI/TOOLS/MEDIA::RUN-FLAMEGRAPH.PL
   - CLI/TOOLS/NET::RUN-RSYNC
-  - [[id:4023852674514][RUN-TRANSMISSION-DAEMON]]
-  - [[id:2797832193531][RUN-TRANSMISSION-REMOTE]]
-  - [[id:1169381475933][RUN-CADDY*]]
-  - [[id:399332567433][YTDL-JSON]]
-  - [[id:1447885832504][YTDL-LIST]]
-  - [[id:44615966125][YTDL-USER-AGENT]]
-  - [[id:3154016486823][YTDL-EXTRACTORS]]
-  - [[id:1098763533844][RUN-YTDL]]
+  - [[id:4023852674460][RUN-TRANSMISSION-DAEMON]]
+  - [[id:2797832193386][RUN-TRANSMISSION-REMOTE]]
+  - [[id:1169381475329][RUN-CADDY*]]
+  - [[id:399332567933][YTDL-JSON]]
+  - [[id:1447885832273][YTDL-LIST]]
+  - [[id:44615966485][YTDL-USER-AGENT]]
+  - [[id:3154016486832][YTDL-EXTRACTORS]]
+  - [[id:1098763533675][RUN-YTDL]]
   - CLI/TOOLS/NET::RUN-NMAP*
-  - [[id:1581110514165][RUN-EASYRSA]]
+  - [[id:1581110513818][RUN-EASYRSA]]
   - CLI/TOOLS/NET::RUN-DNSMASQ
   - CLI/TOOLS/NET::RUN-WG*
-  - [[id:1292840832138][RUN-IP]]
-  - [[id:1244988784982][RUN-BROWSER]]
-  - [[id:2484457047674][RUN-CORE]]
-  - [[id:3642491846817][RUN-SBCL]]
-  - [[id:4326946661776][RUN-PERF]]
-  - [[id:3810691606265][RUN-BUSCTL]]
-  - [[id:3679037145149][RUN-MACHINECTL]]
-  - [[id:4371988805741][RUN-USERDBCTL]]
-  - [[id:199459979923][RUN-HOMECTL]]
-  - [[id:729526112327][RUN-LOGINCTL]]
-  - [[id:3280819568512][RUN-RESOLVECTL]]
-  - [[id:1008777860747][RUN-NETWORKCTL]]
-  - [[id:643426753427][RUN-JOURNALCTL]]
-  - [[id:1286404844430][RUN-SYSTEMCTL]]
-  - [[id:1418623900242][QEMU-SYSTEM]]
-  - [[id:1334083052359][QEMU-IMG]]
-  - [[id:1494553078052][RUN-QEMU]]
-  - [[id:3044012373612][RUN-ARCHISO]]
+  - [[id:1292840832937][RUN-IP]]
+  - [[id:1244988785170][RUN-BROWSER]]
+  - [[id:2484457047641][RUN-CORE]]
+  - [[id:3642491847140][RUN-SBCL]]
+  - [[id:4326946662247][RUN-PERF]]
+  - [[id:3810691606409][RUN-BUSCTL]]
+  - [[id:3679037145876][RUN-MACHINECTL]]
+  - [[id:4371988805721][RUN-USERDBCTL]]
+  - [[id:199459980175][RUN-HOMECTL]]
+  - [[id:729526112769][RUN-LOGINCTL]]
+  - [[id:3280819567616][RUN-RESOLVECTL]]
+  - [[id:1008777860446][RUN-NETWORKCTL]]
+  - [[id:643426752567][RUN-JOURNALCTL]]
+  - [[id:1286404843520][RUN-SYSTEMCTL]]
+  - [[id:1418623900043][QEMU-SYSTEM]]
+  - [[id:1334083051542][QEMU-IMG]]
+  - [[id:1494553078394][RUN-QEMU]]
+  - [[id:3044012373449][RUN-ARCHISO]]
   - CLI/TOOLS/VIRT::RUN-MKARCHISO
-  - [[id:2580849120646][RUN-BUILDAH]]
-  - [[id:1284205763984][RUN-PODMAN]]
-  - [[id:2510251664162][RUN-XVFB-RUN]]
+  - [[id:2580849120449][RUN-BUILDAH]]
+  - [[id:1284205764395][RUN-PODMAN]]
+  - [[id:2510251663790][RUN-XVFB-RUN]]
   - CLI/TOOLS/BUILD::RUN-NPX
-  - [[id:1449180910000][RUN-GO]]
+  - [[id:1449180910266][RUN-GO]]
   - CLI/TOOLS/BUILD::RUN-UV
-  - [[id:2123246777867][RUN-RUSTUP]]
-  - [[id:2586149511345][RUN-CARGO]]
-  - [[id:3179275839658][RUN-MESON]]
-  - [[id:567011955211][RUN-NINJA]]
-  - [[id:2729389317602][RUN-CMAKE]]
-  - [[id:2282731159908][RUN-MAKE]]
-  - [[id:4056870646496][RUN-LLDB]]
-  - [[id:197551050261][RUN-GDB]]
-  - [[id:2522068513286][RUN-NVCC]]
-  - [[id:1259037788876][RUN-LD]]
-  - [[id:1104867127566][RUN-CC]]
+  - [[id:2123246778108][RUN-RUSTUP]]
+  - [[id:2586149511624][RUN-CARGO]]
+  - [[id:3179275839956][RUN-MESON]]
+  - [[id:567011955247][RUN-NINJA]]
+  - [[id:2729389317439][RUN-CMAKE]]
+  - [[id:2282731159887][RUN-MAKE]]
+  - [[id:4056870645946][RUN-LLDB]]
+  - [[id:197551049996][RUN-GDB]]
+  - [[id:2522068512881][RUN-NVCC]]
+  - [[id:1259037788970][RUN-LD]]
+  - [[id:1104867128006][RUN-CC]]
   - CLI/TOOLS/PACMAN::RUN-MAKEPKG
   - CLI/TOOLS/PACMAN::RUN-MKARCHROOT
-  - [[id:3030366317482][RUN-PACMAN]]
+  - [[id:3030366317340][RUN-PACMAN]]
   - CLI/TOOLS/TERM::RUN-TMUX-CONTROLLER
-  - [[id:2330418724938][RUN-TMUX]]
-  - [[id:1767981764663][RUN-FBTERM]]
-  - [[id:222145079451][RUN-SCRIPTREPLAY]]
-  - [[id:2098589947638][RUN-SCRIPT]]
-  - [[id:3349951914530][RUN-TERM]]
+  - [[id:2330418725431][RUN-TMUX]]
+  - [[id:1767981765418][RUN-FBTERM]]
+  - [[id:222145080039][RUN-SCRIPTREPLAY]]
+  - [[id:2098589947708][RUN-SCRIPT]]
+  - [[id:3349951914219][RUN-TERM]]
   - [[id:478252320451][#$-reader]]
-  - [[id:3054506344077][RUN-EMACS]]
-  - [[id:2627489186132][RUN-EMACSCLIENT]]
-  - [[id:435000182579][LIST-DISKS]]
+  - [[id:3054506343826][RUN-EMACS]]
+  - [[id:2627489185802][RUN-EMACSCLIENT]]
+  - IO/DISK:LIST-DISKS
   - STD/DEFSYS::COMPILE-GROVEL-COMPONENT
   - [[id:2283824124254][DISABLE-ECHO]]
   - [[id:3875375914529][ENABLE-ECHO]]
@@ -5372,8 +5932,10 @@ RUN-PROGRAM names a compiled function:
 :ID: 2847560110217
 :CUSTOM_ID: SB-EXT:FLOAT-DENORMALIZED-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FLOAT-DENORMALIZED-P names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
@@ -5381,6 +5943,7 @@ FLOAT-DENORMALIZED-P names a compiled function:
     Return true if the float X is denormalized.
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;FLOAT.LISP
+
 #+end_example
 
 :definitions:
@@ -5391,15 +5954,18 @@ FLOAT-DENORMALIZED-P names a compiled function:
 :ID: 2131590978220
 :CUSTOM_ID: SB-EXT:*ENCLOSING-SOURCE-CUTOFF*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*ENCLOSING-SOURCE-CUTOFF* names a special variable:
+
+*ENCLOSING-SOURCE-CUTOFF* names a special variable:
   Declared type: UNSIGNED-BYTE
   Value: 1
   Documentation:
     The maximum number of enclosing non-original source forms (i.e. from
     macroexpansion) that we print in full. For additional enclosing forms, we
     print only the CAR.
+
 #+end_example
 
 :definitions:
@@ -5410,8 +5976,10 @@ FLOAT-DENORMALIZED-P names a compiled function:
 :ID: 2362819712689
 :CUSTOM_ID: SB-EXT:PACKAGE-LOCKED-ERROR-SYMBOL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PACKAGE-LOCKED-ERROR-SYMBOL names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
@@ -5419,6 +5987,7 @@ PACKAGE-LOCKED-ERROR-SYMBOL names a compiled function:
     Return the symbol that caused the SYMBOL-PACKAGE-LOCKED-ERROR
     condition.
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -5429,8 +5998,10 @@ PACKAGE-LOCKED-ERROR-SYMBOL names a compiled function:
 :ID: 4397307895726
 :CUSTOM_ID: SB-EXT:TYPEXPAND-1
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TYPEXPAND-1 names a compiled function:
   Lambda-list: (TYPE-SPECIFIER &OPTIONAL ENV)
   Derived type: (FUNCTION
@@ -5442,6 +6013,7 @@ TYPEXPAND-1 names a compiled function:
     Returns two values: the expansion, and a boolean that is true when
     expansion happened.
   Source file: SYS:SRC;CODE;TYPE.LISP
+
 #+end_example
 
 - Called by
@@ -5455,8 +6027,10 @@ TYPEXPAND-1 names a compiled function:
 :ID: 1442959558697
 :CUSTOM_ID: SB-EXT:DEPRECATION-CONDITION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEPRECATION-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:DEPRECATION-CONDITION>:
   Documentation:
     Superclass for deprecation-related error and warning
@@ -5486,6 +6060,7 @@ DEPRECATION-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT
       Initargs: :RUNTIME-ERROR
       Initform: 'NIL
       Readers: DEPRECATION-CONDITION-RUNTIME-ERROR
+
 #+end_example
 
 :definitions:
@@ -5496,14 +6071,17 @@ DEPRECATION-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT
 :ID: 4115123120189
 :CUSTOM_ID: SB-EXT:WEAK-POINTER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WEAK-POINTER names the built-in-class #<BUILT-IN-CLASS SB-EXT:WEAK-POINTER>:
   Class precedence-list: WEAK-POINTER, T
   Direct superclasses: T
   No subclasses.
   Sealed.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -5514,11 +6092,14 @@ WEAK-POINTER names the built-in-class #<BUILT-IN-CLASS SB-EXT:WEAK-POINTER>:
 :ID: 2947938125189
 :CUSTOM_ID: SB-EXT:*DEFAULT-SOURCE-EXTERNAL-FORMAT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*DEFAULT-SOURCE-EXTERNAL-FORMAT* names a special variable:
+
+*DEFAULT-SOURCE-EXTERNAL-FORMAT* names a special variable:
   Declared always-bound.
   Value: :DEFAULT
+
 #+end_example
 
 :definitions:
@@ -5531,8 +6112,10 @@ WEAK-POINTER names the built-in-class #<BUILT-IN-CLASS SB-EXT:WEAK-POINTER>:
 :ID: 1919663310395
 :CUSTOM_ID: SB-EXT:DEPRECATION-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEPRECATION-ERROR names a compiled function:
   Lambda-list: (SOFTWARE VERSION NAMESPACE NAME REPLACEMENTS)
   Declared type: (FUNCTION (T T T T T) NIL)
@@ -5549,6 +6132,7 @@ DEPRECATION-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:DEP
   Direct superclasses: ERROR, DEPRECATION-CONDITION
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -5560,8 +6144,10 @@ DEPRECATION-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:DEP
 :ID: 3305904002478
 :CUSTOM_ID: SB-EXT:GC-LOGFILE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GC-LOGFILE names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
@@ -5578,6 +6164,7 @@ GC-LOGFILE names a compiled function:
                  (VALUES (OR STRING PATHNAME SYNONYM-STREAM FILE-STREAM NULL)
                          &OPTIONAL))
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 :definitions:
@@ -5588,8 +6175,10 @@ GC-LOGFILE names a compiled function:
 :ID: 2949371540847
 :CUSTOM_ID: SB-EXT:FLOAT-TRAPPING-NAN-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FLOAT-TRAPPING-NAN-P names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
@@ -5597,6 +6186,7 @@ FLOAT-TRAPPING-NAN-P names a compiled function:
     Return true if the float X is a trapping NaN (Not a Number).
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;FLOAT.LISP
+
 #+end_example
 
 :definitions:
@@ -5607,8 +6197,10 @@ FLOAT-TRAPPING-NAN-P names a compiled function:
 :ID: 2272151325201
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-256-SINGLES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-256-SINGLES names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-256)
@@ -5618,6 +6210,7 @@ FLOAT-TRAPPING-NAN-P names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-256.LISP
+
 #+end_example
 
 :definitions:
@@ -5630,14 +6223,17 @@ FLOAT-TRAPPING-NAN-P names a compiled function:
 :ID: 113767364608
 :CUSTOM_ID: SB-EXT:*EFFICIENCY-NOTE-COST-THRESHOLD*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*EFFICIENCY-NOTE-COST-THRESHOLD* names a special variable:
+
+*EFFICIENCY-NOTE-COST-THRESHOLD* names a special variable:
   Declared type: (UNSIGNED-BYTE 44)
   Value: 5
   Documentation:
     This is the minimum cost difference between the chosen implementation and
     the next alternative that justifies an efficiency note.
+
 #+end_example
 
 :definitions:
@@ -5648,11 +6244,13 @@ FLOAT-TRAPPING-NAN-P names a compiled function:
 :ID: 2684130090779
 :CUSTOM_ID: SB-EXT:ASSERT-VERSION->=
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ASSERT-VERSION->= names a compiled function:
   Lambda-list: (&REST SUBVERSIONS)
-,  Derived type: (FUNCTION * (VALUES NULL &OPTIONAL))
+  Derived type: (FUNCTION * (VALUES NULL &OPTIONAL))
   Documentation:
     Asserts that the current SBCL is of version equal to or greater than
     the version specified in the arguments.  A continuable error is signaled
@@ -5666,6 +6264,7 @@ ASSERT-VERSION->= names a compiled function:
     is version 1.1.4[.0.0...] or greater, and (ASSERT-VERSION->= 1) that
     it is version 1[.0.0...] or greater.
   Source file: SYS:SRC;CODE;TARGET-MISC.LISP
+
 #+end_example
 
 - Called by
@@ -5680,8 +6279,10 @@ ASSERT-VERSION->= names a compiled function:
 :ID: 1849937042278
 :CUSTOM_ID: SB-EXT:FLOAT-INFINITY-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FLOAT-INFINITY-P names a compiled function:
   Lambda-list: (X)
   Declared type: (FUNCTION (FLOAT) (VALUES BOOLEAN &OPTIONAL))
@@ -5690,6 +6291,7 @@ FLOAT-INFINITY-P names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;FLOAT.LISP
+
 #+end_example
 
 - Called by
@@ -5705,8 +6307,10 @@ FLOAT-INFINITY-P names a compiled function:
 :ID: 1679885928714
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-SINGLES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-SINGLES names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK)
@@ -5715,6 +6319,7 @@ FLOAT-INFINITY-P names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK.LISP
+
 #+end_example
 
 :definitions:
@@ -5727,9 +6332,11 @@ FLOAT-INFINITY-P names a compiled function:
 :ID: 1707857548806
 :CUSTOM_ID: SB-EXT:*EXIT-HOOKS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*EXIT-HOOKS* names a global variable:
+
+*EXIT-HOOKS* names a global variable:
   Declared type: LIST
   Declared always-bound.
   Value: (EXIT-THREAD-POOLS STD/THREAD::EXIT-WORKERS)
@@ -5741,6 +6348,7 @@ FLOAT-INFINITY-P names a compiled function:
     
     Using (SB-EXT:EXIT :ABORT T), or calling exit(3) directly circumvents
     these hooks.
+
 #+end_example
 
 :definitions:
@@ -5751,8 +6359,10 @@ FLOAT-INFINITY-P names a compiled function:
 :ID: 81749010413
 :CUSTOM_ID: SB-EXT:SYMBOL-PACKAGE-LOCKED-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SYMBOL-PACKAGE-LOCKED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASSSB-EXT:SYMBOL-PACKAGE-LOCKED-ERROR>:
   Documentation:
     Subtype of SB-EXT:PACKAGE-LOCK-VIOLATION. An error of this type is
@@ -5769,6 +6379,7 @@ SYMBOL-PACKAGE-LOCKED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASSS
     SYMBOL
       Initargs: :SYMBOL
       Readers: PACKAGE-LOCKED-ERROR-SYMBOL
+
 #+end_example
 
 :definitions:
@@ -5779,23 +6390,26 @@ SYMBOL-PACKAGE-LOCKED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASSS
 :ID: 3839849570352
 :CUSTOM_ID: SB-EXT:*DEBUG-PRINT-VARIABLE-ALIST*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*DEBUG-PRINT-VARIABLE-ALIST* names a special variable:
+
+*DEBUG-PRINT-VARIABLE-ALIST* names a special variable:
   Value: NIL
   Documentation:
     an association list describing new bindings for special variables
     to be used within the debugger. Eg.
     
-,     ((*PRINT-LENGTH* . 10) (*PRINT-LEVEL* . 6) (*PRINT-PRETTY* . NIL))
+     ((*PRINT-LENGTH* . 10) (*PRINT-LEVEL* . 6) (*PRINT-PRETTY* . NIL))
     
     The variables in the CAR positions are bound to the values in the CDR
     during the execution of some debug commands. When evaluating arbitrary
     expressions in the debugger, the normal values of the printer control
     variables are in effect.
     
-,    Initially empty, *DEBUG-PRINT-VARIABLE-ALIST* is typically used to
+    Initially empty, *DEBUG-PRINT-VARIABLE-ALIST* is typically used to
     provide bindings for printer control variables.
+
 #+end_example
 
 :definitions:
@@ -5806,8 +6420,10 @@ SYMBOL-PACKAGE-LOCKED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASSS
 :ID: 1126915565440
 :CUSTOM_ID: SB-EXT:ATOMIC-UPDATE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ATOMIC-UPDATE names a macro:
   Lambda-list: (PLACE UPDATE-FN &REST ARGUMENTS)
   Documentation:
@@ -5825,7 +6441,7 @@ ATOMIC-UPDATE names a macro:
     
         ;;; Conses T to the head of FOO-LIST.
         (defstruct foo list)
-,        (defvar *foo* (make-foo))
+        (defvar *foo* (make-foo))
         (atomic-update (foo-list *foo*) #'cons t)
     
         (let ((x (cons :count 0)))
@@ -5841,6 +6457,7 @@ ATOMIC-UPDATE names a macro:
            ;; unpredictable.
            x)
   Source file: SYS:SRC;CODE;MACROS.LISP
+
 #+end_example
 
 :definitions:
@@ -5851,10 +6468,13 @@ ATOMIC-UPDATE names a macro:
 :ID: 3209070413852
 :CUSTOM_ID: SB-EXT:SINGLE-FLOAT-POSITIVE-INFINITY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SINGLE-FLOAT-POSITIVE-INFINITY names a constant variable:
   Value: #.SINGLE-FLOAT-POSITIVE-INFINITY
+
 #+end_example
 
 :definitions:
@@ -5865,8 +6485,10 @@ SINGLE-FLOAT-POSITIVE-INFINITY names a constant variable:
 :ID: 1876651387716
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-512-UB8S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-512-UB8S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-512)
@@ -5895,6 +6517,7 @@ SINGLE-FLOAT-POSITIVE-INFINITY names a constant variable:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-512.LISP
+
 #+end_example
 
 :definitions:
@@ -5907,8 +6530,10 @@ SINGLE-FLOAT-POSITIVE-INFINITY names a constant variable:
 :ID: 1273224769824
 :CUSTOM_ID: SB-EXT:DEFINE-HASH-TABLE-TEST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINE-HASH-TABLE-TEST names a macro:
   Lambda-list: (NAME HASH-FUNCTION)
   Documentation:
@@ -5962,6 +6587,7 @@ DEFINE-HASH-TABLE-TEST names a macro:
     ;; #'== would work too
     (defun make-number-table () (make-hash-table :test '==))
   Source file: SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+
 #+end_example
 
 :definitions:
@@ -5972,17 +6598,22 @@ DEFINE-HASH-TABLE-TEST names a macro:
 :ID: 2131768191127
 :CUSTOM_ID: SB-EXT:FREEZE-TYPE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FREEZE-TYPE names an SBCL-specific declaration.
+
 #+end_example
 ** %SIMD-PACK-SB8S :compiled:function:
 :PROPERTIES:
 :ID: 2669626039784
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-SB8S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-SB8S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK)
@@ -5995,6 +6626,7 @@ FREEZE-TYPE names an SBCL-specific declaration.
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK.LISP
+
 #+end_example
 
 :definitions:
@@ -6007,8 +6639,10 @@ FREEZE-TYPE names an SBCL-specific declaration.
 :ID: 139535217457
 :CUSTOM_ID: SB-EXT:STEP-CONDITION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STEP-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:STEP-CONDITION>:
   Documentation:
     Common base class of single-stepping conditions.
@@ -6022,6 +6656,7 @@ STEP-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:STEP-C
     SB-KERNEL:FORM
       Initargs: :FORM
       Readers: STEP-CONDITION-FORM
+
 #+end_example
 
 :definitions:
@@ -6032,16 +6667,17 @@ STEP-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:STEP-C
 :ID: 2836244852384
 :CUSTOM_ID: SB-EXT:*STEPPER-HOOK*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*STEPPER-HOOK* names a special variable:
-  Value: #<FUNCTION (LAMBDA (CONDITION)
-                      :IN
-                      SWANK/BACKEND:CALL-WITH-DEBUGGER-HOOK) {B8002D396B}>
+
+*STEPPER-HOOK* names a special variable:
+  Value: SB-IMPL::SINGLE-STEP
   Documentation:
     Customization hook for alternative single-steppers.
-,    *STEPPER-HOOK* is bound to NIL prior to calling the bound function
+    *STEPPER-HOOK* is bound to NIL prior to calling the bound function
     with the STEP-CONDITION as argument.
+
 #+end_example
 
 - Bound by
@@ -6055,8 +6691,10 @@ STEP-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:STEP-C
 :ID: 2712861068709
 :CUSTOM_ID: SB-EXT:INTERACTIVE-EVAL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INTERACTIVE-EVAL names a compiled function:
   Lambda-list: (FORM &KEY (EVAL (FUNCTION EVAL)))
   Derived type: (FUNCTION (T &KEY (:EVAL T)) *)
@@ -6064,10 +6702,8 @@ INTERACTIVE-EVAL names a compiled function:
     Evaluate FORM, returning whatever it returns and adjusting ***, **, *,
     +++, ++, +, ///, //, /, and -.
   Source file: SYS:SRC;CODE;TOPLEVEL.LISP
-#+end_example
 
-- Called by
-  - SB-ACLREPL::REP-ONE
+#+end_example
 
 :definitions:
 - SYS:SRC;CODE;TOPLEVEL.LISP
@@ -6077,8 +6713,10 @@ INTERACTIVE-EVAL names a compiled function:
 :ID: 3486225193200
 :CUSTOM_ID: SB-EXT:FINAL-DEPRECATION-WARNING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FINAL-DEPRECATION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASSSB-EXT:FINAL-DEPRECATION-WARNING>:
   Documentation:
     This warning is signaled when the use of a variable,
@@ -6090,6 +6728,7 @@ FINAL-DEPRECATION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASSSB-
   Direct superclasses: WARNING, DEPRECATION-CONDITION
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -6100,13 +6739,16 @@ FINAL-DEPRECATION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASSSB-
 :ID: 2953449479278
 :CUSTOM_ID: SB-EXT:RESOLVE-CONFLICT
 :ALLOC: HEAP IMMOBILE
-:END:** %SIMD-PACK-UB8S :compiled:function:
+:END:
+** %SIMD-PACK-UB8S :compiled:function:
 :PROPERTIES:
 :ID: 1637252863383
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-UB8S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-UB8S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK)
@@ -6119,6 +6761,7 @@ FINAL-DEPRECATION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASSSB-
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK.LISP
+
 #+end_example
 
 :definitions:
@@ -6131,13 +6774,16 @@ FINAL-DEPRECATION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASSSB-
 :ID: 2411921311648
 :CUSTOM_ID: SB-EXT:STACK-ALLOCATED-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STACK-ALLOCATED-P names a compiled function:
   Lambda-list: (X &OPTIONAL ALL-THREADS)
   Derived type: (FUNCTION (T &OPTIONAL T)
                  (VALUES (OR SB-THREAD:THREAD NULL) &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG.LISP
+
 #+end_example
 
 - Called by
@@ -6151,8 +6797,10 @@ STACK-ALLOCATED-P names a compiled function:
 :ID: 34943666263
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-256-SB32S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-256-SB32S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-256)
@@ -6162,6 +6810,7 @@ STACK-ALLOCATED-P names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-256.LISP
+
 #+end_example
 
 :definitions:
@@ -6174,13 +6823,16 @@ STACK-ALLOCATED-P names a compiled function:
 :ID: 2189019873597
 :CUSTOM_ID: SB-EXT:SIMD-PACK-256-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIMD-PACK-256-P names a compiled function:
   Lambda-list: (OBJECT)
   Declared type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable, predicate
   Source file: SYS:SRC;CODE;PRED.LISP
+
 #+end_example
 
 - Called by
@@ -6230,15 +6882,18 @@ SIMD-PACK-256-P names a compiled function:
 :ID: 4172575008129
 :CUSTOM_ID: SB-EXT:*UNDEFINED-WARNING-LIMIT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*UNDEFINED-WARNING-LIMIT* names a special variable:
+
+*UNDEFINED-WARNING-LIMIT* names a special variable:
   Value: 3
   Documentation:
     If non-null, then an upper limit on the number of unknown function or type
     warnings that the compiler will print for any given name in a single
     compilation. This prevents excessive amounts of output when the real
     problem is a missing definition (as opposed to a typo in the use.)
+
 #+end_example
 
 :definitions:
@@ -6249,8 +6904,10 @@ SIMD-PACK-256-P names a compiled function:
 :ID: 2476117811597
 :CUSTOM_ID: SB-EXT:%MAKE-SIMD-PACK-256-UB32
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MAKE-SIMD-PACK-256-UB32 names a compiled function:
   Lambda-list: (P0 P1 P2 P3 P4 P5 P6 P7)
   Declared type: (FUNCTION
@@ -6260,6 +6917,7 @@ SIMD-PACK-256-P names a compiled function:
                   (VALUES (SB-EXT:SIMD-PACK-256 (UNSIGNED-BYTE 32)) &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-256.LISP
+
 #+end_example
 
 :definitions:
@@ -6272,8 +6930,10 @@ SIMD-PACK-256-P names a compiled function:
 :ID: 2327705342200
 :CUSTOM_ID: SB-EXT:COMPILER-NOTE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPILER-NOTE names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:COMPILER-NOTE>:
   Documentation:
     Root of the hierarchy of conditions representing information discovered
@@ -6283,6 +6943,7 @@ COMPILER-NOTE names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:COMPILE
   Direct superclasses: CONDITION
   Direct subclasses: SB-INT:SIMPLE-COMPILER-NOTE
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -6293,13 +6954,16 @@ COMPILER-NOTE names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:COMPILE
 :ID: 3113806936713
 :CUSTOM_ID: SB-EXT:COMPILE-FILE-POSITION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPILE-FILE-POSITION names a macro:
   Lambda-list: ()
   Documentation:
     Return character position of this macro invocation or NIL if unavailable.
   Source file: SYS:SRC;COMPILER;TARGET-MAIN.LISP
+
 #+end_example
 
 :definitions:
@@ -6310,13 +6974,16 @@ COMPILE-FILE-POSITION names a macro:
 :ID: 773403207480
 :CUSTOM_ID: SB-EXT:SIMD-PACK-512-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIMD-PACK-512-P names a compiled function:
   Lambda-list: (OBJECT)
   Declared type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable, predicate
   Source file: SYS:SRC;CODE;PRED.LISP
+
 #+end_example
 
 :definitions:
@@ -6331,8 +6998,10 @@ SIMD-PACK-512-P names a compiled function:
 :ID: 3243515092532
 :CUSTOM_ID: SB-EXT:%MAKE-SIMD-PACK-256-DOUBLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MAKE-SIMD-PACK-256-DOUBLE names a compiled function:
   Lambda-list: (A B C D)
   Declared type: (FUNCTION
@@ -6340,6 +7009,7 @@ SIMD-PACK-512-P names a compiled function:
                   (VALUES (SB-EXT:SIMD-PACK-256 DOUBLE-FLOAT) &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -6352,8 +7022,10 @@ SIMD-PACK-512-P names a compiled function:
 :ID: 2646761092490
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-UB64S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-UB64S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK)
@@ -6361,6 +7033,7 @@ SIMD-PACK-512-P names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK.LISP
+
 #+end_example
 
 :definitions:
@@ -6373,14 +7046,16 @@ SIMD-PACK-512-P names a compiled function:
 :ID: 2290825343992
 :CUSTOM_ID: SB-EXT:*COMPILER-PRINT-VARIABLE-ALIST*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*COMPILER-PRINT-VARIABLE-ALIST* names a special variable:
+
+*COMPILER-PRINT-VARIABLE-ALIST* names a special variable:
   Value: NIL
   Documentation:
     An association list describing new bindings for special variables
     to be used by the compiler for error-reporting, etc.
-,    E.g. ((*PRINT-LENGTH* . 10) (*PRINT-LEVEL* . 6) (*PRINT-PRETTY* .
+    E.g. ((*PRINT-LENGTH* . 10) (*PRINT-LEVEL* . 6) (*PRINT-PRETTY* .
     NIL)).
     
     The variables in the CAR positions are bound to the values in the CDR
@@ -6388,8 +7063,9 @@ SIMD-PACK-512-P names a compiled function:
     expressions in the debugger, the normal values of the printer control
     variables are in effect.
     
-,    Initially empty, *COMPILER-PRINT-VARIABLE-ALIST* is typically used
+    Initially empty, *COMPILER-PRINT-VARIABLE-ALIST* is typically used
     to specify bindings for printer control variables.
+
 #+end_example
 
 :definitions:
@@ -6400,12 +7076,15 @@ SIMD-PACK-512-P names a compiled function:
 :ID: 365223432794
 :CUSTOM_ID: SB-EXT:STEP-CONDITION-ARGS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STEP-CONDITION-ARGS names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -6416,8 +7095,10 @@ STEP-CONDITION-ARGS names a compiled function:
 :ID: 724900448594
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-UB16S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-UB16S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK)
@@ -6428,6 +7109,7 @@ STEP-CONDITION-ARGS names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK.LISP
+
 #+end_example
 
 :definitions:
@@ -6440,13 +7122,16 @@ STEP-CONDITION-ARGS names a compiled function:
 :ID: 1072521054649
 :CUSTOM_ID: SB-EXT:CREATE
 :ALLOC: HEAP IMMOBILE
-:END:** FINALIZE :compiled:function:
+:END:
+** FINALIZE :compiled:function:
 :PROPERTIES:
 :ID: 4019301974911
 :CUSTOM_ID: SB-EXT:FINALIZE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FINALIZE names a compiled function:
   Lambda-list: (OBJECT FUNCTION &KEY DONT-SAVE)
   Declared type: (FUNCTION (T (OR FUNCTION SYMBOL) &KEY (:DONT-SAVE T)) *)
@@ -6473,26 +7158,26 @@ FINALIZE names a compiled function:
     Examples:
     
     ;;; GOOD, assuming RELEASE-HANDLE is re-entrant.
-,    (let* ((handle (get-handle))
+    (let* ((handle (get-handle))
            (object (make-object handle)))
      (finalize object (lambda () (release-handle handle)))
      object)
     
     ;;; BAD, finalizer refers to object being finalized, causing
     ;;; it to be retained indefinitely!
-,    (let* ((handle (get-handle))
+    (let* ((handle (get-handle))
            (object (make-object handle)))
       (finalize object
                 (lambda ()
                   (release-handle (object-handle object)))))
     
     ;;; BAD, not re-entrant!
-,    (defvar *rec* nil)
+    (defvar *rec* nil)
     
     (defun oops ()
      (when *rec*
        (error "recursive OOPS"))
-,     (let ((*rec* t))
+     (let ((*rec* t))
        (gc))) ; or just cons enough to cause one
     
     (progn
@@ -6501,13 +7186,14 @@ FINALIZE names a compiled function:
               ; -> ERROR, caught, WARNING signalled
   Known attributes: unwind, any
   Source file: SYS:SRC;CODE;FINAL.LISP
+
 #+end_example
 
 - Called by
   - (SOCKET-ACCEPT (SOCKET))
   - (SET-DATABASE-BACKEND-OPTION (RDB-DATABASE (EQL CLOSE) (EQL AUTO)))
   - (SET-DATABASE-BACKEND-OPTION (RDB (EQL CLOSE) (EQL AUTO)))
-  - [[id:2460044734616][REQ]]
+  - NET/REQ::REQ
   - (SHARED-INITIALIZE AFTER (SOCKET T))
   - DAT/TTF::ARRANGE-FINALIZATION
   - (GET-CACHE)
@@ -6522,33 +7208,39 @@ FINALIZE names a compiled function:
 :ID: 1639259698775
 :CUSTOM_ID: SB-EXT:INHIBIT-WARNINGS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INHIBIT-WARNINGS names an optimization policy quality:
   (undocumented)
+
 #+end_example
 ** *DEFAULT-EXTERNAL-FORMAT​* :global:var:
 :PROPERTIES:
 :ID: 3118199778614
 :CUSTOM_ID: SB-EXT:*DEFAULT-EXTERNAL-FORMAT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*DEFAULT-EXTERNAL-FORMAT* names a special variable:
+
+*DEFAULT-EXTERNAL-FORMAT* names a special variable:
   Declared always-bound.
   Value: :UTF-8
   Documentation:
     Most functions interacting with external formats (OPEN, notably)
     use this default.
+
 #+end_example
 
 - Referenced by
-  - [[id:2460044734616][REQ]]
+  - NET/REQ::REQ
   - NET/REQ::CHARSET-TO-ENCODING
-  - [[id:4065675793341][URL-DECODE]]
-  - [[id:1466297106315][URL-DECODE-PARAMS]]
-  - [[id:1329217074005][URL-ENCODE]]
-  - [[id:1823599861498][URL-ENCODE-PARAMS]]
+  - [[id:4065675792800][URL-DECODE]]
+  - [[id:1466297105596][URL-DECODE-PARAMS]]
+  - [[id:1329217073774][URL-ENCODE]]
+  - [[id:1823599861216][URL-ENCODE-PARAMS]]
 
 :definitions:
 - SYS:SRC;CODE;GLOBALS.LISP
@@ -6560,8 +7252,10 @@ INHIBIT-WARNINGS names an optimization policy quality:
 :ID: 4155173024336
 :CUSTOM_ID: SB-EXT:PROCESS-CLOSE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-CLOSE names a compiled function:
   Lambda-list: (PROCESS)
   Derived type: (FUNCTION (T) (VALUES SB-IMPL::PROCESS &OPTIONAL))
@@ -6571,6 +7265,7 @@ PROCESS-CLOSE names a compiled function:
     PROCESS-EXIT-CODE can return stale information about a process, so
     should not be used.
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 :definitions:
@@ -6581,8 +7276,10 @@ PROCESS-CLOSE names a compiled function:
 :ID: 401337880963
 :CUSTOM_ID: SB-EXT:GENERATION-BYTES-CONSED-BETWEEN-GCS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GENERATION-BYTES-CONSED-BETWEEN-GCS names a compiled function:
   Lambda-list: (GENERATION)
   Derived type: (FUNCTION ((MOD 7)) (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
@@ -6600,6 +7297,7 @@ GENERATION-BYTES-CONSED-BETWEEN-GCS names a compiled function:
   Lambda-list: (VALUE GENERATION)
   Derived type: (FUNCTION (T (MOD 7)) (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 :definitions:
@@ -6610,8 +7308,10 @@ GENERATION-BYTES-CONSED-BETWEEN-GCS names a compiled function:
 :ID: 2940532708319
 :CUSTOM_ID: SB-EXT:SYMBOL-GLOBAL-VALUE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SYMBOL-GLOBAL-VALUE names a compiled function:
   Lambda-list: (SYMBOL)
   Declared type: (FUNCTION (SYMBOL) (VALUES T &OPTIONAL))
@@ -6622,6 +7322,7 @@ SYMBOL-GLOBAL-VALUE names a compiled function:
   Source file: SYS:SRC;CODE;SYMBOL.LISP
 
 (SETF SYMBOL-GLOBAL-VALUE) has setf-expansion: SB-KERNEL:SET-SYMBOL-GLOBAL-VALUE
+
 #+end_example
 
 :definitions:
@@ -6639,8 +7340,10 @@ SYMBOL-GLOBAL-VALUE names a compiled function:
 :ID: 1939812571257
 :CUSTOM_ID: SB-EXT:PRINT-SYMBOL-WITH-PREFIX
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PRINT-SYMBOL-WITH-PREFIX names a compiled function:
   Lambda-list: (STREAM SYMBOL &OPTIONAL COLON AT)
   Derived type: (FUNCTION (T T &OPTIONAL T T) (VALUES T &OPTIONAL))
@@ -6648,6 +7351,7 @@ PRINT-SYMBOL-WITH-PREFIX names a compiled function:
     For use with ~/: Write SYMBOL to STREAM as if it is not accessible from
     the current package.
   Source file: SYS:SRC;CODE;EARLY-EXTENSIONS.LISP
+
 #+end_example
 
 :definitions:
@@ -6658,13 +7362,16 @@ PRINT-SYMBOL-WITH-PREFIX names a compiled function:
 :ID: 728088274922
 :CUSTOM_ID: SB-EXT:*ED-FUNCTIONS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*ED-FUNCTIONS* names a special variable:
+
+*ED-FUNCTIONS* names a special variable:
   Declared type: LIST
   Value: (#<FUNCTION RUN-EMACSCLIENT> #<FUNCTION RUN-EMACS>)
   Documentation:
     See ED.
+
 #+end_example
 
 :definitions:
@@ -6675,8 +7382,10 @@ PRINT-SYMBOL-WITH-PREFIX names a compiled function:
 :ID: 2032261917372
 :CUSTOM_ID: SB-EXT:PARSE-NATIVE-NAMESTRING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PARSE-NATIVE-NAMESTRING names a compiled function:
   Lambda-list: (THING &OPTIONAL HOST (DEFAULTS *DEFAULT-PATHNAME-DEFAULTS*)
                 &KEY (START 0) END JUNK-ALLOWED AS-DIRECTORY)
@@ -6699,12 +7408,13 @@ PARSE-NATIVE-NAMESTRING names a compiled function:
     AS-DIRECTORY is true, return a pathname denoting THING as a
     directory.
   Source file: SYS:SRC;CODE;TARGET-PATHNAME.LISP
+
 #+end_example
 
 - Called by
   - [[id:2032261917372][PARSE-NATIVE-NAMESTRING]]
   - UIOP/OS:GETCWD
-  - [[id:348664213292][PARSE-PATH]]
+  - NET/SRV/HTTP::PARSE-PATH
   - (FILENAME-TO-PATHNAME IN /home/ellis/src/core/lib/swank/sbcl.lisp)
 
 :definitions:
@@ -6715,8 +7425,10 @@ PARSE-NATIVE-NAMESTRING names a compiled function:
 :ID: 2889112080001
 :CUSTOM_ID: SB-EXT:DELETE-FILE-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DELETE-FILE-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:DELETE-FILE-ERROR>:
   Class precedence-list: DELETE-FILE-ERROR, SB-INT:SIMPLE-FILE-ERROR,
                          SIMPLE-CONDITION, FILE-ERROR, ERROR, SERIOUS-CONDITION,
@@ -6724,6 +7436,7 @@ DELETE-FILE-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:DEL
   Direct superclasses: SB-INT:SIMPLE-FILE-ERROR
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -6734,13 +7447,16 @@ DELETE-FILE-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:DEL
 :ID: 2060535841903
 :CUSTOM_ID: SB-EXT:*SUPPRESS-PRINT-ERRORS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*SUPPRESS-PRINT-ERRORS* names a special variable:
+
+*SUPPRESS-PRINT-ERRORS* names a special variable:
   Value: NIL
   Documentation:
     Suppress printer errors when the condition is of the type designated bythis
     variable: an unreadable object representing the error is printed instead.
+
 #+end_example
 
 - Bound by
@@ -6759,8 +7475,10 @@ DELETE-FILE-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:DEL
 :ID: 682707672408
 :CUSTOM_ID: SB-EXT:STEP-FINISHED-CONDITION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STEP-FINISHED-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:STEP-FINISHED-CONDITION>:
   Documentation:
     Condition signaled when STEP returns.
@@ -6769,6 +7487,7 @@ STEP-FINISHED-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-E
   Direct superclasses: STEP-CONDITION
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -6779,8 +7498,10 @@ STEP-FINISHED-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-E
 :ID: 218013425057
 :CUSTOM_ID: SB-EXT:DELETE-DIRECTORY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DELETE-DIRECTORY names a compiled function:
   Lambda-list: (PATHSPEC &KEY RECURSIVE)
   Derived type: (FUNCTION
@@ -6807,6 +7528,7 @@ DELETE-DIRECTORY names a compiled function:
     delete the "foo" subdirectory of "/tmp", or signal an error if
     it does not exist or if it is a file or a symbolic link.
   Source file: SYS:SRC;CODE;FILESYS.LISP
+
 #+end_example
 
 - Called by
@@ -6825,10 +7547,13 @@ DELETE-DIRECTORY names a compiled function:
 :ID: 1646713714713
 :CUSTOM_ID: SB-EXT:SHORT-FLOAT-NEGATIVE-INFINITY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SHORT-FLOAT-NEGATIVE-INFINITY names a constant variable:
   Value: #.SINGLE-FLOAT-NEGATIVE-INFINITY
+
 #+end_example
 
 :definitions:
@@ -6839,8 +7564,10 @@ SHORT-FLOAT-NEGATIVE-INFINITY names a constant variable:
 :ID: 2991237819902
 :CUSTOM_ID: SB-EXT:VALID-TYPE-SPECIFIER-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 VALID-TYPE-SPECIFIER-P names a compiled function:
   Lambda-list: (TYPE-SPECIFIER &OPTIONAL ENV)
   Derived type: (FUNCTION (T &OPTIONAL T) (VALUES BOOLEAN &OPTIONAL))
@@ -6867,13 +7594,14 @@ VALID-TYPE-SPECIFIER-P names a compiled function:
     
     Examples:
     
-,      (valid-type-specifier-p '(cons * *))     => T
+      (valid-type-specifier-p '(cons * *))     => T
       (valid-type-specifier-p '#:foo)          => NIL
-,      (valid-type-specifier-p '(cons * #:foo)) => NIL
+      (valid-type-specifier-p '(cons * #:foo)) => NIL
       (valid-type-specifier-p '(cons 1 *)      => NIL
     
     Experimental.
   Source file: SYS:SRC;CODE;TYPEP.LISP
+
 #+end_example
 
 - Called by
@@ -6887,8 +7615,10 @@ VALID-TYPE-SPECIFIER-P names a compiled function:
 :ID: 3270905736949
 :CUSTOM_ID: SB-EXT:HASH-TABLE-SYNCHRONIZED-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 HASH-TABLE-SYNCHRONIZED-P names a compiled function:
   Lambda-list: (HT)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
@@ -6896,6 +7626,7 @@ HASH-TABLE-SYNCHRONIZED-P names a compiled function:
     Returns T if HASH-TABLE is synchronized.
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+
 #+end_example
 
 :definitions:
@@ -6906,14 +7637,17 @@ HASH-TABLE-SYNCHRONIZED-P names a compiled function:
 :ID: 991719056876
 :CUSTOM_ID: SB-EXT:DEFINED-TYPE-NAME-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINED-TYPE-NAME-P names a compiled function:
   Lambda-list: (NAME &OPTIONAL ENV)
   Derived type: (FUNCTION (SYMBOL &OPTIONAL T) (VALUES BOOLEAN &OPTIONAL))
   Documentation:
     Returns T if NAME is known to name a type specifier, otherwise NIL.
   Source file: SYS:SRC;CODE;TYPEP.LISP
+
 #+end_example
 
 :definitions:
@@ -6924,8 +7658,10 @@ DEFINED-TYPE-NAME-P names a compiled function:
 :ID: 4251507290383
 :CUSTOM_ID: SB-EXT:GENERATION-AVERAGE-AGE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GENERATION-AVERAGE-AGE names a compiled function:
   Lambda-list: (GENERATION)
   Derived type: (FUNCTION ((MOD 7)) (VALUES DOUBLE-FLOAT &OPTIONAL))
@@ -6936,6 +7672,7 @@ GENERATION-AVERAGE-AGE names a compiled function:
     
     Experimental: interface subject to change.
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 :definitions:
@@ -6946,8 +7683,10 @@ GENERATION-AVERAGE-AGE names a compiled function:
 :ID: 2852355782755
 :CUSTOM_ID: SB-EXT:PACKAGE-LOCAL-NICKNAMES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PACKAGE-LOCAL-NICKNAMES names a compiled function:
   Lambda-list: (PACKAGE-DESIGNATOR)
   Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
@@ -6966,6 +7705,7 @@ PACKAGE-LOCAL-NICKNAMES names a compiled function:
     
     Experimental: interface subject to change.
   Source file: SYS:SRC;CODE;TARGET-PACKAGE.LISP
+
 #+end_example
 
 - Called by
@@ -6980,10 +7720,13 @@ PACKAGE-LOCAL-NICKNAMES names a compiled function:
 :ID: 392837893656
 :CUSTOM_ID: SB-EXT:DOUBLE-FLOAT-NEGATIVE-INFINITY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DOUBLE-FLOAT-NEGATIVE-INFINITY names a constant variable:
   Value: #.DOUBLE-FLOAT-NEGATIVE-INFINITY
+
 #+end_example
 
 :definitions:
@@ -6994,10 +7737,13 @@ DOUBLE-FLOAT-NEGATIVE-INFINITY names a constant variable:
 :ID: 662731014233
 :CUSTOM_ID: SB-EXT:LONG-FLOAT-NEGATIVE-INFINITY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LONG-FLOAT-NEGATIVE-INFINITY names a constant variable:
   Value: #.DOUBLE-FLOAT-NEGATIVE-INFINITY
+
 #+end_example
 
 :definitions:
@@ -7008,13 +7754,16 @@ LONG-FLOAT-NEGATIVE-INFINITY names a constant variable:
 :ID: 1699380951358
 :CUSTOM_ID: SB-EXT:*CORE-PATHNAME*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*CORE-PATHNAME* names a global variable:
+
+*CORE-PATHNAME* names a global variable:
   Declared always-bound.
   Value: #P"/usr/bin/core"
   Documentation:
     The absolute pathname of the running SBCL core.
+
 #+end_example
 
 :definitions:
@@ -7025,9 +7774,11 @@ LONG-FLOAT-NEGATIVE-INFINITY names a constant variable:
 :ID: 222352421083
 :CUSTOM_ID: SB-EXT:*ON-PACKAGE-VARIANCE*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*ON-PACKAGE-VARIANCE* names a special variable:
+
+*ON-PACKAGE-VARIANCE* names a special variable:
   Declared type: LIST
   Value: (:WARN T)
   Documentation:
@@ -7051,10 +7802,11 @@ LONG-FLOAT-NEGATIVE-INFINITY names a constant variable:
     
     Example:
     
-,        (setf *on-package-variance* '(:warn (:swank :swank-backend) :error t))
+        (setf *on-package-variance* '(:warn (:swank :swank-backend) :error t))
     
     specifies to signal a warning if SWANK package is in variance, and an
     error otherwise.
+
 #+end_example
 
 :definitions:
@@ -7067,8 +7819,10 @@ LONG-FLOAT-NEGATIVE-INFINITY names a constant variable:
 :ID: 380209104342
 :CUSTOM_ID: SB-EXT:MAKE-WEAK-POINTER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-WEAK-POINTER names a compiled function:
   Lambda-list: (OBJECT)
   Declared type: (FUNCTION (T) (VALUES SB-EXT:WEAK-POINTER &OPTIONAL))
@@ -7076,6 +7830,7 @@ MAKE-WEAK-POINTER names a compiled function:
     Allocate and return a weak pointer which points to OBJECT.
   Known attributes: flushable, unsafely-flushable
   Source file: SYS:SRC;CODE;WEAK.LISP
+
 #+end_example
 
 - Called by
@@ -7095,8 +7850,10 @@ MAKE-WEAK-POINTER names a compiled function:
 :ID: 3828252884286
 :CUSTOM_ID: SB-EXT:PROCESS-WAIT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-WAIT names a compiled function:
   Lambda-list: (PROCESS &OPTIONAL CHECK-FOR-STOPPED)
   Derived type: (FUNCTION (T &OPTIONAL T) (VALUES T &OPTIONAL))
@@ -7105,6 +7862,7 @@ PROCESS-WAIT names a compiled function:
     CHECK-FOR-STOPPED is T, also returns when PROCESS is stopped. Returns
     PROCESS.
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 - Called by
@@ -7118,13 +7876,16 @@ PROCESS-WAIT names a compiled function:
 :ID: 3292519707287
 :CUSTOM_ID: SB-EXT:START-BLOCK
 :ALLOC: HEAP IMMOBILE
-:END:** WAIT-FOR :compiled:macro:function:
+:END:
+** WAIT-FOR :compiled:macro:function:
 :PROPERTIES:
 :ID: 3239920564179
 :CUSTOM_ID: SB-EXT:WAIT-FOR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WAIT-FOR names a macro:
   Lambda-list: (TEST-FORM &KEY TIMEOUT)
   Documentation:
@@ -7138,6 +7899,7 @@ WAIT-FOR names a macro:
     
     Experimental: subject to change without prior notice.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -7151,8 +7913,10 @@ WAIT-FOR names a macro:
 :ID: 712873875463
 :CUSTOM_ID: SB-EXT:ATOMIC-DECF
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ATOMIC-DECF names a macro:
   Lambda-list: (PLACE &OPTIONAL (DIFF 1))
   Documentation:
@@ -7187,6 +7951,7 @@ ATOMIC-DECF names a macro:
     
     EXPERIMENTAL: Interface subject to change.
   Source file: SYS:SRC;CODE;MACROS.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -7200,9 +7965,12 @@ ATOMIC-DECF names a macro:
 :ID: 1555741283308
 :CUSTOM_ID: SB-EXT:DISABLE-PACKAGE-LOCKS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DISABLE-PACKAGE-LOCKS names an SBCL-specific declaration.
+
 #+end_example
 
 :definitions:
@@ -7214,8 +7982,10 @@ DISABLE-PACKAGE-LOCKS names an SBCL-specific declaration.
 :ID: 4392915561231
 :CUSTOM_ID: SB-EXT:TIMER-SCHEDULED-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TIMER-SCHEDULED-P names a compiled function:
   Lambda-list: (TIMER &KEY (DELTA 0))
   Derived type: (FUNCTION (T &KEY (:DELTA T)) (VALUES BOOLEAN &OPTIONAL))
@@ -7223,6 +7993,7 @@ TIMER-SCHEDULED-P names a compiled function:
     See if TIMER will still need to be triggered after DELTA seconds
     from now. For timers with a repeat interval it returns true.
   Source file: SYS:SRC;CODE;TIMER.LISP
+
 #+end_example
 
 :definitions:
@@ -7233,8 +8004,10 @@ TIMER-SCHEDULED-P names a compiled function:
 :ID: 4252139446280
 :CUSTOM_ID: SB-EXT:UNSCHEDULE-TIMER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 UNSCHEDULE-TIMER names a compiled function:
   Lambda-list: (TIMER)
   Derived type: (FUNCTION (T) (VALUES &OPTIONAL))
@@ -7243,6 +8016,7 @@ UNSCHEDULE-TIMER names a compiled function:
     TIMER shall not be triggered again and there are no unfinished
     triggers.
   Source file: SYS:SRC;CODE;TIMER.LISP
+
 #+end_example
 
 - Called by
@@ -7256,8 +8030,10 @@ UNSCHEDULE-TIMER names a compiled function:
 :ID: 3986015264902
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-512-SB8S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-512-SB8S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-512)
@@ -7286,6 +8062,7 @@ UNSCHEDULE-TIMER names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-512.LISP
+
 #+end_example
 
 :definitions:
@@ -7298,8 +8075,10 @@ UNSCHEDULE-TIMER names a compiled function:
 :ID: 2163178078974
 :CUSTOM_ID: SB-EXT:DEFINE-LOAD-TIME-GLOBAL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINE-LOAD-TIME-GLOBAL names a macro:
   Lambda-list: (NAME VALUE &OPTIONAL (DOC NIL))
   Documentation:
@@ -7311,6 +8090,7 @@ DEFINE-LOAD-TIME-GLOBAL names a macro:
     
     See also DEFGLOBAL which assigns the VALUE at compile-time too.
   Source file: SYS:SRC;CODE;MACROS.LISP
+
 #+end_example
 
 :definitions:
@@ -7321,14 +8101,17 @@ DEFINE-LOAD-TIME-GLOBAL names a macro:
 :ID: 3694244884211
 :CUSTOM_ID: SB-EXT:POSIX-ENVIRON
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 POSIX-ENVIRON names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES LIST &OPTIONAL))
   Documentation:
     Return the Unix environment as a list of SIMPLE-STRINGs. See man environ.
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 :definitions:
@@ -7339,8 +8122,10 @@ POSIX-ENVIRON names a compiled function:
 :ID: 3248265235197
 :CUSTOM_ID: SB-EXT:FILE-DOES-NOT-EXIST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FILE-DOES-NOT-EXIST names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:FILE-DOES-NOT-EXIST>:
   Class precedence-list: FILE-DOES-NOT-EXIST, SB-INT:SIMPLE-FILE-ERROR,
                          SIMPLE-CONDITION, FILE-ERROR, ERROR, SERIOUS-CONDITION,
@@ -7348,6 +8133,7 @@ FILE-DOES-NOT-EXIST names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:F
   Direct superclasses: SB-INT:SIMPLE-FILE-ERROR
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -7358,17 +8144,21 @@ FILE-DOES-NOT-EXIST names the condition-class #<SB-PCL::CONDITION-CLASS SB-EXT:F
 :ID: 1982735308222
 :CUSTOM_ID: SB-EXT:STEP-OUT
 :ALLOC: HEAP IMMOBILE
-:END:** DEPRECATION-CONDITION-REPLACEMENTS :compiled:function:
+:END:
+** DEPRECATION-CONDITION-REPLACEMENTS :compiled:function:
 :PROPERTIES:
 :ID: 4304153217191
 :CUSTOM_ID: SB-EXT:DEPRECATION-CONDITION-REPLACEMENTS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEPRECATION-CONDITION-REPLACEMENTS names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -7379,12 +8169,15 @@ DEPRECATION-CONDITION-REPLACEMENTS names a compiled function:
 :ID: 2903919724407
 :CUSTOM_ID: SB-EXT:NAME-CONFLICT-FUNCTION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NAME-CONFLICT-FUNCTION names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -7395,8 +8188,10 @@ NAME-CONFLICT-FUNCTION names a compiled function:
 :ID: 2026191574843
 :CUSTOM_ID: SB-EXT:RESTRICT-COMPILER-POLICY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 RESTRICT-COMPILER-POLICY names a compiled function:
   Lambda-list: (&OPTIONAL QUALITY (MIN 0) (MAX 3))
   Derived type: (FUNCTION (&OPTIONAL T (UNSIGNED-BYTE 2) (UNSIGNED-BYTE 2))
@@ -7415,6 +8210,7 @@ RESTRICT-COMPILER-POLICY names a compiled function:
     
     See also :POLICY option in WITH-COMPILATION-UNIT.
   Source file: SYS:SRC;COMPILER;POLICY.LISP
+
 #+end_example
 
 - Called by
@@ -7429,8 +8225,10 @@ RESTRICT-COMPILER-POLICY names a compiled function:
 :ID: 4134733906303
 :CUSTOM_ID: SB-EXT:%SIMD-PACK-512-UB64S
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIMD-PACK-512-UB64S names a compiled function:
   Lambda-list: (PACK)
   Declared type: (FUNCTION (SB-EXT:SIMD-PACK-512)
@@ -7441,6 +8239,7 @@ RESTRICT-COMPILER-POLICY names a compiled function:
   Inline proclamation: INLINE (inline expansion available)
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;COMPILER;X86-64;SIMD-PACK-512.LISP
+
 #+end_example
 
 :definitions:
@@ -7453,8 +8252,10 @@ RESTRICT-COMPILER-POLICY names a compiled function:
 :ID: 676732072349
 :CUSTOM_ID: SB-EXT:PROCESS-ALIVE-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-ALIVE-P names a compiled function:
   Lambda-list: (PROCESS)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
@@ -7462,6 +8263,7 @@ PROCESS-ALIVE-P names a compiled function:
     Return T if PROCESS is still alive, NIL otherwise. Can return a false
     positive on a closed process.
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 - Called by
@@ -7475,8 +8277,10 @@ PROCESS-ALIVE-P names a compiled function:
 :ID: 3492850325606
 :CUSTOM_ID: SB-EXT:PROCESS-KILL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCESS-KILL names a compiled function:
   Lambda-list: (PROCESS SIGNAL &OPTIONAL (WHOM PID))
   Derived type: (FUNCTION (T T &OPTIONAL T)
@@ -7487,6 +8291,7 @@ PROCESS-KILL names a compiled function:
     Returns T if successful, otherwise returns NIL and error
     number (two values).
   Source file: SYS:SRC;CODE;RUN-PROGRAM.LISP
+
 #+end_example
 
 - Called by
@@ -7501,16 +8306,19 @@ PROCESS-KILL names a compiled function:
 :ID: 189113096850
 :CUSTOM_ID: SB-EXT:*POSIX-ARGV*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*POSIX-ARGV* names a special variable:
-  Value: ("/bin/core" "--dynamic-space-size=8G" "--control-stack-size=32")
+
+*POSIX-ARGV* names a special variable:
+  Value: ("/usr/bin/skel" "make" "build-docs")
   Documentation:
     A list of strings related to the UNIX command line (argv in C).
     
     SB-MANUAL:@RUNTIME-OPTIONS are processed and removed by the runtime.
     The default toplevel (see SB-EXT:SAVE-LISP-AND-DIE) also removes the
     SB-MANUAL:@TOPLEVEL-OPTIONS that it processes.
+
 #+end_example
 
 - Referenced by
@@ -7518,8 +8326,8 @@ PROCESS-KILL names a compiled function:
   - SKEL/CLI::START-SKEL
   - SKEL/MPK/CLI::START-MPK
   - SKEL/HOMER/CLI::START-HOMER
-  - [[id:2705060924459][ARGS]]
-  - [[id:1004213021016][ARG0]]
+  - [[id:2705060925113][ARGS]]
+  - [[id:1004213020851][ARG0]]
   - (COMMAND-LINE-ARGS IN /home/ellis/src/core/lib/swank/sbcl.lisp)
 
 :definitions:
@@ -7530,14 +8338,17 @@ PROCESS-KILL names a compiled function:
 :ID: 1689553604307
 :CUSTOM_ID: SB-EXT:STEP-CONDITION-FORM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STEP-CONDITION-FORM names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Documentation:
     Form associated with the STEP-CONDITION.
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -7548,8 +8359,10 @@ STEP-CONDITION-FORM names a compiled function:
 :ID: 3861592566448
 :CUSTOM_ID: SB-EXT:CALL-WITH-TIMING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CALL-WITH-TIMING names a compiled function:
   Lambda-list: (TIMER FUNCTION &REST ARGUMENTS)
   Dynamic-extent arguments: positional=(0 1)
@@ -7600,6 +8413,7 @@ CALL-WITH-TIMING names a compiled function:
     EXPERIMENTAL: Interface subject to change.
   Known attributes: call
   Source file: SYS:SRC;CODE;TIME.LISP
+
 #+end_example
 
 - Called by
@@ -7617,10 +8431,13 @@ CALL-WITH-TIMING names a compiled function:
 :ID: 2041913090603
 :CUSTOM_ID: SB-EXT:LONG-FLOAT-POSITIVE-INFINITY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LONG-FLOAT-POSITIVE-INFINITY names a constant variable:
   Value: #.DOUBLE-FLOAT-POSITIVE-INFINITY
+
 #+end_example
 
 :definitions:
@@ -7631,8 +8448,10 @@ LONG-FLOAT-POSITIVE-INFINITY names a constant variable:
 :ID: 2786296725625
 :CUSTOM_ID: SB-EXT:GC
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GC names a compiled function:
   Lambda-list: (&KEY (FULL NIL) (GEN 0) &ALLOW-OTHER-KEYS)
   Derived type: (FUNCTION (&KEY (:FULL T) (:GEN T) &ALLOW-OTHER-KEYS)
@@ -7645,6 +8464,7 @@ GC names a compiled function:
     is true, all generations are collected. If GEN is provided, it can be
     used to specify the oldest generation guaranteed to be collected.
   Source file: SYS:SRC;CODE;GC.LISP
+
 #+end_example
 
 - Called by
@@ -7659,8 +8479,10 @@ GC names a compiled function:
 :ID: 329873413927
 :CUSTOM_ID: SB-EXT:EARLY-DEPRECATION-WARNING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 EARLY-DEPRECATION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASSSB-EXT:EARLY-DEPRECATION-WARNING>:
   Documentation:
     This warning is signaled when the use of a variable,
@@ -7673,6 +8495,7 @@ EARLY-DEPRECATION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASSSB-
   Direct superclasses: STYLE-WARNING, DEPRECATION-CONDITION
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -7683,14 +8506,17 @@ EARLY-DEPRECATION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASSSB-
 :ID: 283415065206
 :CUSTOM_ID: SB-EXT:STEP-CONDITION-RESULT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STEP-CONDITION-RESULT names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Documentation:
     Return values associated with STEP-VALUES-CONDITION as a list.
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -7701,8 +8527,10 @@ STEP-CONDITION-RESULT names a compiled function:
 :ID: 3971371233352
 :CUSTOM_ID: SB-EXT:ATOMIC-PUSH
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ATOMIC-PUSH names a macro:
   Lambda-list: (OBJ PLACE)
   Documentation:
@@ -7712,6 +8540,7 @@ ATOMIC-PUSH names a macro:
     
     Works on all CASable places.
   Source file: SYS:SRC;CODE;MACROS.LISP
+
 #+end_example
 
 - Macroexpanded by

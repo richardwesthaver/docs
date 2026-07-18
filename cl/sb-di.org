@@ -1,4 +1,4 @@
-#+setupfile: ../../clean.theme
+#+SETUPFILE: ../../clean.theme
 * SB-DI
 :PROPERTIES:
 :CUSTOM_ID: SB-DI
@@ -20,8 +20,10 @@ private: primitives used to write debuggers
 :ID: 2490931627726
 :CUSTOM_ID: SB-DI:BREAKPOINT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BREAKPOINT names the structure-class #<STRUCTURE-CLASS SB-DI:BREAKPOINT>:
   Class precedence-list: SB-DI:BREAKPOINT, STRUCTURE-OBJECT,
                          SB-PCL::SLOT-OBJECT, T
@@ -55,6 +57,7 @@ BREAKPOINT names the structure-class #<STRUCTURE-CLASS SB-DI:BREAKPOINT>:
     SB-DI::%INFO
       Type: T
       Initform: NIL
+
 #+end_example
 
 :definitions:
@@ -65,12 +68,15 @@ BREAKPOINT names the structure-class #<STRUCTURE-CLASS SB-DI:BREAKPOINT>:
 :ID: 962740445120
 :CUSTOM_ID: SB-DI:TOP-FRAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TOP-FRAME names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL *)
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -86,8 +92,10 @@ TOP-FRAME names a compiled function:
 :ID: 4238359432461
 :CUSTOM_ID: SB-DI:FRAME-NUMBER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FRAME-NUMBER names a compiled function:
   An accessor for SB-DI:FRAME
   Lambda-list: (INSTANCE)
@@ -100,6 +108,7 @@ FRAME-NUMBER names a compiled function:
   Derived type: (FUNCTION ((UNSIGNED-BYTE 44) SB-DI:FRAME)
                  (VALUES (UNSIGNED-BYTE 44) &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -110,8 +119,10 @@ FRAME-NUMBER names a compiled function:
 :ID: 3704231526687
 :CUSTOM_ID: SB-DI:UNKNOWN-DEBUG-VAR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 UNKNOWN-DEBUG-VAR names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:UNKNOWN-DEBUG-VAR>:
   Class precedence-list: SB-DI:UNKNOWN-DEBUG-VAR, SB-DI:DEBUG-ERROR, ERROR,
                          SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
@@ -124,6 +135,7 @@ UNKNOWN-DEBUG-VAR names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:UNKN
     SB-DI:DEBUG-FUN
       Initargs: :DEBUG-FUN
       Readers: SB-DI::UNKNOWN-DEBUG-VAR-DEBUG-FUN
+
 #+end_example
 
 :definitions:
@@ -134,12 +146,15 @@ UNKNOWN-DEBUG-VAR names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:UNKN
 :ID: 2006079061945
 :CUSTOM_ID: SB-DI:DEBUG-FUN-MORE-ARGS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-FUN-MORE-ARGS names a compiled function:
   Lambda-list: (DEBUG-FUN)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL T))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -150,12 +165,15 @@ DEBUG-FUN-MORE-ARGS names a compiled function:
 :ID: 325667764635
 :CUSTOM_ID: SB-DI:FUN-END-COOKIE-VALID-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FUN-END-COOKIE-VALID-P names a compiled function:
   Lambda-list: (FRAME COOKIE)
   Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -166,12 +184,15 @@ FUN-END-COOKIE-VALID-P names a compiled function:
 :ID: 116695021399
 :CUSTOM_ID: SB-DI:GET-TOPLEVEL-FORM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GET-TOPLEVEL-FORM names a compiled function:
   Lambda-list: (LOCATION)
   Derived type: (FUNCTION (T) (VALUES SIMPLE-VECTOR T &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -182,13 +203,16 @@ GET-TOPLEVEL-FORM names a compiled function:
 :ID: 668940659194
 :CUSTOM_ID: SB-DI:CODE-LOCATION-FORM-NUMBER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-LOCATION-FORM-NUMBER names a compiled function:
   Lambda-list: (CODE-LOCATION)
   Derived type: (FUNCTION (T)
                  (VALUES (OR (UNSIGNED-BYTE 44) (MEMBER :UNPARSED)) &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -203,16 +227,19 @@ CODE-LOCATION-FORM-NUMBER names a compiled function:
 :ID: 1684181605516
 :CUSTOM_ID: SB-DI:DEBUG-FUN-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-FUN-NAME names a compiled function:
   Lambda-list: (DEBUG-FUN &OPTIONAL (PRETTY T))
   Derived type: (FUNCTION (SB-DI:DEBUG-FUN &OPTIONAL T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
-  - [[id:1734665123574][MAKE-NODE]]
+  - SB-SPROF::MAKE-NODE
 
 :definitions:
 - SYS:SRC;CODE;DEBUG-INT.LISP
@@ -222,13 +249,16 @@ DEBUG-FUN-NAME names a compiled function:
 :ID: 3586843474825
 :CUSTOM_ID: SB-DI:FRAME-DOWN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FRAME-DOWN names a compiled function:
   Lambda-list: (FRAME)
   Derived type: (FUNCTION (T)
                  (VALUES (OR (MEMBER NIL :UNPARSED) SB-DI:FRAME) &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -243,12 +273,15 @@ FRAME-DOWN names a compiled function:
 :ID: 3821306433275
 :CUSTOM_ID: SB-DI:DEBUG-FUN-SYMBOL-VARS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-FUN-SYMBOL-VARS names a compiled function:
   Lambda-list: (DEBUG-FUN SYMBOL)
   Derived type: (FUNCTION (T T) (VALUES SEQUENCE &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -259,12 +292,15 @@ DEBUG-FUN-SYMBOL-VARS names a compiled function:
 :ID: 3752915822274
 :CUSTOM_ID: SB-DI:SOURCE-PATH-CONTEXT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SOURCE-PATH-CONTEXT names a compiled function:
   Lambda-list: (FORM PATH CONTEXT)
   Derived type: (FUNCTION (T T UNSIGNED-BYTE) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -275,8 +311,10 @@ SOURCE-PATH-CONTEXT names a compiled function:
 :ID: 2297865266922
 :CUSTOM_ID: SB-DI:NO-DEBUG-FUN-RETURNS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NO-DEBUG-FUN-RETURNS names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:NO-DEBUG-FUN-RETURNS>:
   Documentation:
     The system could not return values from a frame with DEBUG-FUN since
@@ -289,6 +327,7 @@ NO-DEBUG-FUN-RETURNS names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:N
     SB-DI:DEBUG-FUN
       Initargs: :DEBUG-FUN
       Readers: SB-DI::NO-DEBUG-FUN-RETURNS-DEBUG-FUN
+
 #+end_example
 
 :definitions:
@@ -299,12 +338,15 @@ NO-DEBUG-FUN-RETURNS names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:N
 :ID: 3269661670415
 :CUSTOM_ID: SB-DI:DEBUG-FUN-FUN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-FUN-FUN names a compiled function:
   Lambda-list: (DEBUG-FUN)
   Derived type: (FUNCTION (T) (VALUES (OR NULL FUNCTION) &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -321,12 +363,15 @@ DEBUG-FUN-FUN names a compiled function:
 :ID: 1414476067803
 :CUSTOM_ID: SB-DI:DEBUG-FUN-START-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-FUN-START-LOCATION names a compiled function:
   Lambda-list: (DEBUG-FUN)
   Derived type: (FUNCTION (T) (VALUES SB-DI::COMPILED-CODE-LOCATION &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -340,8 +385,10 @@ DEBUG-FUN-START-LOCATION names a compiled function:
 :ID: 2339353841345
 :CUSTOM_ID: SB-DI:DEBUG-BLOCK-SUCCESSORS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-BLOCK-SUCCESSORS names a compiled function:
   An accessor for SB-DI:DEBUG-BLOCK
   Lambda-list: (INSTANCE)
@@ -356,6 +403,7 @@ DEBUG-BLOCK-SUCCESSORS names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (LIST SB-DI:DEBUG-BLOCK) (VALUES LIST &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -366,8 +414,10 @@ DEBUG-BLOCK-SUCCESSORS names a compiled function:
 :ID: 2990737044863
 :CUSTOM_ID: SB-DI:BREAKPOINT-HOOK-FUN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BREAKPOINT-HOOK-FUN names a compiled function:
   An accessor for SB-DI:BREAKPOINT
   Lambda-list: (INSTANCE)
@@ -380,6 +430,7 @@ BREAKPOINT-HOOK-FUN names a compiled function:
   Derived type: (FUNCTION (FUNCTION SB-DI:BREAKPOINT)
                  (VALUES FUNCTION &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -390,8 +441,10 @@ BREAKPOINT-HOOK-FUN names a compiled function:
 :ID: 1867325932002
 :CUSTOM_ID: SB-DI:DEBUG-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:DEBUG-ERROR>:
   Documentation:
     All programmer errors from using the interface for building debugging
@@ -404,6 +457,7 @@ DEBUG-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:DEBUG-ERRO
                      SB-DI:UNKNOWN-DEBUG-VAR, SB-DI::UNKNOWN-CODE-LOCATION,
                      SB-DI:UNHANDLED-DEBUG-CONDITION
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -414,8 +468,10 @@ DEBUG-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:DEBUG-ERRO
 :ID: 2022049162270
 :CUSTOM_ID: SB-DI:DEBUG-VAR-ID
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-VAR-ID names a compiled function:
   An accessor for SB-DI:DEBUG-VAR
   Lambda-list: (INSTANCE)
@@ -425,6 +481,7 @@ DEBUG-VAR-ID names a compiled function:
     Return the integer that makes DEBUG-VAR's name and package unique
     with respect to other DEBUG-VARs in the same function.
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -438,8 +495,10 @@ DEBUG-VAR-ID names a compiled function:
 :ID: 1292818704135
 :CUSTOM_ID: SB-DI:FRAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FRAME names the structure-class #<STRUCTURE-CLASS SB-DI:FRAME>:
   Class precedence-list: SB-DI:FRAME, STRUCTURE-OBJECT, SB-PCL::SLOT-OBJECT, T
   Direct superclasses: STRUCTURE-OBJECT
@@ -466,6 +525,7 @@ FRAME names the structure-class #<STRUCTURE-CLASS SB-DI:FRAME>:
     NUMBER
       Type: SB-INT:INDEX
       Initform: 0
+
 #+end_example
 
 :definitions:
@@ -476,12 +536,15 @@ FRAME names the structure-class #<STRUCTURE-CLASS SB-DI:FRAME>:
 :ID: 2497685443821
 :CUSTOM_ID: SB-DI:FLUSH-FRAMES-ABOVE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FLUSH-FRAMES-ABOVE names a compiled function:
   Lambda-list: (FRAME)
   Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -492,12 +555,15 @@ FLUSH-FRAMES-ABOVE names a compiled function:
 :ID: 2120808778042
 :CUSTOM_ID: SB-DI:DEBUG-VAR-INFO-AVAILABLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-VAR-INFO-AVAILABLE names a compiled function:
   Lambda-list: (DEBUG-FUN)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -508,8 +574,10 @@ DEBUG-VAR-INFO-AVAILABLE names a compiled function:
 :ID: 19933559946
 :CUSTOM_ID: SB-DI:DEBUG-VAR-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-VAR-NAME names a compiled function:
   An accessor for SB-DI:DEBUG-VAR
   Lambda-list: (INSTANCE)
@@ -522,6 +590,7 @@ DEBUG-VAR-NAME names a compiled function:
   Derived type: (FUNCTION (SIMPLE-STRING SB-DI:DEBUG-VAR)
                  (VALUES SIMPLE-STRING &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -532,8 +601,10 @@ DEBUG-VAR-NAME names a compiled function:
 :ID: 878170737878
 :CUSTOM_ID: SB-DI:DEBUG-FUN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-FUN names the structure-class #<STRUCTURE-CLASS SB-DI:DEBUG-FUN>:
   Class precedence-list: SB-DI:DEBUG-FUN, STRUCTURE-OBJECT, SB-PCL::SLOT-OBJECT,
                          T
@@ -552,6 +623,7 @@ DEBUG-FUN names the structure-class #<STRUCTURE-CLASS SB-DI:DEBUG-FUN>:
     SB-DI::%FUNCTION
       Type: (OR NULL FUNCTION (MEMBER :UNPARSED))
       Initform: :UNPARSED
+
 #+end_example
 
 :definitions:
@@ -562,13 +634,16 @@ DEBUG-FUN names the structure-class #<STRUCTURE-CLASS SB-DI:DEBUG-FUN>:
 :ID: 3992445653001
 :CUSTOM_ID: SB-DI:CODE-LOCATION-TOPLEVEL-FORM-OFFSET
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-LOCATION-TOPLEVEL-FORM-OFFSET names a compiled function:
   Lambda-list: (CODE-LOCATION)
   Derived type: (FUNCTION (T)
                  (VALUES (OR (UNSIGNED-BYTE 44) (MEMBER :UNPARSED)) &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -582,8 +657,10 @@ CODE-LOCATION-TOPLEVEL-FORM-OFFSET names a compiled function:
 :ID: 1186979647402
 :CUSTOM_ID: SB-DI:CODE-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-LOCATION names the structure-class #<STRUCTURE-CLASS SB-DI:CODE-LOCATION>:
   Class precedence-list: SB-DI:CODE-LOCATION, STRUCTURE-OBJECT,
                          SB-PCL::SLOT-OBJECT, T
@@ -605,6 +682,7 @@ CODE-LOCATION names the structure-class #<STRUCTURE-CLASS SB-DI:CODE-LOCATION>:
     SB-DI::%FORM-NUMBER
       Type: (OR SB-INT:INDEX (MEMBER :UNPARSED))
       Initform: :UNPARSED
+
 #+end_example
 
 :definitions:
@@ -615,8 +693,10 @@ CODE-LOCATION names the structure-class #<STRUCTURE-CLASS SB-DI:CODE-LOCATION>:
 :ID: 3143401738001
 :CUSTOM_ID: SB-DI:INVALID-VALUE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INVALID-VALUE names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:INVALID-VALUE>:
   Class precedence-list: SB-DI:INVALID-VALUE, SB-DI:DEBUG-CONDITION,
                          SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
@@ -629,6 +709,7 @@ INVALID-VALUE names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:INVALID-
     SB-DI:FRAME
       Initargs: :FRAME
       Readers: SB-DI::INVALID-VALUE-FRAME
+
 #+end_example
 
 :definitions:
@@ -639,12 +720,15 @@ INVALID-VALUE names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:INVALID-
 :ID: 635675287503
 :CUSTOM_ID: SB-DI:REPLACE-FRAME-CATCH-TAG
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 REPLACE-FRAME-CATCH-TAG names a compiled function:
   Lambda-list: (FRAME OLD-TAG NEW-TAG)
   Derived type: (FUNCTION (T T T) (VALUES NULL &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -655,13 +739,16 @@ REPLACE-FRAME-CATCH-TAG names a compiled function:
 :ID: 2078971672171
 :CUSTOM_ID: SB-DI:PREPROCESS-FOR-EVAL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PREPROCESS-FOR-EVAL names a compiled function:
   Lambda-list: (FORM LOC)
   Derived type: (FUNCTION (T SB-DI:CODE-LOCATION)
                  (VALUES (FUNCTION (T) *) &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -675,13 +762,16 @@ PREPROCESS-FOR-EVAL names a compiled function:
 :ID: 1230011260704
 :CUSTOM_ID: SB-DI:FRAME-CODE-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FRAME-CODE-LOCATION names a compiled function:
   An accessor for SB-DI:FRAME
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-DI:FRAME) (VALUES SB-DI:CODE-LOCATION &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -699,12 +789,15 @@ FRAME-CODE-LOCATION names a compiled function:
 :ID: 2118195206125
 :CUSTOM_ID: SB-DI:FORM-NUMBER-TRANSLATIONS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FORM-NUMBER-TRANSLATIONS names a compiled function:
   Lambda-list: (FORM TLF-NUMBER)
   Derived type: (FUNCTION (T T) (VALUES SIMPLE-VECTOR &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -719,8 +812,10 @@ FORM-NUMBER-TRANSLATIONS names a compiled function:
 :ID: 293623224393
 :CUSTOM_ID: SB-DI:AMBIGUOUS-VAR-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 AMBIGUOUS-VAR-NAME names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:AMBIGUOUS-VAR-NAME>:
   Class precedence-list: SB-DI:AMBIGUOUS-VAR-NAME, SB-DI:DEBUG-CONDITION,
                          SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
@@ -733,6 +828,7 @@ AMBIGUOUS-VAR-NAME names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:AMB
     SB-DI:FRAME
       Initargs: :FRAME
       Readers: SB-DI::AMBIGUOUS-VAR-NAME-FRAME
+
 #+end_example
 
 :definitions:
@@ -743,12 +839,15 @@ AMBIGUOUS-VAR-NAME names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:AMB
 :ID: 3013575454979
 :CUSTOM_ID: SB-DI:DEBUG-FUN-LAMBDA-LIST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-FUN-LAMBDA-LIST names a compiled function:
   Lambda-list: (DEBUG-FUN)
   Derived type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -759,12 +858,15 @@ DEBUG-FUN-LAMBDA-LIST names a compiled function:
 :ID: 183300202017
 :CUSTOM_ID: SB-DI:FUN-DEBUG-FUN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FUN-DEBUG-FUN names a compiled function:
   Lambda-list: (FUN &KEY LOCAL-NAME)
   Derived type: (FUNCTION (FUNCTION &KEY (:LOCAL-NAME T)) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -778,13 +880,16 @@ FUN-DEBUG-FUN names a compiled function:
 :ID: 4090304456737
 :CUSTOM_ID: SB-DI:DEBUG-BLOCK-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-BLOCK-P names a compiled function:
   A predicate for SB-DI:DEBUG-BLOCK
   Lambda-list: (OBJECT)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -795,8 +900,10 @@ DEBUG-BLOCK-P names a compiled function:
 :ID: 3065229014418
 :CUSTOM_ID: SB-DI:UNHANDLED-DEBUG-CONDITION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 UNHANDLED-DEBUG-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASSSB-DI:UNHANDLED-DEBUG-CONDITION>:
   Class precedence-list: SB-DI:UNHANDLED-DEBUG-CONDITION, SB-DI:DEBUG-ERROR,
                          ERROR, SERIOUS-CONDITION, CONDITION,
@@ -807,6 +914,7 @@ UNHANDLED-DEBUG-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASSSB-
     CONDITION
       Initargs: :CONDITION
       Readers: SB-DI::UNHANDLED-DEBUG-CONDITION-CONDITION
+
 #+end_example
 
 :definitions:
@@ -817,8 +925,10 @@ UNHANDLED-DEBUG-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASSSB-
 :ID: 4174793571207
 :CUSTOM_ID: SB-DI:BREAKPOINT-INFO
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BREAKPOINT-INFO names a compiled function:
   Lambda-list: (BREAKPOINT)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
@@ -828,6 +938,7 @@ BREAKPOINT-INFO names a compiled function:
   Lambda-list: (VALUE BREAKPOINT)
   Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -838,8 +949,10 @@ BREAKPOINT-INFO names a compiled function:
 :ID: 4076383910902
 :CUSTOM_ID: SB-DI:FRAME-FUN-MISMATCH
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FRAME-FUN-MISMATCH names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:FRAME-FUN-MISMATCH>:
   Class precedence-list: SB-DI:FRAME-FUN-MISMATCH, SB-DI:DEBUG-ERROR, ERROR,
                          SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
@@ -855,6 +968,7 @@ FRAME-FUN-MISMATCH names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:FRA
     SB-KERNEL:FORM
       Initargs: :FORM
       Readers: SB-DI::FRAME-FUN-MISMATCH-FORM
+
 #+end_example
 
 :definitions:
@@ -865,8 +979,10 @@ FRAME-FUN-MISMATCH names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:FRA
 :ID: 3585194253211
 :CUSTOM_ID: SB-DI:DEBUG-FUN-KIND
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-FUN-KIND names a compiled function:
   Lambda-list: (DEBUG-FUN)
   Derived type: (FUNCTION (T)
@@ -874,6 +990,7 @@ DEBUG-FUN-KIND names a compiled function:
                   (MEMBER NIL :OPTIONAL :EXTERNAL :TOPLEVEL :CLEANUP :MORE)
                   &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -884,11 +1001,14 @@ DEBUG-FUN-KIND names a compiled function:
 :ID: 4099681079512
 :CUSTOM_ID: SB-DI:DO-DEBUG-FUN-VARS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DO-DEBUG-FUN-VARS names a macro:
   Lambda-list: ((VAR DEBUG-FUN &OPTIONAL RESULT) &BODY BODY)
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -899,11 +1019,14 @@ DO-DEBUG-FUN-VARS names a macro:
 :ID: 1781965537656
 :CUSTOM_ID: SB-DI:DO-DEBUG-BLOCK-LOCATIONS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DO-DEBUG-BLOCK-LOCATIONS names a macro:
   Lambda-list: ((CODE-VAR DEBUG-BLOCK &OPTIONAL RESULT) &BODY BODY)
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -914,12 +1037,15 @@ DO-DEBUG-BLOCK-LOCATIONS names a macro:
 :ID: 2458924457576
 :CUSTOM_ID: SB-DI:DEBUG-FUN-CLOSURE-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-FUN-CLOSURE-NAME names a compiled function:
   Lambda-list: (DEBUG-FUN FRAME)
   Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -930,14 +1056,17 @@ DEBUG-FUN-CLOSURE-NAME names a compiled function:
 :ID: 1063216010111
 :CUSTOM_ID: SB-DI:DEBUG-VAR-SYMBOL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-VAR-SYMBOL names a compiled function:
   Lambda-list: (DEBUG-VAR)
   Derived type: (FUNCTION (T)
                  (VALUES SYMBOL &OPTIONAL
                          (MEMBER NIL :INHERITED :EXTERNAL :INTERNAL)))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -951,12 +1080,15 @@ DEBUG-VAR-SYMBOL names a compiled function:
 :ID: 3475459115350
 :CUSTOM_ID: SB-DI:DEACTIVATE-BREAKPOINT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEACTIVATE-BREAKPOINT names a compiled function:
   Lambda-list: (BREAKPOINT)
   Derived type: (FUNCTION (T) (VALUES SB-DI:BREAKPOINT &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -967,8 +1099,10 @@ DEACTIVATE-BREAKPOINT names a compiled function:
 :ID: 3637385419502
 :CUSTOM_ID: SB-DI:CODE-LOCATION-KIND
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-LOCATION-KIND names a compiled function:
   Lambda-list: (CODE-LOCATION)
   Derived type: (FUNCTION (T)
@@ -978,6 +1112,7 @@ CODE-LOCATION-KIND names a compiled function:
                           :SINGLE-VALUE-RETURN :NON-LOCAL-ENTRY :UNPARSED)
                   &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -988,13 +1123,16 @@ CODE-LOCATION-KIND names a compiled function:
 :ID: 494369618373
 :CUSTOM_ID: SB-DI:DEBUG-VAR-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-VAR-P names a compiled function:
   A predicate for SB-DI:DEBUG-VAR
   Lambda-list: (OBJECT)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1005,8 +1143,10 @@ DEBUG-VAR-P names a compiled function:
 :ID: 2317264158468
 :CUSTOM_ID: SB-DI:DEBUG-BLOCK-ELSEWHERE-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-BLOCK-ELSEWHERE-P names a compiled function:
   An accessor for SB-DI:DEBUG-BLOCK
   Lambda-list: (INSTANCE)
@@ -1021,6 +1161,7 @@ DEBUG-BLOCK-ELSEWHERE-P names a compiled function:
   Derived type: (FUNCTION (BOOLEAN SB-DI:DEBUG-BLOCK)
                  (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1031,8 +1172,10 @@ DEBUG-BLOCK-ELSEWHERE-P names a compiled function:
 :ID: 330111719927
 :CUSTOM_ID: SB-DI:DEBUG-VAR-PACKAGE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-VAR-PACKAGE names a compiled function:
   An accessor for SB-DI:DEBUG-VAR
   Lambda-list: (INSTANCE)
@@ -1046,6 +1189,7 @@ DEBUG-VAR-PACKAGE names a compiled function:
   Derived type: (FUNCTION ((OR PACKAGE NULL) SB-DI:DEBUG-VAR)
                  (VALUES (OR PACKAGE NULL) &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1056,14 +1200,17 @@ DEBUG-VAR-PACKAGE names a compiled function:
 :ID: 2444645823013
 :CUSTOM_ID: SB-DI:BREAKPOINT-WHAT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BREAKPOINT-WHAT names a compiled function:
   An accessor for SB-DI:BREAKPOINT
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-DI:BREAKPOINT)
                  (VALUES (OR SB-DI:CODE-LOCATION SB-DI:DEBUG-FUN) &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1074,8 +1221,10 @@ BREAKPOINT-WHAT names a compiled function:
 :ID: 1565088709
 :CUSTOM_ID: SB-DI:EVAL-IN-FRAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 EVAL-IN-FRAME names a compiled function:
   Lambda-list: (FRAME FORM)
   Derived type: (FUNCTION (SB-DI:FRAME T) *)
@@ -1083,6 +1232,7 @@ EVAL-IN-FRAME names a compiled function:
     Evaluate FORM in the lexical context of FRAME's current code location,
     returning the results of the evaluation.
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1093,8 +1243,10 @@ EVAL-IN-FRAME names a compiled function:
 :ID: 861630377291
 :CUSTOM_ID: SB-DI:FRAME-UP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FRAME-UP names a compiled function:
   An accessor for SB-DI:FRAME
   Lambda-list: (INSTANCE)
@@ -1108,6 +1260,7 @@ FRAME-UP names a compiled function:
   Derived type: (FUNCTION ((OR NULL SB-DI:FRAME) SB-DI:FRAME)
                  (VALUES (OR NULL SB-DI:FRAME) &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1118,14 +1271,17 @@ FRAME-UP names a compiled function:
 :ID: 3869629646470
 :CUSTOM_ID: SB-DI:CODE-LOCATION-DEBUG-FUN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-LOCATION-DEBUG-FUN names a compiled function:
   An accessor for SB-DI:CODE-LOCATION
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-DI:CODE-LOCATION)
                  (VALUES SB-DI:DEBUG-FUN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -1139,12 +1295,15 @@ CODE-LOCATION-DEBUG-FUN names a compiled function:
 :ID: 3143520273491
 :CUSTOM_ID: SB-DI:DELETE-BREAKPOINT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DELETE-BREAKPOINT names a compiled function:
   Lambda-list: (BREAKPOINT)
   Derived type: (FUNCTION (T) (VALUES SB-DI:BREAKPOINT &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1155,12 +1314,15 @@ DELETE-BREAKPOINT names a compiled function:
 :ID: 231978638724
 :CUSTOM_ID: SB-DI:CODE-LOCATION-DEBUG-SOURCE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-LOCATION-DEBUG-SOURCE names a compiled function:
   Lambda-list: (CODE-LOCATION)
   Derived type: (FUNCTION (T) (VALUES (NOT NULL) &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -1176,12 +1338,15 @@ CODE-LOCATION-DEBUG-SOURCE names a compiled function:
 :ID: 1872999007672
 :CUSTOM_ID: SB-DI:CODE-LOCATION-UNKNOWN-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-LOCATION-UNKNOWN-P names a compiled function:
   Lambda-list: (BASIC-CODE-LOCATION)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1192,8 +1357,10 @@ CODE-LOCATION-UNKNOWN-P names a compiled function:
 :ID: 723782741737
 :CUSTOM_ID: SB-DI:DEBUG-VAR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-VAR names the structure-class #<STRUCTURE-CLASS SB-DI:DEBUG-VAR>:
   Class precedence-list: SB-DI:DEBUG-VAR, STRUCTURE-OBJECT, SB-PCL::SLOT-OBJECT,
                          T
@@ -1212,6 +1379,7 @@ DEBUG-VAR names the structure-class #<STRUCTURE-CLASS SB-DI:DEBUG-VAR>:
     SB-DI::ALIVE-P
       Type: BOOLEAN
       Initform: NIL
+
 #+end_example
 
 :definitions:
@@ -1222,12 +1390,15 @@ DEBUG-VAR names the structure-class #<STRUCTURE-CLASS SB-DI:DEBUG-VAR>:
 :ID: 1638489532311
 :CUSTOM_ID: SB-DI:BREAKPOINT-ACTIVE-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BREAKPOINT-ACTIVE-P names a compiled function:
   Lambda-list: (BREAKPOINT)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1238,13 +1409,16 @@ BREAKPOINT-ACTIVE-P names a compiled function:
 :ID: 1426591568883
 :CUSTOM_ID: SB-DI:BREAKPOINT-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BREAKPOINT-P names a compiled function:
   A predicate for SB-DI:BREAKPOINT
   Lambda-list: (OBJECT)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1255,13 +1429,16 @@ BREAKPOINT-P names a compiled function:
 :ID: 456182578960
 :CUSTOM_ID: SB-DI:FRAME-DEBUG-FUN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FRAME-DEBUG-FUN names a compiled function:
   An accessor for SB-DI:FRAME
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-DI:FRAME) (VALUES SB-DI:DEBUG-FUN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -1278,8 +1455,10 @@ FRAME-DEBUG-FUN names a compiled function:
 :ID: 1504375334164
 :CUSTOM_ID: SB-DI:LAMBDA-LIST-UNAVAILABLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LAMBDA-LIST-UNAVAILABLE names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:LAMBDA-LIST-UNAVAILABLE>:
   Documentation:
     The DEBUG-FUN has no lambda list since argument DEBUG-VARs are
@@ -1292,6 +1471,7 @@ LAMBDA-LIST-UNAVAILABLE names the condition-class #<SB-PCL::CONDITION-CLASS SB-D
     SB-DI:DEBUG-FUN
       Initargs: :DEBUG-FUN
       Readers: SB-DI::LAMBDA-LIST-UNAVAILABLE-DEBUG-FUN
+
 #+end_example
 
 :definitions:
@@ -1302,11 +1482,14 @@ LAMBDA-LIST-UNAVAILABLE names the condition-class #<SB-PCL::CONDITION-CLASS SB-D
 :ID: 3476082639424
 :CUSTOM_ID: SB-DI:DO-DEBUG-FUN-BLOCKS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DO-DEBUG-FUN-BLOCKS names a macro:
   Lambda-list: ((BLOCK-VAR DEBUG-FUN &OPTIONAL RESULT) &BODY BODY)
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1317,8 +1500,10 @@ DO-DEBUG-FUN-BLOCKS names a macro:
 :ID: 3696981154291
 :CUSTOM_ID: SB-DI:NO-DEBUG-BLOCKS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NO-DEBUG-BLOCKS names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:NO-DEBUG-BLOCKS>:
   Documentation:
     The debug-fun has no debug-block information.
@@ -1330,6 +1515,7 @@ NO-DEBUG-BLOCKS names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:NO-DEB
     SB-DI:DEBUG-FUN
       Initargs: :DEBUG-FUN
       Readers: SB-DI::NO-DEBUG-BLOCKS-DEBUG-FUN
+
 #+end_example
 
 :definitions:
@@ -1340,8 +1526,10 @@ NO-DEBUG-BLOCKS names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:NO-DEB
 :ID: 516082671542
 :CUSTOM_ID: SB-DI:DEBUG-VAR-VALUE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-VAR-VALUE names a compiled function:
   Lambda-list: (DEBUG-VAR FRAME)
   Derived type: (FUNCTION (T SB-DI::COMPILED-FRAME) (VALUES T &OPTIONAL))
@@ -1351,6 +1539,7 @@ DEBUG-VAR-VALUE names a compiled function:
   Lambda-list: (NEW-VALUE DEBUG-VAR FRAME)
   Derived type: (FUNCTION (T T SB-DI::COMPILED-FRAME) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -1364,8 +1553,10 @@ DEBUG-VAR-VALUE names a compiled function:
 :ID: 3195835055479
 :CUSTOM_ID: SB-DI:DEBUG-BLOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-BLOCK names the structure-class #<STRUCTURE-CLASS SB-DI:DEBUG-BLOCK>:
   Class precedence-list: SB-DI:DEBUG-BLOCK, STRUCTURE-OBJECT,
                          SB-PCL::SLOT-OBJECT, T
@@ -1378,6 +1569,7 @@ DEBUG-BLOCK names the structure-class #<STRUCTURE-CLASS SB-DI:DEBUG-BLOCK>:
     SB-DI::ELSEWHERE-P
       Type: BOOLEAN
       Initform: NIL
+
 #+end_example
 
 :definitions:
@@ -1388,13 +1580,16 @@ DEBUG-BLOCK names the structure-class #<STRUCTURE-CLASS SB-DI:DEBUG-BLOCK>:
 :ID: 3282440870820
 :CUSTOM_ID: SB-DI:MAKE-BREAKPOINT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-BREAKPOINT names a compiled function:
   Lambda-list: (HOOK-FUN WHAT &KEY (KIND CODE-LOCATION) INFO FUN-END-COOKIE)
   Derived type: (FUNCTION (T T &KEY (:KIND T) (:INFO T) (:FUN-END-COOKIE T))
                  (VALUES SB-DI:BREAKPOINT &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1405,12 +1600,15 @@ MAKE-BREAKPOINT names a compiled function:
 :ID: 1821886336813
 :CUSTOM_ID: SB-DI:ACTIVATE-BREAKPOINT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ACTIVATE-BREAKPOINT names a compiled function:
   Lambda-list: (BREAKPOINT)
   Derived type: (FUNCTION (T) (VALUES SB-DI:BREAKPOINT &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1421,12 +1619,15 @@ ACTIVATE-BREAKPOINT names a compiled function:
 :ID: 434484246323
 :CUSTOM_ID: SB-DI:CODE-LOCATION-DEBUG-BLOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-LOCATION-DEBUG-BLOCK names a compiled function:
   Lambda-list: (BASIC-CODE-LOCATION)
   Derived type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -1440,12 +1641,15 @@ CODE-LOCATION-DEBUG-BLOCK names a compiled function:
 :ID: 3838682011359
 :CUSTOM_ID: SB-DI:AMBIGUOUS-DEBUG-VARS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 AMBIGUOUS-DEBUG-VARS names a compiled function:
   Lambda-list: (DEBUG-FUN NAME-PREFIX-STRING)
   Derived type: (FUNCTION (T SIMPLE-STRING) (VALUES LIST &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1456,8 +1660,10 @@ AMBIGUOUS-DEBUG-VARS names a compiled function:
 :ID: 3715633275156
 :CUSTOM_ID: SB-DI:BREAKPOINT-KIND
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BREAKPOINT-KIND names a compiled function:
   An accessor for SB-DI:BREAKPOINT
   Lambda-list: (INSTANCE)
@@ -1467,6 +1673,7 @@ BREAKPOINT-KIND names a compiled function:
                           :UNKNOWN-RETURN-PARTNER)
                   &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1477,8 +1684,10 @@ BREAKPOINT-KIND names a compiled function:
 :ID: 3458128321646
 :CUSTOM_ID: SB-DI:DEBUG-CONDITION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:DEBUG-CONDITION>:
   Documentation:
     All DEBUG-CONDITIONs inherit from this type. These are serious conditions
@@ -1490,6 +1699,7 @@ DEBUG-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:DEBUG-
                      SB-DI:LAMBDA-LIST-UNAVAILABLE, SB-DI::NO-DEBUG-VARS,
                      SB-DI:NO-DEBUG-BLOCKS, SB-DI:NO-DEBUG-FUN-RETURNS
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -1500,12 +1710,15 @@ DEBUG-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:DEBUG-
 :ID: 3971236222429
 :CUSTOM_ID: SB-DI:CODE-LOCATION-CONTEXT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-LOCATION-CONTEXT names a compiled function:
   Lambda-list: (CODE-LOCATION)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1516,13 +1729,16 @@ CODE-LOCATION-CONTEXT names a compiled function:
 :ID: 138086134239
 :CUSTOM_ID: SB-DI:FRAME-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FRAME-P names a compiled function:
   A predicate for SB-DI:FRAME
   Lambda-list: (OBJECT)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1533,13 +1749,16 @@ FRAME-P names a compiled function:
 :ID: 3930590107982
 :CUSTOM_ID: SB-DI:CODE-LOCATION-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-LOCATION-P names a compiled function:
   A predicate for SB-DI:CODE-LOCATION
   Lambda-list: (OBJECT)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1550,12 +1769,15 @@ CODE-LOCATION-P names a compiled function:
 :ID: 506959569740
 :CUSTOM_ID: SB-DI:ERROR-CONTEXT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ERROR-CONTEXT names a compiled function:
   Lambda-list: (&OPTIONAL (FRAME *STACK-TOP-HINT*))
   Derived type: (FUNCTION (&OPTIONAL T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1566,13 +1788,16 @@ ERROR-CONTEXT names a compiled function:
 :ID: 1508886927781
 :CUSTOM_ID: SB-DI:DEBUG-FUN-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-FUN-P names a compiled function:
   A predicate for SB-DI:DEBUG-FUN
   Lambda-list: (OBJECT)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1583,8 +1808,10 @@ DEBUG-FUN-P names a compiled function:
 :ID: 4162826603236
 :CUSTOM_ID: SB-DI:INVALID-CONTROL-STACK-POINTER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INVALID-CONTROL-STACK-POINTER names the condition-class #<SB-PCL::CONDITION-CLASS SB-DI:INVALID-CONTROL-STACK-POINTER>:
   Class precedence-list: SB-DI:INVALID-CONTROL-STACK-POINTER, SB-DI:DEBUG-ERROR,
                          ERROR, SERIOUS-CONDITION, CONDITION,
@@ -1592,6 +1819,7 @@ INVALID-CONTROL-STACK-POINTER names the condition-class #<SB-PCL::CONDITION-CLAS
   Direct superclasses: SB-DI:DEBUG-ERROR
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -1602,12 +1830,15 @@ INVALID-CONTROL-STACK-POINTER names the condition-class #<SB-PCL::CONDITION-CLAS
 :ID: 2172542438703
 :CUSTOM_ID: SB-DI:FRAME-CATCHES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FRAME-CATCHES names a compiled function:
   Lambda-list: (FRAME)
   Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by
@@ -1621,12 +1852,15 @@ FRAME-CATCHES names a compiled function:
 :ID: 48084333167
 :CUSTOM_ID: SB-DI:CODE-LOCATION=
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-LOCATION= names a compiled function:
   Lambda-list: (OBJ1 OBJ2)
   Derived type: (FUNCTION (T T) *)
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 :definitions:
@@ -1637,12 +1871,15 @@ CODE-LOCATION= names a compiled function:
 :ID: 3137106254719
 :CUSTOM_ID: SB-DI:DEBUG-VAR-VALIDITY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEBUG-VAR-VALIDITY names a compiled function:
   Lambda-list: (DEBUG-VAR BASIC-CODE-LOCATION)
   Derived type: (FUNCTION (T T) *)
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+
 #+end_example
 
 - Called by

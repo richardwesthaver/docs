@@ -1,0 +1,163 @@
+#+SETUPFILE: ../../clean.theme
+* SB-REGALLOC
+:PROPERTIES:
+:CUSTOM_ID: SB-REGALLOC
+:ID: 26
+:LOCK: T
+:END:
+private: implementation of the compiler's register allocator
+
+- dependencies
+  - COMMON-LISP
+  - SB-C
+  - SB-EXT
+  - SB-INT
+  - SB-KERNEL
+  - SB-SYS
+
+** *PACK-ITERATIONS​* :global:var:
+:PROPERTIES:
+:ID: 2231347994728
+:CUSTOM_ID: SB-REGALLOC:*PACK-ITERATIONS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*PACK-ITERATIONS* names a special variable:
+  Declared type: FIXNUM
+  Declared always-bound.
+  Value: 500
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;PACK-ITERATIVE.LISP
+- SYS:SRC;COMPILER;PACK-ITERATIVE.LISP
+  - [[id:420096686552][ALWAYS-BOUND]]
+:end:
+** PACK :compiled:function:
+:PROPERTIES:
+:ID: 3084893781604
+:CUSTOM_ID: SB-REGALLOC:PACK
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+PACK names a compiled function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) (VALUES &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;PACK.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;PACK.LISP
+:end:
+** *TN-WRITE-COST​* :var:
+:PROPERTIES:
+:ID: 1300859821018
+:CUSTOM_ID: SB-REGALLOC:*TN-WRITE-COST*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*TN-WRITE-COST* names a special variable:
+  Value: 2
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;PACK.LISP
+:end:
+** *TN-LOOP-DEPTH-MULTIPLIER​* :var:
+:PROPERTIES:
+:ID: 1028152960339
+:CUSTOM_ID: SB-REGALLOC:*TN-LOOP-DEPTH-MULTIPLIER*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*TN-LOOP-DEPTH-MULTIPLIER* names a special variable:
+  Value: NIL
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;PACK.LISP
+:end:
+** *PACK-ASSIGN-COSTS​* :var:
+:PROPERTIES:
+:ID: 2392292264869
+:CUSTOM_ID: SB-REGALLOC:*PACK-ASSIGN-COSTS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*PACK-ASSIGN-COSTS* names a special variable:
+  Value: T
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;PACK.LISP
+:end:
+** TARGET-IF-DESIRABLE :compiled:function:
+:PROPERTIES:
+:ID: 2838743111250
+:CUSTOM_ID: SB-REGALLOC:TARGET-IF-DESIRABLE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+TARGET-IF-DESIRABLE names a compiled function:
+  Lambda-list: (READ WRITE)
+  Derived type: (FUNCTION (SB-C:TN-REF SB-C:TN-REF)
+                 (VALUES (OR SB-C:TN-REF NULL) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;PACK.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;PACK.LISP
+:end:
+** *REGISTER-ALLOCATION-METHOD​* :var:
+:PROPERTIES:
+:ID: 2811858511905
+:CUSTOM_ID: SB-REGALLOC:*REGISTER-ALLOCATION-METHOD*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*REGISTER-ALLOCATION-METHOD* names a special variable:
+  Declared type: (MEMBER :ADAPTIVE :GREEDY :ITERATIVE)
+  Value: :ADAPTIVE
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;PACK.LISP
+:end:
+** *PACK-OPTIMIZE-SAVES​* :var:
+:PROPERTIES:
+:ID: 4045076713779
+:CUSTOM_ID: SB-REGALLOC:*PACK-OPTIMIZE-SAVES*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*PACK-OPTIMIZE-SAVES* names a special variable:
+  Value: T
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;PACK.LISP
+:end:

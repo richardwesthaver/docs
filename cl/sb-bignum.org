@@ -1,0 +1,1182 @@
+#+SETUPFILE: ../../clean.theme
+* SB-BIGNUM
+:PROPERTIES:
+:CUSTOM_ID: SB-BIGNUM
+:ID: 23
+:LOCK: T
+:END:
+private: bignum implementation
+
+- dependencies
+  - COMMON-LISP
+  - SB-EXT
+  - SB-INT
+
+- dependents
+  - [[id:4][SB-KERNEL]]
+  - [[id:86][SB-ROTATE-BYTE]]
+  - [[id:12][SB-C]]
+  - [[id:7][SB-IMPL]]
+
+** BIGNUM-TRUNCATE-SINGLE-DIGIT :compiled:function:
+:PROPERTIES:
+:ID: 1975264404026
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-TRUNCATE-SINGLE-DIGIT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-TRUNCATE-SINGLE-DIGIT names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION
+                 (BIGNUM (INTEGER -9223372036854775808 18446744073709551615))
+                 (VALUES (OR NULL INTEGER)
+                         (INTEGER -18446744073709551615 18446744073709551615)
+                         &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** ADD-BIGNUM-FIXNUM :compiled:function:
+:PROPERTIES:
+:ID: 2828907333834
+:CUSTOM_ID: SB-BIGNUM:ADD-BIGNUM-FIXNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ADD-BIGNUM-FIXNUM names a compiled function:
+  Lambda-list: (A B)
+  Declared type: (FUNCTION (BIGNUM FIXNUM) (VALUES INTEGER &OPTIONAL))
+  Known attributes: flushable, unsafely-flushable, movable, no-verify-arg-count
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** ADD-BIGNUMS :compiled:function:
+:PROPERTIES:
+:ID: 1153851778854
+:CUSTOM_ID: SB-BIGNUM:ADD-BIGNUMS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ADD-BIGNUMS names a compiled function:
+  Lambda-list: (A B)
+  Declared type: (FUNCTION (BIGNUM BIGNUM) (VALUES INTEGER &OPTIONAL))
+  Known attributes: flushable, unsafely-flushable, movable, no-verify-arg-count
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** %DIGIT-0-OR-PLUSP
+:PROPERTIES:
+:ID: 3674871247605
+:CUSTOM_ID: SB-BIGNUM:%DIGIT-0-OR-PLUSP
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%DIGIT-0-OR-PLUSP names an undefined function
+  Declared type: (FUNCTION ((UNSIGNED-BYTE 64)) (VALUES BOOLEAN &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** BIGNUM-LOGBITP :compiled:function:
+:PROPERTIES:
+:ID: 1022900357866
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-LOGBITP
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-LOGBITP names a compiled function:
+  Lambda-list: (INDEX BIGNUM)
+  Derived type: (FUNCTION ((MOD 4294967295) BIGNUM) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** %UNARY-TRUNCATE-DOUBLE-FLOAT-TO-BIGNUM :compiled:function:
+:PROPERTIES:
+:ID: 1741400827203
+:CUSTOM_ID: SB-BIGNUM:%UNARY-TRUNCATE-DOUBLE-FLOAT-TO-BIGNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%UNARY-TRUNCATE-DOUBLE-FLOAT-TO-BIGNUM names a compiled function:
+  Lambda-list: (NUMBER)
+  Declared type: (FUNCTION (DOUBLE-FLOAT) (VALUES BIGNUM &OPTIONAL))
+  Known attributes: foldable, flushable, unsafely-flushable, movable, no-verify-arg-count, fixed-args
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - SB-C::FOLDER
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** %BIGNUM-SET-LENGTH
+:PROPERTIES:
+:ID: 3725365598115
+:CUSTOM_ID: SB-BIGNUM:%BIGNUM-SET-LENGTH
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%BIGNUM-SET-LENGTH names an undefined function
+  Declared type: (FUNCTION (BIGNUM (UNSIGNED-BYTE 32)) (VALUES &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** %BIGNUM-SET
+:PROPERTIES:
+:ID: 384134848642
+:CUSTOM_ID: SB-BIGNUM:%BIGNUM-SET
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%BIGNUM-SET names an undefined function
+  Declared type: (FUNCTION (BIGNUM (MOD 4294967295) (UNSIGNED-BYTE 64))
+                  (VALUES &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** %BIGNUM-REF-WITH-OFFSET
+:PROPERTIES:
+:ID: 580685959255
+:CUSTOM_ID: SB-BIGNUM:%BIGNUM-REF-WITH-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%BIGNUM-REF-WITH-OFFSET names an undefined function
+  Declared type: (FUNCTION (BIGNUM FIXNUM (SIGNED-BYTE 24))
+                  (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-TRAN.LISP
+  - [[id:2786046887799][OPTIMIZE]]
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** %ASHL
+:PROPERTIES:
+:ID: 615139478829
+:CUSTOM_ID: SB-BIGNUM:%ASHL
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%ASHL names an undefined function
+  Declared type: (FUNCTION ((UNSIGNED-BYTE 64) (UNSIGNED-BYTE 6))
+                  (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** SXHASH-BIGNUM :compiled:function:
+:PROPERTIES:
+:ID: 2810683703821
+:CUSTOM_ID: SB-BIGNUM:SXHASH-BIGNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SXHASH-BIGNUM names a compiled function:
+  Lambda-list: (X)
+  Declared type: (FUNCTION (INTEGER) (VALUES (UNSIGNED-BYTE 62) &OPTIONAL))
+  Derived type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 62) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** BIGNUM-TRUNCATE :compiled:function:
+:PROPERTIES:
+:ID: 2275210538108
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-TRUNCATE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-TRUNCATE names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (BIGNUM BIGNUM)
+                 (VALUES (OR NULL INTEGER) (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** BIGNUM-INTEGER-LENGTH :compiled:function:
+:PROPERTIES:
+:ID: 3027832455586
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-INTEGER-LENGTH
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-INTEGER-LENGTH names a compiled function:
+  Lambda-list: (BIGNUM)
+  Derived type: (FUNCTION (BIGNUM) (VALUES (MOD 274877906880) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** SXHASH-BIGNUM-DOUBLE-FLOAT :compiled:function:
+:PROPERTIES:
+:ID: 2688699776949
+:CUSTOM_ID: SB-BIGNUM:SXHASH-BIGNUM-DOUBLE-FLOAT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SXHASH-BIGNUM-DOUBLE-FLOAT names a compiled function:
+  Lambda-list: (NUMBER)
+  Declared type: (FUNCTION (DOUBLE-FLOAT) (VALUES (UNSIGNED-BYTE 62)&OPTIONAL))
+  Known attributes: foldable, flushable, unsafely-flushable, movable, no-verify-arg-count, fixed-args
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - SB-C::FOLDER
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** BIGNUM-PLUS-P :compiled:function:
+:PROPERTIES:
+:ID: 979347235754
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-PLUS-P
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-PLUS-P names a compiled function:
+  Lambda-list: (BIGNUM)
+  Derived type: (FUNCTION (BIGNUM) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** %ALLOCATE-BIGNUM
+:PROPERTIES:
+:ID: 3824729947799
+:CUSTOM_ID: SB-BIGNUM:%ALLOCATE-BIGNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%ALLOCATE-BIGNUM names an undefined function
+  Declared type: (FUNCTION ((UNSIGNED-BYTE 32)) (VALUES BIGNUM &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+  - SB-C:IR2-CONVERT
+:end:
+** MULTIPLY-BIGNUM-AND-FIXNUM :compiled:function:
+:PROPERTIES:
+:ID: 851750878923
+:CUSTOM_ID: SB-BIGNUM:MULTIPLY-BIGNUM-AND-FIXNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MULTIPLY-BIGNUM-AND-FIXNUM names a compiled function:
+  Lambda-list: (BIGNUM FIXNUM)
+  Derived type: (FUNCTION (BIGNUM FIXNUM) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:SRC;CODE;X86-64-VM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;X86-64-VM.LISP
+:end:
+** BIGNUM-COMPARE :compiled:function:
+:PROPERTIES:
+:ID: 398461578179
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-COMPARE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-COMPARE names a compiled function:
+  Lambda-list: (A B)
+  Declared type: (FUNCTION (BIGNUM BIGNUM) (VALUES (INTEGER -1 1) &REST T))
+  Derived type: (FUNCTION (BIGNUM BIGNUM) (VALUES (INTEGER -1 1) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** BIGNUM-GCD :compiled:function:
+:PROPERTIES:
+:ID: 2220191461338
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-GCD
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-GCD names a compiled function:
+  Lambda-list: (U0 V0)
+  Derived type: (FUNCTION (BIGNUM BIGNUM) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** %MULTIPLY
+:PROPERTIES:
+:ID: 1180462923179
+:CUSTOM_ID: SB-BIGNUM:%MULTIPLY
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%MULTIPLY names an undefined function
+  Declared type: (FUNCTION ((UNSIGNED-BYTE 64) (UNSIGNED-BYTE 64))
+                  (VALUES (UNSIGNED-BYTE 64) (UNSIGNED-BYTE 64) &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** BIGNUM-LOGICAL-IOR :compiled:function:
+:PROPERTIES:
+:ID: 751844787733
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-LOGICAL-IOR
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-LOGICAL-IOR names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (BIGNUM BIGNUM) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** BIGNUM-ASHIFT-LEFT :compiled:function:
+:PROPERTIES:
+:ID: 1565034476313
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-ASHIFT-LEFT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-ASHIFT-LEFT names a compiled function:
+  Lambda-list: (BIGNUM X &OPTIONAL BIGNUM-LEN)
+  Derived type: (FUNCTION
+                 (BIGNUM UNSIGNED-BYTE &OPTIONAL (OR NULL (UNSIGNED-BYTE 32)))
+                 (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** BIGNUM-LOGICAL-NOT :compiled:function:
+:PROPERTIES:
+:ID: 2127522884449
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-LOGICAL-NOT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-LOGICAL-NOT names a compiled function:
+  Lambda-list: (A)
+  Derived type: (FUNCTION (BIGNUM) (VALUES BIGNUM &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** %UNARY-TRUNCATE-SINGLE-FLOAT-TO-BIGNUM :compiled:function:
+:PROPERTIES:
+:ID: 3895792173134
+:CUSTOM_ID: SB-BIGNUM:%UNARY-TRUNCATE-SINGLE-FLOAT-TO-BIGNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%UNARY-TRUNCATE-SINGLE-FLOAT-TO-BIGNUM names a compiled function:
+  Lambda-list: (NUMBER)
+  Declared type: (FUNCTION (SINGLE-FLOAT) (VALUES BIGNUM &OPTIONAL))
+  Known attributes: foldable, flushable, unsafely-flushable, movable, no-verify-arg-count, fixed-args
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - SB-C::FOLDER
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** BIGNUM-TO-SINGLE-FLOAT :compiled:function:
+:PROPERTIES:
+:ID: 507242433013
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-TO-SINGLE-FLOAT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-TO-SINGLE-FLOAT names a compiled function:
+  Lambda-list: (BIGNUM)
+  Declared type: (FUNCTION (BIGNUM) (VALUES SINGLE-FLOAT &OPTIONAL))
+  Known attributes: foldable, movable, no-verify-arg-count, unboxed-return
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - SB-C::FOLDER
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** %SUBTRACT-WITH-BORROW
+:PROPERTIES:
+:ID: 1762970661545
+:CUSTOM_ID: SB-BIGNUM:%SUBTRACT-WITH-BORROW
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%SUBTRACT-WITH-BORROW names an undefined function
+  Declared type: (FUNCTION ((UNSIGNED-BYTE 64) (UNSIGNED-BYTE 64) BIT)
+                  (VALUES (UNSIGNED-BYTE 64) BIT &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** UNARY-TRUNCATE-SINGLE-FLOAT-TO-BIGNUM-DIV :compiled:function:
+:PROPERTIES:
+:ID: 3313419888426
+:CUSTOM_ID: SB-BIGNUM:UNARY-TRUNCATE-SINGLE-FLOAT-TO-BIGNUM-DIV
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+UNARY-TRUNCATE-SINGLE-FLOAT-TO-BIGNUM-DIV names a compiled function:
+  Lambda-list: (QUOT NUMBER DIVISOR)
+  Declared type: (FUNCTION (SINGLE-FLOAT SINGLE-FLOAT SINGLE-FLOAT)
+                  (VALUES BIGNUM SINGLE-FLOAT &OPTIONAL))
+  Known attributes: foldable, flushable, unsafely-flushable, movable, no-verify-arg-count, fixed-args, unboxed-return
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - SB-C::FOLDER
+- SYS:SRC;COMPILER;FLOAT-TRAN.LISP
+  - [[id:2786046887799][OPTIMIZE]]
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** BIGNUM-LOGICAL-AND :compiled:function:
+:PROPERTIES:
+:ID: 1311792409443
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-LOGICAL-AND
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-LOGICAL-AND names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (BIGNUM BIGNUM) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** UNARY-TRUNCATE-DOUBLE-FLOAT-TO-BIGNUM-DIV :compiled:function:
+:PROPERTIES:
+:ID: 1877199987116
+:CUSTOM_ID: SB-BIGNUM:UNARY-TRUNCATE-DOUBLE-FLOAT-TO-BIGNUM-DIV
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+UNARY-TRUNCATE-DOUBLE-FLOAT-TO-BIGNUM-DIV names a compiled function:
+  Lambda-list: (QUOT NUMBER DIVISOR)
+  Declared type: (FUNCTION (DOUBLE-FLOAT DOUBLE-FLOAT DOUBLE-FLOAT)
+                  (VALUES BIGNUM DOUBLE-FLOAT &OPTIONAL))
+  Known attributes: foldable, flushable, unsafely-flushable, movable, no-verify-arg-count, fixed-args, unboxed-return
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - SB-C::FOLDER
+- SYS:SRC;COMPILER;FLOAT-TRAN.LISP
+  - [[id:2786046887799][OPTIMIZE]]
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** %BIGNUM-REF
+:PROPERTIES:
+:ID: 4009783109408
+:CUSTOM_ID: SB-BIGNUM:%BIGNUM-REF
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%BIGNUM-REF names an undefined function
+  Declared type: (FUNCTION (BIGNUM (MOD 4294967295))
+                  (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+
+(SETF %BIGNUM-REF) names a compiled function:
+  Lambda-list: (VAL BIGNUM INDEX)
+  Derived type: (FUNCTION (T T T) (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-TRAN.LISP
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** %BIGNUM-LENGTH :compiled:function:
+:PROPERTIES:
+:ID: 552493702137
+:CUSTOM_ID: SB-BIGNUM:%BIGNUM-LENGTH
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%BIGNUM-LENGTH names a compiled function:
+  Lambda-list: (X)
+  Declared type: (FUNCTION (BIGNUM) (VALUES (INTEGER 1 4294967295) &OPTIONAL))
+  Known attributes: foldable, flushable, unsafely-flushable, always-translatable
+  Source file: SYS:SRC;CODE;STUBS.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;STUBS.LISP
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+- SYS:SRC;COMPILER;SRCTRAN.LISP
+  - SB-C:DERIVE-TYPE
+:end:
+** BIT-INDEX
+:PROPERTIES:
+:ID: 3195186202849
+:CUSTOM_ID: SB-BIGNUM:BIT-INDEX
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIT-INDEX names a type-specifier:
+  Lambda-list: ()
+  Expansion: (INTEGER 0 274877906943)
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-TYPE.LISP
+:end:
+** SUBTRACT-FIXNUM-BIGNUM :compiled:function:
+:PROPERTIES:
+:ID: 3042243651396
+:CUSTOM_ID: SB-BIGNUM:SUBTRACT-FIXNUM-BIGNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SUBTRACT-FIXNUM-BIGNUM names a compiled function:
+  Lambda-list: (A B)
+  Declared type: (FUNCTION (FIXNUM BIGNUM) (VALUES INTEGER &OPTIONAL))
+  Known attributes: flushable, unsafely-flushable, movable, no-verify-arg-count
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** %ADD-WITH-CARRY
+:PROPERTIES:
+:ID: 1883190045886
+:CUSTOM_ID: SB-BIGNUM:%ADD-WITH-CARRY
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%ADD-WITH-CARRY names an undefined function
+  Declared type: (FUNCTION ((UNSIGNED-BYTE 64) (UNSIGNED-BYTE 64) BIT)
+                  (VALUES (UNSIGNED-BYTE 64) BIT &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** BIGNUM-ASHIFT-RIGHT :compiled:function:
+:PROPERTIES:
+:ID: 2012535934417
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-ASHIFT-RIGHT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-ASHIFT-RIGHT names a compiled function:
+  Lambda-list: (BIGNUM COUNT)
+  Derived type: (FUNCTION (BIGNUM UNSIGNED-BYTE)
+                 (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** %RANDOM-BIGNUM :compiled:function:
+:PROPERTIES:
+:ID: 3052891373017
+:CUSTOM_ID: SB-BIGNUM:%RANDOM-BIGNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%RANDOM-BIGNUM names a compiled function:
+  Lambda-list: (ARG STATE)
+  Derived type: (FUNCTION ((INTEGER 4611686018427387904) RANDOM-STATE)
+                 (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM-RANDOM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM-RANDOM.LISP
+:end:
+** SUBTRACT-BIGNUM-FIXNUM :compiled:function:
+:PROPERTIES:
+:ID: 261868789378
+:CUSTOM_ID: SB-BIGNUM:SUBTRACT-BIGNUM-FIXNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SUBTRACT-BIGNUM-FIXNUM names a compiled function:
+  Lambda-list: (A B)
+  Declared type: (FUNCTION (BIGNUM FIXNUM) (VALUES INTEGER &OPTIONAL))
+  Known attributes: flushable, unsafely-flushable, movable, no-verify-arg-count
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** BIGNUM-LENGTH :vop:
+:PROPERTIES:
+:ID: 4332162176019
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-LENGTH
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-LENGTH names a type-specifier:
+  Lambda-list: ()
+  Expansion: (MOD 4294967296)
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-TYPE.LISP
+:end:
+** %BIGFLOOR
+:PROPERTIES:
+:ID: 871978696181
+:CUSTOM_ID: SB-BIGNUM:%BIGFLOOR
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%BIGFLOOR names an undefined function
+  Declared type: (FUNCTION
+                  ((UNSIGNED-BYTE 64) (UNSIGNED-BYTE 64) (UNSIGNED-BYTE 64))
+                  (VALUES (UNSIGNED-BYTE 64) (UNSIGNED-BYTE 64) &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** BIGNUM-LOGCOUNT :compiled:function:
+:PROPERTIES:
+:ID: 2127536296824
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-LOGCOUNT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-LOGCOUNT names a compiled function:
+  Lambda-list: (BIGNUM)
+  Derived type: (FUNCTION (BIGNUM)
+                 (VALUES (INTEGER -274877906816 274877906880) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** SUBTRACT-BIGNUM :compiled:function:
+:PROPERTIES:
+:ID: 170508785420
+:CUSTOM_ID: SB-BIGNUM:SUBTRACT-BIGNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SUBTRACT-BIGNUM names a compiled function:
+  Lambda-list: (A B)
+  Declared type: (FUNCTION (BIGNUM BIGNUM) (VALUES INTEGER &OPTIONAL))
+  Known attributes: flushable, unsafely-flushable, movable, no-verify-arg-count
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** MAKE-SMALL-BIGNUM :compiled:function:
+:PROPERTIES:
+:ID: 2530397242375
+:CUSTOM_ID: SB-BIGNUM:MAKE-SMALL-BIGNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAKE-SMALL-BIGNUM names a compiled function:
+  Lambda-list: (FIXNUM)
+  Derived type: (FUNCTION (T) (VALUES BIGNUM &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** %ASHR
+:PROPERTIES:
+:ID: 786942298018
+:CUSTOM_ID: SB-BIGNUM:%ASHR
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%ASHR names an undefined function
+  Declared type: (FUNCTION ((UNSIGNED-BYTE 64) (UNSIGNED-BYTE 6))
+                  (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** UNARY-TRUNCATE-DOUBLE-FLOAT-TO-BIGNUM :compiled:function:
+:PROPERTIES:
+:ID: 3509197093178
+:CUSTOM_ID: SB-BIGNUM:UNARY-TRUNCATE-DOUBLE-FLOAT-TO-BIGNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+UNARY-TRUNCATE-DOUBLE-FLOAT-TO-BIGNUM names a compiled function:
+  Lambda-list: (NUMBER)
+  Declared type: (FUNCTION (DOUBLE-FLOAT)
+                  (VALUES BIGNUM (MEMBER 0.0d0) &OPTIONAL))
+  Known attributes: foldable, flushable, unsafely-flushable, movable, no-verify-arg-count, fixed-args, unboxed-return
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;CODE;NUMBERS.LISP
+  - SB-C::FOLDER
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** MULTIPLY-BIGNUMS :compiled:function:
+:PROPERTIES:
+:ID: 3861478039735
+:CUSTOM_ID: SB-BIGNUM:MULTIPLY-BIGNUMS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MULTIPLY-BIGNUMS names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (BIGNUM BIGNUM) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** BIGNUM-LOGICAL-XOR :compiled:function:
+:PROPERTIES:
+:ID: 2031761299591
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-LOGICAL-XOR
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-LOGICAL-XOR names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (BIGNUM BIGNUM) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** BIGNUM-TO-DOUBLE-FLOAT :compiled:function:
+:PROPERTIES:
+:ID: 3284907895965
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-TO-DOUBLE-FLOAT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-TO-DOUBLE-FLOAT names a compiled function:
+  Lambda-list: (BIGNUM)
+  Declared type: (FUNCTION (BIGNUM) (VALUES DOUBLE-FLOAT &OPTIONAL))
+  Known attributes: foldable, movable, no-verify-arg-count, unboxed-return
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - SB-C::FOLDER
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** BIGNUM-ELEMENT-TYPE
+:PROPERTIES:
+:ID: 747464006056
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-ELEMENT-TYPE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-ELEMENT-TYPE names a type-specifier:
+  Lambda-list: ()
+  Expansion: WORD
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-TYPE.LISP
+:end:
+** %MULTIPLY-AND-ADD
+:PROPERTIES:
+:ID: 3927148082581
+:CUSTOM_ID: SB-BIGNUM:%MULTIPLY-AND-ADD
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%MULTIPLY-AND-ADD names an undefined function
+  Declared type: (FUNCTION
+                  ((UNSIGNED-BYTE 64) (UNSIGNED-BYTE 64) (UNSIGNED-BYTE 64)
+                   &OPTIONAL (UNSIGNED-BYTE 64))
+                  (VALUES (UNSIGNED-BYTE 64) (UNSIGNED-BYTE 64) &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** BIGNUM-INDEX
+:PROPERTIES:
+:ID: 1287654585447
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-INDEX
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-INDEX names a type-specifier:
+  Lambda-list: ()
+  Expansion: (MOD 4294967295)
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-TYPE.LISP
+:end:
+** BIGNUM-ASHIFT-LEFT-FIXNUM :compiled:function:
+:PROPERTIES:
+:ID: 1652794233441
+:CUSTOM_ID: SB-BIGNUM:BIGNUM-ASHIFT-LEFT-FIXNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+BIGNUM-ASHIFT-LEFT-FIXNUM names a compiled function:
+  Lambda-list: (FIXNUM COUNT)
+  Derived type: (FUNCTION (FIXNUM (UNSIGNED-BYTE 62)) (VALUES BIGNUM&OPTIONAL))
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+:end:
+** MAXIMUM-BIGNUM-LENGTH :constant:var:
+:PROPERTIES:
+:ID: 1166518840118
+:CUSTOM_ID: SB-BIGNUM:MAXIMUM-BIGNUM-LENGTH
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAXIMUM-BIGNUM-LENGTH names a constant variable:
+  Value: 4294967295
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** UNARY-TRUNCATE-SINGLE-FLOAT-TO-BIGNUM :compiled:function:
+:PROPERTIES:
+:ID: 1234715414119
+:CUSTOM_ID: SB-BIGNUM:UNARY-TRUNCATE-SINGLE-FLOAT-TO-BIGNUM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+UNARY-TRUNCATE-SINGLE-FLOAT-TO-BIGNUM names a compiled function:
+  Lambda-list: (NUMBER)
+  Declared type: (FUNCTION (SINGLE-FLOAT)
+                  (VALUES BIGNUM (MEMBER 0.0) &OPTIONAL))
+  Known attributes: foldable, flushable, unsafely-flushable, movable, no-verify-arg-count, fixed-args
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;CODE;NUMBERS.LISP
+  - SB-C::FOLDER
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** %FIXNUM-DIGIT-WITH-CORRECT-SIGN
+:PROPERTIES:
+:ID: 917523493305
+:CUSTOM_ID: SB-BIGNUM:%FIXNUM-DIGIT-WITH-CORRECT-SIGN
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%FIXNUM-DIGIT-WITH-CORRECT-SIGN names an undefined function
+  Declared type: (FUNCTION ((UNSIGNED-BYTE 64))
+                  (VALUES (SIGNED-BYTE 64) &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** %DIGIT-LOGICAL-SHIFT-RIGHT
+:PROPERTIES:
+:ID: 3946775841257
+:CUSTOM_ID: SB-BIGNUM:%DIGIT-LOGICAL-SHIFT-RIGHT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+%DIGIT-LOGICAL-SHIFT-RIGHT names an undefined function
+  Declared type: (FUNCTION ((UNSIGNED-BYTE 64) (UNSIGNED-BYTE 6))
+                  (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** SXHASH-BIGNUM-SINGLE-FLOAT :compiled:function:
+:PROPERTIES:
+:ID: 244722530736
+:CUSTOM_ID: SB-BIGNUM:SXHASH-BIGNUM-SINGLE-FLOAT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SXHASH-BIGNUM-SINGLE-FLOAT names a compiled function:
+  Lambda-list: (NUMBER)
+  Declared type: (FUNCTION (SINGLE-FLOAT) (VALUES (UNSIGNED-BYTE 62)&OPTIONAL))
+  Known attributes: foldable, flushable, unsafely-flushable, movable, no-verify-arg-count, fixed-args
+  Source file: SYS:SRC;CODE;BIGNUM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - SB-C::FOLDER
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:

@@ -1,4 +1,4 @@
-#+setupfile: ../../clean.theme
+#+SETUPFILE: ../../clean.theme
 * SB-UNICODE
 :PROPERTIES:
 :CUSTOM_ID: SB-UNICODE
@@ -12,15 +12,17 @@ public: algorithms for Unicode data
   - SB-INT
 
 - dependents
-  - [[#STD/STRING][STD/STRING]]
+  - [[id:109][STD/STRING]]
 
 ** WHITESPACE-P :compiled:function:
 :PROPERTIES:
 :ID: 236283586750
 :CUSTOM_ID: SB-UNICODE:WHITESPACE-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 WHITESPACE-P names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES (OR NULL (MOD 1114112)) &OPTIONAL))
@@ -28,6 +30,7 @@ WHITESPACE-P names a compiled function:
     Returns T if CHARACTER is whitespace according to Unicode
     and NIL otherwise
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 - Called by
@@ -37,13 +40,13 @@ WHITESPACE-P names a compiled function:
   - POD::READ-CONTAINERFILE-LINE
   - CLI/TOOLS/PACMAN::SKIP-MAKEPKG-JUNK
   - CLI/TOOLS/PACMAN::READ-MAKEPKG-ARRAY
-  - [[id:714563330166][EDITOR-SEXP-END]]
-  - [[id:1783980373962][EDITOR-SEXP-START]]
+  - [[id:714563330284][EDITOR-SEXP-END]]
+  - [[id:1783980373272][EDITOR-SEXP-START]]
   - CRY/GPG::LOAD-GPG-CONFIG-FILE
   - DAT/BIB::READ-BIBTEX-FIELD
-  - [[id:2066703120444][READ-COMMAND*]]
-  - [[id:933207805893][REWRITE-URLS]]
-  - [[id:164355415698][READ-ATTRIBUTE]]
+  - [[id:2066703121243][READ-COMMAND*]]
+  - [[id:933207805039][REWRITE-URLS]]
+  - OBJ/URL::READ-ATTRIBUTE
   - OBJ/URL::SKIP-WHITESPACE
 
 :definitions:
@@ -54,8 +57,10 @@ WHITESPACE-P names a compiled function:
 :ID: 41976092650
 :CUSTOM_ID: SB-UNICODE:SCRIPT
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 SCRIPT names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T)
@@ -102,6 +107,7 @@ SCRIPT names a compiled function:
     Returns the Script property of CHARACTER as a keyword.
     If CHARACTER does not have a known script, returns :UNKNOWN
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -112,8 +118,10 @@ SCRIPT names a compiled function:
 :ID: 3150994775983
 :CUSTOM_ID: SB-UNICODE:BIDI-MIRRORING-GLYPH
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 BIDI-MIRRORING-GLYPH names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES (OR CHARACTER NULL) &OPTIONAL))
@@ -121,6 +129,7 @@ BIDI-MIRRORING-GLYPH names a compiled function:
     Returns the mirror image of CHARACTER if it exists.
     Otherwise, returns NIL.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -131,8 +140,10 @@ BIDI-MIRRORING-GLYPH names a compiled function:
 :ID: 3998597673571
 :CUSTOM_ID: SB-UNICODE:SENTENCE-BREAK-CLASS
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 SENTENCE-BREAK-CLASS names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T)
@@ -143,6 +154,7 @@ SENTENCE-BREAK-CLASS names a compiled function:
   Documentation:
     Returns the sentence breaking class of CHARACTER, as specified in UAX #29.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -153,8 +165,10 @@ SENTENCE-BREAK-CLASS names a compiled function:
 :ID: 478494085188
 :CUSTOM_ID: SB-UNICODE:UNICODE<=
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 UNICODE<= names a compiled function:
   Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2)
   Derived type: (FUNCTION
@@ -163,6 +177,7 @@ UNICODE<= names a compiled function:
   Documentation:
     Tests if STRING1 and STRING2 are either UNICODE< or UNICODE=
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -173,8 +188,10 @@ UNICODE<= names a compiled function:
 :ID: 1990126767796
 :CUSTOM_ID: SB-UNICODE:LINES
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 LINES names a compiled function:
   Lambda-list: (STRING &KEY (MARGIN *PRINT-RIGHT-MARGIN*))
   Derived type: (FUNCTION (T &KEY (:MARGIN T)) (VALUES LIST &OPTIONAL))
@@ -185,17 +202,18 @@ LINES names a compiled function:
     whitespace) will be removed from the end of lines. If :MARGIN isunspecified,
     it defaults to 80 characters
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 - Called by
   - (PUBLISH (SYMBOL-DOCUMENTATION))
   - DOC::ORG-NORMALIZE-DESCRIPTION
-  - [[id:201556014389][MAKE-HG-REPO]]
-  - [[id:3215334536044][FIND-HG-REQUIRES]]
+  - [[id:201556014403][MAKE-HG-REPO]]
+  - [[id:3215334535819][FIND-HG-REQUIRES]]
   - VC/HG::FIND-HG-SUBMODULES
-  - [[id:322729418689][FIND-HG-BOOKMARKS]]
-  - [[id:1447885832504][YTDL-LIST]]
-  - [[id:3154016486823][YTDL-EXTRACTORS]]
+  - [[id:322729418327][FIND-HG-BOOKMARKS]]
+  - [[id:1447885832522][YTDL-LIST]]
+  - [[id:3154016486418][YTDL-EXTRACTORS]]
   - [[id:3580508278426][PRINT-IN-BOX]]
   - [[id:4234738574007][ASM-SEARCH]]
 
@@ -207,13 +225,16 @@ LINES names a compiled function:
 :ID: 3203813642318
 :CUSTOM_ID: SB-UNICODE:UTF8-DECODE-FROM-SAP
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 UTF8-DECODE-FROM-SAP names a compiled function:
   Lambda-list: (SAP &OPTIONAL (COUNT NIL COUNT-SUPPLIED) &AUX
                 (LENGTH-IN-CHARS 0) (START SAP))
   Derived type: (FUNCTION (T &OPTIONAL T) (VALUES SIMPLE-STRING &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -224,8 +245,10 @@ UTF8-DECODE-FROM-SAP names a compiled function:
 :ID: 1205795328686
 :CUSTOM_ID: SB-UNICODE:ALPHABETIC-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 ALPHABETIC-P names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T)
@@ -237,6 +260,7 @@ ALPHABETIC-P names a compiled function:
     Returns T if CHARACTER is Alphabetic according to the Unicode standard
     and NIL otherwise
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 - Called by
@@ -252,14 +276,17 @@ ALPHABETIC-P names a compiled function:
 :ID: 93350454819
 :CUSTOM_ID: SB-UNICODE:UPPERCASE-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 UPPERCASE-P names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES (OR (MOD 1114112) BOOLEAN) &OPTIONAL))
   Documentation:
     Returns T if CHARACTER has the Unicode property Uppercase and NIL otherwise
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -270,14 +297,17 @@ UPPERCASE-P names a compiled function:
 :ID: 472769644842
 :CUSTOM_ID: SB-UNICODE:NORMALIZED-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NORMALIZED-P names a compiled function:
   Lambda-list: (STRING &OPTIONAL (FORM NFD))
   Derived type: (FUNCTION (STRING &OPTIONAL T) (VALUES BOOLEAN &OPTIONAL))
   Documentation:
     Tests if STRING is normalized to FORM
   Source file: SYS:SRC;CODE;UNICODE-NORM.LISP
+
 #+end_example
 
 :definitions:
@@ -288,8 +318,10 @@ NORMALIZED-P names a compiled function:
 :ID: 1405552683186
 :CUSTOM_ID: SB-UNICODE:PROPLIST-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 PROPLIST-P names a compiled function:
   Lambda-list: (CHARACTER PROPERTY)
   Derived type: (FUNCTION (T T) (VALUES (OR NULL (MOD 1114112)) &OPTIONAL))
@@ -298,6 +330,7 @@ PROPLIST-P names a compiled function:
     PROPERTY is a keyword representing one of the properties from PropList.txt,
     with underscores replaced by dashes.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -308,8 +341,10 @@ PROPLIST-P names a compiled function:
 :ID: 3229841726877
 :CUSTOM_ID: SB-UNICODE:COMBINING-CLASS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMBINING-CLASS names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES (MOD 241) &OPTIONAL))
@@ -317,6 +352,7 @@ COMBINING-CLASS names a compiled function:
     Returns the canonical combining class (CCC) of CHARACTER
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;UNICODE-NORM.LISP
+
 #+end_example
 
 :definitions:
@@ -327,8 +363,10 @@ COMBINING-CLASS names a compiled function:
 :ID: 2076199196314
 :CUSTOM_ID: SB-UNICODE:UNICODE>
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 UNICODE> names a compiled function:
   Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2)
   Derived type: (FUNCTION
@@ -337,6 +375,7 @@ UNICODE> names a compiled function:
   Documentation:
     Tests if STRING2 is UNICODE< STRING1.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -347,8 +386,10 @@ UNICODE> names a compiled function:
 :ID: 4036386640050
 :CUSTOM_ID: SB-UNICODE:GRAPHEME-BREAK-CLASS
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 GRAPHEME-BREAK-CLASS names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T)
@@ -359,6 +400,7 @@ GRAPHEME-BREAK-CLASS names a compiled function:
   Documentation:
     Returns the grapheme breaking class of CHARACTER, as specified in UAX #29.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -369,8 +411,10 @@ GRAPHEME-BREAK-CLASS names a compiled function:
 :ID: 3461370686508
 :CUSTOM_ID: SB-UNICODE:EAST-ASIAN-WIDTH
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 EAST-ASIAN-WIDTH names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T)
@@ -380,6 +424,7 @@ EAST-ASIAN-WIDTH names a compiled function:
     one of the keywords :N (Narrow), :A (Ambiguous), :H (Halfwidth),
     :W (Wide), :F (Fullwidth), or :NA (Not applicable)
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -390,8 +435,10 @@ EAST-ASIAN-WIDTH names a compiled function:
 :ID: 4237315428608
 :CUSTOM_ID: SB-UNICODE:UPPERCASE
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 UPPERCASE names a compiled function:
   Lambda-list: (STRING &KEY LOCALE)
   Derived type: (FUNCTION (T &KEY (:LOCALE T)) (VALUES STRING &OPTIONAL))
@@ -403,6 +450,7 @@ UPPERCASE names a compiled function:
     locale are used. If :LOCALE is T, the user's current locale is used (Unixand
     Win32 only).
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -413,8 +461,10 @@ UPPERCASE names a compiled function:
 :ID: 2127952412523
 :CUSTOM_ID: SB-UNICODE:LINE-BREAK-CLASS
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 LINE-BREAK-CLASS names a compiled function:
   Lambda-list: (CHARACTER &KEY RESOLVE)
   Derived type: (FUNCTION (T &KEY (:RESOLVE T))
@@ -432,6 +482,7 @@ LINE-BREAK-CLASS names a compiled function:
     is :EAST-ASIAN, Ambigious (class :AI) characters will be mapped to the
     Ideographic (:ID) class instead of Alphabetic (:AL).
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -442,8 +493,10 @@ LINE-BREAK-CLASS names a compiled function:
 :ID: 4230635091480
 :CUSTOM_ID: SB-UNICODE:MATH-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 MATH-P names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES (OR (MOD 1114112) BOOLEAN) &OPTIONAL))
@@ -451,6 +504,7 @@ MATH-P names a compiled function:
     Returns T if CHARACTER is a mathematical symbol according to Unicode and
     NIL otherwise
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -461,8 +515,10 @@ MATH-P names a compiled function:
 :ID: 2499940191391
 :CUSTOM_ID: SB-UNICODE:AGE
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 AGE names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T)
@@ -473,6 +529,7 @@ AGE names a compiled function:
     of values, both integers, representing the major and minor versionrespectively.
     If CHARACTER is not assigned in Unicode, returns NIL for both values.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -483,8 +540,10 @@ AGE names a compiled function:
 :ID: 4261286991559
 :CUSTOM_ID: SB-UNICODE:WORDS
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 WORDS names a compiled function:
   Lambda-list: (STRING)
   Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
@@ -492,6 +551,7 @@ WORDS names a compiled function:
     Breaks STRING into words according to the default
     word breaking rules specified in UAX #29. Returns a list of strings
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -502,8 +562,10 @@ WORDS names a compiled function:
 :ID: 2093379477956
 :CUSTOM_ID: SB-UNICODE:UNICODE=
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 UNICODE= names a compiled function:
   Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2 (STRICTT))
   Derived type: (FUNCTION
@@ -515,6 +577,7 @@ UNICODE= names a compiled function:
     to Unicode. The START and END arguments behave like the arguments toSTRING=.
     If :STRICT is NIL, UNICODE= tests compatibility equavalence instead.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -525,8 +588,10 @@ UNICODE= names a compiled function:
 :ID: 3523794736999
 :CUSTOM_ID: SB-UNICODE:HANGUL-SYLLABLE-TYPE
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 HANGUL-SYLLABLE-TYPE names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES (MEMBER :V :L :T :LV :LVT NIL)&OPTIONAL))
@@ -535,6 +600,7 @@ HANGUL-SYLLABLE-TYPE names a compiled function:
     The syllable type can be one of :L, :V, :T, :LV, or :LVT.
     If the character is not a Hangul syllable or Jamo, returns NIL
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -545,13 +611,16 @@ HANGUL-SYLLABLE-TYPE names a compiled function:
 :ID: 2130788211153
 :CUSTOM_ID: SB-UNICODE:UTF8-DECODE-FROM-OCTETS
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 UTF8-DECODE-FROM-OCTETS names a compiled function:
   Lambda-list: (UB8-VECTOR)
   Derived type: (FUNCTION ((SIMPLE-ARRAY (UNSIGNED-BYTE 8) (*)))
                  (VALUES SIMPLE-STRING &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -562,12 +631,15 @@ UTF8-DECODE-FROM-OCTETS names a compiled function:
 :ID: 235138972997
 :CUSTOM_ID: SB-UNICODE:SCALAR-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 SCALAR-P names a compiled function:
   Lambda-list: (C)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -578,8 +650,10 @@ SCALAR-P names a compiled function:
 :ID: 2895209523208
 :CUSTOM_ID: SB-UNICODE:SENTENCES
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 SENTENCES names a compiled function:
   Lambda-list: (STRING)
   Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
@@ -587,6 +661,7 @@ SENTENCES names a compiled function:
     Breaks STRING into sentences according to the default
     sentence breaking rules specified in UAX #29
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -597,8 +672,10 @@ SENTENCES names a compiled function:
 :ID: 2562827861712
 :CUSTOM_ID: SB-UNICODE:DECIMAL-VALUE
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 DECIMAL-VALUE names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES (OR (UNSIGNED-BYTE 4) NULL) &OPTIONAL))
@@ -611,6 +688,7 @@ DECIMAL-VALUE names a compiled function:
     Because of this, (decimal-digit c) <=> (digit-char-p c 10) in
     #+sb-unicode builds
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -621,8 +699,10 @@ DECIMAL-VALUE names a compiled function:
 :ID: 1423443818695
 :CUSTOM_ID: SB-UNICODE:CHAR-BLOCK
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 CHAR-BLOCK names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T)
@@ -767,6 +847,7 @@ CHAR-BLOCK names a compiled function:
     Returns the Unicode block in which CHARACTER resides as a keyword.
     If CHARACTER does not have a known block, returns :NO-BLOCK
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -777,8 +858,10 @@ CHAR-BLOCK names a compiled function:
 :ID: 2128687289647
 :CUSTOM_ID: SB-UNICODE:GENERAL-CATEGORY
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 GENERAL-CATEGORY names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T)
@@ -790,6 +873,7 @@ GENERAL-CATEGORY names a compiled function:
   Documentation:
     Returns the general category of CHARACTER as it appears in UnicodeData.txt
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -800,8 +884,10 @@ GENERAL-CATEGORY names a compiled function:
 :ID: 2608442141682
 :CUSTOM_ID: SB-UNICODE:UNICODE>=
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 UNICODE>= names a compiled function:
   Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2)
   Derived type: (FUNCTION
@@ -810,6 +896,7 @@ UNICODE>= names a compiled function:
   Documentation:
     Tests if STRING1 and STRING2 are either UNICODE= or UNICODE>
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -820,8 +907,10 @@ UNICODE>= names a compiled function:
 :ID: 3048702371662
 :CUSTOM_ID: SB-UNICODE:CASEFOLD
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 CASEFOLD names a compiled function:
   Lambda-list: (STRING)
   Derived type: (FUNCTION (T) (VALUES STRING &OPTIONAL))
@@ -831,6 +920,7 @@ CASEFOLD names a compiled function:
     for case-insensitive comparisons.
     The result is not guaranteed to have the same length as the input.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -841,8 +931,10 @@ CASEFOLD names a compiled function:
 :ID: 494607730330
 :CUSTOM_ID: SB-UNICODE:MIRRORED-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 MIRRORED-P names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
@@ -850,6 +942,7 @@ MIRRORED-P names a compiled function:
     Returns T if CHARACTER needs to be mirrored in bidirectional text.
     Otherwise, returns NIL.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -860,8 +953,10 @@ MIRRORED-P names a compiled function:
 :ID: 2375271493539
 :CUSTOM_ID: SB-UNICODE:NUMERIC-VALUE
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 NUMERIC-VALUE names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
@@ -870,6 +965,7 @@ NUMERIC-VALUE names a compiled function:
     Numeric value is the most general of the Unicode numeric properties.
     The only constraint on the numeric value is that it be a rational number.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -880,8 +976,10 @@ NUMERIC-VALUE names a compiled function:
 :ID: 2110559759981
 :CUSTOM_ID: SB-UNICODE:UNICODE<
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 UNICODE< names a compiled function:
   Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2)
   Derived type: (FUNCTION
@@ -893,6 +991,7 @@ UNICODE< names a compiled function:
     to produce the sort keys. The function uses the Shifted method for dealing
     with variable-weight characters, as described in UTS #10
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -903,8 +1002,10 @@ UNICODE< names a compiled function:
 :ID: 1406172240632
 :CUSTOM_ID: SB-UNICODE:IDEOGRAPHIC-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 IDEOGRAPHIC-P names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES (OR NULL (MOD 1114112)) &OPTIONAL))
@@ -912,6 +1013,7 @@ IDEOGRAPHIC-P names a compiled function:
     Returns T if CHARACTER has the Unicode property Ideographic,
     which loosely corresponds to the set of "Chinese characters"
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -922,8 +1024,10 @@ IDEOGRAPHIC-P names a compiled function:
 :ID: 1674180030924
 :CUSTOM_ID: SB-UNICODE:HEX-DIGIT-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 HEX-DIGIT-P names a compiled function:
   Lambda-list: (CHARACTER &KEY ASCII)
   Derived type: (FUNCTION (T &KEY (:ASCII T))
@@ -933,6 +1037,7 @@ HEX-DIGIT-P names a compiled function:
     If :ASCII is non-NIL, fullwidth equivalents of the Latin letters A throughF
     are excluded.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -943,8 +1048,10 @@ HEX-DIGIT-P names a compiled function:
 :ID: 481038722499
 :CUSTOM_ID: SB-UNICODE:LOWERCASE
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 LOWERCASE names a compiled function:
   Lambda-list: (STRING &KEY LOCALE)
   Derived type: (FUNCTION (T &KEY (:LOCALE T)) (VALUES STRING &OPTIONAL))
@@ -953,6 +1060,7 @@ LOWERCASE names a compiled function:
     The result is not guaranteed to have the same length as the input.
     :LOCALE has the same semantics as the :LOCALE argument to UPPERCASE.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -963,8 +1071,10 @@ LOWERCASE names a compiled function:
 :ID: 4088008242313
 :CUSTOM_ID: SB-UNICODE:BIDI-CLASS
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 BIDI-CLASS names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T)
@@ -975,6 +1085,7 @@ BIDI-CLASS names a compiled function:
   Documentation:
     Returns the bidirectional class of CHARACTER
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -985,8 +1096,10 @@ BIDI-CLASS names a compiled function:
 :ID: 2597554293305
 :CUSTOM_ID: SB-UNICODE:UNICODE-EQUAL
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 UNICODE-EQUAL names a compiled function:
   Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2 (STRICTT))
   Derived type: (FUNCTION
@@ -999,6 +1112,7 @@ UNICODE-EQUAL names a compiled function:
     START and END arguments behave like the arguments to STRING=. If :STRICT is
     NIL, UNICODE= tests compatibility equavalence instead.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -1009,8 +1123,10 @@ UNICODE-EQUAL names a compiled function:
 :ID: 33801636839
 :CUSTOM_ID: SB-UNICODE:SOFT-DOTTED-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 SOFT-DOTTED-P names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES (OR NULL (MOD 1114112)) &OPTIONAL))
@@ -1018,6 +1134,7 @@ SOFT-DOTTED-P names a compiled function:
     Returns T if CHARACTER has a soft dot (such as the dots on i and j) which
     disappears when accents are placed on top of it. and NIL otherwise
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -1028,8 +1145,10 @@ SOFT-DOTTED-P names a compiled function:
 :ID: 3645559686404
 :CUSTOM_ID: SB-UNICODE:UNICODE-1-NAME
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 UNICODE-1-NAME names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T)
@@ -1040,6 +1159,7 @@ UNICODE-1-NAME names a compiled function:
     This property has been officially obsoleted by the Unicode standard, and
     is only included for backwards compatibility.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -1050,14 +1170,17 @@ UNICODE-1-NAME names a compiled function:
 :ID: 3583909242902
 :CUSTOM_ID: SB-UNICODE:DEFAULT-IGNORABLE-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFAULT-IGNORABLE-P names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Documentation:
     Returns T if CHARACTER is a Default_Ignorable_Code_Point
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -1068,14 +1191,17 @@ DEFAULT-IGNORABLE-P names a compiled function:
 :ID: 1113519862607
 :CUSTOM_ID: SB-UNICODE:LOWERCASE-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 LOWERCASE-P names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES (OR (MOD 1114112) BOOLEAN) &OPTIONAL))
   Documentation:
     Returns T if CHARACTER has the Unicode property Lowercase and NIL otherwise
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -1086,8 +1212,10 @@ LOWERCASE-P names a compiled function:
 :ID: 613704616855
 :CUSTOM_ID: SB-UNICODE:TITLECASE
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 TITLECASE names a compiled function:
   Lambda-list: (STRING &KEY LOCALE)
   Derived type: (FUNCTION (T &KEY (:LOCALE T))
@@ -1097,6 +1225,7 @@ TITLECASE names a compiled function:
     be longer than the input.
     :LOCALE has the same semantics as the :LOCALE argument to UPPERCASE.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -1107,8 +1236,10 @@ TITLECASE names a compiled function:
 :ID: 471040378446
 :CUSTOM_ID: SB-UNICODE:DIGIT-VALUE
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 DIGIT-VALUE names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES (OR (MOD 10) NULL) &OPTIONAL))
@@ -1120,6 +1251,7 @@ DIGIT-VALUE names a compiled function:
     but there are characters (such as digits of number systems without a 0value)
     that have a digit value but no decimal digit value
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -1130,14 +1262,17 @@ DIGIT-VALUE names a compiled function:
 :ID: 1399186454145
 :CUSTOM_ID: SB-UNICODE:CASED-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 CASED-P names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T) (VALUES (OR (MOD 1114112) BOOLEAN) &OPTIONAL))
   Documentation:
     Returns T if CHARACTER has a (Unicode) case, and NIL otherwise
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -1148,8 +1283,10 @@ CASED-P names a compiled function:
 :ID: 551478757016
 :CUSTOM_ID: SB-UNICODE:CASE-IGNORABLE-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 CASE-IGNORABLE-P names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T)
@@ -1162,6 +1299,7 @@ CASE-IGNORABLE-P names a compiled function:
     Returns T if CHARACTER is Case Ignorable as defined in Unicode 6.3, Chapter
     3
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -1172,8 +1310,10 @@ CASE-IGNORABLE-P names a compiled function:
 :ID: 1932690744846
 :CUSTOM_ID: SB-UNICODE:WORD-BREAK-CLASS
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 WORD-BREAK-CLASS names a compiled function:
   Lambda-list: (CHARACTER)
   Derived type: (FUNCTION (T)
@@ -1186,6 +1326,7 @@ WORD-BREAK-CLASS names a compiled function:
   Documentation:
     Returns the word breaking class of CHARACTER, as specified in UAX #29.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -1196,8 +1337,10 @@ WORD-BREAK-CLASS names a compiled function:
 :ID: 4225070114025
 :CUSTOM_ID: SB-UNICODE:NORMALIZE-STRING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NORMALIZE-STRING names a compiled function:
   Lambda-list: (STRING &OPTIONAL (FORM NFD) FILTER)
   Derived type: (FUNCTION (STRING &OPTIONAL (MEMBER :NFD :NFKD :NFC :NFKC) T)
@@ -1208,6 +1351,7 @@ NORMALIZE-STRING names a compiled function:
     If FILTER is a function it is called on each decomposed character and
     only characters for which it returns T are collected.
   Source file: SYS:SRC;CODE;UNICODE-NORM.LISP
+
 #+end_example
 
 :definitions:
@@ -1218,8 +1362,10 @@ NORMALIZE-STRING names a compiled function:
 :ID: 3166159087080
 :CUSTOM_ID: SB-UNICODE:CONFUSABLE-P
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 CONFUSABLE-P names a compiled function:
   Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2)
   Derived type: (FUNCTION
@@ -1229,6 +1375,7 @@ CONFUSABLE-P names a compiled function:
     Determines whether STRING1 and STRING2 could be visually confusable
     according to the IDNA confusableSummary.txt table
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:
@@ -1239,8 +1386,10 @@ CONFUSABLE-P names a compiled function:
 :ID: 600760715607
 :CUSTOM_ID: SB-UNICODE:GRAPHEMES
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 GRAPHEMES names a compiled function:
   Lambda-list: (STRING)
   Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
@@ -1248,6 +1397,7 @@ GRAPHEMES names a compiled function:
     Breaks STRING into graphemes according to the default
     grapheme breaking rules specified in UAX #29, returning a list of strings.
   Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+
 #+end_example
 
 :definitions:

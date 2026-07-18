@@ -1,0 +1,187 @@
+#+SETUPFILE: ../../clean.theme
+* SB-WALKER
+:PROPERTIES:
+:CUSTOM_ID: SB-WALKER
+:ID: 34
+:LOCK: T
+:END:
+internal: a code walker used by PCL
+
+- shadowed symbols
+  - RECONS
+
+- dependencies
+  - COMMON-LISP
+  - SB-EXT
+  - SB-INT
+
+- dependents
+  - [[id:14][SB-PCL]]
+
+** MACROEXPAND-ALL :compiled:function:
+:PROPERTIES:
+:ID: 1135615252713
+:CUSTOM_ID: SB-WALKER:MACROEXPAND-ALL
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MACROEXPAND-ALL names a compiled function:
+  Lambda-list: (FORM &OPTIONAL ENVIRONMENT)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Source file: SYS:SRC;PCL;WALK.LISP
+
+#+end_example
+
+- Called by
+  - OBJ/META/FAST::MAKE-FAST-METHOD-LAMBDA
+  - OBJ/META/FAST::EXPAND-EFFECTIVE-METHOD-BODY
+
+:definitions:
+- SYS:SRC;PCL;WALK.LISP
+:end:
+** VAR-SPECIAL-P :compiled:function:
+:PROPERTIES:
+:ID: 3786101233804
+:CUSTOM_ID: SB-WALKER:VAR-SPECIAL-P
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+VAR-SPECIAL-P names a compiled function:
+  Lambda-list: (VAR ENV)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;PCL;WALK.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;WALK.LISP
+:end:
+** DEFINE-WALKER-TEMPLATE :compiled:macro:function:
+:PROPERTIES:
+:ID: 282323328716
+:CUSTOM_ID: SB-WALKER:DEFINE-WALKER-TEMPLATE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DEFINE-WALKER-TEMPLATE names a macro:
+  Lambda-list: (NAME &OPTIONAL (TEMPLATE (QUOTE (NIL REPEAT EVAL))))
+  Source file: SYS:SRC;PCL;WALK.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;WALK.LISP
+:end:
+** VAR-GLOBALLY-SPECIAL-P :compiled:function:
+:PROPERTIES:
+:ID: 2439213250405
+:CUSTOM_ID: SB-WALKER:VAR-GLOBALLY-SPECIAL-P
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+VAR-GLOBALLY-SPECIAL-P names a compiled function:
+  Lambda-list: (SYMBOL)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;PCL;WALK.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;WALK.LISP
+:end:
+** WALK-FORM :compiled:function:
+:PROPERTIES:
+:ID: 252901608294
+:CUSTOM_ID: SB-WALKER:WALK-FORM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+WALK-FORM names a compiled function:
+  Lambda-list: (FORM &OPTIONAL ENVIRONMENT
+                (WALK-FUNCTION
+                 (LAMBDA (SUBFORM CONTEXT ENV)
+                   (DECLARE (IGNORE CONTEXT ENV))
+                   SUBFORM)))
+  Derived type: (FUNCTION (T &OPTIONAL T T) *)
+  Source file: SYS:SRC;PCL;WALK.LISP
+
+#+end_example
+
+- Called by
+  - [[id:1135615252713][MACROEXPAND-ALL]]
+  - (COLLECT-MACRO-FORMS IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:SRC;PCL;WALK.LISP
+:end:
+** VAR-LEXICAL-P :compiled:function:
+:PROPERTIES:
+:ID: 3416197047501
+:CUSTOM_ID: SB-WALKER:VAR-LEXICAL-P
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+VAR-LEXICAL-P names a compiled function:
+  Lambda-list: (VAR ENV)
+  Derived type: (FUNCTION (T T) (VALUES LIST &OPTIONAL))
+  Source file: SYS:SRC;PCL;WALK.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;WALK.LISP
+:end:
+** *WALK-FORM-EXPAND-MACROS-P​* :var:
+:PROPERTIES:
+:ID: 834606424262
+:CUSTOM_ID: SB-WALKER:*WALK-FORM-EXPAND-MACROS-P*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*WALK-FORM-EXPAND-MACROS-P* names a special variable:
+  Value: NIL
+
+#+end_example
+
+- Bound by
+  - [[id:1135615252713][MACROEXPAND-ALL]]
+
+:definitions:
+- SYS:SRC;PCL;WALK.LISP
+:end:
+** VAR-DECLARATION :compiled:cmacro:function:
+:PROPERTIES:
+:ID: 3051547755248
+:CUSTOM_ID: SB-WALKER:VAR-DECLARATION
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+VAR-DECLARATION names a compiled function:
+  Lambda-list: (DECLARATION VAR ENV)
+  Derived type: (FUNCTION (T T T) (VALUES LIST &OPTIONAL))
+  Source file: SYS:SRC;PCL;WALK.LISP
+
+VAR-DECLARATION has a compiler-macro:
+  Source file: SYS:SRC;PCL;WALK.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;WALK.LISP
+:end:

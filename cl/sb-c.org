@@ -1,4 +1,4 @@
-#+setupfile: ../../clean.theme
+#+SETUPFILE: ../../clean.theme
 * SB-C
 :PROPERTIES:
 :CUSTOM_ID: SB-C
@@ -20,32 +20,36 @@ private: implementation of the compiler
   - SB-SYS
 
 - dependents
-  - [[#SB-ROTATE-BYTE][SB-ROTATE-BYTE]]
-  - [[#SB-COVER][SB-COVER]]
-  - [[#IRONCLAD-VM][IRONCLAD-VM]]
-  - [[#IO/SWAP-BYTES][IO/SWAP-BYTES]]
-  - [[#SB-X86-64-ASM][SB-X86-64-ASM]]
-  - [[#SB-REGALLOC][SB-REGALLOC]]
-  - [[#SB-CLTL2][SB-CLTL2]]
-  - [[#SB-VM][SB-VM]]
+  - [[id:86][SB-ROTATE-BYTE]]
+  - [[id:39][SB-COVER]]
+  - [[id:188][IRONCLAD-VM]]
+  - [[id:249][IO/SWAP-BYTES]]
+  - [[id:35][SB-X86-64-ASM]]
+  - [[id:26][SB-REGALLOC]]
+  - [[id:83][SB-CLTL2]]
+  - [[id:6][SB-VM]]
 
 ** TAIL-CALL-NAMED :vop:
 :PROPERTIES:
 :ID: 841437509132
 :CUSTOM_ID: SB-C:TAIL-CALL-NAMED
 :ALLOC: HEAP IMMOBILE
-:END:** IR2-BLOCK-BLOCK :compiled:function:
+:END:
+** IR2-BLOCK-BLOCK :compiled:function:
 :PROPERTIES:
 :ID: 800813776320
 :CUSTOM_ID: SB-C:IR2-BLOCK-BLOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 IR2-BLOCK-BLOCK names a compiled function:
   An accessor for SB-C::IR2-BLOCK
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C::IR2-BLOCK) (VALUES SB-C::CBLOCK &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -56,12 +60,15 @@ IR2-BLOCK-BLOCK names a compiled function:
 :ID: 2649378472245
 :CUSTOM_ID: SB-C:TEMPLATE-OR-LOSE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TEMPLATE-OR-LOSE names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (T) (VALUES SB-C::TEMPLATE &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VMDEF.LISP
+
 #+end_example
 
 :definitions:
@@ -72,11 +79,14 @@ TEMPLATE-OR-LOSE names a compiled function:
 :ID: 2637911845471
 :CUSTOM_ID: SB-C:DEFINE-MODULAR-FUN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINE-MODULAR-FUN names a macro:
   Lambda-list: (NAME LAMBDA-LIST PROTOTYPE KIND SIGNEDP WIDTH)
   Source file: SYS:SRC;COMPILER;MODARITH.LISP
+
 #+end_example
 
 :definitions:
@@ -87,8 +97,10 @@ DEFINE-MODULAR-FUN names a macro:
 :ID: 1321338689647
 :CUSTOM_ID: SB-C:PRIMITIVE-TYPE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PRIMITIVE-TYPE names a compiled function:
   Lambda-list: (TYPE)
   Derived type: (FUNCTION (T) *)
@@ -109,6 +121,7 @@ PRIMITIVE-TYPE names the structure-class #<STRUCTURE-CLASS SB-C:PRIMITIVE-TYPE>:
     SB-C::SPECIFIER
       Type: (OR SYMBOL LIST)
       Initform: (SB-INT:MISSING-ARG)
+
 #+end_example
 
 :definitions:
@@ -120,34 +133,42 @@ PRIMITIVE-TYPE names the structure-class #<STRUCTURE-CLASS SB-C:PRIMITIVE-TYPE>:
 :ID: 10382929069
 :CUSTOM_ID: SB-C:ALWAYS-TRANSLATABLE
 :ALLOC: HEAP IMMOBILE
-:END:** OPTIMIZER
+:END:
+** OPTIMIZER
 :PROPERTIES:
 :ID: 1893478608525
 :CUSTOM_ID: SB-C:OPTIMIZER
 :ALLOC: HEAP IMMOBILE
-:END:** ALIEN-FUNCALL-SAVES-FP-AND-PC
+:END:
+** ALIEN-FUNCALL-SAVES-FP-AND-PC
 :PROPERTIES:
 :ID: 4129172923910
 :CUSTOM_ID: SB-C:ALIEN-FUNCALL-SAVES-FP-AND-PC
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ALIEN-FUNCALL-SAVES-FP-AND-PC names a dependent optimization policy quality:
   Documentation:
     Control ALIEN-FUNCALL saving frame-pointer and program counter for
     more reliable bactracing across foreign calls.
+
 #+end_example
 ** EVAL-WITH-COMPILE-IN-LEXENV :compiled:function:
 :PROPERTIES:
 :ID: 717121976732
 :CUSTOM_ID: SB-C:EVAL-WITH-COMPILE-IN-LEXENV
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 EVAL-WITH-COMPILE-IN-LEXENV names a compiled function:
-,  Lambda-list: (FORM *LEXENV* SOURCE-INFO TLF EPHEMERAL)
+  Lambda-list: (FORM *LEXENV* SOURCE-INFO TLF EPHEMERAL)
   Derived type: (FUNCTION (T T T T T) *)
   Source file: SYS:SRC;COMPILER;TARGET-MAIN.LISP
+
 #+end_example
 
 :definitions:
@@ -158,11 +179,14 @@ EVAL-WITH-COMPILE-IN-LEXENV names a compiled function:
 :ID: 1854181220233
 :CUSTOM_ID: SB-C:WITH-COMPILER-ERROR-RESIGNALLING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-COMPILER-ERROR-RESIGNALLING names a macro:
   Lambda-list: (&BODY BODY)
   Source file: SYS:SRC;COMPILER;COMPILER-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -173,8 +197,10 @@ WITH-COMPILER-ERROR-RESIGNALLING names a macro:
 :ID: 2102021211068
 :CUSTOM_ID: SB-C:WRITE-VAR-INTEGER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WRITE-VAR-INTEGER names a compiled function:
   Lambda-list: (VALUE VECTOR)
   Declared type: (FUNCTION ((UNSIGNED-BYTE 32) (VECTOR (UNSIGNED-BYTE 8)))
@@ -182,6 +208,7 @@ WRITE-VAR-INTEGER names a compiled function:
   Derived type: (FUNCTION ((UNSIGNED-BYTE 32) (VECTOR (UNSIGNED-BYTE 8)))
                  (VALUES (INTEGER 1 5) &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-VAR-IO.LISP
+
 #+end_example
 
 - Called by
@@ -195,17 +222,20 @@ WRITE-VAR-INTEGER names a compiled function:
 :ID: 4235031075960
 :CUSTOM_ID: SB-C:SOURCE-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SOURCE-LOCATION names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL
                  (VALUES SB-C:DEFINITION-SOURCE-LOCATION &OPTIONAL))
   Source file: SYS:SRC;CODE;SOURCE-LOCATION.LISP
+
 #+end_example
 
 - Called by
-  - [[id:447539092716][ADD-MIXIN]]
+  - [[id:447539093049][ADD-MIXIN]]
   - SWANK::MONKEY-PATCH-STREAM-PRINTING
 
 :definitions:
@@ -216,16 +246,20 @@ SOURCE-LOCATION names a compiled function:
 :ID: 238903525591
 :CUSTOM_ID: SB-C:MAKE-CLOSURE
 :ALLOC: HEAP IMMOBILE
-:END:** DEFINE-COND-SC :compiled:macro:function:
+:END:
+** DEFINE-COND-SC :compiled:macro:function:
 :PROPERTIES:
 :ID: 2975754725010
 :CUSTOM_ID: SB-C:DEFINE-COND-SC
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINE-COND-SC names a macro:
   Lambda-list: (NAME SC &BODY TEST)
   Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+
 #+end_example
 
 :definitions:
@@ -236,18 +270,22 @@ DEFINE-COND-SC names a macro:
 :ID: 2486125582299
 :CUSTOM_ID: SB-C:VAR-ALLOC
 :ALLOC: HEAP IMMOBILE
-:END:** %COMPILER-DEFUN :compiled:function:
+:END:
+** %COMPILER-DEFUN :compiled:function:
 :PROPERTIES:
 :ID: 1246720425882
 :CUSTOM_ID: SB-C:%COMPILER-DEFUN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %COMPILER-DEFUN names a compiled function:
   Lambda-list: (NAME COMPILE-TOPLEVEL INLINE-LAMBDA EXTRA-INFO &OPTIONAL
                 SPECIALIZED-XEP)
   Derived type: (FUNCTION (T T T T &OPTIONAL T) (VALUES &OPTIONAL))
   Source file: SYS:SRC;COMPILER;IR1TRAN-LAMBDA.LISP
+
 #+end_example
 
 :definitions:
@@ -258,8 +296,10 @@ DEFINE-COND-SC names a macro:
 :ID: 2103213166139
 :CUSTOM_ID: SB-C:VOP-NEXT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 VOP-NEXT names a compiled function:
   An accessor for SB-C::VOP
   Lambda-list: (INSTANCE)
@@ -272,6 +312,7 @@ VOP-NEXT names a compiled function:
   Derived type: (FUNCTION ((OR SB-C::VOP NULL) SB-C::VOP)
                  (VALUES (OR SB-C::VOP NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -282,13 +323,16 @@ VOP-NEXT names a compiled function:
 :ID: 3238430076182
 :CUSTOM_ID: SB-C:MULTIPLE-CALL
 :ALLOC: HEAP IMMOBILE
-:END:** FUN-INFO-DERIVE-TYPE :compiled:function:
+:END:
+** FUN-INFO-DERIVE-TYPE :compiled:function:
 :PROPERTIES:
 :ID: 588137453177
 :CUSTOM_ID: SB-C:FUN-INFO-DERIVE-TYPE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FUN-INFO-DERIVE-TYPE names a compiled function:
   An accessor for SB-C::FUN-INFO
   Lambda-list: (INSTANCE)
@@ -302,6 +346,7 @@ FUN-INFO-DERIVE-TYPE names a compiled function:
   Derived type: (FUNCTION ((OR NULL FUNCTION) SB-C::FUN-INFO)
                  (VALUES (OR NULL FUNCTION) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;FUN-INFO.LISP
+
 #+end_example
 
 :definitions:
@@ -312,17 +357,21 @@ FUN-INFO-DERIVE-TYPE names a compiled function:
 :ID: 2664201028867
 :CUSTOM_ID: SB-C:ALLOC-NUMBER-STACK-SPACE
 :ALLOC: HEAP IMMOBILE
-:END:** DEFKNOWN :compiled:macro:function:
+:END:
+** DEFKNOWN :compiled:macro:function:
 :PROPERTIES:
 :ID: 468600361341
 :CUSTOM_ID: SB-C:DEFKNOWN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFKNOWN names a macro:
   Lambda-list: (NAME ARG-TYPES RESULT-TYPE &OPTIONAL (ATTRIBUTES (QUOTE (ANY)))
                 &BODY KEYS)
   Source file: SYS:SRC;COMPILER;KNOWNFUN.LISP
+
 #+end_example
 
 :definitions:
@@ -333,10 +382,13 @@ DEFKNOWN names a macro:
 :ID: 2347566917697
 :CUSTOM_ID: SB-C:%UNWIND
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %UNWIND names an undefined function
   Declared type: (FUNCTION (T T T) NIL)
+
 #+end_example
 
 :definitions:
@@ -348,12 +400,15 @@ DEFKNOWN names a macro:
 :ID: 2243340475552
 :CUSTOM_ID: SB-C:PHASH-CONVERT-TO-2-OPERAND-CODE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PHASH-CONVERT-TO-2-OPERAND-CODE names a compiled function:
   Lambda-list: (EXPR TABLES)
   Derived type: (FUNCTION (T T) (VALUES SIMPLE-VECTOR UNSIGNED-BYTE &OPTIONAL))
   Source file: SYS:SRC;COMPILER;MODARITH.LISP
+
 #+end_example
 
 :definitions:
@@ -364,23 +419,26 @@ PHASH-CONVERT-TO-2-OPERAND-CODE names a compiled function:
 :ID: 1873600116970
 :CUSTOM_ID: SB-C:*LEXENV*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*LEXENV* names a special variable:
+
+*LEXENV* names a special variable:
   Declared type: SB-KERNEL:LEXENV
   Currently unbound.
+
 #+end_example
 
 - Bound by
   - SB-CLTL2::UPDATE-LEXENV-USER-DATA
-  - [[id:1612476638844][VARIABLE-INFORMATION]]
-  - [[id:3066725962762][FUNCTION-INFORMATION]]
-  - [[id:2940159958192][AUGMENT-ENVIRONMENT]]
+  - [[id:1612476638263][VARIABLE-INFORMATION]]
+  - [[id:3066725962972][FUNCTION-INFORMATION]]
+  - [[id:2940159958491][AUGMENT-ENVIRONMENT]]
 
 - Referenced by
   - SB-CLTL2::UPDATE-LEXENV-USER-DATA
-  - [[id:1612476638844][VARIABLE-INFORMATION]]
-  - [[id:3066725962762][FUNCTION-INFORMATION]]
+  - [[id:1612476638263][VARIABLE-INFORMATION]]
+  - [[id:3066725962972][FUNCTION-INFORMATION]]
   - SB-CLTL2::IR1-CONVERT-COMPILER-LET
 
 :definitions:
@@ -391,12 +449,15 @@ PHASH-CONVERT-TO-2-OPERAND-CODE names a compiled function:
 :ID: 792323613015
 :CUSTOM_ID: SB-C:REFERENCE-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 REFERENCE-TN names a compiled function:
   Lambda-list: (TN WRITE-P)
   Derived type: (FUNCTION (SB-C:TN BOOLEAN) (VALUES SB-C:TN-REF &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -407,13 +468,16 @@ REFERENCE-TN names a compiled function:
 :ID: 1352691112694
 :CUSTOM_ID: SB-C:CALL
 :ALLOC: HEAP IMMOBILE
-:END:** STORAGE-BASE :class:
+:END:
+** STORAGE-BASE :class:
 :PROPERTIES:
 :ID: 4072997194843
 :CUSTOM_ID: SB-C:STORAGE-BASE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STORAGE-BASE names the structure-class #<STRUCTURE-CLASS SB-C:STORAGE-BASE>:
   Class precedence-list: SB-C:STORAGE-BASE, STRUCTURE-OBJECT,
                          SB-PCL::SLOT-OBJECT, T
@@ -430,6 +494,7 @@ STORAGE-BASE names the structure-class #<STRUCTURE-CLASS SB-C:STORAGE-BASE>:
     SB-C::SIZE
       Type: SB-INT:INDEX
       Initform: 0
+
 #+end_example
 
 :definitions:
@@ -442,8 +507,10 @@ STORAGE-BASE names the structure-class #<STRUCTURE-CLASS SB-C:STORAGE-BASE>:
 :ID: 2875512704710
 :CUSTOM_ID: SB-C:NOTE-THIS-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NOTE-THIS-LOCATION names a compiled function:
   Lambda-list: (VOP KIND)
   Derived type: (FUNCTION (T T) (VALUES SB-C::LOCATION-INFO &OPTIONAL))
@@ -454,6 +521,7 @@ NOTE-THIS-LOCATION names a compiled function:
     This VOP must specify some non-null :SAVE-P value (perhaps :COMPUTE-ONLY)so
     that the live set is computed.
   Source file: SYS:SRC;COMPILER;DEBUG-DUMP.LISP
+
 #+end_example
 
 :definitions:
@@ -464,12 +532,15 @@ NOTE-THIS-LOCATION names a compiled function:
 :ID: 1007037986265
 :CUSTOM_ID: SB-C:IR2-CONVERT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 IR2-CONVERT names a compiled function:
   Lambda-list: (COMPONENT)
   Derived type: (FUNCTION (SB-C:COMPONENT) (VALUES &OPTIONAL))
   Source file: SYS:SRC;COMPILER;IR2TRAN.LISP
+
 #+end_example
 
 :definitions:
@@ -480,12 +551,15 @@ IR2-CONVERT names a compiled function:
 :ID: 1839372790416
 :CUSTOM_ID: SB-C:PRIMITIVE-TYPE-OR-LOSE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PRIMITIVE-TYPE-OR-LOSE names a compiled function:
   Lambda-list: (NAME)
   Derived type: (FUNCTION (T) (VALUES SB-C:PRIMITIVE-TYPE &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VMDEF.LISP
+
 #+end_example
 
 - Called by
@@ -499,8 +573,10 @@ PRIMITIVE-TYPE-OR-LOSE names a compiled function:
 :ID: 898044416252
 :CUSTOM_ID: SB-C:TN-REF-ACROSS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-REF-ACROSS names a compiled function:
   An accessor for SB-C:TN-REF
   Lambda-list: (INSTANCE)
@@ -514,6 +590,7 @@ TN-REF-ACROSS names a compiled function:
   Derived type: (FUNCTION ((OR SB-C:TN-REF NULL) SB-C:TN-REF)
                  (VALUES (OR SB-C:TN-REF NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 - Called by
@@ -1434,8 +1511,10 @@ TN-REF-ACROSS names a compiled function:
 :ID: 776351129909
 :CUSTOM_ID: SB-C:TN-REF-VOP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-REF-VOP names a compiled function:
   An accessor for SB-C:TN-REF
   Lambda-list: (INSTANCE)
@@ -1448,6 +1527,7 @@ TN-REF-VOP names a compiled function:
   Derived type: (FUNCTION ((OR SB-C::VOP NULL) SB-C:TN-REF)
                  (VALUES (OR SB-C::VOP NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -1458,12 +1538,15 @@ TN-REF-VOP names a compiled function:
 :ID: 2728629842521
 :CUSTOM_ID: SB-C:TN-ID
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-ID names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (SB-C:TN) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -1474,17 +1557,21 @@ TN-ID names a compiled function:
 :ID: 1518379170055
 :CUSTOM_ID: SB-C:KNOWN-CALL-LOCAL
 :ALLOC: HEAP IMMOBILE
-:END:** ID-LEAF :compiled:function:
+:END:
+** ID-LEAF :compiled:function:
 :PROPERTIES:
 :ID: 2277560087090
 :CUSTOM_ID: SB-C:ID-LEAF
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ID-LEAF names a compiled function:
   Lambda-list: (NUM)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -1495,12 +1582,15 @@ ID-LEAF names a compiled function:
 :ID: 2080201457812
 :CUSTOM_ID: SB-C:*BACKEND-REGISTER-SAVE-PENALTY*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*BACKEND-REGISTER-SAVE-PENALTY* names a global variable:
+
+*BACKEND-REGISTER-SAVE-PENALTY* names a global variable:
   Declared type: (UNSIGNED-BYTE 44)
   Declared always-bound.
   Value: 3
+
 #+end_example
 
 :definitions:
@@ -1511,8 +1601,10 @@ ID-LEAF names a compiled function:
 :ID: 3155465646288
 :CUSTOM_ID: SB-C:TN-REF-LOAD-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-REF-LOAD-TN names a compiled function:
   An accessor for SB-C:TN-REF
   Lambda-list: (INSTANCE)
@@ -1525,6 +1617,7 @@ TN-REF-LOAD-TN names a compiled function:
   Derived type: (FUNCTION ((OR SB-C:TN NULL) SB-C:TN-REF)
                  (VALUES (OR SB-C:TN NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 - Called by
@@ -2804,17 +2897,21 @@ TN-REF-LOAD-TN names a compiled function:
 :ID: 411195835985
 :CUSTOM_ID: SB-C:ALLOCATE-FRAME
 :ALLOC: HEAP IMMOBILE
-:END:** SB-ALLOCATED-SIZE :compiled:function:
+:END:
+** SB-ALLOCATED-SIZE :compiled:function:
 :PROPERTIES:
 :ID: 3915583784400
 :CUSTOM_ID: SB-C:SB-ALLOCATED-SIZE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SB-ALLOCATED-SIZE names a compiled function:
   Lambda-list: (NAME)
   Derived type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 44) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -2825,12 +2922,15 @@ SB-ALLOCATED-SIZE names a compiled function:
 :ID: 1029720401422
 :CUSTOM_ID: SB-C:COMPONENT-LIVE-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPONENT-LIVE-TN names a compiled function:
   Lambda-list: (TN)
   Derived type: (FUNCTION (SB-C:TN) (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -2841,13 +2941,16 @@ COMPONENT-LIVE-TN names a compiled function:
 :ID: 1358071763385
 :CUSTOM_ID: SB-C:SC-NUMBER-OR-LOSE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SC-NUMBER-OR-LOSE names a compiled function:
   Lambda-list: (X)
   Declared type: (FUNCTION (SYMBOL) (VALUES (MOD 62) &OPTIONAL))
   Known attributes: foldable
   Source file: SYS:SRC;COMPILER;VMDEF.LISP
+
 #+end_example
 
 :definitions:
@@ -2860,14 +2963,17 @@ SC-NUMBER-OR-LOSE names a compiled function:
 :ID: 1634955912622
 :CUSTOM_ID: SB-C:MAKE-PERFECT-HASH-LAMBDA
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-PERFECT-HASH-LAMBDA names a compiled function:
   Lambda-list: (ARRAY &OPTIONAL OBJECTS (MINIMAL T) (FAST NIL) (CACHEABLE T))
   Derived type: (FUNCTION
                  ((SIMPLE-ARRAY (UNSIGNED-BYTE 32) (*)) &OPTIONAL T T T T)
                  (VALUES T &OPTIONAL (OR SIMPLE-STRING NULL)))
   Source file: SYS:SRC;COMPILER;SXHASH.LISP
+
 #+end_example
 
 :definitions:
@@ -2878,16 +2984,20 @@ MAKE-PERFECT-HASH-LAMBDA names a compiled function:
 :ID: 2736690799590
 :CUSTOM_ID: SB-C:MULTIPLE-CALL-VARIABLE
 :ALLOC: HEAP IMMOBILE
-:END:** SC-CASE :compiled:macro:function:
+:END:
+** SC-CASE :compiled:macro:function:
 :PROPERTIES:
 :ID: 1395563620050
 :CUSTOM_ID: SB-C:SC-CASE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SC-CASE names a macro:
   Lambda-list: (TN &BODY FORMS)
   Source file: SYS:SRC;COMPILER;META-VMDEF.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -4167,28 +4277,35 @@ SC-CASE names a macro:
 :ID: 2810636464197
 :CUSTOM_ID: SB-C:VERIFY-ARG-COUNT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 VERIFY-ARG-COUNT names a dependent optimization policy quality:
   (undocumented)
+
 #+end_example
 ** PUSH-VALUES :vop:
 :PROPERTIES:
 :ID: 2452689200175
 :CUSTOM_ID: SB-C:PUSH-VALUES
 :ALLOC: HEAP IMMOBILE
-:END:** %ALIEN-FUNCALL
+:END:
+** %ALIEN-FUNCALL
 :PROPERTIES:
 :ID: 838850359308
 :CUSTOM_ID: SB-C:%ALIEN-FUNCALL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %ALIEN-FUNCALL names an undefined function
   Declared type: (FUNCTION
                   ((OR STRING SB-SYS:SYSTEM-AREA-POINTER)
                    SB-ALIEN-INTERNALS:ALIEN-TYPE &REST T)
                   *)
+
 #+end_example
 
 :definitions:
@@ -4208,12 +4325,15 @@ VERIFY-ARG-COUNT names a dependent optimization policy quality:
 :ID: 1230982796711
 :CUSTOM_ID: SB-C:SC+OFFSET-SCN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SC+OFFSET-SCN names a compiled function:
   Lambda-list: (SC+OFFSET)
   Declared type: (FUNCTION ((UNSIGNED-BYTE 27)) (VALUES (MOD 62) &OPTIONAL))
   Source file: SYS:SRC;CODE;SC-OFFSET.LISP
+
 #+end_example
 
 :definitions:
@@ -4224,13 +4344,16 @@ SC+OFFSET-SCN names a compiled function:
 :ID: 2650551263053
 :CUSTOM_ID: SB-C:FIXUP-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FIXUP-P names a compiled function:
   A predicate for SB-C:FIXUP
   Lambda-list: (OBJECT)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -4241,17 +4364,21 @@ FIXUP-P names a compiled function:
 :ID: 1531050128282
 :CUSTOM_ID: SB-C:ALLOCATE-FULL-CALL-FRAME
 :ALLOC: HEAP IMMOBILE
-:END:** DEFINITION-SOURCE-LOCATION-PLIST :compiled:function:
+:END:
+** DEFINITION-SOURCE-LOCATION-PLIST :compiled:function:
 :PROPERTIES:
 :ID: 2086391395299
 :CUSTOM_ID: SB-C:DEFINITION-SOURCE-LOCATION-PLIST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINITION-SOURCE-LOCATION-PLIST names a compiled function:
   Lambda-list: (SOURCE-LOC)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;SOURCE-LOCATION.LISP
+
 #+end_example
 
 - Called by
@@ -4265,9 +4392,11 @@ DEFINITION-SOURCE-LOCATION-PLIST names a compiled function:
 :ID: 4167192777175
 :CUSTOM_ID: SB-C:*BACKEND-SC-NUMBERS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*BACKEND-SC-NUMBERS* names a global variable:
+
+*BACKEND-SC-NUMBERS* names a global variable:
   Declared type: (SIMPLE-VECTOR 62)
   Declared always-bound.
   Value: #(#<SB-C:STORAGE-CLASS :NAME SB-VM::DESCRIPTOR-REG>
@@ -4314,6 +4443,7 @@ DEFINITION-SOURCE-LOCATION-PLIST names a compiled function:
            #<SB-C:STORAGE-CLASS :NAME SB-C:CATCH-BLOCK>
            #<SB-C:STORAGE-CLASS :NAME SB-C:UNWIND-BLOCK> NIL NIL NIL NIL NIL
            NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL)
+
 #+end_example
 
 :definitions:
@@ -4324,11 +4454,14 @@ DEFINITION-SOURCE-LOCATION-PLIST names a compiled function:
 :ID: 992989265836
 :CUSTOM_ID: SB-C:DEFINE-MOVE-VOP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINE-MOVE-VOP names a macro:
   Lambda-list: (NAME KIND &REST SCS)
   Source file: SYS:SRC;COMPILER;META-VMDEF.LISP
+
 #+end_example
 
 :definitions:
@@ -4339,15 +4472,18 @@ DEFINE-MOVE-VOP names a macro:
 :ID: 591858044730
 :CUSTOM_ID: SB-C:PHASH-RENUMBER-TEMPS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PHASH-RENUMBER-TEMPS names a compiled function:
   Lambda-list: (STATEMENTS)
   Derived type: (FUNCTION (T)
                  (VALUES
-,                  (OR LIST (SIMPLE-ARRAY * (*)) SB-KERNEL:EXTENDED-SEQUENCE)
+                  (OR LIST (SIMPLE-ARRAY * (*)) SB-KERNEL:EXTENDED-SEQUENCE)
                   (OR (REAL 1) (INTEGER 0 0)) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;MODARITH.LISP
+
 #+end_example
 
 :definitions:
@@ -4358,12 +4494,15 @@ PHASH-RENUMBER-TEMPS names a compiled function:
 :ID: 3382572207834
 :CUSTOM_ID: SB-C:LVAR-VALUE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LVAR-VALUE names a compiled function:
   Lambda-list: (LVAR &OPTIONAL IGNORE-TYPES)
   Derived type: (FUNCTION (SB-C::LVAR &OPTIONAL T) (VALUES T T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;IR1OPT.LISP
+
 #+end_example
 
 :definitions:
@@ -4374,8 +4513,10 @@ LVAR-VALUE names a compiled function:
 :ID: 3302382126993
 :CUSTOM_ID: SB-C:COMPILE-FILE-TO-TEMPFILE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPILE-FILE-TO-TEMPFILE names a compiled function:
   Lambda-list: (INPUT-FILE &KEY (EXTERNAL-FORMAT DEFAULT)
                 ((BLOCK-COMPILE *BLOCK-COMPILE-ARGUMENT*)
@@ -4385,6 +4526,7 @@ COMPILE-FILE-TO-TEMPFILE names a compiled function:
                   (:BLOCK-COMPILE (MEMBER :SPECIFIED T NIL)))
                  (VALUES (OR NULL SB-INT:STDIO-FILE) T T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;MAIN.LISP
+
 #+end_example
 
 :definitions:
@@ -4395,12 +4537,15 @@ COMPILE-FILE-TO-TEMPFILE names a compiled function:
 :ID: 493462501765
 :CUSTOM_ID: SB-C:REGISTER-INLINE-CONSTANT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 REGISTER-INLINE-CONSTANT names a compiled function:
   Lambda-list: (&REST CONSTANT-DESCRIPTOR)
-,  Derived type: (FUNCTION * (VALUES T &OPTIONAL))
+  Derived type: (FUNCTION * (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -4411,13 +4556,16 @@ REGISTER-INLINE-CONSTANT names a compiled function:
 :ID: 238350619701
 :CUSTOM_ID: SB-C:MAKE-N-TNS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-N-TNS names a compiled function:
   Lambda-list: (N PTYPE)
   Derived type: (FUNCTION (UNSIGNED-BYTE SB-C:PRIMITIVE-TYPE)
                  (VALUES LIST &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -4428,8 +4576,10 @@ MAKE-N-TNS names a compiled function:
 :ID: 2510286298430
 :CUSTOM_ID: SB-C:TN-REF-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-REF-TN names a compiled function:
   An accessor for SB-C:TN-REF
   Lambda-list: (INSTANCE)
@@ -4441,6 +4591,7 @@ TN-REF-TN names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (SB-C:TN SB-C:TN-REF) (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 - Called by
@@ -5722,12 +5873,15 @@ TN-REF-TN names a compiled function:
 :ID: 4337592595874
 :CUSTOM_ID: SB-C:IR2-BLOCK-ID
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 IR2-BLOCK-ID names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (SB-C::IR2-BLOCK) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -5738,8 +5892,10 @@ IR2-BLOCK-ID names a compiled function:
 :ID: 3466859224536
 :CUSTOM_ID: SB-C:FIXUP-NOTE-POSITION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FIXUP-NOTE-POSITION names a compiled function:
   An accessor for SB-C::FIXUP-NOTE
   Lambda-list: (INSTANCE)
@@ -5751,6 +5907,7 @@ FIXUP-NOTE-POSITION names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (FIXNUM SB-C::FIXUP-NOTE) (VALUES FIXNUM &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -5761,11 +5918,14 @@ FIXUP-NOTE-POSITION names a compiled function:
 :ID: 3037269403001
 :CUSTOM_ID: SB-C:ATTRIBUTES-INTERSECTION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ATTRIBUTES-INTERSECTION names a macro:
   Lambda-list: (&REST ATTRIBUTES)
   Source file: SYS:SRC;COMPILER;MACROS.LISP
+
 #+end_example
 
 :definitions:
@@ -5776,12 +5936,15 @@ ATTRIBUTES-INTERSECTION names a macro:
 :ID: 1638663030710
 :CUSTOM_ID: SB-C:CODE-IMMOBILE-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CODE-IMMOBILE-P names a compiled function:
   Lambda-list: (THING)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;MAIN.LISP
+
 #+end_example
 
 :definitions:
@@ -5792,12 +5955,15 @@ CODE-IMMOBILE-P names a compiled function:
 :ID: 721533267413
 :CUSTOM_ID: SB-C:SB-OR-LOSE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SB-OR-LOSE names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (T) (VALUES SB-C:STORAGE-BASE &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VMDEF.LISP
+
 #+end_example
 
 :definitions:
@@ -5808,17 +5974,21 @@ SB-OR-LOSE names a compiled function:
 :ID: 227979293203
 :CUSTOM_ID: SB-C:DEBUG-CATCH-TAG
 :ALLOC: HEAP IMMOBILE
-:END:** GENERATE-RETURN-SEQUENCE :compiled:function:
+:END:
+** GENERATE-RETURN-SEQUENCE :compiled:function:
 :PROPERTIES:
 :ID: 2232199774371
 :CUSTOM_ID: SB-C:GENERATE-RETURN-SEQUENCE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GENERATE-RETURN-SEQUENCE names a compiled function:
   Lambda-list: (STYLE)
   Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
   Source file: SYS:SRC;ASSEMBLY;X86-64;SUPPORT.LISP
+
 #+end_example
 
 :definitions:
@@ -5829,12 +5999,15 @@ GENERATE-RETURN-SEQUENCE names a compiled function:
 :ID: 3124694245906
 :CUSTOM_ID: SB-C:SC-OR-LOSE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SC-OR-LOSE names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (T) (VALUES SB-C:STORAGE-CLASS &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VMDEF.LISP
+
 #+end_example
 
 :definitions:
@@ -5845,10 +6018,13 @@ SC-OR-LOSE names a compiled function:
 :ID: 1850649640949
 :CUSTOM_ID: SB-C:%MORE-ARG
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MORE-ARG names an undefined function
   Declared type: (FUNCTION (T (UNSIGNED-BYTE 44)) (VALUES T &OPTIONAL))
+
 #+end_example
 
 :definitions:
@@ -5860,13 +6036,16 @@ SC-OR-LOSE names a compiled function:
 :ID: 2053565110319
 :CUSTOM_ID: SB-C:INLINE-SYNTACTIC-CLOSURE-LAMBDA
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INLINE-SYNTACTIC-CLOSURE-LAMBDA names a compiled function:
   Lambda-list: (LAMBDA LEXENV)
   Derived type: (FUNCTION (LIST (OR SB-C::ABSTRACT-LEXENV NULL))
                  (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;IR1TRAN-LAMBDA.LISP
+
 #+end_example
 
 :definitions:
@@ -5877,10 +6056,13 @@ INLINE-SYNTACTIC-CLOSURE-LAMBDA names a compiled function:
 :ID: 3645517872246
 :CUSTOM_ID: SB-C:%CATCH-BREAKUP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %CATCH-BREAKUP names an undefined function
   Declared type: (FUNCTION (T) (VALUES T &OPTIONAL))
+
 #+end_example
 
 :definitions:
@@ -5894,13 +6076,16 @@ INLINE-SYNTACTIC-CLOSURE-LAMBDA names a compiled function:
 :ID: 1105420391463
 :CUSTOM_ID: SB-C:TN-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-P names a compiled function:
   A predicate for SB-C:TN
   Lambda-list: (OBJECT)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 - Called by
@@ -6128,13 +6313,16 @@ TN-P names a compiled function:
 :ID: 1368633933856
 :CUSTOM_ID: SB-C:MAYBE-COMPILER-NOTIFY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAYBE-COMPILER-NOTIFY names a compiled function:
   Lambda-list: (DATUM &REST ARGS)
   Declared type: (FUNCTION ((OR STRING FUNCTION SYMBOL) &REST T)
                   (VALUES &OPTIONAL))
   Source file: SYS:SRC;COMPILER;IR1REPORT.LISP
+
 #+end_example
 
 :definitions:
@@ -6147,8 +6335,10 @@ MAYBE-COMPILER-NOTIFY names a compiled function:
 :ID: 3357168305058
 :CUSTOM_ID: SB-C:TN-REF
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-REF names the structure-class #<STRUCTURE-CLASS SB-C:TN-REF>:
   Class precedence-list: SB-C:TN-REF, STRUCTURE-OBJECT, SB-PCL::SLOT-OBJECT, T
   Direct superclasses: STRUCTURE-OBJECT
@@ -6187,6 +6377,7 @@ TN-REF names the structure-class #<STRUCTURE-CLASS SB-C:TN-REF>:
     TYPE
       Type: (OR SB-KERNEL:CTYPE NULL)
       Initform: NIL
+
 #+end_example
 
 :definitions:
@@ -6197,8 +6388,10 @@ TN-REF names the structure-class #<STRUCTURE-CLASS SB-C:TN-REF>:
 :ID: 639412179170
 :CUSTOM_ID: SB-C:CONDITIONAL-FLAGS-FLAGS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CONDITIONAL-FLAGS-FLAGS names a compiled function:
   An accessor for SB-C::CONDITIONAL-FLAGS
   Lambda-list: (INSTANCE)
@@ -6210,6 +6403,7 @@ CONDITIONAL-FLAGS-FLAGS names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (T SB-C::CONDITIONAL-FLAGS) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -6220,37 +6414,45 @@ CONDITIONAL-FLAGS-FLAGS names a compiled function:
 :ID: 3983220396532
 :CUSTOM_ID: SB-C:MAP-SIMPLE-FUNS
 :ALLOC: HEAP IMMOBILE
-:END:** CURRENT-NSP
+:END:
+** CURRENT-NSP
 :PROPERTIES:
 :ID: 979973354596
 :CUSTOM_ID: SB-C:CURRENT-NSP
 :ALLOC: HEAP IMMOBILE
-:END:** INSERT-STEP-CONDITIONS
+:END:
+** INSERT-STEP-CONDITIONS
 :PROPERTIES:
 :ID: 1085390370184
 :CUSTOM_ID: SB-C:INSERT-STEP-CONDITIONS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INSERT-STEP-CONDITIONS names a dependent optimization policy quality:
   Documentation:
     Control instrumentation of code, enabling single-stepping through
     it in the debugger.
     
     This option has no effect without COMPUTE-DEBUG-FUN.
+
 #+end_example
 ** MAKE-REPRESENTATION-TN :compiled:function:
 :PROPERTIES:
 :ID: 4018642660555
 :CUSTOM_ID: SB-C:MAKE-REPRESENTATION-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-REPRESENTATION-TN names a compiled function:
   Lambda-list: (PTYPE SCN &OPTIONAL (TYPE *UNIVERSAL-TYPE*))
   Derived type: (FUNCTION (SB-C:PRIMITIVE-TYPE (MOD 62) &OPTIONAL T)
                  (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -6261,18 +6463,22 @@ MAKE-REPRESENTATION-TN names a compiled function:
 :ID: 3447037483041
 :CUSTOM_ID: SB-C:DEALLOC-NUMBER-STACK-SPACE
 :ALLOC: HEAP IMMOBILE
-:END:** COVERED-FILE-PATHS :compiled:function:
+:END:
+** COVERED-FILE-PATHS :compiled:function:
 :PROPERTIES:
 :ID: 1923528679668
 :CUSTOM_ID: SB-C:COVERED-FILE-PATHS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COVERED-FILE-PATHS names a compiled function:
   An accessor for SB-C::COVERED-FILE
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C::COVERED-FILE) (VALUES SIMPLE-VECTOR&OPTIONAL))
   Source file: SYS:SRC;COMPILER;COVERAGE.LISP
+
 #+end_example
 
 - Called by
@@ -6290,12 +6496,15 @@ COVERED-FILE-PATHS names a compiled function:
 :ID: 740977388199
 :CUSTOM_ID: SB-C:%CONT-NUM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %CONT-NUM names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION ((OR SB-C::CTRAN SB-C::LVAR)) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -6306,8 +6515,10 @@ COVERED-FILE-PATHS names a compiled function:
 :ID: 202386754556
 :CUSTOM_ID: SB-C:FUN-INFO-IR2-CONVERT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FUN-INFO-IR2-CONVERT names a compiled function:
   An accessor for SB-C::FUN-INFO
   Lambda-list: (INSTANCE)
@@ -6321,6 +6532,7 @@ FUN-INFO-IR2-CONVERT names a compiled function:
   Derived type: (FUNCTION ((OR NULL FUNCTION) SB-C::FUN-INFO)
                  (VALUES (OR NULL FUNCTION) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;FUN-INFO.LISP
+
 #+end_example
 
 :definitions:
@@ -6331,12 +6543,15 @@ FUN-INFO-IR2-CONVERT names a compiled function:
 :ID: 541752974326
 :CUSTOM_ID: SB-C:DEF-REFFER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEF-REFFER names a compiled function:
   Lambda-list: (NAME OFFSET LOWTAG)
   Derived type: (FUNCTION (T T T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+
 #+end_example
 
 :definitions:
@@ -6347,12 +6562,15 @@ DEF-REFFER names a compiled function:
 :ID: 1198607281539
 :CUSTOM_ID: SB-C:MACRO-POLICY-DECLS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MACRO-POLICY-DECLS names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES LIST &OPTIONAL))
   Source file: SYS:SRC;COMPILER;POLICY.LISP
+
 #+end_example
 
 :definitions:
@@ -6363,12 +6581,15 @@ MACRO-POLICY-DECLS names a compiled function:
 :ID: 646275612783
 :CUSTOM_ID: SB-C:TN-VALUE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-VALUE names a compiled function:
   Lambda-list: (TN)
   Derived type: (FUNCTION (SB-C:TN) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -6379,13 +6600,16 @@ TN-VALUE names a compiled function:
 :ID: 3497120993643
 :CUSTOM_ID: SB-C:COPY-MORE-ARG
 :ALLOC: HEAP IMMOBILE
-:END:** MAKE-WIRED-TN :compiled:function:
+:END:
+** MAKE-WIRED-TN :compiled:function:
 :PROPERTIES:
 :ID: 2790866798470
 :CUSTOM_ID: SB-C:MAKE-WIRED-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-WIRED-TN names a compiled function:
   Lambda-list: (PTYPE SCN OFFSET &OPTIONAL (TYPE *UNIVERSAL-TYPE*))
   Derived type: (FUNCTION
@@ -6393,6 +6617,7 @@ MAKE-WIRED-TN names a compiled function:
                   &OPTIONAL T)
                  (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -6403,13 +6628,16 @@ MAKE-WIRED-TN names a compiled function:
 :ID: 1332898174929
 :CUSTOM_ID: SB-C:IR2-COMPONENT-CONSTANTS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 IR2-COMPONENT-CONSTANTS names a compiled function:
   An accessor for SB-C::IR2-COMPONENT
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C::IR2-COMPONENT) (VALUES VECTOR &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -6420,18 +6648,22 @@ IR2-COMPONENT-CONSTANTS names a compiled function:
 :ID: 215507078481
 :CUSTOM_ID: SB-C:MULTIPLE-CALL-NAMED
 :ALLOC: HEAP IMMOBILE
-:END:** PROCLAIM-TYPE :compiled:function:
+:END:
+** PROCLAIM-TYPE :compiled:function:
 :PROPERTIES:
 :ID: 2631714730788
 :CUSTOM_ID: SB-C:PROCLAIM-TYPE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCLAIM-TYPE names a compiled function:
   Lambda-list: (NAME TYPE TYPE-SPECIFIER WHERE-FROM)
   Derived type: (FUNCTION (T T T T)
                  (VALUES (MEMBER :DECLARED :ASSUMED :DEFINED) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;PROCLAIM.LISP
+
 #+end_example
 
 :definitions:
@@ -6442,22 +6674,27 @@ PROCLAIM-TYPE names a compiled function:
 :ID: 1090737271242
 :CUSTOM_ID: SB-C:NLX-ENTRY-SINGLE
 :ALLOC: HEAP IMMOBILE
-:END:** CASE-TO-JUMP-TABLE
+:END:
+** CASE-TO-JUMP-TABLE
 :PROPERTIES:
 :ID: 624906922617
 :CUSTOM_ID: SB-C:CASE-TO-JUMP-TABLE
 :ALLOC: HEAP IMMOBILE
-:END:** STANDARD-ARG-LOCATION-SC :compiled:function:
+:END:
+** STANDARD-ARG-LOCATION-SC :compiled:function:
 :PROPERTIES:
 :ID: 3170572504528
 :CUSTOM_ID: SB-C:STANDARD-ARG-LOCATION-SC
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STANDARD-ARG-LOCATION-SC names a compiled function:
   Lambda-list: (N)
   Derived type: (FUNCTION (UNSIGNED-BYTE) (VALUES (UNSIGNED-BYTE 27)&OPTIONAL))
   Source file: SYS:SRC;COMPILER;GENERIC;UTILS.LISP
+
 #+end_example
 
 :definitions:
@@ -6468,13 +6705,16 @@ STANDARD-ARG-LOCATION-SC names a compiled function:
 :ID: 3482229297534
 :CUSTOM_ID: SB-C:ALIGN-STACK-POINTER
 :ALLOC: HEAP IMMOBILE
-:END:** TN-REF-NEXT-REF :compiled:function:
+:END:
+** TN-REF-NEXT-REF :compiled:function:
 :PROPERTIES:
 :ID: 1698352697489
 :CUSTOM_ID: SB-C:TN-REF-NEXT-REF
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-REF-NEXT-REF names a compiled function:
   An accessor for SB-C:TN-REF
   Lambda-list: (INSTANCE)
@@ -6488,6 +6728,7 @@ TN-REF-NEXT-REF names a compiled function:
   Derived type: (FUNCTION ((OR SB-C:TN-REF NULL) SB-C:TN-REF)
                  (VALUES (OR SB-C:TN-REF NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -6498,94 +6739,101 @@ TN-REF-NEXT-REF names a compiled function:
 :ID: 3416498449605
 :CUSTOM_ID: SB-C:LTN-ANNOTATE
 :ALLOC: HEAP IMMOBILE
-:END:** KNOWN-RETURN :vop:
+:END:
+** KNOWN-RETURN :vop:
 :PROPERTIES:
 :ID: 1805954070900
 :CUSTOM_ID: SB-C:KNOWN-RETURN
 :ALLOC: HEAP IMMOBILE
-:END:** CALL-OUT :vop:
+:END:
+** CALL-OUT :vop:
 :PROPERTIES:
 :ID: 4229049957879
 :CUSTOM_ID: SB-C:CALL-OUT
 :ALLOC: HEAP IMMOBILE
-:END:** CLOSURE-INIT :vop:
+:END:
+** CLOSURE-INIT :vop:
 :PROPERTIES:
 :ID: 982980563552
 :CUSTOM_ID: SB-C:CLOSURE-INIT
 :ALLOC: HEAP IMMOBILE
-:END:** *ALIEN-STACK-POINTER​* :global:var:
+:END:
+** *ALIEN-STACK-POINTER​* :global:var:
 :PROPERTIES:
 :ID: 2891323931455
 :CUSTOM_ID: SB-C:*ALIEN-STACK-POINTER*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*ALIEN-STACK-POINTER* names a special variable:
+
+*ALIEN-STACK-POINTER* names a special variable:
   Declared always-bound.
-  Value: 69929908518912
+  Value: 69866651205632
+
 #+end_example
 
 - Bound by
   - (NON-BLOCKING-MODE (SOCKET))
-  - [[id:42564957134][GET-HOST-BY-ADDRESS]]
-  - [[id:1053520094808][GET-HOST-BY-NAME]]
-  - [[id:2484197347926][MAKE-INET6-ADDRESS]]
+  - [[id:42564956850][GET-HOST-BY-ADDRESS]]
+  - [[id:1053520094345][GET-HOST-BY-NAME]]
+  - [[id:2484197347954][MAKE-INET6-ADDRESS]]
   - SB-BSD-SOCKETS::UNPARSE-INET6-ADDRESS
   - (SOCKOPT-BIND-TO-DEVICE)
-  - [[id:3755407715263][SOCKOPT-BIND-TO-DEVICE]]
+  - [[id:3755407714829][SOCKOPT-BIND-TO-DEVICE]]
   - (SOCKOPT-TCP-NODELAY)
-  - [[id:2322289316084][SOCKOPT-TCP-NODELAY]]
+  - [[id:2322289316420][SOCKOPT-TCP-NODELAY]]
   - (SOCKOPT-BROADCAST)
-  - [[id:4275352677480][SOCKOPT-BROADCAST]]
+  - [[id:4275352677896][SOCKOPT-BROADCAST]]
   - (SOCKOPT-DONT-ROUTE)
-  - [[id:4040382699472][SOCKOPT-DONT-ROUTE]]
+  - [[id:4040382698800][SOCKOPT-DONT-ROUTE]]
   - (SOCKOPT-DEBUG)
-  - [[id:909668490684][SOCKOPT-DEBUG]]
+  - [[id:909668490286][SOCKOPT-DEBUG]]
   - (SOCKOPT-PASS-CREDENTIALS)
-  - [[id:1687215227689][SOCKOPT-PASS-CREDENTIALS]]
+  - [[id:1687215226950][SOCKOPT-PASS-CREDENTIALS]]
   - (SOCKOPT-BSD-COMPATIBLE)
-  - [[id:2625967853969][SOCKOPT-BSD-COMPATIBLE]]
+  - [[id:2625967854232][SOCKOPT-BSD-COMPATIBLE]]
   - (SOCKOPT-OOB-INLINE)
-  - [[id:856862024363][SOCKOPT-OOB-INLINE]]
+  - [[id:856862024007][SOCKOPT-OOB-INLINE]]
   - (SOCKOPT-KEEP-ALIVE)
-  - [[id:2103856659612][SOCKOPT-KEEP-ALIVE]]
+  - [[id:2103856660212][SOCKOPT-KEEP-ALIVE]]
   - (SOCKOPT-REUSE-ADDRESS)
-  - [[id:1891060594323][SOCKOPT-REUSE-ADDRESS]]
+  - [[id:1891060594432][SOCKOPT-REUSE-ADDRESS]]
   - (SOCKOPT-TCP-USER-TIMEOUT)
-  - [[id:29990184413][SOCKOPT-TCP-USER-TIMEOUT]]
+  - [[id:29990184363][SOCKOPT-TCP-USER-TIMEOUT]]
   - (SOCKOPT-TCP-KEEPINTVL)
-  - [[id:1178302204532][SOCKOPT-TCP-KEEPINTVL]]
+  - [[id:1178302204138][SOCKOPT-TCP-KEEPINTVL]]
   - (SOCKOPT-TCP-KEEPIDLE)
-  - [[id:1362204786536][SOCKOPT-TCP-KEEPIDLE]]
+  - [[id:1362204785731][SOCKOPT-TCP-KEEPIDLE]]
   - (SOCKOPT-TCP-KEEPCNT)
-  - [[id:822757944049][SOCKOPT-TCP-KEEPCNT]]
+  - [[id:822757944242][SOCKOPT-TCP-KEEPCNT]]
   - (SOCKOPT-PRIORITY)
-  - [[id:1027266665413][SOCKOPT-PRIORITY]]
+  - [[id:1027266665295][SOCKOPT-PRIORITY]]
   - (SOCKOPT-RECEIVE-BUFFER)
-  - [[id:2602145297293][SOCKOPT-RECEIVE-BUFFER]]
+  - [[id:2602145296989][SOCKOPT-RECEIVE-BUFFER]]
   - (SOCKOPT-SEND-BUFFER)
-  - [[id:3036485599189][SOCKOPT-SEND-BUFFER]]
+  - [[id:3036485598470][SOCKOPT-SEND-BUFFER]]
   - (SOCKOPT-ERROR)
-  - [[id:871361329155][SOCKOPT-ERROR]]
+  - [[id:871361329644][SOCKOPT-ERROR]]
   - (SOCKOPT-TYPE)
-  - [[id:3554616952962][SOCKOPT-TYPE]]
+  - [[id:3554616953336][SOCKOPT-TYPE]]
   - (SOCKOPT-SEND-LOW-WATER)
-  - [[id:4162453960377][SOCKOPT-SEND-LOW-WATER]]
+  - [[id:4162453960285][SOCKOPT-SEND-LOW-WATER]]
   - (SOCKOPT-RECEIVE-LOW-WATER)
-  - [[id:106935767678][SOCKOPT-RECEIVE-LOW-WATER]]
+  - [[id:106935767892][SOCKOPT-RECEIVE-LOW-WATER]]
   - (SOCKET-SEND (SOCKET T T))
   - (SOCKET-RECEIVE (SOCKET T T))
   - SB-BSD-SOCKETS-INTERNAL::GETSOCKNAME
   - SB-BSD-SOCKETS-INTERNAL::GETPEERNAME
-  - [[id:3837681228476][ACCEPT]]
+  - [[id:3837681227794][ACCEPT]]
   - SB-POSIX:UTIMES
   - SB-POSIX:UTIME
   - SB-POSIX:CFGETOSPEED
   - SB-POSIX:CFGETISPEED
   - SB-POSIX:CFSETOSPEED
   - SB-POSIX:CFSETISPEED
-  - [[id:1666853289994][TCGETATTR]]
-  - [[id:3582526534363][TCSETATTR]]
+  - [[id:1666853290792][TCGETATTR]]
+  - [[id:3582526533905][TCSETATTR]]
   - [[id:1575099243259][PIPE]]
   - SB-POSIX:FSTAT
   - SB-POSIX:LSTAT
@@ -6596,10 +6844,10 @@ TN-REF-NEXT-REF names a compiled function:
   - SB-POSIX:GETRESGID
   - SB-POSIX:FCNTL
   - DSP/AUD:CHROMAPRINT
-  - [[id:735880337442][MEDIA-FILE-STREAM-COUNT]]
-  - [[id:216947941008][MEDIA-FILE-CODECS]]
-  - [[id:150720908429][MEDIA-FILE-FORMAT]]
-  - [[id:1122558756538][MEDIA-FILE-METADATA]]
+  - DSP/AV:MEDIA-FILE-STREAM-COUNT
+  - DSP/AV:MEDIA-FILE-CODECS
+  - DSP/AV:MEDIA-FILE-FORMAT
+  - DSP/AV:MEDIA-FILE-METADATA
   - (STORED-SLOT-READER (RDB-STORE T T))
   - (LOAD-OPTS (RDB))
   - (GET-KEY (RDB-WBWI STRING))
@@ -6608,11 +6856,11 @@ TN-REF-NEXT-REF names a compiled function:
   - (SVAL (RDB-ITER))
   - (SKEY (RDB-ITER))
   - RDB::WBWI-PUT-CF-RAW
-  - [[id:695956374072][CREATE-CONCAT-MERGE-OP]]
-  - [[id:4395776455609][CREATE-INDEX-MERGE-OP]]
+  - [[id:695956374313][CREATE-CONCAT-MERGE-OP]]
+  - [[id:4395776455033][CREATE-INDEX-MERGE-OP]]
   - RDB::OPEN-CFS-WITH-TTL-RAW
   - RDB::OPEN-CFS-READ-ONLY-RAW
-  - [[id:2367671223586][OPEN-CFS-SECONDARY-RAW]]
+  - [[id:2367671223490][OPEN-CFS-SECONDARY-RAW]]
   - RDB::GET-PREPARED-TRANSACTIONS-RAW
   - RDB::TRANSACTION-MERGE-CF-RAW
   - RDB::TRANSACTION-MERGE-RAW
@@ -6622,9 +6870,9 @@ TN-REF-NEXT-REF names a compiled function:
   - RDB::TRANSACTION-DELETE-RAW
   - RDB::SET-TRANSACTION-NAME-RAW
   - RDB::TRANSACTIONDB-PUT-CF-RAW
-  - [[id:4241104221313][TRANSACTIONDB-PUT-KV-RAW]]
+  - [[id:4241104221312][TRANSACTIONDB-PUT-KV-RAW]]
   - RDB::TRANSACTIONDB-GET-CF-RAW
-  - [[id:324022966837][TRANSACTIONDB-GET-KV-RAW]]
+  - [[id:324022967120][TRANSACTIONDB-GET-KV-RAW]]
   - RDB::SST-FILE-SIZE-RAW
   - RDB::SST-PUT-RAW
   - RDB::ITER-VAL-RAW
@@ -6644,13 +6892,13 @@ TN-REF-NEXT-REF names a compiled function:
   - RDB::INGEST-DB-RAW
   - RDB::GET-STATS-RAW
   - RDB::LOAD-OPTS-RAW
-  - [[id:2460044734616][REQ]]
+  - NET/REQ::REQ
   - NET/CORE::%SOCKADDR
   - SYN/TS::TS-FILE-QUERY
   - CLI/LINEDIT::C-TERMINAL-WINSIZE
   - CLI/LINEDIT::C-TERMINAL-INIT
   - CLI/TERM::TERMINAL-SIZE
-  - [[id:107173626613][SET-TTY-MODE]]
+  - [[id:107173626758][SET-TTY-MODE]]
   - (GET-KEY (KEYRING NUMBER))
   - CRY/TLS::CERTIFICATE-ALT-NAMES
   - CRY/TLS::DECODE-PEM-OCTET-VECTOR
@@ -8439,12 +8687,12 @@ TN-REF-NEXT-REF names a compiled function:
   - IO/KBD:KEYSYM-NAME
   - IO/DISK/BTRFS:BTRFS-DEFAULT-SUBVOLUME
   - IO/DISK/BTRFS:BTRFS-SUBVOLUMES
-  - [[id:983133237071][STATVFS]]
+  - IO/DISK:STATVFS
   - IO/URING::INIT-IO
   - IO/STATIC::%MEMALIGN
-  - [[id:4003663829763][LIST-NETWORK-INTERFACES]]
+  - [[id:4003663829039][LIST-NETWORK-INTERFACES]]
   - (SOCKOPT-PEERCRED)
-  - [[id:1992367909219][SOCKOPT-PEERCRED]]
+  - [[id:1992367909255][SOCKOPT-PEERCRED]]
   - (SOCKOPT-ZEROCOPY)
   - IO/SOCKET:SOCKOPT-ZEROCOPY
   - (SOCKOPT-TCP-INFO)
@@ -8472,11 +8720,11 @@ TN-REF-NEXT-REF names a compiled function:
   - (SOCKOPT-REUSE-PORT)
   - IO/SOCKET:SOCKOPT-REUSE-PORT
   - (SOCKOPT-LINGER)
-  - [[id:537702008127][SOCKOPT-LINGER]]
+  - [[id:537702008722][SOCKOPT-LINGER]]
   - (SOCKOPT-SEND-TIMEOUT)
-  - [[id:1270747248741][SOCKOPT-SEND-TIMEOUT]]
+  - [[id:1270747249634][SOCKOPT-SEND-TIMEOUT]]
   - (SOCKOPT-RECEIVE-TIMEOUT)
-  - [[id:432355278405][SOCKOPT-RECEIVE-TIMEOUT]]
+  - [[id:432355278770][SOCKOPT-RECEIVE-TIMEOUT]]
   - IO/SYS:WAIT-UNTIL-FD-READY
   - (BUILD (URING-BUILDER))
   - (BUILD (SUBMISSION-QUEUE-ENTRY-128))
@@ -8550,7 +8798,7 @@ TN-REF-NEXT-REF names a compiled function:
   - (BUILD-FROM (IO-OP-WRITEV ALIEN-VALUE))
   - (BUILD-FROM (IO-OP-READV ALIEN-VALUE))
   - (BUILD-FROM (IO-OP-NOP ALIEN-VALUE))
-  - [[id:3409493957243][CONVERT-TS-TREE]]
+  - TREE-SITTER:CONVERT-TS-TREE
   - TREE-SITTER::TS-NODE-END
   - TREE-SITTER::TS-NODE-START
   - SYS:IF-INDEXTONAME
@@ -8569,65 +8817,65 @@ TN-REF-NEXT-REF names a compiled function:
 
 - Referenced by
   - (NON-BLOCKING-MODE (SOCKET))
-  - [[id:42564957134][GET-HOST-BY-ADDRESS]]
-  - [[id:1053520094808][GET-HOST-BY-NAME]]
-  - [[id:2484197347926][MAKE-INET6-ADDRESS]]
+  - [[id:42564956850][GET-HOST-BY-ADDRESS]]
+  - [[id:1053520094345][GET-HOST-BY-NAME]]
+  - [[id:2484197347954][MAKE-INET6-ADDRESS]]
   - SB-BSD-SOCKETS::UNPARSE-INET6-ADDRESS
   - (SOCKOPT-BIND-TO-DEVICE)
-  - [[id:3755407715263][SOCKOPT-BIND-TO-DEVICE]]
+  - [[id:3755407714829][SOCKOPT-BIND-TO-DEVICE]]
   - (SOCKOPT-TCP-NODELAY)
-  - [[id:2322289316084][SOCKOPT-TCP-NODELAY]]
+  - [[id:2322289316420][SOCKOPT-TCP-NODELAY]]
   - (SOCKOPT-BROADCAST)
-  - [[id:4275352677480][SOCKOPT-BROADCAST]]
+  - [[id:4275352677896][SOCKOPT-BROADCAST]]
   - (SOCKOPT-DONT-ROUTE)
-  - [[id:4040382699472][SOCKOPT-DONT-ROUTE]]
+  - [[id:4040382698800][SOCKOPT-DONT-ROUTE]]
   - (SOCKOPT-DEBUG)
-  - [[id:909668490684][SOCKOPT-DEBUG]]
+  - [[id:909668490286][SOCKOPT-DEBUG]]
   - (SOCKOPT-PASS-CREDENTIALS)
-  - [[id:1687215227689][SOCKOPT-PASS-CREDENTIALS]]
+  - [[id:1687215226950][SOCKOPT-PASS-CREDENTIALS]]
   - (SOCKOPT-BSD-COMPATIBLE)
-  - [[id:2625967853969][SOCKOPT-BSD-COMPATIBLE]]
+  - [[id:2625967854232][SOCKOPT-BSD-COMPATIBLE]]
   - (SOCKOPT-OOB-INLINE)
-  - [[id:856862024363][SOCKOPT-OOB-INLINE]]
+  - [[id:856862024007][SOCKOPT-OOB-INLINE]]
   - (SOCKOPT-KEEP-ALIVE)
-  - [[id:2103856659612][SOCKOPT-KEEP-ALIVE]]
+  - [[id:2103856660212][SOCKOPT-KEEP-ALIVE]]
   - (SOCKOPT-REUSE-ADDRESS)
-  - [[id:1891060594323][SOCKOPT-REUSE-ADDRESS]]
+  - [[id:1891060594432][SOCKOPT-REUSE-ADDRESS]]
   - (SOCKOPT-TCP-USER-TIMEOUT)
-  - [[id:29990184413][SOCKOPT-TCP-USER-TIMEOUT]]
+  - [[id:29990184363][SOCKOPT-TCP-USER-TIMEOUT]]
   - (SOCKOPT-TCP-KEEPINTVL)
-  - [[id:1178302204532][SOCKOPT-TCP-KEEPINTVL]]
+  - [[id:1178302204138][SOCKOPT-TCP-KEEPINTVL]]
   - (SOCKOPT-TCP-KEEPIDLE)
-  - [[id:1362204786536][SOCKOPT-TCP-KEEPIDLE]]
+  - [[id:1362204785731][SOCKOPT-TCP-KEEPIDLE]]
   - (SOCKOPT-TCP-KEEPCNT)
-  - [[id:822757944049][SOCKOPT-TCP-KEEPCNT]]
+  - [[id:822757944242][SOCKOPT-TCP-KEEPCNT]]
   - (SOCKOPT-PRIORITY)
-  - [[id:1027266665413][SOCKOPT-PRIORITY]]
+  - [[id:1027266665295][SOCKOPT-PRIORITY]]
   - (SOCKOPT-RECEIVE-BUFFER)
-  - [[id:2602145297293][SOCKOPT-RECEIVE-BUFFER]]
+  - [[id:2602145296989][SOCKOPT-RECEIVE-BUFFER]]
   - (SOCKOPT-SEND-BUFFER)
-  - [[id:3036485599189][SOCKOPT-SEND-BUFFER]]
+  - [[id:3036485598470][SOCKOPT-SEND-BUFFER]]
   - (SOCKOPT-ERROR)
-  - [[id:871361329155][SOCKOPT-ERROR]]
+  - [[id:871361329644][SOCKOPT-ERROR]]
   - (SOCKOPT-TYPE)
-  - [[id:3554616952962][SOCKOPT-TYPE]]
+  - [[id:3554616953336][SOCKOPT-TYPE]]
   - (SOCKOPT-SEND-LOW-WATER)
-  - [[id:4162453960377][SOCKOPT-SEND-LOW-WATER]]
+  - [[id:4162453960285][SOCKOPT-SEND-LOW-WATER]]
   - (SOCKOPT-RECEIVE-LOW-WATER)
-  - [[id:106935767678][SOCKOPT-RECEIVE-LOW-WATER]]
+  - [[id:106935767892][SOCKOPT-RECEIVE-LOW-WATER]]
   - (SOCKET-SEND (SOCKET T T))
   - (SOCKET-RECEIVE (SOCKET T T))
   - SB-BSD-SOCKETS-INTERNAL::GETSOCKNAME
   - SB-BSD-SOCKETS-INTERNAL::GETPEERNAME
-  - [[id:3837681228476][ACCEPT]]
+  - [[id:3837681227794][ACCEPT]]
   - SB-POSIX:UTIMES
   - SB-POSIX:UTIME
   - SB-POSIX:CFGETOSPEED
   - SB-POSIX:CFGETISPEED
   - SB-POSIX:CFSETOSPEED
   - SB-POSIX:CFSETISPEED
-  - [[id:1666853289994][TCGETATTR]]
-  - [[id:3582526534363][TCSETATTR]]
+  - [[id:1666853290792][TCGETATTR]]
+  - [[id:3582526533905][TCSETATTR]]
   - [[id:1575099243259][PIPE]]
   - SB-POSIX:FSTAT
   - SB-POSIX:LSTAT
@@ -8638,10 +8886,10 @@ TN-REF-NEXT-REF names a compiled function:
   - SB-POSIX:GETRESGID
   - SB-POSIX:FCNTL
   - DSP/AUD:CHROMAPRINT
-  - [[id:735880337442][MEDIA-FILE-STREAM-COUNT]]
-  - [[id:216947941008][MEDIA-FILE-CODECS]]
-  - [[id:150720908429][MEDIA-FILE-FORMAT]]
-  - [[id:1122558756538][MEDIA-FILE-METADATA]]
+  - DSP/AV:MEDIA-FILE-STREAM-COUNT
+  - DSP/AV:MEDIA-FILE-CODECS
+  - DSP/AV:MEDIA-FILE-FORMAT
+  - DSP/AV:MEDIA-FILE-METADATA
   - (STORED-SLOT-READER (RDB-STORE T T))
   - (LOAD-OPTS (RDB))
   - (GET-KEY (RDB-WBWI STRING))
@@ -8650,11 +8898,11 @@ TN-REF-NEXT-REF names a compiled function:
   - (SVAL (RDB-ITER))
   - (SKEY (RDB-ITER))
   - RDB::WBWI-PUT-CF-RAW
-  - [[id:695956374072][CREATE-CONCAT-MERGE-OP]]
-  - [[id:4395776455609][CREATE-INDEX-MERGE-OP]]
+  - [[id:695956374313][CREATE-CONCAT-MERGE-OP]]
+  - [[id:4395776455033][CREATE-INDEX-MERGE-OP]]
   - RDB::OPEN-CFS-WITH-TTL-RAW
   - RDB::OPEN-CFS-READ-ONLY-RAW
-  - [[id:2367671223586][OPEN-CFS-SECONDARY-RAW]]
+  - [[id:2367671223490][OPEN-CFS-SECONDARY-RAW]]
   - RDB::GET-PREPARED-TRANSACTIONS-RAW
   - RDB::TRANSACTION-MERGE-CF-RAW
   - RDB::TRANSACTION-MERGE-RAW
@@ -8664,9 +8912,9 @@ TN-REF-NEXT-REF names a compiled function:
   - RDB::TRANSACTION-DELETE-RAW
   - RDB::SET-TRANSACTION-NAME-RAW
   - RDB::TRANSACTIONDB-PUT-CF-RAW
-  - [[id:4241104221313][TRANSACTIONDB-PUT-KV-RAW]]
+  - [[id:4241104221312][TRANSACTIONDB-PUT-KV-RAW]]
   - RDB::TRANSACTIONDB-GET-CF-RAW
-  - [[id:324022966837][TRANSACTIONDB-GET-KV-RAW]]
+  - [[id:324022967120][TRANSACTIONDB-GET-KV-RAW]]
   - RDB::SST-FILE-SIZE-RAW
   - RDB::SST-PUT-RAW
   - RDB::ITER-VAL-RAW
@@ -8686,13 +8934,13 @@ TN-REF-NEXT-REF names a compiled function:
   - RDB::INGEST-DB-RAW
   - RDB::GET-STATS-RAW
   - RDB::LOAD-OPTS-RAW
-  - [[id:2460044734616][REQ]]
+  - NET/REQ::REQ
   - NET/CORE::%SOCKADDR
   - SYN/TS::TS-FILE-QUERY
   - CLI/LINEDIT::C-TERMINAL-WINSIZE
   - CLI/LINEDIT::C-TERMINAL-INIT
   - CLI/TERM::TERMINAL-SIZE
-  - [[id:107173626613][SET-TTY-MODE]]
+  - [[id:107173626758][SET-TTY-MODE]]
   - (GET-KEY (KEYRING NUMBER))
   - CRY/TLS::CERTIFICATE-ALT-NAMES
   - CRY/TLS::DECODE-PEM-OCTET-VECTOR
@@ -10481,12 +10729,12 @@ TN-REF-NEXT-REF names a compiled function:
   - IO/KBD:KEYSYM-NAME
   - IO/DISK/BTRFS:BTRFS-DEFAULT-SUBVOLUME
   - IO/DISK/BTRFS:BTRFS-SUBVOLUMES
-  - [[id:983133237071][STATVFS]]
+  - IO/DISK:STATVFS
   - IO/URING::INIT-IO
   - IO/STATIC::%MEMALIGN
-  - [[id:4003663829763][LIST-NETWORK-INTERFACES]]
+  - [[id:4003663829039][LIST-NETWORK-INTERFACES]]
   - (SOCKOPT-PEERCRED)
-  - [[id:1992367909219][SOCKOPT-PEERCRED]]
+  - [[id:1992367909255][SOCKOPT-PEERCRED]]
   - (SOCKOPT-ZEROCOPY)
   - IO/SOCKET:SOCKOPT-ZEROCOPY
   - (SOCKOPT-TCP-INFO)
@@ -10514,11 +10762,11 @@ TN-REF-NEXT-REF names a compiled function:
   - (SOCKOPT-REUSE-PORT)
   - IO/SOCKET:SOCKOPT-REUSE-PORT
   - (SOCKOPT-LINGER)
-  - [[id:537702008127][SOCKOPT-LINGER]]
+  - [[id:537702008722][SOCKOPT-LINGER]]
   - (SOCKOPT-SEND-TIMEOUT)
-  - [[id:1270747248741][SOCKOPT-SEND-TIMEOUT]]
+  - [[id:1270747249634][SOCKOPT-SEND-TIMEOUT]]
   - (SOCKOPT-RECEIVE-TIMEOUT)
-  - [[id:432355278405][SOCKOPT-RECEIVE-TIMEOUT]]
+  - [[id:432355278770][SOCKOPT-RECEIVE-TIMEOUT]]
   - IO/SYS:WAIT-UNTIL-FD-READY
   - (BUILD (URING-BUILDER))
   - (BUILD (SUBMISSION-QUEUE-ENTRY-128))
@@ -10592,7 +10840,7 @@ TN-REF-NEXT-REF names a compiled function:
   - (BUILD-FROM (IO-OP-WRITEV ALIEN-VALUE))
   - (BUILD-FROM (IO-OP-READV ALIEN-VALUE))
   - (BUILD-FROM (IO-OP-NOP ALIEN-VALUE))
-  - [[id:3409493957243][CONVERT-TS-TREE]]
+  - TREE-SITTER:CONVERT-TS-TREE
   - TREE-SITTER::TS-NODE-END
   - TREE-SITTER::TS-NODE-START
   - SYS:IF-INDEXTONAME
@@ -10617,18 +10865,22 @@ TN-REF-NEXT-REF names a compiled function:
 :ID: 859734090362
 :CUSTOM_ID: SB-C:NON-DESCRIPTOR-STACK
 :ALLOC: HEAP IMMOBILE
-:END:** PRIMITIVE-TYPE-NAME :compiled:function:
+:END:
+** PRIMITIVE-TYPE-NAME :compiled:function:
 :PROPERTIES:
 :ID: 4367100011301
 :CUSTOM_ID: SB-C:PRIMITIVE-TYPE-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PRIMITIVE-TYPE-NAME names a compiled function:
   An accessor for SB-C:PRIMITIVE-TYPE
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C:PRIMITIVE-TYPE) (VALUES SYMBOL &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 - Called by
@@ -10643,17 +10895,21 @@ PRIMITIVE-TYPE-NAME names a compiled function:
 :ID: 2887853296528
 :CUSTOM_ID: SB-C:INSERT-SAFEPOINTS
 :ALLOC: HEAP IMMOBILE
-:END:** COMPUTE-FASTREM-COEFFICIENT :compiled:function:
+:END:
+** COMPUTE-FASTREM-COEFFICIENT :compiled:function:
 :PROPERTIES:
 :ID: 263670802718
 :CUSTOM_ID: SB-C:COMPUTE-FASTREM-COEFFICIENT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPUTE-FASTREM-COEFFICIENT names a compiled function:
   Lambda-list: (D N FRACTION-BITS)
   Derived type: (FUNCTION (T T T) (VALUES INTEGER NUMBER &OPTIONAL))
   Source file: SYS:SRC;COMPILER;GENERIC;UTILS.LISP
+
 #+end_example
 
 :definitions:
@@ -10664,20 +10920,25 @@ COMPUTE-FASTREM-COEFFICIENT names a compiled function:
 :ID: 4031831440074
 :CUSTOM_ID: SB-C:MAKE-DYNAMIC-STATE-TNS
 :ALLOC: HEAP IMMOBILE
-:END:** XEP-ALLOCATE-FRAME :vop:
+:END:
+** XEP-ALLOCATE-FRAME :vop:
 :PROPERTIES:
 :ID: 4095988786742
 :CUSTOM_ID: SB-C:XEP-ALLOCATE-FRAME
 :ALLOC: HEAP IMMOBILE
-:END:** CLOSURE-SC :constant:var:
+:END:
+** CLOSURE-SC :constant:var:
 :PROPERTIES:
 :ID: 2838612693991
 :CUSTOM_ID: SB-C:CLOSURE-SC
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CLOSURE-SC names a constant variable:
   Value: 1
+
 #+end_example
 
 :definitions:
@@ -10688,11 +10949,14 @@ CLOSURE-SC names a constant variable:
 :ID: 705028766810
 :CUSTOM_ID: SB-C:DEFINE-MOVE-FUN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINE-MOVE-FUN names a macro:
   Lambda-list: ((NAME COST) LAMBDA-LIST SCS &BODY BODY)
   Source file: SYS:SRC;COMPILER;META-VMDEF.LISP
+
 #+end_example
 
 :definitions:
@@ -10703,13 +10967,16 @@ DEFINE-MOVE-FUN names a macro:
 :ID: 493153637410
 :CUSTOM_ID: SB-C:REFERENCE-TN-LIST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 REFERENCE-TN-LIST names a compiled function:
   Lambda-list: (TNS WRITE-P &OPTIONAL MORE)
   Derived type: (FUNCTION (LIST BOOLEAN &OPTIONAL (OR SB-C:TN-REF NULL))
                  (VALUES (OR SB-C:TN-REF NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -10720,17 +10987,21 @@ REFERENCE-TN-LIST names a compiled function:
 :ID: 3914421158198
 :CUSTOM_ID: SB-C:CURRENT-STACK-POINTER
 :ALLOC: HEAP IMMOBILE
-:END:** *BACKEND-SC-NAMES​* :global:var:
+:END:
+** *BACKEND-SC-NAMES​* :global:var:
 :PROPERTIES:
 :ID: 1823255787751
 :CUSTOM_ID: SB-C:*BACKEND-SC-NAMES*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*BACKEND-SC-NAMES* names a global variable:
+
+*BACKEND-SC-NAMES* names a global variable:
   Declared type: HASH-TABLE
   Declared always-bound.
   Value: #<HASH-TABLE :TEST EQL :COUNT 43 {1200011D23}>
+
 #+end_example
 
 :definitions:
@@ -10741,13 +11012,16 @@ REFERENCE-TN-LIST names a compiled function:
 :ID: 2211109987549
 :CUSTOM_ID: SB-C:COMPILER-NOTIFY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPILER-NOTIFY names a compiled function:
   Lambda-list: (DATUM &REST ARGS)
   Declared type: (FUNCTION ((OR STRING FUNCTION SYMBOL) &REST T)
                   (VALUES &OPTIONAL))
   Source file: SYS:SRC;COMPILER;IR1REPORT.LISP
+
 #+end_example
 
 :definitions:
@@ -10760,12 +11034,15 @@ COMPILER-NOTIFY names a compiled function:
 :ID: 1678179664144
 :CUSTOM_ID: SB-C:MAKE-ALIAS-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-ALIAS-TN names a compiled function:
   Lambda-list: (TN)
   Derived type: (FUNCTION (SB-C:TN) (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -10776,8 +11053,10 @@ MAKE-ALIAS-TN names a compiled function:
 :ID: 1115792131436
 :CUSTOM_ID: SB-C:DEFINITION-SOURCE-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINITION-SOURCE-LOCATION names the structure-class #<STRUCTURE-CLASS SB-C:DEFINITION-SOURCE-LOCATION>:
   Class precedence-list: SB-C:DEFINITION-SOURCE-LOCATION, STRUCTURE-OBJECT,
                          SB-PCL::SLOT-OBJECT, T
@@ -10790,6 +11069,7 @@ DEFINITION-SOURCE-LOCATION names the structure-class #<STRUCTURE-CLASS SB-C:DEFI
     SB-C::INDICES
       Type: INTEGER
       Initform: 0
+
 #+end_example
 
 :definitions:
@@ -10800,8 +11080,10 @@ DEFINITION-SOURCE-LOCATION names the structure-class #<STRUCTURE-CLASS SB-C:DEFI
 :ID: 1431974764882
 :CUSTOM_ID: SB-C:SC-NUMBER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SC-NUMBER names a compiled function:
   An accessor for SB-C:STORAGE-CLASS
   Lambda-list: (INSTANCE)
@@ -10818,6 +11100,7 @@ SC-NUMBER names a compiled function:
 SC-NUMBER names a type-specifier:
   Lambda-list: ()
   Expansion: (INTEGER 0 (62))
+
 #+end_example
 
 - Called by
@@ -12098,8 +12381,10 @@ SC-NUMBER names a type-specifier:
 :ID: 3699575036725
 :CUSTOM_ID: SB-C:SAP-READ-VAR-INTEGER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-READ-VAR-INTEGER names a compiled function:
   Lambda-list: (SOURCE START)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER (UNSIGNED-BYTE 44))
@@ -12108,6 +12393,7 @@ SAP-READ-VAR-INTEGER names a compiled function:
                  (VALUES (UNSIGNED-BYTE 32) (INTEGER 1 17592186044415)
                          &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-VAR-IO.LISP
+
 #+end_example
 
 :definitions:
@@ -12118,10 +12404,13 @@ SAP-READ-VAR-INTEGER names a compiled function:
 :ID: 529488398801
 :CUSTOM_ID: SB-C:%MORE-ARG-VALUES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %MORE-ARG-VALUES names an undefined function
   Declared type: (FUNCTION (T (UNSIGNED-BYTE 44) (UNSIGNED-BYTE 44)) *)
+
 #+end_example
 
 - Called by
@@ -12140,8 +12429,10 @@ SAP-READ-VAR-INTEGER names a compiled function:
 :ID: 3162001065277
 :CUSTOM_ID: SB-C:TN-REF-MEMORY-ACCESS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-REF-MEMORY-ACCESS names a compiled function:
   An accessor for SB-C:TN-REF
   Lambda-list: (INSTANCE)
@@ -12153,6 +12444,7 @@ TN-REF-MEMORY-ACCESS names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (T SB-C:TN-REF) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -12163,27 +12455,33 @@ TN-REF-MEMORY-ACCESS names a compiled function:
 :ID: 3902739688777
 :CUSTOM_ID: SB-C:LAMBDA-WITH-LEXENV
 :ALLOC: HEAP IMMOBILE
-:END:** TAIL-CALL :vop:
+:END:
+** TAIL-CALL :vop:
 :PROPERTIES:
 :ID: 3070394385984
 :CUSTOM_ID: SB-C:TAIL-CALL
 :ALLOC: HEAP IMMOBILE
-:END:** TN-REF-P
+:END:
+** TN-REF-P
 :PROPERTIES:
 :ID: 2550212211993
 :CUSTOM_ID: SB-C:TN-REF-P
 :ALLOC: HEAP IMMOBILE
-:END:** MAKE-ARG-COUNT-LOCATION :compiled:function:
+:END:
+** MAKE-ARG-COUNT-LOCATION :compiled:function:
 :PROPERTIES:
 :ID: 2337541807817
 :CUSTOM_ID: SB-C:MAKE-ARG-COUNT-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-ARG-COUNT-LOCATION names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;CALL.LISP
+
 #+end_example
 
 :definitions:
@@ -12194,12 +12492,15 @@ MAKE-ARG-COUNT-LOCATION names a compiled function:
 :ID: 2489351070256
 :CUSTOM_ID: SB-C:DIS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DIS names a compiled function:
-,  Lambda-list: (OBJECT &OPTIONAL LENGTH (STREAM *STANDARD-OUTPUT* STREAMP))
+  Lambda-list: (OBJECT &OPTIONAL LENGTH (STREAM *STANDARD-OUTPUT* STREAMP))
   Derived type: (FUNCTION (T &OPTIONAL T T) (VALUES NULL &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
 #+end_example
 
 - Called by
@@ -12213,12 +12514,15 @@ DIS names a compiled function:
 :ID: 1888263081223
 :CUSTOM_ID: SB-C:*SUPPRESS-VALUES-DECLARATION*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*SUPPRESS-VALUES-DECLARATION* names a special variable:
+
+*SUPPRESS-VALUES-DECLARATION* names a special variable:
   Value: NIL
   Documentation:
     If true, processing of the VALUES declaration is inhibited.
+
 #+end_example
 
 :definitions:
@@ -12229,12 +12533,15 @@ DIS names a compiled function:
 :ID: 2100859698422
 :CUSTOM_ID: SB-C:MAKE-RETURN-PC-SAVE-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-RETURN-PC-SAVE-LOCATION names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;CALL.LISP
+
 #+end_example
 
 :definitions:
@@ -12245,19 +12552,23 @@ MAKE-RETURN-PC-SAVE-LOCATION names a compiled function:
 :ID: 2139452129886
 :CUSTOM_ID: SB-C:UNSAFELY-FLUSHABLE
 :ALLOC: HEAP IMMOBILE
-:END:** COMPONENT-HEADER-LENGTH :compiled:function:
+:END:
+** COMPONENT-HEADER-LENGTH :compiled:function:
 :PROPERTIES:
 :ID: 3924399143200
 :CUSTOM_ID: SB-C:COMPONENT-HEADER-LENGTH
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPONENT-HEADER-LENGTH names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL
                  (VALUES (OR (INTEGER 0 0) (INTEGER 8 140737488355320))
                          &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -12268,13 +12579,16 @@ COMPONENT-HEADER-LENGTH names a compiled function:
 :ID: 319344626880
 :CUSTOM_ID: SB-C:FIXUP-FLAVOR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FIXUP-FLAVOR names a compiled function:
   An accessor for SB-C:FIXUP
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C:FIXUP) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -12285,12 +12599,15 @@ FIXUP-FLAVOR names a compiled function:
 :ID: 3724561394417
 :CUSTOM_ID: SB-C:LEAF-ID
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LEAF-ID names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (SB-C::LEAF) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -12301,13 +12618,16 @@ LEAF-ID names a compiled function:
 :ID: 1666846897604
 :CUSTOM_ID: SB-C:MAKE-SC+OFFSET
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-SC+OFFSET names a compiled function:
   Lambda-list: (SC-NUMBER OFFSET)
   Declared type: (FUNCTION ((MOD 62) (UNSIGNED-BYTE 21))
                   (VALUES (UNSIGNED-BYTE 27) &OPTIONAL))
   Source file: SYS:SRC;CODE;SC-OFFSET.LISP
+
 #+end_example
 
 :definitions:
@@ -12318,13 +12638,16 @@ MAKE-SC+OFFSET names a compiled function:
 :ID: 1649926098860
 :CUSTOM_ID: SB-C:TN-REF-WRITE-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-REF-WRITE-P names a compiled function:
   An accessor for SB-C:TN-REF
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C:TN-REF) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -12335,13 +12658,16 @@ TN-REF-WRITE-P names a compiled function:
 :ID: 2702649106145
 :CUSTOM_ID: SB-C:ENVIRONMENT-LIVE-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ENVIRONMENT-LIVE-TN names a compiled function:
   Lambda-list: (TN ENV)
   Derived type: (FUNCTION (SB-C:TN SB-C::ENVIRONMENT)
                  (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -12352,14 +12678,17 @@ ENVIRONMENT-LIVE-TN names a compiled function:
 :ID: 3856558640766
 :CUSTOM_ID: SB-C:COVERED-FILE-EXECUTED
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COVERED-FILE-EXECUTED names a compiled function:
   An accessor for SB-C::COVERED-FILE
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C::COVERED-FILE)
                  (VALUES SIMPLE-BIT-VECTOR &OPTIONAL))
   Source file: SYS:SRC;COMPILER;COVERAGE.LISP
+
 #+end_example
 
 - Called by
@@ -12377,12 +12706,15 @@ COVERED-FILE-EXECUTED names a compiled function:
 :ID: 2026513616963
 :CUSTOM_ID: SB-C:COMPILER-WARN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPILER-WARN names a compiled function:
   Lambda-list: (DATUM &REST ARGUMENTS)
   Declared type: (FUNCTION (T &REST T) (VALUES &OPTIONAL))
   Source file: SYS:SRC;COMPILER;COMPILER-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -12395,22 +12727,27 @@ COMPILER-WARN names a compiled function:
 :ID: 3082787617311
 :CUSTOM_ID: SB-C:TAIL-CALL-VARIABLE
 :ALLOC: HEAP IMMOBILE
-:END:** MULTIWAY-BRANCH-IF-EQ
+:END:
+** MULTIWAY-BRANCH-IF-EQ
 :PROPERTIES:
 :ID: 1020279843490
 :CUSTOM_ID: SB-C:MULTIWAY-BRANCH-IF-EQ
 :ALLOC: HEAP IMMOBILE
-:END:** VOP-NAME :compiled:function:
+:END:
+** VOP-NAME :compiled:function:
 :PROPERTIES:
 :ID: 3346193765979
 :CUSTOM_ID: SB-C:VOP-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 VOP-NAME names a compiled function:
   Lambda-list: (VOP)
   Derived type: (FUNCTION (SB-C::VOP) (VALUES SYMBOL &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -12421,12 +12758,15 @@ VOP-NAME names a compiled function:
 :ID: 3149036273117
 :CUSTOM_ID: SB-C:REPLACE-VOPS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 REPLACE-VOPS names a compiled function:
   Lambda-list: (HOWMANY FIRST REPLACEMENT)
   Derived type: (FUNCTION (T T T) (VALUES (OR SB-C::VOP NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;IR2OPT.LISP
+
 #+end_example
 
 :definitions:
@@ -12437,17 +12777,21 @@ REPLACE-VOPS names a compiled function:
 :ID: 307883085722
 :CUSTOM_ID: SB-C:LOCATION-NUMBER
 :ALLOC: HEAP IMMOBILE
-:END:** WRITE-VAR-STRING :compiled:function:
+:END:
+** WRITE-VAR-STRING :compiled:function:
 :PROPERTIES:
 :ID: 504920692456
 :CUSTOM_ID: SB-C:WRITE-VAR-STRING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WRITE-VAR-STRING names a compiled function:
   Lambda-list: (STRING VEC)
   Derived type: (FUNCTION (SIMPLE-STRING T) (VALUES &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-VAR-IO.LISP
+
 #+end_example
 
 :definitions:
@@ -12458,8 +12802,10 @@ WRITE-VAR-STRING names a compiled function:
 :ID: 2438261467908
 :CUSTOM_ID: SB-C:FIXUP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FIXUP names the structure-class #<STRUCTURE-CLASS SB-C:FIXUP>:
   Class precedence-list: SB-C:FIXUP, STRUCTURE-OBJECT, SB-PCL::SLOT-OBJECT, T
   Direct superclasses: STRUCTURE-OBJECT
@@ -12475,6 +12821,7 @@ FIXUP names the structure-class #<STRUCTURE-CLASS SB-C:FIXUP>:
     SB-C::OFFSET
       Type: (OR SB-ALIEN:SIGNED-WORD SB-ASSEM:LABEL)
       Initform: 0
+
 #+end_example
 
 :definitions:
@@ -12487,12 +12834,15 @@ FIXUP names the structure-class #<STRUCTURE-CLASS SB-C:FIXUP>:
 :ID: 2465330197928
 :CUSTOM_ID: SB-C:MAKE-OLD-FP-SAVE-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-OLD-FP-SAVE-LOCATION names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;CALL.LISP
+
 #+end_example
 
 :definitions:
@@ -12503,14 +12853,17 @@ MAKE-OLD-FP-SAVE-LOCATION names a compiled function:
 :ID: 1008681152016
 :CUSTOM_ID: SB-C:COVERED-FILE-LINES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COVERED-FILE-LINES names a compiled function:
   An accessor for SB-C::COVERED-FILE
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C::COVERED-FILE)
                  (VALUES (OR NULL VECTOR) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;COVERAGE.LISP
+
 #+end_example
 
 - Called by
@@ -12524,8 +12877,10 @@ COVERED-FILE-LINES names a compiled function:
 :ID: 83026742398
 :CUSTOM_ID: SB-C:NOTE-NEXT-INSTRUCTION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NOTE-NEXT-INSTRUCTION names a compiled function:
   Lambda-list: (VOP KIND)
   Derived type: (FUNCTION (T T) (VALUES &OPTIONAL))
@@ -12535,6 +12890,7 @@ NOTE-NEXT-INSTRUCTION names a compiled function:
     instruction for the code location, wherever the scheduler decided to put
     it.
   Source file: SYS:SRC;COMPILER;DEBUG-DUMP.LISP
+
 #+end_example
 
 :definitions:
@@ -12545,26 +12901,32 @@ NOTE-NEXT-INSTRUCTION names a compiled function:
 :ID: 122833132735
 :CUSTOM_ID: SB-C:NOTE-ENVIRONMENT-START
 :ALLOC: HEAP IMMOBILE
-:END:** COMPUTE-OLD-NFP :vop:
+:END:
+** COMPUTE-OLD-NFP :vop:
 :PROPERTIES:
 :ID: 1662603735049
 :CUSTOM_ID: SB-C:COMPUTE-OLD-NFP
 :ALLOC: HEAP IMMOBILE
-:END:** FAST-SYMBOL-GLOBAL-VALUE :vop:
+:END:
+** FAST-SYMBOL-GLOBAL-VALUE :vop:
 :PROPERTIES:
 :ID: 712656647984
 :CUSTOM_ID: SB-C:FAST-SYMBOL-GLOBAL-VALUE
 :ALLOC: HEAP IMMOBILE
-:END:** *COMPILE-FILE-TO-MEMORY-SPACE​* :var:
+:END:
+** *COMPILE-FILE-TO-MEMORY-SPACE​* :var:
 :PROPERTIES:
 :ID: 1786936528196
 :CUSTOM_ID: SB-C:*COMPILE-FILE-TO-MEMORY-SPACE*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*COMPILE-FILE-TO-MEMORY-SPACE* names a special variable:
+
+*COMPILE-FILE-TO-MEMORY-SPACE* names a special variable:
   Declared type: (MEMBER :DYNAMIC :IMMOBILE)
   Value: :IMMOBILE
+
 #+end_example
 
 :definitions:
@@ -12575,11 +12937,14 @@ NOTE-NEXT-INSTRUCTION names a compiled function:
 :ID: 3983887811673
 :CUSTOM_ID: SB-C:DEFINE-VOP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINE-VOP names a macro:
   Lambda-list: ((&OPTIONAL NAME INHERITS) &BODY SPECS)
   Source file: SYS:SRC;COMPILER;META-VMDEF.LISP
+
 #+end_example
 
 :definitions:
@@ -12590,13 +12955,16 @@ DEFINE-VOP names a macro:
 :ID: 2664586154863
 :CUSTOM_ID: SB-C:FIXUP-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FIXUP-NAME names a compiled function:
   An accessor for SB-C:FIXUP
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C:FIXUP) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -12607,19 +12975,23 @@ FIXUP-NAME names a compiled function:
 :ID: 3733754949347
 :CUSTOM_ID: SB-C:NLX-ENTRY
 :ALLOC: HEAP IMMOBILE
-:END:** COVERED-FILE-LOCATIONS :compiled:function:
+:END:
+** COVERED-FILE-LOCATIONS :compiled:function:
 :PROPERTIES:
 :ID: 2059829583883
 :CUSTOM_ID: SB-C:COVERED-FILE-LOCATIONS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COVERED-FILE-LOCATIONS names a compiled function:
   An accessor for SB-C::COVERED-FILE
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C::COVERED-FILE)
                  (VALUES (OR NULL VECTOR) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;COVERAGE.LISP
+
 #+end_example
 
 - Called by
@@ -12634,17 +13006,21 @@ COVERED-FILE-LOCATIONS names a compiled function:
 :ID: 952832570798
 :CUSTOM_ID: SB-C:CURRENT-BINDING-POINTER
 :ALLOC: HEAP IMMOBILE
-:END:** COMPONENT-N-JUMP-TABLE-ENTRIES :compiled:function:
+:END:
+** COMPONENT-N-JUMP-TABLE-ENTRIES :compiled:function:
 :PROPERTIES:
 :ID: 451525764338
 :CUSTOM_ID: SB-C:COMPONENT-N-JUMP-TABLE-ENTRIES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPONENT-N-JUMP-TABLE-ENTRIES names a compiled function:
   Lambda-list: (&OPTIONAL (COMPONENT *COMPONENT-BEING-COMPILED*))
   Derived type: (FUNCTION (&OPTIONAL T) (VALUES (UNSIGNED-BYTE 44) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -12655,23 +13031,29 @@ COMPONENT-N-JUMP-TABLE-ENTRIES names a compiled function:
 :ID: 4221674756263
 :CUSTOM_ID: SB-C:STORE-SOURCE-FORM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STORE-SOURCE-FORM names a dependent optimization policy quality:
   (undocumented)
+
 #+end_example
 ** STATIC-CALL-NAMED
 :PROPERTIES:
 :ID: 1137389720607
 :CUSTOM_ID: SB-C:STATIC-CALL-NAMED
 :ALLOC: HEAP IMMOBILE
-:END:** SC-NAME :compiled:function:
+:END:
+** SC-NAME :compiled:function:
 :PROPERTIES:
 :ID: 3144951462376
 :CUSTOM_ID: SB-C:SC-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SC-NAME names a compiled function:
   An accessor for SB-C:STORAGE-CLASS
   Lambda-list: (INSTANCE)
@@ -12683,6 +13065,7 @@ SC-NAME names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (SYMBOL SB-C:STORAGE-CLASS) (VALUES SYMBOL&OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -12693,18 +13076,22 @@ SC-NAME names a compiled function:
 :ID: 1558275982912
 :CUSTOM_ID: SB-C:RETURN-SINGLE
 :ALLOC: HEAP IMMOBILE
-:END:** SB-NAME :compiled:function:
+:END:
+** SB-NAME :compiled:function:
 :PROPERTIES:
 :ID: 3393563668387
 :CUSTOM_ID: SB-C:SB-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SB-NAME names a compiled function:
   An accessor for SB-C:STORAGE-BASE
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C:STORAGE-BASE) (VALUES SYMBOL &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -12715,33 +13102,40 @@ SB-NAME names a compiled function:
 :ID: 1401863424377
 :CUSTOM_ID: SB-C:ANY
 :ALLOC: HEAP IMMOBILE
-:END:** MULTIPLE-CALL-LOCAL :vop:
+:END:
+** MULTIPLE-CALL-LOCAL :vop:
 :PROPERTIES:
 :ID: 3785531332349
 :CUSTOM_ID: SB-C:MULTIPLE-CALL-LOCAL
 :ALLOC: HEAP IMMOBILE
-:END:** MAKE-OLD-FP-PASSING-LOCATION
+:END:
+** MAKE-OLD-FP-PASSING-LOCATION
 :PROPERTIES:
 :ID: 1508562347451
 :CUSTOM_ID: SB-C:MAKE-OLD-FP-PASSING-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END:** UWP-ENTRY :vop:
+:END:
+** UWP-ENTRY :vop:
 :PROPERTIES:
 :ID: 105330279791
 :CUSTOM_ID: SB-C:UWP-ENTRY
 :ALLOC: HEAP IMMOBILE
-:END:** NLX-ENTRY-MULTIPLE :vop:
+:END:
+** NLX-ENTRY-MULTIPLE :vop:
 :PROPERTIES:
 :ID: 2489223569488
 :CUSTOM_ID: SB-C:NLX-ENTRY-MULTIPLE
 :ALLOC: HEAP IMMOBILE
-:END:** SC-SB :compiled:function:
+:END:
+** SC-SB :compiled:function:
 :PROPERTIES:
 :ID: 2683984236659
 :CUSTOM_ID: SB-C:SC-SB
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SC-SB names a compiled function:
   An accessor for SB-C:STORAGE-CLASS
   Lambda-list: (INSTANCE)
@@ -12755,6 +13149,7 @@ SC-SB names a compiled function:
   Derived type: (FUNCTION ((OR SB-C:STORAGE-BASE NULL) SB-C:STORAGE-CLASS)
                  (VALUES (OR SB-C:STORAGE-BASE NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -12765,12 +13160,14 @@ SC-SB names a compiled function:
 :ID: 3200059974241
 :CUSTOM_ID: SB-C:UNSAFE
 :ALLOC: HEAP IMMOBILE
-:END:** UNWIND-BLOCK
+:END:
+** UNWIND-BLOCK
 :PROPERTIES:
 :ID: 1954012282749
 :CUSTOM_ID: SB-C:UNWIND-BLOCK
 :ALLOC: HEAP IMMOBILE
 :END:
+
 :definitions:
 - SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
 :end:
@@ -12779,11 +13176,14 @@ SC-SB names a compiled function:
 :ID: 1406775183985
 :CUSTOM_ID: SB-C:*BACKEND-T-PRIMITIVE-TYPE*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*BACKEND-T-PRIMITIVE-TYPE* names a symbol macro:
+
+*BACKEND-T-PRIMITIVE-TYPE* names a symbol macro:
   Expansion: (THE PRIMITIVE-TYPE
                   (LOAD-TIME-VALUE (SB-C:PRIMITIVE-TYPE-OR-LOSE T) T))
+
 #+end_example
 
 :definitions:
@@ -12794,22 +13194,28 @@ SC-SB names a compiled function:
 :ID: 125544400004
 :CUSTOM_ID: SB-C:STORE-COVERAGE-DATA
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STORE-COVERAGE-DATA names a dependent optimization policy quality:
   (undocumented)
+
 #+end_example
 ** ID-IR2-BLOCK :compiled:function:
 :PROPERTIES:
 :ID: 2462572381849
 :CUSTOM_ID: SB-C:ID-IR2-BLOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ID-IR2-BLOCK names a compiled function:
   Lambda-list: (NUM)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -12820,13 +13226,16 @@ ID-IR2-BLOCK names a compiled function:
 :ID: 3621152125533
 :CUSTOM_ID: SB-C:WRITE-PACKED-BIT-VECTOR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WRITE-PACKED-BIT-VECTOR names a compiled function:
   Lambda-list: (BITS BYTE-BUFFER)
   Derived type: (FUNCTION (SIMPLE-BIT-VECTOR (VECTOR (UNSIGNED-BYTE 8)))
                  (VALUES &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG-DUMP.LISP
+
 #+end_example
 
 :definitions:
@@ -12837,17 +13246,21 @@ WRITE-PACKED-BIT-VECTOR names a compiled function:
 :ID: 2822333586297
 :CUSTOM_ID: SB-C:SET-UNWIND-PROTECT
 :ALLOC: HEAP IMMOBILE
-:END:** LABEL-ID :compiled:function:
+:END:
+** LABEL-ID :compiled:function:
 :PROPERTIES:
 :ID: 2414002489761
 :CUSTOM_ID: SB-C:LABEL-ID
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LABEL-ID names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (SB-ASSEM:LABEL) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -12858,8 +13271,10 @@ LABEL-ID names a compiled function:
 :ID: 3032978890103
 :CUSTOM_ID: SB-C:DEFTRANSFORM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFTRANSFORM names a macro:
   Lambda-list: (NAME
                 (LAMBDA-LIST &OPTIONAL (ARG-TYPES (QUOTE *))
@@ -12867,6 +13282,7 @@ DEFTRANSFORM names a macro:
                  (IMPORTANT T) VOP BEFORE-VOP PRIORITY)
                 &BODY BODY-DECLS-DOC)
   Source file: SYS:SRC;COMPILER;MACROS.LISP
+
 #+end_example
 
 :definitions:
@@ -12877,17 +13293,21 @@ DEFTRANSFORM names a macro:
 :ID: 1158351738613
 :CUSTOM_ID: SB-C:CLOSURE-REF
 :ALLOC: HEAP IMMOBILE
-:END:** NOTE-FIXUP :compiled:function:
+:END:
+** NOTE-FIXUP :compiled:function:
 :PROPERTIES:
 :ID: 1342199236455
 :CUSTOM_ID: SB-C:NOTE-FIXUP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NOTE-FIXUP names a compiled function:
   Lambda-list: (SEGMENT KIND FIXUP)
   Derived type: (FUNCTION (T T T) (VALUES &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -12898,12 +13318,15 @@ NOTE-FIXUP names a compiled function:
 :ID: 3951305997587
 :CUSTOM_ID: SB-C:CONSTANT-LVAR-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CONSTANT-LVAR-P names a compiled function:
   Lambda-list: (LVAR)
   Derived type: (FUNCTION (SB-C::LVAR) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;IR1OPT.LISP
+
 #+end_example
 
 :definitions:
@@ -12914,12 +13337,15 @@ CONSTANT-LVAR-P names a compiled function:
 :ID: 1836866441373
 :CUSTOM_ID: SB-C:PACK-CODE-FIXUP-LOCS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PACK-CODE-FIXUP-LOCS names a compiled function:
   Lambda-list: (LIST1 &OPTIONAL LIST2 LIST3)
   Derived type: (FUNCTION (T &OPTIONAL T T) (VALUES UNSIGNED-BYTE &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-VAR-IO.LISP
+
 #+end_example
 
 :definitions:
@@ -12930,11 +13356,14 @@ PACK-CODE-FIXUP-LOCS names a compiled function:
 :ID: 2207146854464
 :CUSTOM_ID: SB-C:SAP-READ-VAR-INTEGERF
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-READ-VAR-INTEGERF names a macro:
   Lambda-list: (VECTOR INDEX)
   Source file: SYS:SRC;CODE;DEBUG-VAR-IO.LISP
+
 #+end_example
 
 :definitions:
@@ -12945,16 +13374,20 @@ SAP-READ-VAR-INTEGERF names a macro:
 :ID: 3861872909010
 :CUSTOM_ID: SB-C:CALL-NAMED
 :ALLOC: HEAP IMMOBILE
-:END:** READ-VAR-STRING :compiled:macro:function:
+:END:
+** READ-VAR-STRING :compiled:macro:function:
 :PROPERTIES:
 :ID: 544036620337
 :CUSTOM_ID: SB-C:READ-VAR-STRING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 READ-VAR-STRING names a macro:
   Lambda-list: (VEC INDEX)
   Source file: SYS:SRC;CODE;DEBUG-VAR-IO.LISP
+
 #+end_example
 
 :definitions:
@@ -12965,8 +13398,10 @@ READ-VAR-STRING names a macro:
 :ID: 2437325624911
 :CUSTOM_ID: SB-C:MAKE-RANDOM-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-RANDOM-TN names a compiled function:
   A constructor for SB-C:TN
   Lambda-list: (SC OFFSET &AUX (KIND NORMAL))
@@ -12974,6 +13409,7 @@ MAKE-RANDOM-TN names a compiled function:
                  ((OR SB-C:STORAGE-CLASS NULL) (OR NULL (UNSIGNED-BYTE 59)))
                  (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -12984,8 +13420,10 @@ MAKE-RANDOM-TN names a compiled function:
 :ID: 340487667189
 :CUSTOM_ID: SB-C:TN-KIND
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-KIND names a compiled function:
   An accessor for SB-C:TN
   Lambda-list: (INSTANCE)
@@ -13011,6 +13449,7 @@ TN-KIND names a compiled function:
                           :ARG-PASS)
                   &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -13021,22 +13460,27 @@ TN-KIND names a compiled function:
 :ID: 3168911318318
 :CUSTOM_ID: SB-C:CURRENT-NFP-TN
 :ALLOC: HEAP IMMOBILE
-:END:** RESTORE-DYNAMIC-STATE
+:END:
+** RESTORE-DYNAMIC-STATE
 :PROPERTIES:
 :ID: 1654833039743
 :CUSTOM_ID: SB-C:RESTORE-DYNAMIC-STATE
 :ALLOC: HEAP IMMOBILE
-:END:** ID-NODE :compiled:function:
+:END:
+** ID-NODE :compiled:function:
 :PROPERTIES:
 :ID: 3304155653037
 :CUSTOM_ID: SB-C:ID-NODE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ID-NODE names a compiled function:
   Lambda-list: (NUM)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -13047,13 +13491,16 @@ ID-NODE names a compiled function:
 :ID: 3923263340301
 :CUSTOM_ID: SB-C:MAKE-TN-REF
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-TN-REF names a compiled function:
   A constructor for SB-C:TN-REF
   Lambda-list: (TN WRITE-P)
   Derived type: (FUNCTION (SB-C:TN BOOLEAN) (VALUES SB-C:TN-REF &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -13064,8 +13511,10 @@ MAKE-TN-REF names a compiled function:
 :ID: 504522328365
 :CUSTOM_ID: SB-C:VOP-CODEGEN-INFO
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 VOP-CODEGEN-INFO names a compiled function:
   An accessor for SB-C::VOP
   Lambda-list: (INSTANCE)
@@ -13077,6 +13526,7 @@ VOP-CODEGEN-INFO names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (T SB-C::VOP) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 - Called by
@@ -13544,8 +13994,10 @@ VOP-CODEGEN-INFO names a compiled function:
 :ID: 2514202762136
 :CUSTOM_ID: SB-C:TN-OFFSET
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-OFFSET names a compiled function:
   An accessor for SB-C:TN
   Lambda-list: (INSTANCE)
@@ -13559,6 +14011,7 @@ TN-OFFSET names a compiled function:
   Derived type: (FUNCTION ((OR NULL (UNSIGNED-BYTE 59)) SB-C:TN)
                  (VALUES (OR NULL (UNSIGNED-BYTE 59)) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -13569,8 +14022,10 @@ TN-OFFSET names a compiled function:
 :ID: 509029056164
 :CUSTOM_ID: SB-C:COMPONENT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPONENT names the structure-class #<STRUCTURE-CLASS SB-C:COMPONENT>:
   Class precedence-list: SB-C:COMPONENT, STRUCTURE-OBJECT, SB-PCL::SLOT-OBJECT,
                          T
@@ -13632,6 +14087,7 @@ COMPONENT names the structure-class #<STRUCTURE-CLASS SB-C:COMPONENT>:
     SB-C::RENUMBER-P
       Type: T
       Initform: NIL
+
 #+end_example
 
 :definitions:
@@ -13644,13 +14100,16 @@ COMPONENT names the structure-class #<STRUCTURE-CLASS SB-C:COMPONENT>:
 :ID: 1973516891277
 :CUSTOM_ID: SB-C:MSAN-UNPOISON
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MSAN-UNPOISON names a compiled function:
   An accessor for SB-C::COMPILATION
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C::COMPILATION) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;EARLY-C.LISP
+
 #+end_example
 
 :definitions:
@@ -13661,13 +14120,16 @@ MSAN-UNPOISON names a compiled function:
 :ID: 445555348946
 :CUSTOM_ID: SB-C:HALT
 :ALLOC: HEAP IMMOBILE
-:END:** INLINING-DEPENDENCY-FAILURE :condition:class:
+:END:
+** INLINING-DEPENDENCY-FAILURE :condition:class:
 :PROPERTIES:
 :ID: 2305316126048
 :CUSTOM_ID: SB-C:INLINING-DEPENDENCY-FAILURE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INLINING-DEPENDENCY-FAILURE names the condition-class #<SB-PCL::CONDITION-CLASSSB-C:INLINING-DEPENDENCY-FAILURE>:
   Class precedence-list: SB-C:INLINING-DEPENDENCY-FAILURE, SIMPLE-STYLE-WARNING,
                          SIMPLE-CONDITION, STYLE-WARNING, WARNING, CONDITION,
@@ -13675,6 +14137,7 @@ INLINING-DEPENDENCY-FAILURE names the condition-class #<SB-PCL::CONDITION-CLASSS
   Direct superclasses: SIMPLE-STYLE-WARNING
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -13685,12 +14148,15 @@ INLINING-DEPENDENCY-FAILURE names the condition-class #<SB-PCL::CONDITION-CLASSS
 :ID: 152335752284
 :CUSTOM_ID: SB-C:DEF-ALLOC
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEF-ALLOC names a compiled function:
   Lambda-list: (NAME WORDS ALLOCATION-STYLE HEADER LOWTAG INITS)
   Derived type: (FUNCTION (T T T T T T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+
 #+end_example
 
 :definitions:
@@ -13701,8 +14167,10 @@ DEF-ALLOC names a compiled function:
 :ID: 3168731886944
 :CUSTOM_ID: SB-C:FATAL-COMPILER-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FATAL-COMPILER-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-C:FATAL-COMPILER-ERROR>:
   Class precedence-list: SB-C:FATAL-COMPILER-ERROR,
                          SB-INT:ENCAPSULATED-CONDITION, CONDITION,
@@ -13710,6 +14178,7 @@ FATAL-COMPILER-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-C:FA
   Direct superclasses: SB-INT:ENCAPSULATED-CONDITION
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -13720,12 +14189,15 @@ FATAL-COMPILER-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-C:FA
 :ID: 2487480971555
 :CUSTOM_ID: SB-C:COMPILER-STYLE-WARN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPILER-STYLE-WARN names a compiled function:
   Lambda-list: (DATUM &REST ARGUMENTS)
   Declared type: (FUNCTION (T &REST T) (VALUES &OPTIONAL))
   Source file: SYS:SRC;COMPILER;COMPILER-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -13738,8 +14210,10 @@ COMPILER-STYLE-WARN names a compiled function:
 :ID: 2675481142637
 :CUSTOM_ID: SB-C:TN-REF-TYPE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-REF-TYPE names a compiled function:
   An accessor for SB-C:TN-REF
   Lambda-list: (INSTANCE)
@@ -13753,6 +14227,7 @@ TN-REF-TYPE names a compiled function:
   Derived type: (FUNCTION ((OR SB-KERNEL:CTYPE NULL) SB-C:TN-REF)
                  (VALUES (OR SB-KERNEL:CTYPE NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -13763,13 +14238,16 @@ TN-REF-TYPE names a compiled function:
 :ID: 2577537621219
 :CUSTOM_ID: SB-C:MAKE-RETURN-PC-PASSING-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END:** TN-REF-NEXT :compiled:function:
+:END:
+** TN-REF-NEXT :compiled:function:
 :PROPERTIES:
 :ID: 902638719191
 :CUSTOM_ID: SB-C:TN-REF-NEXT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-REF-NEXT names a compiled function:
   An accessor for SB-C:TN-REF
   Lambda-list: (INSTANCE)
@@ -13783,6 +14261,7 @@ TN-REF-NEXT names a compiled function:
   Derived type: (FUNCTION ((OR SB-C:TN-REF NULL) SB-C:TN-REF)
                  (VALUES (OR SB-C:TN-REF NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -13793,17 +14272,21 @@ TN-REF-NEXT names a compiled function:
 :ID: 682360940517
 :CUSTOM_ID: SB-C:FAST-SYMBOL-VALUE
 :ALLOC: HEAP IMMOBILE
-:END:** ID-LABEL :compiled:function:
+:END:
+** ID-LABEL :compiled:function:
 :PROPERTIES:
 :ID: 3568292544727
 :CUSTOM_ID: SB-C:ID-LABEL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ID-LABEL names a compiled function:
   Lambda-list: (NUM)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -13814,8 +14297,10 @@ ID-LABEL names a compiled function:
 :ID: 1547042057276
 :CUSTOM_ID: SB-C:JUMP-TABLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 JUMP-TABLE names a special operator:
   Lambda-list: (INDEX &REST TARGETS)
   Source file: SYS:SRC;COMPILER;IR1-TRANSLATORS.LISP
@@ -13859,6 +14344,7 @@ JUMP-TABLE names the structure-class #<STRUCTURE-CLASS SB-C:JUMP-TABLE>:
 
 JUMP-TABLE names a dependent optimization policy quality:
   (undocumented)
+
 #+end_example
 
 :definitions:
@@ -13870,14 +14356,17 @@ JUMP-TABLE names a dependent optimization policy quality:
 :ID: 3069718831048
 :CUSTOM_ID: SB-C:COMPUTE-UDIV32-MAGIC
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPUTE-UDIV32-MAGIC names a compiled function:
   Lambda-list: (DIVISOR)
   Derived type: (FUNCTION (T)
                  (VALUES (UNSIGNED-BYTE 32) (SIGNED-BYTE 32) (SIGNED-BYTE 32)
                          &OPTIONAL))
   Source file: SYS:SRC;COMPILER;GENERIC;UTILS.LISP
+
 #+end_example
 
 :definitions:
@@ -13888,13 +14377,16 @@ COMPUTE-UDIV32-MAGIC names a compiled function:
 :ID: 2543919323947
 :CUSTOM_ID: SB-C:NODE-STACK-ALLOCATE-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NODE-STACK-ALLOCATE-P names a compiled function:
   Lambda-list: (NODE)
   Derived type: (FUNCTION (T)
                  (VALUES (OR NULL SB-C::CDYNAMIC-EXTENT) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;IR1UTIL.LISP
+
 #+end_example
 
 :definitions:
@@ -13905,13 +14397,16 @@ NODE-STACK-ALLOCATE-P names a compiled function:
 :ID: 3025594045467
 :CUSTOM_ID: SB-C:ALLOC-ALIEN-STACK-SPACE
 :ALLOC: HEAP IMMOBILE
-:END:** COMPONENT-INFO :compiled:function:
+:END:
+** COMPONENT-INFO :compiled:function:
 :PROPERTIES:
 :ID: 495356490292
 :CUSTOM_ID: SB-C:COMPONENT-INFO
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPONENT-INFO names a compiled function:
   An accessor for SB-C:COMPONENT
   Lambda-list: (INSTANCE)
@@ -13925,6 +14420,7 @@ COMPONENT-INFO names a compiled function:
   Derived type: (FUNCTION ((OR NULL SB-C::IR2-COMPONENT) SB-C:COMPONENT)
                  (VALUES (OR NULL SB-C::IR2-COMPONENT) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;NODE.LISP
+
 #+end_example
 
 :definitions:
@@ -13935,8 +14431,10 @@ COMPONENT-INFO names a compiled function:
 :ID: 3262632648245
 :CUSTOM_ID: SB-C:CONVERT-CONDITIONAL-MOVE-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CONVERT-CONDITIONAL-MOVE-P names a compiled function:
   Lambda-list: (DST-TN)
   Derived type: (FUNCTION (T)
@@ -13945,6 +14443,7 @@ CONVERT-CONDITIONAL-MOVE-P names a compiled function:
                           SB-VM::MOVE-IF/CHAR SB-VM::MOVE-IF/SAP NIL)
                   &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;PRED.LISP
+
 #+end_example
 
 :definitions:
@@ -13955,13 +14454,16 @@ CONVERT-CONDITIONAL-MOVE-P names a compiled function:
 :ID: 756351697136
 :CUSTOM_ID: SB-C:GET-TOPLEVELISH-FILE-INFO
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GET-TOPLEVELISH-FILE-INFO names a compiled function:
   Lambda-list: (&OPTIONAL (SOURCE-INFO *SOURCE-INFO*))
   Derived type: (FUNCTION (&OPTIONAL T)
                  (VALUES (OR SB-C::FILE-INFO NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;MAIN.LISP
+
 #+end_example
 
 :definitions:
@@ -13972,13 +14474,16 @@ GET-TOPLEVELISH-FILE-INFO names a compiled function:
 :ID: 89868991778
 :CUSTOM_ID: SB-C:SAFE-FDEFN-FUN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAFE-FDEFN-FUN names a compiled function:
   Lambda-list: (X)
   Declared type: (FUNCTION ((OR SB-KERNEL:FDEFN SYMBOL))
                   (VALUES FUNCTION &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -13991,12 +14496,15 @@ SAFE-FDEFN-FUN names a compiled function:
 :ID: 4034130143592
 :CUSTOM_ID: SB-C:EMIT-CONSTANT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 EMIT-CONSTANT names a compiled function:
   Lambda-list: (VALUE)
   Derived type: (FUNCTION (T) (VALUES (NOT NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;IR2TRAN.LISP
+
 #+end_example
 
 :definitions:
@@ -14007,17 +14515,21 @@ EMIT-CONSTANT names a compiled function:
 :ID: 802949528259
 :CUSTOM_ID: SB-C:ANCESTOR-FRAME-SET
 :ALLOC: HEAP IMMOBILE
-:END:** DEF-CASSER :compiled:function:
+:END:
+** DEF-CASSER :compiled:function:
 :PROPERTIES:
 :ID: 3878443661210
 :CUSTOM_ID: SB-C:DEF-CASSER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEF-CASSER names a compiled function:
   Lambda-list: (NAME OFFSET LOWTAG)
   Derived type: (FUNCTION (T T T) (VALUES (FUNCTION (T T) *) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+
 #+end_example
 
 :definitions:
@@ -14028,19 +14540,23 @@ DEF-CASSER names a compiled function:
 :ID: 518339338601
 :CUSTOM_ID: SB-C:CALL-LOCAL
 :ALLOC: HEAP IMMOBILE
-:END:** DEFINITION-SOURCE-LOCATION-NAMESTRING :compiled:function:
+:END:
+** DEFINITION-SOURCE-LOCATION-NAMESTRING :compiled:function:
 :PROPERTIES:
 :ID: 3134854189641
 :CUSTOM_ID: SB-C:DEFINITION-SOURCE-LOCATION-NAMESTRING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINITION-SOURCE-LOCATION-NAMESTRING names a compiled function:
   An accessor for SB-C:DEFINITION-SOURCE-LOCATION
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C:DEFINITION-SOURCE-LOCATION)
                  (VALUES (OR STRING NULL) &OPTIONAL))
   Source file: SYS:SRC;CODE;SOURCE-LOCATION.LISP
+
 #+end_example
 
 - Called by
@@ -14054,10 +14570,13 @@ DEFINITION-SOURCE-LOCATION-NAMESTRING names a compiled function:
 :ID: 4237983059435
 :CUSTOM_ID: SB-C:*COMPONENT-BEING-COMPILED*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*COMPONENT-BEING-COMPILED* names a special variable:
+
+*COMPONENT-BEING-COMPILED* names a special variable:
   Currently unbound.
+
 #+end_example
 
 :definitions:
@@ -14068,10 +14587,13 @@ DEFINITION-SOURCE-LOCATION-NAMESTRING names a compiled function:
 :ID: 3283547391018
 :CUSTOM_ID: SB-C:*LOCATION-CONTEXT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*LOCATION-CONTEXT* names a special variable:
+
+*LOCATION-CONTEXT* names a special variable:
   Value: NIL
+
 #+end_example
 
 :definitions:
@@ -14082,11 +14604,14 @@ DEFINITION-SOURCE-LOCATION-NAMESTRING names a compiled function:
 :ID: 1855123821587
 :CUSTOM_ID: SB-C:ATTRIBUTES-UNION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ATTRIBUTES-UNION names a macro:
   Lambda-list: (&REST ATTRIBUTES)
   Source file: SYS:SRC;COMPILER;MACROS.LISP
+
 #+end_example
 
 :definitions:
@@ -14097,16 +14622,20 @@ ATTRIBUTES-UNION names a macro:
 :ID: 3420484439541
 :CUSTOM_ID: SB-C:ANCESTOR-FRAME-REF
 :ALLOC: HEAP IMMOBILE
-:END:** *BACKEND-SUBFEATURES​* :global:var:
+:END:
+** *BACKEND-SUBFEATURES​* :global:var:
 :PROPERTIES:
 :ID: 1427202896334
 :CUSTOM_ID: SB-C:*BACKEND-SUBFEATURES*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*BACKEND-SUBFEATURES* names a special variable:
+
+*BACKEND-SUBFEATURES* names a special variable:
   Declared always-bound.
   Value: NIL
+
 #+end_example
 
 :definitions:
@@ -14120,6 +14649,7 @@ ATTRIBUTES-UNION names a macro:
 :CUSTOM_ID: SB-C:CATCH-BLOCK
 :ALLOC: HEAP IMMOBILE
 :END:
+
 :definitions:
 - SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
 :end:
@@ -14128,12 +14658,15 @@ ATTRIBUTES-UNION names a macro:
 :ID: 4057329821036
 :CUSTOM_ID: SB-C:NUM-CONT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NUM-CONT names a compiled function:
   Lambda-list: (NUM)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -14144,8 +14677,10 @@ NUM-CONT names a compiled function:
 :ID: 3354846159613
 :CUSTOM_ID: SB-C:TN-REF-TARGET
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-REF-TARGET names a compiled function:
   An accessor for SB-C:TN-REF
   Lambda-list: (INSTANCE)
@@ -14159,6 +14694,7 @@ TN-REF-TARGET names a compiled function:
   Derived type: (FUNCTION ((OR SB-C:TN-REF NULL) SB-C:TN-REF)
                  (VALUES (OR SB-C:TN-REF NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -14169,12 +14705,15 @@ TN-REF-TARGET names a compiled function:
 :ID: 364988374159
 :CUSTOM_ID: SB-C:MAKE-UNKNOWN-VALUES-LOCATIONS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-UNKNOWN-VALUES-LOCATIONS names a compiled function:
   Lambda-list: (&OPTIONAL UNUSED-COUNT UNUSED-SP)
   Derived type: (FUNCTION (&OPTIONAL T T) (VALUES CONS &OPTIONAL))
   Source file: SYS:SRC;COMPILER;GENERIC;UTILS.LISP
+
 #+end_example
 
 :definitions:
@@ -14185,8 +14724,10 @@ MAKE-UNKNOWN-VALUES-LOCATIONS names a compiled function:
 :ID: 3976603679158
 :CUSTOM_ID: SB-C:COMPILER-MACRO-APPLICATION-MISSED-WARNING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPILER-MACRO-APPLICATION-MISSED-WARNING names the condition-class #<SB-PCL::CONDITION-CLASS SB-C:COMPILER-MACRO-APPLICATION-MISSED-WARNING>:
   Class precedence-list: SB-C:COMPILER-MACRO-APPLICATION-MISSED-WARNING,
                          STYLE-WARNING, WARNING, CONDITION, SB-PCL::SLOT-OBJECT,
@@ -14200,6 +14741,7 @@ COMPILER-MACRO-APPLICATION-MISSED-WARNING names the condition-class #<SB-PCL::CO
     FUNCTION
       Initargs: :FUNCTION
       Readers: SB-C::COMPILER-MACRO-APPLICATION-MISSED-WARNING-FUNCTION
+
 #+end_example
 
 :definitions:
@@ -14210,12 +14752,15 @@ COMPILER-MACRO-APPLICATION-MISSED-WARNING names the condition-class #<SB-PCL::CO
 :ID: 3390385034366
 :CUSTOM_ID: SB-C:PARSE-EVAL-WHEN-SITUATIONS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PARSE-EVAL-WHEN-SITUATIONS names a compiled function:
   Lambda-list: (SITUATIONS)
   Derived type: (FUNCTION (T) (VALUES LIST LIST LIST &OPTIONAL))
   Source file: SYS:SRC;COMPILER;MAIN.LISP
+
 #+end_example
 
 :definitions:
@@ -14226,17 +14771,21 @@ PARSE-EVAL-WHEN-SITUATIONS names a compiled function:
 :ID: 2972971230977
 :CUSTOM_ID: SB-C:SETUP-CLOSURE-ENVIRONMENT
 :ALLOC: HEAP IMMOBILE
-:END:** NODE-ID :compiled:function:
+:END:
+** NODE-ID :compiled:function:
 :PROPERTIES:
 :ID: 1275377846707
 :CUSTOM_ID: SB-C:NODE-ID
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NODE-ID names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (SB-C::NODE) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -14247,14 +14796,17 @@ NODE-ID names a compiled function:
 :ID: 3194458125208
 :CUSTOM_ID: SB-C:MAKE-FIXUP-NOTE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-FIXUP-NOTE names a compiled function:
   A constructor for SB-C::FIXUP-NOTE
   Lambda-list: (KIND FIXUP POSITION)
   Derived type: (FUNCTION (SYMBOL SB-C:FIXUP FIXNUM)
                  (VALUES SB-C::FIXUP-NOTE &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -14265,12 +14817,15 @@ MAKE-FIXUP-NOTE names a compiled function:
 :ID: 844368640601
 :CUSTOM_ID: SB-C:LOCATION=
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LOCATION= names a compiled function:
   Lambda-list: (X Y)
   Derived type: (FUNCTION (SB-C:TN SB-C:TN) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 - Called by
@@ -14568,8 +15123,10 @@ LOCATION= names a compiled function:
 :ID: 4222807383812
 :CUSTOM_ID: SB-C:ALLOCATE-CODE-OBJECT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ALLOCATE-CODE-OBJECT names a compiled function:
   Lambda-list: (SPACE BOXED UNBOXED)
   Declared type: (FUNCTION (T (UNSIGNED-BYTE 22) (UNSIGNED-BYTE 25))
@@ -14577,6 +15134,7 @@ ALLOCATE-CODE-OBJECT names a compiled function:
   Derived type: (FUNCTION (T (UNSIGNED-BYTE 22) (UNSIGNED-BYTE 25))
                  (VALUES SB-KERNEL:CODE-COMPONENT (UNSIGNED-BYTE 22)&OPTIONAL))
   Source file: SYS:SRC;CODE;ALLOC.LISP
+
 #+end_example
 
 :definitions:
@@ -14587,12 +15145,15 @@ ALLOCATE-CODE-OBJECT names a compiled function:
 :ID: 3227462276005
 :CUSTOM_ID: SB-C:CHANGE-VOP-FLAGS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CHANGE-VOP-FLAGS names a compiled function:
   Lambda-list: (VOP FLAGS)
   Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;IR2TRAN.LISP
+
 #+end_example
 
 :definitions:
@@ -14603,15 +15164,19 @@ CHANGE-VOP-FLAGS names a compiled function:
 :ID: 1066137986842
 :CUSTOM_ID: SB-C:UNBIND-N
 :ALLOC: HEAP IMMOBILE
-:END:** OLD-FP-PASSING-OFFSET :constant:var:
+:END:
+** OLD-FP-PASSING-OFFSET :constant:var:
 :PROPERTIES:
 :ID: 1873657332095
 :CUSTOM_ID: SB-C:OLD-FP-PASSING-OFFSET
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 OLD-FP-PASSING-OFFSET names a constant variable:
   Value: 8388614
+
 #+end_example
 
 :definitions:
@@ -14622,17 +15187,21 @@ OLD-FP-PASSING-OFFSET names a constant variable:
 :ID: 3211677385989
 :CUSTOM_ID: SB-C:COMPUTE-FUN
 :ALLOC: HEAP IMMOBILE
-:END:** DEFOPTIMIZER :compiled:macro:function:
+:END:
+** DEFOPTIMIZER :compiled:macro:function:
 :PROPERTIES:
 :ID: 1707031384574
 :CUSTOM_ID: SB-C:DEFOPTIMIZER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFOPTIMIZER names a macro:
   Lambda-list: (WHAT (LAMBDA-LIST &OPTIONAL (NODE (GENSYM)) &REST VARS) &BODY
                 BODY)
   Source file: SYS:SRC;COMPILER;MACROS.LISP
+
 #+end_example
 
 :definitions:
@@ -14643,13 +15212,16 @@ DEFOPTIMIZER names a macro:
 :ID: 1621233297480
 :CUSTOM_ID: SB-C:SC+OFFSET-OFFSET
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SC+OFFSET-OFFSET names a compiled function:
   Lambda-list: (SC+OFFSET)
   Declared type: (FUNCTION ((UNSIGNED-BYTE 27))
                   (VALUES (UNSIGNED-BYTE 21) &OPTIONAL))
   Source file: SYS:SRC;CODE;SC-OFFSET.LISP
+
 #+end_example
 
 :definitions:
@@ -14660,12 +15232,15 @@ SC+OFFSET-OFFSET names a compiled function:
 :ID: 11439019606
 :CUSTOM_ID: SB-C:COMPONENT-ID
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPONENT-ID names a compiled function:
   Lambda-list: (X)
   Derived type: (FUNCTION (SB-C:COMPONENT) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -14676,19 +15251,23 @@ COMPONENT-ID names a compiled function:
 :ID: 1278387020585
 :CUSTOM_ID: SB-C:STATIC-TAIL-CALL-NAMED
 :ALLOC: HEAP IMMOBILE
-:END:** SC-OPERAND-SIZE :compiled:function:
+:END:
+** SC-OPERAND-SIZE :compiled:function:
 :PROPERTIES:
 :ID: 1979576844739
 :CUSTOM_ID: SB-C:SC-OPERAND-SIZE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SC-OPERAND-SIZE names a compiled function:
   An accessor for SB-C:STORAGE-CLASS
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C:STORAGE-CLASS)
                  (VALUES (OR KEYWORD NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -14699,12 +15278,15 @@ SC-OPERAND-SIZE names a compiled function:
 :ID: 637233271051
 :CUSTOM_ID: SB-C:MAKE-STACK-POINTER-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-STACK-POINTER-TN names a compiled function:
   Lambda-list: (&OPTIONAL NARGS)
   Derived type: (FUNCTION (&OPTIONAL T) (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;CALL.LISP
+
 #+end_example
 
 :definitions:
@@ -14715,8 +15297,10 @@ MAKE-STACK-POINTER-TN names a compiled function:
 :ID: 3860862314384
 :CUSTOM_ID: SB-C:READ-VAR-INTEGER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 READ-VAR-INTEGER names a compiled function:
   Lambda-list: (SOURCE START)
   Declared type: (FUNCTION ((VECTOR (UNSIGNED-BYTE 8)) (UNSIGNED-BYTE 44))
@@ -14725,6 +15309,7 @@ READ-VAR-INTEGER names a compiled function:
                  (VALUES (UNSIGNED-BYTE 32) (INTEGER 1 17592186044415)
                          &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-VAR-IO.LISP
+
 #+end_example
 
 :definitions:
@@ -14735,8 +15320,10 @@ READ-VAR-INTEGER names a compiled function:
 :ID: 2012050895702
 :CUSTOM_ID: SB-C:COMPILER-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPILER-ERROR names a compiled function:
   Lambda-list: (DATUM &REST ARGUMENTS)
   Declared type: (FUNCTION (T &REST T) NIL)
@@ -14748,6 +15335,7 @@ COMPILER-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-C:COMPILER
   Direct superclasses: SB-INT:ENCAPSULATED-CONDITION
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -14760,13 +15348,16 @@ COMPILER-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-C:COMPILER
 :ID: 3743375942515
 :CUSTOM_ID: SB-C:CALLEE-NFP-TN
 :ALLOC: HEAP IMMOBILE
-:END:** PROCLAIM-FTYPE :compiled:function:
+:END:
+** PROCLAIM-FTYPE :compiled:function:
 :PROPERTIES:
 :ID: 2450415813205
 :CUSTOM_ID: SB-C:PROCLAIM-FTYPE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PROCLAIM-FTYPE names a compiled function:
   Lambda-list: (NAME TYPE-OID TYPE-SPECIFIER WHERE-FROM)
   Derived type: (FUNCTION
@@ -14774,6 +15365,7 @@ PROCLAIM-FTYPE names a compiled function:
                  (VALUES (MEMBER :DECLARED :DEFINED-METHOD :ASSUMED :DEFINED)
                          &OPTIONAL))
   Source file: SYS:SRC;COMPILER;PROCLAIM.LISP
+
 #+end_example
 
 :definitions:
@@ -14784,10 +15376,13 @@ PROCLAIM-FTYPE names a compiled function:
 :ID: 171973787466
 :CUSTOM_ID: SB-C:%UNWIND-PROTECT-BREAKUP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %UNWIND-PROTECT-BREAKUP names an undefined function
   Declared type: (FUNCTION (T) (VALUES T &OPTIONAL))
+
 #+end_example
 
 :definitions:
@@ -14801,13 +15396,16 @@ PROCLAIM-FTYPE names a compiled function:
 :ID: 2164978078693
 :CUSTOM_ID: SB-C:ATTRIBUTES=
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ATTRIBUTES= names a compiled function:
   Lambda-list: (ATTR1 ATTR2)
   Declared type: (FUNCTION (FIXNUM FIXNUM) (VALUES &OPTIONAL BOOLEAN &REST T))
   Derived type: (FUNCTION (FIXNUM FIXNUM) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;MACROS.LISP
+
 #+end_example
 
 :definitions:
@@ -14818,12 +15416,15 @@ ATTRIBUTES= names a compiled function:
 :ID: 773361134202
 :CUSTOM_ID: SB-C:*BACKEND-BYTE-ORDER*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*BACKEND-BYTE-ORDER* names a global variable:
+
+*BACKEND-BYTE-ORDER* names a global variable:
   Declared type: (MEMBER :BIG-ENDIAN :LITTLE-ENDIAN NIL)
   Declared always-bound.
   Value: :LITTLE-ENDIAN
+
 #+end_example
 
 - Referenced by
@@ -14837,13 +15438,16 @@ ATTRIBUTES= names a compiled function:
 :ID: 622505378915
 :CUSTOM_ID: SB-C:MAKE-NORMAL-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-NORMAL-TN names a compiled function:
   Lambda-list: (PRIMITIVE-TYPE &OPTIONAL (TYPE *UNIVERSAL-TYPE*))
   Derived type: (FUNCTION (SB-C:PRIMITIVE-TYPE &OPTIONAL SB-KERNEL:CTYPE)
                  (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -14854,26 +15458,22 @@ MAKE-NORMAL-TN names a compiled function:
 :ID: 607755215903
 :CUSTOM_ID: SB-C:IR2-ENVIRONMENT-NUMBER-STACK-P
 :ALLOC: HEAP IMMOBILE
-:END:** %LISTIFY-REST-ARGS :vop:
+:END:
+** %LISTIFY-REST-ARGS :vop:
 :PROPERTIES:
 :ID: 3640977752290
 :CUSTOM_ID: SB-C:%LISTIFY-REST-ARGS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %LISTIFY-REST-ARGS names an undefined function
   Declared type: (FUNCTION (T (UNSIGNED-BYTE 44)) (VALUES LIST &OPTIONAL))
+
 #+end_example
 
 - Called by
-  - SB-ACLREPL::KILL-CMD
-  - SB-ACLREPL::DESCRIPTION-MAYBE-INTERNALS
-  - SB-ACLREPL::REMOVE-ALIAS
-  - SB-MANUAL::EVAL-FORMAT
-  - SB-ACLREPL::OUTPUT-INSPECT-NOTE
-  - SB-ACLREPL::UNTRACE-CMD
-  - SB-ACLREPL::TRACE-CMD
-  - SB-ACLREPL::DESCRIBE-CMD
   - SB-SIMD-NEON:S64.2/=
   - SB-SIMD-NEON:S32.4/=
   - SB-SIMD-NEON:S16.8/=
@@ -15946,7 +16546,7 @@ MAKE-NORMAL-TN names a compiled function:
   - (MAKE-CONFIG ((EQL KRYPT)))
   - (INIT ((EQL PACKY)))
   - (MAKE-DB ((EQL PACKY)))
-  - [[id:906585304203][PACKY-ERROR]]
+  - SKEL/PACKY:PACKY-ERROR
   - (INITIALIZE-INSTANCE BEFORE (PKGBUILD))
   - (PROJECT-COMPILE (LISP-FILE))
   - SKEL/CORE::SK-LOG
@@ -15954,7 +16554,7 @@ MAKE-NORMAL-TN names a compiled function:
   - (MAKE-DB ((EQL SKEL)))
   - (WRITE-AST AROUND (SKEL-PROJECT T))
   - (MAKE-CONFIG ((EQL SKEL)))
-  - [[id:809231326358][SKEL-SIMPLE-ERROR]]
+  - [[id:809231326819][SKEL-SIMPLE-ERROR]]
   - MATH/SYM:⊗
   - [[id:3435123072334][=]]
   - [[id:3675647018752][/]]
@@ -15968,8 +16568,8 @@ MAKE-NORMAL-TN names a compiled function:
   - (SOCKET-BIND (LIBPOD-CLIENT))
   - (SOCKET-CONNECT (LIBPOD-CLIENT))
   - (MAKE-CONFIG ((EQL PODMAN)))
-  - [[id:1956996571219][BUILDAH-CONFIG]]
-  - [[id:3932828855991][BUILDAH-COPY]]
+  - [[id:1956996572012][BUILDAH-CONFIG]]
+  - [[id:3932828856276][BUILDAH-COPY]]
   - (MAKE-CONFIG ((EQL QEMU-SYSTEM)))
   - (MAKE-CONFIG ((EQL QEMU-IMAGE)))
   - (MAKE-CONFIG ((EQL ARCHISO)))
@@ -15978,7 +16578,7 @@ MAKE-NORMAL-TN names a compiled function:
   - NIL
   - (PUBLISH (MOD-COMPONENT))
   - (PUBLISH (FILE-COMPONENT))
-  - [[id:2185377211716][MAKE-SHEBANG-COMMENT]]
+  - [[id:2185377211959][MAKE-SHEBANG-COMMENT]]
   - NIL
   - NIL
   - NIL
@@ -16052,7 +16652,7 @@ MAKE-NORMAL-TN names a compiled function:
   - (ORG-CREATE ((EQL ITALIC)))
   - (ORG-CREATE ((EQL BOLD)))
   - (ORG-CREATE ((EQL PLAIN-TEXT)))
-  - [[id:3972123506653][ORG-FILE-HEADINGS]]
+  - ORGAN:ORG-FILE-HEADINGS
   - (MAKE-CONFIG ((EQL RDB)))
   - (FLUSH-DB (RDB-DATABASE))
   - (MAKE-DB ((EQL RDB)))
@@ -16063,12 +16663,12 @@ MAKE-NORMAL-TN names a compiled function:
   - RDB::MAKE-RDB-COMPACTOPTS
   - RDB::MAKE-RDB-WRITEOPTS
   - RDB::MAKE-RDB-READOPTS
-  - [[id:3714035810428][MAKE-RDB-OPTS]]
+  - [[id:3714035810491][MAKE-RDB-OPTS]]
   - RDB::RDB-DEFAULT-COLUMN-WARNING
-  - [[id:3172632515114][SIMPLE-RDB-WARNING]]
+  - [[id:3172632515488][SIMPLE-RDB-WARNING]]
   - RDB::SIMPLE-RDB-ERROR
   - Q/DQL::SIMPLE-DQL-ERROR
-  - [[id:4040012209017][SIMPLE-SQL-ERROR]]
+  - Q/SQL:SIMPLE-SQL-ERROR
   - (MAKE-CONFIG ((EQL QUERY)))
   - (MAKE-QUERY (T))
   - (MAKE-QUERY ((EQL SIMPLE)))
@@ -16076,22 +16676,22 @@ MAKE-NORMAL-TN names a compiled function:
   - (MAKE-CONFIG ((EQL OAUTH)))
   - (MAKE-CONFIG ((EQL HTTP)))
   - (MAKE-CONFIG ((EQL UDP)))
-  - [[id:1569855171067][SERVICE-MAKE-REQUEST]]
-  - [[id:4242219012456][SERVICE-LOG]]
+  - [[id:1569855171277][SERVICE-MAKE-REQUEST]]
+  - [[id:4242219012097][SERVICE-LOG]]
   - (SERVICE-LOG-MESSAGE (NET-SERVICE T T))
   - (MAKE-CONFIG ((EQL NET)))
   - (SEND-REQUEST AROUND (SIMPLE-HTTP-CLIENT T))
   - (SEND-REQUEST (HTTP-CLIENT T))
   - (MAKE-CLIENT ((EQL SIMPLE-HTTP)))
   - (MAKE-CLIENT ((EQL HTTP)))
-  - [[id:3009615950314][FETCH]]
+  - NET/REQ:FETCH
   - [[id:129818220411][DELETE]]
-  - [[id:815255706435][PATCH]]
-  - [[id:306440553939][PUT]]
+  - NET/REQ:PATCH
+  - NET/REQ:PUT
   - [[id:3567339500347][HEAD]]
-  - [[id:2422182895996][POST]]
+  - NET/REQ:POST
   - [[id:1805581165143][GET]]
-  - [[id:2460044734616][REQ]]
+  - NET/REQ::REQ
   - NET/REQ::PRINT-VERBOSE-DATA
   - NET/PROTO/DBUS::REQUEST-NAME
   - NET/PROTO/DBUS::ADD-MATCH
@@ -16100,12 +16700,12 @@ MAKE-NORMAL-TN names a compiled function:
   - NET/PROTO/DBUS::FORMAT-AUTHENTICATION-COMMAND
   - (AUTHENTICATE AROUND (T STANDARD-DBUS-CONNECTION))
   - (CONNECT AROUND (T STANDARD-SERVER-ADDRESS))
-  - [[id:2470844387086][HOSTNAME]]
-  - [[id:4332766425212][RESOLVE]]
-  - [[id:1687757559491][QUERY-DATA]]
+  - [[id:2470844386763][HOSTNAME]]
+  - [[id:4332766425366][RESOLVE]]
+  - [[id:1687757559732][QUERY-DATA]]
   - NET/CODEC/DBUS::PACK-VALUE
-  - [[id:554028495856][OSC-BUNDLE]]
-  - [[id:4001635358160][OSC-MESSAGE]]
+  - [[id:554028494870][OSC-BUNDLE]]
+  - [[id:4001635358412][OSC-MESSAGE]]
   - NET/CODEC/OSC::CAT
   - (RECEIVE (WRAPPED-SOCKET))
   - (RECEIVE (SOCKET))
@@ -16116,7 +16716,7 @@ MAKE-NORMAL-TN names a compiled function:
   - (MAKE-SOCKADDR-FOR (UDP-SOCKET))
   - (MAKE-SOCKADDR-FOR (TCP-SOCKET))
   - NET/CORE::%SOCKADDR
-  - [[id:2176053075983][MAKE-SOCKET]]
+  - [[id:2176053076326][MAKE-SOCKET]]
   - (SOCKET-RECEIVE (WRAPPED-SOCKET T T))
   - (SOCKET-SEND (WRAPPED-SOCKET T T))
   - (SOCKET-BIND (WRAPPED-SOCKET))
@@ -16125,174 +16725,174 @@ MAKE-NORMAL-TN names a compiled function:
   - (SOCKET-MAKE-STREAM (WRAPPED-SOCKET))
   - SYN/TEMPO::SET-TEMPO-VARIABLES
   - SYN/GEN/C/SYM::SYMBOL-APPEND
-  - [[id:3859990582819][WRITE-CODE]]
-  - [[id:2581962748050][SIMPLE-GEN-ERROR]]
+  - SYN/GEN:WRITE-CODE
+  - SYN/GEN:SIMPLE-GEN-ERROR
   - SYN/FMT::MAKE-FMT
   - (MAKE-CONFIG ((EQL FMT)))
   - (INIT ((EQL EDITOR)))
-  - [[id:905406374252][DOT-ERROR]]
-  - [[id:3634390899053][GNUPLOT-SEND]]
+  - [[id:905406374827][DOT-ERROR]]
+  - [[id:3634390899035][GNUPLOT-SEND]]
   - CLI/TOOLS/PLOT::GNUPLOT-ERROR
   - CLI/TOOLS/FS::RUN-RCLONE
   - CLI/TOOLS/FS::RCLONE-ERROR
   - CLI/TOOLS/FS::RUN-BTRFS
   - CLI/TOOLS/FS::BTRFS-ERROR
-  - [[id:4228979111152][NOTMUCH-ADDRESS]]
-  - [[id:1105091032083][NOTMUCH-TAG]]
-  - [[id:759627592614][RUN-NOTMUCH]]
+  - [[id:4228979111116][NOTMUCH-ADDRESS]]
+  - [[id:1105091032983][NOTMUCH-TAG]]
+  - [[id:759627592181][RUN-NOTMUCH]]
   - CLI/TOOLS/MAIL::OFFLINEIMAP-ERROR
   - CLI/TOOLS/MAIL::NOTMUCH-ERROR
-  - [[id:1212046968473][EXEC-PICARD]]
+  - [[id:1212046968602][EXEC-PICARD]]
   - (MAKE-CONFIG ((EQL PICARD)))
-  - [[id:3202477212242][PICARD-ERROR]]
+  - [[id:3202477211723][PICARD-ERROR]]
   - CLI/TOOLS/MEDIA::RUN-WIREPLUMBER
-  - [[id:4344021311171][WIREPLUMBER-ERROR]]
+  - [[id:4344021310797][WIREPLUMBER-ERROR]]
   - (MAKE-CONFIG ((EQL MPV)))
-  - [[id:1687205762813][RUN-MPV]]
-  - [[id:4267618712391][MPV-ERROR]]
-  - [[id:3891336249550][FFMPEG-ERROR]]
+  - [[id:1687205762224][RUN-MPV]]
+  - [[id:4267618711912][MPV-ERROR]]
+  - [[id:3891336249669][FFMPEG-ERROR]]
   - CLI/TOOLS/MEDIA::FLAMEGRAPH.PL-ERROR
   - CLI/TOOLS/NET::RSYNC-ERROR
-  - [[id:1644229161397][TRANSMISSION-DAEMON-ERROR]]
-  - [[id:3843186329997][TRANSMISSION-REMOTE-ERROR]]
-  - [[id:2546153839345][START-CADDY]]
-  - [[id:3848208268406][RUN-CADDY]]
-  - [[id:2237224035011][CADDY-ERROR]]
-  - [[id:1098763533844][RUN-YTDL]]
-  - [[id:1033079808864][YTDL-ERROR]]
+  - [[id:1644229161078][TRANSMISSION-DAEMON-ERROR]]
+  - [[id:3843186329823][TRANSMISSION-REMOTE-ERROR]]
+  - [[id:2546153838724][START-CADDY]]
+  - [[id:3848208269267][RUN-CADDY]]
+  - [[id:2237224035069][CADDY-ERROR]]
+  - [[id:1098763533772][RUN-YTDL]]
+  - [[id:1033079808664][YTDL-ERROR]]
   - (MAKE-CONFIG ((EQL YTDL)))
   - CLI/TOOLS/NET::RUN-NMAP
   - CLI/TOOLS/NET::NMAP-ERROR
-  - [[id:1408196676209][EASYRSA-GEN-REQ]]
-  - [[id:1581110514165][RUN-EASYRSA]]
+  - [[id:1408196675971][EASYRSA-GEN-REQ]]
+  - [[id:1581110514222][RUN-EASYRSA]]
   - CLI/TOOLS/NET::EASYRSA-ERROR
   - CLI/TOOLS/NET::RUN-DNSMASQ
   - CLI/TOOLS/NET::DNSMASQ-ERROR
-  - [[id:2133665247241][RUN-WG]]
-  - [[id:786609950043][WG-ERROR]]
-  - [[id:1292840832138][RUN-IP]]
+  - [[id:2133665248105][RUN-WG]]
+  - [[id:786609950374][WG-ERROR]]
+  - [[id:1292840832597][RUN-IP]]
   - CLI/TOOLS/NET::IP-ERROR
-  - [[id:1244988784982][RUN-BROWSER]]
+  - [[id:1244988785338][RUN-BROWSER]]
   - CLI/TOOLS/NET::FIREFOX-ERROR
   - CLI/TOOLS/NET::CHROMIUM-ERROR
   - CLI/TOOLS/NET::SIMPLE-BROWSER-ERROR
-  - [[id:2484457047674][RUN-CORE]]
-  - [[id:3642491846817][RUN-SBCL]]
+  - [[id:2484457047567][RUN-CORE]]
+  - [[id:3642491847238][RUN-SBCL]]
   - CLI/TOOLS/SBCL::CORE-ERROR
-  - [[id:2749226074052][SBCL-ERROR]]
-  - [[id:269952728618][PERF-RECORD]]
+  - [[id:2749226073920][SBCL-ERROR]]
+  - [[id:269952728811][PERF-RECORD]]
   - CLI/TOOLS/SYS::PERF-ERROR
-  - [[id:3810691606265][RUN-BUSCTL]]
+  - [[id:3810691605700][RUN-BUSCTL]]
   - CLI/TOOLS/SYS::BUSCTL-ERROR
-  - [[id:3679037145149][RUN-MACHINECTL]]
+  - [[id:3679037146077][RUN-MACHINECTL]]
   - CLI/TOOLS/SYS::MACHINECTL-ERROR
-  - [[id:4371988805741][RUN-USERDBCTL]]
+  - [[id:4371988805716][RUN-USERDBCTL]]
   - CLI/TOOLS/SYS::USERDBCTL-ERROR
-  - [[id:199459979923][RUN-HOMECTL]]
+  - [[id:199459980109][RUN-HOMECTL]]
   - CLI/TOOLS/SYS::HOMECTL-ERROR
-  - [[id:729526112327][RUN-LOGINCTL]]
+  - [[id:729526112400][RUN-LOGINCTL]]
   - CLI/TOOLS/SYS::LOGINCTL-ERROR
-  - [[id:3280819568512][RUN-RESOLVECTL]]
+  - [[id:3280819567940][RUN-RESOLVECTL]]
   - CLI/TOOLS/SYS::RESOLVECTL-ERROR
-  - [[id:1008777860747][RUN-NETWORKCTL]]
+  - [[id:1008777860611][RUN-NETWORKCTL]]
   - CLI/TOOLS/SYS::NETWORKCTL-ERROR
-  - [[id:643426753427][RUN-JOURNALCTL]]
+  - [[id:643426753532][RUN-JOURNALCTL]]
   - CLI/TOOLS/SYS::JOURNALCTL-ERROR
   - (DESERIALIZE (PATHNAME (EQL SYSTEMD-UNIT)))
-  - [[id:3787078325327][SYSTEMCTL-JSON]]
-  - [[id:4219097739678][SYSTEMCTL-RESTART]]
-  - [[id:3519282560308][SYSTEMCTL-STOP]]
-  - [[id:2501920206685][SYSTEMCTL-START]]
+  - [[id:3787078326138][SYSTEMCTL-JSON]]
+  - [[id:4219097740003][SYSTEMCTL-RESTART]]
+  - [[id:3519282560440][SYSTEMCTL-STOP]]
+  - [[id:2501920206269][SYSTEMCTL-START]]
   - CLI/TOOLS/SYS::SYSTEMCTL-DISABLE
   - CLI/TOOLS/SYS::SYSTEMCTL-ENABLE
   - CLI/TOOLS/SYS::SYSTEMCTL-ERROR
-  - [[id:244722708404][QEMU-TYPE-OPT]]
+  - [[id:244722707898][QEMU-TYPE-OPT]]
   - NIL
-  - [[id:1334083052359][QEMU-IMG]]
-  - [[id:1494553078052][RUN-QEMU]]
+  - [[id:1334083051909][QEMU-IMG]]
+  - [[id:1494553078408][RUN-QEMU]]
   - CLI/TOOLS/VIRT::QEMU-ERROR
   - CLI/TOOLS/VIRT::MKARCHISO-ERROR
   - CLI/TOOLS/VIRT::BUILDAH-ERROR
-  - [[id:1284205763984][RUN-PODMAN]]
-  - [[id:385127203751][PODMAN-ERROR]]
+  - [[id:1284205764410][RUN-PODMAN]]
+  - [[id:385127203158][PODMAN-ERROR]]
   - CLI/TOOLS/VIRT::XVFB-RUN-ERROR
   - CLI/TOOLS/BUILD::RUN-NPX
   - CLI/TOOLS/BUILD::NPX-ERROR
-  - [[id:2003899709712][GO-INSTALL]]
-  - [[id:1449180910000][RUN-GO]]
-  - [[id:2892632502060][GO-ERROR]]
+  - [[id:2003899710135][GO-INSTALL]]
+  - [[id:1449180910265][RUN-GO]]
+  - [[id:2892632502132][GO-ERROR]]
   - CLI/TOOLS/BUILD::RUN-UV
   - CLI/TOOLS/BUILD::UV-ERROR
-  - [[id:2752893997445][CARGO-CLEAN]]
-  - [[id:2123246777867][RUN-RUSTUP]]
-  - [[id:1729817385936][RUSTUP-ERROR]]
-  - [[id:2586149511345][RUN-CARGO]]
-  - [[id:3623292132445][CARGO-ERROR]]
+  - [[id:2752893997260][CARGO-CLEAN]]
+  - [[id:2123246777988][RUN-RUSTUP]]
+  - [[id:1729817385695][RUSTUP-ERROR]]
+  - [[id:2586149511904][RUN-CARGO]]
+  - [[id:3623292133204][CARGO-ERROR]]
   - CLI/TOOLS/BUILD::MESON-ERROR
   - CLI/TOOLS/BUILD::NINJA-ERROR
   - CLI/TOOLS/BUILD::CMAKE-ERROR
   - CLI/TOOLS/BUILD::MAKE-ERROR
-  - [[id:2537691008257][LLDB-ERROR]]
-  - [[id:2055915704413][GDB-ERROR]]
-  - [[id:2522068513286][RUN-NVCC]]
-  - [[id:1228349230533][NVCC-ERROR]]
-  - [[id:1259037788876][RUN-LD]]
+  - [[id:2537691008215][LLDB-ERROR]]
+  - [[id:2055915704391][GDB-ERROR]]
+  - [[id:2522068513743][RUN-NVCC]]
+  - [[id:1228349230762][NVCC-ERROR]]
+  - [[id:1259037788652][RUN-LD]]
   - CLI/TOOLS/CC::LD-ERROR
-  - [[id:1104867127566][RUN-CC]]
-  - [[id:4017884155519][CC-ERROR]]
+  - [[id:1104867128222][RUN-CC]]
+  - [[id:4017884155170][CC-ERROR]]
   - CLI/TOOLS/PACMAN::RUN-MAKEPKG
-  - [[id:1596448685992][MAKEPKG-ERROR]]
+  - [[id:1596448685589][MAKEPKG-ERROR]]
   - CLI/TOOLS/PACMAN::RUN-MKARCHROOT
   - CLI/TOOLS/PACMAN::MKARCHROOT-ERROR
-  - [[id:3030366317482][RUN-PACMAN]]
-  - [[id:2518186133195][PACMAN-ERROR]]
+  - [[id:3030366317204][RUN-PACMAN]]
+  - [[id:2518186132668][PACMAN-ERROR]]
   - CLI/TOOLS/TERM::FORMAT-TMUX-STRING
   - CLI/TOOLS/TERM::INIT-TMUX-CONTROLLER
   - CLI/TOOLS/TERM::RUN-TMUX-CONTROLLER
-  - [[id:3233149778432][SPAWN-TMUX]]
-  - [[id:2330418724938][RUN-TMUX]]
+  - [[id:3233149778456][SPAWN-TMUX]]
+  - [[id:2330418724960][RUN-TMUX]]
   - CLI/TOOLS/TERM::TMUX-ERROR
-  - [[id:1767981764663][RUN-FBTERM]]
-  - [[id:1106846822171][FBTERM-ERROR]]
-  - [[id:222145079451][RUN-SCRIPTREPLAY]]
+  - [[id:1767981765044][RUN-FBTERM]]
+  - [[id:1106846821540][FBTERM-ERROR]]
+  - [[id:222145079953][RUN-SCRIPTREPLAY]]
   - CLI/TOOLS/TERM::SCRIPTREPLAY-ERROR
-  - [[id:2098589947638][RUN-SCRIPT]]
+  - [[id:2098589947233][RUN-SCRIPT]]
   - CLI/TOOLS/TERM::SCRIPT-ERROR
-  - [[id:3349951914530][RUN-TERM]]
-  - [[id:259444547559][TERM-ERROR]]
+  - [[id:3349951914330][RUN-TERM]]
+  - [[id:259444546725][TERM-ERROR]]
   - CLI/TOOLS/TERM::XTERM-ERROR
   - CLI/TOOLS/TERM::ALACRITTY-ERROR
-  - [[id:618956223832][INSTALL-REPL]]
-  - [[id:3912633307616][FORMEDIT]]
-  - [[id:527556628040][LINEDIT]]
-  - [[id:223370372051][MAKE-EDITOR]]
+  - [[id:618956223984][INSTALL-REPL]]
+  - [[id:3912633307906][FORMEDIT]]
+  - [[id:527556628336][LINEDIT]]
+  - [[id:223370371457][MAKE-EDITOR]]
   - (INITIALIZE-INSTANCE AFTER (TERMINAL-EDITOR))
-  - [[id:2055038960749][YES-OR-NO]]
+  - [[id:2055038961503][YES-OR-NO]]
   - (MAKE-CONFIG ((EQL EDITOR)))
-  - [[id:2895484639775][TPARM]]
+  - [[id:2895484639692][TPARM]]
   - CLI/SPARK::STRING-CONCAT
-  - [[id:107173626613][SET-TTY-MODE]]
-  - [[id:3409687458128][.SGR]]
+  - [[id:107173626758][SET-TTY-MODE]]
+  - [[id:3409687458743][.SGR]]
   - CLI/ANSI::CSI
-  - [[id:372539426790][ESC]]
+  - CLI/ANSI::ESC
   - NIL
   - NIL
   - (INITIALIZE-INSTANCE AFTER (PASSWORD))
   - CRY/TLS::SSL-LOAD-GLOBAL-VERIFY-LOCATIONS
   - CRY/TLS::NONBLOCKING-SSL-FUNCALL
   - CRY/TLS::ENSURE-SSL-FUNCALL
-  - [[id:820958324993][MATCHER-AND]]
-  - [[id:902534731778][MATCHER-OR]]
+  - PARSE/LEX:MATCHER-AND
+  - PARSE/LEX:MATCHER-OR
   - PARSE/BYTES::TYPED-CASE-TAGBODIES
   - RT/LIPSUM:LIPSUM
   - RT/TRACING::%TRACE-START-BREAKPOINT-FUN
   - (MAKE-CONFIG ((EQL TEST)))
-  - [[id:2192638293212][MAKE-SUITE]]
-  - [[id:661271856539][MAKE-TEST]]
+  - RT:MAKE-SUITE
+  - RT:MAKE-TEST
   - NIL
   - NIL
   - NIL
-  - [[id:3120895126809][FAIL!]]
+  - RT:FAIL!
   - (INITIALIZE-INSTANCE (TEST))
   - (MAKE-FIXTURE (T))
   - (MAKE-FIXTURE ((EQL TMP)))
@@ -16313,7 +16913,7 @@ MAKE-NORMAL-TN names a compiled function:
   - (WRITE-SYMBOLIC-LINK-ENTRY (T T))
   - (WRITE-HARD-LINK-ENTRY (T T))
   - (WRITE-FILE-ENTRY (T T))
-  - [[id:1674622584709][SIMPLE-TAR-ERROR]]
+  - DAT/TAR:SIMPLE-TAR-ERROR
   - DAT/HTML::CONC
   - DAT/HTML::PERROR
   - DAT/HTML::ADD-TO
@@ -16324,27 +16924,27 @@ MAKE-NORMAL-TN names a compiled function:
   - (DESERIALIZE (PATHNAME (EQL SVG)))
   - DAT/CSS::KEYFRAMES
   - DAT/CSS::MATRIX3D
-  - [[id:1087741381889][MATRIX]]
+  - DAT/CSS::MATRIX
   - DAT/ID3::GET-TEXT-INFO
   - (DESERIALIZE (STRING (EQL CSV)))
   - (DESERIALIZE (T (EQL CSV)))
   - (DESERIALIZE (PATHNAME (EQL CSV)))
   - (DESERIALIZE (T (EQL JPEG)))
   - (INIT ((EQL LOG)))
-  - [[id:279002811831][DFORMAT]]
-  - [[id:3143124842712][DEFAULT-LOGGER]]
-  - [[id:2617495707377][LOG-PIPE]]
+  - [[id:279002811880][DFORMAT]]
+  - [[id:3143124843233][DEFAULT-LOGGER]]
+  - [[id:2617495706630][LOG-PIPE]]
   - (LOG-OBJECT (T T STRING))
   - (LOG-OBJECT (T T SYMBOL))
   - (LOG-OBJECT (T T FUNCTION))
-  - [[id:828131447657][LOG-MESSAGE*]]
-  - [[id:2487253054331][LOG-MESSAGE]]
-  - [[id:2605223337270][FATAL!]]
-  - [[id:2961176477485][ERROR!]]
-  - [[id:814548401343][WARN!]]
-  - [[id:435101519712][INFO!]]
-  - [[id:4113442639995][DEBUG!]]
-  - [[id:2418840767028][TRACE!]]
+  - [[id:828131447710][LOG-MESSAGE*]]
+  - [[id:2487253053795][LOG-MESSAGE]]
+  - [[id:2605223337144][FATAL!]]
+  - [[id:2961176477463][ERROR!]]
+  - [[id:814548402086][WARN!]]
+  - [[id:435101519693][INFO!]]
+  - [[id:4113442639972][DEBUG!]]
+  - [[id:2418840767242][TRACE!]]
   - LOG::SIMPLE-LOG-ERROR
   - (EVENT-DISPATCH AROUND (EVENT-BASE))
   - (MAKE-CONFIG ((EQL KBD)))
@@ -16362,22 +16962,22 @@ MAKE-NORMAL-TN names a compiled function:
   - (MAKE-COMPRESSING-STREAM (T T))
   - (CLOSE (BLOCK-STREAM))
   - (CLOSE (CHUNKED-OUTPUT-STREAM))
-  - [[id:4055115795228][SIMPLE-CHUNKY-ERROR]]
-  - [[id:564857859596][MAKE-SMART-BUFFER]]
-  - [[id:329988957238][XNCONC]]
-  - [[id:458142438804][MAKE-CONCATENATED-XSUBSEQS]]
+  - IO/CHUNKY::SIMPLE-CHUNKY-ERROR
+  - [[id:564857859193][MAKE-SMART-BUFFER]]
+  - [[id:329988957884][XNCONC]]
+  - [[id:458142439002][MAKE-CONCATENATED-XSUBSEQS]]
   - (INITIALIZE-INSTANCE (FAST-INPUT-STREAM))
   - (INITIALIZE-INSTANCE (FAST-OUTPUT-STREAM))
-  - [[id:2771931451276][MAKE-FLEX-STREAM]]
+  - [[id:2771931451090][MAKE-FLEX-STREAM]]
   - IO/SYS::IO-SYSCALL-ERROR
   - SECURITY:PAM-FLAGS
   - URING::MAKE-URING
   - (MAKE-CONFIG ((EQL SERVICE)))
-  - [[id:1888742526750][SIMPLE-SERVICE-WARNING]]
-  - [[id:1612859467460][SIMPLE-SERVICE-ERROR]]
+  - [[id:1888742526906][SIMPLE-SERVICE-WARNING]]
+  - [[id:1612859466811][SIMPLE-SERVICE-ERROR]]
   - (INITIALIZE-INSTANCE (CACHE))
   - (SHARED-INITIALIZE (LINKED-CACHE-ENTRY T))
-  - [[id:1438053583220][MAKE-CACHE-TABLE]]
+  - [[id:1438053582877][MAKE-CACHE-TABLE]]
   - OBJ/STORE::MAP-INVERTED-INDEX
   - (INITIALIZE-INSTANCE BEFORE (STORED))
   - (UPDATE-INSTANCE-FOR-DIFFERENT-CLASS AFTER (STORED-OBJECT STORED-OBJECT))
@@ -16389,65 +16989,65 @@ MAKE-NORMAL-TN names a compiled function:
   - (INDEGREE (DIRECTED-GRAPH T))
   - (MERGE-NODES (GRAPH T T))
   - (DB-SET (T T T))
-  - [[id:9152977773][DO-DATABASE-BACKEND-CLOSE-OPTIONS]]
-  - [[id:2204174562014][DO-DATABASE-BACKEND-INIT-OPTIONS]]
-  - [[id:621360154855][SET-DATABASE-BACKEND-OPTIONS]]
-  - [[id:28487759347][SET-DATABASE-BACKEND]]
+  - [[id:9152977821][DO-DATABASE-BACKEND-CLOSE-OPTIONS]]
+  - [[id:2204174561381][DO-DATABASE-BACKEND-INIT-OPTIONS]]
+  - [[id:621360155423][SET-DATABASE-BACKEND-OPTIONS]]
+  - [[id:28487759772][SET-DATABASE-BACKEND]]
   - (SAVE ((EQL COMMANDS)))
-  - [[id:931341494650][CALL-COMMAND]]
-  - [[id:2730139103274][RUN-COMMANDS]]
-  - [[id:1042513331581][PARSE-COMMAND*]]
-  - [[id:597786197823][PARSE-COMMAND]]
+  - [[id:931341494611][CALL-COMMAND]]
+  - [[id:2730139103369][RUN-COMMANDS]]
+  - [[id:1042513332192][PARSE-COMMAND*]]
+  - [[id:597786197852][PARSE-COMMAND]]
   - NIL
-  - [[id:816301777609][COMMAND-WARNING]]
+  - [[id:816301777806][COMMAND-WARNING]]
   - (MAKE (PROJECT))
-  - [[id:3729250722484][MAKE-PROJECT]]
+  - [[id:3729250722565][MAKE-PROJECT]]
   - (LOAD-PROJECT-COMPONENT (T T))
   - OBJ/PROJECT::PROJECT-WARNING
   - (DEFAULT-CLASS-CONSTRUCTOR (OBJECT-SCHEMA))
   - (DUMP-SCHEMA (SIMPLE-SCHEMA))
-  - [[id:3938792025285][MAKE-SIMPLE-SCHEMA]]
-  - [[id:802771824941][MAKE-FIELDS]]
-  - [[id:374641588684][MAKE-SCHEMA]]
+  - [[id:3938792025512][MAKE-SIMPLE-SCHEMA]]
+  - [[id:802771825157][MAKE-FIELDS]]
+  - [[id:374641589245][MAKE-SCHEMA]]
   - (LOAD-CONFIG (T T))
   - OBJ/AST::PPRINT-AST
   - (WRITE-AST (AST PATHNAME))
   - (WRITE-AST (AST STRING))
   - OBJ/TIME::SPLIT-TIMESTRING
-  - [[id:2998083439972][TIMESTAMP-MAXIMUM]]
-  - [[id:3809741342230][TIMESTAMP-MINIMUM]]
-  - [[id:4103242322020][TIMESTAMP/=]]
-  - [[id:3064652797433][TIMESTAMP=]]
-  - [[id:1832673200064][TIMESTAMP>=]]
-  - [[id:3081833079475][TIMESTAMP>]]
-  - [[id:1901093076896][TIMESTAMP<=]]
-  - [[id:3047472515860][TIMESTAMP<]]
-  - [[id:1095702346582][MAKE-PALETTE]]
+  - [[id:2998083439967][TIMESTAMP-MAXIMUM]]
+  - [[id:3809741342559][TIMESTAMP-MINIMUM]]
+  - [[id:4103242322103][TIMESTAMP/=]]
+  - [[id:3064652797770][TIMESTAMP=]]
+  - [[id:1832673199308][TIMESTAMP>=]]
+  - [[id:3081833078834][TIMESTAMP>]]
+  - [[id:1901093076762][TIMESTAMP<=]]
+  - [[id:3047472515471][TIMESTAMP<]]
+  - [[id:1095702346517][MAKE-PALETTE]]
   - (MAP-INDEX (T BTREE-INDEX))
   - (MAP-BTREE (T BTREE))
-  - [[id:3542557552056][MAPSLICEC~]]
-  - [[id:1352336570478][MAPSLICE~]]
-  - [[id:1702883813532][MAPSLICE]]
-  - [[id:2392765766054][JOIN]]
-  - [[id:3812743615870][IDXV]]
+  - [[id:3542557551950][MAPSLICEC~]]
+  - [[id:1352336571161][MAPSLICE~]]
+  - [[id:1702883813962][MAPSLICE]]
+  - [[id:2392765765683][JOIN]]
+  - [[id:3812743616200][IDXV]]
   - (REF ((X . #<TENSOR-CLASS OBJ/TENSOR:COORDINATE-TENSOR>)))
   - (REF ((X . #<STANDARD-CLASS OBJ/TENSOR:GRAPH-ACCESSOR>)))
   - (REF ((X . #<STANDARD-CLASS OBJ/TENSOR:STRIDE-ACCESSOR>)))
   - (REF (HASH-TABLE))
   - (REF BEFORE (HASH-TABLE))
-  - [[id:2843038447776][CCLASS-MAX]]
+  - [[id:2843038448048][CCLASS-MAX]]
   - (DESERIALIZE (T (EQL URL)))
   - (SERIALIZE (T (EQL URL)))
-  - [[id:137275183158][MAKE-URI-SPACE]]
-  - [[id:1393060872177][URI-PARSE-ERROR]]
+  - [[id:137275183449][MAKE-URI-SPACE]]
+  - [[id:1393060871866][URI-PARSE-ERROR]]
   - ((SETF GET-VAL) (T T T))
   - (GET-VAL (T T))
   - (REM-VAL (T T))
   - (REPLACE-CLASS-IN-MIXIN (STANDARD-OBJECT T T))
   - (MAKE-INSTANCE (MIX-LIST))
-  - [[id:1280836126496][DELETE-FROM-MIX]]
-  - [[id:3439867337935][ENSURE-MIX]]
-  - [[id:3912309734118][MIX]]
+  - [[id:1280836125811][DELETE-FROM-MIX]]
+  - [[id:3439867338610][ENSURE-MIX]]
+  - [[id:3912309733571][MIX]]
   - OBJ/META/MIX::%MIX
   - (EFFECTIVE-SLOT-DEFINITION-CLASS (DYNAMIC-CLASS))
   - (DIRECT-SLOT-DEFINITION-CLASS (DYNAMIC-CLASS))
@@ -16471,7 +17071,7 @@ MAKE-NORMAL-TN names a compiled function:
   - SWANK::PROVIDED-ARGUMENTS-REF
   - SWANK::ARGLIST-REF
   - SWANK::EXACTLY-ONE-P
-  - [[id:1948713530306][COMPOSE]]
+  - [[id:1948713529376][COMPOSE]]
   - SWANK-REPL:LISTENER-SAVE-VALUE
   - SWANK:INSPECTOR-CALL-NTH-ACTION
   - SWANK::MAP-IF
@@ -16502,10 +17102,10 @@ MAKE-NORMAL-TN names a compiled function:
   - (SHARED-INITIALIZE (HMAC-KDF T))
   - (SHARED-INITIALIZE (ARGON2 T))
   - (SHARED-INITIALIZE AFTER (PBKDF1 T))
-  - [[id:2328740807405][MAKE-AUTHENTICATED-ENCRYPTION-MODE]]
+  - IRONCLAD:MAKE-AUTHENTICATED-ENCRYPTION-MODE
   - (SHARED-INITIALIZE AFTER (AEAD-MODE T))
   - (STREAM-WRITE-SEQUENCE (AUTHENTICATING-STREAM T))
-  - [[id:2170336940144][MAKE-AUTHENTICATING-STREAM]]
+  - IRONCLAD:MAKE-AUTHENTICATING-STREAM
   - (STREAM-WRITE-SEQUENCE (DECRYPTING-OUTPUT-STREAM T))
   - (STREAM-WRITE-SEQUENCE (ENCRYPTING-OUTPUT-STREAM T))
   - (STREAM-READ-SEQUENCE (DECRYPTING-INPUT-STREAM T))
@@ -16515,8 +17115,8 @@ MAKE-NORMAL-TN names a compiled function:
   - (MAKE-PRNG AROUND (T))
   - (SHARED-INITIALIZE AFTER (HMAC T))
   - (REINITIALIZE-INSTANCE (HMAC))
-  - [[id:3826646408031][MAKE-MAC]]
-  - [[id:4099506742382][MAKE-DIGEST]]
+  - IRONCLAD:MAKE-MAC
+  - IRONCLAD:MAKE-DIGEST
   - (DIGEST-SEQUENCE (SYMBOL T))
   - (DIGEST-STREAM (SYMBOL T))
   - (DIGEST-STREAM (CONS T))
@@ -16624,13 +17224,13 @@ MAKE-NORMAL-TN names a compiled function:
   - [[id:3962671710857][PLIST-STRING-HASH-TABLE]]
   - [[id:1735074898922][PLIST-HASH-TABLE]]
   - [[id:4235034929055][ALIST-HASH-TABLE]]
-  - [[id:2437337403823][MAP-PRODUCT]]
-  - [[id:860511562780][RCURRY]]
-  - [[id:3711447969193][CURRY]]
-  - [[id:606835313859][MULTIPLE-VALUE-COMPOSE]]
-  - [[id:1948713530306][COMPOSE]]
-  - [[id:1003269280055][CONJOIN]]
-  - [[id:3217601258316][DISJOIN]]
+  - [[id:2437337404055][MAP-PRODUCT]]
+  - [[id:860511562764][RCURRY]]
+  - [[id:3711447969516][CURRY]]
+  - [[id:606835314522][MULTIPLE-VALUE-COMPOSE]]
+  - [[id:1948713529376][COMPOSE]]
+  - [[id:1003269280059][CONJOIN]]
+  - [[id:3217601257638][DISJOIN]]
   - [[id:561611487856][NCONCAT]]
   - [[id:4056903162166][REMOVE-STRING]]
   - [[id:3531902127936][MERGE-READTABLES-INTO]]
@@ -16638,19 +17238,19 @@ MAKE-NORMAL-TN names a compiled function:
   - (INITIALIZE-INSTANCE (DYNAMIC-HOOK))
   - (INITIALIZE-INSTANCE (VALUE-HOOK))
   - [[id:754224532318][CONCAT]]
-  - [[id:410634779059][REMOVE-FROM-PLIST]]
-  - [[id:3708434023339][DAPPENDF]]
-  - [[id:3347715690639][DLIST]]
+  - [[id:410634778883][REMOVE-FROM-PLIST]]
+  - [[id:3708434022413][DAPPENDF]]
+  - [[id:3347715690815][DLIST]]
   - (ZIPRM)
-  - [[id:1476216058778][MAPCART]]
-  - [[id:1830002671909][CART]]
+  - [[id:1476216058805][MAPCART]]
+  - [[id:1830002671814][CART]]
   - STD/LIST::MAPPEND
-  - [[id:476585678626][RECURSIVE-APPEND]]
-  - [[id:313723694433][ZIP]]
-  - [[id:1784711409478][ZIPTREE]]
-  - [[id:777230525396][ZIP-TREE]]
-  - [[id:538775974427][ZIP-LIST]]
-  - [[id:2453580284012][CIRCULAR-LIST]]
+  - [[id:476585678379][RECURSIVE-APPEND]]
+  - [[id:313723694754][ZIP]]
+  - [[id:1784711409319][ZIPTREE]]
+  - [[id:777230524681][ZIP-TREE]]
+  - [[id:538775974474][ZIP-LIST]]
+  - [[id:2453580284338][CIRCULAR-LIST]]
   - STD/LIST::DELETE/SWAPPED-ARGUMENTS
   - STD/LIST::REMOVE/SWAPPED-ARGUMENTS
   - [[id:714777900280][SYMB]]
@@ -16688,17 +17288,21 @@ MAKE-NORMAL-TN names a compiled function:
 :ID: 18405370474
 :CUSTOM_ID: SB-C:STATIC-MULTIPLE-CALL-NAMED
 :ALLOC: HEAP IMMOBILE
-:END:** MAKE-NUMBER-STACK-POINTER-TN :compiled:function:
+:END:
+** MAKE-NUMBER-STACK-POINTER-TN :compiled:function:
 :PROPERTIES:
 :ID: 3506879603432
 :CUSTOM_ID: SB-C:MAKE-NUMBER-STACK-POINTER-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-NUMBER-STACK-POINTER-TN names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;GENERIC;UTILS.LISP
+
 #+end_example
 
 :definitions:
@@ -16709,11 +17313,14 @@ MAKE-NUMBER-STACK-POINTER-TN names a compiled function:
 :ID: 213338067815
 :CUSTOM_ID: SB-C:SC+OFFSET
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SC+OFFSET names a type-specifier:
   Lambda-list: ()
   Expansion: (UNSIGNED-BYTE 27)
+
 #+end_example
 
 :definitions:
@@ -16724,11 +17331,14 @@ SC+OFFSET names a type-specifier:
 :ID: 2792442288060
 :CUSTOM_ID: SB-C:READ-PACKED-BIT-VECTOR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 READ-PACKED-BIT-VECTOR names a macro:
   Lambda-list: (BYTES VEC INDEX)
   Source file: SYS:SRC;CODE;DEBUG-VAR-IO.LISP
+
 #+end_example
 
 :definitions:
@@ -16739,17 +17349,21 @@ READ-PACKED-BIT-VECTOR names a macro:
 :ID: 117130183316
 :CUSTOM_ID: SB-C:SPECIFY-SAVE-TN
 :ALLOC: HEAP IMMOBILE
-:END:** CONSTANT-TN-P :compiled:function:
+:END:
+** CONSTANT-TN-P :compiled:function:
 :PROPERTIES:
 :ID: 2825345536063
 :CUSTOM_ID: SB-C:CONSTANT-TN-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CONSTANT-TN-P names a compiled function:
   Lambda-list: (TN)
   Derived type: (FUNCTION (SB-C:TN) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -16760,17 +17374,21 @@ CONSTANT-TN-P names a compiled function:
 :ID: 1303866052820
 :CUSTOM_ID: SB-C:%%NIP-VALUES
 :ALLOC: HEAP IMMOBILE
-:END:** PRIMITIVE-TYPE-OF :compiled:function:
+:END:
+** PRIMITIVE-TYPE-OF :compiled:function:
 :PROPERTIES:
 :ID: 428564891719
 :CUSTOM_ID: SB-C:PRIMITIVE-TYPE-OF
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PRIMITIVE-TYPE-OF names a compiled function:
   Lambda-list: (OBJECT)
   Derived type: (FUNCTION (T) *)
   Source file: SYS:SRC;COMPILER;GENERIC;PRIMTYPE.LISP
+
 #+end_example
 
 - Called by
@@ -16785,12 +17403,15 @@ PRIMITIVE-TYPE-OF names a compiled function:
 :ID: 989032031828
 :CUSTOM_ID: SB-C:UNBIND-TO-HERE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 UNBIND-TO-HERE names a compiled function:
   Lambda-list: (WHERE SYMBOL VALUE BSP ZERO)
   Derived type: (FUNCTION (T T T T T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;CELL.LISP
+
 #+end_example
 
 :definitions:
@@ -16801,17 +17422,21 @@ UNBIND-TO-HERE names a compiled function:
 :ID: 3779900802798
 :CUSTOM_ID: SB-C:EMIT-NOP
 :ALLOC: HEAP IMMOBILE
-:END:** IMMEDIATE-CONSTANT-SC :compiled:function:
+:END:
+** IMMEDIATE-CONSTANT-SC :compiled:function:
 :PROPERTIES:
 :ID: 386551310322
 :CUSTOM_ID: SB-C:IMMEDIATE-CONSTANT-SC
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 IMMEDIATE-CONSTANT-SC names a compiled function:
   Lambda-list: (VALUE)
   Derived type: (FUNCTION (T) (VALUES (OR (INTEGER 4 5) NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;VM.LISP
+
 #+end_example
 
 :definitions:
@@ -16822,37 +17447,46 @@ IMMEDIATE-CONSTANT-SC names a compiled function:
 :ID: 3254088015439
 :CUSTOM_ID: SB-C:INSERT-ARRAY-BOUNDS-CHECKS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INSERT-ARRAY-BOUNDS-CHECKS names a dependent optimization policy quality:
   (undocumented)
+
 #+end_example
 ** CALL-OUT-NAMED :vop:
 :PROPERTIES:
 :ID: 1404763340279
 :CUSTOM_ID: SB-C:CALL-OUT-NAMED
 :ALLOC: HEAP IMMOBILE
-:END:** XEP-SETUP-SP :vop:
+:END:
+** XEP-SETUP-SP :vop:
 :PROPERTIES:
 :ID: 2218134213944
 :CUSTOM_ID: SB-C:XEP-SETUP-SP
 :ALLOC: HEAP IMMOBILE
-:END:** MAKE-NFP-TN
+:END:
+** MAKE-NFP-TN
 :PROPERTIES:
 :ID: 452951757681
 :CUSTOM_ID: SB-C:MAKE-NFP-TN
 :ALLOC: HEAP IMMOBILE
-:END:** DEF-SETTER :compiled:function:
+:END:
+** DEF-SETTER :compiled:function:
 :PROPERTIES:
 :ID: 1353068981777
 :CUSTOM_ID: SB-C:DEF-SETTER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEF-SETTER names a compiled function:
   Lambda-list: (NAME OFFSET LOWTAG)
   Derived type: (FUNCTION (T T T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+
 #+end_example
 
 :definitions:
@@ -16863,11 +17497,14 @@ DEF-SETTER names a compiled function:
 :ID: 2162490191448
 :CUSTOM_ID: SB-C:ATTRIBUTES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ATTRIBUTES names a type-specifier:
   Lambda-list: ()
   Expansion: FIXNUM
+
 #+end_example
 
 :definitions:
@@ -16878,11 +17515,14 @@ ATTRIBUTES names a type-specifier:
 :ID: 1575663318436
 :CUSTOM_ID: SB-C:*COMPILATION*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*COMPILATION* names a special variable:
+
+*COMPILATION* names a special variable:
   Declared type: SB-C::COMPILATION
   Currently unbound.
+
 #+end_example
 
 :definitions:
@@ -16893,8 +17533,10 @@ ATTRIBUTES names a type-specifier:
 :ID: 1590713851858
 :CUSTOM_ID: SB-C:BLOCK-NUMBER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BLOCK-NUMBER names a compiled function:
   An accessor for SB-C::CBLOCK
   Lambda-list: (INSTANCE)
@@ -16908,6 +17550,7 @@ BLOCK-NUMBER names a compiled function:
   Derived type: (FUNCTION ((OR NULL (UNSIGNED-BYTE 44)) SB-C::CBLOCK)
                  (VALUES (OR NULL (UNSIGNED-BYTE 44)) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;NODE.LISP
+
 #+end_example
 
 :definitions:
@@ -16918,13 +17561,16 @@ BLOCK-NUMBER names a compiled function:
 :ID: 507609300712
 :CUSTOM_ID: SB-C:MAKE-RESTRICTED-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-RESTRICTED-TN names a compiled function:
   Lambda-list: (PTYPE SCN &OPTIONAL (TYPE *UNIVERSAL-TYPE*))
   Derived type: (FUNCTION ((OR SB-C:PRIMITIVE-TYPE NULL) (MOD 62) &OPTIONAL T)
                  (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -16935,13 +17581,16 @@ MAKE-RESTRICTED-TN names a compiled function:
 :ID: 1117747106306
 :CUSTOM_ID: SB-C:MAKE-CONSTANT-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-CONSTANT-TN names a compiled function:
   Lambda-list: (CONSTANT &OPTIONAL FORCE-BOXED)
   Derived type: (FUNCTION (SB-KERNEL:CONSTANT &OPTIONAL T)
                  (VALUES (NOT NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -16952,13 +17601,16 @@ MAKE-CONSTANT-TN names a compiled function:
 :ID: 439708885190
 :CUSTOM_ID: SB-C:IF-EQ
 :ALLOC: HEAP IMMOBILE
-:END:** FUN-INFO-OPTIMIZER :compiled:function:
+:END:
+** FUN-INFO-OPTIMIZER :compiled:function:
 :PROPERTIES:
 :ID: 45945795431
 :CUSTOM_ID: SB-C:FUN-INFO-OPTIMIZER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FUN-INFO-OPTIMIZER names a compiled function:
   An accessor for SB-C::FUN-INFO
   Lambda-list: (INSTANCE)
@@ -16972,6 +17624,7 @@ FUN-INFO-OPTIMIZER names a compiled function:
   Derived type: (FUNCTION ((OR NULL FUNCTION) SB-C::FUN-INFO)
                  (VALUES (OR NULL FUNCTION) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;FUN-INFO.LISP
+
 #+end_example
 
 :definitions:
@@ -16982,12 +17635,15 @@ FUN-INFO-OPTIMIZER names a compiled function:
 :ID: 1921073721237
 :CUSTOM_ID: SB-C:MAKE-LOAD-TIME-CONSTANT-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-LOAD-TIME-CONSTANT-TN names a compiled function:
   Lambda-list: (KIND INFO)
   Derived type: (FUNCTION (KEYWORD T) (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -16998,8 +17654,10 @@ MAKE-LOAD-TIME-CONSTANT-TN names a compiled function:
 :ID: 2211075741855
 :CUSTOM_ID: SB-C:+BACKEND-INTERNAL-ERRORS+
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 +BACKEND-INTERNAL-ERRORS+ names a constant variable:
   Value: #(("unknown system lossage" SB-KERNEL:UNKNOWN-ERROR . 0)
            ("An attempt was made to use an undefined FDEFINITION."
@@ -17176,6 +17834,7 @@ MAKE-LOAD-TIME-CONSTANT-TN names a compiled function:
            ((UNSIGNED-BYTE 32) SB-KERNEL:OBJECT-NOT-UNSIGNED-BYTE-32-ERROR . 1)
            ((UNSIGNED-BYTE 64) SB-KERNEL:OBJECT-NOT-UNSIGNED-BYTE-64-ERROR . 1)
            (COMPLEX SB-KERNEL:OBJECT-NOT-COMPLEX-ERROR . 1) ...)
+
 #+end_example
 
 :definitions:
@@ -17186,8 +17845,10 @@ MAKE-LOAD-TIME-CONSTANT-TN names a compiled function:
 :ID: 2431812291162
 :CUSTOM_ID: SB-C:FUN-INFO-LTN-ANNOTATE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FUN-INFO-LTN-ANNOTATE names a compiled function:
   An accessor for SB-C::FUN-INFO
   Lambda-list: (INSTANCE)
@@ -17201,6 +17862,7 @@ FUN-INFO-LTN-ANNOTATE names a compiled function:
   Derived type: (FUNCTION ((OR NULL FUNCTION) SB-C::FUN-INFO)
                  (VALUES (OR NULL FUNCTION) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;FUN-INFO.LISP
+
 #+end_example
 
 :definitions:
@@ -17211,12 +17873,15 @@ FUN-INFO-LTN-ANNOTATE names a compiled function:
 :ID: 1287006038200
 :CUSTOM_ID: SB-C:BOXED-IMMEDIATE-SC-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BOXED-IMMEDIATE-SC-P names a compiled function:
   Lambda-list: (SC)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;VM.LISP
+
 #+end_example
 
 :definitions:
@@ -17227,12 +17892,15 @@ BOXED-IMMEDIATE-SC-P names a compiled function:
 :ID: 350037275504
 :CUSTOM_ID: SB-C:MAKE-NLX-ENTRY-ARG-START-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-NLX-ENTRY-ARG-START-LOCATION names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;NLX.LISP
+
 #+end_example
 
 :definitions:
@@ -17243,15 +17911,18 @@ MAKE-NLX-ENTRY-ARG-START-LOCATION names a compiled function:
 :ID: 1037910944702
 :CUSTOM_ID: SB-C:LAMBDA-VAR-IGNOREP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LAMBDA-VAR-IGNOREP names a macro:
   Lambda-list: (VAR)
   Source file: SYS:SRC;COMPILER;NODE.LISP
+
 #+end_example
 
 - Macroexpanded by
-  - [[id:1612476638844][VARIABLE-INFORMATION]]
+  - [[id:1612476638263][VARIABLE-INFORMATION]]
 
 :definitions:
 - SYS:SRC;COMPILER;NODE.LISP
@@ -17261,13 +17932,16 @@ LAMBDA-VAR-IGNOREP names a macro:
 :ID: 1380048816037
 :CUSTOM_ID: SB-C:FOLDABLE
 :ALLOC: HEAP IMMOBILE
-:END:** POLICY :compiled:macro:function:class:
+:END:
+** POLICY :compiled:macro:function:class:
 :PROPERTIES:
 :ID: 1663637586336
 :CUSTOM_ID: SB-C:POLICY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 POLICY names a macro:
   Lambda-list: (THING EXPR &OPTIONAL (COERCION-FN (QUOTE %COERCE-TO-POLICY)))
   Source file: SYS:SRC;COMPILER;POLICY.LISP
@@ -17287,6 +17961,7 @@ POLICY names the structure-class #<STRUCTURE-CLASS SB-C:POLICY>:
     SB-C::DEPENDENT-QUALITIES
       Type: (UNSIGNED-BYTE 52)
       Initform: 0
+
 #+end_example
 
 - Macroexpanded by
@@ -17302,16 +17977,20 @@ POLICY names the structure-class #<STRUCTURE-CLASS SB-C:POLICY>:
 :ID: 3295939131470
 :CUSTOM_ID: SB-C:FIXED-ALLOC
 :ALLOC: HEAP IMMOBILE
-:END:** SC-IS :compiled:macro:function:
+:END:
+** SC-IS :compiled:macro:function:
 :PROPERTIES:
 :ID: 2424562468821
 :CUSTOM_ID: SB-C:SC-IS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SC-IS names a macro:
   Lambda-list: (TN &REST SCS)
   Source file: SYS:SRC;COMPILER;META-VMDEF.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -17325,14 +18004,17 @@ SC-IS names a macro:
 :ID: 3603669077399
 :CUSTOM_ID: SB-C:MAKE-FIXUP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-FIXUP names a compiled function:
   A constructor for SB-C:FIXUP
   Lambda-list: (NAME FLAVOR &OPTIONAL (OFFSET 0))
   Derived type: (FUNCTION (T T &OPTIONAL (OR (SIGNED-BYTE 64) SB-ASSEM:LABEL))
                  (VALUES SB-C:FIXUP &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -17343,21 +18025,25 @@ MAKE-FIXUP names a compiled function:
 :ID: 3629547079472
 :CUSTOM_ID: SB-C:SET-SLOT
 :ALLOC: HEAP IMMOBILE
-:END:** COMPILE-IN-LEXENV :compiled:function:
+:END:
+** COMPILE-IN-LEXENV :compiled:function:
 :PROPERTIES:
 :ID: 2758283844555
 :CUSTOM_ID: SB-C:COMPILE-IN-LEXENV
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPILE-IN-LEXENV names a compiled function:
-,  Lambda-list: (FORM *LEXENV* NAME SOURCE-INFO TLF EPHEMERAL ERRORP)
+  Lambda-list: (FORM *LEXENV* NAME SOURCE-INFO TLF EPHEMERAL ERRORP)
   Derived type: (FUNCTION (T T T T T T T) *)
   Source file: SYS:SRC;COMPILER;TARGET-MAIN.LISP
+
 #+end_example
 
 - Called by
-  - [[id:1930271859818][ENCLOSE]]
+  - [[id:1930271859911][ENCLOSE]]
 
 :definitions:
 - SYS:SRC;COMPILER;TARGET-MAIN.LISP
@@ -17367,12 +18053,15 @@ COMPILE-IN-LEXENV names a compiled function:
 :ID: 2872328052923
 :CUSTOM_ID: SB-C:DEFINITION-SOURCE-LOCATION-TOPLEVEL-FORM-NUMBER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINITION-SOURCE-LOCATION-TOPLEVEL-FORM-NUMBER names a compiled function:
   Lambda-list: (SOURCE-LOC)
   Derived type: (FUNCTION (T) (VALUES (OR NULL INTEGER) &OPTIONAL))
   Source file: SYS:SRC;CODE;SOURCE-LOCATION.LISP
+
 #+end_example
 
 - Called by
@@ -17386,17 +18075,21 @@ DEFINITION-SOURCE-LOCATION-TOPLEVEL-FORM-NUMBER names a compiled function:
 :ID: 2680728165202
 :CUSTOM_ID: SB-C:UNBIND
 :ALLOC: HEAP IMMOBILE
-:END:** MAP-PACKED-XREF-DATA :compiled:function:
+:END:
+** MAP-PACKED-XREF-DATA :compiled:function:
 :PROPERTIES:
 :ID: 2219757206182
 :CUSTOM_ID: SB-C:MAP-PACKED-XREF-DATA
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAP-PACKED-XREF-DATA names a compiled function:
   Lambda-list: (FUNCTION XREF-DATA)
   Derived type: (FUNCTION (T T) (VALUES NULL &OPTIONAL))
   Source file: SYS:SRC;COMPILER;XREF.LISP
+
 #+end_example
 
 - Called by
@@ -17410,8 +18103,10 @@ MAP-PACKED-XREF-DATA names a compiled function:
 :ID: 1862390661087
 :CUSTOM_ID: SB-C:COMPILE-FORM-TO-FILE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 COMPILE-FORM-TO-FILE names a compiled function:
   Lambda-list: (FORM OUTPUT-FILE &KEY
                 ((PROGRESS *COMPILE-PROGRESS*) *COMPILE-PROGRESS*)
@@ -17423,6 +18118,7 @@ COMPILE-FORM-TO-FILE names a compiled function:
                   &KEY (:PROGRESS T) (:TRACE-FILE T))
                  (VALUES (OR NULL SB-INT:STDIO-FILE PATHNAME) T T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;MAIN.LISP
+
 #+end_example
 
 :definitions:
@@ -17433,11 +18129,14 @@ COMPILE-FORM-TO-FILE names a compiled function:
 :ID: 2042680852130
 :CUSTOM_ID: SB-C:READ-VAR-INTEGERF
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 READ-VAR-INTEGERF names a macro:
   Lambda-list: (VECTOR INDEX)
   Source file: SYS:SRC;CODE;DEBUG-VAR-IO.LISP
+
 #+end_example
 
 :definitions:
@@ -17448,12 +18147,15 @@ READ-VAR-INTEGERF names a macro:
 :ID: 4036496349219
 :CUSTOM_ID: SB-C:GENERATE-CALL-SEQUENCE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GENERATE-CALL-SEQUENCE names a compiled function:
   Lambda-list: (NAME STYLE VOP OPTIONS)
   Derived type: (FUNCTION (T T T T) (VALUES CONS LIST &OPTIONAL))
   Source file: SYS:SRC;ASSEMBLY;X86-64;SUPPORT.LISP
+
 #+end_example
 
 :definitions:
@@ -17464,8 +18166,10 @@ GENERATE-CALL-SEQUENCE names a compiled function:
 :ID: 3738635783437
 :CUSTOM_ID: SB-C:TN-SC
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN-SC names a compiled function:
   An accessor for SB-C:TN
   Lambda-list: (INSTANCE)
@@ -17479,6 +18183,7 @@ TN-SC names a compiled function:
   Derived type: (FUNCTION ((OR SB-C:STORAGE-CLASS NULL) SB-C:TN)
                  (VALUES (OR SB-C:STORAGE-CLASS NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 - Called by
@@ -18758,11 +19463,14 @@ TN-SC names a compiled function:
 :ID: 70433004170
 :CUSTOM_ID: SB-C:DEFINE-SOURCE-TRANSFORM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINE-SOURCE-TRANSFORM names a macro:
   Lambda-list: (FUN-NAME LAMBDA-LIST &BODY BODY)
   Source file: SYS:SRC;COMPILER;MACROS.LISP
+
 #+end_example
 
 :definitions:
@@ -18773,12 +19481,15 @@ DEFINE-SOURCE-TRANSFORM names a macro:
 :ID: 1539852544604
 :CUSTOM_ID: SB-C:ID-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ID-TN names a compiled function:
   Lambda-list: (NUM)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -18789,8 +19500,10 @@ ID-TN names a compiled function:
 :ID: 3629093217442
 :CUSTOM_ID: SB-C:VOP-BLOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 VOP-BLOCK names a compiled function:
   An accessor for SB-C::VOP
   Lambda-list: (INSTANCE)
@@ -18803,6 +19516,7 @@ VOP-BLOCK names a compiled function:
   Derived type: (FUNCTION (SB-C::IR2-BLOCK SB-C::VOP)
                  (VALUES SB-C::IR2-BLOCK &OPTIONAL))
   Source file: SYS:SRC;COMPILER;VOP.LISP
+
 #+end_example
 
 :definitions:
@@ -18813,12 +19527,15 @@ VOP-BLOCK names a compiled function:
 :ID: 244721475028
 :CUSTOM_ID: SB-C:LOCATION-PRINT-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LOCATION-PRINT-NAME names a compiled function:
   Lambda-list: (TN)
   Derived type: (FUNCTION (SB-C:TN) (VALUES SIMPLE-STRING &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;VM.LISP
+
 #+end_example
 
 :definitions:
@@ -18829,12 +19546,15 @@ LOCATION-PRINT-NAME names a compiled function:
 :ID: 2660220745947
 :CUSTOM_ID: SB-C:MAKE-CALL-OUT-TNS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-CALL-OUT-TNS names a compiled function:
   Lambda-list: (TYPE)
   Derived type: (FUNCTION (T) (VALUES SB-C:TN NUMBER T T BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;C-CALL.LISP
+
 #+end_example
 
 :definitions:
@@ -18845,19 +19565,23 @@ MAKE-CALL-OUT-TNS names a compiled function:
 :ID: 3605888762256
 :CUSTOM_ID: SB-C:CLOSURE-INIT-FROM-FP
 :ALLOC: HEAP IMMOBILE
-:END:** FIXUP-OFFSET :compiled:function:
+:END:
+** FIXUP-OFFSET :compiled:function:
 :PROPERTIES:
 :ID: 1544332267692
 :CUSTOM_ID: SB-C:FIXUP-OFFSET
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FIXUP-OFFSET names a compiled function:
   An accessor for SB-C:FIXUP
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-C:FIXUP)
                  (VALUES (OR (SIGNED-BYTE 64) SB-ASSEM:LABEL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -18868,10 +19592,13 @@ FIXUP-OFFSET names a compiled function:
 :ID: 3307144070694
 :CUSTOM_ID: SB-C:ARG-COUNT-SC
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ARG-COUNT-SC names a constant variable:
   Value: 5
+
 #+end_example
 
 :definitions:
@@ -18882,22 +19609,26 @@ ARG-COUNT-SC names a constant variable:
 :ID: 1229184575852
 :CUSTOM_ID: SB-C:RESET-STACK-POINTER
 :ALLOC: HEAP IMMOBILE
-:END:** LEXENV-FIND :compiled:macro:function:
+:END:
+** LEXENV-FIND :compiled:macro:function:
 :PROPERTIES:
 :ID: 729809256804
 :CUSTOM_ID: SB-C:LEXENV-FIND
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LEXENV-FIND names a macro:
   Lambda-list: (NAME SLOT &KEY (LEXENV (QUOTE *LEXENV*)) TEST)
   Source file: SYS:SRC;COMPILER;MACROS.LISP
+
 #+end_example
 
 - Macroexpanded by
   - SB-CLTL2::UPDATE-LEXENV-USER-DATA
-  - [[id:1612476638844][VARIABLE-INFORMATION]]
-  - [[id:3066725962762][FUNCTION-INFORMATION]]
+  - [[id:1612476638263][VARIABLE-INFORMATION]]
+  - [[id:3066725962972][FUNCTION-INFORMATION]]
   - Q/DQL::DFBOUNDP!
   - Q/DQL::DVBOUNDP!
 
@@ -18909,12 +19640,15 @@ LEXENV-FIND names a macro:
 :ID: 2968227909152
 :CUSTOM_ID: SB-C:UNPACK-CODE-FIXUP-LOCS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 UNPACK-CODE-FIXUP-LOCS names a compiled function:
   Lambda-list: (PACKED-INTEGER)
   Derived type: (FUNCTION (T) (VALUES T T T &OPTIONAL))
   Source file: SYS:SRC;CODE;DEBUG-VAR-IO.LISP
+
 #+end_example
 
 - Called by
@@ -18931,9 +19665,11 @@ UNPACK-CODE-FIXUP-LOCS names a compiled function:
 :ID: 3590683973502
 :CUSTOM_ID: SB-C:*BACKEND-SBS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*BACKEND-SBS* names a global variable:
+
+*BACKEND-SBS* names a global variable:
   Declared type: SIMPLE-VECTOR
   Declared always-bound.
   Value: #(#S(SB-C::FINITE-SB-TEMPLATE
@@ -18965,6 +19701,7 @@ UNPACK-CODE-FIXUP-LOCS names a compiled function:
               :NAME SB-VM::IMMEDIATE-CONSTANT
               :KIND :NON-PACKED
               :SIZE 0))
+
 #+end_example
 
 :definitions:
@@ -18975,13 +19712,16 @@ UNPACK-CODE-FIXUP-LOCS names a compiled function:
 :ID: 762942162648
 :CUSTOM_ID: SB-C:ENVIRONMENT-DEBUG-LIVE-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   Lambda-list: (TN ENV)
   Derived type: (FUNCTION (SB-C:TN SB-C::ENVIRONMENT)
                  (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -18992,28 +19732,27 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
 :ID: 245768796774
 :CUSTOM_ID: SB-C:%CONTINUE-UNWIND
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %CONTINUE-UNWIND names an undefined function
   Declared type: (FUNCTION NIL NIL)
+
 #+end_example
 
 - Called by
-  - SB-MANUAL::CALL-MAYBE-WITH-TEXINFO-TO-FILE
-  - SB-ACLREPL::REPL
-  - SWANK::SLIME-VERSION-STRING
-  - SB-ACLREPL:MAKE-REPL-FUN
   - SB-INTROSPECT::COLLECT-XREF
   - SB-CONCURRENCY:OPEN-GATE
   - SB-CONCURRENCY:RECEIVE-PENDING-MESSAGES
-  - [[id:579149819929][RECEIVE-MESSAGE-NO-HANG]]
+  - [[id:579149820371][RECEIVE-MESSAGE-NO-HANG]]
   - SB-CONCURRENCY:RECEIVE-MESSAGE
-  - [[id:2133153310738][SEND-MESSAGE]]
+  - [[id:2133153311419][SEND-MESSAGE]]
   - SB-CONCURRENCY:GRAB-FRLOCK-WRITE-LOCK
   - SB-CLTL2::WALK-COMPILER-LET
   - SB-CLTL2::IR1-CONVERT-COMPILER-LET
-  - [[id:42564957134][GET-HOST-BY-ADDRESS]]
-  - [[id:1053520094808][GET-HOST-BY-NAME]]
+  - [[id:42564956850][GET-HOST-BY-ADDRESS]]
+  - [[id:1053520094345][GET-HOST-BY-NAME]]
   - SB-BSD-SOCKETS::GETPROTOBYNAME
   - (SOCKET-RECEIVE (SOCKET T T))
   - SB-BSD-SOCKETS::CALL-WITH-SOCKET-ADDR
@@ -19051,15 +19790,15 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - SB-MD5:MD5SUM-FILE
   - SKEL/CLI::START-SKEL
   - SKEL/MPK/CLI::START-MPK
-  - [[id:3401663055994][LOAD-MPKRC]]
-  - [[id:3728548876854][INIT-MPKRC]]
+  - SKEL/MPK:LOAD-MPKRC
+  - SKEL/MPK:INIT-MPKRC
   - SKEL/MPK/DB:GET-METADATA*
   - SKEL/MPK/DB:UPDATE-MUSIC-METADATA
   - SKEL/MPK::MPK-MUSIC-METADATA-SCAN-PARALLEL
   - SKEL/MPK/MPD::LOAD-MPD-CONFIG
   - SKEL/MPK/MPD:ENSURE-MPD
   - SKEL/HOMER/CLI::START-HOMER
-  - [[id:3979331575236][LOAD-HOMERC]]
+  - SKEL/HOMER/CORE:LOAD-HOMERC
   - SKEL/HOMER/CORE::INIT-HOMERC
   - SKEL/PACKY/CLI::START-PACKY
   - (BUILD (PROJECT-CONTAINERFILE))
@@ -19068,19 +19807,19 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - (WRITE-AST (MAKEFILE PATHNAME))
   - (PROJECT-COMPILE (MAKEFILE))
   - (WRITE-AST (ASDF-SYSTEM PATHNAME))
-  - [[id:1919046350078][READ-SYSTEM-DEFINITIONS]]
+  - [[id:1919046349959][READ-SYSTEM-DEFINITIONS]]
   - (WRITE-AST (LISP-COMPONENT PATHNAME))
-  - [[id:1295759885508][SETF-SKEL-VARS]]
-  - [[id:551438277236][INIT-SKEL]]
-  - [[id:3105475322913][SK-LOG-REPAIR]]
-  - [[id:845534044792][SK-LOG-LIST]]
+  - [[id:1295759885620][SETF-SKEL-VARS]]
+  - [[id:551438276643][INIT-SKEL]]
+  - [[id:3105475322881][SK-LOG-REPAIR]]
+  - [[id:845534044519][SK-LOG-LIST]]
   - (WRITE-AST AROUND (SKEL-PROJECT T))
   - (WRITE-AST (SKEL-CONFIG T))
   - DSP/AUD:CHROMAPRINT
-  - [[id:735880337442][MEDIA-FILE-STREAM-COUNT]]
-  - [[id:216947941008][MEDIA-FILE-CODECS]]
-  - [[id:150720908429][MEDIA-FILE-FORMAT]]
-  - [[id:1122558756538][MEDIA-FILE-METADATA]]
+  - DSP/AV:MEDIA-FILE-STREAM-COUNT
+  - DSP/AV:MEDIA-FILE-CODECS
+  - DSP/AV:MEDIA-FILE-FORMAT
+  - DSP/AV:MEDIA-FILE-METADATA
   - MATH/UTIL::WRITE-CUDA-FILE
   - (SERDE (PATHNAME CONTAINERFILE))
   - (SERDE (CONTAINERFILE PATHNAME))
@@ -19089,8 +19828,8 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - (PUBLISH (SYSTEM-DOCUMENTATION))
   - (PUBLISH (PACKAGE-DOCUMENTATION))
   - DOC::PARSE-SOURCE-FILE-HEADER
-  - [[id:1040565770279][READ-FILE-OUTLINE]]
-  - [[id:3342523453298][READ-FILE-HEADER]]
+  - [[id:1040565770545][READ-FILE-OUTLINE]]
+  - [[id:3342523452734][READ-FILE-HEADER]]
   - DOC::COUNT-LINES-UP-TO-CHARACTER
   - (VC-EXPORT (HG-REPO))
   - (ID (HG-REPO))
@@ -19099,8 +19838,8 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - (SERIALIZE (ORG-GRAPH (EQL JSON)))
   - ORGAN/GRAPH::READ-ORG-GRAPH-FILE
   - (ORG-PARSE ((EQL DOCUMENT) PATHNAME))
-  - [[id:2811165298714][MAKE-ORG-ID-LOCATIONS]]
-  - [[id:1732847131556][INIT-RDBRC]]
+  - ORGAN:MAKE-ORG-ID-LOCATIONS
+  - [[id:1732847130918][INIT-RDBRC]]
   - (OPEN-STORE (RDB-STORE))
   - (CURSOR-NEXT-NODUP (RDB-DUP-CURSOR))
   - (DELETE-KEY (T RDB-DUP-BTREE))
@@ -19161,15 +19900,15 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - (BODY IN GET-VALUE)
   - (MAKE-TRANSACTION (RDB-DATABASE))
   - (LOAD-OPTS (RDB))
-  - [[id:564807592394][RDB-WRITE]]
+  - [[id:564807592469][RDB-WRITE]]
   - (GET-KEY (RDB-WBWI STRING))
-  - [[id:2249127072183][RDB-WBWI-TS]]
+  - [[id:2249127072470][RDB-WBWI-TS]]
   - RDB::%MAKE-CHECKPOINT
   - RDB::OPEN-CFS-WITH-TTL-RAW
   - RDB::OPEN-CFS-READ-ONLY-RAW
-  - [[id:2367671223586][OPEN-CFS-SECONDARY-RAW]]
-  - [[id:2857965233208][OPEN-DB-SECONDARY-RAW]]
-  - [[id:79314921881][CREATE-CHECKPOINT-RAW]]
+  - [[id:2367671223490][OPEN-CFS-SECONDARY-RAW]]
+  - [[id:2857965234016][OPEN-DB-SECONDARY-RAW]]
+  - [[id:79314922092][CREATE-CHECKPOINT-RAW]]
   - RDB::MAKE-CHECKPOINT-RAW
   - RDB::GET-PREPARED-TRANSACTIONS-RAW
   - RDB::TRANSACTION-MERGE-CF-RAW
@@ -19184,11 +19923,11 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - RDB::ROLLBACK-TRANSACTION-RAW
   - RDB::COMMIT-TRANSACTION-RAW
   - RDB::TRANSACTIONDB-PUT-CF-RAW
-  - [[id:4241104221313][TRANSACTIONDB-PUT-KV-RAW]]
+  - [[id:4241104221312][TRANSACTIONDB-PUT-KV-RAW]]
   - RDB::TRANSACTIONDB-GET-CF-RAW
-  - [[id:324022966837][TRANSACTIONDB-GET-KV-RAW]]
+  - [[id:324022967120][TRANSACTIONDB-GET-KV-RAW]]
   - RDB::OPEN-OPTIMISTICTRANSACTIONDB-RAW
-  - [[id:339788122700][OPEN-TRANSACTIONDB-RAW]]
+  - [[id:339788122118][OPEN-TRANSACTIONDB-RAW]]
   - RDB::SST-FILE-SIZE-RAW
   - RDB::SST-DELETE-RANGE-RAW
   - RDB::SST-DELETE-TS-RAW
@@ -19220,22 +19959,22 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - (PROCESS-CONNECTION (HTTP-SERVICE T))
   - NET/SRV/HTTP::HANDLE-STATIC-FILE
   - (SERVICE-LOG-ACCESS (HTTP-SERVICE))
-  - [[id:2432123875701][CALL-WITH-REQUEST-COUNT-INCF]]
+  - [[id:2432123876343][CALL-WITH-REQUEST-COUNT-INCF]]
   - (ACCEPT (NET-SERVICE))
   - (SERVICE-LOG-MESSAGE (NET-SERVICE T T))
   - (HANDLE-CONNECTION (THREAD-PER-CONNECTION-ENGINE T))
-  - [[id:693440399338][SEND-SERVICE-UNAVAILABLE-RESPONSE]]
-  - [[id:3009615950314][FETCH]]
-  - [[id:2460044734616][REQ]]
+  - [[id:693440399093][SEND-SERVICE-UNAVAILABLE-RESPONSE]]
+  - NET/REQ:FETCH
+  - NET/REQ::REQ
   - NET/REQ::CONTENT-LENGTH
   - NET/REQ::WRITE-AS-OCTETS
   - NET/PROTO/DBUS::CALL-WITH-OPEN-BUS
   - NET/PROTO/DBUS::FIND-COOKIE
   - NET/PROTO/DBUS::OPEN-SOCKET-CONNECTION
-  - [[id:3286357236407][SLIME-CONNECT-FILE]]
+  - [[id:3286357235889][SLIME-CONNECT-FILE]]
   - NET/PROTO/SWANK::SLIME-SECRET
   - NET/PROTO/DNS::TRY-SERVER
-  - [[id:614659745607][ENCODE-DBUS-MESSAGE]]
+  - [[id:614659745057][ENCODE-DBUS-MESSAGE]]
   - (REGISTER-TEMPLATES (T))
   - SYN/GEN/CU::GEN-CU
   - SYN/GEN/CU::READ-CU-FILE
@@ -19243,30 +19982,30 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - SYN/GEN/CPP::READ-CPP-FILE
   - SYN/GEN/C:GEN-C
   - SYN/GEN/C:READ-C-FILE
-  - [[id:3634390899053][GNUPLOT-SEND]]
-  - [[id:4214541283316][FLAMEGRAPH]]
-  - [[id:399332567433][YTDL-JSON]]
-  - [[id:1447885832504][YTDL-LIST]]
-  - [[id:44615966125][YTDL-USER-AGENT]]
-  - [[id:3154016486823][YTDL-EXTRACTORS]]
-  - [[id:1098763533844][RUN-YTDL]]
-  - [[id:3863664777598][WG-GENERATE-KEY-FILES]]
+  - [[id:3634390899035][GNUPLOT-SEND]]
+  - [[id:4214541283115][FLAMEGRAPH]]
+  - [[id:399332567609][YTDL-JSON]]
+  - [[id:1447885832522][YTDL-LIST]]
+  - [[id:44615966546][YTDL-USER-AGENT]]
+  - [[id:3154016486418][YTDL-EXTRACTORS]]
+  - [[id:1098763533772][RUN-YTDL]]
+  - [[id:3863664777294][WG-GENERATE-KEY-FILES]]
   - CLI/TOOLS/NET::RUN-WG*
-  - [[id:1292840832138][RUN-IP]]
-  - [[id:1244988784982][RUN-BROWSER]]
-  - [[id:2137095470164][NET-SYS-STAT-READ]]
-  - [[id:1683842818894][NET-SYS-READ]]
-  - [[id:2877007488796][DEFAULT-NETWORK-DEVICE]]
-  - [[id:1259037788876][RUN-LD]]
-  - [[id:2795193539191][LOAD-MAKEPKG-CONFIG]]
+  - [[id:1292840832597][RUN-IP]]
+  - [[id:1244988785338][RUN-BROWSER]]
+  - [[id:2137095470848][NET-SYS-STAT-READ]]
+  - [[id:1683842818956][NET-SYS-READ]]
+  - [[id:2877007488077][DEFAULT-NETWORK-DEVICE]]
+  - [[id:1259037788652][RUN-LD]]
+  - [[id:2795193539179][LOAD-MAKEPKG-CONFIG]]
   - (FIND-CONFIG ((EQL TMUX)))
   - CLI/LINEDIT::INSPECT-WORD
-  - [[id:3912633307616][FORMEDIT]]
-  - [[id:527556628040][LINEDIT]]
+  - [[id:3912633307906][FORMEDIT]]
+  - [[id:527556628336][LINEDIT]]
   - CLI/LINEDIT::EDITOR-STOP
   - CLI/LINEDIT::EDITOR-INTERRUPT
-  - [[id:575736248253][BUFFER-PUSH]]
-  - [[id:2483153084087][ENSURE-BUFFER]]
+  - [[id:575736247741][BUFFER-PUSH]]
+  - [[id:2483153083659][ENSURE-BUFFER]]
   - CLI/TERM::LOAD-TERMINFO
   - CRY/SSH::LOAD-SSH-CONFIG-FILE
   - CRY/GPG::LOAD-GPG-CONFIG-FILE
@@ -19279,20 +20018,20 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - CRY/TLS::MAYBE-VERIFY-CLIENT-STREAM
   - (INIT ((EQL SSL)))
   - CRY/TLS::ERR-PRINT-ERRORS-TO-STRING
-  - [[id:3365188611910][CRC64-FILE]]
+  - CRY/CRC64:CRC64-FILE
   - (SERDE (FLAMEGRAPH-NODE PATHNAME))
   - RT/TRACING:SAVE-REPORT
-  - [[id:2881976659811][RUN-ALL-TESTS]]
-  - [[id:965361348016][DO-TESTS]]
+  - RT:RUN-ALL-TESTS
+  - RT:DO-TESTS
   - (DO-TEST (TEST))
   - DAT/QRCODE::READ-FILE-CONTENT
-  - [[id:3703418636085][CACHE-FONT-FILE]]
+  - DAT/TTF:CACHE-FONT-FILE
   - DAT/GIF::LOAD-GIF-STREAM
-  - [[id:1251053221622][OUTPUT-GIF-STREAM]]
+  - DAT/GIF:OUTPUT-GIF-STREAM
   - (WRITE-PNG (T T))
-  - [[id:708639289534][WRITE-MIDI-FILE]]
-  - [[id:2937049740469][READ-MIDI-FILE]]
-  - [[id:2311801890158][CALL-WITH-OPEN-TAR-FILE]]
+  - DAT/MIDI:WRITE-MIDI-FILE
+  - DAT/MIDI:READ-MIDI-FILE
+  - DAT/TAR:CALL-WITH-OPEN-TAR-FILE
   - (WRITE-FILE-ENTRY (T T))
   - (WRITE-ENTRY-DATA (TAR-FILE T T))
   - (DESERIALIZE (PATHNAME (EQL BIB)))
@@ -19301,23 +20040,23 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - (DESERIALIZE (PATHNAME (EQL TOML)))
   - (SERDE (INI-DOCUMENT PATHNAME))
   - (DESERIALIZE (PATHNAME (EQL INI)))
-  - [[id:3952429302760][LOAD-MIME-INFO]]
+  - DAT/MIME:LOAD-MIME-INFO
   - (DESERIALIZE (PATHNAME (EQL YAML)))
   - DAT/HTML::DETECT-BOM
   - DAT/SVG::FILE-CONTENTS
   - (DESERIALIZE (PATHNAME (EQL XML)))
   - DAT/PARQUET/GEN::PARSE-PARQUET-THRIFT-DEFINITIONS
   - DAT/PARQUET/GEN::INIT-PARQUET-JSON
-  - [[id:606817373377][COMPILE-CSS]]
-  - [[id:3659446988421][ID3-P]]
-  - [[id:3369992510901][READ-ID3-HEADER]]
+  - DAT/CSS:COMPILE-CSS
+  - DAT/ID3:ID3-P
+  - DAT/ID3:READ-ID3-HEADER
   - (SERIALIZE (T (EQL JSON)))
   - (DESERIALIZE (PATHNAME (EQL JSON)))
-  - [[id:4341835782778][READ-CSV-FILE]]
-  - [[id:10835305624][WRITE-CSV-FILE]]
-  - [[id:162745840952][GRAPH-TO-DOT-FILE]]
-  - [[id:533815221753][LOAD-CANVAS]]
-  - [[id:3793839477463][SAVE-CANVAS]]
+  - DAT/CSV:READ-CSV-FILE
+  - DAT/CSV:WRITE-CSV-FILE
+  - DAT/DOT:GRAPH-TO-DOT-FILE
+  - DAT/IMG:LOAD-CANVAS
+  - DAT/IMG:SAVE-CANVAS
   - JPEG:LOAD-JPEG-IMAGE
   - JPEG:SAVE-JPEG-IMAGE
   - OPENSSL:FORMAT-ERROR-QUEUE
@@ -19327,18 +20066,18 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - IO/KBD:KEYBOARD-DEVICE-P
   - IO/KBD:NEW-DEVICE-FROM-PATH
   - IO/DISK/BTRFS:BTRFS-SUBVOLUMES
-  - [[id:983133237071][STATVFS]]
+  - IO/DISK:STATVFS
   - IO/DEFLATE::GZIP-FILE
   - (DECOMPRESS (PATHNAME DECOMPRESSION-STATE PATHNAME))
   - IO/DEFLATE::%DECOMPRESS-FROM-PATHNAME
-  - [[id:1093323666096][DECOMPRESS-BUFFER]]
-  - [[id:3377717645636][DECOMPRESS-FILE]]
-  - [[id:27525794584][DECOMPRESS-STREAM]]
-  - [[id:1853438269371][COMPRESS-BUFFER]]
-  - [[id:132666631892][COMPRESS-FILE]]
-  - [[id:3140850285854][COMPRESS-STREAM]]
-  - [[id:3941565546791][WRITE-TO-BUFFER]]
-  - [[id:4003663829763][LIST-NETWORK-INTERFACES]]
+  - [[id:1093323666295][DECOMPRESS-BUFFER]]
+  - [[id:3377717645578][DECOMPRESS-FILE]]
+  - [[id:27525794425][DECOMPRESS-STREAM]]
+  - [[id:1853438268855][COMPRESS-BUFFER]]
+  - [[id:132666631919][COMPRESS-FILE]]
+  - [[id:3140850286450][COMPRESS-STREAM]]
+  - [[id:3941565546858][WRITE-TO-BUFFER]]
+  - [[id:4003663829039][LIST-NETWORK-INTERFACES]]
   - (CACHE-FLUSH (CACHE))
   - (CACHE-REMOVE (CACHE T))
   - (CACHE-FETCH (CACHE T))
@@ -19353,14 +20092,14 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - OBJ/COLOR::PARSE-X11-PALETTE
   - OBJ/BTREE::MAP-INDEX-FROM-END
   - OBJ/BTREE::MAP-INDEX-FROM-START
-  - [[id:2598209719116][MAP-INDEX-VALUES]]
+  - [[id:2598209718458][MAP-INDEX-VALUES]]
   - OBJ/BTREE::MAP-BTREE-FROM-END
   - OBJ/BTREE::MAP-BTREE-FROM-START
   - OBJ/BTREE::MAP-BTREE-VALUES
   - (DROP-BTREE (BTREE))
-  - [[id:837045009413][LOAD-ETLD-DATA]]
-  - [[id:3409493957243][CONVERT-TS-TREE]]
-  - [[id:2223981039782][PARSE-LANG-STRING]]
+  - OBJ/URI::LOAD-ETLD-DATA
+  - TREE-SITTER:CONVERT-TS-TREE
+  - TREE-SITTER:PARSE-LANG-STRING
   - SWANK-MREPL::READ-INPUT
   - SWANK-MREPL::MREPL-EVAL
   - SWANK-MREPL::DROP-UNPROCESSED-EVENTS
@@ -19386,8 +20125,8 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
   - SWANK/SOURCE-PATH-PARSER:SOURCE-PATH-FILE-POSITION
   - IRONCLAD:EXECUTE-WITH-DIGESTING-STREAM
   - IRONCLAD::FEED-FIFO
-  - [[id:2219231757579][WRITE-SEED]]
-  - [[id:1603894234049][READ-SEED]]
+  - IRONCLAD:WRITE-SEED
+  - IRONCLAD:READ-SEED
   - IRONCLAD::OS-RANDOM-SEED
   - (DIGEST-FILE (T T))
   - STD/FILE::CONCATENATE-FILES
@@ -19431,8 +20170,10 @@ ENVIRONMENT-DEBUG-LIVE-TN names a compiled function:
 :ID: 1868237869868
 :CUSTOM_ID: SB-C:MAKE-RESTART-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-RESTART-LOCATION names a compiled function:
   A constructor for SB-C::RESTART-LOCATION
   Lambda-list: (&OPTIONAL LABEL TN)
@@ -19440,6 +20181,7 @@ MAKE-RESTART-LOCATION names a compiled function:
                  (&OPTIONAL (OR NULL SB-ASSEM:LABEL) (OR SB-C:TN NULL))
                  (VALUES SB-C::RESTART-LOCATION &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG-DUMP.LISP
+
 #+end_example
 
 :definitions:
@@ -19450,27 +20192,33 @@ MAKE-RESTART-LOCATION names a compiled function:
 :ID: 769005650438
 :CUSTOM_ID: SB-C:BRANCH-IF
 :ALLOC: HEAP IMMOBILE
-:END:** RETURN-MULTIPLE :vop:
+:END:
+** RETURN-MULTIPLE :vop:
 :PROPERTIES:
 :ID: 1358269265633
 :CUSTOM_ID: SB-C:RETURN-MULTIPLE
 :ALLOC: HEAP IMMOBILE
-:END:** UNWIND :vop:
+:END:
+** UNWIND :vop:
 :PROPERTIES:
 :ID: 2155652865896
 :CUSTOM_ID: SB-C:UNWIND
 :ALLOC: HEAP IMMOBILE
-:END:** STANDARD-ARG-LOCATION :compiled:function:
+:END:
+** STANDARD-ARG-LOCATION :compiled:function:
 :PROPERTIES:
 :ID: 98004460388
 :CUSTOM_ID: SB-C:STANDARD-ARG-LOCATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STANDARD-ARG-LOCATION names a compiled function:
   Lambda-list: (N)
   Derived type: (FUNCTION (UNSIGNED-BYTE) (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;GENERIC;UTILS.LISP
+
 #+end_example
 
 :definitions:
@@ -19481,17 +20229,21 @@ STANDARD-ARG-LOCATION names a compiled function:
 :ID: 2737420054141
 :CUSTOM_ID: SB-C:COMPILE-FILES
 :ALLOC: HEAP IMMOBILE
-:END:** DEFINITION-SOURCE-LOCATION-FORM-NUMBER :compiled:function:
+:END:
+** DEFINITION-SOURCE-LOCATION-FORM-NUMBER :compiled:function:
 :PROPERTIES:
 :ID: 1516860219638
 :CUSTOM_ID: SB-C:DEFINITION-SOURCE-LOCATION-FORM-NUMBER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFINITION-SOURCE-LOCATION-FORM-NUMBER names a compiled function:
   Lambda-list: (SOURCE-LOC)
   Derived type: (FUNCTION (T) (VALUES (OR NULL (MOD 32767)) &OPTIONAL))
   Source file: SYS:SRC;CODE;SOURCE-LOCATION.LISP
+
 #+end_example
 
 - Called by
@@ -19505,17 +20257,21 @@ DEFINITION-SOURCE-LOCATION-FORM-NUMBER names a compiled function:
 :ID: 3447007904638
 :CUSTOM_ID: SB-C:TYPE-CHECK-ERROR
 :ALLOC: HEAP IMMOBILE
-:END:** PRIMITIVE-TYPE-INDIRECT-CELL-TYPE :compiled:function:
+:END:
+** PRIMITIVE-TYPE-INDIRECT-CELL-TYPE :compiled:function:
 :PROPERTIES:
 :ID: 3735020707144
 :CUSTOM_ID: SB-C:PRIMITIVE-TYPE-INDIRECT-CELL-TYPE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PRIMITIVE-TYPE-INDIRECT-CELL-TYPE names a compiled function:
   Lambda-list: (PTYPE)
   Derived type: (FUNCTION (SB-C:PRIMITIVE-TYPE) (VALUES LIST &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;CALL.LISP
+
 #+end_example
 
 :definitions:
@@ -19526,11 +20282,14 @@ PRIMITIVE-TYPE-INDIRECT-CELL-TYPE names a compiled function:
 :ID: 3590518188180
 :CUSTOM_ID: SB-C:XDEFUN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 XDEFUN names a macro:
   Lambda-list: (NAME SNIPPET SOURCE-FORM LAMBDA-LIST &BODY BODY)
   Source file: SYS:SRC;CODE;MACROS.LISP
+
 #+end_example
 
 :definitions:
@@ -19541,17 +20300,21 @@ XDEFUN names a macro:
 :ID: 3641585555819
 :CUSTOM_ID: SB-C:MOVABLE
 :ALLOC: HEAP IMMOBILE
-:END:** EMIT-BLOCK-HEADER :compiled:function:
+:END:
+** EMIT-BLOCK-HEADER :compiled:function:
 :PROPERTIES:
 :ID: 2377519128432
 :CUSTOM_ID: SB-C:EMIT-BLOCK-HEADER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 EMIT-BLOCK-HEADER names a compiled function:
   Lambda-list: (START-LABEL TRAMPOLINE-LABEL FALL-THRU-P ALIGNP)
   Derived type: (FUNCTION (T T T T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;X86-64;CALL.LISP
+
 #+end_example
 
 :definitions:
@@ -19562,12 +20325,15 @@ EMIT-BLOCK-HEADER names a compiled function:
 :ID: 4014815018025
 :CUSTOM_ID: SB-C:FORCE-TN-TO-STACK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FORCE-TN-TO-STACK names a compiled function:
   Lambda-list: (TN)
   Derived type: (FUNCTION (SB-C:TN) (VALUES &OPTIONAL))
   Source file: SYS:SRC;COMPILER;TN.LISP
+
 #+end_example
 
 :definitions:
@@ -19578,12 +20344,15 @@ FORCE-TN-TO-STACK names a compiled function:
 :ID: 2312969683874
 :CUSTOM_ID: SB-C:NEXT-VOP-IS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NEXT-VOP-IS names a compiled function:
   Lambda-list: (VOP NAMES)
   Derived type: (FUNCTION (T T) (VALUES (OR SB-C::VOP NULL) &OPTIONAL))
   Source file: SYS:SRC;COMPILER;IR2OPT.LISP
+
 #+end_example
 
 :definitions:
@@ -19594,10 +20363,13 @@ NEXT-VOP-IS names a compiled function:
 :ID: 1624786340191
 :CUSTOM_ID: SB-C:+BACKEND-PAGE-BYTES+
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 +BACKEND-PAGE-BYTES+ names a constant variable:
   Value: 32768
+
 #+end_example
 
 :definitions:
@@ -19608,11 +20380,14 @@ NEXT-VOP-IS names a compiled function:
 :ID: 1454351989952
 :CUSTOM_ID: SB-C:DEF-IR1-TRANSLATOR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEF-IR1-TRANSLATOR names a macro:
   Lambda-list: (NAME (LAMBDA-LIST START-VAR NEXT-VAR RESULT-VAR) &BODY BODY)
   Source file: SYS:SRC;COMPILER;MACROS.LISP
+
 #+end_example
 
 :definitions:
@@ -19623,32 +20398,39 @@ DEF-IR1-TRANSLATOR names a macro:
 :ID: 4375796197853
 :CUSTOM_ID: SB-C:MAKE-CATCH-BLOCK
 :ALLOC: HEAP IMMOBILE
-:END:** CALL-VARIABLE :vop:
+:END:
+** CALL-VARIABLE :vop:
 :PROPERTIES:
 :ID: 3557174505077
 :CUSTOM_ID: SB-C:CALL-VARIABLE
 :ALLOC: HEAP IMMOBILE
-:END:** DERIVE-TYPE
+:END:
+** DERIVE-TYPE
 :PROPERTIES:
 :ID: 2801727429271
 :CUSTOM_ID: SB-C:DERIVE-TYPE
 :ALLOC: HEAP IMMOBILE
-:END:** COMPARE-AND-SWAP-SLOT :vop:
+:END:
+** COMPARE-AND-SWAP-SLOT :vop:
 :PROPERTIES:
 :ID: 3694546493677
 :CUSTOM_ID: SB-C:COMPARE-AND-SWAP-SLOT
 :ALLOC: HEAP IMMOBILE
-:END:** ID-COMPONENT :compiled:function:
+:END:
+** ID-COMPONENT :compiled:function:
 :PROPERTIES:
 :ID: 1147040511391
 :CUSTOM_ID: SB-C:ID-COMPONENT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ID-COMPONENT names a compiled function:
   Lambda-list: (NUM)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;COMPILER;DEBUG.LISP
+
 #+end_example
 
 :definitions:
@@ -19659,8 +20441,10 @@ ID-COMPONENT names a compiled function:
 :ID: 1492402387261
 :CUSTOM_ID: SB-C:FIXUP-NOTE-KIND
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FIXUP-NOTE-KIND names a compiled function:
   An accessor for SB-C::FIXUP-NOTE
   Lambda-list: (INSTANCE)
@@ -19672,6 +20456,7 @@ FIXUP-NOTE-KIND names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (SYMBOL SB-C::FIXUP-NOTE) (VALUES SYMBOL &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -19682,17 +20467,21 @@ FIXUP-NOTE-KIND names a compiled function:
 :ID: 3260987247656
 :CUSTOM_ID: SB-C:SAVE-DYNAMIC-STATE
 :ALLOC: HEAP IMMOBILE
-:END:** MAKE-NLX-SP-TN :compiled:function:
+:END:
+** MAKE-NLX-SP-TN :compiled:function:
 :PROPERTIES:
 :ID: 4038933113060
 :CUSTOM_ID: SB-C:MAKE-NLX-SP-TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-NLX-SP-TN names a compiled function:
   Lambda-list: (ENV)
   Derived type: (FUNCTION (T) (VALUES SB-C:TN &OPTIONAL))
   Source file: SYS:SRC;COMPILER;GENERIC;UTILS.LISP
+
 #+end_example
 
 :definitions:
@@ -19703,13 +20492,16 @@ MAKE-NLX-SP-TN names a compiled function:
 :ID: 4360630395697
 :CUSTOM_ID: SB-C:SET-NSP
 :ALLOC: HEAP IMMOBILE
-:END:** TN :class:
+:END:
+** TN :class:
 :PROPERTIES:
 :ID: 3797462688509
 :CUSTOM_ID: SB-C:TN
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TN names the structure-class #<STRUCTURE-CLASS SB-C:TN>:
   Class precedence-list: SB-C:TN, SB-INT:SSET-ELEMENT, STRUCTURE-OBJECT,
                          SB-PCL::SLOT-OBJECT, T
@@ -19779,6 +20571,7 @@ TN names the structure-class #<STRUCTURE-CLASS SB-C:TN>:
     SB-C::VERTEX
       Type: T
       Initform: NIL
+
 #+end_example
 
 :definitions:
@@ -19791,8 +20584,10 @@ TN names the structure-class #<STRUCTURE-CLASS SB-C:TN>:
 :ID: 146988700307
 :CUSTOM_ID: SB-C:STORAGE-CLASS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 STORAGE-CLASS names the structure-class #<STRUCTURE-CLASS SB-C:STORAGE-CLASS>:
   Class precedence-list: SB-C:STORAGE-CLASS, STRUCTURE-OBJECT,
                          SB-PCL::SLOT-OBJECT, T
@@ -19850,6 +20645,7 @@ STORAGE-CLASS names the structure-class #<STRUCTURE-CLASS SB-C:STORAGE-CLASS>:
     SB-C::RESERVE-LOCATIONS
       Type: SB-C::SC-LOCATIONS
       Initform: (SB-INT:MISSING-ARG)
+
 #+end_example
 
 :definitions:
@@ -19860,13 +20656,16 @@ STORAGE-CLASS names the structure-class #<STRUCTURE-CLASS SB-C:STORAGE-CLASS>:
 :ID: 834117557594
 :CUSTOM_ID: SB-C:DO-FORMS-FROM-INFO
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DO-FORMS-FROM-INFO names a macro:
   Lambda-list: (((FORM &REST KEYS) INFO &OPTIONAL
                  (ON-ERROR (QUOTE (QUOTE INPUT-ERROR-IN-LOAD))))
                 &BODY BODY)
   Source file: SYS:SRC;COMPILER;MAIN.LISP
+
 #+end_example
 
 :definitions:
@@ -19877,10 +20676,13 @@ DO-FORMS-FROM-INFO names a macro:
 :ID: 779343933515
 :CUSTOM_ID: SB-C:RETURN-PC-PASSING-OFFSET
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 RETURN-PC-PASSING-OFFSET names a constant variable:
   Value: 16777218
+
 #+end_example
 
 :definitions:
@@ -19891,14 +20693,17 @@ RETURN-PC-PASSING-OFFSET names a constant variable:
 :ID: 1064732110092
 :CUSTOM_ID: SB-C:MOVE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MOVE names a compiled function:
   Lambda-list: (DST SRC &OPTIONAL SIZE)
   Derived type: (FUNCTION (T T &OPTIONAL T) *)
   Documentation:
     Move SRC into DST unless they are location=.
   Source file: SYS:SRC;COMPILER;X86-64;MACROS.LISP
+
 #+end_example
 
 - Called by
@@ -20345,16 +21150,20 @@ MOVE names a compiled function:
 :ID: 1801902362651
 :CUSTOM_ID: SB-C:MAKE-UNWIND-BLOCK
 :ALLOC: HEAP IMMOBILE
-:END:** *COMPILE-TO-MEMORY-SPACE​* :var:
+:END:
+** *COMPILE-TO-MEMORY-SPACE​* :var:
 :PROPERTIES:
 :ID: 3446111867857
 :CUSTOM_ID: SB-C:*COMPILE-TO-MEMORY-SPACE*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*COMPILE-TO-MEMORY-SPACE* names a special variable:
+
+*COMPILE-TO-MEMORY-SPACE* names a special variable:
   Declared type: (MEMBER :AUTO :DYNAMIC :IMMOBILE)
   Value: :AUTO
+
 #+end_example
 
 :definitions:
@@ -20365,8 +21174,10 @@ MOVE names a compiled function:
 :ID: 1088121884810
 :CUSTOM_ID: SB-C:FIXUP-NOTE-FIXUP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FIXUP-NOTE-FIXUP names a compiled function:
   An accessor for SB-C::FIXUP-NOTE
   Lambda-list: (INSTANCE)
@@ -20379,6 +21190,7 @@ FIXUP-NOTE-FIXUP names a compiled function:
   Derived type: (FUNCTION (SB-C:FIXUP SB-C::FIXUP-NOTE)
                  (VALUES SB-C:FIXUP &OPTIONAL))
   Source file: SYS:SRC;COMPILER;CODEGEN.LISP
+
 #+end_example
 
 :definitions:
@@ -20389,8 +21201,11 @@ FIXUP-NOTE-FIXUP names a compiled function:
 :ID: 82519017179
 :CUSTOM_ID: SB-C:INSTRUMENT-CONSING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INSTRUMENT-CONSING names a dependent optimization policy quality:
   (undocumented)
+
 #+end_example

@@ -1,0 +1,1646 @@
+#+SETUPFILE: ../../clean.theme
+* SB-DISASSEM
+:PROPERTIES:
+:CUSTOM_ID: SB-DISASSEM
+:ID: 25
+:LOCK: T
+:END:
+private: stuff related to the implementation of the disassembler
+
+- dependencies
+  - COMMON-LISP
+  - SB-EXT
+  - SB-INT
+  - SB-KERNEL
+  - SB-SYS
+
+- dependents
+  - [[id:35][SB-X86-64-ASM]]
+
+** DSTATE-OPERANDS :compiled:function:
+:PROPERTIES:
+:ID: 2363547281911
+:CUSTOM_ID: SB-DISASSEM:DSTATE-OPERANDS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DSTATE-OPERANDS names a compiled function:
+  An accessor for SB-DISASSEM:DISASSEM-STATE
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-DISASSEM:DISASSEM-STATE) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** SEG-VIRTUAL-LOCATION :compiled:function:
+:PROPERTIES:
+:ID: 3859974831311
+:CUSTOM_ID: SB-DISASSEM:SEG-VIRTUAL-LOCATION
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SEG-VIRTUAL-LOCATION names a compiled function:
+  An accessor for SB-DISASSEM:SEGMENT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-DISASSEM:SEGMENT)
+                 (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+(SETF SEG-VIRTUAL-LOCATION) names a compiled function:
+  An accessor for SB-DISASSEM:SEGMENT
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 64) SB-DISASSEM:SEGMENT)
+                 (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** MAP-SEGMENT-INSTRUCTIONS :compiled:function:
+:PROPERTIES:
+:ID: 3686796417791
+:CUSTOM_ID: SB-DISASSEM:MAP-SEGMENT-INSTRUCTIONS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAP-SEGMENT-INSTRUCTIONS names a compiled function:
+  Lambda-list: (FUNCTION SEGMENT DSTATE &OPTIONAL STREAM)
+  Dynamic-extent arguments: positional=(0)
+  Derived type: (FUNCTION
+                 (FUNCTION SB-DISASSEM:SEGMENT SB-DISASSEM:DISASSEM-STATE
+                  &OPTIONAL (OR STREAM NULL))
+                 (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** *DISASSEM-LOCATION-COLUMN-WIDTH​* :var:
+:PROPERTIES:
+:ID: 3190422314762
+:CUSTOM_ID: SB-DISASSEM:*DISASSEM-LOCATION-COLUMN-WIDTH*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*DISASSEM-LOCATION-COLUMN-WIDTH* names a special variable:
+  Declared type: (OR NULL (MOD 1001))
+  Value: NIL
+
+#+end_example
+
+- Bound by
+  - [[id:4234738574007][ASM-SEARCH]]
+
+:definitions:
+- SYS:SRC;COMPILER;DISASSEM.LISP
+:end:
+** SAP-REF-INT :compiled:function:
+:PROPERTIES:
+:ID: 3370913567390
+:CUSTOM_ID: SB-DISASSEM:SAP-REF-INT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SAP-REF-INT names a compiled function:
+  Lambda-list: (SAP OFFSET LENGTH BYTE-ORDER)
+  Derived type: (FUNCTION
+                 (SB-SYS:SYSTEM-AREA-POINTER FIXNUM
+                  (OR (INTEGER 1 2) (INTEGER 4 4) (INTEGER 8 8))
+                  (MEMBER :LITTLE-ENDIAN :BIG-ENDIAN))
+                 (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** SET-LOCATION-PRINTING-RANGE :compiled:function:
+:PROPERTIES:
+:ID: 4217459239194
+:CUSTOM_ID: SB-DISASSEM:SET-LOCATION-PRINTING-RANGE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SET-LOCATION-PRINTING-RANGE names a compiled function:
+  Lambda-list: (DSTATE FROM LENGTH)
+  Derived type: (FUNCTION (T T T) (VALUES (MOD 21) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DISASSEM-STATE :class:
+:PROPERTIES:
+:ID: 330792220343
+:CUSTOM_ID: SB-DISASSEM:DISASSEM-STATE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DISASSEM-STATE names the structure-class #<STRUCTURE-CLASS SB-DISASSEM:DISASSEM-STATE>:
+  Class precedence-list: SB-DISASSEM:DISASSEM-STATE, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Sealed.
+  Slots:
+    SB-DISASSEM::SCRATCH-BUF
+      Type: SB-EXT:WORD (unboxed)
+      Initform: 0
+    SB-DISASSEM::CUR-OFFS
+      Type: SB-DISASSEM::OFFSET
+      Initform: 0
+    SB-DISASSEM::NEXT-OFFS
+      Type: SB-DISASSEM::OFFSET
+      Initform: 0
+    SB-DISASSEM::SEGMENT-SAP
+      Type: SB-SYS:SYSTEM-AREA-POINTER
+      Initform: (INT-SAP 0)
+    SB-DISASSEM:SEGMENT
+      Type: (OR NULL SB-DISASSEM:SEGMENT)
+      Initform: NIL
+    SB-DISASSEM::FOREIGN-CODE-P
+      Type: T
+      Initform: NIL
+    SB-DISASSEM::ABSOLUTIZE-JUMPS
+      Type: T
+      Initform: T
+    SB-DISASSEM::ALIGNMENT
+      Type: SB-DISASSEM::ALIGNMENT
+      Initform: N-WORD-BYTES
+    SB-DISASSEM::BYTE-ORDER
+      Type: (MEMBER :BIG-ENDIAN :LITTLE-ENDIAN)
+      Initform: *BACKEND-BYTE-ORDER*
+    SB-DISASSEM::INST
+      Type: T
+      Initform: NIL
+    SB-DISASSEM::OPERANDS
+      Type: T
+      Initform: (MAKE-ARRAY 10)
+    SB-DISASSEM::N-OPERANDS
+      Type: T
+      Initform: 0
+    SB-DISASSEM::INST-PROPERTIES
+      Type: FIXNUM
+      Initform: 0
+    SB-DISASSEM::FILTERED-VALUES
+      Type: SB-DISASSEM::FILTERED-VALUE-VECTOR
+      Initform: (MAKE-ARRAY SB-DISASSEM::MAX-FILTERED-VALUE-INDEX)
+    SB-DISASSEM::FILTERED-ARG-POOL-IN-USE
+      Type: T
+      Initform: NIL
+    SB-DISASSEM::FILTERED-ARG-POOL-FREE
+      Type: T
+      Initform: NIL
+    SB-DISASSEM::ADDR-PRINT-LEN
+      Type: (OR NULL (INTEGER 0 20))
+      Initform: NIL
+    SB-DISASSEM::ARGUMENT-COLUMN
+      Type: SB-DISASSEM::COLUMN
+      Initform: 0
+    SB-DISASSEM::OUTPUT-STATE
+      Type: (MEMBER :BEGINNING :BLOCK-BOUNDARY NIL)
+      Initform: :BEGINNING
+    SB-DISASSEM::PREVIOUS-CHUNK
+      Type: T
+      Initform: NIL
+    SB-DISASSEM::KNOWN-REGISTER-CONTENTS
+      Type: T
+      Initform: NIL
+    LABELS
+      Type: LIST
+      Initform: NIL
+    SB-DISASSEM::LABEL-HASH
+      Type: HASH-TABLE
+      Initform: (MAKE-HASH-TABLE)
+    SB-DISASSEM::FUN-HOOKS
+      Type: LIST
+      Initform: NIL
+    SB-DISASSEM::CUR-LABELS
+      Type: LIST
+      Initform: NIL
+    SB-DISASSEM::CUR-OFFS-HOOKS
+      Type: LIST
+      Initform: NIL
+    SB-DISASSEM::NOTES
+      Type: T
+      Initform: NIL
+    SB-DISASSEM::CURRENT-VALID-LOCATIONS
+      Type: (OR NULL (VECTOR BIT))
+      Initform: NIL
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+  - [[id:2131768191127][FREEZE-TYPE]]
+:end:
+** SEGMENT :class:
+:PROPERTIES:
+:ID: 3373429744977
+:CUSTOM_ID: SB-DISASSEM:SEGMENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SEGMENT names the structure-class #<STRUCTURE-CLASS SB-DISASSEM:SEGMENT>:
+  Class precedence-list: SB-DISASSEM:SEGMENT, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Slots:
+    SB-DISASSEM::OBJECT
+      Type: T
+      Initform: NIL
+    SB-DISASSEM::SAP-MAKER
+      Type: (FUNCTION NIL SB-SYS:SYSTEM-AREA-POINTER)
+      Initform: (SB-INT:MISSING-ARG)
+    LENGTH
+      Type: SB-DISASSEM::DISASSEM-LENGTH
+      Initform: 0
+    SB-DISASSEM::VIRTUAL-LOCATION
+      Type: SB-DISASSEM::ADDRESS (unboxed)
+      Initform: 0
+    SB-DISASSEM::STORAGE-INFO
+      Type: (OR NULL SB-DISASSEM::STORAGE-INFO)
+      Initform: NIL
+    SB-DISASSEM::CODE
+      Type: (OR NULL SB-KERNEL:CODE-COMPONENT)
+      Initform: NIL
+    SB-DISASSEM::CODE-CALLABLES
+      Type: T
+      Initform: :?
+    SB-DISASSEM::INITIAL-OFFSET
+      Type: SB-INT:INDEX
+      Initform: 0
+    SB-DISASSEM::HOOKS
+      Type: LIST
+      Initform: NIL
+    SB-DISASSEM::DEBUG-FUN
+      Type: T
+      Initform: NIL
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** SEG-CODE :compiled:function:
+:PROPERTIES:
+:ID: 161760878201
+:CUSTOM_ID: SB-DISASSEM:SEG-CODE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SEG-CODE names a compiled function:
+  An accessor for SB-DISASSEM:SEGMENT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-DISASSEM:SEGMENT)
+                 (VALUES (OR SB-KERNEL:CODE-COMPONENT NULL) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** ARG-VALUE :compiled:function:
+:PROPERTIES:
+:ID: 3241721790786
+:CUSTOM_ID: SB-DISASSEM:ARG-VALUE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ARG-VALUE names a compiled function:
+  An accessor for SB-DISASSEM::ARG
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-DISASSEM::ARG)
+                 (VALUES (OR LIST INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;DISASSEM.LISP
+
+(SETF ARG-VALUE) names a compiled function:
+  An accessor for SB-DISASSEM::ARG
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION ((OR LIST INTEGER) SB-DISASSEM::ARG)
+                 (VALUES (OR LIST INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;DISASSEM.LISP
+:end:
+** *DEFAULT-DSTATE-HOOKS​* :var:
+:PROPERTIES:
+:ID: 3158495157119
+:CUSTOM_ID: SB-DISASSEM:*DEFAULT-DSTATE-HOOKS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*DEFAULT-DSTATE-HOOKS* names a special variable:
+  Value: (SB-SPROF::ADD-DISASSEMBLY-PROFILE-NOTE)
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DISASSEMBLE-INSTRUCTION :compiled:function:
+:PROPERTIES:
+:ID: 3413377029330
+:CUSTOM_ID: SB-DISASSEM:DISASSEMBLE-INSTRUCTION
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DISASSEMBLE-INSTRUCTION names a compiled function:
+  Lambda-list: (DSTATE)
+  Derived type: (FUNCTION (SB-DISASSEM:DISASSEM-STATE) (VALUES CONS &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+- Called by
+  - [[id:2763828005667][GET-SIMPLE-FUN-INSTRUCTION-MODEL]]
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** OPERAND :compiled:function:
+:PROPERTIES:
+:ID: 2924122867246
+:CUSTOM_ID: SB-DISASSEM:OPERAND
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+OPERAND names a compiled function:
+  Lambda-list: (THING DSTATE)
+  Derived type: (FUNCTION (T T) (VALUES (INTEGER 1 17592186044416) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DSTATE-NEXT-ADDR :compiled:function:
+:PROPERTIES:
+:ID: 318621144565
+:CUSTOM_ID: SB-DISASSEM:DSTATE-NEXT-ADDR
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DSTATE-NEXT-ADDR names a compiled function:
+  Lambda-list: (DSTATE)
+  Derived type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** MAKE-DSTATE :compiled:function:
+:PROPERTIES:
+:ID: 2213756866990
+:CUSTOM_ID: SB-DISASSEM:MAKE-DSTATE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAKE-DSTATE names a compiled function:
+  Lambda-list: (&OPTIONAL (FUN-HOOKS *DEFAULT-DSTATE-HOOKS*))
+  Derived type: (FUNCTION (&OPTIONAL T)
+                 (VALUES SB-DISASSEM:DISASSEM-STATE &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+- Called by
+  - [[id:2763828005667][GET-SIMPLE-FUN-INSTRUCTION-MODEL]]
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** NOTE :compiled:function:
+:PROPERTIES:
+:ID: 1802058270901
+:CUSTOM_ID: SB-DISASSEM:NOTE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+NOTE names a compiled function:
+  Lambda-list: (NOTE DSTATE)
+  Derived type: (FUNCTION ((OR STRING FUNCTION) SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES (OR STRING FUNCTION CONS) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+- Called by
+  - SB-SPROF::ADD-DISASSEMBLY-PROFILE-NOTE
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** ALIGN :compiled:function:
+:PROPERTIES:
+:ID: 1380730340920
+:CUSTOM_ID: SB-DISASSEM:ALIGN
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ALIGN names a compiled function:
+  Lambda-list: (ADDRESS SIZE)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 64) (MOD 65))
+                 (VALUES (INTEGER -64 18446744073709551678) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** PRINT-BYTES :compiled:function:
+:PROPERTIES:
+:ID: 296480331463
+:CUSTOM_ID: SB-DISASSEM:PRINT-BYTES
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+PRINT-BYTES names a compiled function:
+  Lambda-list: (NUM STREAM DSTATE)
+  Derived type: (FUNCTION (FIXNUM STREAM SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** MAKE-SEGMENT :compiled:function:
+:PROPERTIES:
+:ID: 3875270165422
+:CUSTOM_ID: SB-DISASSEM:MAKE-SEGMENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAKE-SEGMENT names a compiled function:
+  Lambda-list: (OBJECT SAP-MAKER LENGTH &KEY CODE (INITIAL-OFFSET 0)
+                VIRTUAL-LOCATION DEBUG-FUN SOURCE-FORM-CACHE HOOKS)
+  Derived type: (FUNCTION
+                 (T (FUNCTION NIL (VALUES SB-SYS:SYSTEM-AREA-POINTER &REST T))
+                  (UNSIGNED-BYTE 62) &KEY (:CODE T) (:INITIAL-OFFSET T)
+                  (:VIRTUAL-LOCATION (OR NULL (UNSIGNED-BYTE 64)))
+                  (:DEBUG-FUN (OR NULL SB-DI:DEBUG-FUN))
+                  (:SOURCE-FORM-CACHE (OR NULL SB-DISASSEM::SOURCE-FORM-CACHE))
+                  (:HOOKS T))
+                 (VALUES SB-DISASSEM:SEGMENT &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** SIGN-EXTEND :compiled:vop:function:
+:PROPERTIES:
+:ID: 2799650992957
+:CUSTOM_ID: SB-DISASSEM:SIGN-EXTEND
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SIGN-EXTEND names a compiled function:
+  Lambda-list: (INT SIZE)
+  Derived type: (FUNCTION (INTEGER (MOD 129)) (VALUES INTEGER &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;DISASSEM.LISP
+:end:
+** HANDLE-BREAK-ARGS :compiled:function:
+:PROPERTIES:
+:ID: 3845095561912
+:CUSTOM_ID: SB-DISASSEM:HANDLE-BREAK-ARGS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+HANDLE-BREAK-ARGS names a compiled function:
+  Lambda-list: (ERROR-PARSE-FUN TRAP-NUMBER STREAM DSTATE)
+  Derived type: (FUNCTION
+                 (FUNCTION T (OR STREAM NULL) SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES FIXNUM &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** PRINC16 :compiled:function:
+:PROPERTIES:
+:ID: 843305691111
+:CUSTOM_ID: SB-DISASSEM:PRINC16
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+PRINC16 names a compiled function:
+  Lambda-list: (VALUE STREAM)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** INSTRUCTION :class:
+:PROPERTIES:
+:ID: 3440138322196
+:CUSTOM_ID: SB-DISASSEM:INSTRUCTION
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+INSTRUCTION names the structure-class #<STRUCTURE-CLASS SB-DISASSEM:INSTRUCTION>:
+  Class precedence-list: SB-DISASSEM:INSTRUCTION, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Sealed.
+  Slots:
+    SB-DISASSEM::NAME
+      Type: SYMBOL
+      Initform: NIL
+    SB-DISASSEM::FORMAT-NAME
+      Type: (OR SYMBOL STRING)
+      Initform: NIL
+    SB-DISASSEM::MASK
+      Type: SB-DISASSEM:DCHUNK
+      Initform: SB-DISASSEM:DCHUNK-ZERO
+    SB-DISASSEM::ID
+      Type: SB-DISASSEM:DCHUNK
+      Initform: SB-DISASSEM:DCHUNK-ZERO
+    LENGTH
+      Type: SB-DISASSEM::DISASSEM-LENGTH
+      Initform: 0
+    SB-DISASSEM::PRINT-NAME
+      Type: SYMBOL
+      Initform: NIL
+    SB-DISASSEM::PREFILTER
+      Type: FUNCTION
+      Initform: NIL
+    SB-DISASSEM::LABELLER
+      Type: (OR LIST VECTOR)
+      Initform: NIL
+    SB-DISASSEM::PRINTER
+      Type: (OR NULL FUNCTION)
+      Initform: NIL
+    SB-DISASSEM::CONTROL
+      Type: (OR NULL FUNCTION)
+      Initform: NIL
+    SB-DISASSEM::SPECIALIZERS
+      Type: LIST
+      Initform: NIL
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+  - [[id:2131768191127][FREEZE-TYPE]]
+:end:
+** DSTATE-GETPROP :compiled:function:
+:PROPERTIES:
+:ID: 1879839645533
+:CUSTOM_ID: SB-DISASSEM:DSTATE-GETPROP
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DSTATE-GETPROP names a compiled function:
+  Lambda-list: (DSTATE MASK)
+  Derived type: (FUNCTION (T FIXNUM) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** MAKE-VECTOR-SEGMENT :compiled:function:
+:PROPERTIES:
+:ID: 865710536945
+:CUSTOM_ID: SB-DISASSEM:MAKE-VECTOR-SEGMENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAKE-VECTOR-SEGMENT names a compiled function:
+  Lambda-list: (VECTOR OFFSET &REST ARGS)
+  Derived type: (FUNCTION (VECTOR FIXNUM &REST T)
+                 (VALUES SB-DISASSEM:SEGMENT &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** NOTE-CODE-CONSTANT :compiled:function:
+:PROPERTIES:
+:ID: 1690836143999
+:CUSTOM_ID: SB-DISASSEM:NOTE-CODE-CONSTANT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+NOTE-CODE-CONSTANT names a compiled function:
+  Lambda-list: (LOCATION DSTATE &OPTIONAL (HOW RELATIVE))
+  Derived type: (FUNCTION (T SB-DISASSEM:DISASSEM-STATE &OPTIONAL T)
+                 (VALUES T &OPTIONAL (MEMBER T)))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DISASSEMBLE-ASSEM-SEGMENT :compiled:function:
+:PROPERTIES:
+:ID: 3558660831987
+:CUSTOM_ID: SB-DISASSEM:DISASSEMBLE-ASSEM-SEGMENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DISASSEMBLE-ASSEM-SEGMENT names a compiled function:
+  Lambda-list: (BYTES RANGES STREAM)
+  Derived type: (FUNCTION (T T STREAM) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** PRINT-INST :compiled:function:
+:PROPERTIES:
+:ID: 2679228150388
+:CUSTOM_ID: SB-DISASSEM:PRINT-INST
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+PRINT-INST names a compiled function:
+  Lambda-list: (NUM STREAM DSTATE &KEY (OFFSET 0) (TRAILING-SPACE T))
+  Derived type: (FUNCTION (T T T &KEY (:OFFSET T) (:TRAILING-SPACE T))
+                 (VALUES (OR BASE-CHAR NULL) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DSTATE-CUR-OFFS :compiled:function:
+:PROPERTIES:
+:ID: 3852855246274
+:CUSTOM_ID: SB-DISASSEM:DSTATE-CUR-OFFS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DSTATE-CUR-OFFS names a compiled function:
+  An accessor for SB-DISASSEM:DISASSEM-STATE
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES FIXNUM &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+(SETF DSTATE-CUR-OFFS) names a compiled function:
+  An accessor for SB-DISASSEM:DISASSEM-STATE
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (FIXNUM SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES FIXNUM &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+#+end_example
+
+- Called by
+  - [[id:2763828005667][GET-SIMPLE-FUN-INSTRUCTION-MODEL]]
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** PRIN1-QUOTED-SHORT :compiled:function:
+:PROPERTIES:
+:ID: 4296422017323
+:CUSTOM_ID: SB-DISASSEM:PRIN1-QUOTED-SHORT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+PRIN1-QUOTED-SHORT names a compiled function:
+  Lambda-list: (THING STREAM)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DISASSEMBLE-MEMORY :compiled:function:
+:PROPERTIES:
+:ID: 1302564764588
+:CUSTOM_ID: SB-DISASSEM:DISASSEMBLE-MEMORY
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DISASSEMBLE-MEMORY names a compiled function:
+  Lambda-list: (ADDRESS LENGTH &KEY (STREAM *STANDARD-OUTPUT*) CODE-COMPONENT
+                (USE-LABELS T))
+  Derived type: (FUNCTION
+                 ((OR SB-SYS:SYSTEM-AREA-POINTER (UNSIGNED-BYTE 64))
+                  (UNSIGNED-BYTE 62) &KEY (:STREAM STREAM)
+                  (:CODE-COMPONENT (OR SB-KERNEL:CODE-COMPONENT NULL))
+                  (:USE-LABELS BOOLEAN))
+                 (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DCHUNK-ZERO :constant:var:
+:PROPERTIES:
+:ID: 364554951283
+:CUSTOM_ID: SB-DISASSEM:DCHUNK-ZERO
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DCHUNK-ZERO names a constant variable:
+  Value: 0
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;DISASSEM.LISP
+:end:
+** GET-INST-SPACE :compiled:function:
+:PROPERTIES:
+:ID: 3645085842102
+:CUSTOM_ID: SB-DISASSEM:GET-INST-SPACE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+GET-INST-SPACE names a compiled function:
+  Lambda-list: (&KEY FORCE)
+  Derived type: (FUNCTION (&KEY (:FORCE T))
+                 (VALUES (OR NULL SB-DISASSEM::INST-SPACE) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+- Called by
+  - [[id:2763828005667][GET-SIMPLE-FUN-INSTRUCTION-MODEL]]
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** READ-SUFFIX :compiled:function:
+:PROPERTIES:
+:ID: 1711266118459
+:CUSTOM_ID: SB-DISASSEM:READ-SUFFIX
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+READ-SUFFIX names a compiled function:
+  Lambda-list: (LENGTH DSTATE)
+  Derived type: (FUNCTION
+                 ((OR (INTEGER 8 8) (INTEGER 16 16) (INTEGER 32 32)
+                      (INTEGER 64 64))
+                  SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** MAYBE-NOTE-SINGLE-STORAGE-REF :compiled:function:
+:PROPERTIES:
+:ID: 170154219613
+:CUSTOM_ID: SB-DISASSEM:MAYBE-NOTE-SINGLE-STORAGE-REF
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAYBE-NOTE-SINGLE-STORAGE-REF names a compiled function:
+  Lambda-list: (OFFSET SC-NAME DSTATE)
+  Derived type: (FUNCTION (FIXNUM SYMBOL SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DSTATE-NEXT-OFFS :compiled:function:
+:PROPERTIES:
+:ID: 3692739948707
+:CUSTOM_ID: SB-DISASSEM:DSTATE-NEXT-OFFS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DSTATE-NEXT-OFFS names a compiled function:
+  An accessor for SB-DISASSEM:DISASSEM-STATE
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES FIXNUM &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+(SETF DSTATE-NEXT-OFFS) names a compiled function:
+  An accessor for SB-DISASSEM:DISASSEM-STATE
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (FIXNUM SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES FIXNUM &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** *DISASSEM-OPCODE-COLUMN-WIDTH​* :var:
+:PROPERTIES:
+:ID: 3862798227488
+:CUSTOM_ID: SB-DISASSEM:*DISASSEM-OPCODE-COLUMN-WIDTH*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*DISASSEM-OPCODE-COLUMN-WIDTH* names a special variable:
+  Declared type: (MOD 1001)
+  Value: 0
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;DISASSEM.LISP
+:end:
+** SNARF-ERROR-JUNK :compiled:function:
+:PROPERTIES:
+:ID: 4296257858008
+:CUSTOM_ID: SB-DISASSEM:SNARF-ERROR-JUNK
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SNARF-ERROR-JUNK names a compiled function:
+  Lambda-list: (SAP OFFSET TRAP-NUMBER &OPTIONAL LENGTH-ONLY)
+  Derived type: (FUNCTION (T T T &OPTIONAL T)
+                 (VALUES
+                  (OR (OR (MEMBER 0.0d0 0.0) (FLOAT (0.0))) (RATIONAL 0))
+                  NUMBER T T BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** MAYBE-NOTE-NIL-INDEXED-SYMBOL-SLOT-REF :compiled:function:
+:PROPERTIES:
+:ID: 3717640423299
+:CUSTOM_ID: SB-DISASSEM:MAYBE-NOTE-NIL-INDEXED-SYMBOL-SLOT-REF
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAYBE-NOTE-NIL-INDEXED-SYMBOL-SLOT-REF names a compiled function:
+  Lambda-list: (NIL-BYTE-OFFSET DSTATE)
+  Derived type: (FUNCTION (FIXNUM SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** PRINT-CURRENT-ADDRESS :compiled:function:
+:PROPERTIES:
+:ID: 2374797797636
+:CUSTOM_ID: SB-DISASSEM:PRINT-CURRENT-ADDRESS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+PRINT-CURRENT-ADDRESS names a compiled function:
+  Lambda-list: (STREAM DSTATE)
+  Derived type: (FUNCTION (STREAM SB-DISASSEM:DISASSEM-STATE) *)
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DISASSEMBLE-FUN :compiled:function:
+:PROPERTIES:
+:ID: 3611315745600
+:CUSTOM_ID: SB-DISASSEM:DISASSEMBLE-FUN
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DISASSEMBLE-FUN names a compiled function:
+  Lambda-list: (FUN &KEY (STREAM *STANDARD-OUTPUT*) (USE-LABELS T))
+  Derived type: (FUNCTION
+                 (COMPILED-FUNCTION &KEY (:STREAM STREAM)
+                  (:USE-LABELS BOOLEAN))
+                 (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+- Called by
+  - (EMACS-INSPECT (FUNCTION))
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DSTATE-CUR-ADDR :compiled:function:
+:PROPERTIES:
+:ID: 1766308555444
+:CUSTOM_ID: SB-DISASSEM:DSTATE-CUR-ADDR
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DSTATE-CUR-ADDR names a compiled function:
+  Lambda-list: (DSTATE)
+  Derived type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+#+end_example
+
+- Called by
+  - SB-SPROF::ADD-DISASSEMBLY-PROFILE-NOTE
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** LABEL-SEGMENTS :compiled:function:
+:PROPERTIES:
+:ID: 2928178095414
+:CUSTOM_ID: SB-DISASSEM:LABEL-SEGMENTS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+LABEL-SEGMENTS names a compiled function:
+  Lambda-list: (SEGLIST DSTATE)
+  Derived type: (FUNCTION (LIST SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES LIST &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** MAYBE-NOTE-STATIC-SYMBOL :compiled:function:
+:PROPERTIES:
+:ID: 2648987584228
+:CUSTOM_ID: SB-DISASSEM:MAYBE-NOTE-STATIC-SYMBOL
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAYBE-NOTE-STATIC-SYMBOL names a compiled function:
+  Lambda-list: (ADDRESS DSTATE)
+  Derived type: (FUNCTION (T SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES (OR LIST STRING FUNCTION) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** MAYBE-NOTE-ASSEMBLER-ROUTINE :compiled:function:
+:PROPERTIES:
+:ID: 1746841067096
+:CUSTOM_ID: SB-DISASSEM:MAYBE-NOTE-ASSEMBLER-ROUTINE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAYBE-NOTE-ASSEMBLER-ROUTINE names a compiled function:
+  Lambda-list: (ADDRESS NOTE-ADDRESS-P DSTATE)
+  Derived type: (FUNCTION (T T SB-DISASSEM:DISASSEM-STATE) (VALUES T&OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DSTATE-BYTE-ORDER :compiled:function:
+:PROPERTIES:
+:ID: 3372425751789
+:CUSTOM_ID: SB-DISASSEM:DSTATE-BYTE-ORDER
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DSTATE-BYTE-ORDER names a compiled function:
+  An accessor for SB-DISASSEM:DISASSEM-STATE
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES (MEMBER :LITTLE-ENDIAN :BIG-ENDIAN) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+(SETF DSTATE-BYTE-ORDER) names a compiled function:
+  An accessor for SB-DISASSEM:DISASSEM-STATE
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION
+                 ((MEMBER :LITTLE-ENDIAN :BIG-ENDIAN)
+                  SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES (MEMBER :LITTLE-ENDIAN :BIG-ENDIAN) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** PRIN1-SHORT :compiled:function:
+:PROPERTIES:
+:ID: 1956312096586
+:CUSTOM_ID: SB-DISASSEM:PRIN1-SHORT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+PRIN1-SHORT names a compiled function:
+  Lambda-list: (THING STREAM)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** PRINT-NOTES-AND-NEWLINE :compiled:function:
+:PROPERTIES:
+:ID: 1654103955971
+:CUSTOM_ID: SB-DISASSEM:PRINT-NOTES-AND-NEWLINE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+PRINT-NOTES-AND-NEWLINE names a compiled function:
+  Lambda-list: (STREAM DSTATE)
+  Derived type: (FUNCTION (STREAM SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** SEG-SAP-MAKER :compiled:function:
+:PROPERTIES:
+:ID: 477911750429
+:CUSTOM_ID: SB-DISASSEM:SEG-SAP-MAKER
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SEG-SAP-MAKER names a compiled function:
+  An accessor for SB-DISASSEM:SEGMENT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-DISASSEM:SEGMENT)
+                 (VALUES
+                  (FUNCTION NIL (VALUES SB-SYS:SYSTEM-AREA-POINTER &REST T))
+                  &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+(SETF SEG-SAP-MAKER) names a compiled function:
+  An accessor for SB-DISASSEM:SEGMENT
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION
+                 ((FUNCTION NIL (VALUES SB-SYS:SYSTEM-AREA-POINTER &REST T))
+                  SB-DISASSEM:SEGMENT)
+                 (VALUES
+                  (FUNCTION NIL (VALUES SB-SYS:SYSTEM-AREA-POINTER &REST T))
+                  &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+#+end_example
+
+- Called by
+  - [[id:2763828005667][GET-SIMPLE-FUN-INSTRUCTION-MODEL]]
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** GET-CODE-SEGMENTS :compiled:function:
+:PROPERTIES:
+:ID: 1076236820071
+:CUSTOM_ID: SB-DISASSEM:GET-CODE-SEGMENTS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+GET-CODE-SEGMENTS names a compiled function:
+  Lambda-list: (CODE &OPTIONAL (START-OFFSET 0) (LENGTH (%CODE-TEXT-SIZECODE)))
+  Derived type: (FUNCTION
+                 (SB-KERNEL:CODE-COMPONENT &OPTIONAL FIXNUM (UNSIGNED-BYTE 62))
+                 (VALUES SEQUENCE &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DISASSEMBLE-CODE-COMPONENT :compiled:function:
+:PROPERTIES:
+:ID: 2388423768387
+:CUSTOM_ID: SB-DISASSEM:DISASSEMBLE-CODE-COMPONENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DISASSEMBLE-CODE-COMPONENT names a compiled function:
+  Lambda-list: (THING &KEY (STREAM *STANDARD-OUTPUT*) (USE-LABELS T))
+  Derived type: (FUNCTION (T &KEY (:STREAM STREAM) (:USE-LABELS BOOLEAN))
+                 (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+- Called by
+  - (EMACS-INSPECT (CODE-COMPONENT))
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** MAKE-OFFS-HOOK :compiled:function:
+:PROPERTIES:
+:ID: 1734316736193
+:CUSTOM_ID: SB-DISASSEM:MAKE-OFFS-HOOK
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAKE-OFFS-HOOK names a compiled function:
+  A constructor for SB-DISASSEM::OFFS-HOOK
+  Lambda-list: (&KEY ((OFFSET OFFSET) 0) ((FUN FUN) (MISSING-ARG))
+                ((BEFORE-ADDRESS BEFORE-ADDRESS) NIL))
+  Derived type: (FUNCTION
+                 (&KEY (:OFFSET FIXNUM) (:FUN FUNCTION)
+                  (:BEFORE-ADDRESS BOOLEAN))
+                 (VALUES SB-DISASSEM::OFFS-HOOK &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DISASSEMBLE-SEGMENTS :compiled:function:
+:PROPERTIES:
+:ID: 1693375786656
+:CUSTOM_ID: SB-DISASSEM:DISASSEMBLE-SEGMENTS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DISASSEMBLE-SEGMENTS names a compiled function:
+  Lambda-list: (SEGMENTS STREAM DSTATE)
+  Derived type: (FUNCTION (LIST STREAM SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** FIND-INST :compiled:function:
+:PROPERTIES:
+:ID: 220487768529
+:CUSTOM_ID: SB-DISASSEM:FIND-INST
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+FIND-INST names a compiled function:
+  Lambda-list: (CHUNK INST-SPACE &OPTIONAL DSTATE)
+  Derived type: (FUNCTION
+                 ((UNSIGNED-BYTE 56)
+                  (OR NULL SB-DISASSEM::INST-SPACE SB-DISASSEM:INSTRUCTION)
+                  &OPTIONAL T)
+                 (VALUES (OR NULL SB-DISASSEM:INSTRUCTION) NUMBER T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DSTATE-SETPROP :compiled:function:
+:PROPERTIES:
+:ID: 407079513602
+:CUSTOM_ID: SB-DISASSEM:DSTATE-SETPROP
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DSTATE-SETPROP names a compiled function:
+  Lambda-list: (DSTATE MASK)
+  Derived type: (FUNCTION (T FIXNUM) (VALUES FIXNUM &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DCHUNK
+:PROPERTIES:
+:ID: 1515037883675
+:CUSTOM_ID: SB-DISASSEM:DCHUNK
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DCHUNK names a type-specifier:
+  Lambda-list: ()
+  Expansion: (UNSIGNED-BYTE 56)
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;DISASSEM.LISP
+:end:
+** MAYBE-NOTE-NIL-INDEXED-OBJECT :compiled:function:
+:PROPERTIES:
+:ID: 3156517133980
+:CUSTOM_ID: SB-DISASSEM:MAYBE-NOTE-NIL-INDEXED-OBJECT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAYBE-NOTE-NIL-INDEXED-OBJECT names a compiled function:
+  Lambda-list: (NIL-BYTE-OFFSET DSTATE)
+  Derived type: (FUNCTION (FIXNUM SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DSTATE-SEGMENT :compiled:function:
+:PROPERTIES:
+:ID: 1051754328062
+:CUSTOM_ID: SB-DISASSEM:DSTATE-SEGMENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DSTATE-SEGMENT names a compiled function:
+  An accessor for SB-DISASSEM:DISASSEM-STATE
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES (OR NULL SB-DISASSEM:SEGMENT) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+(SETF DSTATE-SEGMENT) names a compiled function:
+  An accessor for SB-DISASSEM:DISASSEM-STATE
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION
+                 ((OR NULL SB-DISASSEM:SEGMENT) SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES (OR NULL SB-DISASSEM:SEGMENT) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** READ-SIGNED-SUFFIX :compiled:function:
+:PROPERTIES:
+:ID: 3816899146999
+:CUSTOM_ID: SB-DISASSEM:READ-SIGNED-SUFFIX
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+READ-SIGNED-SUFFIX names a compiled function:
+  Lambda-list: (LENGTH DSTATE)
+  Derived type: (FUNCTION
+                 ((OR (INTEGER 8 8) (INTEGER 16 16) (INTEGER 32 32)
+                      (INTEGER 64 64))
+                  SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES INTEGER &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** SEG-LENGTH :compiled:function:
+:PROPERTIES:
+:ID: 2675519970229
+:CUSTOM_ID: SB-DISASSEM:SEG-LENGTH
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SEG-LENGTH names a compiled function:
+  An accessor for SB-DISASSEM:SEGMENT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-DISASSEM:SEGMENT)
+                 (VALUES (UNSIGNED-BYTE 62) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+(SETF SEG-LENGTH) names a compiled function:
+  An accessor for SB-DISASSEM:SEGMENT
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 62) SB-DISASSEM:SEGMENT)
+                 (VALUES (UNSIGNED-BYTE 62) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+#+end_example
+
+- Called by
+  - [[id:2763828005667][GET-SIMPLE-FUN-INSTRUCTION-MODEL]]
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** *DISASSEM-NOTE-COLUMN​* :var:
+:PROPERTIES:
+:ID: 39046540324
+:CUSTOM_ID: SB-DISASSEM:*DISASSEM-NOTE-COLUMN*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*DISASSEM-NOTE-COLUMN* names a special variable:
+  Value: 61
+  Documentation:
+    The column in which end-of-line comments for notes are started.
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;DISASSEM.LISP
+:end:
+** GET-FUN-SEGMENTS :compiled:function:
+:PROPERTIES:
+:ID: 186692992107
+:CUSTOM_ID: SB-DISASSEM:GET-FUN-SEGMENTS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+GET-FUN-SEGMENTS names a compiled function:
+  Lambda-list: (FUNCTION)
+  Derived type: (FUNCTION (COMPILED-FUNCTION) (VALUES LIST &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DSTATE-SEGMENT-SAP :compiled:function:
+:PROPERTIES:
+:ID: 604189816915
+:CUSTOM_ID: SB-DISASSEM:DSTATE-SEGMENT-SAP
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DSTATE-SEGMENT-SAP names a compiled function:
+  An accessor for SB-DISASSEM:DISASSEM-STATE
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES SB-SYS:SYSTEM-AREA-POINTER &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+(SETF DSTATE-SEGMENT-SAP) names a compiled function:
+  An accessor for SB-DISASSEM:DISASSEM-STATE
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION
+                 (SB-SYS:SYSTEM-AREA-POINTER SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES SB-SYS:SYSTEM-AREA-POINTER &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DSTATE.LISP
+:end:
+** MAKE-CODE-SEGMENT :compiled:function:
+:PROPERTIES:
+:ID: 258284467107
+:CUSTOM_ID: SB-DISASSEM:MAKE-CODE-SEGMENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAKE-CODE-SEGMENT names a compiled function:
+  Lambda-list: (CODE OFFSET LENGTH &REST ARGS)
+  Derived type: (FUNCTION (SB-KERNEL:CODE-COMPONENT FIXNUM T &REST T)
+                 (VALUES SB-DISASSEM:SEGMENT &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+- Called by
+  - [[id:2763828005667][GET-SIMPLE-FUN-INSTRUCTION-MODEL]]
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** MAKE-MEMORY-SEGMENT :compiled:function:
+:PROPERTIES:
+:ID: 1690507774592
+:CUSTOM_ID: SB-DISASSEM:MAKE-MEMORY-SEGMENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAKE-MEMORY-SEGMENT names a compiled function:
+  Lambda-list: (CODE ADDRESS &REST ARGS)
+  Derived type: (FUNCTION (T (UNSIGNED-BYTE 64) &REST T)
+                 (VALUES SB-DISASSEM:SEGMENT &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** DISASSEMBLE-SEGMENT :compiled:function:
+:PROPERTIES:
+:ID: 3806622843587
+:CUSTOM_ID: SB-DISASSEM:DISASSEMBLE-SEGMENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DISASSEMBLE-SEGMENT names a compiled function:
+  Lambda-list: (SEGMENT STREAM DSTATE)
+  Derived type: (FUNCTION
+                 (SB-DISASSEM:SEGMENT STREAM SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:
+** MAYBE-NOTE-ASSOCIATED-STORAGE-REF :compiled:function:
+:PROPERTIES:
+:ID: 2661197796301
+:CUSTOM_ID: SB-DISASSEM:MAYBE-NOTE-ASSOCIATED-STORAGE-REF
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAYBE-NOTE-ASSOCIATED-STORAGE-REF names a compiled function:
+  Lambda-list: (OFFSET SB-NAME ASSOC-WITH DSTATE)
+  Derived type: (FUNCTION
+                 (FIXNUM SYMBOL (OR STRING SYMBOL) SB-DISASSEM:DISASSEM-STATE)
+                 (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;TARGET-DISASSEM.LISP
+:end:

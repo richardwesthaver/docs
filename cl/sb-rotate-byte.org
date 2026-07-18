@@ -1,0 +1,50 @@
+#+SETUPFILE: ../../clean.theme
+* SB-ROTATE-BYTE
+:PROPERTIES:
+:CUSTOM_ID: SB-ROTATE-BYTE
+:ID: 86
+:END:
+- dependencies
+  - COMMON-LISP
+  - SB-C
+  - SB-VM
+  - SB-INT
+  - SB-KERNEL
+  - SB-ASSEM
+  - SB-BIGNUM
+
+** ROTATE-BYTE :compiled:function:
+:PROPERTIES:
+:ID: 2991866577067
+:CUSTOM_ID: SB-ROTATE-BYTE:ROTATE-BYTE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ROTATE-BYTE names a compiled function:
+  Lambda-list: (COUNT BYTESPEC INTEGER)
+  Declared type: (FUNCTION (INTEGER CONS INTEGER) (VALUES INTEGER &OPTIONAL))
+  Documentation:
+    Rotates a field of bits within INTEGER; specifically, returns an
+    integer that contains the bits of INTEGER rotated COUNT times
+    leftwards within the byte specified by BYTESPEC, and elsewhere
+    contains the bits of INTEGER.
+  Known attributes: foldable, flushable, unsafely-flushable
+  Source file: SYS:CONTRIB;SB-ROTATE-BYTE;ROTATE-BYTE.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-ROTATE-BYTE:ROTATE-BYTE
+  - IRONCLAD::ROR64
+  - IRONCLAD::ROL64
+  - IRONCLAD::ROR32
+  - IRONCLAD::ROL32
+
+:definitions:
+- SYS:CONTRIB;SB-ROTATE-BYTE;ROTATE-BYTE.LISP.NEWEST
+- SYS:CONTRIB;SB-ROTATE-BYTE;COMPILER.LISP.NEWEST
+- SYS:CONTRIB;SB-ROTATE-BYTE;COMPILER.LISP.NEWEST
+  - [[id:468600361341][DEFKNOWN]]
+:end:

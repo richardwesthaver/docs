@@ -1,0 +1,132 @@
+#+SETUPFILE: ../../clean.theme
+* SB-PROFILE
+:PROPERTIES:
+:CUSTOM_ID: SB-PROFILE
+:ID: 36
+:LOCK: T
+:END:
+public: the interface to the profiler
+
+- dependencies
+  - COMMON-LISP
+  - SB-EXT
+  - SB-INT
+  - SB-KERNEL
+
+- dependents
+  - [[id:3][COMMON-LISP-USER]]
+
+** REPORT :compiled:function:
+:PROPERTIES:
+:ID: 2694078288008
+:CUSTOM_ID: SB-PROFILE:REPORT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+REPORT names a compiled function:
+  Lambda-list: (&KEY LIMIT (PRINT-NO-CALL-LIST T))
+  Derived type: (FUNCTION (&KEY (:LIMIT T) (:PRINT-NO-CALL-LIST T))
+                 (VALUES &OPTIONAL))
+  Documentation:
+    Report results from profiling. The results are approximately
+    adjusted for profiling overhead. The compensation may be rather
+    inaccurate when bignums are involved in runtime calculation, as in a
+    very-long-running Lisp process.
+    
+    If LIMIT is set to an integer, only the top LIMIT results are
+    reported. If PRINT-NO-CALL-LIST is T (the default) then a list of
+    uncalled profiled functions are listed.
+  Source file: SYS:SRC;CODE;PROFILE.LISP
+
+#+end_example
+
+- Called by
+  - (PROFILE-REPORT IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:SRC;CODE;PROFILE.LISP
+:end:
+** UNPROFILE :compiled:macro:function:
+:PROPERTIES:
+:ID: 3490599903692
+:CUSTOM_ID: SB-PROFILE:UNPROFILE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+UNPROFILE names a macro:
+  Lambda-list: (&REST NAMES)
+  Documentation:
+    Unwrap any profiling code around the named functions, or if no names
+    are given, unprofile all profiled functions. A symbol names
+    a function. A string names all the functions named by symbols in the
+    named package. NAMES defaults to the list of names of all currently
+    profiled functions.
+  Source file: SYS:SRC;CODE;PROFILE.LISP
+
+#+end_example
+
+- Macroexpanded by
+  - (UNPROFILE-ALL IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:SRC;CODE;PROFILE.LISP
+:end:
+** RESET :compiled:function:
+:PROPERTIES:
+:ID: 4166733495618
+:CUSTOM_ID: SB-PROFILE:RESET
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+RESET names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES NULL &OPTIONAL))
+  Documentation:
+    Reset the counters for all profiled functions.
+  Source file: SYS:SRC;CODE;PROFILE.LISP
+
+#+end_example
+
+- Called by
+  - (PROFILE-RESET IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:SRC;CODE;PROFILE.LISP
+:end:
+** PROFILE :compiled:macro:function:
+:PROPERTIES:
+:ID: 2472032650922
+:CUSTOM_ID: SB-PROFILE:PROFILE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+PROFILE names a macro:
+  Lambda-list: (&REST NAMES)
+  Documentation:
+    If no names are supplied, return the list of profiled functions.
+    
+    If names are supplied, wrap profiling code around the named functions.
+    As in TRACE, the names are not evaluated. A symbol names a function.
+    A string names all the functions named by symbols in the named
+    package. If a function is already profiled, then unprofile and
+    reprofile (useful to notice function redefinition.)  If a name is
+    undefined, then we give a warning and ignore it. See also
+    UNPROFILE, REPORT and RESET.
+  Source file: SYS:SRC;CODE;PROFILE.LISP
+
+#+end_example
+
+- Macroexpanded by
+  - (PROFILED-FUNCTIONS IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:SRC;CODE;PROFILE.LISP
+:end:

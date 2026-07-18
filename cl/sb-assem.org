@@ -1,0 +1,5115 @@
+#+SETUPFILE: ../../clean.theme
+* SB-ASSEM
+:PROPERTIES:
+:CUSTOM_ID: SB-ASSEM
+:ID: 22
+:LOCK: T
+:END:
+private: the assembler, used by the compiler
+
+- dependencies
+  - COMMON-LISP
+  - SB-EXT
+  - SB-INT
+
+- dependents
+  - [[id:86][SB-ROTATE-BYTE]]
+  - [[id:188][IRONCLAD-VM]]
+  - [[id:249][IO/SWAP-BYTES]]
+  - [[id:35][SB-X86-64-ASM]]
+  - [[id:12][SB-C]]
+  - [[id:6][SB-VM]]
+
+** VARIABLE-LENGTH
+:PROPERTIES:
+:ID: 228034670078
+:CUSTOM_ID: SB-ASSEM:VARIABLE-LENGTH
+:ALLOC: HEAP IMMOBILE
+:END:
+** LABEL-USEDP :compiled:function:
+:PROPERTIES:
+:ID: 2562066710757
+:CUSTOM_ID: SB-ASSEM:LABEL-USEDP
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+LABEL-USEDP names a compiled function:
+  An accessor for SB-ASSEM:LABEL
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM:LABEL) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;EARLY-ASSEM.LISP
+
+(SETF LABEL-USEDP) names a compiled function:
+  An accessor for SB-ASSEM:LABEL
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (BOOLEAN SB-ASSEM:LABEL) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;EARLY-ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;EARLY-ASSEM.LISP
+:end:
+** WRITES
+:PROPERTIES:
+:ID: 2796951178174
+:CUSTOM_ID: SB-ASSEM:WRITES
+:ALLOC: HEAP IMMOBILE
+:END:
+** ANY-ALIGNMENT-BETWEEN-P :compiled:function:
+:PROPERTIES:
+:ID: 1121180191047
+:CUSTOM_ID: SB-ASSEM:ANY-ALIGNMENT-BETWEEN-P
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ANY-ALIGNMENT-BETWEEN-P names a compiled function:
+  Lambda-list: (SEGMENT FROM TO)
+  Derived type: (FUNCTION (T T T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** .SKIP
+:PROPERTIES:
+:ID: 2234913982030
+:CUSTOM_ID: SB-ASSEM:.SKIP
+:ALLOC: HEAP IMMOBILE
+:END:
+** MAKE-SEGMENT :compiled:function:
+:PROPERTIES:
+:ID: 3875270164951
+:CUSTOM_ID: SB-ASSEM:MAKE-SEGMENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAKE-SEGMENT names a compiled function:
+  A constructor for SB-ASSEM:SEGMENT
+  Lambda-list: (&OPTIONAL RUN-SCHEDULER (HEADER-SKEW 0))
+  Derived type: (FUNCTION (&OPTIONAL T (OR (INTEGER 0 0) (INTEGER 8 8)))
+                 (VALUES SB-ASSEM:SEGMENT &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+- Called by
+  - STD/COMP::%ASM
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** ASMSTREAM-CODE-SECTION :compiled:function:
+:PROPERTIES:
+:ID: 1537072496009
+:CUSTOM_ID: SB-ASSEM:ASMSTREAM-CODE-SECTION
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ASMSTREAM-CODE-SECTION names a compiled function:
+  An accessor for SB-ASSEM::ASMSTREAM
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM::ASMSTREAM) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** SEGMENT-ENCODER-STATE :compiled:function:
+:PROPERTIES:
+:ID: 2312081236077
+:CUSTOM_ID: SB-ASSEM:SEGMENT-ENCODER-STATE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SEGMENT-ENCODER-STATE names a compiled function:
+  An accessor for SB-ASSEM:SEGMENT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM:SEGMENT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+(SETF SEGMENT-ENCODER-STATE) names a compiled function:
+  An accessor for SB-ASSEM:SEGMENT
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (T SB-ASSEM:SEGMENT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** SEGMENT-CONTENTS-AS-VECTOR :compiled:function:
+:PROPERTIES:
+:ID: 1945017095517
+:CUSTOM_ID: SB-ASSEM:SEGMENT-CONTENTS-AS-VECTOR
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SEGMENT-CONTENTS-AS-VECTOR names a compiled function:
+  Lambda-list: (SEGMENT)
+  Derived type: (FUNCTION (SB-ASSEM:SEGMENT)
+                 (VALUES (SIMPLE-ARRAY (UNSIGNED-BYTE 8) (*)) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** SECTION-START :compiled:function:
+:PROPERTIES:
+:ID: 1719033985842
+:CUSTOM_ID: SB-ASSEM:SECTION-START
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SECTION-START names a compiled function:
+  Lambda-list: (SLOT)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** SEGMENT-ORIGIN :compiled:function:
+:PROPERTIES:
+:ID: 3003462512870
+:CUSTOM_ID: SB-ASSEM:SEGMENT-ORIGIN
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SEGMENT-ORIGIN names a compiled function:
+  An accessor for SB-ASSEM:SEGMENT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM:SEGMENT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** STMT-NEXT :compiled:function:
+:PROPERTIES:
+:ID: 3960726373135
+:CUSTOM_ID: SB-ASSEM:STMT-NEXT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+STMT-NEXT names a compiled function:
+  An accessor for SB-ASSEM::STMT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM::STMT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+(SETF STMT-NEXT) names a compiled function:
+  An accessor for SB-ASSEM::STMT
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (T SB-ASSEM::STMT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** LABEL-POSITION :compiled:function:
+:PROPERTIES:
+:ID: 3545750384850
+:CUSTOM_ID: SB-ASSEM:LABEL-POSITION
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+LABEL-POSITION names a compiled function:
+  Lambda-list: (LABEL &OPTIONAL IF-AFTER DELTA)
+  Derived type: (FUNCTION (T &OPTIONAL T T)
+                 (VALUES (OR NULL (UNSIGNED-BYTE 44)) &OPTIONAL))
+  Documentation:
+    Return the current position for LABEL. Chooser maybe-shrink functions
+    should supply IF-AFTER and DELTA in order to ensure correct results.
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** APPEND-SECTIONS :compiled:function:
+:PROPERTIES:
+:ID: 2429234626191
+:CUSTOM_ID: SB-ASSEM:APPEND-SECTIONS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+APPEND-SECTIONS names a compiled function:
+  Lambda-list: (FIRST SECOND)
+  Derived type: (FUNCTION (T T) (VALUES CONS &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** ASMSTREAM-CONSTANT-TABLE :compiled:function:
+:PROPERTIES:
+:ID: 1543675529111
+:CUSTOM_ID: SB-ASSEM:ASMSTREAM-CONSTANT-TABLE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ASMSTREAM-CONSTANT-TABLE names a compiled function:
+  An accessor for SB-ASSEM::ASMSTREAM
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM::ASMSTREAM) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** ASSEMBLY-UNIT
+:PROPERTIES:
+:ID: 790618957231
+:CUSTOM_ID: SB-ASSEM:ASSEMBLY-UNIT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ASSEMBLY-UNIT names a type-specifier:
+  Lambda-list: ()
+  Expansion: (UNSIGNED-BYTE 8)
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** EMIT-ALIGNMENT :compiled:function:
+:PROPERTIES:
+:ID: 3918211548176
+:CUSTOM_ID: SB-ASSEM:EMIT-ALIGNMENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+EMIT-ALIGNMENT names a compiled function:
+  Lambda-list: (BITS &OPTIONAL (PATTERN 0))
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES T &OPTIONAL))
+  Documentation:
+    Emit an alignment restriction to the current segment.
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** EMIT-BYTE :compiled:function:
+:PROPERTIES:
+:ID: 3020241306542
+:CUSTOM_ID: SB-ASSEM:EMIT-BYTE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+EMIT-BYTE names a compiled function:
+  Lambda-list: (SEGMENT BYTE)
+  Derived type: (FUNCTION (SB-ASSEM:SEGMENT (INTEGER -128 255))
+                 (VALUES &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** LABEL-P :compiled:function:
+:PROPERTIES:
+:ID: 3618035858882
+:CUSTOM_ID: SB-ASSEM:LABEL-P
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+LABEL-P names a compiled function:
+  A predicate for SB-ASSEM:LABEL
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;EARLY-ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;EARLY-ASSEM.LISP
+:end:
+** SEGMENT-HEADER-SKEW :compiled:function:
+:PROPERTIES:
+:ID: 1577834207930
+:CUSTOM_ID: SB-ASSEM:SEGMENT-HEADER-SKEW
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SEGMENT-HEADER-SKEW names a compiled function:
+  An accessor for SB-ASSEM:SEGMENT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM:SEGMENT)
+                 (VALUES (OR (INTEGER 0 0) (INTEGER 8 8)) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+(SETF SEGMENT-HEADER-SKEW) names a compiled function:
+  An accessor for SB-ASSEM:SEGMENT
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION ((OR (INTEGER 0 0) (INTEGER 8 8)) SB-ASSEM:SEGMENT)
+                 (VALUES (OR (INTEGER 0 0) (INTEGER 8 8)) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** ASSEMBLY-UNIT-BITS :constant:var:
+:PROPERTIES:
+:ID: 3285791017931
+:CUSTOM_ID: SB-ASSEM:ASSEMBLY-UNIT-BITS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ASSEMBLY-UNIT-BITS names a constant variable:
+  Value: 8
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** EMIT-BACK-PATCH :compiled:function:
+:PROPERTIES:
+:ID: 1130285628007
+:CUSTOM_ID: SB-ASSEM:EMIT-BACK-PATCH
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+EMIT-BACK-PATCH names a compiled function:
+  Lambda-list: (SEGMENT SIZE FUNCTION)
+  Derived type: (FUNCTION (T T T) (VALUES &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** FINALIZE-SEGMENT :compiled:function:
+:PROPERTIES:
+:ID: 704548881110
+:CUSTOM_ID: SB-ASSEM:FINALIZE-SEGMENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+FINALIZE-SEGMENT names a compiled function:
+  Lambda-list: (SEGMENT)
+  Derived type: (FUNCTION (T) (VALUES SB-ASSEM:SEGMENT &OPTIONAL))
+  Documentation:
+    Do any final processing of SEGMENT and return the total number of bytes
+    covered by this segment.
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+- Called by
+  - STD/COMP::%ASM
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** STMT-PLIST :compiled:function:
+:PROPERTIES:
+:ID: 3183609951238
+:CUSTOM_ID: SB-ASSEM:STMT-PLIST
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+STMT-PLIST names a compiled function:
+  An accessor for SB-ASSEM::STMT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM::STMT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+(SETF STMT-PLIST) names a compiled function:
+  An accessor for SB-ASSEM::STMT
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (T SB-ASSEM::STMT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** INST* :compiled:function:
+:PROPERTIES:
+:ID: 2824768968853
+:CUSTOM_ID: SB-ASSEM:INST*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+INST* names a compiled function:
+  Lambda-list: (MNEMONIC &REST OPERANDS)
+  Derived type: (FUNCTION (T &REST T) *)
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+- Called by
+  - (%F64!-FROM-P256)
+  - (%F64!-FROM-P128)
+  - (%F32!-FROM-P256)
+  - (%F32!-FROM-P128)
+  - (%F64-FROM-S64)
+  - (%F32-FROM-S64)
+  - (%TWO-ARG-F64>=)
+  - (%TWO-ARG-F64>)
+  - (%TWO-ARG-F64<=)
+  - (%TWO-ARG-F64<)
+  - (%TWO-ARG-F64/=)
+  - (%TWO-ARG-F64=)
+  - (%TWO-ARG-F32>=)
+  - (%TWO-ARG-F32>)
+  - (%TWO-ARG-F32<=)
+  - (%TWO-ARG-F32<)
+  - (%TWO-ARG-F32/=)
+  - (%TWO-ARG-F32=)
+  - (%F64!-FROM-P128)
+  - (%F64-FROM-S64)
+  - (%TWO-ARG-F64>=)
+  - (%TWO-ARG-F64>)
+  - (%TWO-ARG-F64<=)
+  - (%TWO-ARG-F64<)
+  - (%TWO-ARG-F64/=)
+  - (%TWO-ARG-F64=)
+  - (%F32!-FROM-P128)
+  - (%F32-FROM-S64)
+  - (%TWO-ARG-F32>=)
+  - (%TWO-ARG-F32>)
+  - (%TWO-ARG-F32<=)
+  - (%TWO-ARG-F32<)
+  - (%TWO-ARG-F32/=)
+  - (%TWO-ARG-F32=)
+  - (%S64.4-NTSTORE-C)
+  - (%S64.4-NTSTORE)
+  - (%S32.8-NTSTORE-C)
+  - (%S32.8-NTSTORE)
+  - (%S16.16-NTSTORE-C)
+  - (%S16.16-NTSTORE)
+  - (%S8.32-NTSTORE-C)
+  - (%S8.32-NTSTORE)
+  - (%U64.4-NTSTORE-C)
+  - (%U64.4-NTSTORE)
+  - (%U32.8-NTSTORE-C)
+  - (%U32.8-NTSTORE)
+  - (%U16.16-NTSTORE-C)
+  - (%U16.16-NTSTORE)
+  - (%U8.32-NTSTORE-C)
+  - (%U8.32-NTSTORE)
+  - (%S64.2-NTSTORE-C)
+  - (%S64.2-NTSTORE)
+  - (%S32.4-NTSTORE-C)
+  - (%S32.4-NTSTORE)
+  - (%S16.8-NTSTORE-C)
+  - (%S16.8-NTSTORE)
+  - (%S8.16-NTSTORE-C)
+  - (%S8.16-NTSTORE)
+  - (%U64.2-NTSTORE-C)
+  - (%U64.2-NTSTORE)
+  - (%U32.4-NTSTORE-C)
+  - (%U32.4-NTSTORE)
+  - (%U16.8-NTSTORE-C)
+  - (%U16.8-NTSTORE)
+  - (%U8.16-NTSTORE-C)
+  - (%U8.16-NTSTORE)
+  - (%F64.4-NTSTORE-C)
+  - (%F64.4-NTSTORE)
+  - (%F32.8-NTSTORE-C)
+  - (%F32.8-NTSTORE)
+  - (%F64.2-NTSTORE-C)
+  - (%F64.2-NTSTORE)
+  - (%F32.4-NTSTORE-C)
+  - (%F32.4-NTSTORE)
+  - (%S64.4-NTLOAD-C)
+  - (%S64.4-NTLOAD)
+  - (%S32.8-NTLOAD-C)
+  - (%S32.8-NTLOAD)
+  - (%S16.16-NTLOAD-C)
+  - (%S16.16-NTLOAD)
+  - (%S8.32-NTLOAD-C)
+  - (%S8.32-NTLOAD)
+  - (%U64.4-NTLOAD-C)
+  - (%U64.4-NTLOAD)
+  - (%U32.8-NTLOAD-C)
+  - (%U32.8-NTLOAD)
+  - (%U16.16-NTLOAD-C)
+  - (%U16.16-NTLOAD)
+  - (%U8.32-NTLOAD-C)
+  - (%U8.32-NTLOAD)
+  - (%S64.2-NTLOAD-C)
+  - (%S64.2-NTLOAD)
+  - (%S32.4-NTLOAD-C)
+  - (%S32.4-NTLOAD)
+  - (%S16.8-NTLOAD-C)
+  - (%S16.8-NTLOAD)
+  - (%S8.16-NTLOAD-C)
+  - (%S8.16-NTLOAD)
+  - (%U64.2-NTLOAD-C)
+  - (%U64.2-NTLOAD)
+  - (%U32.4-NTLOAD-C)
+  - (%U32.4-NTLOAD)
+  - (%U16.8-NTLOAD-C)
+  - (%U16.8-NTLOAD)
+  - (%U8.16-NTLOAD-C)
+  - (%U8.16-NTLOAD)
+  - (%F64.4-NTLOAD-C)
+  - (%F64.4-NTLOAD)
+  - (%F32.8-NTLOAD-C)
+  - (%F32.8-NTLOAD)
+  - (%F64.2-NTLOAD-C)
+  - (%F64.2-NTLOAD)
+  - (%F32.4-NTLOAD-C)
+  - (%F32.4-NTLOAD)
+  - (%S64.4-NTSTORE-C)
+  - (%S64.4-NTSTORE)
+  - (%S32.8-NTSTORE-C)
+  - (%S32.8-NTSTORE)
+  - (%S16.16-NTSTORE-C)
+  - (%S16.16-NTSTORE)
+  - (%S8.32-NTSTORE-C)
+  - (%S8.32-NTSTORE)
+  - (%U64.4-NTSTORE-C)
+  - (%U64.4-NTSTORE)
+  - (%U32.8-NTSTORE-C)
+  - (%U32.8-NTSTORE)
+  - (%U16.16-NTSTORE-C)
+  - (%U16.16-NTSTORE)
+  - (%U8.32-NTSTORE-C)
+  - (%U8.32-NTSTORE)
+  - (%S64.2-NTSTORE-C)
+  - (%S64.2-NTSTORE)
+  - (%S32.4-NTSTORE-C)
+  - (%S32.4-NTSTORE)
+  - (%S16.8-NTSTORE-C)
+  - (%S16.8-NTSTORE)
+  - (%S8.16-NTSTORE-C)
+  - (%S8.16-NTSTORE)
+  - (%U64.2-NTSTORE-C)
+  - (%U64.2-NTSTORE)
+  - (%U32.4-NTSTORE-C)
+  - (%U32.4-NTSTORE)
+  - (%U16.8-NTSTORE-C)
+  - (%U16.8-NTSTORE)
+  - (%U8.16-NTSTORE-C)
+  - (%U8.16-NTSTORE)
+  - (%F64.4-NTSTORE-C)
+  - (%F64.4-NTSTORE)
+  - (%F32.8-NTSTORE-C)
+  - (%F32.8-NTSTORE)
+  - (%F64.2-NTSTORE-C)
+  - (%F64.2-NTSTORE)
+  - (%F32.4-NTSTORE-C)
+  - (%F32.4-NTSTORE)
+  - (%S64.4-STORE-C)
+  - (%S64.4-STORE)
+  - (%S32.8-STORE-C)
+  - (%S32.8-STORE)
+  - (%S16.16-STORE-C)
+  - (%S16.16-STORE)
+  - (%S8.32-STORE-C)
+  - (%S8.32-STORE)
+  - (%U64.4-STORE-C)
+  - (%U64.4-STORE)
+  - (%U32.8-STORE-C)
+  - (%U32.8-STORE)
+  - (%U16.16-STORE-C)
+  - (%U16.16-STORE)
+  - (%U8.32-STORE-C)
+  - (%U8.32-STORE)
+  - (%S64.2-STORE-C)
+  - (%S64.2-STORE)
+  - (%S32.4-STORE-C)
+  - (%S32.4-STORE)
+  - (%S16.8-STORE-C)
+  - (%S16.8-STORE)
+  - (%S8.16-STORE-C)
+  - (%S8.16-STORE)
+  - (%U64.2-STORE-C)
+  - (%U64.2-STORE)
+  - (%U32.4-STORE-C)
+  - (%U32.4-STORE)
+  - (%U16.8-STORE-C)
+  - (%U16.8-STORE)
+  - (%U8.16-STORE-C)
+  - (%U8.16-STORE)
+  - (%F64.4-STORE-C)
+  - (%F64.4-STORE)
+  - (%F32.8-STORE-C)
+  - (%F32.8-STORE)
+  - (%F64.2-STORE-C)
+  - (%F64.2-STORE)
+  - (%F32.4-STORE-C)
+  - (%F32.4-STORE)
+  - (%F64-STORE-C)
+  - (%F64-STORE)
+  - (%F32-STORE-C)
+  - (%F32-STORE)
+  - (%U32.8-STORE-INTO-STRING-C)
+  - (%U32.8-STORE-INTO-STRING)
+  - (%U32.4-STORE-INTO-STRING-C)
+  - (%U32.4-STORE-INTO-STRING)
+  - (%S64.4-LOAD-C)
+  - (%S64.4-LOAD)
+  - (%S32.8-LOAD-C)
+  - (%S32.8-LOAD)
+  - (%S16.16-LOAD-C)
+  - (%S16.16-LOAD)
+  - (%S8.32-LOAD-C)
+  - (%S8.32-LOAD)
+  - (%S64.2-LOAD-C)
+  - (%S64.2-LOAD)
+  - (%S32.4-LOAD-C)
+  - (%S32.4-LOAD)
+  - (%S16.8-LOAD-C)
+  - (%S16.8-LOAD)
+  - (%S8.16-LOAD-C)
+  - (%S8.16-LOAD)
+  - (%U64.4-LOAD-C)
+  - (%U64.4-LOAD)
+  - (%U32.8-LOAD-C)
+  - (%U32.8-LOAD)
+  - (%U16.16-LOAD-C)
+  - (%U16.16-LOAD)
+  - (%U8.32-LOAD-C)
+  - (%U8.32-LOAD)
+  - (%U64.2-LOAD-C)
+  - (%U64.2-LOAD)
+  - (%U32.4-LOAD-C)
+  - (%U32.4-LOAD)
+  - (%U16.8-LOAD-C)
+  - (%U16.8-LOAD)
+  - (%U8.16-LOAD-C)
+  - (%U8.16-LOAD)
+  - (%F64.4-LOAD-C)
+  - (%F64.4-LOAD)
+  - (%F32.8-LOAD-C)
+  - (%F32.8-LOAD)
+  - (%F64.2-LOAD-C)
+  - (%F64.2-LOAD)
+  - (%F32.4-LOAD-C)
+  - (%F32.4-LOAD)
+  - (%F64-LOAD-C)
+  - (%F64-LOAD)
+  - (%F32-LOAD-C)
+  - (%F32-LOAD)
+  - (%U32.8-LOAD-FROM-STRING-C)
+  - (%U32.8-LOAD-FROM-STRING)
+  - (%U32.4-LOAD-FROM-STRING-C)
+  - (%U32.4-LOAD-FROM-STRING)
+  - (%S64.2-NTSTORE-C)
+  - (%S64.2-NTSTORE)
+  - (%S32.4-NTSTORE-C)
+  - (%S32.4-NTSTORE)
+  - (%S16.8-NTSTORE-C)
+  - (%S16.8-NTSTORE)
+  - (%S8.16-NTSTORE-C)
+  - (%S8.16-NTSTORE)
+  - (%U64.2-NTSTORE-C)
+  - (%U64.2-NTSTORE)
+  - (%U32.4-NTSTORE-C)
+  - (%U32.4-NTSTORE)
+  - (%U16.8-NTSTORE-C)
+  - (%U16.8-NTSTORE)
+  - (%U8.16-NTSTORE-C)
+  - (%U8.16-NTSTORE)
+  - (%F64.2-NTSTORE-C)
+  - (%F64.2-NTSTORE)
+  - (%F32.4-NTSTORE-C)
+  - (%F32.4-NTSTORE)
+  - (%S64.2-NTLOAD-C)
+  - (%S64.2-NTLOAD)
+  - (%S32.4-NTLOAD-C)
+  - (%S32.4-NTLOAD)
+  - (%S16.8-NTLOAD-C)
+  - (%S16.8-NTLOAD)
+  - (%S8.16-NTLOAD-C)
+  - (%S8.16-NTLOAD)
+  - (%U64.2-NTLOAD-C)
+  - (%U64.2-NTLOAD)
+  - (%U32.4-NTLOAD-C)
+  - (%U32.4-NTLOAD)
+  - (%U16.8-NTLOAD-C)
+  - (%U16.8-NTLOAD)
+  - (%U8.16-NTLOAD-C)
+  - (%U8.16-NTLOAD)
+  - (%F64.2-NTLOAD-C)
+  - (%F64.2-NTLOAD)
+  - (%F32.4-NTLOAD-C)
+  - (%F32.4-NTLOAD)
+  - (%S64.2-NTSTORE-C)
+  - (%S64.2-NTSTORE)
+  - (%S32.4-NTSTORE-C)
+  - (%S32.4-NTSTORE)
+  - (%S16.8-NTSTORE-C)
+  - (%S16.8-NTSTORE)
+  - (%S8.16-NTSTORE-C)
+  - (%S8.16-NTSTORE)
+  - (%U64.2-NTSTORE-C)
+  - (%U64.2-NTSTORE)
+  - (%U32.4-NTSTORE-C)
+  - (%U32.4-NTSTORE)
+  - (%U16.8-NTSTORE-C)
+  - (%U16.8-NTSTORE)
+  - (%U8.16-NTSTORE-C)
+  - (%U8.16-NTSTORE)
+  - (%F64.2-NTSTORE-C)
+  - (%F64.2-NTSTORE)
+  - (%S64.2-STORE-C)
+  - (%S64.2-STORE)
+  - (%S32.4-STORE-C)
+  - (%S32.4-STORE)
+  - (%S16.8-STORE-C)
+  - (%S16.8-STORE)
+  - (%S8.16-STORE-C)
+  - (%S8.16-STORE)
+  - (%U64.2-STORE-C)
+  - (%U64.2-STORE)
+  - (%U32.4-STORE-C)
+  - (%U32.4-STORE)
+  - (%U16.8-STORE-C)
+  - (%U16.8-STORE)
+  - (%U8.16-STORE-C)
+  - (%U8.16-STORE)
+  - (%F64.2-STORE-C)
+  - (%F64.2-STORE)
+  - (%F64-STORE-C)
+  - (%F64-STORE)
+  - (%U32.4-STORE-INTO-STRING-C)
+  - (%U32.4-STORE-INTO-STRING)
+  - (%S64.2-LOAD-C)
+  - (%S64.2-LOAD)
+  - (%S32.4-LOAD-C)
+  - (%S32.4-LOAD)
+  - (%S16.8-LOAD-C)
+  - (%S16.8-LOAD)
+  - (%S8.16-LOAD-C)
+  - (%S8.16-LOAD)
+  - (%U64.2-LOAD-C)
+  - (%U64.2-LOAD)
+  - (%U32.4-LOAD-C)
+  - (%U32.4-LOAD)
+  - (%U16.8-LOAD-C)
+  - (%U16.8-LOAD)
+  - (%U8.16-LOAD-C)
+  - (%U8.16-LOAD)
+  - (%F64.2-LOAD-C)
+  - (%F64.2-LOAD)
+  - (%F64-LOAD-C)
+  - (%F64-LOAD)
+  - (%U32.4-LOAD-FROM-STRING-C)
+  - (%U32.4-LOAD-FROM-STRING)
+  - (%F32.4-NTSTORE-C)
+  - (%F32.4-NTSTORE)
+  - (%F32.4-STORE-C)
+  - (%F32.4-STORE)
+  - (%F32-STORE-C)
+  - (%F32-STORE)
+  - (%F32.4-LOAD-C)
+  - (%F32.4-LOAD)
+  - (%F32-LOAD-C)
+  - (%F32-LOAD)
+  - (%F64.4-FMSUBADD)
+  - (%F64.4-FMADDSUB)
+  - (%F64.4-FMSUB)
+  - (%F64.4-FNMADD)
+  - (%F64.4-FMADD)
+  - (%F64.2-FMSUBADD)
+  - (%F64.2-FMADDSUB)
+  - (%F64.2-FMSUB)
+  - (%F64.2-FNMADD)
+  - (%F64.2-FMADD)
+  - (%F32.8-FMSUBADD)
+  - (%F32.8-FMADDSUB)
+  - (%F32.8-FMSUB)
+  - (%F32.8-FNMADD)
+  - (%F32.8-FMADD)
+  - (%F32.4-FMSUBADD)
+  - (%F32.4-FMADDSUB)
+  - (%F32.4-FMSUB)
+  - (%F32.4-FNMADD)
+  - (%F32.4-FMADD)
+  - (%F64-FMSUB)
+  - (%F64-FNMADD)
+  - (%F64-FMADD)
+  - (%F32-FMSUB)
+  - (%F32-FNMADD)
+  - (%F32-FMADD)
+  - (%S64.4-PERMUTE128)
+  - (%S64.4-INSERT-S64.2)
+  - (%S64.2-FROM-S64.4)
+  - (%S64.4-MOVEMASK)
+  - (%S64.4-UNPACKLO)
+  - (%S64.4-UNPACKHI)
+  - (%S64.4-SHIFTR)
+  - (%S64.4-SHIFTL)
+  - (%TWO-ARG-S64.4>)
+  - (%TWO-ARG-S64.4=)
+  - (%TWO-ARG-S64.4-MUL)
+  - (%TWO-ARG-S64.4-)
+  - (%TWO-ARG-S64.4+)
+  - (%S64.4-ANDC1)
+  - (%TWO-ARG-S64.4-XOR)
+  - (%TWO-ARG-S64.4-OR)
+  - (%TWO-ARG-S64.4-AND)
+  - (%S64.4-FROM-U8.16)
+  - (%S64.4-FROM-S8.16)
+  - (%S64.4-FROM-U32.4)
+  - (%S64.4-FROM-S32.4)
+  - (%S64.4-FROM-U16.8)
+  - (%S64.4-FROM-S16.8)
+  - (%S64.4-BLEND)
+  - (%S64.4-BROADCASTVEC)
+  - (%S32.8-PERMUTE128)
+  - (%S32.8-INSERT-S32.4)
+  - (%S32.4-FROM-S32.8)
+  - (%S32.8-SIGN)
+  - (%S32.8-MOVEMASK)
+  - (%S32.8-UNPACKLO)
+  - (%S32.8-UNPACKHI)
+  - (%S32.8-SHIFTR)
+  - (%S32.8-SHIFTL)
+  - (%S32.8-HSUB)
+  - (%S32.8-HADD)
+  - (%S32.8-ABS)
+  - (%TWO-ARG-S32.8>)
+  - (%TWO-ARG-S32.8=)
+  - (%TWO-ARG-S32.8-MULLO)
+  - (%TWO-ARG-S32.8-)
+  - (%TWO-ARG-S32.8+)
+  - (%TWO-ARG-S32.8-MIN)
+  - (%TWO-ARG-S32.8-MAX)
+  - (%S32.8-ANDC1)
+  - (%TWO-ARG-S32.8-XOR)
+  - (%TWO-ARG-S32.8-OR)
+  - (%TWO-ARG-S32.8-AND)
+  - (%S32.8-FROM-U8.16)
+  - (%S32.8-FROM-S8.16)
+  - (%S32.8-FROM-U16.8)
+  - (%S32.8-FROM-S16.8)
+  - (%S32.8-BLEND)
+  - (%S32.8-BROADCASTVEC)
+  - (%S16.16-PERMUTE128)
+  - (%S16.16-INSERT-S16.8)
+  - (%S16.8-FROM-S16.16)
+  - (%S16.16-SIGN)
+  - (%S16.16-SHIFTR)
+  - (%S16.16-SHIFTL)
+  - (%S16.16-SHUFFLELO)
+  - (%S16.16-SHUFFLEHI)
+  - (%S16.16-UNPACKLO)
+  - (%S16.16-UNPACKHI)
+  - (%S16.16-PACKS)
+  - (%S16.16-HSUBS)
+  - (%S16.16-HSUB)
+  - (%S16.16-MADDUBS)
+  - (%S16.16-MADD)
+  - (%S16.16-HADDS)
+  - (%S16.16-HADD)
+  - (%S16.16-ABS)
+  - (%TWO-ARG-S16.16>)
+  - (%TWO-ARG-S16.16=)
+  - (%TWO-ARG-S16.16-MULHRS)
+  - (%TWO-ARG-S16.16-MULLO)
+  - (%TWO-ARG-S16.16-MULHI)
+  - (%TWO-ARG-S16.16-)
+  - (%TWO-ARG-S16.16+)
+  - (%TWO-ARG-S16.16-MIN)
+  - (%TWO-ARG-S16.16-MAX)
+  - (%S16.16-ANDC1)
+  - (%TWO-ARG-S16.16-XOR)
+  - (%TWO-ARG-S16.16-OR)
+  - (%TWO-ARG-S16.16-AND)
+  - (%S16.16-FROM-U8.16)
+  - (%S16.16-FROM-S8.16)
+  - (%S16.16-BLEND)
+  - (%S16.16-BROADCASTVEC)
+  - (%S8.32-PERMUTE128)
+  - (%S8.32-INSERT-S8.16)
+  - (%S8.16-FROM-S8.32)
+  - (%S8.32-SIGN)
+  - (%S8.32-SHUFFLE)
+  - (%S8.32-MOVEMASK)
+  - (%S8.32-UNPACKLO)
+  - (%S8.32-UNPACKHI)
+  - (%S8.32-PACKS)
+  - (%S8.32-ABS)
+  - (%TWO-ARG-S8.32>)
+  - (%TWO-ARG-S8.32=)
+  - (%TWO-ARG-S8.32-)
+  - (%TWO-ARG-S8.32+)
+  - (%TWO-ARG-S8.32-MIN)
+  - (%TWO-ARG-S8.32-MAX)
+  - (%S8.32-ANDC1)
+  - (%TWO-ARG-S8.32-XOR)
+  - (%TWO-ARG-S8.32-OR)
+  - (%TWO-ARG-S8.32-AND)
+  - (%S8.32-BLEND)
+  - (%S8.32-BROADCASTVEC)
+  - (%U64.4-PERMUTE128)
+  - (%U64.4-INSERT-U64.2)
+  - (%U64.2-FROM-U64.4)
+  - (%U64.4-MOVEMASK)
+  - (%U64.4-UNPACKLO)
+  - (%U64.4-UNPACKHI)
+  - (%U64.4-SHIFTR)
+  - (%U64.4-SHIFTL)
+  - (%TWO-ARG-U64.4>~)
+  - (%TWO-ARG-U64.4=)
+  - (%TWO-ARG-U64.4-MUL)
+  - (%TWO-ARG-U64.4-)
+  - (%TWO-ARG-U64.4+)
+  - (%U64.4-ANDC1)
+  - (%TWO-ARG-U64.4-XOR)
+  - (%TWO-ARG-U64.4-OR)
+  - (%TWO-ARG-U64.4-AND)
+  - (%U64.4-FROM-U8.16)
+  - (%U64.4-FROM-U32.4)
+  - (%U64.4-FROM-U16.8)
+  - (%U64.4-BLEND)
+  - (%U64.4-BROADCASTVEC)
+  - (%U32.8-PERMUTE128)
+  - (%U32.8-INSERT-U32.4)
+  - (%U32.4-FROM-U32.8)
+  - (%U32.8-MOVEMASK)
+  - (%U32.8-UNPACKLO)
+  - (%U32.8-UNPACKHI)
+  - (%U32.8-SHIFTR)
+  - (%U32.8-SHIFTL)
+  - (%TWO-ARG-U32.8>~)
+  - (%TWO-ARG-U32.8=)
+  - (%TWO-ARG-U32.8-)
+  - (%TWO-ARG-U32.8+)
+  - (%TWO-ARG-U32.8-MIN)
+  - (%TWO-ARG-U32.8-MAX)
+  - (%U32.8-ANDC1)
+  - (%TWO-ARG-U32.8-XOR)
+  - (%TWO-ARG-U32.8-OR)
+  - (%TWO-ARG-U32.8-AND)
+  - (%U32.8-FROM-U8.16)
+  - (%U32.8-FROM-U16.8)
+  - (%U32.8-BLEND)
+  - (%U32.8-BROADCASTVEC)
+  - (%U16.16-PERMUTE128)
+  - (%U16.16-INSERT-U16.8)
+  - (%U16.8-FROM-U16.16)
+  - (%U16.16-SHUFFLELO)
+  - (%U16.16-SHUFFLEHI)
+  - (%U16.16-UNPACKLO)
+  - (%U16.16-UNPACKHI)
+  - (%U16.16-PACKUS)
+  - (%U16.16-AVG)
+  - (%U16.16-SHIFTR)
+  - (%U16.16-SHIFTL)
+  - (%TWO-ARG-U16.16>~)
+  - (%TWO-ARG-U16.16=)
+  - (%TWO-ARG-U16.16-)
+  - (%TWO-ARG-U16.16+)
+  - (%TWO-ARG-U16.16-MIN)
+  - (%TWO-ARG-U16.16-MAX)
+  - (%U16.16-ANDC1)
+  - (%TWO-ARG-U16.16-XOR)
+  - (%TWO-ARG-U16.16-OR)
+  - (%TWO-ARG-U16.16-AND)
+  - (%U16.16-FROM-U8.16)
+  - (%U16.16-BLEND)
+  - (%U16.16-BROADCASTVEC)
+  - (%U8.32-PERMUTE128)
+  - (%U8.16-FROM-U8.32)
+  - (%U8.32-INSERT-U8.16)
+  - (%U8.32-SHUFFLE)
+  - (%U8.32-MOVEMASK)
+  - (%U8.32-UNPACKLO)
+  - (%U8.32-UNPACKHI)
+  - (%U8.32-PACKUS)
+  - (%U8.32-AVG)
+  - (%TWO-ARG-U8.32>~)
+  - (%TWO-ARG-U8.32=)
+  - (%TWO-ARG-U8.32-)
+  - (%TWO-ARG-U8.32+)
+  - (%TWO-ARG-U8.32-MIN)
+  - (%TWO-ARG-U8.32-MAX)
+  - (%U8.32-ANDC1)
+  - (%TWO-ARG-U8.32-XOR)
+  - (%TWO-ARG-U8.32-OR)
+  - (%TWO-ARG-U8.32-AND)
+  - (%U8.32-BLEND)
+  - (%U8.32-BROADCASTVEC)
+  - (%S64.2-SHIFTR)
+  - (%S64.2-SHIFTL)
+  - (%S64.2-BROADCASTVEC)
+  - (%S64.2!-FROM-P256)
+  - (%S32.4-SHIFTR)
+  - (%S32.4-SHIFTL)
+  - (%S32.4-BROADCASTVEC)
+  - (%S32.4!-FROM-P256)
+  - (%S16.8-BROADCASTVEC)
+  - (%S16.8!-FROM-P256)
+  - (%S8.16-BROADCASTVEC)
+  - (%S8.16!-FROM-P256)
+  - (%U64.2-SHIFTR)
+  - (%U64.2-SHIFTL)
+  - (%U64.2-BROADCASTVEC)
+  - (%U64.2!-FROM-P256)
+  - (%U32.4-SHIFTR)
+  - (%U32.4-SHIFTL)
+  - (%U32.4-BROADCASTVEC)
+  - (%U32.4!-FROM-P256)
+  - (%U16.8-BROADCASTVEC)
+  - (%U16.8!-FROM-P256)
+  - (%U8.16-BROADCASTVEC)
+  - (%U8.16!-FROM-P256)
+  - (%F64.4-PERMUTE4X64)
+  - (%S64.4-PERMUTE128)
+  - (%S64.4-INSERT-S64.2)
+  - (%S64.2-FROM-S64.4)
+  - (%S64.4-PERMUTE)
+  - (%S64.4!-FROM-P256)
+  - (%S64.4!-FROM-P128)
+  - (%S32.8-PERMUTE128)
+  - (%S32.8-INSERT-S32.4)
+  - (%S32.4-FROM-S32.8)
+  - (%S32.8-PERMUTE)
+  - (%S32.8-FROM-F32.8)
+  - (%S32.8-FROM-F64.4)
+  - (%S32.8!-FROM-P256)
+  - (%S32.8!-FROM-P128)
+  - (%S16.16-PERMUTE128)
+  - (%S16.16-INSERT-S16.8)
+  - (%S16.8-FROM-S16.16)
+  - (%S16.16!-FROM-P256)
+  - (%S16.16!-FROM-P128)
+  - (%S8.32-PERMUTE128)
+  - (%S8.32-INSERT-S8.16)
+  - (%S8.16-FROM-S8.32)
+  - (%S8.32!-FROM-P256)
+  - (%S8.32!-FROM-P128)
+  - (%S64.2-PERMUTE)
+  - (%S64.2-MOVEMASK)
+  - (%S64.2-UNPACKLO)
+  - (%S64.2-UNPACKHI)
+  - (%TWO-ARG-S64.2>)
+  - (%TWO-ARG-S64.2=)
+  - (%S64.2-SHIFTR)
+  - (%S64.2-SHIFTL)
+  - (%TWO-ARG-S64.2-)
+  - (%TWO-ARG-S64.2+)
+  - (%S64.2-ANDC1)
+  - (%TWO-ARG-S64.2-XOR)
+  - (%TWO-ARG-S64.2-OR)
+  - (%TWO-ARG-S64.2-AND)
+  - (%S64.2-BLEND)
+  - (%S64.2!-FROM-P256)
+  - (%S64.2!-FROM-P128)
+  - (%S32.4-PERMUTE)
+  - (%S32.4-MOVEMASK)
+  - (%S32.4-UNPACKLO)
+  - (%S32.4-UNPACKHI)
+  - (%TWO-ARG-S32.4>)
+  - (%TWO-ARG-S32.4=)
+  - (%TWO-ARG-S32.4-MULLO)
+  - (%TWO-ARG-S32.4-)
+  - (%TWO-ARG-S32.4+)
+  - (%S32.4-ANDC1)
+  - (%TWO-ARG-S32.4-XOR)
+  - (%TWO-ARG-S32.4-OR)
+  - (%TWO-ARG-S32.4-AND)
+  - (%S32.4-FROM-F32.4)
+  - (%S32.4-FROM-F64.4)
+  - (%S32.4-BLEND)
+  - (%S32.4!-FROM-P256)
+  - (%S32.4!-FROM-P128)
+  - (%S16.8-SHUFFLELO)
+  - (%S16.8-SHUFFLEHI)
+  - (%S16.8-UNPACKLO)
+  - (%S16.8-UNPACKHI)
+  - (%TWO-ARG-S16.8>)
+  - (%TWO-ARG-S16.8=)
+  - (%S16.8-SHIFTR)
+  - (%S16.8-SHIFTL)
+  - (%TWO-ARG-S16.8-MULLO)
+  - (%TWO-ARG-S16.8-)
+  - (%TWO-ARG-S16.8+)
+  - (%S16.8-ANDC1)
+  - (%TWO-ARG-S16.8-XOR)
+  - (%TWO-ARG-S16.8-OR)
+  - (%TWO-ARG-S16.8-AND)
+  - (%S16.8-BLEND)
+  - (%S16.8!-FROM-P256)
+  - (%S16.8!-FROM-P128)
+  - (%S8.16-SHUFFLE)
+  - (%S8.16-MOVEMASK)
+  - (%S8.16-UNPACKLO)
+  - (%S8.16-UNPACKHI)
+  - (%TWO-ARG-S8.16>)
+  - (%TWO-ARG-S8.16=)
+  - (%TWO-ARG-S8.16-)
+  - (%TWO-ARG-S8.16+)
+  - (%S8.16-ANDC1)
+  - (%TWO-ARG-S8.16-XOR)
+  - (%TWO-ARG-S8.16-OR)
+  - (%TWO-ARG-S8.16-AND)
+  - (%S8.16-BLEND)
+  - (%S8.16!-FROM-P256)
+  - (%S8.16!-FROM-P128)
+  - (%U64.4-INSERT-U64.2)
+  - (%U64.2-FROM-U64.4)
+  - (%U64.4-PERMUTE)
+  - (%TWO-ARG-U64.4-AND)
+  - (%U64.4!-FROM-P256)
+  - (%U64.4!-FROM-P128)
+  - (%U64.4!-FROM-U64)
+  - (%U32.8-INSERT-U32.4)
+  - (%U32.4-FROM-U32.8)
+  - (%U32.8-PERMUTE)
+  - (%TWO-ARG-U32.8-AND)
+  - (%U32.8!-FROM-P256)
+  - (%U32.8!-FROM-P128)
+  - (%U32.8!-FROM-U32)
+  - (%U16.16-INSERT-U16.8)
+  - (%U16.8-FROM-U16.16)
+  - (%U16.16!-FROM-P256)
+  - (%U16.16!-FROM-P128)
+  - (%U16.16!-FROM-U16)
+  - (%U8.32-INSERT-U8.16)
+  - (%U8.16-FROM-U8.32)
+  - (%U8.32!-FROM-P256)
+  - (%U8.32!-FROM-P128)
+  - (%U8.32!-FROM-U8)
+  - (%U64.2-PERMUTE)
+  - (%U64.2-MOVEMASK)
+  - (%U64.2-UNPACKLO)
+  - (%U64.2-UNPACKHI)
+  - (%TWO-ARG-U64.2>~)
+  - (%TWO-ARG-U64.2=)
+  - (%TWO-ARG-U64.2-)
+  - (%TWO-ARG-U64.2+)
+  - (%U64.2-ANDC1)
+  - (%TWO-ARG-U64.2-XOR)
+  - (%TWO-ARG-U64.2-OR)
+  - (%TWO-ARG-U64.2-AND)
+  - (%U64.2-BLEND)
+  - (%U64.2-FROM-U64)
+  - (%U64.2!-FROM-P256)
+  - (%U64.2!-FROM-P128)
+  - (%U64.2!-FROM-U64)
+  - (%U32.4-PERMUTE)
+  - (%U32.4-MOVEMASK)
+  - (%U32.4-UNPACKLO)
+  - (%U32.4-UNPACKHI)
+  - (%TWO-ARG-U32.4>~)
+  - (%TWO-ARG-U32.4=)
+  - (%TWO-ARG-U32.4-)
+  - (%TWO-ARG-U32.4+)
+  - (%U32.4-ANDC1)
+  - (%TWO-ARG-U32.4-XOR)
+  - (%TWO-ARG-U32.4-OR)
+  - (%TWO-ARG-U32.4-AND)
+  - (%U32.4-BLEND)
+  - (%U32.4!-FROM-P256)
+  - (%U32.4!-FROM-P128)
+  - (%U32.4!-FROM-U32)
+  - (%U16.8-SHUFFLELO)
+  - (%U16.8-SHUFFLEHI)
+  - (%U16.8-UNPACKLO)
+  - (%U16.8-UNPACKHI)
+  - (%U16.8-SHIFTR)
+  - (%U16.8-SHIFTL)
+  - (%TWO-ARG-U16.8>~)
+  - (%TWO-ARG-U16.8=)
+  - (%TWO-ARG-U16.8-)
+  - (%TWO-ARG-U16.8+)
+  - (%U16.8-ANDC1)
+  - (%TWO-ARG-U16.8-XOR)
+  - (%TWO-ARG-U16.8-OR)
+  - (%TWO-ARG-U16.8-AND)
+  - (%U16.8-BLEND)
+  - (%U16.8!-FROM-P256)
+  - (%U16.8!-FROM-P128)
+  - (%U16.8!-FROM-U16)
+  - (%U8.16-SHUFFLE)
+  - (%U8.16-MOVEMASK)
+  - (%U8.16-UNPACKLO)
+  - (%U8.16-UNPACKHI)
+  - (%TWO-ARG-U8.16>~)
+  - (%TWO-ARG-U8.16=)
+  - (%TWO-ARG-U8.16-)
+  - (%TWO-ARG-U8.16+)
+  - (%U8.16-ANDC1)
+  - (%TWO-ARG-U8.16-XOR)
+  - (%TWO-ARG-U8.16-OR)
+  - (%TWO-ARG-U8.16-AND)
+  - (%U8.16-BLEND)
+  - (%U8.16!-FROM-P256)
+  - (%U8.16!-FROM-P128)
+  - (%U8.16!-FROM-U8)
+  - (%F64.4-SET128)
+  - (%F64.4-INSERT-F64.2)
+  - (%F64.2-FROM-F64.4)
+  - (%F64.4-SHUFFLE)
+  - (%F64.4-PERMUTE128)
+  - (%F64.4-PERMUTE)
+  - (%F64.4-%ROUND)
+  - (%F64.4-MOVEMASK)
+  - (%F64.4-UNPACKLO)
+  - (%F64.4-UNPACKHI)
+  - (%F64.4-SQRT)
+  - (%F64.4-HSUB)
+  - (%F64.4-HADD)
+  - (%F64.4-DUPEVEN)
+  - (%F64.4-ANDC1)
+  - (%TWO-ARG-F64.4>=)
+  - (%TWO-ARG-F64.4>)
+  - (%TWO-ARG-F64.4<=)
+  - (%TWO-ARG-F64.4<)
+  - (%TWO-ARG-F64.4/=)
+  - (%TWO-ARG-F64.4=)
+  - (%TWO-ARG-F64.4/)
+  - (%TWO-ARG-F64.4*)
+  - (%TWO-ARG-F64.4-)
+  - (%TWO-ARG-F64.4+)
+  - (%TWO-ARG-F64.4-MIN)
+  - (%TWO-ARG-F64.4-MAX)
+  - (%TWO-ARG-F64.4-XOR)
+  - (%TWO-ARG-F64.4-OR)
+  - (%TWO-ARG-F64.4-AND)
+  - (%F64.4-BLENDC)
+  - (%F64.4-BLEND)
+  - (%F64.4-FROM-S32.4)
+  - (%F64.4-FROM-U32.4)
+  - (%F64.4-FROM-F32.4)
+  - (%F64.4-BROADCAST)
+  - (%F64.4!-FROM-P256)
+  - (%F64.4!-FROM-P128)
+  - (%F64.4!-FROM-F64)
+  - (%F32.8-INSERT-F32.4)
+  - (%F32.4-FROM-F32.8)
+  - (%F32.8-SHUFFLE)
+  - (%F32.8-PERMUTE128)
+  - (%F32.8-PERMUTE)
+  - (%F32.8-%ROUND)
+  - (%F32.8-MOVEMASK)
+  - (%F32.8-UNPACKLO)
+  - (%F32.8-UNPACKHI)
+  - (%F32.8-SQRT)
+  - (%F32.8-RSQRT)
+  - (%F32.8-RECIPROCAL)
+  - (%F32.8-HSUB)
+  - (%F32.8-HADD)
+  - (%F32.8-DUPODD)
+  - (%F32.8-DUPEVEN)
+  - (%TWO-ARG-F32.8>=)
+  - (%TWO-ARG-F32.8>)
+  - (%TWO-ARG-F32.8<=)
+  - (%TWO-ARG-F32.8<)
+  - (%TWO-ARG-F32.8/=)
+  - (%TWO-ARG-F32.8=)
+  - (%TWO-ARG-F32.8/)
+  - (%TWO-ARG-F32.8*)
+  - (%TWO-ARG-F32.8-)
+  - (%TWO-ARG-F32.8+)
+  - (%F32.8-ANDC1)
+  - (%TWO-ARG-F32.8-MIN)
+  - (%TWO-ARG-F32.8-MAX)
+  - (%TWO-ARG-F32.8-XOR)
+  - (%TWO-ARG-F32.8-OR)
+  - (%TWO-ARG-F32.8-AND)
+  - (%F32.8-BLENDC)
+  - (%F32.8-BLEND)
+  - (%F32.8-FROM-U32.8)
+  - (%F32.8-BROADCAST)
+  - (%F32.8!-FROM-P256)
+  - (%F32.8!-FROM-P128)
+  - (%F32.8!-FROM-F32)
+  - (%F32.8-FROM-S32.8)
+  - (%F64.2-SHUFFLE)
+  - (%F64.2-PERMUTE)
+  - (%F64.2-%ROUND)
+  - (%F64.2-MOVEMASK)
+  - (%F64.2-UNPACKLO)
+  - (%F64.2-UNPACKHI)
+  - (%F64.2-SQRT)
+  - (%F64.2-HSUB)
+  - (%F64.2-HADD)
+  - (%F64.2-ADDSUB)
+  - (%TWO-ARG-F64.2>=)
+  - (%TWO-ARG-F64.2>)
+  - (%TWO-ARG-F64.2<=)
+  - (%TWO-ARG-F64.2<)
+  - (%TWO-ARG-F64.2/=)
+  - (%TWO-ARG-F64.2=)
+  - (%TWO-ARG-F64.2/)
+  - (%TWO-ARG-F64.2*)
+  - (%TWO-ARG-F64.2-)
+  - (%F64.2-ANDC1)
+  - (%TWO-ARG-F64.2+)
+  - (%TWO-ARG-F64.2-MIN)
+  - (%TWO-ARG-F64.2-MAX)
+  - (%TWO-ARG-F64.2-XOR)
+  - (%TWO-ARG-F64.2-OR)
+  - (%TWO-ARG-F64.2-AND)
+  - (%F64.2-BLENDC)
+  - (%F64.2-BLEND)
+  - (%F64.2-BROADCAST)
+  - (%F64.2!-FROM-P256)
+  - (%F64.2!-FROM-P128)
+  - (%F64.2!-FROM-F64)
+  - (%F32.4-SHUFFLE)
+  - (%F32.4-PERMUTE)
+  - (%F32.4-%ROUND)
+  - (%F32.4-MOVEMASK)
+  - (%F32.4-UNPACKLO)
+  - (%F32.4-UNPACKHI)
+  - (%F32.4-SQRT)
+  - (%F32.4-RSQRT)
+  - (%F32.4-RECIPROCAL)
+  - (%F32.4-HSUB)
+  - (%F32.4-HADD)
+  - (%F32.4-ADDSUB)
+  - (%F32.4-DUPODD)
+  - (%F32.4-DUPEVEN)
+  - (%TWO-ARG-F32.4>=)
+  - (%TWO-ARG-F32.4>)
+  - (%TWO-ARG-F32.4<=)
+  - (%TWO-ARG-F32.4<)
+  - (%TWO-ARG-F32.4/=)
+  - (%TWO-ARG-F32.4=)
+  - (%TWO-ARG-F32.4/)
+  - (%TWO-ARG-F32.4*)
+  - (%TWO-ARG-F32.4-)
+  - (%TWO-ARG-F32.4+)
+  - (%F32.4-ANDC1)
+  - (%TWO-ARG-F32.4-MIN)
+  - (%TWO-ARG-F32.4-MAX)
+  - (%TWO-ARG-F32.4-XOR)
+  - (%TWO-ARG-F32.4-OR)
+  - (%TWO-ARG-F32.4-AND)
+  - (%F32.4-BLENDC)
+  - (%F32.4-BLEND)
+  - (%F32.4-FROM-F64.4)
+  - (%F32.4-BROADCAST)
+  - (%F32.4!-FROM-P256)
+  - (%F32.4!-FROM-P128)
+  - (%F32.4!-FROM-F32)
+  - (%F32.4-FROM-S32.4)
+  - (%U64!-FROM-P256)
+  - (%U64!-FROM-P128)
+  - (%F64-SQRT)
+  - (%F64-ANDC1)
+  - (%TWO-ARG-F64/)
+  - (%TWO-ARG-F64*)
+  - (%TWO-ARG-F64-)
+  - (%TWO-ARG-F64+)
+  - (%TWO-ARG-F64-MIN)
+  - (%TWO-ARG-F64-MAX)
+  - (%TWO-ARG-F64-XOR)
+  - (%TWO-ARG-F64-OR)
+  - (%TWO-ARG-F64-AND)
+  - (%F64-FROM-F32)
+  - (%F32-SQRT)
+  - (%F32-RSQRT)
+  - (%F32-RECIPROCAL)
+  - (%F32-ANDC1)
+  - (%TWO-ARG-F32/)
+  - (%TWO-ARG-F32*)
+  - (%TWO-ARG-F32-)
+  - (%TWO-ARG-F32+)
+  - (%TWO-ARG-F32-MIN)
+  - (%TWO-ARG-F32-MAX)
+  - (%TWO-ARG-F32-XOR)
+  - (%TWO-ARG-F32-OR)
+  - (%TWO-ARG-F32-AND)
+  - (%F32-FROM-F64)
+  - (%VZEROALL)
+  - (%VZEROUPPER)
+  - (%TWO-ARG-S64.2>)
+  - (%TWO-ARG-U64.2>~)
+  - (%S64.2-INSERT)
+  - (%S64.2-ELT)
+  - (%TWO-ARG-S64.2=)
+  - (%TWO-ARG-S64.2-MUL)
+  - (%S64.2-FROM-S32.4)
+  - (%S64.2-FROM-U32.4)
+  - (%S64.2-FROM-S16.8)
+  - (%S64.2-FROM-U16.8)
+  - (%S64.2-FROM-S8.16)
+  - (%S64.2-FROM-U8.16)
+  - (%S64.2-BLEND)
+  - (%S32.4-INSERT)
+  - (%S32.4-ELT)
+  - (%TWO-ARG-S32.4-MULLO)
+  - (%S32.4-FROM-S16.8)
+  - (%S32.4-FROM-U16.8)
+  - (%S32.4-FROM-S8.16)
+  - (%S32.4-FROM-U8.16)
+  - (%TWO-ARG-S32.4-MIN)
+  - (%TWO-ARG-S32.4-MAX)
+  - (%S32.4-BLEND)
+  - (%S16.8-PACK)
+  - (%S16.8-FROM-S8.16)
+  - (%S16.8-FROM-U8.16)
+  - (%S16.8-BLEND)
+  - (%S8.16-INSERT)
+  - (%S8.16-ELT)
+  - (%TWO-ARG-S8.16-MIN)
+  - (%TWO-ARG-S8.16-MAX)
+  - (%S8.16-BLEND)
+  - (%U64.2-INSERT)
+  - (%U64.2-ELT)
+  - (%TWO-ARG-U64.2=)
+  - (%U64.2-BLEND)
+  - (%U32.4-INSERT)
+  - (%U32.4-ELT)
+  - (%TWO-ARG-U32.4-MIN)
+  - (%TWO-ARG-U32.4-MAX)
+  - (%U32.4-BLEND)
+  - (%U16.8-MINPOS)
+  - (%TWO-ARG-U16.8-MIN)
+  - (%TWO-ARG-U16.8-MAX)
+  - (%U16.8-BLEND)
+  - (%U8.16-INSERT)
+  - (%U8.16-ELT)
+  - (%U8.16-BLEND)
+  - (%F64.2-%ROUND)
+  - (%F64.2-BLENDC)
+  - (%F64.2-BLEND)
+  - (%F32.4-INSERT)
+  - (%F32.4-%ROUND)
+  - (%F32.4-BLENDC)
+  - (%F32.4-BLEND)
+  - (%S32.4-HSUB)
+  - (%S32.4-HADD)
+  - (%S32.4-SIGN)
+  - (%S32.4-ABS)
+  - (%S16.8-HSUB)
+  - (%S16.8-HADD)
+  - (%S16.8-SIGN)
+  - (%S16.8-MADDUBS)
+  - (%S16.8-ABS)
+  - (%TWO-ARG-S16.8-MULHRS)
+  - (%S8.16-SIGN)
+  - (%S8.16-ABS)
+  - (%S8.16-SHUFFLE)
+  - (%U32.4-HSUB)
+  - (%U32.4-HADD)
+  - (%U16.8-HSUB)
+  - (%U16.8-HADD)
+  - (%F64.2-HADD)
+  - (%F32.4-LDUP)
+  - (%F32.4-HDUP)
+  - (%F32.4-HADD)
+  - (%S64.2-SHIFTR)
+  - (%S64.2-SHIFTL)
+  - (%S64.2-MOVEMASK)
+  - (%S64.2-UNPACKLO)
+  - (%S64.2-UNPACKHI)
+  - (%TWO-ARG-S64.2-)
+  - (%TWO-ARG-S64.2+)
+  - (%S64.2-ANDC1)
+  - (%TWO-ARG-S64.2-XOR)
+  - (%TWO-ARG-S64.2-OR)
+  - (%TWO-ARG-S64.2-AND)
+  - (%S64.2!-FROM-P128)
+  - (%S32.4-SHIFTR)
+  - (%S32.4-SHIFTL)
+  - (%S32.4-SHUFFLE)
+  - (%S32.4-MOVEMASK)
+  - (%S32.4-UNPACKLO)
+  - (%S32.4-UNPACKHI)
+  - (%TWO-ARG-S32.4>)
+  - (%TWO-ARG-S32.4=)
+  - (%TWO-ARG-S32.4-)
+  - (%TWO-ARG-S32.4+)
+  - (%S32.4-ANDC1)
+  - (%TWO-ARG-S32.4-XOR)
+  - (%TWO-ARG-S32.4-OR)
+  - (%TWO-ARG-S32.4-AND)
+  - (%S32.4-FROM-F64.2)
+  - (%S32.4-FROM-F32.4)
+  - (%S32.4!-FROM-P128)
+  - (%S16.8-SHIFTR)
+  - (%S16.8-SHIFTL)
+  - (%S16.8-SHUFFLELO)
+  - (%S16.8-SHUFFLEHI)
+  - (%S16.8-ELT)
+  - (%S16.8-MULLO)
+  - (%S16.8-UNPACKLO)
+  - (%S16.8-UNPACKHI)
+  - (%TWO-ARG-S16.8>)
+  - (%TWO-ARG-S16.8=)
+  - (%TWO-ARG-S16.8-)
+  - (%TWO-ARG-S16.8+)
+  - (%S16.8-ANDC1)
+  - (%TWO-ARG-S16.8-XOR)
+  - (%TWO-ARG-S16.8-OR)
+  - (%TWO-ARG-S16.8-AND)
+  - (%S16.8!-FROM-P128)
+  - (%S8.16-MOVEMASK)
+  - (%S8.16-UNPACKLO)
+  - (%S8.16-UNPACKHI)
+  - (%TWO-ARG-S8.16>)
+  - (%TWO-ARG-S8.16=)
+  - (%TWO-ARG-S8.16-)
+  - (%TWO-ARG-S8.16+)
+  - (%S8.16-ANDC1)
+  - (%TWO-ARG-S8.16-XOR)
+  - (%TWO-ARG-S8.16-OR)
+  - (%TWO-ARG-S8.16-AND)
+  - (%S8.16!-FROM-P128)
+  - (%U64.2-SHIFTR)
+  - (%U64.2-SHIFTL)
+  - (%U64.2-MOVEMASK)
+  - (%U64.2-UNPACKLO)
+  - (%U64.2-UNPACKHI)
+  - (%TWO-ARG-U64.2-)
+  - (%TWO-ARG-U64.2+)
+  - (%U64.2-ANDC1)
+  - (%TWO-ARG-U64.2-XOR)
+  - (%TWO-ARG-U64.2-OR)
+  - (%TWO-ARG-U64.2-AND)
+  - (%U64.2!-FROM-P128)
+  - (%U64.2!-FROM-U64)
+  - (%U32.4-SHIFTR)
+  - (%U32.4-SHIFTL)
+  - (%U32.4-SHUFFLE)
+  - (%U32.4-MOVEMASK)
+  - (%U32.4-UNPACKLO)
+  - (%U32.4-UNPACKHI)
+  - (%TWO-ARG-U32.4>~)
+  - (%TWO-ARG-U32.4=)
+  - (%TWO-ARG-U32.4-)
+  - (%TWO-ARG-U32.4+)
+  - (%U32.4-ANDC1)
+  - (%TWO-ARG-U32.4-XOR)
+  - (%TWO-ARG-U32.4-OR)
+  - (%TWO-ARG-U32.4-AND)
+  - (%U32.4!-FROM-P128)
+  - (%U32.4!-FROM-U32)
+  - (%U16.8-SHIFTR)
+  - (%U16.8-SHIFTL)
+  - (%U16.8-SHUFFLELO)
+  - (%U16.8-SHUFFLEHI)
+  - (%U16.8-ELT)
+  - (%U16.8-UNPACKLO)
+  - (%U16.8-UNPACKHI)
+  - (%U16.8-AVERAGE)
+  - (%TWO-ARG-U16.8>~)
+  - (%TWO-ARG-U16.8=)
+  - (%TWO-ARG-U16.8-)
+  - (%TWO-ARG-U16.8+)
+  - (%U16.8-ANDC1)
+  - (%TWO-ARG-U16.8-XOR)
+  - (%TWO-ARG-U16.8-OR)
+  - (%TWO-ARG-U16.8-AND)
+  - (%U16.8!-FROM-P128)
+  - (%U16.8!-FROM-U16)
+  - (%U8.16-MOVEMASK)
+  - (%U8.16-UNPACKLO)
+  - (%U8.16-UNPACKHI)
+  - (%U8.16-AVERAGE)
+  - (%TWO-ARG-U8.16>~)
+  - (%TWO-ARG-U8.16=)
+  - (%TWO-ARG-U8.16-)
+  - (%TWO-ARG-U8.16+)
+  - (%U8.16-ANDC1)
+  - (%TWO-ARG-U8.16-XOR)
+  - (%TWO-ARG-U8.16-OR)
+  - (%TWO-ARG-U8.16-AND)
+  - (%U8.16!-FROM-P128)
+  - (%U8.16!-FROM-U8)
+  - (%F64.2-MOVEMASK)
+  - (%F64.2-SHUFFLE)
+  - (%F64.2-UNPACKLO)
+  - (%F64.2-UNPACKHI)
+  - (%F64.2-SQRT)
+  - (%F64.2-ANDC1)
+  - (%TWO-ARG-F64.2>=)
+  - (%TWO-ARG-F64.2>)
+  - (%TWO-ARG-F64.2<=)
+  - (%TWO-ARG-F64.2<)
+  - (%TWO-ARG-F64.2/=)
+  - (%TWO-ARG-F64.2=)
+  - (%TWO-ARG-F64.2/)
+  - (%TWO-ARG-F64.2*)
+  - (%TWO-ARG-F64.2-)
+  - (%TWO-ARG-F64.2+)
+  - (%TWO-ARG-F64.2-MIN)
+  - (%TWO-ARG-F64.2-MAX)
+  - (%TWO-ARG-F64.2-XOR)
+  - (%TWO-ARG-F64.2-OR)
+  - (%TWO-ARG-F64.2-AND)
+  - (%F64.2!-FROM-P128)
+  - (%F64.2!-FROM-F64)
+  - (%TWO-ARG-F32.4>=)
+  - (%TWO-ARG-F32.4>)
+  - (%TWO-ARG-F32.4<=)
+  - (%TWO-ARG-F32.4<)
+  - (%TWO-ARG-F32.4/=)
+  - (%TWO-ARG-F32.4=)
+  - (%F32.4!-FROM-P128)
+  - (%F32.4-FROM-S32.4)
+  - (%U64!-FROM-P128)
+  - (%F64-SQRT)
+  - (%F64-ANDC1)
+  - (%TWO-ARG-F64/)
+  - (%TWO-ARG-F64*)
+  - (%TWO-ARG-F64-)
+  - (%TWO-ARG-F64+)
+  - (%TWO-ARG-F64-MIN)
+  - (%TWO-ARG-F64-MAX)
+  - (%TWO-ARG-F64-XOR)
+  - (%TWO-ARG-F64-OR)
+  - (%TWO-ARG-F64-AND)
+  - (%F64-FROM-F32)
+  - (%F32-FROM-F64)
+  - (%F32.4-MOVEMASK)
+  - (%F32.4-UNPACKHI)
+  - (%F32.4-UNPACKLO)
+  - (%F32.4-SHUFFLE)
+  - (%F32.4-SQRT)
+  - (%F32.4-RSQRT)
+  - (%F32.4-RECIPROCAL)
+  - (%F32.4-ANDC1)
+  - (%TWO-ARG-F32.4/)
+  - (%TWO-ARG-F32.4*)
+  - (%TWO-ARG-F32.4-)
+  - (%TWO-ARG-F32.4+)
+  - (%TWO-ARG-F32.4-MIN)
+  - (%TWO-ARG-F32.4-MAX)
+  - (%TWO-ARG-F32.4-XOR)
+  - (%TWO-ARG-F32.4-OR)
+  - (%TWO-ARG-F32.4-AND)
+  - (%F32.4!-FROM-F32)
+  - (%F32-SQRT)
+  - (%F32-RSQRT)
+  - (%F32-RECIPROCAL)
+  - (%F32-ANDC1)
+  - (%TWO-ARG-F32/)
+  - (%TWO-ARG-F32*)
+  - (%TWO-ARG-F32-)
+  - (%TWO-ARG-F32+)
+  - (%TWO-ARG-F32-MIN)
+  - (%TWO-ARG-F32-MAX)
+  - (%TWO-ARG-F32-XOR)
+  - (%TWO-ARG-F32-OR)
+  - (%TWO-ARG-F32-AND)
+  - (%64BIT-ROTATE-BYTE)
+  - (%64BIT-ROTATE-BYTE/C)
+  - (%32BIT-ROTATE-BYTE)
+  - (%32BIT-ROTATE-BYTE/C)
+  - (64BIT-SWAP-BYTES)
+  - (32BIT-SWAP-BYTES)
+  - (16BIT-SWAP-BYTES)
+  - (INC-COUNTER-BLOCK)
+  - (SWAP64)
+  - (SWAP32)
+  - (MOV128)
+  - (XOR128)
+  - (GMAC-MUL-FAST)
+  - (FAST-BLAKE2S-MIXING)
+  - (AES-NI-DECRYPT)
+  - (AES-NI-ENCRYPT)
+  - (AES-NI-GENERATE-ROUND-KEYS)
+  - (AES-NI-SUPPORT-P)
+  - (PCLMULQDQ-SUPPORT-P)
+  - (CHACHA-CORE-FAST)
+  - (SALSA-CORE-FAST)
+  - (UPDATE-SHA1-BLOCK)
+  - (F4 IN UPDATE-SHA1-BLOCK)
+  - (SHA256-EXPAND-BLOCK)
+  - (EXPAND-BLOCK)
+  - (FILL-BLOCK-UB8)
+  - STD/COMP::%ASM
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** LABEL :class:
+:PROPERTIES:
+:ID: 2733953026147
+:CUSTOM_ID: SB-ASSEM:LABEL
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+LABEL names the structure-class #<STRUCTURE-CLASS SB-ASSEM:LABEL>:
+  Class precedence-list: SB-ASSEM:LABEL, SB-ASSEM::ANNOTATION, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SB-ASSEM::ANNOTATION
+  No subclasses.
+  Sealed.
+  Slots:
+    SB-INT:INDEX
+      Type: SB-INT:INDEX
+      Initform: 0
+    SB-ASSEM::POSN
+      Type: (OR SB-INT:INDEX NULL)
+      Initform: NIL
+    SB-ASSEM::COMMENT
+      Type: T
+      Initform: NIL
+    SB-ASSEM::USEDP
+      Type: BOOLEAN
+      Initform: NIL
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;EARLY-ASSEM.LISP
+:end:
+** .BYTE
+:PROPERTIES:
+:ID: 1781289177815
+:CUSTOM_ID: SB-ASSEM:.BYTE
+:ALLOC: HEAP IMMOBILE
+:END:
+** DEFPATTERN :compiled:macro:function:
+:PROPERTIES:
+:ID: 1619117966967
+:CUSTOM_ID: SB-ASSEM:DEFPATTERN
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DEFPATTERN names a macro:
+  Lambda-list: (NAME (OPCODES1 OPCODES2) LAMBDA-LIST &BODY BODY)
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** .LISPWORD
+:PROPERTIES:
+:ID: 1324728498282
+:CUSTOM_ID: SB-ASSEM:.LISPWORD
+:ALLOC: HEAP IMMOBILE
+:END:
+** STMT-LABELS :compiled:function:
+:PROPERTIES:
+:ID: 820353530676
+:CUSTOM_ID: SB-ASSEM:STMT-LABELS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+STMT-LABELS names a compiled function:
+  An accessor for SB-ASSEM::STMT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM::STMT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+(SETF STMT-LABELS) names a compiled function:
+  An accessor for SB-ASSEM::STMT
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (T SB-ASSEM::STMT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** STMT-MNEMONIC :compiled:function:
+:PROPERTIES:
+:ID: 2229466322873
+:CUSTOM_ID: SB-ASSEM:STMT-MNEMONIC
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+STMT-MNEMONIC names a compiled function:
+  An accessor for SB-ASSEM::STMT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM::STMT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+(SETF STMT-MNEMONIC) names a compiled function:
+  An accessor for SB-ASSEM::STMT
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (T SB-ASSEM::STMT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** SEGMENT-BUFFER :compiled:function:
+:PROPERTIES:
+:ID: 1612077326614
+:CUSTOM_ID: SB-ASSEM:SEGMENT-BUFFER
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SEGMENT-BUFFER names a compiled function:
+  An accessor for SB-ASSEM:SEGMENT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM:SEGMENT)
+                 (VALUES (SIMPLE-ARRAY (UNSIGNED-BYTE 8) (*)) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+(SETF SEGMENT-BUFFER) names a compiled function:
+  An accessor for SB-ASSEM:SEGMENT
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION
+                 ((SIMPLE-ARRAY (UNSIGNED-BYTE 8) (*)) SB-ASSEM:SEGMENT)
+                 (VALUES (SIMPLE-ARRAY (UNSIGNED-BYTE 8) (*)) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+- Called by
+  - STD/COMP::%ASM
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** SEGMENT :class:
+:PROPERTIES:
+:ID: 3373429745336
+:CUSTOM_ID: SB-ASSEM:SEGMENT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+SEGMENT names the structure-class #<STRUCTURE-CLASS SB-ASSEM:SEGMENT>:
+  Class precedence-list: SB-ASSEM:SEGMENT, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Sealed.
+  Slots:
+    SB-ASSEM::BUFFER
+      Type: (SIMPLE-ARRAY SB-ASSEM:ASSEMBLY-UNIT 1)
+      Initform: (MAKE-ARRAY 100 :ELEMENT-TYPE 'SB-ASSEM:ASSEMBLY-UNIT)
+    SB-ASSEM::ENCODER-STATE
+      Type: T
+      Initform: NIL
+    SB-ASSEM::RUN-SCHEDULER
+      Type: T
+      Initform: NIL
+    SB-ASSEM::CURRENT-POSN
+      Type: SB-INT:INDEX
+      Initform: 0
+    SB-ASSEM::%CURRENT-INDEX
+      Type: SB-INT:INDEX
+      Initform: 0
+    SB-ASSEM::ANNOTATIONS
+      Type: LIST
+      Initform: NIL
+    SB-ASSEM::ALIGNMENT-ANNOTATIONS
+      Type: T
+      Initform: NIL
+    SB-ASSEM::LAST-ANNOTATION
+      Type: LIST
+      Initform: NIL
+    SB-ASSEM::ALIGNMENT
+      Type: SB-ASSEM::ALIGNMENT
+      Initform: SB-ASSEM::MAX-ALIGNMENT
+    SB-ASSEM::HEADER-SKEW
+      Type: (MEMBER 0 8)
+      Initform: 0
+    SB-ASSEM::SYNC-POSN
+      Type: SB-INT:INDEX
+      Initform: 0
+    SB-ASSEM::ORIGIN
+      Type: T
+      Initform: (SB-ASSEM:GEN-LABEL)
+    SB-ASSEM::FINAL-POSN
+      Type: SB-INT:INDEX
+      Initform: 0
+    SB-ASSEM::FINAL-INDEX
+      Type: SB-INT:INDEX
+      Initform: 0
+    SB-ASSEM::POSTITS
+      Type: LIST
+      Initform: NIL
+    SB-ASSEM::INST-NUMBER
+      Type: SB-INT:INDEX
+      Initform: 0
+    SB-ASSEM::READERS
+      Type: SIMPLE-VECTOR
+      Initform: (MAKE-ARRAY SB-ASSEM:+ASSEM-MAX-LOCATIONS+ :INITIAL-ELEMENTNIL)
+    SB-ASSEM::WRITERS
+      Type: SIMPLE-VECTOR
+      Initform: (MAKE-ARRAY SB-ASSEM:+ASSEM-MAX-LOCATIONS+ :INITIAL-ELEMENTNIL)
+    SB-ASSEM::BRANCH-COUNTDOWN
+      Type: (OR NULL (AND FIXNUM UNSIGNED-BYTE))
+      Initform: NIL
+    SB-ASSEM::EMITTABLE-INSTS-SSET
+      Type: SB-INT:SSET
+      Initform: (SB-INT:MAKE-SSET)
+    SB-ASSEM::QUEUED-BRANCHES
+      Type: LIST
+      Initform: NIL
+    SB-ASSEM::DELAYED
+      Type: LIST
+      Initform: NIL
+    SB-ASSEM::EMITTABLE-INSTS-QUEUE
+      Type: LIST
+      Initform: NIL
+    SB-ASSEM::FIXUP-NOTES
+      Type: T
+      Initform: NIL
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+- SYS:SRC;COMPILER;ASSEM.LISP
+  - [[id:2131768191127][FREEZE-TYPE]]
+:end:
+** DEFINE-BITFIELD-EMITTER :compiled:macro:function:
+:PROPERTIES:
+:ID: 2886174036520
+:CUSTOM_ID: SB-ASSEM:DEFINE-BITFIELD-EMITTER
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DEFINE-BITFIELD-EMITTER names a macro:
+  Lambda-list: (NAME TOTAL-BITS &REST BYTE-SPECS)
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** DELETE-STMT :compiled:function:
+:PROPERTIES:
+:ID: 3145315570553
+:CUSTOM_ID: SB-ASSEM:DELETE-STMT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+DELETE-STMT names a compiled function:
+  Lambda-list: (STMT)
+  Derived type: (FUNCTION (T) (VALUES (OR NULL SB-ASSEM::STMT) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** ASSEM-SCHEDULER-P :constant:var:
+:PROPERTIES:
+:ID: 3799357298867
+:CUSTOM_ID: SB-ASSEM:ASSEM-SCHEDULER-P
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ASSEM-SCHEDULER-P names a constant variable:
+  Value: NIL
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** ASMSTREAM-ELSEWHERE-LABEL :compiled:function:
+:PROPERTIES:
+:ID: 3719515817397
+:CUSTOM_ID: SB-ASSEM:ASMSTREAM-ELSEWHERE-LABEL
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ASMSTREAM-ELSEWHERE-LABEL names a compiled function:
+  An accessor for SB-ASSEM::ASMSTREAM
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM::ASMSTREAM) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** +ASSEM-MAX-LOCATIONS​+ :constant:var:
+:PROPERTIES:
+:ID: 1399750643538
+:CUSTOM_ID: SB-ASSEM:+ASSEM-MAX-LOCATIONS+
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
++ASSEM-MAX-LOCATIONS+ names a constant variable:
+  Value: 0
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** WITHOUT-SCHEDULING :compiled:macro:function:
+:PROPERTIES:
+:ID: 476605521560
+:CUSTOM_ID: SB-ASSEM:WITHOUT-SCHEDULING
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+WITHOUT-SCHEDULING names a macro:
+  Lambda-list: (NIL &BODY BODY)
+  Documentation:
+    Execute BODY (as a PROGN) without scheduling any of the instructions
+    generated inside it. This is not protected by UNWIND-PROTECT, so
+    DO NOT use THROW or RETURN-FROM to escape from it.
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** ASMSTREAM-CONSTANT-VECTOR :compiled:function:
+:PROPERTIES:
+:ID: 993128134690
+:CUSTOM_ID: SB-ASSEM:ASMSTREAM-CONSTANT-VECTOR
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ASMSTREAM-CONSTANT-VECTOR names a compiled function:
+  An accessor for SB-ASSEM::ASMSTREAM
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM::ASMSTREAM) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** MAKE-ASMSTREAM :compiled:function:
+:PROPERTIES:
+:ID: 516713105521
+:CUSTOM_ID: SB-ASSEM:MAKE-ASMSTREAM
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+MAKE-ASMSTREAM names a compiled function:
+  A constructor for SB-ASSEM::ASMSTREAM
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES SB-ASSEM::ASMSTREAM &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** .ALIGN
+:PROPERTIES:
+:ID: 4090885527523
+:CUSTOM_ID: SB-ASSEM:.ALIGN
+:ALLOC: HEAP IMMOBILE
+:END:
+** EMIT-CHOOSER :compiled:function:
+:PROPERTIES:
+:ID: 1735320479221
+:CUSTOM_ID: SB-ASSEM:EMIT-CHOOSER
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+EMIT-CHOOSER names a compiled function:
+  Lambda-list: (SEGMENT SIZE ALIGNMENT MAYBE-SHRINK WORST-CASE-FUN)
+  Derived type: (FUNCTION
+                 (SB-ASSEM:SEGMENT (UNSIGNED-BYTE 44) (MOD 6) FUNCTION
+                  FUNCTION)
+                 *)
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** EMIT :compiled:function:
+:PROPERTIES:
+:ID: 657373647985
+:CUSTOM_ID: SB-ASSEM:EMIT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+EMIT names a compiled function:
+  Lambda-list: (SECTION &REST THINGS)
+  Derived type: (FUNCTION (T &REST T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** +INST-ALIGNMENT-BYTES​+ :constant:var:
+:PROPERTIES:
+:ID: 2486720567540
+:CUSTOM_ID: SB-ASSEM:+INST-ALIGNMENT-BYTES+
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
++INST-ALIGNMENT-BYTES+ names a constant variable:
+  Value: 1
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** STMT-PREV :compiled:function:
+:PROPERTIES:
+:ID: 4214698385451
+:CUSTOM_ID: SB-ASSEM:STMT-PREV
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+STMT-PREV names a compiled function:
+  An accessor for SB-ASSEM::STMT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM::STMT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+(SETF STMT-PREV) names a compiled function:
+  An accessor for SB-ASSEM::STMT
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (T SB-ASSEM::STMT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** ASSEMBLE :compiled:macro:function:
+:PROPERTIES:
+:ID: 430673000661
+:CUSTOM_ID: SB-ASSEM:ASSEMBLE
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ASSEMBLE names a macro:
+  Lambda-list: ((&OPTIONAL DEST VOP) &BODY BODY)
+  Documentation:
+    Execute BODY (as a progn) with DEST as the current section or segment.
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+- Macroexpanded by
+  - (%F64!-FROM-P256)
+  - (%F64!-FROM-P128)
+  - (%F32!-FROM-P256)
+  - (%F32!-FROM-P128)
+  - (%F64-FROM-S64)
+  - (%F32-FROM-S64)
+  - (%TWO-ARG-F64>=)
+  - (%TWO-ARG-F64>)
+  - (%TWO-ARG-F64<=)
+  - (%TWO-ARG-F64<)
+  - (%TWO-ARG-F64/=)
+  - (%TWO-ARG-F64=)
+  - (%TWO-ARG-F32>=)
+  - (%TWO-ARG-F32>)
+  - (%TWO-ARG-F32<=)
+  - (%TWO-ARG-F32<)
+  - (%TWO-ARG-F32/=)
+  - (%TWO-ARG-F32=)
+  - (%F64!-FROM-P128)
+  - (%F64-FROM-S64)
+  - (%TWO-ARG-F64>=)
+  - (%TWO-ARG-F64>)
+  - (%TWO-ARG-F64<=)
+  - (%TWO-ARG-F64<)
+  - (%TWO-ARG-F64/=)
+  - (%TWO-ARG-F64=)
+  - (%F32!-FROM-P128)
+  - (%F32-FROM-S64)
+  - (%TWO-ARG-F32>=)
+  - (%TWO-ARG-F32>)
+  - (%TWO-ARG-F32<=)
+  - (%TWO-ARG-F32<)
+  - (%TWO-ARG-F32/=)
+  - (%TWO-ARG-F32=)
+  - (%S64.4-NTSTORE-C)
+  - (%S64.4-NTSTORE)
+  - (%S32.8-NTSTORE-C)
+  - (%S32.8-NTSTORE)
+  - (%S16.16-NTSTORE-C)
+  - (%S16.16-NTSTORE)
+  - (%S8.32-NTSTORE-C)
+  - (%S8.32-NTSTORE)
+  - (%U64.4-NTSTORE-C)
+  - (%U64.4-NTSTORE)
+  - (%U32.8-NTSTORE-C)
+  - (%U32.8-NTSTORE)
+  - (%U16.16-NTSTORE-C)
+  - (%U16.16-NTSTORE)
+  - (%U8.32-NTSTORE-C)
+  - (%U8.32-NTSTORE)
+  - (%S64.2-NTSTORE-C)
+  - (%S64.2-NTSTORE)
+  - (%S32.4-NTSTORE-C)
+  - (%S32.4-NTSTORE)
+  - (%S16.8-NTSTORE-C)
+  - (%S16.8-NTSTORE)
+  - (%S8.16-NTSTORE-C)
+  - (%S8.16-NTSTORE)
+  - (%U64.2-NTSTORE-C)
+  - (%U64.2-NTSTORE)
+  - (%U32.4-NTSTORE-C)
+  - (%U32.4-NTSTORE)
+  - (%U16.8-NTSTORE-C)
+  - (%U16.8-NTSTORE)
+  - (%U8.16-NTSTORE-C)
+  - (%U8.16-NTSTORE)
+  - (%F64.4-NTSTORE-C)
+  - (%F64.4-NTSTORE)
+  - (%F32.8-NTSTORE-C)
+  - (%F32.8-NTSTORE)
+  - (%F64.2-NTSTORE-C)
+  - (%F64.2-NTSTORE)
+  - (%F32.4-NTSTORE-C)
+  - (%F32.4-NTSTORE)
+  - (%S64.4-NTLOAD-C)
+  - (%S64.4-NTLOAD)
+  - (%S32.8-NTLOAD-C)
+  - (%S32.8-NTLOAD)
+  - (%S16.16-NTLOAD-C)
+  - (%S16.16-NTLOAD)
+  - (%S8.32-NTLOAD-C)
+  - (%S8.32-NTLOAD)
+  - (%U64.4-NTLOAD-C)
+  - (%U64.4-NTLOAD)
+  - (%U32.8-NTLOAD-C)
+  - (%U32.8-NTLOAD)
+  - (%U16.16-NTLOAD-C)
+  - (%U16.16-NTLOAD)
+  - (%U8.32-NTLOAD-C)
+  - (%U8.32-NTLOAD)
+  - (%S64.2-NTLOAD-C)
+  - (%S64.2-NTLOAD)
+  - (%S32.4-NTLOAD-C)
+  - (%S32.4-NTLOAD)
+  - (%S16.8-NTLOAD-C)
+  - (%S16.8-NTLOAD)
+  - (%S8.16-NTLOAD-C)
+  - (%S8.16-NTLOAD)
+  - (%U64.2-NTLOAD-C)
+  - (%U64.2-NTLOAD)
+  - (%U32.4-NTLOAD-C)
+  - (%U32.4-NTLOAD)
+  - (%U16.8-NTLOAD-C)
+  - (%U16.8-NTLOAD)
+  - (%U8.16-NTLOAD-C)
+  - (%U8.16-NTLOAD)
+  - (%F64.4-NTLOAD-C)
+  - (%F64.4-NTLOAD)
+  - (%F32.8-NTLOAD-C)
+  - (%F32.8-NTLOAD)
+  - (%F64.2-NTLOAD-C)
+  - (%F64.2-NTLOAD)
+  - (%F32.4-NTLOAD-C)
+  - (%F32.4-NTLOAD)
+  - (%S64.4-NTSTORE-C)
+  - (%S64.4-NTSTORE)
+  - (%S32.8-NTSTORE-C)
+  - (%S32.8-NTSTORE)
+  - (%S16.16-NTSTORE-C)
+  - (%S16.16-NTSTORE)
+  - (%S8.32-NTSTORE-C)
+  - (%S8.32-NTSTORE)
+  - (%U64.4-NTSTORE-C)
+  - (%U64.4-NTSTORE)
+  - (%U32.8-NTSTORE-C)
+  - (%U32.8-NTSTORE)
+  - (%U16.16-NTSTORE-C)
+  - (%U16.16-NTSTORE)
+  - (%U8.32-NTSTORE-C)
+  - (%U8.32-NTSTORE)
+  - (%S64.2-NTSTORE-C)
+  - (%S64.2-NTSTORE)
+  - (%S32.4-NTSTORE-C)
+  - (%S32.4-NTSTORE)
+  - (%S16.8-NTSTORE-C)
+  - (%S16.8-NTSTORE)
+  - (%S8.16-NTSTORE-C)
+  - (%S8.16-NTSTORE)
+  - (%U64.2-NTSTORE-C)
+  - (%U64.2-NTSTORE)
+  - (%U32.4-NTSTORE-C)
+  - (%U32.4-NTSTORE)
+  - (%U16.8-NTSTORE-C)
+  - (%U16.8-NTSTORE)
+  - (%U8.16-NTSTORE-C)
+  - (%U8.16-NTSTORE)
+  - (%F64.4-NTSTORE-C)
+  - (%F64.4-NTSTORE)
+  - (%F32.8-NTSTORE-C)
+  - (%F32.8-NTSTORE)
+  - (%F64.2-NTSTORE-C)
+  - (%F64.2-NTSTORE)
+  - (%F32.4-NTSTORE-C)
+  - (%F32.4-NTSTORE)
+  - (%S64.4-STORE-C)
+  - (%S64.4-STORE)
+  - (%S32.8-STORE-C)
+  - (%S32.8-STORE)
+  - (%S16.16-STORE-C)
+  - (%S16.16-STORE)
+  - (%S8.32-STORE-C)
+  - (%S8.32-STORE)
+  - (%U64.4-STORE-C)
+  - (%U64.4-STORE)
+  - (%U32.8-STORE-C)
+  - (%U32.8-STORE)
+  - (%U16.16-STORE-C)
+  - (%U16.16-STORE)
+  - (%U8.32-STORE-C)
+  - (%U8.32-STORE)
+  - (%S64.2-STORE-C)
+  - (%S64.2-STORE)
+  - (%S32.4-STORE-C)
+  - (%S32.4-STORE)
+  - (%S16.8-STORE-C)
+  - (%S16.8-STORE)
+  - (%S8.16-STORE-C)
+  - (%S8.16-STORE)
+  - (%U64.2-STORE-C)
+  - (%U64.2-STORE)
+  - (%U32.4-STORE-C)
+  - (%U32.4-STORE)
+  - (%U16.8-STORE-C)
+  - (%U16.8-STORE)
+  - (%U8.16-STORE-C)
+  - (%U8.16-STORE)
+  - (%F64.4-STORE-C)
+  - (%F64.4-STORE)
+  - (%F32.8-STORE-C)
+  - (%F32.8-STORE)
+  - (%F64.2-STORE-C)
+  - (%F64.2-STORE)
+  - (%F32.4-STORE-C)
+  - (%F32.4-STORE)
+  - (%F64-STORE-C)
+  - (%F64-STORE)
+  - (%F32-STORE-C)
+  - (%F32-STORE)
+  - (%U32.8-STORE-INTO-STRING-C)
+  - (%U32.8-STORE-INTO-STRING)
+  - (%U32.4-STORE-INTO-STRING-C)
+  - (%U32.4-STORE-INTO-STRING)
+  - (%S64.4-LOAD-C)
+  - (%S64.4-LOAD)
+  - (%S32.8-LOAD-C)
+  - (%S32.8-LOAD)
+  - (%S16.16-LOAD-C)
+  - (%S16.16-LOAD)
+  - (%S8.32-LOAD-C)
+  - (%S8.32-LOAD)
+  - (%S64.2-LOAD-C)
+  - (%S64.2-LOAD)
+  - (%S32.4-LOAD-C)
+  - (%S32.4-LOAD)
+  - (%S16.8-LOAD-C)
+  - (%S16.8-LOAD)
+  - (%S8.16-LOAD-C)
+  - (%S8.16-LOAD)
+  - (%U64.4-LOAD-C)
+  - (%U64.4-LOAD)
+  - (%U32.8-LOAD-C)
+  - (%U32.8-LOAD)
+  - (%U16.16-LOAD-C)
+  - (%U16.16-LOAD)
+  - (%U8.32-LOAD-C)
+  - (%U8.32-LOAD)
+  - (%U64.2-LOAD-C)
+  - (%U64.2-LOAD)
+  - (%U32.4-LOAD-C)
+  - (%U32.4-LOAD)
+  - (%U16.8-LOAD-C)
+  - (%U16.8-LOAD)
+  - (%U8.16-LOAD-C)
+  - (%U8.16-LOAD)
+  - (%F64.4-LOAD-C)
+  - (%F64.4-LOAD)
+  - (%F32.8-LOAD-C)
+  - (%F32.8-LOAD)
+  - (%F64.2-LOAD-C)
+  - (%F64.2-LOAD)
+  - (%F32.4-LOAD-C)
+  - (%F32.4-LOAD)
+  - (%F64-LOAD-C)
+  - (%F64-LOAD)
+  - (%F32-LOAD-C)
+  - (%F32-LOAD)
+  - (%U32.8-LOAD-FROM-STRING-C)
+  - (%U32.8-LOAD-FROM-STRING)
+  - (%U32.4-LOAD-FROM-STRING-C)
+  - (%U32.4-LOAD-FROM-STRING)
+  - (%S64.2-NTSTORE-C)
+  - (%S64.2-NTSTORE)
+  - (%S32.4-NTSTORE-C)
+  - (%S32.4-NTSTORE)
+  - (%S16.8-NTSTORE-C)
+  - (%S16.8-NTSTORE)
+  - (%S8.16-NTSTORE-C)
+  - (%S8.16-NTSTORE)
+  - (%U64.2-NTSTORE-C)
+  - (%U64.2-NTSTORE)
+  - (%U32.4-NTSTORE-C)
+  - (%U32.4-NTSTORE)
+  - (%U16.8-NTSTORE-C)
+  - (%U16.8-NTSTORE)
+  - (%U8.16-NTSTORE-C)
+  - (%U8.16-NTSTORE)
+  - (%F64.2-NTSTORE-C)
+  - (%F64.2-NTSTORE)
+  - (%F32.4-NTSTORE-C)
+  - (%F32.4-NTSTORE)
+  - (%S64.2-NTLOAD-C)
+  - (%S64.2-NTLOAD)
+  - (%S32.4-NTLOAD-C)
+  - (%S32.4-NTLOAD)
+  - (%S16.8-NTLOAD-C)
+  - (%S16.8-NTLOAD)
+  - (%S8.16-NTLOAD-C)
+  - (%S8.16-NTLOAD)
+  - (%U64.2-NTLOAD-C)
+  - (%U64.2-NTLOAD)
+  - (%U32.4-NTLOAD-C)
+  - (%U32.4-NTLOAD)
+  - (%U16.8-NTLOAD-C)
+  - (%U16.8-NTLOAD)
+  - (%U8.16-NTLOAD-C)
+  - (%U8.16-NTLOAD)
+  - (%F64.2-NTLOAD-C)
+  - (%F64.2-NTLOAD)
+  - (%F32.4-NTLOAD-C)
+  - (%F32.4-NTLOAD)
+  - (%S64.2-NTSTORE-C)
+  - (%S64.2-NTSTORE)
+  - (%S32.4-NTSTORE-C)
+  - (%S32.4-NTSTORE)
+  - (%S16.8-NTSTORE-C)
+  - (%S16.8-NTSTORE)
+  - (%S8.16-NTSTORE-C)
+  - (%S8.16-NTSTORE)
+  - (%U64.2-NTSTORE-C)
+  - (%U64.2-NTSTORE)
+  - (%U32.4-NTSTORE-C)
+  - (%U32.4-NTSTORE)
+  - (%U16.8-NTSTORE-C)
+  - (%U16.8-NTSTORE)
+  - (%U8.16-NTSTORE-C)
+  - (%U8.16-NTSTORE)
+  - (%F64.2-NTSTORE-C)
+  - (%F64.2-NTSTORE)
+  - (%S64.2-STORE-C)
+  - (%S64.2-STORE)
+  - (%S32.4-STORE-C)
+  - (%S32.4-STORE)
+  - (%S16.8-STORE-C)
+  - (%S16.8-STORE)
+  - (%S8.16-STORE-C)
+  - (%S8.16-STORE)
+  - (%U64.2-STORE-C)
+  - (%U64.2-STORE)
+  - (%U32.4-STORE-C)
+  - (%U32.4-STORE)
+  - (%U16.8-STORE-C)
+  - (%U16.8-STORE)
+  - (%U8.16-STORE-C)
+  - (%U8.16-STORE)
+  - (%F64.2-STORE-C)
+  - (%F64.2-STORE)
+  - (%F64-STORE-C)
+  - (%F64-STORE)
+  - (%U32.4-STORE-INTO-STRING-C)
+  - (%U32.4-STORE-INTO-STRING)
+  - (%S64.2-LOAD-C)
+  - (%S64.2-LOAD)
+  - (%S32.4-LOAD-C)
+  - (%S32.4-LOAD)
+  - (%S16.8-LOAD-C)
+  - (%S16.8-LOAD)
+  - (%S8.16-LOAD-C)
+  - (%S8.16-LOAD)
+  - (%U64.2-LOAD-C)
+  - (%U64.2-LOAD)
+  - (%U32.4-LOAD-C)
+  - (%U32.4-LOAD)
+  - (%U16.8-LOAD-C)
+  - (%U16.8-LOAD)
+  - (%U8.16-LOAD-C)
+  - (%U8.16-LOAD)
+  - (%F64.2-LOAD-C)
+  - (%F64.2-LOAD)
+  - (%F64-LOAD-C)
+  - (%F64-LOAD)
+  - (%U32.4-LOAD-FROM-STRING-C)
+  - (%U32.4-LOAD-FROM-STRING)
+  - (%F32.4-NTSTORE-C)
+  - (%F32.4-NTSTORE)
+  - (%F32.4-STORE-C)
+  - (%F32.4-STORE)
+  - (%F32-STORE-C)
+  - (%F32-STORE)
+  - (%F32.4-LOAD-C)
+  - (%F32.4-LOAD)
+  - (%F32-LOAD-C)
+  - (%F32-LOAD)
+  - (%F64.4-FMSUBADD)
+  - (%F64.4-FMADDSUB)
+  - (%F64.4-FMSUB)
+  - (%F64.4-FNMADD)
+  - (%F64.4-FMADD)
+  - (%F64.2-FMSUBADD)
+  - (%F64.2-FMADDSUB)
+  - (%F64.2-FMSUB)
+  - (%F64.2-FNMADD)
+  - (%F64.2-FMADD)
+  - (%F32.8-FMSUBADD)
+  - (%F32.8-FMADDSUB)
+  - (%F32.8-FMSUB)
+  - (%F32.8-FNMADD)
+  - (%F32.8-FMADD)
+  - (%F32.4-FMSUBADD)
+  - (%F32.4-FMADDSUB)
+  - (%F32.4-FMSUB)
+  - (%F32.4-FNMADD)
+  - (%F32.4-FMADD)
+  - (%F64-FMSUB)
+  - (%F64-FNMADD)
+  - (%F64-FMADD)
+  - (%F32-FMSUB)
+  - (%F32-FNMADD)
+  - (%F32-FMADD)
+  - (%S64.4-PERMUTE128)
+  - (%S64.4-INSERT-S64.2)
+  - (%S64.2-FROM-S64.4)
+  - (%S64.4-MOVEMASK)
+  - (%S64.4-UNPACKLO)
+  - (%S64.4-UNPACKHI)
+  - (%S64.4-SHIFTR)
+  - (%S64.4-SHIFTL)
+  - (%TWO-ARG-S64.4>)
+  - (%TWO-ARG-S64.4=)
+  - (%TWO-ARG-S64.4-MUL)
+  - (%TWO-ARG-S64.4-)
+  - (%TWO-ARG-S64.4+)
+  - (%S64.4-ANDC1)
+  - (%TWO-ARG-S64.4-XOR)
+  - (%TWO-ARG-S64.4-OR)
+  - (%TWO-ARG-S64.4-AND)
+  - (%S64.4-FROM-U8.16)
+  - (%S64.4-FROM-S8.16)
+  - (%S64.4-FROM-U32.4)
+  - (%S64.4-FROM-S32.4)
+  - (%S64.4-FROM-U16.8)
+  - (%S64.4-FROM-S16.8)
+  - (%S64.4-BLEND)
+  - (%S64.4-BROADCASTVEC)
+  - (%S32.8-PERMUTE128)
+  - (%S32.8-INSERT-S32.4)
+  - (%S32.4-FROM-S32.8)
+  - (%S32.8-SIGN)
+  - (%S32.8-MOVEMASK)
+  - (%S32.8-UNPACKLO)
+  - (%S32.8-UNPACKHI)
+  - (%S32.8-SHIFTR)
+  - (%S32.8-SHIFTL)
+  - (%S32.8-HSUB)
+  - (%S32.8-HADD)
+  - (%S32.8-ABS)
+  - (%TWO-ARG-S32.8>)
+  - (%TWO-ARG-S32.8=)
+  - (%TWO-ARG-S32.8-MULLO)
+  - (%TWO-ARG-S32.8-)
+  - (%TWO-ARG-S32.8+)
+  - (%TWO-ARG-S32.8-MIN)
+  - (%TWO-ARG-S32.8-MAX)
+  - (%S32.8-ANDC1)
+  - (%TWO-ARG-S32.8-XOR)
+  - (%TWO-ARG-S32.8-OR)
+  - (%TWO-ARG-S32.8-AND)
+  - (%S32.8-FROM-U8.16)
+  - (%S32.8-FROM-S8.16)
+  - (%S32.8-FROM-U16.8)
+  - (%S32.8-FROM-S16.8)
+  - (%S32.8-BLEND)
+  - (%S32.8-BROADCASTVEC)
+  - (%S16.16-PERMUTE128)
+  - (%S16.16-INSERT-S16.8)
+  - (%S16.8-FROM-S16.16)
+  - (%S16.16-SIGN)
+  - (%S16.16-SHIFTR)
+  - (%S16.16-SHIFTL)
+  - (%S16.16-SHUFFLELO)
+  - (%S16.16-SHUFFLEHI)
+  - (%S16.16-UNPACKLO)
+  - (%S16.16-UNPACKHI)
+  - (%S16.16-PACKS)
+  - (%S16.16-HSUBS)
+  - (%S16.16-HSUB)
+  - (%S16.16-MADDUBS)
+  - (%S16.16-MADD)
+  - (%S16.16-HADDS)
+  - (%S16.16-HADD)
+  - (%S16.16-ABS)
+  - (%TWO-ARG-S16.16>)
+  - (%TWO-ARG-S16.16=)
+  - (%TWO-ARG-S16.16-MULHRS)
+  - (%TWO-ARG-S16.16-MULLO)
+  - (%TWO-ARG-S16.16-MULHI)
+  - (%TWO-ARG-S16.16-)
+  - (%TWO-ARG-S16.16+)
+  - (%TWO-ARG-S16.16-MIN)
+  - (%TWO-ARG-S16.16-MAX)
+  - (%S16.16-ANDC1)
+  - (%TWO-ARG-S16.16-XOR)
+  - (%TWO-ARG-S16.16-OR)
+  - (%TWO-ARG-S16.16-AND)
+  - (%S16.16-FROM-U8.16)
+  - (%S16.16-FROM-S8.16)
+  - (%S16.16-BLEND)
+  - (%S16.16-BROADCASTVEC)
+  - (%S8.32-PERMUTE128)
+  - (%S8.32-INSERT-S8.16)
+  - (%S8.16-FROM-S8.32)
+  - (%S8.32-SIGN)
+  - (%S8.32-SHUFFLE)
+  - (%S8.32-MOVEMASK)
+  - (%S8.32-UNPACKLO)
+  - (%S8.32-UNPACKHI)
+  - (%S8.32-PACKS)
+  - (%S8.32-ABS)
+  - (%TWO-ARG-S8.32>)
+  - (%TWO-ARG-S8.32=)
+  - (%TWO-ARG-S8.32-)
+  - (%TWO-ARG-S8.32+)
+  - (%TWO-ARG-S8.32-MIN)
+  - (%TWO-ARG-S8.32-MAX)
+  - (%S8.32-ANDC1)
+  - (%TWO-ARG-S8.32-XOR)
+  - (%TWO-ARG-S8.32-OR)
+  - (%TWO-ARG-S8.32-AND)
+  - (%S8.32-BLEND)
+  - (%S8.32-BROADCASTVEC)
+  - (%U64.4-PERMUTE128)
+  - (%U64.4-INSERT-U64.2)
+  - (%U64.2-FROM-U64.4)
+  - (%U64.4-MOVEMASK)
+  - (%U64.4-UNPACKLO)
+  - (%U64.4-UNPACKHI)
+  - (%U64.4-SHIFTR)
+  - (%U64.4-SHIFTL)
+  - (%TWO-ARG-U64.4>~)
+  - (%TWO-ARG-U64.4=)
+  - (%TWO-ARG-U64.4-MUL)
+  - (%TWO-ARG-U64.4-)
+  - (%TWO-ARG-U64.4+)
+  - (%U64.4-ANDC1)
+  - (%TWO-ARG-U64.4-XOR)
+  - (%TWO-ARG-U64.4-OR)
+  - (%TWO-ARG-U64.4-AND)
+  - (%U64.4-FROM-U8.16)
+  - (%U64.4-FROM-U32.4)
+  - (%U64.4-FROM-U16.8)
+  - (%U64.4-BLEND)
+  - (%U64.4-BROADCASTVEC)
+  - (%U32.8-PERMUTE128)
+  - (%U32.8-INSERT-U32.4)
+  - (%U32.4-FROM-U32.8)
+  - (%U32.8-MOVEMASK)
+  - (%U32.8-UNPACKLO)
+  - (%U32.8-UNPACKHI)
+  - (%U32.8-SHIFTR)
+  - (%U32.8-SHIFTL)
+  - (%TWO-ARG-U32.8>~)
+  - (%TWO-ARG-U32.8=)
+  - (%TWO-ARG-U32.8-)
+  - (%TWO-ARG-U32.8+)
+  - (%TWO-ARG-U32.8-MIN)
+  - (%TWO-ARG-U32.8-MAX)
+  - (%U32.8-ANDC1)
+  - (%TWO-ARG-U32.8-XOR)
+  - (%TWO-ARG-U32.8-OR)
+  - (%TWO-ARG-U32.8-AND)
+  - (%U32.8-FROM-U8.16)
+  - (%U32.8-FROM-U16.8)
+  - (%U32.8-BLEND)
+  - (%U32.8-BROADCASTVEC)
+  - (%U16.16-PERMUTE128)
+  - (%U16.16-INSERT-U16.8)
+  - (%U16.8-FROM-U16.16)
+  - (%U16.16-SHUFFLELO)
+  - (%U16.16-SHUFFLEHI)
+  - (%U16.16-UNPACKLO)
+  - (%U16.16-UNPACKHI)
+  - (%U16.16-PACKUS)
+  - (%U16.16-AVG)
+  - (%U16.16-SHIFTR)
+  - (%U16.16-SHIFTL)
+  - (%TWO-ARG-U16.16>~)
+  - (%TWO-ARG-U16.16=)
+  - (%TWO-ARG-U16.16-)
+  - (%TWO-ARG-U16.16+)
+  - (%TWO-ARG-U16.16-MIN)
+  - (%TWO-ARG-U16.16-MAX)
+  - (%U16.16-ANDC1)
+  - (%TWO-ARG-U16.16-XOR)
+  - (%TWO-ARG-U16.16-OR)
+  - (%TWO-ARG-U16.16-AND)
+  - (%U16.16-FROM-U8.16)
+  - (%U16.16-BLEND)
+  - (%U16.16-BROADCASTVEC)
+  - (%U8.32-PERMUTE128)
+  - (%U8.16-FROM-U8.32)
+  - (%U8.32-INSERT-U8.16)
+  - (%U8.32-SHUFFLE)
+  - (%U8.32-MOVEMASK)
+  - (%U8.32-UNPACKLO)
+  - (%U8.32-UNPACKHI)
+  - (%U8.32-PACKUS)
+  - (%U8.32-AVG)
+  - (%TWO-ARG-U8.32>~)
+  - (%TWO-ARG-U8.32=)
+  - (%TWO-ARG-U8.32-)
+  - (%TWO-ARG-U8.32+)
+  - (%TWO-ARG-U8.32-MIN)
+  - (%TWO-ARG-U8.32-MAX)
+  - (%U8.32-ANDC1)
+  - (%TWO-ARG-U8.32-XOR)
+  - (%TWO-ARG-U8.32-OR)
+  - (%TWO-ARG-U8.32-AND)
+  - (%U8.32-BLEND)
+  - (%U8.32-BROADCASTVEC)
+  - (%S64.2-SHIFTR)
+  - (%S64.2-SHIFTL)
+  - (%S64.2-BROADCASTVEC)
+  - (%S64.2!-FROM-P256)
+  - (%S32.4-SHIFTR)
+  - (%S32.4-SHIFTL)
+  - (%S32.4-BROADCASTVEC)
+  - (%S32.4!-FROM-P256)
+  - (%S16.8-BROADCASTVEC)
+  - (%S16.8!-FROM-P256)
+  - (%S8.16-BROADCASTVEC)
+  - (%S8.16!-FROM-P256)
+  - (%U64.2-SHIFTR)
+  - (%U64.2-SHIFTL)
+  - (%U64.2-BROADCASTVEC)
+  - (%U64.2!-FROM-P256)
+  - (%U32.4-SHIFTR)
+  - (%U32.4-SHIFTL)
+  - (%U32.4-BROADCASTVEC)
+  - (%U32.4!-FROM-P256)
+  - (%U16.8-BROADCASTVEC)
+  - (%U16.8!-FROM-P256)
+  - (%U8.16-BROADCASTVEC)
+  - (%U8.16!-FROM-P256)
+  - (%F64.4-PERMUTE4X64)
+  - (%S64.4-PERMUTE128)
+  - (%S64.4-INSERT-S64.2)
+  - (%S64.2-FROM-S64.4)
+  - (%S64.4-PERMUTE)
+  - (%S64.4!-FROM-P256)
+  - (%S64.4!-FROM-P128)
+  - (%S32.8-PERMUTE128)
+  - (%S32.8-INSERT-S32.4)
+  - (%S32.4-FROM-S32.8)
+  - (%S32.8-PERMUTE)
+  - (%S32.8-FROM-F32.8)
+  - (%S32.8-FROM-F64.4)
+  - (%S32.8!-FROM-P256)
+  - (%S32.8!-FROM-P128)
+  - (%S16.16-PERMUTE128)
+  - (%S16.16-INSERT-S16.8)
+  - (%S16.8-FROM-S16.16)
+  - (%S16.16!-FROM-P256)
+  - (%S16.16!-FROM-P128)
+  - (%S8.32-PERMUTE128)
+  - (%S8.32-INSERT-S8.16)
+  - (%S8.16-FROM-S8.32)
+  - (%S8.32!-FROM-P256)
+  - (%S8.32!-FROM-P128)
+  - (%S64.2-PERMUTE)
+  - (%S64.2-MOVEMASK)
+  - (%S64.2-UNPACKLO)
+  - (%S64.2-UNPACKHI)
+  - (%TWO-ARG-S64.2>)
+  - (%TWO-ARG-S64.2=)
+  - (%S64.2-SHIFTR)
+  - (%S64.2-SHIFTL)
+  - (%TWO-ARG-S64.2-)
+  - (%TWO-ARG-S64.2+)
+  - (%S64.2-ANDC1)
+  - (%TWO-ARG-S64.2-XOR)
+  - (%TWO-ARG-S64.2-OR)
+  - (%TWO-ARG-S64.2-AND)
+  - (%S64.2-BLEND)
+  - (%S64.2!-FROM-P256)
+  - (%S64.2!-FROM-P128)
+  - (%S32.4-PERMUTE)
+  - (%S32.4-MOVEMASK)
+  - (%S32.4-UNPACKLO)
+  - (%S32.4-UNPACKHI)
+  - (%TWO-ARG-S32.4>)
+  - (%TWO-ARG-S32.4=)
+  - (%TWO-ARG-S32.4-MULLO)
+  - (%TWO-ARG-S32.4-)
+  - (%TWO-ARG-S32.4+)
+  - (%S32.4-ANDC1)
+  - (%TWO-ARG-S32.4-XOR)
+  - (%TWO-ARG-S32.4-OR)
+  - (%TWO-ARG-S32.4-AND)
+  - (%S32.4-FROM-F32.4)
+  - (%S32.4-FROM-F64.4)
+  - (%S32.4-BLEND)
+  - (%S32.4!-FROM-P256)
+  - (%S32.4!-FROM-P128)
+  - (%S16.8-SHUFFLELO)
+  - (%S16.8-SHUFFLEHI)
+  - (%S16.8-UNPACKLO)
+  - (%S16.8-UNPACKHI)
+  - (%TWO-ARG-S16.8>)
+  - (%TWO-ARG-S16.8=)
+  - (%S16.8-SHIFTR)
+  - (%S16.8-SHIFTL)
+  - (%TWO-ARG-S16.8-MULLO)
+  - (%TWO-ARG-S16.8-)
+  - (%TWO-ARG-S16.8+)
+  - (%S16.8-ANDC1)
+  - (%TWO-ARG-S16.8-XOR)
+  - (%TWO-ARG-S16.8-OR)
+  - (%TWO-ARG-S16.8-AND)
+  - (%S16.8-BLEND)
+  - (%S16.8!-FROM-P256)
+  - (%S16.8!-FROM-P128)
+  - (%S8.16-SHUFFLE)
+  - (%S8.16-MOVEMASK)
+  - (%S8.16-UNPACKLO)
+  - (%S8.16-UNPACKHI)
+  - (%TWO-ARG-S8.16>)
+  - (%TWO-ARG-S8.16=)
+  - (%TWO-ARG-S8.16-)
+  - (%TWO-ARG-S8.16+)
+  - (%S8.16-ANDC1)
+  - (%TWO-ARG-S8.16-XOR)
+  - (%TWO-ARG-S8.16-OR)
+  - (%TWO-ARG-S8.16-AND)
+  - (%S8.16-BLEND)
+  - (%S8.16!-FROM-P256)
+  - (%S8.16!-FROM-P128)
+  - (%U64.4-INSERT-U64.2)
+  - (%U64.2-FROM-U64.4)
+  - (%U64.4-PERMUTE)
+  - (%TWO-ARG-U64.4-AND)
+  - (%U64.4!-FROM-P256)
+  - (%U64.4!-FROM-P128)
+  - (%U64.4!-FROM-U64)
+  - (%U32.8-INSERT-U32.4)
+  - (%U32.4-FROM-U32.8)
+  - (%U32.8-PERMUTE)
+  - (%TWO-ARG-U32.8-AND)
+  - (%U32.8!-FROM-P256)
+  - (%U32.8!-FROM-P128)
+  - (%U32.8!-FROM-U32)
+  - (%U16.16-INSERT-U16.8)
+  - (%U16.8-FROM-U16.16)
+  - (%U16.16!-FROM-P256)
+  - (%U16.16!-FROM-P128)
+  - (%U16.16!-FROM-U16)
+  - (%U8.32-INSERT-U8.16)
+  - (%U8.16-FROM-U8.32)
+  - (%U8.32!-FROM-P256)
+  - (%U8.32!-FROM-P128)
+  - (%U8.32!-FROM-U8)
+  - (%U64.2-PERMUTE)
+  - (%U64.2-MOVEMASK)
+  - (%U64.2-UNPACKLO)
+  - (%U64.2-UNPACKHI)
+  - (%TWO-ARG-U64.2>~)
+  - (%TWO-ARG-U64.2=)
+  - (%TWO-ARG-U64.2-)
+  - (%TWO-ARG-U64.2+)
+  - (%U64.2-ANDC1)
+  - (%TWO-ARG-U64.2-XOR)
+  - (%TWO-ARG-U64.2-OR)
+  - (%TWO-ARG-U64.2-AND)
+  - (%U64.2-BLEND)
+  - (%U64.2-FROM-U64)
+  - (%U64.2!-FROM-P256)
+  - (%U64.2!-FROM-P128)
+  - (%U64.2!-FROM-U64)
+  - (%U32.4-PERMUTE)
+  - (%U32.4-MOVEMASK)
+  - (%U32.4-UNPACKLO)
+  - (%U32.4-UNPACKHI)
+  - (%TWO-ARG-U32.4>~)
+  - (%TWO-ARG-U32.4=)
+  - (%TWO-ARG-U32.4-)
+  - (%TWO-ARG-U32.4+)
+  - (%U32.4-ANDC1)
+  - (%TWO-ARG-U32.4-XOR)
+  - (%TWO-ARG-U32.4-OR)
+  - (%TWO-ARG-U32.4-AND)
+  - (%U32.4-BLEND)
+  - (%U32.4!-FROM-P256)
+  - (%U32.4!-FROM-P128)
+  - (%U32.4!-FROM-U32)
+  - (%U16.8-SHUFFLELO)
+  - (%U16.8-SHUFFLEHI)
+  - (%U16.8-UNPACKLO)
+  - (%U16.8-UNPACKHI)
+  - (%U16.8-SHIFTR)
+  - (%U16.8-SHIFTL)
+  - (%TWO-ARG-U16.8>~)
+  - (%TWO-ARG-U16.8=)
+  - (%TWO-ARG-U16.8-)
+  - (%TWO-ARG-U16.8+)
+  - (%U16.8-ANDC1)
+  - (%TWO-ARG-U16.8-XOR)
+  - (%TWO-ARG-U16.8-OR)
+  - (%TWO-ARG-U16.8-AND)
+  - (%U16.8-BLEND)
+  - (%U16.8!-FROM-P256)
+  - (%U16.8!-FROM-P128)
+  - (%U16.8!-FROM-U16)
+  - (%U8.16-SHUFFLE)
+  - (%U8.16-MOVEMASK)
+  - (%U8.16-UNPACKLO)
+  - (%U8.16-UNPACKHI)
+  - (%TWO-ARG-U8.16>~)
+  - (%TWO-ARG-U8.16=)
+  - (%TWO-ARG-U8.16-)
+  - (%TWO-ARG-U8.16+)
+  - (%U8.16-ANDC1)
+  - (%TWO-ARG-U8.16-XOR)
+  - (%TWO-ARG-U8.16-OR)
+  - (%TWO-ARG-U8.16-AND)
+  - (%U8.16-BLEND)
+  - (%U8.16!-FROM-P256)
+  - (%U8.16!-FROM-P128)
+  - (%U8.16!-FROM-U8)
+  - (%F64.4-SET128)
+  - (%F64.4-INSERT-F64.2)
+  - (%F64.2-FROM-F64.4)
+  - (%F64.4-SHUFFLE)
+  - (%F64.4-PERMUTE128)
+  - (%F64.4-PERMUTE)
+  - (%F64.4-%ROUND)
+  - (%F64.4-MOVEMASK)
+  - (%F64.4-UNPACKLO)
+  - (%F64.4-UNPACKHI)
+  - (%F64.4-SQRT)
+  - (%F64.4-HSUB)
+  - (%F64.4-HADD)
+  - (%F64.4-DUPEVEN)
+  - (%F64.4-ANDC1)
+  - (%TWO-ARG-F64.4>=)
+  - (%TWO-ARG-F64.4>)
+  - (%TWO-ARG-F64.4<=)
+  - (%TWO-ARG-F64.4<)
+  - (%TWO-ARG-F64.4/=)
+  - (%TWO-ARG-F64.4=)
+  - (%TWO-ARG-F64.4/)
+  - (%TWO-ARG-F64.4*)
+  - (%TWO-ARG-F64.4-)
+  - (%TWO-ARG-F64.4+)
+  - (%TWO-ARG-F64.4-MIN)
+  - (%TWO-ARG-F64.4-MAX)
+  - (%TWO-ARG-F64.4-XOR)
+  - (%TWO-ARG-F64.4-OR)
+  - (%TWO-ARG-F64.4-AND)
+  - (%F64.4-BLENDC)
+  - (%F64.4-BLEND)
+  - (%F64.4-FROM-S32.4)
+  - (%F64.4-FROM-U32.4)
+  - (%F64.4-FROM-F32.4)
+  - (%F64.4-BROADCAST)
+  - (%F64.4!-FROM-P256)
+  - (%F64.4!-FROM-P128)
+  - (%F64.4!-FROM-F64)
+  - (%F32.8-INSERT-F32.4)
+  - (%F32.4-FROM-F32.8)
+  - (%F32.8-SHUFFLE)
+  - (%F32.8-PERMUTE128)
+  - (%F32.8-PERMUTE)
+  - (%F32.8-%ROUND)
+  - (%F32.8-MOVEMASK)
+  - (%F32.8-UNPACKLO)
+  - (%F32.8-UNPACKHI)
+  - (%F32.8-SQRT)
+  - (%F32.8-RSQRT)
+  - (%F32.8-RECIPROCAL)
+  - (%F32.8-HSUB)
+  - (%F32.8-HADD)
+  - (%F32.8-DUPODD)
+  - (%F32.8-DUPEVEN)
+  - (%TWO-ARG-F32.8>=)
+  - (%TWO-ARG-F32.8>)
+  - (%TWO-ARG-F32.8<=)
+  - (%TWO-ARG-F32.8<)
+  - (%TWO-ARG-F32.8/=)
+  - (%TWO-ARG-F32.8=)
+  - (%TWO-ARG-F32.8/)
+  - (%TWO-ARG-F32.8*)
+  - (%TWO-ARG-F32.8-)
+  - (%TWO-ARG-F32.8+)
+  - (%F32.8-ANDC1)
+  - (%TWO-ARG-F32.8-MIN)
+  - (%TWO-ARG-F32.8-MAX)
+  - (%TWO-ARG-F32.8-XOR)
+  - (%TWO-ARG-F32.8-OR)
+  - (%TWO-ARG-F32.8-AND)
+  - (%F32.8-BLENDC)
+  - (%F32.8-BLEND)
+  - (%F32.8-FROM-U32.8)
+  - (%F32.8-BROADCAST)
+  - (%F32.8!-FROM-P256)
+  - (%F32.8!-FROM-P128)
+  - (%F32.8!-FROM-F32)
+  - (%F32.8-FROM-S32.8)
+  - (%F64.2-SHUFFLE)
+  - (%F64.2-PERMUTE)
+  - (%F64.2-%ROUND)
+  - (%F64.2-MOVEMASK)
+  - (%F64.2-UNPACKLO)
+  - (%F64.2-UNPACKHI)
+  - (%F64.2-SQRT)
+  - (%F64.2-HSUB)
+  - (%F64.2-HADD)
+  - (%F64.2-ADDSUB)
+  - (%TWO-ARG-F64.2>=)
+  - (%TWO-ARG-F64.2>)
+  - (%TWO-ARG-F64.2<=)
+  - (%TWO-ARG-F64.2<)
+  - (%TWO-ARG-F64.2/=)
+  - (%TWO-ARG-F64.2=)
+  - (%TWO-ARG-F64.2/)
+  - (%TWO-ARG-F64.2*)
+  - (%TWO-ARG-F64.2-)
+  - (%F64.2-ANDC1)
+  - (%TWO-ARG-F64.2+)
+  - (%TWO-ARG-F64.2-MIN)
+  - (%TWO-ARG-F64.2-MAX)
+  - (%TWO-ARG-F64.2-XOR)
+  - (%TWO-ARG-F64.2-OR)
+  - (%TWO-ARG-F64.2-AND)
+  - (%F64.2-BLENDC)
+  - (%F64.2-BLEND)
+  - (%F64.2-BROADCAST)
+  - (%F64.2!-FROM-P256)
+  - (%F64.2!-FROM-P128)
+  - (%F64.2!-FROM-F64)
+  - (%F32.4-SHUFFLE)
+  - (%F32.4-PERMUTE)
+  - (%F32.4-%ROUND)
+  - (%F32.4-MOVEMASK)
+  - (%F32.4-UNPACKLO)
+  - (%F32.4-UNPACKHI)
+  - (%F32.4-SQRT)
+  - (%F32.4-RSQRT)
+  - (%F32.4-RECIPROCAL)
+  - (%F32.4-HSUB)
+  - (%F32.4-HADD)
+  - (%F32.4-ADDSUB)
+  - (%F32.4-DUPODD)
+  - (%F32.4-DUPEVEN)
+  - (%TWO-ARG-F32.4>=)
+  - (%TWO-ARG-F32.4>)
+  - (%TWO-ARG-F32.4<=)
+  - (%TWO-ARG-F32.4<)
+  - (%TWO-ARG-F32.4/=)
+  - (%TWO-ARG-F32.4=)
+  - (%TWO-ARG-F32.4/)
+  - (%TWO-ARG-F32.4*)
+  - (%TWO-ARG-F32.4-)
+  - (%TWO-ARG-F32.4+)
+  - (%F32.4-ANDC1)
+  - (%TWO-ARG-F32.4-MIN)
+  - (%TWO-ARG-F32.4-MAX)
+  - (%TWO-ARG-F32.4-XOR)
+  - (%TWO-ARG-F32.4-OR)
+  - (%TWO-ARG-F32.4-AND)
+  - (%F32.4-BLENDC)
+  - (%F32.4-BLEND)
+  - (%F32.4-FROM-F64.4)
+  - (%F32.4-BROADCAST)
+  - (%F32.4!-FROM-P256)
+  - (%F32.4!-FROM-P128)
+  - (%F32.4!-FROM-F32)
+  - (%F32.4-FROM-S32.4)
+  - (%U64!-FROM-P256)
+  - (%U64!-FROM-P128)
+  - (%F64-SQRT)
+  - (%F64-ANDC1)
+  - (%TWO-ARG-F64/)
+  - (%TWO-ARG-F64*)
+  - (%TWO-ARG-F64-)
+  - (%TWO-ARG-F64+)
+  - (%TWO-ARG-F64-MIN)
+  - (%TWO-ARG-F64-MAX)
+  - (%TWO-ARG-F64-XOR)
+  - (%TWO-ARG-F64-OR)
+  - (%TWO-ARG-F64-AND)
+  - (%F64-FROM-F32)
+  - (%F32-SQRT)
+  - (%F32-RSQRT)
+  - (%F32-RECIPROCAL)
+  - (%F32-ANDC1)
+  - (%TWO-ARG-F32/)
+  - (%TWO-ARG-F32*)
+  - (%TWO-ARG-F32-)
+  - (%TWO-ARG-F32+)
+  - (%TWO-ARG-F32-MIN)
+  - (%TWO-ARG-F32-MAX)
+  - (%TWO-ARG-F32-XOR)
+  - (%TWO-ARG-F32-OR)
+  - (%TWO-ARG-F32-AND)
+  - (%F32-FROM-F64)
+  - (%VZEROALL)
+  - (%VZEROUPPER)
+  - (%TWO-ARG-S64.2>)
+  - (%TWO-ARG-U64.2>~)
+  - (%S64.2-INSERT)
+  - (%S64.2-ELT)
+  - (%TWO-ARG-S64.2=)
+  - (%TWO-ARG-S64.2-MUL)
+  - (%S64.2-FROM-S32.4)
+  - (%S64.2-FROM-U32.4)
+  - (%S64.2-FROM-S16.8)
+  - (%S64.2-FROM-U16.8)
+  - (%S64.2-FROM-S8.16)
+  - (%S64.2-FROM-U8.16)
+  - (%S64.2-BLEND)
+  - (%S32.4-INSERT)
+  - (%S32.4-ELT)
+  - (%TWO-ARG-S32.4-MULLO)
+  - (%S32.4-FROM-S16.8)
+  - (%S32.4-FROM-U16.8)
+  - (%S32.4-FROM-S8.16)
+  - (%S32.4-FROM-U8.16)
+  - (%TWO-ARG-S32.4-MIN)
+  - (%TWO-ARG-S32.4-MAX)
+  - (%S32.4-BLEND)
+  - (%S16.8-PACK)
+  - (%S16.8-FROM-S8.16)
+  - (%S16.8-FROM-U8.16)
+  - (%S16.8-BLEND)
+  - (%S8.16-INSERT)
+  - (%S8.16-ELT)
+  - (%TWO-ARG-S8.16-MIN)
+  - (%TWO-ARG-S8.16-MAX)
+  - (%S8.16-BLEND)
+  - (%U64.2-INSERT)
+  - (%U64.2-ELT)
+  - (%TWO-ARG-U64.2=)
+  - (%U64.2-BLEND)
+  - (%U32.4-INSERT)
+  - (%U32.4-ELT)
+  - (%TWO-ARG-U32.4-MIN)
+  - (%TWO-ARG-U32.4-MAX)
+  - (%U32.4-BLEND)
+  - (%U16.8-MINPOS)
+  - (%TWO-ARG-U16.8-MIN)
+  - (%TWO-ARG-U16.8-MAX)
+  - (%U16.8-BLEND)
+  - (%U8.16-INSERT)
+  - (%U8.16-ELT)
+  - (%U8.16-BLEND)
+  - (%F64.2-%ROUND)
+  - (%F64.2-BLENDC)
+  - (%F64.2-BLEND)
+  - (%F32.4-INSERT)
+  - (%F32.4-%ROUND)
+  - (%F32.4-BLENDC)
+  - (%F32.4-BLEND)
+  - (%S32.4-HSUB)
+  - (%S32.4-HADD)
+  - (%S32.4-SIGN)
+  - (%S32.4-ABS)
+  - (%S16.8-HSUB)
+  - (%S16.8-HADD)
+  - (%S16.8-SIGN)
+  - (%S16.8-MADDUBS)
+  - (%S16.8-ABS)
+  - (%TWO-ARG-S16.8-MULHRS)
+  - (%S8.16-SIGN)
+  - (%S8.16-ABS)
+  - (%S8.16-SHUFFLE)
+  - (%U32.4-HSUB)
+  - (%U32.4-HADD)
+  - (%U16.8-HSUB)
+  - (%U16.8-HADD)
+  - (%F64.2-HADD)
+  - (%F32.4-LDUP)
+  - (%F32.4-HDUP)
+  - (%F32.4-HADD)
+  - (%S64.2-SHIFTR)
+  - (%S64.2-SHIFTL)
+  - (%S64.2-MOVEMASK)
+  - (%S64.2-UNPACKLO)
+  - (%S64.2-UNPACKHI)
+  - (%TWO-ARG-S64.2-)
+  - (%TWO-ARG-S64.2+)
+  - (%S64.2-ANDC1)
+  - (%TWO-ARG-S64.2-XOR)
+  - (%TWO-ARG-S64.2-OR)
+  - (%TWO-ARG-S64.2-AND)
+  - (%S64.2!-FROM-P128)
+  - (%S32.4-SHIFTR)
+  - (%S32.4-SHIFTL)
+  - (%S32.4-SHUFFLE)
+  - (%S32.4-MOVEMASK)
+  - (%S32.4-UNPACKLO)
+  - (%S32.4-UNPACKHI)
+  - (%TWO-ARG-S32.4>)
+  - (%TWO-ARG-S32.4=)
+  - (%TWO-ARG-S32.4-)
+  - (%TWO-ARG-S32.4+)
+  - (%S32.4-ANDC1)
+  - (%TWO-ARG-S32.4-XOR)
+  - (%TWO-ARG-S32.4-OR)
+  - (%TWO-ARG-S32.4-AND)
+  - (%S32.4-FROM-F64.2)
+  - (%S32.4-FROM-F32.4)
+  - (%S32.4!-FROM-P128)
+  - (%S16.8-SHIFTR)
+  - (%S16.8-SHIFTL)
+  - (%S16.8-SHUFFLELO)
+  - (%S16.8-SHUFFLEHI)
+  - (%S16.8-ELT)
+  - (%S16.8-MULLO)
+  - (%S16.8-UNPACKLO)
+  - (%S16.8-UNPACKHI)
+  - (%TWO-ARG-S16.8>)
+  - (%TWO-ARG-S16.8=)
+  - (%TWO-ARG-S16.8-)
+  - (%TWO-ARG-S16.8+)
+  - (%S16.8-ANDC1)
+  - (%TWO-ARG-S16.8-XOR)
+  - (%TWO-ARG-S16.8-OR)
+  - (%TWO-ARG-S16.8-AND)
+  - (%S16.8!-FROM-P128)
+  - (%S8.16-MOVEMASK)
+  - (%S8.16-UNPACKLO)
+  - (%S8.16-UNPACKHI)
+  - (%TWO-ARG-S8.16>)
+  - (%TWO-ARG-S8.16=)
+  - (%TWO-ARG-S8.16-)
+  - (%TWO-ARG-S8.16+)
+  - (%S8.16-ANDC1)
+  - (%TWO-ARG-S8.16-XOR)
+  - (%TWO-ARG-S8.16-OR)
+  - (%TWO-ARG-S8.16-AND)
+  - (%S8.16!-FROM-P128)
+  - (%U64.2-SHIFTR)
+  - (%U64.2-SHIFTL)
+  - (%U64.2-MOVEMASK)
+  - (%U64.2-UNPACKLO)
+  - (%U64.2-UNPACKHI)
+  - (%TWO-ARG-U64.2-)
+  - (%TWO-ARG-U64.2+)
+  - (%U64.2-ANDC1)
+  - (%TWO-ARG-U64.2-XOR)
+  - (%TWO-ARG-U64.2-OR)
+  - (%TWO-ARG-U64.2-AND)
+  - (%U64.2!-FROM-P128)
+  - (%U64.2!-FROM-U64)
+  - (%U32.4-SHIFTR)
+  - (%U32.4-SHIFTL)
+  - (%U32.4-SHUFFLE)
+  - (%U32.4-MOVEMASK)
+  - (%U32.4-UNPACKLO)
+  - (%U32.4-UNPACKHI)
+  - (%TWO-ARG-U32.4>~)
+  - (%TWO-ARG-U32.4=)
+  - (%TWO-ARG-U32.4-)
+  - (%TWO-ARG-U32.4+)
+  - (%U32.4-ANDC1)
+  - (%TWO-ARG-U32.4-XOR)
+  - (%TWO-ARG-U32.4-OR)
+  - (%TWO-ARG-U32.4-AND)
+  - (%U32.4!-FROM-P128)
+  - (%U32.4!-FROM-U32)
+  - (%U16.8-SHIFTR)
+  - (%U16.8-SHIFTL)
+  - (%U16.8-SHUFFLELO)
+  - (%U16.8-SHUFFLEHI)
+  - (%U16.8-ELT)
+  - (%U16.8-UNPACKLO)
+  - (%U16.8-UNPACKHI)
+  - (%U16.8-AVERAGE)
+  - (%TWO-ARG-U16.8>~)
+  - (%TWO-ARG-U16.8=)
+  - (%TWO-ARG-U16.8-)
+  - (%TWO-ARG-U16.8+)
+  - (%U16.8-ANDC1)
+  - (%TWO-ARG-U16.8-XOR)
+  - (%TWO-ARG-U16.8-OR)
+  - (%TWO-ARG-U16.8-AND)
+  - (%U16.8!-FROM-P128)
+  - (%U16.8!-FROM-U16)
+  - (%U8.16-MOVEMASK)
+  - (%U8.16-UNPACKLO)
+  - (%U8.16-UNPACKHI)
+  - (%U8.16-AVERAGE)
+  - (%TWO-ARG-U8.16>~)
+  - (%TWO-ARG-U8.16=)
+  - (%TWO-ARG-U8.16-)
+  - (%TWO-ARG-U8.16+)
+  - (%U8.16-ANDC1)
+  - (%TWO-ARG-U8.16-XOR)
+  - (%TWO-ARG-U8.16-OR)
+  - (%TWO-ARG-U8.16-AND)
+  - (%U8.16!-FROM-P128)
+  - (%U8.16!-FROM-U8)
+  - (%F64.2-MOVEMASK)
+  - (%F64.2-SHUFFLE)
+  - (%F64.2-UNPACKLO)
+  - (%F64.2-UNPACKHI)
+  - (%F64.2-SQRT)
+  - (%F64.2-ANDC1)
+  - (%TWO-ARG-F64.2>=)
+  - (%TWO-ARG-F64.2>)
+  - (%TWO-ARG-F64.2<=)
+  - (%TWO-ARG-F64.2<)
+  - (%TWO-ARG-F64.2/=)
+  - (%TWO-ARG-F64.2=)
+  - (%TWO-ARG-F64.2/)
+  - (%TWO-ARG-F64.2*)
+  - (%TWO-ARG-F64.2-)
+  - (%TWO-ARG-F64.2+)
+  - (%TWO-ARG-F64.2-MIN)
+  - (%TWO-ARG-F64.2-MAX)
+  - (%TWO-ARG-F64.2-XOR)
+  - (%TWO-ARG-F64.2-OR)
+  - (%TWO-ARG-F64.2-AND)
+  - (%F64.2!-FROM-P128)
+  - (%F64.2!-FROM-F64)
+  - (%TWO-ARG-F32.4>=)
+  - (%TWO-ARG-F32.4>)
+  - (%TWO-ARG-F32.4<=)
+  - (%TWO-ARG-F32.4<)
+  - (%TWO-ARG-F32.4/=)
+  - (%TWO-ARG-F32.4=)
+  - (%F32.4!-FROM-P128)
+  - (%F32.4-FROM-S32.4)
+  - (%U64!-FROM-P128)
+  - (%F64-SQRT)
+  - (%F64-ANDC1)
+  - (%TWO-ARG-F64/)
+  - (%TWO-ARG-F64*)
+  - (%TWO-ARG-F64-)
+  - (%TWO-ARG-F64+)
+  - (%TWO-ARG-F64-MIN)
+  - (%TWO-ARG-F64-MAX)
+  - (%TWO-ARG-F64-XOR)
+  - (%TWO-ARG-F64-OR)
+  - (%TWO-ARG-F64-AND)
+  - (%F64-FROM-F32)
+  - (%F32-FROM-F64)
+  - (%F32.4-MOVEMASK)
+  - (%F32.4-UNPACKHI)
+  - (%F32.4-UNPACKLO)
+  - (%F32.4-SHUFFLE)
+  - (%F32.4-SQRT)
+  - (%F32.4-RSQRT)
+  - (%F32.4-RECIPROCAL)
+  - (%F32.4-ANDC1)
+  - (%TWO-ARG-F32.4/)
+  - (%TWO-ARG-F32.4*)
+  - (%TWO-ARG-F32.4-)
+  - (%TWO-ARG-F32.4+)
+  - (%TWO-ARG-F32.4-MIN)
+  - (%TWO-ARG-F32.4-MAX)
+  - (%TWO-ARG-F32.4-XOR)
+  - (%TWO-ARG-F32.4-OR)
+  - (%TWO-ARG-F32.4-AND)
+  - (%F32.4!-FROM-F32)
+  - (%F32-SQRT)
+  - (%F32-RSQRT)
+  - (%F32-RECIPROCAL)
+  - (%F32-ANDC1)
+  - (%TWO-ARG-F32/)
+  - (%TWO-ARG-F32*)
+  - (%TWO-ARG-F32-)
+  - (%TWO-ARG-F32+)
+  - (%TWO-ARG-F32-MIN)
+  - (%TWO-ARG-F32-MAX)
+  - (%TWO-ARG-F32-XOR)
+  - (%TWO-ARG-F32-OR)
+  - (%TWO-ARG-F32-AND)
+  - (%64BIT-ROTATE-BYTE)
+  - (%64BIT-ROTATE-BYTE/C)
+  - (%32BIT-ROTATE-BYTE)
+  - (%32BIT-ROTATE-BYTE/C)
+  - (64BIT-SWAP-BYTES)
+  - (32BIT-SWAP-BYTES)
+  - (16BIT-SWAP-BYTES)
+  - (INC-COUNTER-BLOCK)
+  - (SWAP64)
+  - (SWAP32)
+  - (MOV128)
+  - (XOR128)
+  - (GMAC-MUL-FAST)
+  - (FAST-BLAKE2S-MIXING)
+  - (AES-NI-DECRYPT)
+  - (AES-NI-ENCRYPT)
+  - (AES-NI-GENERATE-ROUND-KEYS)
+  - (AES-NI-SUPPORT-P)
+  - (PCLMULQDQ-SUPPORT-P)
+  - (CHACHA-CORE-FAST)
+  - (SALSA-CORE-FAST)
+  - (UPDATE-SHA1-BLOCK)
+  - (SHA256-EXPAND-BLOCK)
+  - (EXPAND-BLOCK)
+  - (FILL-BLOCK-UB8)
+  - STD/COMP::%ASM
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** ASSEMBLE-SECTIONS :compiled:function:
+:PROPERTIES:
+:ID: 3766946873239
+:CUSTOM_ID: SB-ASSEM:ASSEMBLE-SECTIONS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ASSEMBLE-SECTIONS names a compiled function:
+  Lambda-list: (ASMSTREAM ENTRIES SEGMENT)
+  Derived type: (FUNCTION (T T T) *)
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** ASMSTREAM-DATA-SECTION :compiled:function:
+:PROPERTIES:
+:ID: 3051221293977
+:CUSTOM_ID: SB-ASSEM:ASMSTREAM-DATA-SECTION
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ASMSTREAM-DATA-SECTION names a compiled function:
+  An accessor for SB-ASSEM::ASMSTREAM
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM::ASMSTREAM) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** LABELED-STATEMENT-P :compiled:function:
+:PROPERTIES:
+:ID: 2495098857817
+:CUSTOM_ID: SB-ASSEM:LABELED-STATEMENT-P
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+LABELED-STATEMENT-P names a compiled function:
+  Lambda-list: (STATEMENT)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** WRITE-SEGMENT-CONTENTS :compiled:function:
+:PROPERTIES:
+:ID: 3823216782245
+:CUSTOM_ID: SB-ASSEM:WRITE-SEGMENT-CONTENTS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+WRITE-SEGMENT-CONTENTS names a compiled function:
+  Lambda-list: (SEGMENT STREAM)
+  Derived type: (FUNCTION (SB-ASSEM:SEGMENT T)
+                 (VALUES (UNSIGNED-BYTE 44) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** ASMSTREAM-ELSEWHERE-SECTION :compiled:function:
+:PROPERTIES:
+:ID: 1217418126206
+:CUSTOM_ID: SB-ASSEM:ASMSTREAM-ELSEWHERE-SECTION
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ASMSTREAM-ELSEWHERE-SECTION names a compiled function:
+  An accessor for SB-ASSEM::ASMSTREAM
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM::ASMSTREAM) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** GEN-LABEL :compiled:function:
+:PROPERTIES:
+:ID: 2236058281603
+:CUSTOM_ID: SB-ASSEM:GEN-LABEL
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+GEN-LABEL names a compiled function:
+  A constructor for SB-ASSEM:LABEL
+  Lambda-list: (&OPTIONAL COMMENT)
+  Derived type: (FUNCTION (&OPTIONAL T) (VALUES SB-ASSEM:LABEL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;EARLY-ASSEM.LISP
+
+#+end_example
+
+- Called by
+  - (INC-COUNTER-BLOCK)
+  - (AES-NI-DECRYPT)
+  - (AES-NI-ENCRYPT)
+  - (AES-NI-GENERATE-ROUND-KEYS)
+  - (CHACHA-CORE-FAST)
+  - (SALSA-CORE-FAST)
+  - (SHA256-EXPAND-BLOCK)
+  - (EXPAND-BLOCK)
+  - (FILL-BLOCK-UB8)
+  - STD/COMP::%ASM
+
+:definitions:
+- SYS:SRC;COMPILER;EARLY-ASSEM.LISP
+:end:
+** EMIT-LABEL :compiled:vop:function:
+:PROPERTIES:
+:ID: 1536719129391
+:CUSTOM_ID: SB-ASSEM:EMIT-LABEL
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+EMIT-LABEL names a compiled function:
+  Lambda-list: (LABEL)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Emit LABEL at this location in the current section.
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+- Called by
+  - (INC-COUNTER-BLOCK)
+  - (AES-NI-DECRYPT)
+  - (AES-NI-ENCRYPT)
+  - (AES-NI-GENERATE-ROUND-KEYS)
+  - (CHACHA-CORE-FAST)
+  - (SALSA-CORE-FAST)
+  - (SHA256-EXPAND-BLOCK)
+  - (EXPAND-BLOCK)
+  - (FILL-BLOCK-UB8)
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** *ASMSTREAM​*
+:PROPERTIES:
+:ID: 889650505367
+:CUSTOM_ID: SB-ASSEM:*ASMSTREAM*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*ASMSTREAM* names a special variable:
+  Declared type: SB-ASSEM::ASMSTREAM
+  Currently unbound.
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** STMT-OPERANDS :compiled:function:
+:PROPERTIES:
+:ID: 3418403253708
+:CUSTOM_ID: SB-ASSEM:STMT-OPERANDS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+STMT-OPERANDS names a compiled function:
+  An accessor for SB-ASSEM::STMT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-ASSEM::STMT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+(SETF STMT-OPERANDS) names a compiled function:
+  An accessor for SB-ASSEM::STMT
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (T SB-ASSEM::STMT) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** EMIT-POSTIT :compiled:function:
+:PROPERTIES:
+:ID: 2737186445161
+:CUSTOM_ID: SB-ASSEM:EMIT-POSTIT
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+EMIT-POSTIT names a compiled function:
+  Lambda-list: (FUNCTION)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** INST :compiled:macro:function:
+:PROPERTIES:
+:ID: 2887557618382
+:CUSTOM_ID: SB-ASSEM:INST
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+INST names a macro:
+  Lambda-list: (MNEMONIC &REST ARGS)
+  Documentation:
+    Emit the specified instruction to the current segment.
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+- Macroexpanded by
+  - (%F64!-FROM-P256)
+  - (%F64!-FROM-P128)
+  - (%F32!-FROM-P256)
+  - (%F32!-FROM-P128)
+  - (%F64-FROM-S64)
+  - (%F32-FROM-S64)
+  - (%TWO-ARG-F64>=)
+  - (%TWO-ARG-F64>)
+  - (%TWO-ARG-F64<=)
+  - (%TWO-ARG-F64<)
+  - (%TWO-ARG-F64/=)
+  - (%TWO-ARG-F64=)
+  - (%TWO-ARG-F32>=)
+  - (%TWO-ARG-F32>)
+  - (%TWO-ARG-F32<=)
+  - (%TWO-ARG-F32<)
+  - (%TWO-ARG-F32/=)
+  - (%TWO-ARG-F32=)
+  - (%F64!-FROM-P128)
+  - (%F64-FROM-S64)
+  - (%TWO-ARG-F64>=)
+  - (%TWO-ARG-F64>)
+  - (%TWO-ARG-F64<=)
+  - (%TWO-ARG-F64<)
+  - (%TWO-ARG-F64/=)
+  - (%TWO-ARG-F64=)
+  - (%F32!-FROM-P128)
+  - (%F32-FROM-S64)
+  - (%TWO-ARG-F32>=)
+  - (%TWO-ARG-F32>)
+  - (%TWO-ARG-F32<=)
+  - (%TWO-ARG-F32<)
+  - (%TWO-ARG-F32/=)
+  - (%TWO-ARG-F32=)
+  - (%S64.4-NTSTORE-C)
+  - (%S64.4-NTSTORE)
+  - (%S32.8-NTSTORE-C)
+  - (%S32.8-NTSTORE)
+  - (%S16.16-NTSTORE-C)
+  - (%S16.16-NTSTORE)
+  - (%S8.32-NTSTORE-C)
+  - (%S8.32-NTSTORE)
+  - (%U64.4-NTSTORE-C)
+  - (%U64.4-NTSTORE)
+  - (%U32.8-NTSTORE-C)
+  - (%U32.8-NTSTORE)
+  - (%U16.16-NTSTORE-C)
+  - (%U16.16-NTSTORE)
+  - (%U8.32-NTSTORE-C)
+  - (%U8.32-NTSTORE)
+  - (%S64.2-NTSTORE-C)
+  - (%S64.2-NTSTORE)
+  - (%S32.4-NTSTORE-C)
+  - (%S32.4-NTSTORE)
+  - (%S16.8-NTSTORE-C)
+  - (%S16.8-NTSTORE)
+  - (%S8.16-NTSTORE-C)
+  - (%S8.16-NTSTORE)
+  - (%U64.2-NTSTORE-C)
+  - (%U64.2-NTSTORE)
+  - (%U32.4-NTSTORE-C)
+  - (%U32.4-NTSTORE)
+  - (%U16.8-NTSTORE-C)
+  - (%U16.8-NTSTORE)
+  - (%U8.16-NTSTORE-C)
+  - (%U8.16-NTSTORE)
+  - (%F64.4-NTSTORE-C)
+  - (%F64.4-NTSTORE)
+  - (%F32.8-NTSTORE-C)
+  - (%F32.8-NTSTORE)
+  - (%F64.2-NTSTORE-C)
+  - (%F64.2-NTSTORE)
+  - (%F32.4-NTSTORE-C)
+  - (%F32.4-NTSTORE)
+  - (%S64.4-NTLOAD-C)
+  - (%S64.4-NTLOAD)
+  - (%S32.8-NTLOAD-C)
+  - (%S32.8-NTLOAD)
+  - (%S16.16-NTLOAD-C)
+  - (%S16.16-NTLOAD)
+  - (%S8.32-NTLOAD-C)
+  - (%S8.32-NTLOAD)
+  - (%U64.4-NTLOAD-C)
+  - (%U64.4-NTLOAD)
+  - (%U32.8-NTLOAD-C)
+  - (%U32.8-NTLOAD)
+  - (%U16.16-NTLOAD-C)
+  - (%U16.16-NTLOAD)
+  - (%U8.32-NTLOAD-C)
+  - (%U8.32-NTLOAD)
+  - (%S64.2-NTLOAD-C)
+  - (%S64.2-NTLOAD)
+  - (%S32.4-NTLOAD-C)
+  - (%S32.4-NTLOAD)
+  - (%S16.8-NTLOAD-C)
+  - (%S16.8-NTLOAD)
+  - (%S8.16-NTLOAD-C)
+  - (%S8.16-NTLOAD)
+  - (%U64.2-NTLOAD-C)
+  - (%U64.2-NTLOAD)
+  - (%U32.4-NTLOAD-C)
+  - (%U32.4-NTLOAD)
+  - (%U16.8-NTLOAD-C)
+  - (%U16.8-NTLOAD)
+  - (%U8.16-NTLOAD-C)
+  - (%U8.16-NTLOAD)
+  - (%F64.4-NTLOAD-C)
+  - (%F64.4-NTLOAD)
+  - (%F32.8-NTLOAD-C)
+  - (%F32.8-NTLOAD)
+  - (%F64.2-NTLOAD-C)
+  - (%F64.2-NTLOAD)
+  - (%F32.4-NTLOAD-C)
+  - (%F32.4-NTLOAD)
+  - (%S64.4-NTSTORE-C)
+  - (%S64.4-NTSTORE)
+  - (%S32.8-NTSTORE-C)
+  - (%S32.8-NTSTORE)
+  - (%S16.16-NTSTORE-C)
+  - (%S16.16-NTSTORE)
+  - (%S8.32-NTSTORE-C)
+  - (%S8.32-NTSTORE)
+  - (%U64.4-NTSTORE-C)
+  - (%U64.4-NTSTORE)
+  - (%U32.8-NTSTORE-C)
+  - (%U32.8-NTSTORE)
+  - (%U16.16-NTSTORE-C)
+  - (%U16.16-NTSTORE)
+  - (%U8.32-NTSTORE-C)
+  - (%U8.32-NTSTORE)
+  - (%S64.2-NTSTORE-C)
+  - (%S64.2-NTSTORE)
+  - (%S32.4-NTSTORE-C)
+  - (%S32.4-NTSTORE)
+  - (%S16.8-NTSTORE-C)
+  - (%S16.8-NTSTORE)
+  - (%S8.16-NTSTORE-C)
+  - (%S8.16-NTSTORE)
+  - (%U64.2-NTSTORE-C)
+  - (%U64.2-NTSTORE)
+  - (%U32.4-NTSTORE-C)
+  - (%U32.4-NTSTORE)
+  - (%U16.8-NTSTORE-C)
+  - (%U16.8-NTSTORE)
+  - (%U8.16-NTSTORE-C)
+  - (%U8.16-NTSTORE)
+  - (%F64.4-NTSTORE-C)
+  - (%F64.4-NTSTORE)
+  - (%F32.8-NTSTORE-C)
+  - (%F32.8-NTSTORE)
+  - (%F64.2-NTSTORE-C)
+  - (%F64.2-NTSTORE)
+  - (%F32.4-NTSTORE-C)
+  - (%F32.4-NTSTORE)
+  - (%S64.4-STORE-C)
+  - (%S64.4-STORE)
+  - (%S32.8-STORE-C)
+  - (%S32.8-STORE)
+  - (%S16.16-STORE-C)
+  - (%S16.16-STORE)
+  - (%S8.32-STORE-C)
+  - (%S8.32-STORE)
+  - (%U64.4-STORE-C)
+  - (%U64.4-STORE)
+  - (%U32.8-STORE-C)
+  - (%U32.8-STORE)
+  - (%U16.16-STORE-C)
+  - (%U16.16-STORE)
+  - (%U8.32-STORE-C)
+  - (%U8.32-STORE)
+  - (%S64.2-STORE-C)
+  - (%S64.2-STORE)
+  - (%S32.4-STORE-C)
+  - (%S32.4-STORE)
+  - (%S16.8-STORE-C)
+  - (%S16.8-STORE)
+  - (%S8.16-STORE-C)
+  - (%S8.16-STORE)
+  - (%U64.2-STORE-C)
+  - (%U64.2-STORE)
+  - (%U32.4-STORE-C)
+  - (%U32.4-STORE)
+  - (%U16.8-STORE-C)
+  - (%U16.8-STORE)
+  - (%U8.16-STORE-C)
+  - (%U8.16-STORE)
+  - (%F64.4-STORE-C)
+  - (%F64.4-STORE)
+  - (%F32.8-STORE-C)
+  - (%F32.8-STORE)
+  - (%F64.2-STORE-C)
+  - (%F64.2-STORE)
+  - (%F32.4-STORE-C)
+  - (%F32.4-STORE)
+  - (%F64-STORE-C)
+  - (%F64-STORE)
+  - (%F32-STORE-C)
+  - (%F32-STORE)
+  - (%U32.8-STORE-INTO-STRING-C)
+  - (%U32.8-STORE-INTO-STRING)
+  - (%U32.4-STORE-INTO-STRING-C)
+  - (%U32.4-STORE-INTO-STRING)
+  - (%S64.4-LOAD-C)
+  - (%S64.4-LOAD)
+  - (%S32.8-LOAD-C)
+  - (%S32.8-LOAD)
+  - (%S16.16-LOAD-C)
+  - (%S16.16-LOAD)
+  - (%S8.32-LOAD-C)
+  - (%S8.32-LOAD)
+  - (%S64.2-LOAD-C)
+  - (%S64.2-LOAD)
+  - (%S32.4-LOAD-C)
+  - (%S32.4-LOAD)
+  - (%S16.8-LOAD-C)
+  - (%S16.8-LOAD)
+  - (%S8.16-LOAD-C)
+  - (%S8.16-LOAD)
+  - (%U64.4-LOAD-C)
+  - (%U64.4-LOAD)
+  - (%U32.8-LOAD-C)
+  - (%U32.8-LOAD)
+  - (%U16.16-LOAD-C)
+  - (%U16.16-LOAD)
+  - (%U8.32-LOAD-C)
+  - (%U8.32-LOAD)
+  - (%U64.2-LOAD-C)
+  - (%U64.2-LOAD)
+  - (%U32.4-LOAD-C)
+  - (%U32.4-LOAD)
+  - (%U16.8-LOAD-C)
+  - (%U16.8-LOAD)
+  - (%U8.16-LOAD-C)
+  - (%U8.16-LOAD)
+  - (%F64.4-LOAD-C)
+  - (%F64.4-LOAD)
+  - (%F32.8-LOAD-C)
+  - (%F32.8-LOAD)
+  - (%F64.2-LOAD-C)
+  - (%F64.2-LOAD)
+  - (%F32.4-LOAD-C)
+  - (%F32.4-LOAD)
+  - (%F64-LOAD-C)
+  - (%F64-LOAD)
+  - (%F32-LOAD-C)
+  - (%F32-LOAD)
+  - (%U32.8-LOAD-FROM-STRING-C)
+  - (%U32.8-LOAD-FROM-STRING)
+  - (%U32.4-LOAD-FROM-STRING-C)
+  - (%U32.4-LOAD-FROM-STRING)
+  - (%S64.2-NTSTORE-C)
+  - (%S64.2-NTSTORE)
+  - (%S32.4-NTSTORE-C)
+  - (%S32.4-NTSTORE)
+  - (%S16.8-NTSTORE-C)
+  - (%S16.8-NTSTORE)
+  - (%S8.16-NTSTORE-C)
+  - (%S8.16-NTSTORE)
+  - (%U64.2-NTSTORE-C)
+  - (%U64.2-NTSTORE)
+  - (%U32.4-NTSTORE-C)
+  - (%U32.4-NTSTORE)
+  - (%U16.8-NTSTORE-C)
+  - (%U16.8-NTSTORE)
+  - (%U8.16-NTSTORE-C)
+  - (%U8.16-NTSTORE)
+  - (%F64.2-NTSTORE-C)
+  - (%F64.2-NTSTORE)
+  - (%F32.4-NTSTORE-C)
+  - (%F32.4-NTSTORE)
+  - (%S64.2-NTLOAD-C)
+  - (%S64.2-NTLOAD)
+  - (%S32.4-NTLOAD-C)
+  - (%S32.4-NTLOAD)
+  - (%S16.8-NTLOAD-C)
+  - (%S16.8-NTLOAD)
+  - (%S8.16-NTLOAD-C)
+  - (%S8.16-NTLOAD)
+  - (%U64.2-NTLOAD-C)
+  - (%U64.2-NTLOAD)
+  - (%U32.4-NTLOAD-C)
+  - (%U32.4-NTLOAD)
+  - (%U16.8-NTLOAD-C)
+  - (%U16.8-NTLOAD)
+  - (%U8.16-NTLOAD-C)
+  - (%U8.16-NTLOAD)
+  - (%F64.2-NTLOAD-C)
+  - (%F64.2-NTLOAD)
+  - (%F32.4-NTLOAD-C)
+  - (%F32.4-NTLOAD)
+  - (%S64.2-NTSTORE-C)
+  - (%S64.2-NTSTORE)
+  - (%S32.4-NTSTORE-C)
+  - (%S32.4-NTSTORE)
+  - (%S16.8-NTSTORE-C)
+  - (%S16.8-NTSTORE)
+  - (%S8.16-NTSTORE-C)
+  - (%S8.16-NTSTORE)
+  - (%U64.2-NTSTORE-C)
+  - (%U64.2-NTSTORE)
+  - (%U32.4-NTSTORE-C)
+  - (%U32.4-NTSTORE)
+  - (%U16.8-NTSTORE-C)
+  - (%U16.8-NTSTORE)
+  - (%U8.16-NTSTORE-C)
+  - (%U8.16-NTSTORE)
+  - (%F64.2-NTSTORE-C)
+  - (%F64.2-NTSTORE)
+  - (%S64.2-STORE-C)
+  - (%S64.2-STORE)
+  - (%S32.4-STORE-C)
+  - (%S32.4-STORE)
+  - (%S16.8-STORE-C)
+  - (%S16.8-STORE)
+  - (%S8.16-STORE-C)
+  - (%S8.16-STORE)
+  - (%U64.2-STORE-C)
+  - (%U64.2-STORE)
+  - (%U32.4-STORE-C)
+  - (%U32.4-STORE)
+  - (%U16.8-STORE-C)
+  - (%U16.8-STORE)
+  - (%U8.16-STORE-C)
+  - (%U8.16-STORE)
+  - (%F64.2-STORE-C)
+  - (%F64.2-STORE)
+  - (%F64-STORE-C)
+  - (%F64-STORE)
+  - (%U32.4-STORE-INTO-STRING-C)
+  - (%U32.4-STORE-INTO-STRING)
+  - (%S64.2-LOAD-C)
+  - (%S64.2-LOAD)
+  - (%S32.4-LOAD-C)
+  - (%S32.4-LOAD)
+  - (%S16.8-LOAD-C)
+  - (%S16.8-LOAD)
+  - (%S8.16-LOAD-C)
+  - (%S8.16-LOAD)
+  - (%U64.2-LOAD-C)
+  - (%U64.2-LOAD)
+  - (%U32.4-LOAD-C)
+  - (%U32.4-LOAD)
+  - (%U16.8-LOAD-C)
+  - (%U16.8-LOAD)
+  - (%U8.16-LOAD-C)
+  - (%U8.16-LOAD)
+  - (%F64.2-LOAD-C)
+  - (%F64.2-LOAD)
+  - (%F64-LOAD-C)
+  - (%F64-LOAD)
+  - (%U32.4-LOAD-FROM-STRING-C)
+  - (%U32.4-LOAD-FROM-STRING)
+  - (%F32.4-NTSTORE-C)
+  - (%F32.4-NTSTORE)
+  - (%F32.4-STORE-C)
+  - (%F32.4-STORE)
+  - (%F32-STORE-C)
+  - (%F32-STORE)
+  - (%F32.4-LOAD-C)
+  - (%F32.4-LOAD)
+  - (%F32-LOAD-C)
+  - (%F32-LOAD)
+  - (%F64.4-FMSUBADD)
+  - (%F64.4-FMADDSUB)
+  - (%F64.4-FMSUB)
+  - (%F64.4-FNMADD)
+  - (%F64.4-FMADD)
+  - (%F64.2-FMSUBADD)
+  - (%F64.2-FMADDSUB)
+  - (%F64.2-FMSUB)
+  - (%F64.2-FNMADD)
+  - (%F64.2-FMADD)
+  - (%F32.8-FMSUBADD)
+  - (%F32.8-FMADDSUB)
+  - (%F32.8-FMSUB)
+  - (%F32.8-FNMADD)
+  - (%F32.8-FMADD)
+  - (%F32.4-FMSUBADD)
+  - (%F32.4-FMADDSUB)
+  - (%F32.4-FMSUB)
+  - (%F32.4-FNMADD)
+  - (%F32.4-FMADD)
+  - (%F64-FMSUB)
+  - (%F64-FNMADD)
+  - (%F64-FMADD)
+  - (%F32-FMSUB)
+  - (%F32-FNMADD)
+  - (%F32-FMADD)
+  - (%S64.4-PERMUTE128)
+  - (%S64.4-INSERT-S64.2)
+  - (%S64.2-FROM-S64.4)
+  - (%S64.4-MOVEMASK)
+  - (%S64.4-UNPACKLO)
+  - (%S64.4-UNPACKHI)
+  - (%S64.4-SHIFTR)
+  - (%S64.4-SHIFTL)
+  - (%TWO-ARG-S64.4>)
+  - (%TWO-ARG-S64.4=)
+  - (%TWO-ARG-S64.4-MUL)
+  - (%TWO-ARG-S64.4-)
+  - (%TWO-ARG-S64.4+)
+  - (%S64.4-ANDC1)
+  - (%TWO-ARG-S64.4-XOR)
+  - (%TWO-ARG-S64.4-OR)
+  - (%TWO-ARG-S64.4-AND)
+  - (%S64.4-FROM-U8.16)
+  - (%S64.4-FROM-S8.16)
+  - (%S64.4-FROM-U32.4)
+  - (%S64.4-FROM-S32.4)
+  - (%S64.4-FROM-U16.8)
+  - (%S64.4-FROM-S16.8)
+  - (%S64.4-BLEND)
+  - (%S64.4-BROADCASTVEC)
+  - (%S32.8-PERMUTE128)
+  - (%S32.8-INSERT-S32.4)
+  - (%S32.4-FROM-S32.8)
+  - (%S32.8-SIGN)
+  - (%S32.8-MOVEMASK)
+  - (%S32.8-UNPACKLO)
+  - (%S32.8-UNPACKHI)
+  - (%S32.8-SHIFTR)
+  - (%S32.8-SHIFTL)
+  - (%S32.8-HSUB)
+  - (%S32.8-HADD)
+  - (%S32.8-ABS)
+  - (%TWO-ARG-S32.8>)
+  - (%TWO-ARG-S32.8=)
+  - (%TWO-ARG-S32.8-MULLO)
+  - (%TWO-ARG-S32.8-)
+  - (%TWO-ARG-S32.8+)
+  - (%TWO-ARG-S32.8-MIN)
+  - (%TWO-ARG-S32.8-MAX)
+  - (%S32.8-ANDC1)
+  - (%TWO-ARG-S32.8-XOR)
+  - (%TWO-ARG-S32.8-OR)
+  - (%TWO-ARG-S32.8-AND)
+  - (%S32.8-FROM-U8.16)
+  - (%S32.8-FROM-S8.16)
+  - (%S32.8-FROM-U16.8)
+  - (%S32.8-FROM-S16.8)
+  - (%S32.8-BLEND)
+  - (%S32.8-BROADCASTVEC)
+  - (%S16.16-PERMUTE128)
+  - (%S16.16-INSERT-S16.8)
+  - (%S16.8-FROM-S16.16)
+  - (%S16.16-SIGN)
+  - (%S16.16-SHIFTR)
+  - (%S16.16-SHIFTL)
+  - (%S16.16-SHUFFLELO)
+  - (%S16.16-SHUFFLEHI)
+  - (%S16.16-UNPACKLO)
+  - (%S16.16-UNPACKHI)
+  - (%S16.16-PACKS)
+  - (%S16.16-HSUBS)
+  - (%S16.16-HSUB)
+  - (%S16.16-MADDUBS)
+  - (%S16.16-MADD)
+  - (%S16.16-HADDS)
+  - (%S16.16-HADD)
+  - (%S16.16-ABS)
+  - (%TWO-ARG-S16.16>)
+  - (%TWO-ARG-S16.16=)
+  - (%TWO-ARG-S16.16-MULHRS)
+  - (%TWO-ARG-S16.16-MULLO)
+  - (%TWO-ARG-S16.16-MULHI)
+  - (%TWO-ARG-S16.16-)
+  - (%TWO-ARG-S16.16+)
+  - (%TWO-ARG-S16.16-MIN)
+  - (%TWO-ARG-S16.16-MAX)
+  - (%S16.16-ANDC1)
+  - (%TWO-ARG-S16.16-XOR)
+  - (%TWO-ARG-S16.16-OR)
+  - (%TWO-ARG-S16.16-AND)
+  - (%S16.16-FROM-U8.16)
+  - (%S16.16-FROM-S8.16)
+  - (%S16.16-BLEND)
+  - (%S16.16-BROADCASTVEC)
+  - (%S8.32-PERMUTE128)
+  - (%S8.32-INSERT-S8.16)
+  - (%S8.16-FROM-S8.32)
+  - (%S8.32-SIGN)
+  - (%S8.32-SHUFFLE)
+  - (%S8.32-MOVEMASK)
+  - (%S8.32-UNPACKLO)
+  - (%S8.32-UNPACKHI)
+  - (%S8.32-PACKS)
+  - (%S8.32-ABS)
+  - (%TWO-ARG-S8.32>)
+  - (%TWO-ARG-S8.32=)
+  - (%TWO-ARG-S8.32-)
+  - (%TWO-ARG-S8.32+)
+  - (%TWO-ARG-S8.32-MIN)
+  - (%TWO-ARG-S8.32-MAX)
+  - (%S8.32-ANDC1)
+  - (%TWO-ARG-S8.32-XOR)
+  - (%TWO-ARG-S8.32-OR)
+  - (%TWO-ARG-S8.32-AND)
+  - (%S8.32-BLEND)
+  - (%S8.32-BROADCASTVEC)
+  - (%U64.4-PERMUTE128)
+  - (%U64.4-INSERT-U64.2)
+  - (%U64.2-FROM-U64.4)
+  - (%U64.4-MOVEMASK)
+  - (%U64.4-UNPACKLO)
+  - (%U64.4-UNPACKHI)
+  - (%U64.4-SHIFTR)
+  - (%U64.4-SHIFTL)
+  - (%TWO-ARG-U64.4>~)
+  - (%TWO-ARG-U64.4=)
+  - (%TWO-ARG-U64.4-MUL)
+  - (%TWO-ARG-U64.4-)
+  - (%TWO-ARG-U64.4+)
+  - (%U64.4-ANDC1)
+  - (%TWO-ARG-U64.4-XOR)
+  - (%TWO-ARG-U64.4-OR)
+  - (%TWO-ARG-U64.4-AND)
+  - (%U64.4-FROM-U8.16)
+  - (%U64.4-FROM-U32.4)
+  - (%U64.4-FROM-U16.8)
+  - (%U64.4-BLEND)
+  - (%U64.4-BROADCASTVEC)
+  - (%U32.8-PERMUTE128)
+  - (%U32.8-INSERT-U32.4)
+  - (%U32.4-FROM-U32.8)
+  - (%U32.8-MOVEMASK)
+  - (%U32.8-UNPACKLO)
+  - (%U32.8-UNPACKHI)
+  - (%U32.8-SHIFTR)
+  - (%U32.8-SHIFTL)
+  - (%TWO-ARG-U32.8>~)
+  - (%TWO-ARG-U32.8=)
+  - (%TWO-ARG-U32.8-)
+  - (%TWO-ARG-U32.8+)
+  - (%TWO-ARG-U32.8-MIN)
+  - (%TWO-ARG-U32.8-MAX)
+  - (%U32.8-ANDC1)
+  - (%TWO-ARG-U32.8-XOR)
+  - (%TWO-ARG-U32.8-OR)
+  - (%TWO-ARG-U32.8-AND)
+  - (%U32.8-FROM-U8.16)
+  - (%U32.8-FROM-U16.8)
+  - (%U32.8-BLEND)
+  - (%U32.8-BROADCASTVEC)
+  - (%U16.16-PERMUTE128)
+  - (%U16.16-INSERT-U16.8)
+  - (%U16.8-FROM-U16.16)
+  - (%U16.16-SHUFFLELO)
+  - (%U16.16-SHUFFLEHI)
+  - (%U16.16-UNPACKLO)
+  - (%U16.16-UNPACKHI)
+  - (%U16.16-PACKUS)
+  - (%U16.16-AVG)
+  - (%U16.16-SHIFTR)
+  - (%U16.16-SHIFTL)
+  - (%TWO-ARG-U16.16>~)
+  - (%TWO-ARG-U16.16=)
+  - (%TWO-ARG-U16.16-)
+  - (%TWO-ARG-U16.16+)
+  - (%TWO-ARG-U16.16-MIN)
+  - (%TWO-ARG-U16.16-MAX)
+  - (%U16.16-ANDC1)
+  - (%TWO-ARG-U16.16-XOR)
+  - (%TWO-ARG-U16.16-OR)
+  - (%TWO-ARG-U16.16-AND)
+  - (%U16.16-FROM-U8.16)
+  - (%U16.16-BLEND)
+  - (%U16.16-BROADCASTVEC)
+  - (%U8.32-PERMUTE128)
+  - (%U8.16-FROM-U8.32)
+  - (%U8.32-INSERT-U8.16)
+  - (%U8.32-SHUFFLE)
+  - (%U8.32-MOVEMASK)
+  - (%U8.32-UNPACKLO)
+  - (%U8.32-UNPACKHI)
+  - (%U8.32-PACKUS)
+  - (%U8.32-AVG)
+  - (%TWO-ARG-U8.32>~)
+  - (%TWO-ARG-U8.32=)
+  - (%TWO-ARG-U8.32-)
+  - (%TWO-ARG-U8.32+)
+  - (%TWO-ARG-U8.32-MIN)
+  - (%TWO-ARG-U8.32-MAX)
+  - (%U8.32-ANDC1)
+  - (%TWO-ARG-U8.32-XOR)
+  - (%TWO-ARG-U8.32-OR)
+  - (%TWO-ARG-U8.32-AND)
+  - (%U8.32-BLEND)
+  - (%U8.32-BROADCASTVEC)
+  - (%S64.2-SHIFTR)
+  - (%S64.2-SHIFTL)
+  - (%S64.2-BROADCASTVEC)
+  - (%S64.2!-FROM-P256)
+  - (%S32.4-SHIFTR)
+  - (%S32.4-SHIFTL)
+  - (%S32.4-BROADCASTVEC)
+  - (%S32.4!-FROM-P256)
+  - (%S16.8-BROADCASTVEC)
+  - (%S16.8!-FROM-P256)
+  - (%S8.16-BROADCASTVEC)
+  - (%S8.16!-FROM-P256)
+  - (%U64.2-SHIFTR)
+  - (%U64.2-SHIFTL)
+  - (%U64.2-BROADCASTVEC)
+  - (%U64.2!-FROM-P256)
+  - (%U32.4-SHIFTR)
+  - (%U32.4-SHIFTL)
+  - (%U32.4-BROADCASTVEC)
+  - (%U32.4!-FROM-P256)
+  - (%U16.8-BROADCASTVEC)
+  - (%U16.8!-FROM-P256)
+  - (%U8.16-BROADCASTVEC)
+  - (%U8.16!-FROM-P256)
+  - (%F64.4-PERMUTE4X64)
+  - (%S64.4-PERMUTE128)
+  - (%S64.4-INSERT-S64.2)
+  - (%S64.2-FROM-S64.4)
+  - (%S64.4-PERMUTE)
+  - (%S64.4!-FROM-P256)
+  - (%S64.4!-FROM-P128)
+  - (%S32.8-PERMUTE128)
+  - (%S32.8-INSERT-S32.4)
+  - (%S32.4-FROM-S32.8)
+  - (%S32.8-PERMUTE)
+  - (%S32.8-FROM-F32.8)
+  - (%S32.8-FROM-F64.4)
+  - (%S32.8!-FROM-P256)
+  - (%S32.8!-FROM-P128)
+  - (%S16.16-PERMUTE128)
+  - (%S16.16-INSERT-S16.8)
+  - (%S16.8-FROM-S16.16)
+  - (%S16.16!-FROM-P256)
+  - (%S16.16!-FROM-P128)
+  - (%S8.32-PERMUTE128)
+  - (%S8.32-INSERT-S8.16)
+  - (%S8.16-FROM-S8.32)
+  - (%S8.32!-FROM-P256)
+  - (%S8.32!-FROM-P128)
+  - (%S64.2-PERMUTE)
+  - (%S64.2-MOVEMASK)
+  - (%S64.2-UNPACKLO)
+  - (%S64.2-UNPACKHI)
+  - (%TWO-ARG-S64.2>)
+  - (%TWO-ARG-S64.2=)
+  - (%S64.2-SHIFTR)
+  - (%S64.2-SHIFTL)
+  - (%TWO-ARG-S64.2-)
+  - (%TWO-ARG-S64.2+)
+  - (%S64.2-ANDC1)
+  - (%TWO-ARG-S64.2-XOR)
+  - (%TWO-ARG-S64.2-OR)
+  - (%TWO-ARG-S64.2-AND)
+  - (%S64.2-BLEND)
+  - (%S64.2!-FROM-P256)
+  - (%S64.2!-FROM-P128)
+  - (%S32.4-PERMUTE)
+  - (%S32.4-MOVEMASK)
+  - (%S32.4-UNPACKLO)
+  - (%S32.4-UNPACKHI)
+  - (%TWO-ARG-S32.4>)
+  - (%TWO-ARG-S32.4=)
+  - (%TWO-ARG-S32.4-MULLO)
+  - (%TWO-ARG-S32.4-)
+  - (%TWO-ARG-S32.4+)
+  - (%S32.4-ANDC1)
+  - (%TWO-ARG-S32.4-XOR)
+  - (%TWO-ARG-S32.4-OR)
+  - (%TWO-ARG-S32.4-AND)
+  - (%S32.4-FROM-F32.4)
+  - (%S32.4-FROM-F64.4)
+  - (%S32.4-BLEND)
+  - (%S32.4!-FROM-P256)
+  - (%S32.4!-FROM-P128)
+  - (%S16.8-SHUFFLELO)
+  - (%S16.8-SHUFFLEHI)
+  - (%S16.8-UNPACKLO)
+  - (%S16.8-UNPACKHI)
+  - (%TWO-ARG-S16.8>)
+  - (%TWO-ARG-S16.8=)
+  - (%S16.8-SHIFTR)
+  - (%S16.8-SHIFTL)
+  - (%TWO-ARG-S16.8-MULLO)
+  - (%TWO-ARG-S16.8-)
+  - (%TWO-ARG-S16.8+)
+  - (%S16.8-ANDC1)
+  - (%TWO-ARG-S16.8-XOR)
+  - (%TWO-ARG-S16.8-OR)
+  - (%TWO-ARG-S16.8-AND)
+  - (%S16.8-BLEND)
+  - (%S16.8!-FROM-P256)
+  - (%S16.8!-FROM-P128)
+  - (%S8.16-SHUFFLE)
+  - (%S8.16-MOVEMASK)
+  - (%S8.16-UNPACKLO)
+  - (%S8.16-UNPACKHI)
+  - (%TWO-ARG-S8.16>)
+  - (%TWO-ARG-S8.16=)
+  - (%TWO-ARG-S8.16-)
+  - (%TWO-ARG-S8.16+)
+  - (%S8.16-ANDC1)
+  - (%TWO-ARG-S8.16-XOR)
+  - (%TWO-ARG-S8.16-OR)
+  - (%TWO-ARG-S8.16-AND)
+  - (%S8.16-BLEND)
+  - (%S8.16!-FROM-P256)
+  - (%S8.16!-FROM-P128)
+  - (%U64.4-INSERT-U64.2)
+  - (%U64.2-FROM-U64.4)
+  - (%U64.4-PERMUTE)
+  - (%TWO-ARG-U64.4-AND)
+  - (%U64.4!-FROM-P256)
+  - (%U64.4!-FROM-P128)
+  - (%U64.4!-FROM-U64)
+  - (%U32.8-INSERT-U32.4)
+  - (%U32.4-FROM-U32.8)
+  - (%U32.8-PERMUTE)
+  - (%TWO-ARG-U32.8-AND)
+  - (%U32.8!-FROM-P256)
+  - (%U32.8!-FROM-P128)
+  - (%U32.8!-FROM-U32)
+  - (%U16.16-INSERT-U16.8)
+  - (%U16.8-FROM-U16.16)
+  - (%U16.16!-FROM-P256)
+  - (%U16.16!-FROM-P128)
+  - (%U16.16!-FROM-U16)
+  - (%U8.32-INSERT-U8.16)
+  - (%U8.16-FROM-U8.32)
+  - (%U8.32!-FROM-P256)
+  - (%U8.32!-FROM-P128)
+  - (%U8.32!-FROM-U8)
+  - (%U64.2-PERMUTE)
+  - (%U64.2-MOVEMASK)
+  - (%U64.2-UNPACKLO)
+  - (%U64.2-UNPACKHI)
+  - (%TWO-ARG-U64.2>~)
+  - (%TWO-ARG-U64.2=)
+  - (%TWO-ARG-U64.2-)
+  - (%TWO-ARG-U64.2+)
+  - (%U64.2-ANDC1)
+  - (%TWO-ARG-U64.2-XOR)
+  - (%TWO-ARG-U64.2-OR)
+  - (%TWO-ARG-U64.2-AND)
+  - (%U64.2-BLEND)
+  - (%U64.2-FROM-U64)
+  - (%U64.2!-FROM-P256)
+  - (%U64.2!-FROM-P128)
+  - (%U64.2!-FROM-U64)
+  - (%U32.4-PERMUTE)
+  - (%U32.4-MOVEMASK)
+  - (%U32.4-UNPACKLO)
+  - (%U32.4-UNPACKHI)
+  - (%TWO-ARG-U32.4>~)
+  - (%TWO-ARG-U32.4=)
+  - (%TWO-ARG-U32.4-)
+  - (%TWO-ARG-U32.4+)
+  - (%U32.4-ANDC1)
+  - (%TWO-ARG-U32.4-XOR)
+  - (%TWO-ARG-U32.4-OR)
+  - (%TWO-ARG-U32.4-AND)
+  - (%U32.4-BLEND)
+  - (%U32.4!-FROM-P256)
+  - (%U32.4!-FROM-P128)
+  - (%U32.4!-FROM-U32)
+  - (%U16.8-SHUFFLELO)
+  - (%U16.8-SHUFFLEHI)
+  - (%U16.8-UNPACKLO)
+  - (%U16.8-UNPACKHI)
+  - (%U16.8-SHIFTR)
+  - (%U16.8-SHIFTL)
+  - (%TWO-ARG-U16.8>~)
+  - (%TWO-ARG-U16.8=)
+  - (%TWO-ARG-U16.8-)
+  - (%TWO-ARG-U16.8+)
+  - (%U16.8-ANDC1)
+  - (%TWO-ARG-U16.8-XOR)
+  - (%TWO-ARG-U16.8-OR)
+  - (%TWO-ARG-U16.8-AND)
+  - (%U16.8-BLEND)
+  - (%U16.8!-FROM-P256)
+  - (%U16.8!-FROM-P128)
+  - (%U16.8!-FROM-U16)
+  - (%U8.16-SHUFFLE)
+  - (%U8.16-MOVEMASK)
+  - (%U8.16-UNPACKLO)
+  - (%U8.16-UNPACKHI)
+  - (%TWO-ARG-U8.16>~)
+  - (%TWO-ARG-U8.16=)
+  - (%TWO-ARG-U8.16-)
+  - (%TWO-ARG-U8.16+)
+  - (%U8.16-ANDC1)
+  - (%TWO-ARG-U8.16-XOR)
+  - (%TWO-ARG-U8.16-OR)
+  - (%TWO-ARG-U8.16-AND)
+  - (%U8.16-BLEND)
+  - (%U8.16!-FROM-P256)
+  - (%U8.16!-FROM-P128)
+  - (%U8.16!-FROM-U8)
+  - (%F64.4-SET128)
+  - (%F64.4-INSERT-F64.2)
+  - (%F64.2-FROM-F64.4)
+  - (%F64.4-SHUFFLE)
+  - (%F64.4-PERMUTE128)
+  - (%F64.4-PERMUTE)
+  - (%F64.4-%ROUND)
+  - (%F64.4-MOVEMASK)
+  - (%F64.4-UNPACKLO)
+  - (%F64.4-UNPACKHI)
+  - (%F64.4-SQRT)
+  - (%F64.4-HSUB)
+  - (%F64.4-HADD)
+  - (%F64.4-DUPEVEN)
+  - (%F64.4-ANDC1)
+  - (%TWO-ARG-F64.4>=)
+  - (%TWO-ARG-F64.4>)
+  - (%TWO-ARG-F64.4<=)
+  - (%TWO-ARG-F64.4<)
+  - (%TWO-ARG-F64.4/=)
+  - (%TWO-ARG-F64.4=)
+  - (%TWO-ARG-F64.4/)
+  - (%TWO-ARG-F64.4*)
+  - (%TWO-ARG-F64.4-)
+  - (%TWO-ARG-F64.4+)
+  - (%TWO-ARG-F64.4-MIN)
+  - (%TWO-ARG-F64.4-MAX)
+  - (%TWO-ARG-F64.4-XOR)
+  - (%TWO-ARG-F64.4-OR)
+  - (%TWO-ARG-F64.4-AND)
+  - (%F64.4-BLENDC)
+  - (%F64.4-BLEND)
+  - (%F64.4-FROM-S32.4)
+  - (%F64.4-FROM-U32.4)
+  - (%F64.4-FROM-F32.4)
+  - (%F64.4-BROADCAST)
+  - (%F64.4!-FROM-P256)
+  - (%F64.4!-FROM-P128)
+  - (%F64.4!-FROM-F64)
+  - (%F32.8-INSERT-F32.4)
+  - (%F32.4-FROM-F32.8)
+  - (%F32.8-SHUFFLE)
+  - (%F32.8-PERMUTE128)
+  - (%F32.8-PERMUTE)
+  - (%F32.8-%ROUND)
+  - (%F32.8-MOVEMASK)
+  - (%F32.8-UNPACKLO)
+  - (%F32.8-UNPACKHI)
+  - (%F32.8-SQRT)
+  - (%F32.8-RSQRT)
+  - (%F32.8-RECIPROCAL)
+  - (%F32.8-HSUB)
+  - (%F32.8-HADD)
+  - (%F32.8-DUPODD)
+  - (%F32.8-DUPEVEN)
+  - (%TWO-ARG-F32.8>=)
+  - (%TWO-ARG-F32.8>)
+  - (%TWO-ARG-F32.8<=)
+  - (%TWO-ARG-F32.8<)
+  - (%TWO-ARG-F32.8/=)
+  - (%TWO-ARG-F32.8=)
+  - (%TWO-ARG-F32.8/)
+  - (%TWO-ARG-F32.8*)
+  - (%TWO-ARG-F32.8-)
+  - (%TWO-ARG-F32.8+)
+  - (%F32.8-ANDC1)
+  - (%TWO-ARG-F32.8-MIN)
+  - (%TWO-ARG-F32.8-MAX)
+  - (%TWO-ARG-F32.8-XOR)
+  - (%TWO-ARG-F32.8-OR)
+  - (%TWO-ARG-F32.8-AND)
+  - (%F32.8-BLENDC)
+  - (%F32.8-BLEND)
+  - (%F32.8-FROM-U32.8)
+  - (%F32.8-BROADCAST)
+  - (%F32.8!-FROM-P256)
+  - (%F32.8!-FROM-P128)
+  - (%F32.8!-FROM-F32)
+  - (%F32.8-FROM-S32.8)
+  - (%F64.2-SHUFFLE)
+  - (%F64.2-PERMUTE)
+  - (%F64.2-%ROUND)
+  - (%F64.2-MOVEMASK)
+  - (%F64.2-UNPACKLO)
+  - (%F64.2-UNPACKHI)
+  - (%F64.2-SQRT)
+  - (%F64.2-HSUB)
+  - (%F64.2-HADD)
+  - (%F64.2-ADDSUB)
+  - (%TWO-ARG-F64.2>=)
+  - (%TWO-ARG-F64.2>)
+  - (%TWO-ARG-F64.2<=)
+  - (%TWO-ARG-F64.2<)
+  - (%TWO-ARG-F64.2/=)
+  - (%TWO-ARG-F64.2=)
+  - (%TWO-ARG-F64.2/)
+  - (%TWO-ARG-F64.2*)
+  - (%TWO-ARG-F64.2-)
+  - (%F64.2-ANDC1)
+  - (%TWO-ARG-F64.2+)
+  - (%TWO-ARG-F64.2-MIN)
+  - (%TWO-ARG-F64.2-MAX)
+  - (%TWO-ARG-F64.2-XOR)
+  - (%TWO-ARG-F64.2-OR)
+  - (%TWO-ARG-F64.2-AND)
+  - (%F64.2-BLENDC)
+  - (%F64.2-BLEND)
+  - (%F64.2-BROADCAST)
+  - (%F64.2!-FROM-P256)
+  - (%F64.2!-FROM-P128)
+  - (%F64.2!-FROM-F64)
+  - (%F32.4-SHUFFLE)
+  - (%F32.4-PERMUTE)
+  - (%F32.4-%ROUND)
+  - (%F32.4-MOVEMASK)
+  - (%F32.4-UNPACKLO)
+  - (%F32.4-UNPACKHI)
+  - (%F32.4-SQRT)
+  - (%F32.4-RSQRT)
+  - (%F32.4-RECIPROCAL)
+  - (%F32.4-HSUB)
+  - (%F32.4-HADD)
+  - (%F32.4-ADDSUB)
+  - (%F32.4-DUPODD)
+  - (%F32.4-DUPEVEN)
+  - (%TWO-ARG-F32.4>=)
+  - (%TWO-ARG-F32.4>)
+  - (%TWO-ARG-F32.4<=)
+  - (%TWO-ARG-F32.4<)
+  - (%TWO-ARG-F32.4/=)
+  - (%TWO-ARG-F32.4=)
+  - (%TWO-ARG-F32.4/)
+  - (%TWO-ARG-F32.4*)
+  - (%TWO-ARG-F32.4-)
+  - (%TWO-ARG-F32.4+)
+  - (%F32.4-ANDC1)
+  - (%TWO-ARG-F32.4-MIN)
+  - (%TWO-ARG-F32.4-MAX)
+  - (%TWO-ARG-F32.4-XOR)
+  - (%TWO-ARG-F32.4-OR)
+  - (%TWO-ARG-F32.4-AND)
+  - (%F32.4-BLENDC)
+  - (%F32.4-BLEND)
+  - (%F32.4-FROM-F64.4)
+  - (%F32.4-BROADCAST)
+  - (%F32.4!-FROM-P256)
+  - (%F32.4!-FROM-P128)
+  - (%F32.4!-FROM-F32)
+  - (%F32.4-FROM-S32.4)
+  - (%U64!-FROM-P256)
+  - (%U64!-FROM-P128)
+  - (%F64-SQRT)
+  - (%F64-ANDC1)
+  - (%TWO-ARG-F64/)
+  - (%TWO-ARG-F64*)
+  - (%TWO-ARG-F64-)
+  - (%TWO-ARG-F64+)
+  - (%TWO-ARG-F64-MIN)
+  - (%TWO-ARG-F64-MAX)
+  - (%TWO-ARG-F64-XOR)
+  - (%TWO-ARG-F64-OR)
+  - (%TWO-ARG-F64-AND)
+  - (%F64-FROM-F32)
+  - (%F32-SQRT)
+  - (%F32-RSQRT)
+  - (%F32-RECIPROCAL)
+  - (%F32-ANDC1)
+  - (%TWO-ARG-F32/)
+  - (%TWO-ARG-F32*)
+  - (%TWO-ARG-F32-)
+  - (%TWO-ARG-F32+)
+  - (%TWO-ARG-F32-MIN)
+  - (%TWO-ARG-F32-MAX)
+  - (%TWO-ARG-F32-XOR)
+  - (%TWO-ARG-F32-OR)
+  - (%TWO-ARG-F32-AND)
+  - (%F32-FROM-F64)
+  - (%VZEROALL)
+  - (%VZEROUPPER)
+  - (%TWO-ARG-S64.2>)
+  - (%TWO-ARG-U64.2>~)
+  - (%S64.2-INSERT)
+  - (%S64.2-ELT)
+  - (%TWO-ARG-S64.2=)
+  - (%TWO-ARG-S64.2-MUL)
+  - (%S64.2-FROM-S32.4)
+  - (%S64.2-FROM-U32.4)
+  - (%S64.2-FROM-S16.8)
+  - (%S64.2-FROM-U16.8)
+  - (%S64.2-FROM-S8.16)
+  - (%S64.2-FROM-U8.16)
+  - (%S64.2-BLEND)
+  - (%S32.4-INSERT)
+  - (%S32.4-ELT)
+  - (%TWO-ARG-S32.4-MULLO)
+  - (%S32.4-FROM-S16.8)
+  - (%S32.4-FROM-U16.8)
+  - (%S32.4-FROM-S8.16)
+  - (%S32.4-FROM-U8.16)
+  - (%TWO-ARG-S32.4-MIN)
+  - (%TWO-ARG-S32.4-MAX)
+  - (%S32.4-BLEND)
+  - (%S16.8-PACK)
+  - (%S16.8-FROM-S8.16)
+  - (%S16.8-FROM-U8.16)
+  - (%S16.8-BLEND)
+  - (%S8.16-INSERT)
+  - (%S8.16-ELT)
+  - (%TWO-ARG-S8.16-MIN)
+  - (%TWO-ARG-S8.16-MAX)
+  - (%S8.16-BLEND)
+  - (%U64.2-INSERT)
+  - (%U64.2-ELT)
+  - (%TWO-ARG-U64.2=)
+  - (%U64.2-BLEND)
+  - (%U32.4-INSERT)
+  - (%U32.4-ELT)
+  - (%TWO-ARG-U32.4-MIN)
+  - (%TWO-ARG-U32.4-MAX)
+  - (%U32.4-BLEND)
+  - (%U16.8-MINPOS)
+  - (%TWO-ARG-U16.8-MIN)
+  - (%TWO-ARG-U16.8-MAX)
+  - (%U16.8-BLEND)
+  - (%U8.16-INSERT)
+  - (%U8.16-ELT)
+  - (%U8.16-BLEND)
+  - (%F64.2-%ROUND)
+  - (%F64.2-BLENDC)
+  - (%F64.2-BLEND)
+  - (%F32.4-INSERT)
+  - (%F32.4-%ROUND)
+  - (%F32.4-BLENDC)
+  - (%F32.4-BLEND)
+  - (%S32.4-HSUB)
+  - (%S32.4-HADD)
+  - (%S32.4-SIGN)
+  - (%S32.4-ABS)
+  - (%S16.8-HSUB)
+  - (%S16.8-HADD)
+  - (%S16.8-SIGN)
+  - (%S16.8-MADDUBS)
+  - (%S16.8-ABS)
+  - (%TWO-ARG-S16.8-MULHRS)
+  - (%S8.16-SIGN)
+  - (%S8.16-ABS)
+  - (%S8.16-SHUFFLE)
+  - (%U32.4-HSUB)
+  - (%U32.4-HADD)
+  - (%U16.8-HSUB)
+  - (%U16.8-HADD)
+  - (%F64.2-HADD)
+  - (%F32.4-LDUP)
+  - (%F32.4-HDUP)
+  - (%F32.4-HADD)
+  - (%S64.2-SHIFTR)
+  - (%S64.2-SHIFTL)
+  - (%S64.2-MOVEMASK)
+  - (%S64.2-UNPACKLO)
+  - (%S64.2-UNPACKHI)
+  - (%TWO-ARG-S64.2-)
+  - (%TWO-ARG-S64.2+)
+  - (%S64.2-ANDC1)
+  - (%TWO-ARG-S64.2-XOR)
+  - (%TWO-ARG-S64.2-OR)
+  - (%TWO-ARG-S64.2-AND)
+  - (%S64.2!-FROM-P128)
+  - (%S32.4-SHIFTR)
+  - (%S32.4-SHIFTL)
+  - (%S32.4-SHUFFLE)
+  - (%S32.4-MOVEMASK)
+  - (%S32.4-UNPACKLO)
+  - (%S32.4-UNPACKHI)
+  - (%TWO-ARG-S32.4>)
+  - (%TWO-ARG-S32.4=)
+  - (%TWO-ARG-S32.4-)
+  - (%TWO-ARG-S32.4+)
+  - (%S32.4-ANDC1)
+  - (%TWO-ARG-S32.4-XOR)
+  - (%TWO-ARG-S32.4-OR)
+  - (%TWO-ARG-S32.4-AND)
+  - (%S32.4-FROM-F64.2)
+  - (%S32.4-FROM-F32.4)
+  - (%S32.4!-FROM-P128)
+  - (%S16.8-SHIFTR)
+  - (%S16.8-SHIFTL)
+  - (%S16.8-SHUFFLELO)
+  - (%S16.8-SHUFFLEHI)
+  - (%S16.8-ELT)
+  - (%S16.8-MULLO)
+  - (%S16.8-UNPACKLO)
+  - (%S16.8-UNPACKHI)
+  - (%TWO-ARG-S16.8>)
+  - (%TWO-ARG-S16.8=)
+  - (%TWO-ARG-S16.8-)
+  - (%TWO-ARG-S16.8+)
+  - (%S16.8-ANDC1)
+  - (%TWO-ARG-S16.8-XOR)
+  - (%TWO-ARG-S16.8-OR)
+  - (%TWO-ARG-S16.8-AND)
+  - (%S16.8!-FROM-P128)
+  - (%S8.16-MOVEMASK)
+  - (%S8.16-UNPACKLO)
+  - (%S8.16-UNPACKHI)
+  - (%TWO-ARG-S8.16>)
+  - (%TWO-ARG-S8.16=)
+  - (%TWO-ARG-S8.16-)
+  - (%TWO-ARG-S8.16+)
+  - (%S8.16-ANDC1)
+  - (%TWO-ARG-S8.16-XOR)
+  - (%TWO-ARG-S8.16-OR)
+  - (%TWO-ARG-S8.16-AND)
+  - (%S8.16!-FROM-P128)
+  - (%U64.2-SHIFTR)
+  - (%U64.2-SHIFTL)
+  - (%U64.2-MOVEMASK)
+  - (%U64.2-UNPACKLO)
+  - (%U64.2-UNPACKHI)
+  - (%TWO-ARG-U64.2-)
+  - (%TWO-ARG-U64.2+)
+  - (%U64.2-ANDC1)
+  - (%TWO-ARG-U64.2-XOR)
+  - (%TWO-ARG-U64.2-OR)
+  - (%TWO-ARG-U64.2-AND)
+  - (%U64.2!-FROM-P128)
+  - (%U64.2!-FROM-U64)
+  - (%U32.4-SHIFTR)
+  - (%U32.4-SHIFTL)
+  - (%U32.4-SHUFFLE)
+  - (%U32.4-MOVEMASK)
+  - (%U32.4-UNPACKLO)
+  - (%U32.4-UNPACKHI)
+  - (%TWO-ARG-U32.4>~)
+  - (%TWO-ARG-U32.4=)
+  - (%TWO-ARG-U32.4-)
+  - (%TWO-ARG-U32.4+)
+  - (%U32.4-ANDC1)
+  - (%TWO-ARG-U32.4-XOR)
+  - (%TWO-ARG-U32.4-OR)
+  - (%TWO-ARG-U32.4-AND)
+  - (%U32.4!-FROM-P128)
+  - (%U32.4!-FROM-U32)
+  - (%U16.8-SHIFTR)
+  - (%U16.8-SHIFTL)
+  - (%U16.8-SHUFFLELO)
+  - (%U16.8-SHUFFLEHI)
+  - (%U16.8-ELT)
+  - (%U16.8-UNPACKLO)
+  - (%U16.8-UNPACKHI)
+  - (%U16.8-AVERAGE)
+  - (%TWO-ARG-U16.8>~)
+  - (%TWO-ARG-U16.8=)
+  - (%TWO-ARG-U16.8-)
+  - (%TWO-ARG-U16.8+)
+  - (%U16.8-ANDC1)
+  - (%TWO-ARG-U16.8-XOR)
+  - (%TWO-ARG-U16.8-OR)
+  - (%TWO-ARG-U16.8-AND)
+  - (%U16.8!-FROM-P128)
+  - (%U16.8!-FROM-U16)
+  - (%U8.16-MOVEMASK)
+  - (%U8.16-UNPACKLO)
+  - (%U8.16-UNPACKHI)
+  - (%U8.16-AVERAGE)
+  - (%TWO-ARG-U8.16>~)
+  - (%TWO-ARG-U8.16=)
+  - (%TWO-ARG-U8.16-)
+  - (%TWO-ARG-U8.16+)
+  - (%U8.16-ANDC1)
+  - (%TWO-ARG-U8.16-XOR)
+  - (%TWO-ARG-U8.16-OR)
+  - (%TWO-ARG-U8.16-AND)
+  - (%U8.16!-FROM-P128)
+  - (%U8.16!-FROM-U8)
+  - (%F64.2-MOVEMASK)
+  - (%F64.2-SHUFFLE)
+  - (%F64.2-UNPACKLO)
+  - (%F64.2-UNPACKHI)
+  - (%F64.2-SQRT)
+  - (%F64.2-ANDC1)
+  - (%TWO-ARG-F64.2>=)
+  - (%TWO-ARG-F64.2>)
+  - (%TWO-ARG-F64.2<=)
+  - (%TWO-ARG-F64.2<)
+  - (%TWO-ARG-F64.2/=)
+  - (%TWO-ARG-F64.2=)
+  - (%TWO-ARG-F64.2/)
+  - (%TWO-ARG-F64.2*)
+  - (%TWO-ARG-F64.2-)
+  - (%TWO-ARG-F64.2+)
+  - (%TWO-ARG-F64.2-MIN)
+  - (%TWO-ARG-F64.2-MAX)
+  - (%TWO-ARG-F64.2-XOR)
+  - (%TWO-ARG-F64.2-OR)
+  - (%TWO-ARG-F64.2-AND)
+  - (%F64.2!-FROM-P128)
+  - (%F64.2!-FROM-F64)
+  - (%TWO-ARG-F32.4>=)
+  - (%TWO-ARG-F32.4>)
+  - (%TWO-ARG-F32.4<=)
+  - (%TWO-ARG-F32.4<)
+  - (%TWO-ARG-F32.4/=)
+  - (%TWO-ARG-F32.4=)
+  - (%F32.4!-FROM-P128)
+  - (%F32.4-FROM-S32.4)
+  - (%U64!-FROM-P128)
+  - (%F64-SQRT)
+  - (%F64-ANDC1)
+  - (%TWO-ARG-F64/)
+  - (%TWO-ARG-F64*)
+  - (%TWO-ARG-F64-)
+  - (%TWO-ARG-F64+)
+  - (%TWO-ARG-F64-MIN)
+  - (%TWO-ARG-F64-MAX)
+  - (%TWO-ARG-F64-XOR)
+  - (%TWO-ARG-F64-OR)
+  - (%TWO-ARG-F64-AND)
+  - (%F64-FROM-F32)
+  - (%F32-FROM-F64)
+  - (%F32.4-MOVEMASK)
+  - (%F32.4-UNPACKHI)
+  - (%F32.4-UNPACKLO)
+  - (%F32.4-SHUFFLE)
+  - (%F32.4-SQRT)
+  - (%F32.4-RSQRT)
+  - (%F32.4-RECIPROCAL)
+  - (%F32.4-ANDC1)
+  - (%TWO-ARG-F32.4/)
+  - (%TWO-ARG-F32.4*)
+  - (%TWO-ARG-F32.4-)
+  - (%TWO-ARG-F32.4+)
+  - (%TWO-ARG-F32.4-MIN)
+  - (%TWO-ARG-F32.4-MAX)
+  - (%TWO-ARG-F32.4-XOR)
+  - (%TWO-ARG-F32.4-OR)
+  - (%TWO-ARG-F32.4-AND)
+  - (%F32.4!-FROM-F32)
+  - (%F32-SQRT)
+  - (%F32-RSQRT)
+  - (%F32-RECIPROCAL)
+  - (%F32-ANDC1)
+  - (%TWO-ARG-F32/)
+  - (%TWO-ARG-F32*)
+  - (%TWO-ARG-F32-)
+  - (%TWO-ARG-F32+)
+  - (%TWO-ARG-F32-MIN)
+  - (%TWO-ARG-F32-MAX)
+  - (%TWO-ARG-F32-XOR)
+  - (%TWO-ARG-F32-OR)
+  - (%TWO-ARG-F32-AND)
+  - (%64BIT-ROTATE-BYTE)
+  - (%64BIT-ROTATE-BYTE/C)
+  - (%32BIT-ROTATE-BYTE)
+  - (%32BIT-ROTATE-BYTE/C)
+  - (64BIT-SWAP-BYTES)
+  - (32BIT-SWAP-BYTES)
+  - (16BIT-SWAP-BYTES)
+  - (INC-COUNTER-BLOCK)
+  - (SWAP64)
+  - (SWAP32)
+  - (MOV128)
+  - (XOR128)
+  - (GMAC-MUL-FAST)
+  - (FAST-BLAKE2S-MIXING)
+  - (AES-NI-DECRYPT)
+  - (AES-NI-ENCRYPT)
+  - (AES-NI-GENERATE-ROUND-KEYS)
+  - (AES-NI-SUPPORT-P)
+  - (PCLMULQDQ-SUPPORT-P)
+  - (CHACHA-CORE-FAST)
+  - (SALSA-CORE-FAST)
+  - (UPDATE-SHA1-BLOCK)
+  - (F4 IN UPDATE-SHA1-BLOCK)
+  - (SHA256-EXPAND-BLOCK)
+  - (EXPAND-BLOCK)
+  - (FILL-BLOCK-UB8)
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:
+** READS
+:PROPERTIES:
+:ID: 964613535082
+:CUSTOM_ID: SB-ASSEM:READS
+:ALLOC: HEAP IMMOBILE
+:END:
+** ADD-STMT-LABELS :compiled:function:
+:PROPERTIES:
+:ID: 2050753831275
+:CUSTOM_ID: SB-ASSEM:ADD-STMT-LABELS
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+ADD-STMT-LABELS names a compiled function:
+  Lambda-list: (STATEMENT MORE-LABELS)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;ASSEM.LISP
+
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;ASSEM.LISP
+:end:

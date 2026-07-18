@@ -1,0 +1,417 @@
+#+SETUPFILE: ../../clean.theme
+* SB-CLTL2
+:PROPERTIES:
+:CUSTOM_ID: SB-CLTL2
+:ID: 83
+:END:
+- dependencies
+  - COMMON-LISP
+  - SB-C
+  - SB-INT
+  - SB-KERNEL
+
+- dependents
+  - [[id:119][STD/CORE]]
+
+** FUNCTION-INFORMATION :compiled:function:
+:PROPERTIES:
+:ID: 3066725962972
+:CUSTOM_ID: SB-CLTL2:FUNCTION-INFORMATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FUNCTION-INFORMATION names a compiled function:
+  Lambda-list: (NAME &OPTIONAL ENV)
+  Declared type: (FUNCTION
+                  ((OR CONS SYMBOL) &OPTIONAL (OR SB-C::ABSTRACT-LEXENV NULL))
+                  (VALUES (MEMBER :SPECIAL-FORM :MACRO :FUNCTION NIL) BOOLEAN
+                          LIST &OPTIONAL))
+  Documentation:
+    Return information about the function NAME in the lexical environment ENV.
+    Note that the global function binding may differ from the local one.
+    
+    This function returns three values. The first indicates the type of
+    function definition or binding:
+    
+    - NIL: There is no apparent definition for NAME.
+    
+    - :FUNCTION: NAME refers to a function.
+    
+    - :MACRO: NAME refers to a macro.
+    
+    - :SPECIAL-FORM: NAME refers to a special operator. If the name refers
+      to both a macro and a special operator, the macro takes precedence.
+    
+    The second value is true if NAME is bound locally.
+    
+    The third value is an alist describing the declarations that apply to
+    the function NAME. Standard declaration specifiers that may appear in
+    CARS of the alist include:
+    
+    - DYNAMIC-EXTENT: If the CDR is T, NAME has been declared
+      DYNAMIC-EXTENT. If the CDR is NIL, the alist element may be omitted.
+    
+    - INLINE: The CDR is one of the symbols INLINE, NOTINLINE, or NIL, to
+      indicate if the function has been declared INLINE or NOTINLINE. If
+      the CDR is NIL the alist element may be omitted.
+    
+    - FTYPE: The CDR is the type specifier associated with NAME, or the
+      symbol FUNCTION if there is functional type declaration or
+      proclamation associated with NAME. If the CDR is FUNCTION the alist
+      element may be omitted.
+    
+    - SB-EXT:DEPRECATED: (SBCL specific) The CDR is a plist containing the
+      following properties:
+    
+        - :STATE ( :EARLY | :LATE | :FINAL )
+    
+            Use of :EARLY deprecated functions signals a STYLE-WARNING at
+            compile-time.
+    
+            Use of :LATE deprecated functions signals a full WARNING at
+            compile-time.
+    
+            Use of :FINAL deprecated functions signals a full WARNING at
+            compile-time and an error at runtime.
+    
+        - :SINCE (SOFTWARE VERSION)
+    
+            VERSION is a string designating the version since which the
+            function has been deprecated. SOFTWARE is NIL or the name of
+            the software to which VERSION refers, e.g. "SBCL" for
+            deprecated functions in SBCL.
+    
+        - :REPLACEMENTS REPLACEMENTS
+    
+            When this property is present, REPLACEMENTS is a list of
+            symbols naming functions that should be used instead of the
+            deprecated function.
+    
+    In addition to these declarations defined using DEFINE-DECLARATION may
+    appear.
+  Source file: SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:391517474683][FBOUNDP!]]
+
+:definitions:
+- SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+- SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** AUGMENT-ENVIRONMENT :compiled:function:
+:PROPERTIES:
+:ID: 2940159958491
+:CUSTOM_ID: SB-CLTL2:AUGMENT-ENVIRONMENT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+AUGMENT-ENVIRONMENT names a compiled function:
+  Lambda-list: (ENV &KEY VARIABLE SYMBOL-MACRO FUNCTION MACRO DECLARE)
+  Derived type: (FUNCTION
+                 (T &KEY (:VARIABLE T) (:SYMBOL-MACRO T) (:FUNCTION T)
+                  (:MACRO T) (:DECLARE T))
+                 (VALUES T &OPTIONAL))
+  Documentation:
+    Create a new lexical environment by augmenting ENV with new information.
+    
+    VARIABLE
+      is a list of symbols to introduce as new variable bindings.
+    
+    SYMBOL-MACRO
+      is a list symbol macro bindings of the form (name definition).
+    
+    MACRO
+      is a list of macro definitions of the form (name definition), where
+      definition is a function of two arguments (a form and an environment).
+    
+    FUNCTION
+      is a list of symbols to introduce as new local function bindings.
+    
+    DECLARE
+      is a list of declaration specifiers. Declaration specifiers attach to the
+      new variable or function bindings as if they appeared in let, let*, flet
+      or labels form. For example:
+    
+       (augment-environment env :variable '(x) :declare '((special x)))
+    
+      is like
+    
+       (let (x) (declare (special x)) ....)
+    
+      but
+    
+       (augment-environment (augment-environment env :variable '(x))
+                            :declare '((special x)))
+    
+      is like
+    
+        (let (x) (locally (declare (special x))) ...)
+  Source file: SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+:end:
+** PARSE-MACRO :compiled:function:
+:PROPERTIES:
+:ID: 1323564227303
+:CUSTOM_ID: SB-CLTL2:PARSE-MACRO
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PARSE-MACRO names a compiled function:
+  Lambda-list: (NAME LAMBDA-LIST BODY &OPTIONAL ENV)
+  Derived type: (FUNCTION (T T T &OPTIONAL T) (VALUES CONS &OPTIONAL))
+  Documentation:
+    Process a macro definition of the kind that might appear in a DEFMACRO form
+    into a lambda expression of two variables: a form and an environment. The
+    lambda expression will parse its form argument, binding the variables in
+    LAMBDA-LIST appropriately, and then execute BODY with those bindings in
+    effect.
+  Source file: SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+:end:
+** VARIABLE-INFORMATION :compiled:function:
+:PROPERTIES:
+:ID: 1612476638263
+:CUSTOM_ID: SB-CLTL2:VARIABLE-INFORMATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VARIABLE-INFORMATION names a compiled function:
+  Lambda-list: (NAME &OPTIONAL ENV)
+  Declared type: (FUNCTION (SYMBOL &OPTIONAL (OR SB-C::ABSTRACT-LEXENV NULL))
+                  (VALUES
+                   (MEMBER :ALIEN :GLOBAL :CONSTANT :SYMBOL-MACRO :LEXICAL
+                           :SPECIAL NIL)
+                   BOOLEAN LIST &OPTIONAL))
+  Documentation:
+    Return information about the variable name VAR in the lexical environmentENV.
+    Note that the global binding may differ from the local one.
+    
+    This function returns three values. The first indicated the type of thevariable
+    binding:
+    
+    - NIL: There is no apparent binding for NAME.
+    
+    - :SPECIAL: NAME refers to a special variable.
+    
+    - :LEXICAL: NAME refers to a lexical variable.
+    
+    - :SYMBOL-MACRO: NAME refers to a symbol macro.
+    
+    - :CONSTANT: NAME refers to a named constant defined using
+      DEFCONSTANT, or NAME is a keyword.
+    
+    - :GLOBAL: NAME refers to a global variable. (SBCL specific extension.)
+    
+    - :ALIEN NAME refers to an alien variable. (SBCL specific extension.)
+    
+    The second value is true if NAME is bound locally. This is currently
+    always NIL for special variables, although arguably it should be T
+    when there is a lexically apparent binding for the special variable.
+    
+    The third value is an alist describing the declarations that apply to
+    the function NAME. Standard declaration specifiers that may appear in
+    CARS of the alist include:
+    
+    - DYNAMIC-EXTENT: If the CDR is T, NAME has been declared
+      DYNAMIC-EXTENT. If the CDR is NIL, the alist element may be omitted.
+    
+    - IGNORE: If the CDR is T, NAME has been declared IGNORE. If the CDR
+      is NIL, the alist element may be omitted.
+    
+    - TYPE: The CDR is the type specifier associated with NAME, or the
+      symbol T if there is explicit type declaration or proclamation
+      associated with NAME. The type specifier may be equivalent to or a
+      supertype of the original declaration. If the CDR is T the alist
+      element may be omitted.
+    
+    - SB-EXT:ALWAYS-BOUND: (SBCL specific) If CDR is T, NAME has been
+      declared as SB-EXT:ALWAYS-BOUND.
+    
+    - SB-EXT:DEPRECATED: (SBCL specific) The CDR is a plist containing the
+      following properties:
+    
+        - :STATE ( :EARLY | :LATE | :FINAL )
+    
+            Use of :EARLY deprecated variables signals a STYLE-WARNING at
+            compile-time.
+    
+            Use of :LATE deprecated variables signals a full WARNING at
+            compile-time.
+    
+            Use of :FINAL deprecated variables signals a full WARNING at
+            compile-time and an error at runtime.
+    
+        - :SINCE (SOFTWARE VERSION)
+    
+            VERSION is a string designating the version since which the
+            variable has been deprecated. SOFTWARE is NIL or the name of
+            the software to which VERSION refers, e.g. "SBCL" for
+            deprecated variables in SBCL.
+    
+        - :REPLACEMENTS REPLACEMENTS
+    
+            When this property is present, REPLACEMENTS is a list of
+            symbols naming variables that should be used instead of the
+            deprecated variable.
+    
+    In addition to these declarations defined using DEFINE-DECLARATION may
+    appear.
+  Source file: SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - PARSE/BYTES::VARIABLE-TYPE
+  - (COERCE-TO-STRING)
+  - (COERCE-TO-SEQUENCE)
+  - (XSUBSEQ)
+  - [[id:1045960347303][VBOUNDP!]]
+
+:definitions:
+- SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+- SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** COMPILER-LET :compiled:specop:function:
+:PROPERTIES:
+:ID: 3100601290571
+:CUSTOM_ID: SB-CLTL2:COMPILER-LET
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILER-LET names a special operator:
+  Lambda-list: (BINDINGS &REST FORMS)
+  Source file: SYS:CONTRIB;SB-CLTL2;COMPILER-LET.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CLTL2;COMPILER-LET.LISP.NEWEST
+:end:
+** ENCLOSE :compiled:function:
+:PROPERTIES:
+:ID: 1930271859911
+:CUSTOM_ID: SB-CLTL2:ENCLOSE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENCLOSE names a compiled function:
+  Lambda-list: (LAMBDA-EXPRESSION &OPTIONAL ENVIRONMENT)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Return a function consistent with LAMBDA-EXPRESSION in ENVIRONMENT: the
+    lambda expression is allowed to reference the declarations and macro
+    definitions in ENVIRONMENT, but consequences are undefined if lexical
+    variables, functions, tags or any other run-time entity defined inENVIRONMENT
+    is referred to by the expression.
+  Source file: SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - OBJ/CMD::COMPILE-COMMAND
+
+:definitions:
+- SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+:end:
+** DEFINE-DECLARATION :compiled:macro:function:
+:PROPERTIES:
+:ID: 1996763582833
+:CUSTOM_ID: SB-CLTL2:DEFINE-DECLARATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEFINE-DECLARATION names a macro:
+  Lambda-list: (DECL-NAME LAMBDA-LIST &BODY BODY)
+  Documentation:
+    Define a handler for declaration specifiers starting with DECL-NAME.
+    
+    The function defined by this macro is called with two arguments: adeclaration
+    specifier and a environment. It must return two values. The first valuemust
+    be :VARIABLE, :FUNCTION, or :DECLARE.
+    
+    If the first value is :VARIABLE or :FUNCTION then the second value shouldbe a
+    list of elements of the form (BINDING-NAME KEY VALUE). conses (KEY . VALUE)
+    will be added to the alist returned by:
+    
+       (function-information binding-name env)
+    
+     or
+    
+       (variable-information binding-name env)
+    
+    If the first value is :DECLARE then the second value should be a
+    cons (DECL-NAME . VALUE). VALUE will be returned by:
+    
+       (declaration-information decl-name env)
+  Source file: SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+:end:
+** DECLARATION-INFORMATION :compiled:function:
+:PROPERTIES:
+:ID: 1800296156943
+:CUSTOM_ID: SB-CLTL2:DECLARATION-INFORMATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DECLARATION-INFORMATION names a compiled function:
+  Lambda-list: (DECLARATION-NAME &OPTIONAL ENV)
+  Declared type: (FUNCTION (SYMBOL &OPTIONAL (OR SB-C::ABSTRACT-LEXENV NULL))
+                  (VALUES T &OPTIONAL))
+  Documentation:
+    Return information about declarations named by DECLARATION-NAME.
+    
+    If DECLARATION-NAME is OPTIMIZE return a list who's entries are of the
+    form (QUALITY VALUE).
+    
+    If DECLARATION-NAME is DECLARATION return a list of declaration names that
+    have been proclaimed as valid.
+    
+    If DECLARATION-NAME is a name that has defined via DEFINE-DECLARATIONreturn a
+    user defined value.
+    
+    If DECLARATION-NAME is SB-EXT:MUFFLE-CONDITIONS return a type specifier for
+    the condition types that have been muffled.
+  Source file: SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (DECLARATION-ARGLIST ((EQL OPTIMIZE)))
+
+:definitions:
+- SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+- SYS:CONTRIB;SB-CLTL2;ENV.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:

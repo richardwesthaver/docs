@@ -1,4 +1,4 @@
-#+setupfile: ../../clean.theme
+#+SETUPFILE: ../../clean.theme
 * SB-THREAD
 :PROPERTIES:
 :CUSTOM_ID: SB-THREAD
@@ -15,18 +15,20 @@ public (but low-level): native thread support
   - SB-SYS
 
 - dependents
-  - [[#SB-CONCURRENCY][SB-CONCURRENCY]]
-  - [[#STD-USER][STD-USER]]
-  - [[#NET/CORE][NET/CORE]]
-  - [[#STD/THREAD][STD/THREAD]]
+  - [[id:84][SB-CONCURRENCY]]
+  - [[id:136][STD-USER]]
+  - [[id:393][NET/CORE]]
+  - [[id:127][STD/THREAD]]
 
 ** SPINLOCK :type:
 :PROPERTIES:
 :ID: 2554455664064
 :CUSTOM_ID: SB-THREAD:SPINLOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SPINLOCK names a type-specifier:
   In LATE deprecation since SBCL version 1.0.53.11. Use SB-THREAD:MUTEXinstead.
   Documentation:
@@ -37,6 +39,7 @@ SPINLOCK names a type-specifier:
     Spinlock type.
   Lambda-list: ()
   Expansion: MUTEX
+
 #+end_example
 
 :definitions:
@@ -49,8 +52,10 @@ SPINLOCK names a type-specifier:
 :ID: 3324408552805
 :CUSTOM_ID: SB-THREAD:SEMAPHORE-NOTIFICATION-STATUS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SEMAPHORE-NOTIFICATION-STATUS names a compiled function:
   Lambda-list: (SEMAPHORE-NOTIFICATION)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
@@ -60,6 +65,7 @@ SEMAPHORE-NOTIFICATION-STATUS names a compiled function:
     or cleared.
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -70,14 +76,17 @@ SEMAPHORE-NOTIFICATION-STATUS names a compiled function:
 :ID: 3575470585853
 :CUSTOM_ID: SB-THREAD:THREAD-OS-TID
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 THREAD-OS-TID names a compiled function:
   An accessor for SB-THREAD:THREAD
   Lambda-list: (INSTANCE)
   Derived type: (FUNCTION (SB-THREAD:THREAD)
                  (VALUES (UNSIGNED-BYTE 32) &OPTIONAL))
   Source file: SYS:SRC;CODE;THREAD-STRUCTS.LISP
+
 #+end_example
 
 - Called by
@@ -96,14 +105,17 @@ THREAD-OS-TID names a compiled function:
 :ID: 1576371359837
 :CUSTOM_ID: SB-THREAD:MAKE-RW-SPINLOCK
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-RW-SPINLOCK names a compiled function:
   A constructor for SB-THREAD::RW-SPINLOCK
   Lambda-list: (&KEY ((STATE STATE) 0))
   Derived type: (FUNCTION (&KEY (:STATE (UNSIGNED-BYTE 64)))
                  (VALUES SB-THREAD::RW-SPINLOCK &OPTIONAL))
   Source file: SYS:SRC;CODE;RWLOCK.LISP
+
 #+end_example
 
 :definitions:
@@ -114,13 +126,16 @@ MAKE-RW-SPINLOCK names a compiled function:
 :ID: 1441822076424
 :CUSTOM_ID: SB-THREAD:CURRENT-THREAD-SAP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CURRENT-THREAD-SAP names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES SB-SYS:SYSTEM-AREA-POINTER &OPTIONAL))
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -131,8 +146,10 @@ CURRENT-THREAD-SAP names a compiled function:
 :ID: 2950008367311
 :CUSTOM_ID: SB-THREAD:WAIT-ON-SEMAPHORE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WAIT-ON-SEMAPHORE names a compiled function:
   Lambda-list: (SEMAPHORE &KEY (N 1) TIMEOUT NOTIFICATION)
   Declared type: (FUNCTION
@@ -159,6 +176,7 @@ WAIT-ON-SEMAPHORE names a compiled function:
     SEMAPHORE-NOTIFICATION-STATUS is NIL. If WAIT-ON-SEMAPHORE succeeds and
     decrements the count, the status is set to T.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -174,8 +192,10 @@ WAIT-ON-SEMAPHORE names a compiled function:
 :ID: 2972801791609
 :CUSTOM_ID: SB-THREAD:MAKE-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-THREAD names a compiled function:
   Lambda-list: (FUNCTION &KEY NAME ARGUMENTS)
   Derived type: (FUNCTION (T &KEY (:NAME T) (:ARGUMENTS T)) *)
@@ -188,13 +208,14 @@ MAKE-THREAD names a compiled function:
     Invoking the initial ABORT restart established by MAKE-THREAD
     terminates the thread.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
   - ORGAN/DB::INIT-ORG-GRAPH-DB
-  - [[id:3396509271763][EVAL-REPEATEDLY-ASYNC-STATE]]
-  - [[id:1330912997996][MAKE-CREW]]
-  - [[id:2735860939995][SLIME-CONNECT]]
+  - [[id:3396509271635][EVAL-REPEATEDLY-ASYNC-STATE]]
+  - [[id:1330912997588][MAKE-CREW]]
+  - [[id:2735860940250][SLIME-CONNECT]]
   - NET/PROTO/SWANK::SLIME-DISPATCH-EVENT
   - (START (LOGGER))
   - (RUN-THREAD (MULTI-THREADED-ENGINE T))
@@ -221,8 +242,10 @@ MAKE-THREAD names a compiled function:
 :ID: 1211216141788
 :CUSTOM_ID: SB-THREAD:MAKE-SEMAPHORE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-SEMAPHORE names a compiled function:
   Lambda-list: (&KEY NAME (COUNT 0))
   Derived type: (FUNCTION (&KEY (:NAME T) (:COUNT T))
@@ -230,6 +253,7 @@ MAKE-SEMAPHORE names a compiled function:
   Documentation:
     Create a semaphore with the supplied COUNT and NAME.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -247,8 +271,10 @@ MAKE-SEMAPHORE names a compiled function:
 :ID: 254942208054
 :CUSTOM_ID: SB-THREAD:INTERRUPT-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INTERRUPT-THREAD names a compiled function:
   Lambda-list: (THREAD FUNCTION)
   Derived type: (FUNCTION (T T) (VALUES NULL &OPTIONAL))
@@ -275,7 +301,7 @@ INTERRUPT-THREAD names a compiled function:
     
     With those caveats in mind, what you need to know when using it:
     
-,    * If calling FUNCTION causes a non-local transfer of control (ie. an
+    * If calling FUNCTION causes a non-local transfer of control (ie. an
       unwind), all normal cleanup forms will be executed.
     
         However, if the interrupt occurs during cleanup forms of an
@@ -294,7 +320,7 @@ INTERRUPT-THREAD names a compiled function:
         entire callstack at the point of interruption needs to be
         asynch-unwind-safe.
     
-,    * In addition to asynch-unwind-safety you must consider the issue of
+    * In addition to asynch-unwind-safety you must consider the issue of
       reentrancy. INTERRUPT-THREAD can cause function that are never
       normally called recursively to be re-entered during their dynamic
       contour, which may cause them to misbehave. (Consider binding of
@@ -309,6 +335,7 @@ INTERRUPT-THREAD names a compiled function:
     
     Short version: be careful out there.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -323,12 +350,15 @@ INTERRUPT-THREAD names a compiled function:
 :ID: 3734185196979
 :CUSTOM_ID: SB-THREAD:RWLOCK-UNLOCK
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 RWLOCK-UNLOCK names a compiled function:
   Lambda-list: (LOCK)
   Derived type: (FUNCTION (SB-THREAD::RWLOCK) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;RWLOCK.LISP
+
 #+end_example
 
 :definitions:
@@ -339,14 +369,17 @@ RWLOCK-UNLOCK names a compiled function:
 :ID: 2391447382465
 :CUSTOM_ID: SB-THREAD:THREAD-YIELD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 THREAD-YIELD names a compiled function:
   Lambda-list: ()
   Declared type: (FUNCTION NIL (VALUES (SIGNED-BYTE 32) &OPTIONAL))
   Documentation:
     Yield the processor to other threads.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -360,8 +393,10 @@ THREAD-YIELD names a compiled function:
 :ID: 722681159408
 :CUSTOM_ID: SB-THREAD:THREAD-ALIVE-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 THREAD-ALIVE-P names a compiled function:
   Lambda-list: (THREAD)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
@@ -371,6 +406,7 @@ THREAD-ALIVE-P names a compiled function:
     any time.
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -393,8 +429,10 @@ THREAD-ALIVE-P names a compiled function:
 :ID: 1366829172654
 :CUSTOM_ID: SB-THREAD:SIGNAL-SEMAPHORE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIGNAL-SEMAPHORE names a compiled function:
   Lambda-list: (SEMAPHORE &OPTIONAL (N 1))
   Declared type: (FUNCTION (SB-THREAD:SEMAPHORE &OPTIONAL (INTEGER 1))
@@ -403,11 +441,12 @@ SIGNAL-SEMAPHORE names a compiled function:
     Increment the count of SEMAPHORE by N. If there are threads waiting
     on this semaphore, then N of them is woken up.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
   - SB-INTROSPECT:MAP-ROOT
-  - [[id:2133153310738][SEND-MESSAGE]]
+  - [[id:2133153311419][SEND-MESSAGE]]
   - [[id:1703081584491][BROADCAST-WORK]]
 
 :definitions:
@@ -418,8 +457,10 @@ SIGNAL-SEMAPHORE names a compiled function:
 :ID: 2841418382338
 :CUSTOM_ID: SB-THREAD:MUTEX-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MUTEX-NAME names a compiled function:
   An accessor for SB-THREAD:MUTEX
   Lambda-list: (INSTANCE)
@@ -435,6 +476,7 @@ MUTEX-NAME names a compiled function:
   Derived type: (FUNCTION ((OR SIMPLE-STRING NULL) SB-THREAD:MUTEX)
                  (VALUES (OR SIMPLE-STRING NULL) &OPTIONAL))
   Source file: SYS:SRC;CODE;THREAD-STRUCTS.LISP
+
 #+end_example
 
 - Called by
@@ -448,13 +490,16 @@ MUTEX-NAME names a compiled function:
 :ID: 1115838955847
 :CUSTOM_ID: SB-THREAD:%THREAD-FROM-TID
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %THREAD-FROM-TID names a compiled function:
   Lambda-list: (OS-TID)
   Derived type: (FUNCTION ((UNSIGNED-BYTE 32))
                  (VALUES (OR LIST SB-THREAD:THREAD) &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -465,12 +510,15 @@ MUTEX-NAME names a compiled function:
 :ID: 3397565482170
 :CUSTOM_ID: SB-THREAD:RWLOCK-WRLOCK
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 RWLOCK-WRLOCK names a compiled function:
   Lambda-list: (LOCK)
   Derived type: (FUNCTION (T) (VALUES (MEMBER T) &OPTIONAL))
   Source file: SYS:SRC;CODE;RWLOCK.LISP
+
 #+end_example
 
 :definitions:
@@ -481,12 +529,15 @@ RWLOCK-WRLOCK names a compiled function:
 :ID: 3881912688737
 :CUSTOM_ID: SB-THREAD:PRINT-ALLOCATOR-HISTOGRAM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 PRINT-ALLOCATOR-HISTOGRAM names a compiled function:
   Lambda-list: (&OPTIONAL (THREAD-OR-VALUES *CURRENT-THREAD*))
   Derived type: (FUNCTION (&OPTIONAL T) (VALUES (OR STRING NULL) &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -497,8 +548,10 @@ PRINT-ALLOCATOR-HISTOGRAM names a compiled function:
 :ID: 2621525424031
 :CUSTOM_ID: SB-THREAD:MAIN-THREAD-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAIN-THREAD-P names a compiled function:
   Lambda-list: (&OPTIONAL (THREAD *CURRENT-THREAD*))
   Derived type: (FUNCTION (&OPTIONAL (OR SB-THREAD:THREAD NULL))
@@ -507,6 +560,7 @@ MAIN-THREAD-P names a compiled function:
     True if THREAD, defaulting to current thread, is the main thread of theprocess.
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -517,12 +571,15 @@ MAIN-THREAD-P names a compiled function:
 :ID: 2946360500428
 :CUSTOM_ID: SB-THREAD:AVL-FIND>=
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 AVL-FIND>= names a compiled function:
   Lambda-list: (KEY ROOT)
   Derived type: (FUNCTION ((UNSIGNED-BYTE 64) T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;AVLTREE.LISP
+
 #+end_example
 
 :definitions:
@@ -533,9 +590,11 @@ AVL-FIND>= names a compiled function:
 :ID: 3444951915497
 :CUSTOM_ID: SB-THREAD:*INTERRUPT-HANDLER*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*INTERRUPT-HANDLER* names a special variable:
+
+*INTERRUPT-HANDLER* names a special variable:
   Declared type: (OR FUNCTION SYMBOL)
   Declared always-bound.
   Value: NIL
@@ -543,6 +602,7 @@ AVL-FIND>= names a compiled function:
     A function which is called with the function argument to SB-THREAD:INTERRUPT-THREAD
     when the interrupt is ready to run.
     The default behavior is to use FUNCALL.
+
 #+end_example
 
 - Bound by
@@ -558,16 +618,16 @@ AVL-FIND>= names a compiled function:
 :ID: 2819151401561
 :CUSTOM_ID: SB-THREAD:GET-FOREGROUND
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GET-FOREGROUND names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES (MEMBER T) &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
-#+end_example
 
-- Called by
-  - SB-ACLREPL::REPL-PROMPT-FUN
+#+end_example
 
 :definitions:
 - SYS:SRC;CODE;TARGET-THREAD.LISP
@@ -577,8 +637,10 @@ GET-FOREGROUND names a compiled function:
 :ID: 1923660781380
 :CUSTOM_ID: SB-THREAD:MAKE-WAITQUEUE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-WAITQUEUE names a compiled function:
   A constructor for SB-THREAD:WAITQUEUE
   Lambda-list: (&KEY NAME)
@@ -587,11 +649,12 @@ MAKE-WAITQUEUE names a compiled function:
   Documentation:
     Create a WAITQUEUE.
   Source file: SYS:SRC;CODE;THREAD-STRUCTS.LISP
+
 #+end_example
 
 - Called by
   - SB-CONCURRENCY:MAKE-GATE
-  - [[id:3628500782097][SLIME-EVAL]]
+  - [[id:3628500783083][SLIME-EVAL]]
   - (CACHE-FETCH (CACHE T))
   - SWANK/SBCL::MAKE-MAILBOX
   - STD/ASYNC::AWAIT-PROMISE
@@ -608,8 +671,10 @@ MAKE-WAITQUEUE names a compiled function:
 :ID: 2285272549369
 :CUSTOM_ID: SB-THREAD:MUTEX-OWNER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MUTEX-OWNER names a compiled function:
   Lambda-list: (MUTEX)
   Derived type: (FUNCTION (T) *)
@@ -620,6 +685,7 @@ MUTEX-OWNER names a compiled function:
     testing whether the current thread is holding a mutex see
     HOLDING-MUTEX-P.
   Source file: SYS:SRC;CODE;THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -633,12 +699,15 @@ MUTEX-OWNER names a compiled function:
 :ID: 678262045276
 :CUSTOM_ID: SB-THREAD:AVL-FIND<=
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 AVL-FIND<= names a compiled function:
   Lambda-list: (KEY ROOT)
   Derived type: (FUNCTION ((UNSIGNED-BYTE 64) T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;AVLTREE.LISP
+
 #+end_example
 
 :definitions:
@@ -649,14 +718,17 @@ AVL-FIND<= names a compiled function:
 :ID: 1692729580473
 :CUSTOM_ID: SB-THREAD:THREAD-ERROR-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 THREAD-ERROR-THREAD names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Documentation:
     Return the offending thread that the THREAD-ERROR pertains to.
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -667,8 +739,10 @@ THREAD-ERROR-THREAD names a compiled function:
 :ID: 4182347788872
 :CUSTOM_ID: SB-THREAD:SEMAPHORE-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SEMAPHORE-NAME names a compiled function:
   Lambda-list: (SEMAPHORE)
   Derived type: (FUNCTION (T) (VALUES (OR STRING NULL) &OPTIONAL))
@@ -680,6 +754,7 @@ SEMAPHORE-NAME names a compiled function:
   Lambda-list: (NEWVAL SEMAPHORE)
   Derived type: (FUNCTION (T T) (VALUES (OR STRING NULL) &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -690,8 +765,10 @@ SEMAPHORE-NAME names a compiled function:
 :ID: 335590943023
 :CUSTOM_ID: SB-THREAD:THREAD-DEADLOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 THREAD-DEADLOCK names the condition-class #<SB-PCL::CONDITION-CLASS SB-THREAD:THREAD-DEADLOCK>:
   Class precedence-list: THREAD-DEADLOCK, THREAD-ERROR, ERROR,
                          SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
@@ -701,6 +778,7 @@ THREAD-DEADLOCK names the condition-class #<SB-PCL::CONDITION-CLASS SB-THREAD:TH
     SB-THREAD::CYCLE
       Initargs: :CYCLE
       Readers: THREAD-DEADLOCK-CYCLE
+
 #+end_example
 
 :definitions:
@@ -711,8 +789,10 @@ THREAD-DEADLOCK names the condition-class #<SB-PCL::CONDITION-CLASS SB-THREAD:TH
 :ID: 358088957236
 :CUSTOM_ID: SB-THREAD:INTERRUPT-THREAD-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INTERRUPT-THREAD-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-THREAD:INTERRUPT-THREAD-ERROR>:
   Documentation:
     Signalled when interrupting a thread fails because the thread has already
@@ -722,6 +802,7 @@ INTERRUPT-THREAD-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-TH
   Direct superclasses: THREAD-ERROR
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -732,13 +813,16 @@ INTERRUPT-THREAD-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-TH
 :ID: 3707343521429
 :CUSTOM_ID: SB-THREAD:RWSPINLOCK-RDUNLOCK
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 RWSPINLOCK-RDUNLOCK names a compiled function:
   Lambda-list: (LOCK)
   Derived type: (FUNCTION (T) (VALUES (MEMBER T) &OPTIONAL))
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;RWLOCK.LISP
+
 #+end_example
 
 :definitions:
@@ -749,8 +833,10 @@ RWSPINLOCK-RDUNLOCK names a compiled function:
 :ID: 767367338330
 :CUSTOM_ID: SB-THREAD:GET-SPINLOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GET-SPINLOCK names a compiled function:
   In EARLY deprecation since SBCL version 1.0.53.11. Use SB-THREAD:GRAB-MUTEXinstead.
   Lambda-list: (LOCK)
@@ -760,6 +846,7 @@ GET-SPINLOCK names a compiled function:
     
     Use SB-THREAD:GRAB-MUTEX instead.
   Source file: SYS:SRC;CODE;THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -772,13 +859,16 @@ GET-SPINLOCK names a compiled function:
 :ID: 494554775629
 :CUSTOM_ID: SB-THREAD:RESET-ALLOCATOR-HISTOGRAM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 RESET-ALLOCATOR-HISTOGRAM names a compiled function:
   Lambda-list: (&OPTIONAL (THREAD *CURRENT-THREAD*))
   Derived type: (FUNCTION (&OPTIONAL T)
                  (VALUES (OR LIST (INTEGER 0 0)) &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -789,12 +879,15 @@ RESET-ALLOCATOR-HISTOGRAM names a compiled function:
 :ID: 3491424652085
 :CUSTOM_ID: SB-THREAD:RWSPINLOCK-RDLOCK
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 RWSPINLOCK-RDLOCK names a compiled function:
   Lambda-list: (LOCK)
   Derived type: (FUNCTION (T) (VALUES (MEMBER T) &OPTIONAL))
   Source file: SYS:SRC;CODE;RWLOCK.LISP
+
 #+end_example
 
 :definitions:
@@ -805,8 +898,10 @@ RWSPINLOCK-RDLOCK names a compiled function:
 :ID: 1559000923607
 :CUSTOM_ID: SB-THREAD:CONDITION-NOTIFY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CONDITION-NOTIFY names a compiled function:
   Lambda-list: (QUEUE &OPTIONAL (N 1))
   Declared type: (FUNCTION
@@ -819,19 +914,20 @@ CONDITION-NOTIFY names a compiled function:
     IMPORTANT: The same mutex that is used in the corresponding CONDITION-WAIT
     must be held by this thread during this call.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
   - NET/PROTO/CREW::RECORD-ASYNC-RESULT
   - NET/PROTO/CREW::ASYNC-RESULTS-LOOP
   - NET/PROTO/CREW::RECORD-REPEATED-RESULT
-  - [[id:3395488596778][PARALLEL-REDUCE]]
+  - [[id:3395488596538][PARALLEL-REDUCE]]
   - (WITH-MUTEX-THUNK IN PARALLEL-REDUCE)
   - NET/PROTO/CREW::DISPATCH-WORK
   - (WITH-MUTEX-THUNK IN DISPATCH-WORK)
   - NET/PROTO/CREW::FREE-WORKER
   - NET/PROTO/CREW::RECONNECT-WORKERS
-  - [[id:3628500782097][SLIME-EVAL]]
+  - [[id:3628500783083][SLIME-EVAL]]
   - (WITH-MUTEX-THUNK IN SLIME-EVAL)
   - (MSG (LOGGER T))
   - (STOP (LOGGER))
@@ -854,12 +950,15 @@ CONDITION-NOTIFY names a compiled function:
 :ID: 3488664543274
 :CUSTOM_ID: SB-THREAD:%THREAD-LOCAL-REFERENCES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %THREAD-LOCAL-REFERENCES names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES LIST &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -873,8 +972,10 @@ CONDITION-NOTIFY names a compiled function:
 :ID: 152934006402
 :CUSTOM_ID: SB-THREAD:MAKE-SEMAPHORE-NOTIFICATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-SEMAPHORE-NOTIFICATION names a compiled function:
   A constructor for SB-THREAD:SEMAPHORE-NOTIFICATION
   Lambda-list: ()
@@ -884,6 +985,7 @@ MAKE-SEMAPHORE-NOTIFICATION names a compiled function:
     Constructor for SEMAPHORE-NOTIFICATION objects. SEMAPHORE-NOTIFICATION-STATUS
     is initially NIL.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -894,8 +996,10 @@ MAKE-SEMAPHORE-NOTIFICATION names a compiled function:
 :ID: 4186435547299
 :CUSTOM_ID: SB-THREAD:WITH-SPINLOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-SPINLOCK names a macro:
   In EARLY deprecation since SBCL version 1.0.53.11. Use SB-THREAD:WITH-MUTEXinstead.
   Lambda-list: ((LOCK) &BODY BODY)
@@ -904,6 +1008,7 @@ WITH-SPINLOCK names a macro:
     
     Use SB-THREAD:WITH-MUTEX instead.
   Source file: SYS:SRC;CODE;THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -916,8 +1021,10 @@ WITH-SPINLOCK names a macro:
 :ID: 1346027309831
 :CUSTOM_ID: SB-THREAD:GRAB-MUTEX
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GRAB-MUTEX names a compiled function:
   Lambda-list: (MUTEX &KEY (WAITP T) (TIMEOUT NIL))
   Declared type: (FUNCTION
@@ -959,6 +1066,7 @@ GRAB-MUTEX names a compiled function:
       - It is recommended that you use WITH-MUTEX instead of calling GRAB-MUTEX
         directly.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -977,8 +1085,10 @@ GRAB-MUTEX names a compiled function:
 :ID: 4098761354687
 :CUSTOM_ID: SB-THREAD:ABORT-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ABORT-THREAD names a compiled function:
   Lambda-list: (&KEY ALLOW-EXIT)
   Derived type: (FUNCTION (&KEY (:ALLOW-EXIT T)) *)
@@ -1000,6 +1110,7 @@ ABORT-THREAD names a compiled function:
     main thread depends on the :TOPLEVEL argument to
     SB-EXT:SAVE-LISP-AND-DIE.)
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -1010,8 +1121,10 @@ ABORT-THREAD names a compiled function:
 :ID: 977807007072
 :CUSTOM_ID: SB-THREAD:WITH-RECURSIVE-LOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-RECURSIVE-LOCK names a macro:
   Lambda-list: ((MUTEX &KEY (WAIT-P T) TIMEOUT) &BODY BODY)
   Documentation:
@@ -1032,6 +1145,7 @@ WITH-RECURSIVE-LOCK names a macro:
     Unlike WITH-MUTEX, which signals an error on attempt to re-acquire analready
     held mutex, WITH-RECURSIVE-LOCK allows recursive lock attempts to succeed.
   Source file: SYS:SRC;CODE;THREAD.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -1049,8 +1163,10 @@ WITH-RECURSIVE-LOCK names a macro:
 :ID: 85507585629
 :CUSTOM_ID: SB-THREAD:SYMBOL-VALUE-IN-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SYMBOL-VALUE-IN-THREAD names a compiled function:
   Lambda-list: (SYMBOL THREAD &OPTIONAL (ERRORP T))
   Derived type: (FUNCTION (SYMBOL SB-THREAD:THREAD &OPTIONAL T)
@@ -1075,6 +1191,7 @@ SYMBOL-VALUE-IN-THREAD names a compiled function:
   Derived type: (FUNCTION (T SYMBOL SB-THREAD:THREAD &OPTIONAL T)
                  (VALUES T BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -1088,8 +1205,10 @@ SYMBOL-VALUE-IN-THREAD names a compiled function:
 :ID: 1289522264483
 :CUSTOM_ID: SB-THREAD:THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 THREAD names the structure-class #<STRUCTURE-CLASS SB-THREAD:THREAD>:
   Documentation:
     Thread type. Do not rely on threads being structs as it may change
@@ -1162,6 +1281,7 @@ THREAD names the structure-class #<STRUCTURE-CLASS SB-THREAD:THREAD>:
     SB-THREAD::WAITING-FOR
       Type: T
       Initform: NIL
+
 #+end_example
 
 :definitions:
@@ -1174,8 +1294,10 @@ THREAD names the structure-class #<STRUCTURE-CLASS SB-THREAD:THREAD>:
 :ID: 1402771076740
 :CUSTOM_ID: SB-THREAD:THREAD-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 THREAD-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-THREAD:THREAD-ERROR>:
   Documentation:
     Conditions of type THREAD-ERROR are signalled when thread operations fail.
@@ -1191,6 +1313,7 @@ THREAD-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-THREAD:THREA
     THREAD
       Initargs: :THREAD
       Readers: THREAD-ERROR-THREAD
+
 #+end_example
 
 :definitions:
@@ -1201,8 +1324,10 @@ THREAD-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-THREAD:THREA
 :ID: 2021774246842
 :CUSTOM_ID: SB-THREAD:THREAD-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 THREAD-NAME names a compiled function:
   Lambda-list: (THREAD)
   Derived type: (FUNCTION (T) (VALUES (OR SIMPLE-STRING NULL) &OPTIONAL))
@@ -1216,10 +1341,10 @@ THREAD-NAME names a compiled function:
   Lambda-list: (NAME THREAD)
   Derived type: (FUNCTION (T T) (VALUES STRING &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
-  - SB-ACLREPL::KILL-CMD
   - RT/TRACING::JSON-FROM-THREAD
   - (NAME (MULTI-THREADED-ENGINE))
   - (THREAD-NAME IN /home/ellis/src/core/lib/swank/sbcl.lisp)
@@ -1234,8 +1359,10 @@ THREAD-NAME names a compiled function:
 :ID: 136882062524
 :CUSTOM_ID: SB-THREAD:JOIN-THREAD-ERROR-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 JOIN-THREAD-ERROR-THREAD names a compiled function:
   In LATE deprecation since SBCL version 1.0.29.17. Use SB-THREAD:THREAD-ERROR-THREAD instead.
   Lambda-list: (CONDITION)
@@ -1245,6 +1372,7 @@ JOIN-THREAD-ERROR-THREAD names a compiled function:
     
     Use SB-THREAD:THREAD-ERROR-THREAD instead.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -1257,8 +1385,10 @@ JOIN-THREAD-ERROR-THREAD names a compiled function:
 :ID: 669891724656
 :CUSTOM_ID: SB-THREAD:FOREIGN-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FOREIGN-THREAD names the structure-class #<STRUCTURE-CLASS SB-THREAD:FOREIGN-THREAD>:
   Documentation:
     Type of native threads which are attached to the runtime as Lisp threads
@@ -1332,6 +1462,7 @@ FOREIGN-THREAD names the structure-class #<STRUCTURE-CLASS SB-THREAD:FOREIGN-THR
     SB-THREAD::WAITING-FOR
       Type: T
       Initform: NIL
+
 #+end_example
 
 :definitions:
@@ -1342,19 +1473,20 @@ FOREIGN-THREAD names the structure-class #<STRUCTURE-CLASS SB-THREAD:FOREIGN-THR
 :ID: 4395464235543
 :CUSTOM_ID: SB-THREAD:*CURRENT-THREAD*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*CURRENT-THREAD* names a special variable:
+
+*CURRENT-THREAD* names a special variable:
   Declared type: SB-THREAD:THREAD
   Declared always-bound.
-  Value: #<THREAD tid=84628 "main thread" RUNNING {1200048003}>
+  Value: #<THREAD tid=204523 "main thread" RUNNING {1200048003}>
   Documentation:
     Bound in each thread to the thread itself.
+
 #+end_example
 
 - Referenced by
-  - SB-ACLREPL::PROCESSES-CMD
-  - SB-ACLREPL::OTHER-THREADS
   - SB-INTROSPECT:MAP-ROOT
   - SB-SPROF:STOP-SAMPLING
   - SB-SPROF:START-SAMPLING
@@ -1379,8 +1511,10 @@ FOREIGN-THREAD names the structure-class #<STRUCTURE-CLASS SB-THREAD:FOREIGN-THR
 :ID: 3135308149048
 :CUSTOM_ID: SB-THREAD:JOIN-THREAD-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 JOIN-THREAD-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-THREAD:JOIN-THREAD-ERROR>:
   Documentation:
     Signalled when joining a thread fails due to abnormal exit of the thread
@@ -1394,6 +1528,7 @@ JOIN-THREAD-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-THREAD:
     SB-THREAD::PROBLEM
       Initargs: :PROBLEM
       Readers: JOIN-THREAD-PROBLEM
+
 #+end_example
 
 :definitions:
@@ -1404,11 +1539,14 @@ JOIN-THREAD-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-THREAD:
 :ID: 3499886091470
 :CUSTOM_ID: SB-THREAD:WITH-SESSION-LOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-SESSION-LOCK names a macro:
   Lambda-list: ((SESSION) &BODY BODY)
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -1419,13 +1557,16 @@ WITH-SESSION-LOCK names a macro:
 :ID: 806764797501
 :CUSTOM_ID: SB-THREAD:FUTEX-WAKE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FUTEX-WAKE names a compiled function:
   Lambda-list: (WORD-ADDR N)
   Declared type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -1436,8 +1577,10 @@ FUTEX-WAKE names a compiled function:
 :ID: 3809335301940
 :CUSTOM_ID: SB-THREAD:JOIN-THREAD-PROBLEM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 JOIN-THREAD-PROBLEM names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
@@ -1445,6 +1588,7 @@ JOIN-THREAD-PROBLEM names a compiled function:
     Return the reason that a JOIN-THREAD-ERROR was signaled. Possible valuesare
     :TIMEOUT, :ABORT, :FOREIGN, and :SELF-JOIN.
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -1455,8 +1599,10 @@ JOIN-THREAD-PROBLEM names a compiled function:
 :ID: 1511366864347
 :CUSTOM_ID: SB-THREAD:RELEASE-FOREGROUND
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 RELEASE-FOREGROUND names a compiled function:
   Lambda-list: (&OPTIONAL NEXT)
   Derived type: (FUNCTION (&OPTIONAL T) (VALUES NULL &OPTIONAL))
@@ -1464,10 +1610,8 @@ RELEASE-FOREGROUND names a compiled function:
     Background this thread.  If NEXT is supplied, arrange for it to
     have the foreground next.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
-#+end_example
 
-- Called by
-  - SB-ACLREPL::FOCUS-CMD
+#+end_example
 
 :definitions:
 - SYS:SRC;CODE;TARGET-THREAD.LISP
@@ -1477,8 +1621,10 @@ RELEASE-FOREGROUND names a compiled function:
 :ID: 1740756329315
 :CUSTOM_ID: SB-THREAD:WITH-MUTEX
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-MUTEX names a macro:
   Lambda-list: ((MUTEX &KEY (WAIT-P T) TIMEOUT (VALUE NIL)) &BODY BODY)
   Documentation:
@@ -1499,6 +1645,7 @@ WITH-MUTEX names a macro:
     no longer supported: if VALUE is provided, it must be either NIL or the
     current thread.
   Source file: SYS:SRC;CODE;THREAD.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -1510,26 +1657,26 @@ WITH-MUTEX names a macro:
   - SB-POSIX:GETPWUID
   - SB-POSIX:GETPWNAM
   - (SERVICE-LOG-ACCESS (HTTP-SERVICE))
-  - [[id:2432123875701][CALL-WITH-REQUEST-COUNT-INCF]]
+  - [[id:2432123876343][CALL-WITH-REQUEST-COUNT-INCF]]
   - (ACCEPT (NET-SERVICE))
   - (SERVICE-LOG-MESSAGE (NET-SERVICE T T))
-  - [[id:3969418790003][WAIT-FOR-FREE-CONNECTION]]
-  - [[id:88367834876][RESET-SESSIONS]]
-  - [[id:76242704216][START-SESSION]]
-  - [[id:1865488014881][SESSION-GC]]
-  - [[id:372200115975][REMOVE-SESSION]]
+  - [[id:3969418790284][WAIT-FOR-FREE-CONNECTION]]
+  - [[id:88367834140][RESET-SESSIONS]]
+  - [[id:76242703512][START-SESSION]]
+  - [[id:1865488014486][SESSION-GC]]
+  - [[id:372200115833][REMOVE-SESSION]]
   - NET/REQ:CLEAR-CONNECTION-POOL
   - NET/REQ::STEAL-CONNECTION
   - NET/REQ::PUSH-CONNECTION
-  - [[id:3396509271763][EVAL-REPEATEDLY-ASYNC-STATE]]
+  - [[id:3396509271635][EVAL-REPEATEDLY-ASYNC-STATE]]
   - NET/PROTO/CREW::RECORD-ASYNC-RESULT
   - NET/PROTO/CREW::ASYNC-RESULTS-LOOP
-  - [[id:2392640869863][EVAL-FORM-REPEATEDLY]]
+  - [[id:2392640870394][EVAL-FORM-REPEATEDLY]]
   - NET/PROTO/CREW::RECORD-REPEATED-RESULT
   - NET/PROTO/CREW::FIND-EVAL
   - NET/PROTO/CREW::REMOVE-EVAL
   - NET/PROTO/CREW::ADD-EVAL
-  - [[id:3395488596778][PARALLEL-REDUCE]]
+  - [[id:3395488596538][PARALLEL-REDUCE]]
   - NET/PROTO/CREW::DISPATCH-WORK
   - NET/PROTO/CREW::ENSURE-CAUGHT-UP-THEN-EVALUATE
   - NET/PROTO/CREW::UNEVALUATED-REPLAY-FORMS
@@ -1540,16 +1687,16 @@ WITH-MUTEX names a macro:
   - NET/PROTO/CREW::ALLOCATE-WORKER
   - NET/PROTO/CREW::RECONNECT-WORKERS
   - NET/PROTO/CREW::DISCONNECT-WORKERS
-  - [[id:591739684091][SLIME-CLOSE]]
+  - [[id:591739683855][SLIME-CLOSE]]
   - NET/PROTO/SWANK::SLIME-DISPATCH-EVENTS
-  - [[id:3628500782097][SLIME-EVAL]]
+  - [[id:3628500783083][SLIME-EVAL]]
   - NET/PROTO/SWANK::SLIME-DISPATCH-EVENT
   - NET/PROTO/SWANK::FIND-CONNECTION-FOR-THREAD-ID
   - NET/PROTO/SWANK::REMOVE-OPEN-CONNECTION
   - NET/PROTO/SWANK::ADD-OPEN-CONNECTION
-  - [[id:101247992715][UPDATE!]]
+  - [[id:101247991921][UPDATE!]]
   - RT::DO-TESTS-CONCURRENTLY
-  - [[id:2617495707377][LOG-PIPE]]
+  - [[id:2617495706630][LOG-PIPE]]
   - (MSG (LOGGER T))
   - LOG::LOG-SYNC
   - (UNCACHE-STORE-SCHEMA (STORE T))
@@ -1602,12 +1749,15 @@ WITH-MUTEX names a macro:
 :ID: 543972031347
 :CUSTOM_ID: SB-THREAD:MAKE-LISTENER-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-LISTENER-THREAD names a compiled function:
   Lambda-list: (TTY-NAME)
   Derived type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -1618,8 +1768,10 @@ MAKE-LISTENER-THREAD names a compiled function:
 :ID: 1179694984704
 :CUSTOM_ID: SB-THREAD:CONDITION-WAIT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CONDITION-WAIT names a compiled function:
   Lambda-list: (QUEUE MUTEX &KEY TIMEOUT)
   Declared type: (FUNCTION
@@ -1649,15 +1801,15 @@ CONDITION-WAIT names a compiled function:
     that uses CONDITION-WAIT is to loop around the call, checking the
     associated data:
     
-,        (defvar *data* nil)
-,        (defvar *queue* (make-waitqueue))
-,        (defvar *lock* (make-mutex))
+        (defvar *data* nil)
+        (defvar *queue* (make-waitqueue))
+        (defvar *lock* (make-mutex))
     
         ;; Consumer
         (defun pop-data (&optional timeout)
           (with-mutex (*lock*)
             (loop until *data*
-,                  do (or (condition-wait *queue* *lock* :timeout timeout)
+                  do (or (condition-wait *queue* *lock* :timeout timeout)
                          ;; Lock not held, must unwind without touching *data*.
                          (return-from pop-data nil)))
             (pop *data*)))
@@ -1668,19 +1820,20 @@ CONDITION-WAIT names a compiled function:
             (push data *data*)
             (condition-notify *queue*)))
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
   - SB-CONCURRENCY:WAIT-ON-GATE
   - (STOP (NET-SERVICE))
-  - [[id:3969418790003][WAIT-FOR-FREE-CONNECTION]]
-  - [[id:3396509271763][EVAL-REPEATEDLY-ASYNC-STATE]]
+  - [[id:3969418790284][WAIT-FOR-FREE-CONNECTION]]
+  - [[id:3396509271635][EVAL-REPEATEDLY-ASYNC-STATE]]
   - NET/PROTO/CREW::ASYNC-RESULTS-LOOP
-  - [[id:2392640869863][EVAL-FORM-REPEATEDLY]]
-  - [[id:3395488596778][PARALLEL-REDUCE]]
+  - [[id:2392640870394][EVAL-FORM-REPEATEDLY]]
+  - [[id:3395488596538][PARALLEL-REDUCE]]
   - NET/PROTO/CREW::DISPATCH-WORK
   - NET/PROTO/CREW::ALLOCATE-WORKER
-  - [[id:3628500782097][SLIME-EVAL]]
+  - [[id:3628500783083][SLIME-EVAL]]
   - (CACHE-FETCH (CACHE T))
   - (RECEIVE-IF IN /home/ellis/src/core/lib/swank/sbcl.lisp)
   - STD/ASYNC::AWAIT-PROMISE
@@ -1700,8 +1853,10 @@ CONDITION-WAIT names a compiled function:
 :ID: 1087738246258
 :CUSTOM_ID: SB-THREAD:RELEASE-SPINLOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 RELEASE-SPINLOCK names a compiled function:
   In EARLY deprecation since SBCL version 1.0.53.11. Use SB-THREAD:RELEASE-MUTEX instead.
   Lambda-list: (LOCK)
@@ -1711,6 +1866,7 @@ RELEASE-SPINLOCK names a compiled function:
     
     Use SB-THREAD:RELEASE-MUTEX instead.
   Source file: SYS:SRC;CODE;THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -1723,8 +1879,10 @@ RELEASE-SPINLOCK names a compiled function:
 :ID: 988209771359
 :CUSTOM_ID: SB-THREAD:TERMINATE-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TERMINATE-THREAD names a compiled function:
   Lambda-list: (THREAD)
   Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
@@ -1767,11 +1925,10 @@ TERMINATE-THREAD names a compiled function:
     Since most libraries using UNWIND-PROTECT do not do this, you should never
     assume that unknown code can safely be terminated using TERMINATE-THREAD.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
-  - SB-ACLREPL::KILL-CMD
-  - SB-ACLREPL::EXIT-CMD
   - (STOP (LOGGER))
   - (KILL-THREAD IN /home/ellis/src/core/lib/swank/sbcl.lisp)
   - STD/THREAD::FILL-WORKERS
@@ -1787,8 +1944,10 @@ TERMINATE-THREAD names a compiled function:
 :ID: 285805125441
 :CUSTOM_ID: SB-THREAD:DESTROY-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DESTROY-THREAD names a compiled function:
   In LATE deprecation since SBCL version 1.2.15. Use SB-THREAD:TERMINATE-THREADinstead.
   Lambda-list: (THREAD)
@@ -1798,6 +1957,7 @@ DESTROY-THREAD names a compiled function:
     
     Use SB-THREAD:TERMINATE-THREAD instead.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -1810,12 +1970,15 @@ DESTROY-THREAD names a compiled function:
 :ID: 2260748913444
 :CUSTOM_ID: SB-THREAD:RWLOCK-RDLOCK
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 RWLOCK-RDLOCK names a compiled function:
   Lambda-list: (LOCK)
   Derived type: (FUNCTION (T) (VALUES (MEMBER T) &OPTIONAL))
   Source file: SYS:SRC;CODE;RWLOCK.LISP
+
 #+end_example
 
 :definitions:
@@ -1826,8 +1989,10 @@ RWLOCK-RDLOCK names a compiled function:
 :ID: 2490521645011
 :CUSTOM_ID: SB-THREAD:JOIN-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 JOIN-THREAD names a compiled function:
   Lambda-list: (THREAD &KEY (DEFAULT NIL DEFAULTP) TIMEOUT)
   Derived type: (FUNCTION (T &KEY (:DEFAULT T) (:TIMEOUT T)) *)
@@ -1860,6 +2025,7 @@ JOIN-THREAD names a compiled function:
     > _Note_: Return convention in case of a timeout is experimental and
     > subject to change.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -1888,8 +2054,10 @@ JOIN-THREAD names a compiled function:
 :ID: 851627437767
 :CUSTOM_ID: SB-THREAD:MUTEX
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MUTEX names the structure-class #<STRUCTURE-CLASS SB-THREAD:MUTEX>:
   Documentation:
     Mutex type.
@@ -1907,6 +2075,7 @@ MUTEX names the structure-class #<STRUCTURE-CLASS SB-THREAD:MUTEX>:
     SB-THREAD::INDUCED-WAIT
       Type: SB-EXT:WORD (unboxed)
       Initform: 0
+
 #+end_example
 
 :definitions:
@@ -1919,8 +2088,10 @@ MUTEX names the structure-class #<STRUCTURE-CLASS SB-THREAD:MUTEX>:
 :ID: 152800143433
 :CUSTOM_ID: SB-THREAD:GET-MUTEX
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GET-MUTEX names a compiled function:
   In EARLY deprecation since SBCL version 1.0.37.33. Use SB-THREAD:GRAB-MUTEXinstead.
   Lambda-list: (MUTEX &OPTIONAL NEW-OWNER (WAITP T) (TIMEOUT NIL))
@@ -1930,6 +2101,7 @@ GET-MUTEX names a compiled function:
     
     Use SB-THREAD:GRAB-MUTEX instead.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -1942,8 +2114,10 @@ GET-MUTEX names a compiled function:
 :ID: 1430888988789
 :CUSTOM_ID: SB-THREAD:WAITQUEUE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WAITQUEUE names the structure-class #<STRUCTURE-CLASS SB-THREAD:WAITQUEUE>:
   Documentation:
     Waitqueue type.
@@ -1958,6 +2132,7 @@ WAITQUEUE names the structure-class #<STRUCTURE-CLASS SB-THREAD:WAITQUEUE>:
     SB-THREAD::NAME
       Type: (OR NULL STRING)
       Initform: NIL
+
 #+end_example
 
 :definitions:
@@ -1970,8 +2145,10 @@ WAITQUEUE names the structure-class #<STRUCTURE-CLASS SB-THREAD:WAITQUEUE>:
 :ID: 1729249470907
 :CUSTOM_ID: SB-THREAD:WAITQUEUE-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WAITQUEUE-NAME names a compiled function:
   An accessor for SB-THREAD:WAITQUEUE
   Lambda-list: (INSTANCE)
@@ -1987,6 +2164,7 @@ WAITQUEUE-NAME names a compiled function:
   Derived type: (FUNCTION ((OR STRING NULL) SB-THREAD:WAITQUEUE)
                  (VALUES (OR STRING NULL) &OPTIONAL))
   Source file: SYS:SRC;CODE;THREAD-STRUCTS.LISP
+
 #+end_example
 
 :definitions:
@@ -1997,8 +2175,10 @@ WAITQUEUE-NAME names a compiled function:
 :ID: 448968165598
 :CUSTOM_ID: SB-THREAD:MAKE-MUTEX
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-MUTEX names a compiled function:
   A constructor for SB-THREAD:MUTEX
   Lambda-list: (&KEY NAME)
@@ -2007,15 +2187,16 @@ MAKE-MUTEX names a compiled function:
   Documentation:
     Create a MUTEX.
   Source file: SYS:SRC;CODE;THREAD-STRUCTS.LISP
+
 #+end_example
 
 - Called by
   - SB-CONCURRENCY:MAKE-GATE
   - SB-CONCURRENCY::%MAKE-FRLOCK
   - NET/REQ::MAKE-LRU-POOL
-  - [[id:3395488596778][PARALLEL-REDUCE]]
+  - [[id:3395488596538][PARALLEL-REDUCE]]
   - NET/PROTO/CREW::DISPATCH-WORK
-  - [[id:3628500782097][SLIME-EVAL]]
+  - [[id:3628500783083][SLIME-EVAL]]
   - (WITH-FAST-LOG-STREAM)
   - (WITH-LOG-STREAM)
   - SWANK/SBCL::MAKE-MAILBOX
@@ -2036,8 +2217,10 @@ MAKE-MUTEX names a compiled function:
 :ID: 489707643580
 :CUSTOM_ID: SB-THREAD:HOLDING-MUTEX-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 HOLDING-MUTEX-P names a compiled function:
   Lambda-list: (MUTEX)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
@@ -2045,6 +2228,7 @@ HOLDING-MUTEX-P names a compiled function:
     Test whether the current thread is holding MUTEX.
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -2055,8 +2239,10 @@ HOLDING-MUTEX-P names a compiled function:
 :ID: 2650798785327
 :CUSTOM_ID: SB-THREAD:SEMAPHORE-COUNT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SEMAPHORE-COUNT names a compiled function:
   Lambda-list: (SEMAPHORE)
   Derived type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 62) &OPTIONAL))
@@ -2064,6 +2250,7 @@ SEMAPHORE-COUNT names a compiled function:
     Returns the current count of SEMAPHORE.
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -2077,12 +2264,15 @@ SEMAPHORE-COUNT names a compiled function:
 :ID: 2195425630425
 :CUSTOM_ID: SB-THREAD:ALLOCATOR-HISTOGRAM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ALLOCATOR-HISTOGRAM names a compiled function:
   Lambda-list: (&OPTIONAL (THREAD *CURRENT-THREAD*))
   Derived type: (FUNCTION (&OPTIONAL T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -2093,13 +2283,16 @@ ALLOCATOR-HISTOGRAM names a compiled function:
 :ID: 1760643024632
 :CUSTOM_ID: SB-THREAD:MAKE-RWLOCK
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-RWLOCK names a compiled function:
   A constructor for SB-THREAD::RWLOCK
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES SB-THREAD::RWLOCK &OPTIONAL))
   Source file: SYS:SRC;CODE;RWLOCK.LISP
+
 #+end_example
 
 :definitions:
@@ -2110,8 +2303,10 @@ MAKE-RWLOCK names a compiled function:
 :ID: 2982671321952
 :CUSTOM_ID: SB-THREAD:SEMAPHORE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SEMAPHORE names the structure-class #<STRUCTURE-CLASS SB-THREAD:SEMAPHORE>:
   Documentation:
     Semaphore type. The fact that a SEMAPHORE is a STRUCTURE-OBJECT
@@ -2134,6 +2329,7 @@ SEMAPHORE names the structure-class #<STRUCTURE-CLASS SB-THREAD:SEMAPHORE>:
     SB-THREAD::QUEUE
       Type: SB-THREAD:WAITQUEUE
       Initform: NIL
+
 #+end_example
 
 :definitions:
@@ -2146,11 +2342,14 @@ SEMAPHORE names the structure-class #<STRUCTURE-CLASS SB-THREAD:SEMAPHORE>:
 :ID: 4334912414629
 :CUSTOM_ID: SB-THREAD:WITH-NEW-SESSION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-NEW-SESSION names a macro:
   Lambda-list: (ARGS &BODY FORMS)
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -2161,8 +2360,10 @@ WITH-NEW-SESSION names a macro:
 :ID: 2726970923756
 :CUSTOM_ID: SB-THREAD:SYMBOL-VALUE-IN-THREAD-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SYMBOL-VALUE-IN-THREAD-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-THREAD:SYMBOL-VALUE-IN-THREAD-ERROR>:
   Documentation:
     Signalled when SYMBOL-VALUE-IN-THREAD or its SETF version fails due to eg.
@@ -2178,6 +2379,7 @@ SYMBOL-VALUE-IN-THREAD-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS
     INFO
       Initargs: :INFO
       Readers: SB-THREAD::SYMBOL-VALUE-IN-THREAD-ERROR-INFO
+
 #+end_example
 
 :definitions:
@@ -2188,8 +2390,10 @@ SYMBOL-VALUE-IN-THREAD-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS
 :ID: 2942497520664
 :CUSTOM_ID: SB-THREAD:BARRIER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BARRIER names a macro:
   Lambda-list: ((KIND) &BODY FORMS)
   Documentation:
@@ -2221,6 +2425,7 @@ BARRIER names a macro:
     The file memory-barriers.txt in the Linux kernel documentation is
     highly recommended reading for anyone programming at this level.
   Source file: SYS:SRC;CODE;BARRIER.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -2238,12 +2443,15 @@ BARRIER names a macro:
 :ID: 4102427043028
 :CUSTOM_ID: SB-THREAD:THREAD-DEADLOCK-CYCLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 THREAD-DEADLOCK-CYCLE names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -2254,8 +2462,10 @@ THREAD-DEADLOCK-CYCLE names a compiled function:
 :ID: 2629804547650
 :CUSTOM_ID: SB-THREAD:MUTEX-VALUE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MUTEX-VALUE names a compiled function:
   Lambda-list: (MUTEX)
   Derived type: (FUNCTION (T) *)
@@ -2265,6 +2475,7 @@ MUTEX-VALUE names a compiled function:
   Source file: SYS:SRC;CODE;THREAD.LISP
 
 (SETF MUTEX-VALUE) has setf-expansion: SB-THREAD::SET-MUTEX-VALUE
+
 #+end_example
 
 :definitions:
@@ -2275,8 +2486,10 @@ MUTEX-VALUE names a compiled function:
 :ID: 2163023524252
 :CUSTOM_ID: SB-THREAD:LIST-ALL-THREADS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 LIST-ALL-THREADS names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES LIST &OPTIONAL))
@@ -2285,10 +2498,10 @@ LIST-ALL-THREADS names a compiled function:
     potentially stale even before the function returns, as new threads may be
     created and old ones may exit at any time.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
-  - SB-ACLREPL::ALL-THREADS
   - SB-INTROSPECT:MAP-ROOT
   - (ALL-THREADS IN /home/ellis/src/core/lib/swank/sbcl.lisp)
   - (FIND-THREAD IN /home/ellis/src/core/lib/swank/sbcl.lisp)
@@ -2304,14 +2517,17 @@ LIST-ALL-THREADS names a compiled function:
 :ID: 1965740835241
 :CUSTOM_ID: SB-THREAD:MAIN-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAIN-THREAD names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
   Documentation:
     Returns the main thread of the process.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -2322,8 +2538,10 @@ MAIN-THREAD names a compiled function:
 :ID: 908855041134
 :CUSTOM_ID: SB-THREAD:CONDITION-BROADCAST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CONDITION-BROADCAST names a compiled function:
   Lambda-list: (QUEUE)
   Declared type: (FUNCTION (SB-THREAD:WAITQUEUE) (VALUES NULL &OPTIONAL))
@@ -2333,11 +2551,12 @@ CONDITION-BROADCAST names a compiled function:
     IMPORTANT: The same mutex that is used in the corresponding CONDITION-WAIT
     must be held by this thread during this call.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
   - SB-CONCURRENCY:OPEN-GATE
-  - [[id:2432123875701][CALL-WITH-REQUEST-COUNT-INCF]]
+  - [[id:2432123876343][CALL-WITH-REQUEST-COUNT-INCF]]
   - (SEND IN /home/ellis/src/core/lib/swank/sbcl.lisp)
   - (WAKE-THREAD IN /home/ellis/src/core/lib/swank/sbcl.lisp)
 
@@ -2349,8 +2568,10 @@ CONDITION-BROADCAST names a compiled function:
 :ID: 997251006927
 :CUSTOM_ID: SB-THREAD:SEMAPHORE-NOTIFICATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SEMAPHORE-NOTIFICATION names the structure-class #<STRUCTURE-CLASS SB-THREAD:SEMAPHORE-NOTIFICATION>:
   Documentation:
     Semaphore notification object. Can be passed to WAIT-ON-SEMAPHORE and
@@ -2365,6 +2586,7 @@ SEMAPHORE-NOTIFICATION names the structure-class #<STRUCTURE-CLASS SB-THREAD:SEM
     SB-THREAD::%STATUS
       Type: BOOLEAN
       Initform: NIL
+
 #+end_example
 
 :definitions:
@@ -2377,12 +2599,15 @@ SEMAPHORE-NOTIFICATION names the structure-class #<STRUCTURE-CLASS SB-THREAD:SEM
 :ID: 351815400193
 :CUSTOM_ID: SB-THREAD:AVLTREE-LIST
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 AVLTREE-LIST names a compiled function:
   Lambda-list: (TREE &OPTIONAL (TRANSDUCER (FUNCTION AVLNODE-DATA)))
   Derived type: (FUNCTION (T &OPTIONAL T) (VALUES LIST &OPTIONAL))
   Source file: SYS:SRC;CODE;AVLTREE.LISP
+
 #+end_example
 
 :definitions:
@@ -2393,8 +2618,10 @@ AVLTREE-LIST names a compiled function:
 :ID: 3476883652458
 :CUSTOM_ID: SB-THREAD:RELEASE-MUTEX
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 RELEASE-MUTEX names a compiled function:
   Lambda-list: (MUTEX &KEY (IF-NOT-OWNER PUNT))
   Declared type: (FUNCTION
@@ -2411,6 +2638,7 @@ RELEASE-MUTEX names a compiled function:
     mutex. Do nothing and silently return if :PUNT, signal a WARNING or ERRORif :WARN
     or :ERROR respectively, or release the mutex anyway if :FORCE.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -2428,8 +2656,10 @@ RELEASE-MUTEX names a compiled function:
 :ID: 1085809541862
 :CUSTOM_ID: SB-THREAD:INTERRUPT-THREAD-ERROR-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INTERRUPT-THREAD-ERROR-THREAD names a compiled function:
   In LATE deprecation since SBCL version 1.0.29.17. Use SB-THREAD:THREAD-ERROR-THREAD instead.
   Lambda-list: (CONDITION)
@@ -2439,6 +2669,7 @@ INTERRUPT-THREAD-ERROR-THREAD names a compiled function:
     
     Use SB-THREAD:THREAD-ERROR-THREAD instead.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -2451,11 +2682,14 @@ INTERRUPT-THREAD-ERROR-THREAD names a compiled function:
 :ID: 4236853338693
 :CUSTOM_ID: SB-THREAD:WITH-TLS-LOCK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-TLS-LOCK names a macro:
   Lambda-list: ((THREAD &OPTIONAL C-THREAD) &BODY BODY)
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -2470,12 +2704,15 @@ WITH-TLS-LOCK names a macro:
 :ID: 1044912441052
 :CUSTOM_ID: SB-THREAD:RWSPINLOCK-WRLOCK
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 RWSPINLOCK-WRLOCK names a compiled function:
   Lambda-list: (LOCK)
   Derived type: (FUNCTION (T) (VALUES (MEMBER T) &OPTIONAL))
   Source file: SYS:SRC;CODE;RWLOCK.LISP
+
 #+end_example
 
 :definitions:
@@ -2486,8 +2723,10 @@ RWSPINLOCK-WRLOCK names a compiled function:
 :ID: 584065425543
 :CUSTOM_ID: SB-THREAD:CLEAR-SEMAPHORE-NOTIFICATION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CLEAR-SEMAPHORE-NOTIFICATION names a compiled function:
   Lambda-list: (SEMAPHORE-NOTIFICATION)
   Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
@@ -2496,6 +2735,7 @@ CLEAR-SEMAPHORE-NOTIFICATION names a compiled function:
     WAIT-ON-SEMAPHORE or TRY-SEMAPHORE.
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:
@@ -2506,12 +2746,15 @@ CLEAR-SEMAPHORE-NOTIFICATION names a compiled function:
 :ID: 1157237985502
 :CUSTOM_ID: SB-THREAD:%DISPOSE-THREAD-STRUCTS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %DISPOSE-THREAD-STRUCTS names a compiled function:
   Lambda-list: (&KEY (RETAIN 0))
   Derived type: (FUNCTION (&KEY (:RETAIN T)) (VALUES NULL &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
@@ -2525,13 +2768,16 @@ CLEAR-SEMAPHORE-NOTIFICATION names a compiled function:
 :ID: 1259343690697
 :CUSTOM_ID: SB-THREAD:RWSPINLOCK-WRUNLOCK
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 RWSPINLOCK-WRUNLOCK names a compiled function:
   Lambda-list: (LOCK)
   Derived type: (FUNCTION (T) (VALUES (INTEGER 0 0) &OPTIONAL))
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;RWLOCK.LISP
+
 #+end_example
 
 :definitions:
@@ -2542,8 +2788,10 @@ RWSPINLOCK-WRUNLOCK names a compiled function:
 :ID: 3019894610678
 :CUSTOM_ID: SB-THREAD:TRY-SEMAPHORE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 TRY-SEMAPHORE names a compiled function:
   Lambda-list: (SEMAPHORE &OPTIONAL (N 1) NOTIFICATION)
   Declared type: (FUNCTION
@@ -2563,11 +2811,12 @@ TRY-SEMAPHORE names a compiled function:
     with SEMAPHORE-NOTIFICATION-STATUS of NIL. If the count is decremented,
     the status is set to T.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 - Called by
   - SB-CONCURRENCY:RECEIVE-PENDING-MESSAGES
-  - [[id:579149819929][RECEIVE-MESSAGE-NO-HANG]]
+  - [[id:579149820371][RECEIVE-MESSAGE-NO-HANG]]
 
 :definitions:
 - SYS:SRC;CODE;TARGET-THREAD.LISP
@@ -2577,8 +2826,10 @@ TRY-SEMAPHORE names a compiled function:
 :ID: 2880870369276
 :CUSTOM_ID: SB-THREAD:THREAD-EPHEMERAL-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 THREAD-EPHEMERAL-P names a compiled function:
   An accessor for SB-THREAD:THREAD
   Lambda-list: (INSTANCE)
@@ -2589,6 +2840,7 @@ THREAD-EPHEMERAL-P names a compiled function:
     to terminate this thread cleanly prior to core file saving withoutsignalling
     an error in that case.
   Source file: SYS:SRC;CODE;THREAD-STRUCTS.LISP
+
 #+end_example
 
 :definitions:
@@ -2599,8 +2851,10 @@ THREAD-EPHEMERAL-P names a compiled function:
 :ID: 1806729664554
 :CUSTOM_ID: SB-THREAD:RETURN-FROM-THREAD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 RETURN-FROM-THREAD names a macro:
   Lambda-list: (VALUES-FORM &KEY ALLOW-EXIT)
   Documentation:
@@ -2613,6 +2867,7 @@ RETURN-FROM-THREAD names a macro:
     ALLOW-EXIT is true, returning from the main thread is equivalent to
     calling SB-EXT:EXIT with :CODE 0 and :ABORT NIL.
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
+
 #+end_example
 
 :definitions:

@@ -1,0 +1,1077 @@
+#+SETUPFILE: ../../clean.theme
+* SB-CONCURRENCY
+:PROPERTIES:
+:CUSTOM_ID: SB-CONCURRENCY
+:ID: 84
+:END:
+- dependencies
+  - COMMON-LISP
+  - SB-THREAD
+  - SB-INT
+  - SB-EXT
+  - SB-SYS
+
+** FRLOCK :class:
+:PROPERTIES:
+:ID: 3711280613072
+:CUSTOM_ID: SB-CONCURRENCY:FRLOCK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FRLOCK names the structure-class #<STRUCTURE-CLASS SB-CONCURRENCY:FRLOCK>:
+  Documentation:
+    FRlock, aka Fast Read Lock.
+    
+    Fast Read Locks allow multiple readers and one potential writer to operatein
+    parallel while providing for consistency for readers and mutual exclusionfor
+    writers.
+    
+    Readers gain entry to protected regions without waiting, but need to retryif
+    a writer operated inside the region while they were reading. This makesfrlocks
+    very efficient when readers are much more common than writers.
+    
+    FRlocks are _not_ suitable when it is not safe at all for readers andwriters
+    to operate on the same data in parallel: they provide consistency, not
+    exclusion between readers and writers. Hence using an frlock to e.g.protect
+    an SBCL hash-table is unsafe. If multiple readers operating in parallelwith
+    a writer would be safe but inconsistent without a lock, frlocks aresuitable.
+    
+    The recommended interface to use is FRLOCK-READ and FRLOCK-WRITE, but those
+    needing it can also use a lower-level interface.
+    
+    Example:
+    
+        ;; Values returned by FOO are always consistent so that
+        ;; the third value is the sum of the two first ones.
+        (let ((a 0)
+              (b 0)
+              (c 0)
+              (lk (make-frlock)))
+          (defun foo ()
+             (frlock-read (lk) a b c))
+          (defun bar (x y)
+             (frlock-write (lk)
+               (setf a x
+                     b y
+                     c (+ x y)))))
+  Class precedence-list: SB-CONCURRENCY:FRLOCK, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Sealed.
+  Slots:
+    MUTEX
+      Type: SB-THREAD:MUTEX
+      Initform: (MAKE-MUTEX :NAME "FRLock mutex")
+    SB-CONCURRENCY::PRE-COUNTER
+      Type: (AND UNSIGNED-BYTE FIXNUM)
+      Initform: 0
+    SB-CONCURRENCY::POST-COUNTER
+      Type: (AND UNSIGNED-BYTE FIXNUM)
+      Initform: 0
+    SB-CONCURRENCY::EPOCH
+      Type: CONS
+      Initform: (LIST T)
+    SB-CONCURRENCY::NAME
+      Type: T
+      Initform: NIL
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+  - [[id:2131768191127][FREEZE-TYPE]]
+:end:
+** MAILBOX-COUNT :compiled:function:
+:PROPERTIES:
+:ID: 1135104203271
+:CUSTOM_ID: SB-CONCURRENCY:MAILBOX-COUNT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAILBOX-COUNT names a compiled function:
+  Lambda-list: (MAILBOX)
+  Declared type: (FUNCTION (SB-CONCURRENCY:MAILBOX)
+                  (VALUES UNSIGNED-BYTE &OPTIONAL))
+  Derived type: (FUNCTION (SB-CONCURRENCY:MAILBOX)
+                 (VALUES (UNSIGNED-BYTE 62) &OPTIONAL))
+  Documentation:
+    Returns the number of messages currently in MAILBOX.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-CONCURRENCY:RECEIVE-PENDING-MESSAGES
+  - SB-CONCURRENCY:MAILBOX-EMPTY-P
+  - (PRINT-OBJECT (MAILBOX T))
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** FRLOCK-NAME :compiled:function:
+:PROPERTIES:
+:ID: 1997067646670
+:CUSTOM_ID: SB-CONCURRENCY:FRLOCK-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FRLOCK-NAME names a compiled function:
+  An accessor for SB-CONCURRENCY:FRLOCK
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-CONCURRENCY:FRLOCK) (VALUES T &OPTIONAL))
+  Documentation:
+    Name of an FRLOCK. SETFable.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+
+(SETF FRLOCK-NAME) names a compiled function:
+  An accessor for SB-CONCURRENCY:FRLOCK
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (T SB-CONCURRENCY:FRLOCK) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+:end:
+** RECEIVE-MESSAGE-NO-HANG :compiled:function:
+:PROPERTIES:
+:ID: 579149820834
+:CUSTOM_ID: SB-CONCURRENCY:RECEIVE-MESSAGE-NO-HANG
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RECEIVE-MESSAGE-NO-HANG names a compiled function:
+  Lambda-list: (MAILBOX)
+  Declared type: (FUNCTION (SB-CONCURRENCY:MAILBOX)
+                  (VALUES T BOOLEAN &OPTIONAL))
+  Documentation:
+    The non-blocking variant of RECEIVE-MESSAGE. Returns two values,
+    the message removed from MAILBOX, and a flag specifying whether a
+    message could be received.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-CONCURRENCY:RECEIVE-PENDING-MESSAGES
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** GATE :class:
+:PROPERTIES:
+:ID: 2949505660675
+:CUSTOM_ID: SB-CONCURRENCY:GATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GATE names the structure-class #<STRUCTURE-CLASS SB-CONCURRENCY:GATE>:
+  Documentation:
+    GATE type. Gates are synchronization constructs suitable for making
+    multiple threads wait for single event before proceeding.
+    
+    Use WAIT-ON-GATE to wait for a gate to open, OPEN-GATE to open one,
+    and CLOSE-GATE to close an open gate. GATE-OPEN-P can be used to test
+    the state of a gate without blocking.
+  Class precedence-list: SB-CONCURRENCY:GATE, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Sealed.
+  Slots:
+    MUTEX
+      Type: SB-THREAD:MUTEX
+      Initform: (SB-INT:MISSING-ARG)
+    SB-CONCURRENCY:QUEUE
+      Type: SB-THREAD:WAITQUEUE
+      Initform: (SB-INT:MISSING-ARG)
+    SB-CONCURRENCY::STATE
+      Type: (MEMBER :OPEN :CLOSED)
+      Initform: :CLOSED
+    SB-CONCURRENCY::NAME
+      Type: (OR NULL SIMPLE-STRING)
+      Initform: NIL
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+  - [[id:2131768191127][FREEZE-TYPE]]
+:end:
+** GRAB-FRLOCK-WRITE-LOCK :compiled:function:
+:PROPERTIES:
+:ID: 1586782005313
+:CUSTOM_ID: SB-CONCURRENCY:GRAB-FRLOCK-WRITE-LOCK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GRAB-FRLOCK-WRITE-LOCK names a compiled function:
+  Lambda-list: (FRLOCK &KEY (WAIT-P T) TIMEOUT)
+  Derived type: (FUNCTION (T &KEY (:WAIT-P T) (:TIMEOUT T))
+                 (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Acquires FRLOCK for writing, invalidating existing and future read-tokens
+    for the duration. Returns T on success, and NIL if the lock wasn't acquired
+    due to e.g. a timeout. Using FRLOCK-WRITE instead is recommended.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+:end:
+** MAILBOXP :compiled:function:
+:PROPERTIES:
+:ID: 1692270623716
+:CUSTOM_ID: SB-CONCURRENCY:MAILBOXP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAILBOXP names a compiled function:
+  A predicate for SB-CONCURRENCY:MAILBOX
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Returns true if argument is a MAILBOX, NIL otherwise.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+:end:
+** MAILBOX :class:
+:PROPERTIES:
+:ID: 2887816728853
+:CUSTOM_ID: SB-CONCURRENCY:MAILBOX
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAILBOX names the structure-class #<STRUCTURE-CLASS SB-CONCURRENCY:MAILBOX>:
+  Documentation:
+    Mailbox aka message queue.
+    
+    SEND-MESSAGE adds a message to the mailbox, RECEIVE-MESSAGE waits till
+    a message becomes available, whereas RECEIVE-MESSAGE-NO-HANG is a non-blocking
+    variant, and RECEIVE-PENDING-MESSAGES empties the entire mailbox in one go.
+    
+    Messages can be arbitrary objects.
+  Class precedence-list: SB-CONCURRENCY:MAILBOX, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Sealed.
+  Slots:
+    SB-CONCURRENCY:QUEUE
+      Type: SB-CONCURRENCY:QUEUE
+      Initform: (SB-INT:MISSING-ARG)
+    SEMAPHORE
+      Type: SB-THREAD:SEMAPHORE
+      Initform: (SB-INT:MISSING-ARG)
+    SB-CONCURRENCY::NAME
+      Type: T
+      Initform: NIL
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+  - [[id:2131768191127][FREEZE-TYPE]]
+:end:
+** MAKE-GATE :compiled:function:
+:PROPERTIES:
+:ID: 2136123709640
+:CUSTOM_ID: SB-CONCURRENCY:MAKE-GATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-GATE names a compiled function:
+  Lambda-list: (&KEY NAME OPEN)
+  Derived type: (FUNCTION (&KEY (:NAME T) (:OPEN T))
+                 (VALUES SB-CONCURRENCY:GATE &OPTIONAL))
+  Documentation:
+    Makes a new gate. Gate will be initially open if OPEN is true, and closedif OPEN
+    is NIL (the default.) NAME, if provided, is the name of the gate, used whenprinting
+    the gate.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-CONCURRENCY::PROMISE-COMPILE
+  - [[id:3395488596538][PARALLEL-REDUCE]]
+  - NET/PROTO/CREW::DISPATCH-WORK
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+:end:
+** GATEP :compiled:function:
+:PROPERTIES:
+:ID: 3342919886799
+:CUSTOM_ID: SB-CONCURRENCY:GATEP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GATEP names a compiled function:
+  A predicate for SB-CONCURRENCY:GATE
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Returns true if the argument is a GATE.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+:end:
+** MAKE-MAILBOX :compiled:function:
+:PROPERTIES:
+:ID: 3992349046554
+:CUSTOM_ID: SB-CONCURRENCY:MAKE-MAILBOX
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-MAILBOX names a compiled function:
+  Lambda-list: (&KEY NAME INITIAL-CONTENTS)
+  Declared type: (FUNCTION (&KEY (:NAME T) (:INITIAL-CONTENTS SEQUENCE))
+                  (VALUES SB-CONCURRENCY:MAILBOX &OPTIONAL))
+  Documentation:
+    Returns a new MAILBOX with messages in INITIAL-CONTENTS enqueued.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** DEQUEUE :compiled:function:
+:PROPERTIES:
+:ID: 2503531588460
+:CUSTOM_ID: SB-CONCURRENCY:DEQUEUE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEQUEUE names a compiled function:
+  Lambda-list: (QUEUE)
+  Declared type: (FUNCTION (SB-CONCURRENCY:QUEUE) (VALUES T BOOLEAN &OPTIONAL))
+  Documentation:
+    Retrieves the oldest value in QUEUE and returns it as the primary value,
+    and T as secondary value. If the queue is empty, returns NIL as bothprimary
+    and secondary value.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-CONCURRENCY:RECEIVE-PENDING-MESSAGES
+  - [[id:579149820371][RECEIVE-MESSAGE-NO-HANG]]
+  - SB-CONCURRENCY:RECEIVE-MESSAGE
+  - SB-CONCURRENCY::RUN-BACKGROUND-COMPILE
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** FRLOCK-READ :compiled:macro:function:
+:PROPERTIES:
+:ID: 1994019330516
+:CUSTOM_ID: SB-CONCURRENCY:FRLOCK-READ
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FRLOCK-READ names a macro:
+  Lambda-list: ((FRLOCK) &BODY VALUE-FORMS)
+  Documentation:
+    Evaluates VALUE-FORMS under FRLOCK till it obtains a consistent
+    set, and returns that as multiple values.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+:end:
+** LIST-QUEUE-CONTENTS :compiled:function:
+:PROPERTIES:
+:ID: 264842763432
+:CUSTOM_ID: SB-CONCURRENCY:LIST-QUEUE-CONTENTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LIST-QUEUE-CONTENTS names a compiled function:
+  Lambda-list: (QUEUE)
+  Declared type: (FUNCTION (SB-CONCURRENCY:QUEUE) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Returns the contents of QUEUE as a list without removing them from the
+    QUEUE. Mainly useful for manual examination of queue state, as the list maybe
+    out of date by the time it is returned, and concurrent dequeue operationsmay
+    in the worse case force the queue-traversal to be restarted several times.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-CONCURRENCY:LIST-MAILBOX-MESSAGES
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** QUEUE :class:module:
+:PROPERTIES:
+:ID: 2806118980900
+:CUSTOM_ID: SB-CONCURRENCY:QUEUE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+QUEUE names the structure-class #<STRUCTURE-CLASS SB-CONCURRENCY:QUEUE>:
+  Documentation:
+    Lock-free thread safe FIFO queue.
+    
+    Use ENQUEUE to add objects to the queue, and DEQUEUE to remove them.
+  Class precedence-list: SB-CONCURRENCY:QUEUE, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Sealed.
+  Slots:
+    SB-CONCURRENCY::HEAD
+      Type: CONS
+      Initform: (ERROR "No HEAD.")
+    SB-CONCURRENCY::TAIL
+      Type: CONS
+      Initform: (ERROR "No TAIL.")
+    SB-CONCURRENCY::NAME
+      Type: T
+      Initform: NIL
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+  - [[id:2131768191127][FREEZE-TYPE]]
+:end:
+** RECEIVE-PENDING-MESSAGES :compiled:function:
+:PROPERTIES:
+:ID: 1146187772576
+:CUSTOM_ID: SB-CONCURRENCY:RECEIVE-PENDING-MESSAGES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RECEIVE-PENDING-MESSAGES names a compiled function:
+  Lambda-list: (MAILBOX &OPTIONAL N)
+  Declared type: (FUNCTION
+                  (SB-CONCURRENCY:MAILBOX &OPTIONAL (OR UNSIGNED-BYTE NULL))
+                  (VALUES LIST &OPTIONAL))
+  Documentation:
+    Removes and returns all (or at most N) currently pending messages
+    from MAILBOX, or returns NIL if no messages are pending.
+    
+    > _Note_: Concurrent threads may be snarfing messages during the run
+    > of this function, so even X and Y appearing right next to each
+    > other in the result does not necessarily mean that Y was the
+    > message sent right after X.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** GATE-NAME :compiled:function:
+:PROPERTIES:
+:ID: 3497531622995
+:CUSTOM_ID: SB-CONCURRENCY:GATE-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GATE-NAME names a compiled function:
+  An accessor for SB-CONCURRENCY:GATE
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-CONCURRENCY:GATE)
+                 (VALUES (OR SIMPLE-STRING NULL) &OPTIONAL))
+  Documentation:
+    Name of a GATE. SETFable.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+
+(SETF GATE-NAME) names a compiled function:
+  An accessor for SB-CONCURRENCY:GATE
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION ((OR SIMPLE-STRING NULL) SB-CONCURRENCY:GATE)
+                 (VALUES (OR SIMPLE-STRING NULL) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PRINT-OBJECT (GATE T))
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+:end:
+** OPEN-GATE :compiled:function:
+:PROPERTIES:
+:ID: 3848488767866
+:CUSTOM_ID: SB-CONCURRENCY:OPEN-GATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OPEN-GATE names a compiled function:
+  Lambda-list: (GATE)
+  Derived type: (FUNCTION (SB-CONCURRENCY:GATE) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Opens GATE. Returns T if the gate was previously closed, and NIL
+    if the gate was already open.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-CONCURRENCY::RUN-BACKGROUND-COMPILE
+  - STD/THREAD::SEND-WORKER-START
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+:end:
+** RELEASE-FRLOCK-WRITE-LOCK :compiled:function:
+:PROPERTIES:
+:ID: 4343400091551
+:CUSTOM_ID: SB-CONCURRENCY:RELEASE-FRLOCK-WRITE-LOCK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RELEASE-FRLOCK-WRITE-LOCK names a compiled function:
+  Lambda-list: (FRLOCK)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Releases FRLOCK after writing, allowing valid read-tokens to be acquiredagain.
+    Signals an error if the current thread doesn't hold FRLOCK for writing.Using FRLOCK-WRITE
+    instead is recommended.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+:end:
+** SEND-MESSAGE :compiled:function:
+:PROPERTIES:
+:ID: 2133153310849
+:CUSTOM_ID: SB-CONCURRENCY:SEND-MESSAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SEND-MESSAGE names a compiled function:
+  Lambda-list: (MAILBOX MESSAGE)
+  Declared type: (FUNCTION (SB-CONCURRENCY:MAILBOX T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Adds a MESSAGE to MAILBOX. Message can be any object.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** FRLOCK-WRITE :compiled:macro:function:
+:PROPERTIES:
+:ID: 3766925639551
+:CUSTOM_ID: SB-CONCURRENCY:FRLOCK-WRITE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FRLOCK-WRITE names a macro:
+  Lambda-list: ((FRLOCK &KEY (WAIT-P T) TIMEOUT) &BODY BODY)
+  Documentation:
+    Executes BODY while holding FRLOCK for writing.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+:end:
+** FRLOCK-READ-END :compiled:function:
+:PROPERTIES:
+:ID: 3693914454576
+:CUSTOM_ID: SB-CONCURRENCY:FRLOCK-READ-END
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FRLOCK-READ-END names a compiled function:
+  Lambda-list: (FRLOCK)
+  Derived type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 62) CONS &OPTIONAL))
+  Documentation:
+    Ends a read sequence on FRLOCK. Returns a token and an epoch. If the token
+    and epoch are EQL to the read-token and epoch returned by FRLOCK-READ-BEGIN,
+    the values read under the FRLOCK are consistent and can be used: if thevalues
+    differ, the values are inconsistent and the read must be restated.
+    
+    Using FRLOCK-READ instead is recommended.
+    
+    Example:
+    
+        (multiple-value-bind (t0 e0) (frlock-read-begin *fr*)
+          (let ((a (get-a))
+                (b (get-b)))
+            (multiple-value-bind (t1 e1) (frlock-read-end *fr*)
+              (if (and (eql t0 t1) (eql e0 e1))
+                  (list :a a :b b)
+                  :aborted))))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+:end:
+** GATE-OPEN-P :compiled:function:
+:PROPERTIES:
+:ID: 4104995196776
+:CUSTOM_ID: SB-CONCURRENCY:GATE-OPEN-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GATE-OPEN-P names a compiled function:
+  Lambda-list: (GATE)
+  Derived type: (FUNCTION (SB-CONCURRENCY:GATE) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Returns true if GATE is open.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+:end:
+** QUEUE-NAME :compiled:function:
+:PROPERTIES:
+:ID: 3242508831992
+:CUSTOM_ID: SB-CONCURRENCY:QUEUE-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+QUEUE-NAME names a compiled function:
+  An accessor for SB-CONCURRENCY:QUEUE
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-CONCURRENCY:QUEUE) (VALUES T &OPTIONAL))
+  Documentation:
+    Name of a QUEUE. Can be assigned to using SETF. Queue names
+    can be arbitrary printable objects, and need not be unique.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+
+(SETF QUEUE-NAME) names a compiled function:
+  An accessor for SB-CONCURRENCY:QUEUE
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (T SB-CONCURRENCY:QUEUE) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+:end:
+** QUEUE-COUNT :compiled:function:
+:PROPERTIES:
+:ID: 2922678854799
+:CUSTOM_ID: SB-CONCURRENCY:QUEUE-COUNT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+QUEUE-COUNT names a compiled function:
+  Lambda-list: (QUEUE)
+  Declared type: (FUNCTION (SB-CONCURRENCY:QUEUE)
+                  (VALUES UNSIGNED-BYTE &OPTIONAL))
+  Documentation:
+    Returns the number of objects in QUEUE. Mainly useful for manual
+    examination of queue state, and in PRINT-OBJECT methods: inefficient as it
+    must walk the entire queue.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** RECEIVE-MESSAGE :compiled:function:
+:PROPERTIES:
+:ID: 3088150695081
+:CUSTOM_ID: SB-CONCURRENCY:RECEIVE-MESSAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RECEIVE-MESSAGE names a compiled function:
+  Lambda-list: (MAILBOX &KEY TIMEOUT)
+  Declared type: (FUNCTION (SB-CONCURRENCY:MAILBOX &KEY (:TIMEOUT T))
+                  (VALUES T BOOLEAN &OPTIONAL))
+  Documentation:
+    Removes the oldest message from MAILBOX and returns it as the primary
+    value, and a secondary value of T. If MAILBOX is empty waits until amessage
+    arrives.
+    
+    If TIMEOUT is provided, and no message arrives within the specifiedinterval,
+    returns primary and secondary value of NIL.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** QUEUEP :compiled:function:
+:PROPERTIES:
+:ID: 1530049109628
+:CUSTOM_ID: SB-CONCURRENCY:QUEUEP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+QUEUEP names a compiled function:
+  A predicate for SB-CONCURRENCY:QUEUE
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Returns true if argument is a QUEUE, NIL otherwise.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+:end:
+** MAKE-FRLOCK :compiled:function:
+:PROPERTIES:
+:ID: 884796258558
+:CUSTOM_ID: SB-CONCURRENCY:MAKE-FRLOCK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-FRLOCK names a compiled function:
+  Lambda-list: (&KEY NAME)
+  Derived type: (FUNCTION (&KEY (:NAME T))
+                 (VALUES SB-CONCURRENCY:FRLOCK &OPTIONAL))
+  Documentation:
+    Returns a new FRLOCK with NAME.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+:end:
+** MAKE-QUEUE :compiled:function:
+:PROPERTIES:
+:ID: 3787709053051
+:CUSTOM_ID: SB-CONCURRENCY:MAKE-QUEUE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-QUEUE names a compiled function:
+  Lambda-list: (&KEY NAME INITIAL-CONTENTS)
+  Declared type: (FUNCTION (&KEY (:NAME T) (:INITIAL-CONTENTS SEQUENCE))
+                  (VALUES SB-CONCURRENCY:QUEUE &OPTIONAL))
+  Documentation:
+    Returns a new QUEUE with NAME and contents of the INITIAL-CONTENTS
+    sequence enqueued.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-CONCURRENCY:MAKE-MAILBOX
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** CLOSE-GATE :compiled:function:
+:PROPERTIES:
+:ID: 174861969740
+:CUSTOM_ID: SB-CONCURRENCY:CLOSE-GATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLOSE-GATE names a compiled function:
+  Lambda-list: (GATE)
+  Derived type: (FUNCTION (SB-CONCURRENCY:GATE) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Closes GATE. Returns T if the gate was previously open, and NIL
+    if the gate was already closed.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - STD/THREAD::NOTIFY-EXIT
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+:end:
+** QUEUE-EMPTY-P :compiled:function:
+:PROPERTIES:
+:ID: 3593657391986
+:CUSTOM_ID: SB-CONCURRENCY:QUEUE-EMPTY-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+QUEUE-EMPTY-P names a compiled function:
+  Lambda-list: (QUEUE)
+  Declared type: (FUNCTION (SB-CONCURRENCY:QUEUE) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Returns T if QUEUE is empty, NIL otherwise.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** ENQUEUE :compiled:function:
+:PROPERTIES:
+:ID: 2642090003146
+:CUSTOM_ID: SB-CONCURRENCY:ENQUEUE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENQUEUE names a compiled function:
+  Lambda-list: (VALUE QUEUE)
+  Declared type: (FUNCTION (T SB-CONCURRENCY:QUEUE) (VALUES T &OPTIONAL))
+  Documentation:
+    Adds VALUE to the end of QUEUE. Returns VALUE.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:2133153311419][SEND-MESSAGE]]
+  - SB-CONCURRENCY::PROMISE-COMPILE
+  - [[id:3787709053004][MAKE-QUEUE]]
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;QUEUE.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** FRLOCK-READ-BEGIN :compiled:function:
+:PROPERTIES:
+:ID: 1917254777825
+:CUSTOM_ID: SB-CONCURRENCY:FRLOCK-READ-BEGIN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FRLOCK-READ-BEGIN names a compiled function:
+  Lambda-list: (FRLOCK)
+  Derived type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 62) CONS &OPTIONAL))
+  Documentation:
+    Start a read sequence on FRLOCK. Returns a read-token and an epoch to be
+    validated later.
+    
+    Using FRLOCK-READ instead is recommended.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;FRLOCK.LISP.NEWEST
+:end:
+** WAIT-ON-GATE :compiled:function:
+:PROPERTIES:
+:ID: 1630009759325
+:CUSTOM_ID: SB-CONCURRENCY:WAIT-ON-GATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WAIT-ON-GATE names a compiled function:
+  Lambda-list: (GATE &KEY TIMEOUT)
+  Derived type: (FUNCTION (SB-CONCURRENCY:GATE &KEY (:TIMEOUT T))
+                 (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Waits for GATE to open, or TIMEOUT seconds to pass. Returns T
+    if the gate was opened in time, and NIL otherwise.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-CONCURRENCY::PROMISE-COMPILE
+  - STD/THREAD::RECEIVE-WORKER-START
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;GATE.LISP.NEWEST
+:end:
+** MAILBOX-NAME :compiled:function:
+:PROPERTIES:
+:ID: 2268908558534
+:CUSTOM_ID: SB-CONCURRENCY:MAILBOX-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAILBOX-NAME names a compiled function:
+  An accessor for SB-CONCURRENCY:MAILBOX
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-CONCURRENCY:MAILBOX) (VALUES T &OPTIONAL))
+  Documentation:
+    Name of a MAILBOX. SETFable.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+
+(SETF MAILBOX-NAME) names a compiled function:
+  An accessor for SB-CONCURRENCY:MAILBOX
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (T SB-CONCURRENCY:MAILBOX) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PRINT-OBJECT (MAILBOX T))
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+:end:
+** MAILBOX-EMPTY-P :compiled:function:
+:PROPERTIES:
+:ID: 2029086807206
+:CUSTOM_ID: SB-CONCURRENCY:MAILBOX-EMPTY-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAILBOX-EMPTY-P names a compiled function:
+  Lambda-list: (MAILBOX)
+  Declared type: (FUNCTION (SB-CONCURRENCY:MAILBOX) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Returns true if MAILBOX is currently empty, NIL otherwise.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:
+** LIST-MAILBOX-MESSAGES :compiled:function:
+:PROPERTIES:
+:ID: 2383925104770
+:CUSTOM_ID: SB-CONCURRENCY:LIST-MAILBOX-MESSAGES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LIST-MAILBOX-MESSAGES names a compiled function:
+  Lambda-list: (MAILBOX)
+  Declared type: (FUNCTION (SB-CONCURRENCY:MAILBOX) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Returns a fresh list containing all the messages in MAILBOX. Does not
+    remove messages from the mailbox.
+  Source file: SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+- SYS:CONTRIB;SB-CONCURRENCY;MAILBOX.LISP.NEWEST
+  - [[id:3229394090563][FTYPE]]
+:end:

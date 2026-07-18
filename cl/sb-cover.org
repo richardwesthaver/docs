@@ -1,0 +1,301 @@
+#+SETUPFILE: ../../clean.theme
+* SB-COVER
+:PROPERTIES:
+:CUSTOM_ID: SB-COVER
+:ID: 39
+:END:
+- dependencies
+  - COMMON-LISP
+  - SB-C
+  - SB-INT
+
+** SAVE-COVERAGE-IN-FILE :compiled:function:
+:PROPERTIES:
+:ID: 2281158708838
+:CUSTOM_ID: SB-COVER:SAVE-COVERAGE-IN-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SAVE-COVERAGE-IN-FILE names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES &OPTIONAL))
+  Documentation:
+    Call SAVE-COVERAGE and write the results of that operation into the
+    file designated by PATHNAME.
+  Source file: SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+:end:
+** RESTORE-COVERAGE-FROM-FILE :compiled:function:
+:PROPERTIES:
+:ID: 172110681111
+:CUSTOM_ID: SB-COVER:RESTORE-COVERAGE-FROM-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RESTORE-COVERAGE-FROM-FILE names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES &OPTIONAL))
+  Documentation:
+    READ the contents of the file designated by PATHNAME and pass the
+    result to RESTORE-COVERAGE.
+  Source file: SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+:end:
+** MERGE-COVERAGE :compiled:function:
+:PROPERTIES:
+:ID: 372634054526
+:CUSTOM_ID: SB-COVER:MERGE-COVERAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MERGE-COVERAGE names a compiled function:
+  Lambda-list: (COVERAGE-STATE)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Merge the code coverage data to include covered code from an earlier
+    state produced by SAVE-COVERAGE.
+  Source file: SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-COVER:MERGE-COVERAGE-FROM-FILE
+
+:definitions:
+- SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+:end:
+** CLEAR-COVERAGE :compiled:function:
+:PROPERTIES:
+:ID: 2124464419475
+:CUSTOM_ID: SB-COVER:CLEAR-COVERAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEAR-COVERAGE names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES NULL &OPTIONAL))
+  Documentation:
+    Clear all files from the coverage database. The files will be re-entered
+    into the database when the FASL files (produced by compiling
+    STORE-COVERAGE-DATA optimization policy set to 3) are loaded again into the
+    image.
+  Source file: SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+:end:
+** LCOV-REPORT :compiled:function:
+:PROPERTIES:
+:ID: 1536998557378
+:CUSTOM_ID: SB-COVER:LCOV-REPORT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LCOV-REPORT names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-COVER;COVER.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-COVER;COVER.LISP.NEWEST
+:end:
+** RESTORE-COVERAGE :compiled:function:
+:PROPERTIES:
+:ID: 2316779120461
+:CUSTOM_ID: SB-COVER:RESTORE-COVERAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RESTORE-COVERAGE names a compiled function:
+  Lambda-list: (COVERAGE-STATE)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Restore the code coverage data back to an earlier state produced by
+    SAVE-COVERAGE.
+  Source file: SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-COVER:RESTORE-COVERAGE-FROM-FILE
+
+:definitions:
+- SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+:end:
+** GET-COVERAGE :compiled:function:
+:PROPERTIES:
+:ID: 2164061056129
+:CUSTOM_ID: SB-COVER:GET-COVERAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GET-COVERAGE names a compiled function:
+  Lambda-list: (CODE)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-COVER;COVER.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-COVER;COVER.LISP.NEWEST
+:end:
+** ENABLE-COVERAGE-LOGGING :compiled:function:
+:PROPERTIES:
+:ID: 1248553739082
+:CUSTOM_ID: SB-COVER:ENABLE-COVERAGE-LOGGING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENABLE-COVERAGE-LOGGING names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL
+                 (VALUES (FUNCTION (T T) (VALUES CONS &OPTIONAL)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-COVER;COVER.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-COVER;COVER.LISP.NEWEST
+:end:
+** SAVE-COVERAGE :compiled:function:
+:PROPERTIES:
+:ID: 2603803580745
+:CUSTOM_ID: SB-COVER:SAVE-COVERAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SAVE-COVERAGE names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES LIST &OPTIONAL))
+  Documentation:
+    Returns an opaque representation of the current code coverage state.
+    The only operation that may be done on the state is passing it to
+    RESTORE-COVERAGE. The representation is guaranteed to be readablyprintable.
+    A representation that has been printed and read back will work identically
+    in RESTORE-COVERAGE.
+  Source file: SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-COVER:SAVE-COVERAGE-IN-FILE
+
+:definitions:
+- SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+:end:
+** MERGE-COVERAGE-FROM-FILE :compiled:function:
+:PROPERTIES:
+:ID: 4099534003243
+:CUSTOM_ID: SB-COVER:MERGE-COVERAGE-FROM-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MERGE-COVERAGE-FROM-FILE names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES &OPTIONAL))
+  Documentation:
+    READ the contents of the file designated by PATHNAME and pass the
+    result to MERGE-COVERAGE.
+  Source file: SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+:end:
+** REPORT :compiled:function:
+:PROPERTIES:
+:ID: 2694078288849
+:CUSTOM_ID: SB-COVER:REPORT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REPORT names a compiled function:
+  Lambda-list: (DIRECTORY &KEY ((FORM-MODE *SOURCE-PATH-MODE*) WHOLE)
+                          (IF-MATCHES (QUOTE IDENTITY))
+                          (EXTERNAL-FORMAT DEFAULT))
+  Derived type: (FUNCTION
+                 (T &KEY (:FORM-MODE (MEMBER :CAR :WHOLE)) (:IF-MATCHES T)
+                  (:EXTERNAL-FORMAT T))
+                 (VALUES (OR PATHNAME NULL) &OPTIONAL))
+  Documentation:
+    Print a code coverage report of all instrumented files into DIRECTORY.
+    If DIRECTORY does not exist, it will be created. The main report will be
+    printed to the file cover-index.html. The external format of the source
+    files can be specified with the EXTERNAL-FORMAT parameter.
+    
+    If the keyword argument :FORM-MODE has the value :CAR, the annotations
+    in the coverage report will be placed on the CARs of any cons-forms,
+    while if it has the value :WHOLE the whole form will be annotated (the
+    default). The former mode shows explicitly which forms were
+    instrumented, while the latter mode is generally easier to read.
+    
+    The keyword argument IF-MATCHES should be a designator for a function
+    of one argument, called for the namestring of each file with code
+    coverage info. If it returns true, the file's info is included in the
+    report, otherwise ignored. The default value is CL:IDENTITY.
+  Source file: SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-COVER;GENHTML.LISP.NEWEST
+:end:
+** RESET-COVERAGE :compiled:function:
+:PROPERTIES:
+:ID: 2231909317045
+:CUSTOM_ID: SB-COVER:RESET-COVERAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RESET-COVERAGE names a compiled function:
+  Lambda-list: (&OPTIONAL OBJECT)
+  Derived type: (FUNCTION (&OPTIONAL T) (VALUES &OPTIONAL NULL))
+  Documentation:
+    Reset all coverage data back to the Not executed state.
+  Source file: SYS:CONTRIB;SB-COVER;COVER.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-COVER:RESET-COVERAGE
+
+:definitions:
+- SYS:CONTRIB;SB-COVER;COVER.LISP.NEWEST
+:end:

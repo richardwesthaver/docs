@@ -1,4 +1,4 @@
-#+setupfile: ../../clean.theme
+#+SETUPFILE: ../../clean.theme
 * SB-SYS
 :PROPERTIES:
 :CUSTOM_ID: SB-SYS
@@ -19,40 +19,40 @@ of SB-KERNEL) have been undone, but probably more remain.
   - SB-INT
 
 - dependents
-  - [[#SB-SPROF][SB-SPROF]]
-  - [[#SB-DEBUG][SB-DEBUG]]
-  - [[#STD/BIT][STD/BIT]]
-  - [[#SB-CONCURRENCY][SB-CONCURRENCY]]
-  - [[#SB-UNIX][SB-UNIX]]
-  - [[#SB-KERNEL][SB-KERNEL]]
-  - [[#SB-X86-64-ASM][SB-X86-64-ASM]]
-  - [[#SB-ALIEN][SB-ALIEN]]
-  - [[#SB-C][SB-C]]
-  - [[#SB-REGALLOC][SB-REGALLOC]]
-  - [[#SB-FASL][SB-FASL]]
-  - [[#SB-DISASSEM][SB-DISASSEM]]
-  - [[#SB-THREAD][SB-THREAD]]
-  - [[#SB-APROF][SB-APROF]]
-  - [[#SB-LOCKLESS][SB-LOCKLESS]]
-  - [[#SB-VM][SB-VM]]
-  - [[#SB-IMPL][SB-IMPL]]
-  - [[#SB-DI][SB-DI]]
+  - [[id:38][SB-SPROF]]
+  - [[id:11][SB-DEBUG]]
+  - [[id:120][STD/BIT]]
+  - [[id:84][SB-CONCURRENCY]]
+  - [[id:10][SB-UNIX]]
+  - [[id:4][SB-KERNEL]]
+  - [[id:35][SB-X86-64-ASM]]
+  - [[id:18][SB-ALIEN]]
+  - [[id:12][SB-C]]
+  - [[id:26][SB-REGALLOC]]
+  - [[id:21][SB-FASL]]
+  - [[id:25][SB-DISASSEM]]
+  - [[id:8][SB-THREAD]]
+  - [[id:9][SB-APROF]]
+  - [[id:27][SB-LOCKLESS]]
+  - [[id:6][SB-VM]]
+  - [[id:7][SB-IMPL]]
+  - [[id:15][SB-DI]]
 
 ** SCRUB-CONTROL-STACK :compiled:function:
 :PROPERTIES:
 :ID: 2760835053971
 :CUSTOM_ID: SB-SYS:SCRUB-CONTROL-STACK
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SCRUB-CONTROL-STACK names a compiled function:
   Lambda-list: ()
   Declared type: (FUNCTION NIL (VALUES NULL &OPTIONAL))
   Source file: SYS:SRC;CODE;GC.LISP
-#+end_example
 
-- Called by
-  - SB-ACLREPL::REP-ONE
+#+end_example
 
 :definitions:
 - SYS:SRC;CODE;GC.LISP
@@ -62,12 +62,15 @@ SCRUB-CONTROL-STACK names a compiled function:
 :ID: 1077202356481
 :CUSTOM_ID: SB-SYS:ELAPSED-CYCLES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ELAPSED-CYCLES names a compiled function:
   Lambda-list: (H0 L0 H1 L1)
   Derived type: (FUNCTION (T T T T) (VALUES NUMBER &OPTIONAL))
   Source file: SYS:SRC;CODE;TIME.LISP
+
 #+end_example
 
 :definitions:
@@ -78,8 +81,10 @@ ELAPSED-CYCLES names a compiled function:
 :ID: 101923263437
 :CUSTOM_ID: SB-SYS:DEADLINE-TIMEOUT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEADLINE-TIMEOUT names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:DEADLINE-TIMEOUT>:
   Documentation:
     Signaled when an operation in the context of a deadline takes
@@ -89,6 +94,7 @@ DEADLINE-TIMEOUT names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:DEAD
   Direct superclasses: TIMEOUT
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -99,8 +105,10 @@ DEADLINE-TIMEOUT names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:DEAD
 :ID: 2627908349666
 :CUSTOM_ID: SB-SYS:WITH-INTERRUPTS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-INTERRUPTS names a macro:
   Lambda-list: (&BODY BODY)
   Documentation:
@@ -112,6 +120,7 @@ WITH-INTERRUPTS names a macro:
     interrupts are not enabled if any outer WITHOUT-INTERRUPTS is notaccompanied
     by ALLOW-WITH-INTERRUPTS.
   Source file: SYS:SRC;CODE;SIGNAL.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -126,8 +135,10 @@ WITH-INTERRUPTS names a macro:
 :ID: 2564467354898
 :CUSTOM_ID: SB-SYS:SYSTEM-CONDITION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SYSTEM-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:SYSTEM-CONDITION>:
   Class precedence-list: SB-SYS:SYSTEM-CONDITION, CONDITION,
                          SB-PCL::SLOT-OBJECT, T
@@ -143,6 +154,7 @@ SYSTEM-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:SYST
       Initargs: :CONTEXT
       Initform: 'NIL
       Readers: SB-SYS:SYSTEM-CONDITION-CONTEXT
+
 #+end_example
 
 :definitions:
@@ -153,8 +165,10 @@ SYSTEM-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:SYST
 :ID: 1833715221051
 :CUSTOM_ID: SB-SYS:SAP>
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP> names a compiled function:
   Lambda-list: (X Y)
   Declared type: (FUNCTION
@@ -162,6 +176,7 @@ SAP> names a compiled function:
                   (VALUES BOOLEAN &OPTIONAL))
   Known attributes: flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -176,8 +191,10 @@ SAP> names a compiled function:
 :ID: 750552234456
 :CUSTOM_ID: SB-SYS:DECODE-TIMEOUT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DECODE-TIMEOUT names a compiled function:
   Lambda-list: (SECONDS)
   Declared type: (FUNCTION ((OR (FLOAT 0.0) NULL (RATIONAL 0)))
@@ -203,6 +220,7 @@ DECODE-TIMEOUT names a compiled function:
     null. If a global deadline has already passed when DECODE-TIMEOUT iscalled,
     it will signal a timeout condition.
   Source file: SYS:SRC;CODE;DEADLINE.LISP
+
 #+end_example
 
 :definitions:
@@ -213,10 +231,13 @@ DECODE-TIMEOUT names a compiled function:
 :ID: 324485187892
 :CUSTOM_ID: SB-SYS:*STDIN*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*STDIN* names a special variable:
-  Value: #<SB-SYS:FD-STREAM for "standard input" {1203FB8E53}>
+
+*STDIN* names a special variable:
+  Value: #<SB-SYS:FD-STREAM for "standard input" {1203F98943}>
+
 #+end_example
 
 - Referenced by
@@ -230,11 +251,14 @@ DECODE-TIMEOUT names a compiled function:
 :ID: 361044909646
 :CUSTOM_ID: SB-SYS:WITH-INTERRUPT-BINDINGS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-INTERRUPT-BINDINGS names a macro:
   Lambda-list: (&BODY BODY)
   Source file: SYS:SRC;CODE;TARGET-SIGNAL-COMMON.LISP
+
 #+end_example
 
 :definitions:
@@ -245,10 +269,13 @@ WITH-INTERRUPT-BINDINGS names a macro:
 :ID: 619313739491
 :CUSTOM_ID: SB-SYS:*RUNTIME-DLHANDLE*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*RUNTIME-DLHANDLE* names a global variable:
-  Value: #.(INT-SAP #X7F33A73432E0)
+
+*RUNTIME-DLHANDLE* names a global variable:
+  Value: #.(INT-SAP #X7F16325982E0)
+
 #+end_example
 
 :definitions:
@@ -260,8 +287,10 @@ WITH-INTERRUPT-BINDINGS names a macro:
 :ID: 2636663015556
 :CUSTOM_ID: SB-SYS:SAP-REF-16
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-REF-16 names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -275,6 +304,7 @@ SAP-REF-16 names a compiled function:
                   ((UNSIGNED-BYTE 16) SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (UNSIGNED-BYTE 16) &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -294,8 +324,10 @@ SAP-REF-16 names a compiled function:
 :ID: 4102632328639
 :CUSTOM_ID: SB-SYS:SAP-REF-LONG
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-REF-LONG names an undefined function
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES DOUBLE-FLOAT &OPTIONAL))
@@ -303,6 +335,7 @@ SAP-REF-LONG names an undefined function
 (SETF SAP-REF-LONG) names an undefined function
   Declared type: (FUNCTION (DOUBLE-FLOAT SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES DOUBLE-FLOAT &OPTIONAL))
+
 #+end_example
 
 :definitions:
@@ -316,12 +349,15 @@ SAP-REF-LONG names an undefined function
 :ID: 1933203039099
 :CUSTOM_ID: SB-SYS:INVOKE-INTERRUPTION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INVOKE-INTERRUPTION names a compiled function:
   Lambda-list: (FUNCTION)
   Derived type: (FUNCTION (T) (VALUES (INTEGER 0 0) &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-SIGNAL-COMMON.LISP
+
 #+end_example
 
 - Called by
@@ -335,8 +371,10 @@ INVOKE-INTERRUPTION names a compiled function:
 :ID: 484244255188
 :CUSTOM_ID: SB-SYS:FIND-FOREIGN-SYMBOL-ADDRESS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FIND-FOREIGN-SYMBOL-ADDRESS names a compiled function:
   Lambda-list: (NAME)
   Derived type: (FUNCTION (T) *)
@@ -344,6 +382,7 @@ FIND-FOREIGN-SYMBOL-ADDRESS names a compiled function:
     Returns the address of the foreign symbol NAME, or NIL. Does not enter the
     symbol in the linkage table, and never returns an address in the linkage-table.
   Source file: SYS:SRC;CODE;FOREIGN.LISP
+
 #+end_example
 
 - Called by
@@ -357,8 +396,10 @@ FIND-FOREIGN-SYMBOL-ADDRESS names a compiled function:
 :ID: 1799354657667
 :CUSTOM_ID: SB-SYS:SAP<
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP< names a compiled function:
   Lambda-list: (X Y)
   Declared type: (FUNCTION
@@ -366,6 +407,7 @@ SAP< names a compiled function:
                   (VALUES BOOLEAN &OPTIONAL))
   Known attributes: flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -380,12 +422,15 @@ SAP< names a compiled function:
 :ID: 798832342832
 :CUSTOM_ID: SB-SYS:SYSTEM-CONDITION-CONTEXT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SYSTEM-CONDITION-CONTEXT names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -396,20 +441,23 @@ SYSTEM-CONDITION-CONTEXT names a compiled function:
 :ID: 865845891100
 :CUSTOM_ID: SB-SYS:SAP-INT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-INT names a compiled function:
   Lambda-list: (X)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER)
                   (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
   - SB-POSIX:MMAP
   - SB-POSIX:STRTOD
-  - [[id:1734665123574][MAKE-NODE]]
+  - SB-SPROF::MAKE-NODE
   - SB-SPROF::CALL-WITH-EACH-PROFILE-BUFFER
   - SB-SPROF::DEBUG-INFO
   - SB-SPROF:SAMPLE-PC
@@ -433,13 +481,16 @@ SAP-INT names a compiled function:
 :ID: 1553656777375
 :CUSTOM_ID: SB-SYS:DLOPEN-OR-LOSE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DLOPEN-OR-LOSE names a compiled function:
   Lambda-list: (&OPTIONAL (OBJ NIL OBJP))
   Derived type: (FUNCTION (&OPTIONAL T)
                  (VALUES SB-SYS:SYSTEM-AREA-POINTER &OPTIONAL))
   Source file: SYS:SRC;CODE;UNIX-FOREIGN-LOAD.LISP
+
 #+end_example
 
 :definitions:
@@ -450,12 +501,15 @@ DLOPEN-OR-LOSE names a compiled function:
 :ID: 1948531134025
 :CUSTOM_ID: SB-SYS:READ-N-BYTES
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 READ-N-BYTES names a compiled function:
   Lambda-list: (STREAM BUFFER START END &OPTIONAL (EOF-ERROR-P T))
   Derived type: (FUNCTION (T T T T &OPTIONAL T) *)
   Source file: SYS:SRC;CODE;STREAM.LISP
+
 #+end_example
 
 :definitions:
@@ -466,13 +520,16 @@ READ-N-BYTES names a compiled function:
 :ID: 134750629316
 :CUSTOM_ID: SB-SYS:ENABLE-INTERRUPT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ENABLE-INTERRUPT names a compiled function:
   Lambda-list: (SIGNAL HANDLER)
   Derived type: (FUNCTION (T (OR FUNCTION (MEMBER :DEFAULT :IGNORE)))
                  (VALUES NULL &OPTIONAL))
   Source file: SYS:SRC;CODE;TARGET-SIGNAL.LISP
+
 #+end_example
 
 - Called by
@@ -487,26 +544,30 @@ ENABLE-INTERRUPT names a compiled function:
 :ID: 202603573909
 :CUSTOM_ID: SB-SYS:MACRO
 :ALLOC: HEAP IMMOBILE
-:END:** *INTERRUPTS-ENABLED​* :global:var:
+:END:
+** *INTERRUPTS-ENABLED​* :global:var:
 :PROPERTIES:
 :ID: 1039270168727
 :CUSTOM_ID: SB-SYS:*INTERRUPTS-ENABLED*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*INTERRUPTS-ENABLED* names a special variable:
+
+*INTERRUPTS-ENABLED* names a special variable:
   Declared always-bound.
   Value: T
+
 #+end_example
 
 - Bound by
   - SB-CONCURRENCY:OPEN-GATE
   - SB-CONCURRENCY:RECEIVE-PENDING-MESSAGES
-  - [[id:579149819929][RECEIVE-MESSAGE-NO-HANG]]
+  - [[id:579149820371][RECEIVE-MESSAGE-NO-HANG]]
   - SB-CONCURRENCY:RECEIVE-MESSAGE
-  - [[id:2133153310738][SEND-MESSAGE]]
+  - [[id:2133153311419][SEND-MESSAGE]]
   - SB-CONCURRENCY:GRAB-FRLOCK-WRITE-LOCK
-  - [[id:1053520094808][GET-HOST-BY-NAME]]
+  - [[id:1053520094345][GET-HOST-BY-NAME]]
   - SB-POSIX:FORK
   - DSP/AUD:CHROMAPRINT
   - (CURSOR-NEXT-NODUP (RDB-DUP-CURSOR))
@@ -571,7 +632,7 @@ ENABLE-INTERRUPT names a compiled function:
   - OBJ/STORE::GET-UNIQUE-VALUES
   - OBJ/BTREE::MAP-INDEX-FROM-END
   - OBJ/BTREE::MAP-INDEX-FROM-START
-  - [[id:2598209719116][MAP-INDEX-VALUES]]
+  - [[id:2598209718458][MAP-INDEX-VALUES]]
   - OBJ/BTREE::MAP-BTREE-FROM-END
   - OBJ/BTREE::MAP-BTREE-FROM-START
   - OBJ/BTREE::MAP-BTREE-VALUES
@@ -585,11 +646,11 @@ ENABLE-INTERRUPT names a compiled function:
 - Referenced by
   - SB-CONCURRENCY:OPEN-GATE
   - SB-CONCURRENCY:RECEIVE-PENDING-MESSAGES
-  - [[id:579149819929][RECEIVE-MESSAGE-NO-HANG]]
+  - [[id:579149820371][RECEIVE-MESSAGE-NO-HANG]]
   - SB-CONCURRENCY:RECEIVE-MESSAGE
-  - [[id:2133153310738][SEND-MESSAGE]]
+  - [[id:2133153311419][SEND-MESSAGE]]
   - SB-CONCURRENCY:GRAB-FRLOCK-WRITE-LOCK
-  - [[id:1053520094808][GET-HOST-BY-NAME]]
+  - [[id:1053520094345][GET-HOST-BY-NAME]]
   - SB-POSIX:FORK
   - DSP/AUD:CHROMAPRINT
   - (CURSOR-NEXT-NODUP (RDB-DUP-CURSOR))
@@ -654,7 +715,7 @@ ENABLE-INTERRUPT names a compiled function:
   - OBJ/STORE::GET-UNIQUE-VALUES
   - OBJ/BTREE::MAP-INDEX-FROM-END
   - OBJ/BTREE::MAP-INDEX-FROM-START
-  - [[id:2598209719116][MAP-INDEX-VALUES]]
+  - [[id:2598209718458][MAP-INDEX-VALUES]]
   - OBJ/BTREE::MAP-BTREE-FROM-END
   - OBJ/BTREE::MAP-BTREE-FROM-START
   - OBJ/BTREE::MAP-BTREE-VALUES
@@ -673,12 +734,15 @@ ENABLE-INTERRUPT names a compiled function:
 :ID: 1259182200959
 :CUSTOM_ID: SB-SYS:SAP-FOREIGN-SYMBOL
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-FOREIGN-SYMBOL names a compiled function:
   Lambda-list: (SAP)
   Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;FOREIGN.LISP
+
 #+end_example
 
 - Called by
@@ -692,8 +756,10 @@ SAP-FOREIGN-SYMBOL names a compiled function:
 :ID: 3645775531933
 :CUSTOM_ID: SB-SYS:SYSTEM-INTERNAL-RUN-TIME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SYSTEM-INTERNAL-RUN-TIME names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL
@@ -703,21 +769,25 @@ SYSTEM-INTERNAL-RUN-TIME names a compiled function:
                   &OPTIONAL))
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;UNIX.LISP
+
 #+end_example
 
 :definitions:
 - SYS:SRC;CODE;UNIX.LISP
 :end:
-** *MACHINE-VERSION​* :var:
+** *MACHINE-VERSION​*
 :PROPERTIES:
 :ID: 3829090693566
 :CUSTOM_ID: SB-SYS:*MACHINE-VERSION*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*MACHINE-VERSION* names a global variable:
+
+*MACHINE-VERSION* names a global variable:
   Declared type: (OR SIMPLE-STRING NULL)
-  Value: "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz"
+  Currently unbound.
+
 #+end_example
 
 :definitions:
@@ -729,8 +799,10 @@ SYSTEM-INTERNAL-RUN-TIME names a compiled function:
 :ID: 1816534938802
 :CUSTOM_ID: SB-SYS:SAP=
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP= names a compiled function:
   Lambda-list: (X Y)
   Declared type: (FUNCTION
@@ -740,6 +812,7 @@ SAP= names a compiled function:
     Compare the SAPs X and Y for equality.
   Known attributes: flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -754,11 +827,14 @@ SAP= names a compiled function:
 :ID: 979884211930
 :CUSTOM_ID: SB-SYS:%SAP-REF-16-INDEXED
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SAP-REF-16-INDEXED names an undefined function
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (UNSIGNED-BYTE 16) &OPTIONAL))
+
 #+end_example
 
 :definitions:
@@ -770,8 +846,10 @@ SAP= names a compiled function:
 :ID: 2496303894406
 :CUSTOM_ID: SB-SYS:WITHOUT-GCING
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITHOUT-GCING names a macro:
   Lambda-list: (&BODY BODY)
   Documentation:
@@ -792,6 +870,7 @@ WITHOUT-GCING names a macro:
     locks, application code can never be certain that this invariant is
     maintained.
   Source file: SYS:SRC;CODE;SYSMACS.LISP
+
 #+end_example
 
 :definitions:
@@ -802,8 +881,10 @@ WITHOUT-GCING names a macro:
 :ID: 3480505618794
 :CUSTOM_ID: SB-SYS:FD-STREAM-FD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FD-STREAM-FD names a compiled function:
   An accessor for SB-SYS:FD-STREAM
   Lambda-list: (INSTANCE)
@@ -815,6 +896,7 @@ FD-STREAM-FD names a compiled function:
   Lambda-list: (VALUE INSTANCE)
   Derived type: (FUNCTION (FIXNUM SB-SYS:FD-STREAM) (VALUES FIXNUM &OPTIONAL))
   Source file: SYS:SRC;CODE;FD-STREAM.LISP
+
 #+end_example
 
 - Called by
@@ -832,8 +914,10 @@ FD-STREAM-FD names a compiled function:
 :ID: 1165689296786
 :CUSTOM_ID: SB-SYS:SAP-REF-SINGLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-REF-SINGLE names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -846,6 +930,7 @@ SAP-REF-SINGLE names a compiled function:
   Declared type: (FUNCTION (SINGLE-FLOAT SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES SINGLE-FLOAT &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -863,11 +948,14 @@ SAP-REF-SINGLE names a compiled function:
 :ID: 3230932793997
 :CUSTOM_ID: SB-SYS:%SIGNED-SAP-REF-32-INDEXED
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIGNED-SAP-REF-32-INDEXED names an undefined function
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+
 #+end_example
 
 :definitions:
@@ -879,8 +967,10 @@ SAP-REF-SINGLE names a compiled function:
 :ID: 4365382603397
 :CUSTOM_ID: SB-SYS:FOREIGN-SYMBOL-SAP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FOREIGN-SYMBOL-SAP names a compiled function:
   Lambda-list: (SYMBOL &OPTIONAL DATAP)
   Declared type: (FUNCTION (SIMPLE-STRING &OPTIONAL BOOLEAN)
@@ -890,6 +980,7 @@ FOREIGN-SYMBOL-SAP names a compiled function:
     symbol designates a variable. May enter the symbol into the linkage-table.
   Known attributes: flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;FOREIGN.LISP
+
 #+end_example
 
 - Called by
@@ -909,13 +1000,13 @@ FOREIGN-SYMBOL-SAP names a compiled function:
   - SB-BSD-SOCKETS-INTERNAL::RECVFROM
   - [[id:1774996476442][SHUTDOWN]]
   - [[id:1931215106052][CLOSE]]
-  - [[id:2333560576290][CONNECT]]
+  - [[id:2333560576239][CONNECT]]
   - SB-BSD-SOCKETS-INTERNAL::GETSOCKNAME
   - SB-BSD-SOCKETS-INTERNAL::GETPEERNAME
-  - [[id:3837681228476][ACCEPT]]
+  - [[id:3837681227794][ACCEPT]]
   - [[id:2118535439810][LISTEN]]
   - [[id:2413270812120][BIND]]
-  - [[id:2512777137462][SOCKET]]
+  - [[id:2512777137712][SOCKET]]
   - SB-BSD-SOCKETS-INTERNAL::ALLOCATE-HOSTENT
   - SB-BSD-SOCKETS-INTERNAL::INET-PTON
   - SB-BSD-SOCKETS-INTERNAL::INET-NTOP
@@ -947,8 +1038,8 @@ FOREIGN-SYMBOL-SAP names a compiled function:
   - SB-POSIX:TCFLUSH
   - SB-POSIX:TCFLOW
   - SB-POSIX:TCDRAIN
-  - [[id:1666853289994][TCGETATTR]]
-  - [[id:3582526534363][TCSETATTR]]
+  - [[id:1666853290792][TCGETATTR]]
+  - [[id:3582526533905][TCSETATTR]]
   - [[id:1575099243259][PIPE]]
   - SB-POSIX:S-ISSOCK
   - SB-POSIX:S-ISLNK
@@ -1080,7 +1171,7 @@ FOREIGN-SYMBOL-SAP names a compiled function:
   - SB-SPROF::CALL-WITH-EACH-PROFILE-BUFFER
   - (WITH-SYSTEM-MUTEX-THUNK IN CALL-WITH-EACH-PROFILE-BUFFER)
   - SB-SPROF::SB-TOGGLE-SIGPROF
-  - [[id:107173626613][SET-TTY-MODE]]
+  - [[id:107173626758][SET-TTY-MODE]]
   - CRY/TLS::INSTALL-NONBLOCK-FLAG
   - FFMPEG:AV-CHANNEL-LAYOUT-DEFAULT
   - FFMPEG:AV-GET-BYTES-PER-SAMPLE
@@ -4391,28 +4482,28 @@ FOREIGN-SYMBOL-SAP names a compiled function:
   - URING::ALLOCATE-IO-CQRING-OFFSETS
   - URING::ALLOCATE-IO-SQRING-OFFSETS
   - URING::ALLOCATE-IO-URING-CQE
-  - [[id:1374618372733][TREE-SITTER-YAML]]
-  - [[id:281672127097][TREE-SITTER-TYPESCRIPT-TYPESCRIPT]]
-  - [[id:3869745382013][TREE-SITTER-TYPESCRIPT-TSX]]
-  - [[id:1432819523424][TREE-SITTER-PYTHON]]
-  - [[id:3212414904969][TREE-SITTER-JAVASCRIPT]]
-  - [[id:507663683516][TREE-SITTER-GO]]
-  - [[id:893809427374][TREE-SITTER-CPP]]
-  - [[id:843757497754][TREE-SITTER-BASH]]
-  - [[id:1699961359896][TREE-SITTER-RUST]]
-  - [[id:3411995026365][TREE-SITTER-C]]
+  - TREE-SITTER:TREE-SITTER-YAML
+  - TREE-SITTER:TREE-SITTER-TYPESCRIPT-TYPESCRIPT
+  - TREE-SITTER:TREE-SITTER-TYPESCRIPT-TSX
+  - TREE-SITTER:TREE-SITTER-PYTHON
+  - TREE-SITTER:TREE-SITTER-JAVASCRIPT
+  - TREE-SITTER:TREE-SITTER-GO
+  - TREE-SITTER:TREE-SITTER-CPP
+  - TREE-SITTER:TREE-SITTER-BASH
+  - TREE-SITTER:TREE-SITTER-RUST
+  - TREE-SITTER:TREE-SITTER-C
   - TREE-SITTER::TS-NODE-PARENT
   - TREE-SITTER::TS-NODE-CHILD-COUNT
-  - [[id:3819416674234][TS-NODE-END-BYTE]]
-  - [[id:3663705829982][TS-NODE-START-BYTE]]
-  - [[id:64171983544][TS-NODE-STRING]]
-  - [[id:4197920278142][TS-NODE-TYPE]]
-  - [[id:3414025121771][TS-NODE-END-POINT]]
-  - [[id:2376420698206][TS-NODE-START-POINT]]
-  - [[id:2099994837877][TS-TREE-CURSOR-CURRENT-NODE]]
-  - [[id:2072781129076][TS-NODE-IS-NAMED]]
-  - [[id:3504674628245][TS-TREE-CURSOR-NEW]]
-  - [[id:40761465733][TS-TREE-ROOT-NODE]]
+  - TREE-SITTER:TS-NODE-END-BYTE
+  - TREE-SITTER:TS-NODE-START-BYTE
+  - TREE-SITTER:TS-NODE-STRING
+  - TREE-SITTER:TS-NODE-TYPE
+  - TREE-SITTER:TS-NODE-END-POINT
+  - TREE-SITTER:TS-NODE-START-POINT
+  - TREE-SITTER:TS-TREE-CURSOR-CURRENT-NODE
+  - TREE-SITTER:TS-NODE-IS-NAMED
+  - TREE-SITTER:TS-TREE-CURSOR-NEW
+  - TREE-SITTER:TS-TREE-ROOT-NODE
   - TREE-SITTER::TS-QUERY-CURSOR-SET-MAX-START-DEPTH
   - TREE-SITTER::TS-QUERY-CURSOR-NEXT-CAPTURE
   - TREE-SITTER::TS-QUERY-CURSOR-REMOVE-MATCH
@@ -4422,47 +4513,47 @@ FOREIGN-SYMBOL-SAP names a compiled function:
   - TREE-SITTER::TS-QUERY-STRING-COUNT
   - TREE-SITTER::TS-QUERY-CAPTURE-COUNT
   - TREE-SITTER::TS-QUERY-PATTERN-COUNT
-  - [[id:3770238449493][TS-QUERY-CURSOR-DELETE]]
+  - TREE-SITTER:TS-QUERY-CURSOR-DELETE
   - TREE-SITTER::TS-QUERY-CURSOR-NEW
-  - [[id:1565051425426][TS-QUERY-DELETE]]
-  - [[id:3282289362025][TS-QUERY-NEW]]
-  - [[id:4365766757077][TS-LANGUAGE-NEXT-STATE]]
-  - [[id:3227622534871][TS-LANGUAGE-FIELD-ID-FOR-NAME]]
-  - [[id:1828792635231][TS-LANGUAGE-FIELD-NAME-FOR-ID]]
-  - [[id:1192334460504][TS-LANGUAGE-FIELD-COUNT]]
-  - [[id:2450155430049][TS-LANGUAGE-SYMBOL-TYPE]]
-  - [[id:470905786318][TS-LANGUAGE-SYMBOL-NAME]]
-  - [[id:2326580258323][TS-LANGUAGE-SYMBOL-COUNT]]
+  - TREE-SITTER:TS-QUERY-DELETE
+  - TREE-SITTER:TS-QUERY-NEW
+  - TREE-SITTER:TS-LANGUAGE-NEXT-STATE
+  - TREE-SITTER:TS-LANGUAGE-FIELD-ID-FOR-NAME
+  - TREE-SITTER:TS-LANGUAGE-FIELD-NAME-FOR-ID
+  - TREE-SITTER:TS-LANGUAGE-FIELD-COUNT
+  - TREE-SITTER:TS-LANGUAGE-SYMBOL-TYPE
+  - TREE-SITTER:TS-LANGUAGE-SYMBOL-NAME
+  - TREE-SITTER:TS-LANGUAGE-SYMBOL-COUNT
   - TREE-SITTER::TS-LANGUAGE-METADATA
-  - [[id:1934926110817][TS-LANGUAGE-NAME]]
-  - [[id:132602560678][TS-LANGUAGE-ABI-VERSION]]
-  - [[id:2884141395240][TS-TREE-CURSOR-DELETE]]
+  - TREE-SITTER:TS-LANGUAGE-NAME
+  - TREE-SITTER:TS-LANGUAGE-ABI-VERSION
+  - TREE-SITTER:TS-TREE-CURSOR-DELETE
   - TREE-SITTER::TS-TREE-CURSOR-GOTO-DESCENDANT
   - TREE-SITTER::TS-TREE-CURSOR-GOTO-LAST-CHILD
-  - [[id:2201383014285][TS-TREE-CURSOR-GOTO-FIRST-CHILD]]
+  - TREE-SITTER:TS-TREE-CURSOR-GOTO-FIRST-CHILD
   - TREE-SITTER::TS-TREE-CURSOR-COPY
-  - [[id:121980489835][TS-TREE-CURSOR-GOTO-PARENT]]
+  - TREE-SITTER:TS-TREE-CURSOR-GOTO-PARENT
   - TREE-SITTER::TS-TREE-CURSOR-GOTO-FIRST-CHILD-FOR-POINT
   - TREE-SITTER::TS-TREE-CURSOR-GOTO-FIRST-CHILD-FOR-BYTE
-  - [[id:1252407450523][TS-TREE-CURSOR-GOTO-NEXT-SIBLING]]
+  - TREE-SITTER:TS-TREE-CURSOR-GOTO-NEXT-SIBLING
   - TREE-SITTER::TS-TREE-CURSOR-CURRENT-DEPTH
   - TREE-SITTER::TS-TREE-CURSOR-CURRENT-DESCENDANT-INDEX
   - TREE-SITTER::TS-TREE-CURSOR-CURRENT-FIELD-ID
-  - [[id:1048871944280][TS-TREE-CURSOR-CURRENT-FIELD-NAME]]
-  - [[id:1210417334151][TS-TREE-PRINT-DOT-GRAPH]]
-  - [[id:296986444948][TS-TREE-EDIT]]
-  - [[id:2824503655662][TS-TREE-LANGUAGE]]
-  - [[id:3111795607738][TS-TREE-DELETE]]
-  - [[id:4080537305192][TS-TREE-COPY]]
-  - [[id:4180510615209][TS-PARSER-PRINT-DOT-GRAPHS]]
+  - TREE-SITTER:TS-TREE-CURSOR-CURRENT-FIELD-NAME
+  - TREE-SITTER:TS-TREE-PRINT-DOT-GRAPH
+  - TREE-SITTER:TS-TREE-EDIT
+  - TREE-SITTER:TS-TREE-LANGUAGE
+  - TREE-SITTER:TS-TREE-DELETE
+  - TREE-SITTER:TS-TREE-COPY
+  - TREE-SITTER:TS-PARSER-PRINT-DOT-GRAPHS
   - TREE-SITTER::TS-PARSER-PARSE-WITH-OPTIONS
-  - [[id:2957939539223][TS-PARSER-PARSE-STRING]]
-  - [[id:3137091909217][TS-PARSER-PARSE]]
-  - [[id:2167820729291][TS-PARSER-LANGUAGE]]
-  - [[id:3704828278702][TS-PARSER-SET-LANGUAGE]]
-  - [[id:3364657956826][TS-PARSER-RESET]]
-  - [[id:3322140380329][TS-PARSER-DELETE]]
-  - [[id:1155297755198][TS-PARSER-NEW]]
+  - TREE-SITTER:TS-PARSER-PARSE-STRING
+  - TREE-SITTER:TS-PARSER-PARSE
+  - TREE-SITTER:TS-PARSER-LANGUAGE
+  - TREE-SITTER:TS-PARSER-SET-LANGUAGE
+  - TREE-SITTER:TS-PARSER-RESET
+  - TREE-SITTER:TS-PARSER-DELETE
+  - TREE-SITTER:TS-PARSER-NEW
   - KEYUTILS:FIND-KEY-BY-TYPE-AND-DESC
   - KEYUTILS:KEYCTL-DH-COMPUTE-ALLOC
   - KEYUTILS:KEYCTL-GET-SECURITY-ALLOC
@@ -4812,7 +4903,7 @@ FOREIGN-SYMBOL-SAP names a compiled function:
   - STD/OS::ENDMNTENT
   - STD/OS::GETMNTENT
   - STD/OS::SETMNTENT
-  - [[id:983133237071][STATVFS]]
+  - STD/OS::STATVFS
   - [[id:248646928474][USER-INFO]]
   - [[id:272374563][POSIX-MEMALIGN]]
   - STD/ALIEN::MEMMOVE
@@ -4832,8 +4923,10 @@ FOREIGN-SYMBOL-SAP names a compiled function:
 :ID: 659601181304
 :CUSTOM_ID: SB-SYS:SIGNED-SAP-REF-64
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIGNED-SAP-REF-64 names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -4846,6 +4939,7 @@ SIGNED-SAP-REF-64 names a compiled function:
   Declared type: (FUNCTION ((SIGNED-BYTE 64) SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (SIGNED-BYTE 64) &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -4863,8 +4957,10 @@ SIGNED-SAP-REF-64 names a compiled function:
 :ID: 3987852633459
 :CUSTOM_ID: SB-SYS:GET-SYSTEM-INFO
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GET-SYSTEM-INFO names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL
@@ -4877,6 +4973,7 @@ GET-SYSTEM-INFO names a compiled function:
                    NULL)
                   (OR NULL (SIGNED-BYTE 64)) &OPTIONAL))
   Source file: SYS:SRC;CODE;LINUX-OS.LISP
+
 #+end_example
 
 :definitions:
@@ -4887,8 +4984,10 @@ GET-SYSTEM-INFO names a compiled function:
 :ID: 4075056257669
 :CUSTOM_ID: SB-SYS:SERVE-EVENT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SERVE-EVENT names a compiled function:
   Lambda-list: (&OPTIONAL TIMEOUT)
   Derived type: (FUNCTION (&OPTIONAL T) (VALUES T &OPTIONAL))
@@ -4899,6 +4998,7 @@ SERVE-EVENT names a compiled function:
     will wait until something happens. Server returns T if something
     happened and NIL otherwise. Timeout 0 means polling without waiting.
   Source file: SYS:SRC;CODE;SERVE-EVENT.LISP
+
 #+end_example
 
 :definitions:
@@ -4909,14 +5009,17 @@ SERVE-EVENT names a compiled function:
 :ID: 597065793879
 :CUSTOM_ID: SB-SYS:READ-CYCLE-COUNTER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 READ-CYCLE-COUNTER names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL
                  (VALUES (UNSIGNED-BYTE 32) (UNSIGNED-BYTE 32) &OPTIONAL))
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;TIME.LISP
+
 #+end_example
 
 :definitions:
@@ -4927,8 +5030,10 @@ READ-CYCLE-COUNTER names a compiled function:
 :ID: 4153075515522
 :CUSTOM_ID: SB-SYS:SAP-REF-DOUBLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-REF-DOUBLE names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -4941,6 +5046,7 @@ SAP-REF-DOUBLE names a compiled function:
   Declared type: (FUNCTION (DOUBLE-FLOAT SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES DOUBLE-FLOAT &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -4958,11 +5064,14 @@ SAP-REF-DOUBLE names a compiled function:
 :ID: 737329936588
 :CUSTOM_ID: SB-SYS:%PRIMITIVE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %PRIMITIVE names a special operator:
   Lambda-list: (NAME &REST ARGS)
   Source file: SYS:SRC;COMPILER;IR1-TRANSLATORS.LISP
+
 #+end_example
 
 :definitions:
@@ -4973,14 +5082,17 @@ SAP-REF-DOUBLE names a compiled function:
 :ID: 721197738705
 :CUSTOM_ID: SB-SYS:INTERACTIVE-INTERRUPT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INTERACTIVE-INTERRUPT names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:INTERACTIVE-INTERRUPT>:
   Class precedence-list: SB-SYS:INTERACTIVE-INTERRUPT, SB-SYS:SYSTEM-CONDITION,
                          SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
   Direct superclasses: SB-SYS:SYSTEM-CONDITION, SERIOUS-CONDITION
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -4991,8 +5103,10 @@ INTERACTIVE-INTERRUPT names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS
 :ID: 3590402979134
 :CUSTOM_ID: SB-SYS:DEFER-DEADLINE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEFER-DEADLINE names a compiled function:
   Lambda-list: (SECONDS &OPTIONAL CONDITION)
   Derived type: (FUNCTION (T &OPTIONAL T) *)
@@ -5001,6 +5115,7 @@ DEFER-DEADLINE names a compiled function:
     invoke it with SECONDS as argument (deferring the deadline by that many
     seconds.) Otherwise return NIL if the restart is not found.
   Source file: SYS:SRC;CODE;DEADLINE.LISP
+
 #+end_example
 
 :definitions:
@@ -5011,12 +5126,15 @@ DEFER-DEADLINE names a compiled function:
 :ID: 487491410203
 :CUSTOM_ID: SB-SYS:UPDATE-ALIEN-LINKAGE-TABLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 UPDATE-ALIEN-LINKAGE-TABLE names a compiled function:
   Lambda-list: (FULL-SCAN)
   Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
   Source file: SYS:SRC;CODE;FOREIGN.LISP
+
 #+end_example
 
 :definitions:
@@ -5027,14 +5145,17 @@ UPDATE-ALIEN-LINKAGE-TABLE names a compiled function:
 :ID: 1547302683062
 :CUSTOM_ID: SB-SYS:*LONG-SITE-NAME*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*LONG-SITE-NAME* names a global variable:
+
+*LONG-SITE-NAME* names a global variable:
   Declared type: (OR SIMPLE-STRING NULL)
   Declared always-bound.
   Value: NIL
   Documentation:
     The value of LONG-SITE-NAME.
+
 #+end_example
 
 :definitions:
@@ -5045,13 +5166,16 @@ UPDATE-ALIEN-LINKAGE-TABLE names a compiled function:
 :ID: 523867206083
 :CUSTOM_ID: SB-SYS:SYSTEM-AREA-POINTER-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SYSTEM-AREA-POINTER-P names a compiled function:
   Lambda-list: (OBJECT)
   Declared type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Known attributes: foldable, flushable, unsafely-flushable, movable, predicate
   Source file: SYS:SRC;CODE;PRED.LISP
+
 #+end_example
 
 - Called by
@@ -5070,8 +5194,10 @@ SYSTEM-AREA-POINTER-P names a compiled function:
 :ID: 1439103649640
 :CUSTOM_ID: SB-SYS:FD-STREAM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FD-STREAM names the structure-class #<STRUCTURE-CLASS SB-SYS:FD-STREAM>:
   Class precedence-list: SB-SYS:FD-STREAM, FILE-STREAM, SB-KERNEL:ANSI-STREAM,
                          STREAM, STRUCTURE-OBJECT, SB-PCL::SLOT-OBJECT, T
@@ -5106,13 +5232,13 @@ FD-STREAM names the structure-class #<STRUCTURE-CLASS SB-SYS:FD-STREAM>:
              SB-INT:INDEX)
       Initform: #'SB-KERNEL:ILL-BIN
     SB-IMPL::COUT
-,      Type: (SB-INT:SFUNCTION * T)
+      Type: (SB-INT:SFUNCTION * T)
       Initform: #'SB-KERNEL:ILL-OUT
     SB-IMPL::BOUT
-,      Type: (SB-INT:SFUNCTION * T)
+      Type: (SB-INT:SFUNCTION * T)
       Initform: #'SB-KERNEL:ILL-BOUT
     SB-IMPL::SOUT
-,      Type: (SB-INT:SFUNCTION * T)
+      Type: (SB-INT:SFUNCTION * T)
       Initform: #'SB-KERNEL:ILL-OUT
     SB-IMPL::MISC
       Type: (FUNCTION (STREAM (INTEGER 0 17) T) *)
@@ -5202,6 +5328,7 @@ FD-STREAM names the structure-class #<STRUCTURE-CLASS SB-SYS:FD-STREAM>:
     FILE-POSITION
       Type: (OR (AND UNSIGNED-BYTE SB-INT:INDEX) (MEMBER -1 -2 -3))
       Initform: -1
+
 #+end_example
 
 :definitions:
@@ -5212,10 +5339,13 @@ FD-STREAM names the structure-class #<STRUCTURE-CLASS SB-SYS:FD-STREAM>:
 :ID: 3475196399122
 :CUSTOM_ID: SB-SYS:*STDOUT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*STDOUT* names a special variable:
-  Value: #<SB-SYS:FD-STREAM for "standard output" {1203FB8F93}>
+
+*STDOUT* names a special variable:
+  Value: #<SB-SYS:FD-STREAM for "standard output" {1203F98A83}>
+
 #+end_example
 
 - Referenced by
@@ -5229,12 +5359,15 @@ FD-STREAM names the structure-class #<STRUCTURE-CLASS SB-SYS:FD-STREAM>:
 :ID: 3273167484140
 :CUSTOM_ID: SB-SYS:GET-MACHINE-VERSION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 GET-MACHINE-VERSION names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES (OR STRING NULL) &OPTIONAL))
   Source file: SYS:SRC;CODE;LINUX-OS.LISP
+
 #+end_example
 
 :definitions:
@@ -5245,8 +5378,10 @@ GET-MACHINE-VERSION names a compiled function:
 :ID: 1455435752582
 :CUSTOM_ID: SB-SYS:SAP>=
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP>= names a compiled function:
   Lambda-list: (X Y)
   Declared type: (FUNCTION
@@ -5254,6 +5389,7 @@ SAP>= names a compiled function:
                   (VALUES BOOLEAN &OPTIONAL))
   Known attributes: flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -5268,15 +5404,18 @@ SAP>= names a compiled function:
 :ID: 1846165595240
 :CUSTOM_ID: SB-SYS:*PERIODIC-POLLING-PERIOD*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*PERIODIC-POLLING-PERIOD* names a special variable:
+
+*PERIODIC-POLLING-PERIOD* names a special variable:
   Declared type: REAL
   Value: 0
   Documentation:
     A real number designating the number of seconds to wait for input
-,    at maximum, before calling the *PERIODIC-POLLING-FUNCTION* (if any.)
+    at maximum, before calling the *PERIODIC-POLLING-FUNCTION* (if any.)
     Shared between all threads, unless locally bound. EXPERIMENTAL.
+
 #+end_example
 
 :definitions:
@@ -5287,13 +5426,16 @@ SAP>= names a compiled function:
 :ID: 3388653458195
 :CUSTOM_ID: SB-SYS:MEMMOVE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MEMMOVE names a compiled function:
   Lambda-list: (DEST SRC N)
   Declared type: (FUNCTION (T T T) (VALUES NULL &OPTIONAL))
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;MISC-ALIENS.LISP
+
 #+end_example
 
 :definitions:
@@ -5304,8 +5446,10 @@ MEMMOVE names a compiled function:
 :ID: 2246909404433
 :CUSTOM_ID: SB-SYS:OS-EXIT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 OS-EXIT names a compiled function:
   Lambda-list: (CODE &KEY ABORT)
   Derived type: (FUNCTION (T &KEY (:ABORT T))
@@ -5314,6 +5458,7 @@ OS-EXIT names a compiled function:
     Exit the process with CODE. If ABORT is true, exit is performed using_exit(2),
     avoiding atexit(3) hooks, etc. Otherwise exit(2) is called.
   Source file: SYS:SRC;CODE;UNIX.LISP
+
 #+end_example
 
 :definitions:
@@ -5324,11 +5469,14 @@ OS-EXIT names a compiled function:
 :ID: 2240488642412
 :CUSTOM_ID: SB-SYS:%SAP-REF-32-INDEXED
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SAP-REF-32-INDEXED names an undefined function
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (UNSIGNED-BYTE 32) &OPTIONAL))
+
 #+end_example
 
 :definitions:
@@ -5340,10 +5488,13 @@ OS-EXIT names a compiled function:
 :ID: 945162920872
 :CUSTOM_ID: SB-SYS:*EXIT-ERROR-HANDLER*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*EXIT-ERROR-HANDLER* names a special variable:
+
+*EXIT-ERROR-HANDLER* names a special variable:
   Value: #<FUNCTION SB-IMPL::OS-EXIT-HANDLER>
+
 #+end_example
 
 :definitions:
@@ -5354,8 +5505,10 @@ OS-EXIT names a compiled function:
 :ID: 919126683825
 :CUSTOM_ID: SB-SYS:FOREIGN-SYMBOL-ADDRESS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FOREIGN-SYMBOL-ADDRESS names a compiled function:
   Lambda-list: (NAME &OPTIONAL DATAP)
   Declared type: (FUNCTION (SIMPLE-STRING &OPTIONAL BOOLEAN)
@@ -5371,6 +5524,7 @@ FOREIGN-SYMBOL-ADDRESS names a compiled function:
     Symbols are entered into the linkage-table if they aren't there already.
   Known attributes: flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;FOREIGN.LISP
+
 #+end_example
 
 :definitions:
@@ -5385,8 +5539,10 @@ FOREIGN-SYMBOL-ADDRESS names a compiled function:
 :ID: 517654177361
 :CUSTOM_ID: SB-SYS:SYSTEM-AREA-POINTER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SYSTEM-AREA-POINTER names the built-in-class #<BUILT-IN-CLASS SB-SYS:SYSTEM-AREA-POINTER>:
   Class precedence-list: SYSTEM-AREA-POINTER, T
   Direct superclasses: T
@@ -5396,6 +5552,7 @@ SYSTEM-AREA-POINTER names the built-in-class #<BUILT-IN-CLASS SB-SYS:SYSTEM-AREA
 
 SYSTEM-AREA-POINTER names an alien type:
   Expansion: #<ALIEN-TYPE SYSTEM-AREA-POINTER>
+
 #+end_example
 
 :definitions:
@@ -5406,8 +5563,10 @@ SYSTEM-AREA-POINTER names an alien type:
 :ID: 2705233517895
 :CUSTOM_ID: SB-SYS:SAP-REF-64
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-REF-64 names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -5421,6 +5580,7 @@ SAP-REF-64 names a compiled function:
                   ((UNSIGNED-BYTE 64) SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -5428,7 +5588,7 @@ SAP-REF-64 names a compiled function:
   - SB-INTROSPECT::MAP-CALLER-CODE-COMPONENTS
   - SB-SPROF::EXTRACT-TRACES
   - SB-SPROF::TRACE-LEN
-  - [[id:2470220492610][FREE-STATIC-VECTOR]]
+  - [[id:2470220492713][FREE-STATIC-VECTOR]]
   - IRONCLAD:UB64REF/BE
   - IRONCLAD:UB64REF/LE
   - STD/ALIEN::%SAP-REF
@@ -5445,8 +5605,10 @@ SAP-REF-64 names a compiled function:
 :ID: 3619939370633
 :CUSTOM_ID: SB-SYS:SAP-REF-8
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-REF-8 names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -5460,6 +5622,7 @@ SAP-REF-8 names a compiled function:
                   ((UNSIGNED-BYTE 8) SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (UNSIGNED-BYTE 8) &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -5481,8 +5644,10 @@ SAP-REF-8 names a compiled function:
 :ID: 13484279830
 :CUSTOM_ID: SB-SYS:WAIT-UNTIL-FD-USABLE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WAIT-UNTIL-FD-USABLE names a compiled function:
   Lambda-list: (FD DIRECTION &OPTIONAL TIMEOUT (SERVE-EVENTS T))
   Derived type: (FUNCTION (T T &OPTIONAL T T) (VALUES BOOLEAN &OPTIONAL))
@@ -5494,6 +5659,7 @@ WAIT-UNTIL-FD-USABLE names a compiled function:
     If SERVE-EVENTS is true (the default), events on other FDs are served while
     waiting.
   Source file: SYS:SRC;CODE;SERVE-EVENT.LISP
+
 #+end_example
 
 - Called by
@@ -5508,21 +5674,24 @@ WAIT-UNTIL-FD-USABLE names a compiled function:
 :ID: 863961206504
 :CUSTOM_ID: SB-SYS:*INTERRUPT-PENDING*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*INTERRUPT-PENDING* names a special variable:
+
+*INTERRUPT-PENDING* names a special variable:
   Declared always-bound.
   Value: NIL
+
 #+end_example
 
 - Referenced by
   - SB-CONCURRENCY:OPEN-GATE
   - SB-CONCURRENCY:RECEIVE-PENDING-MESSAGES
-  - [[id:579149819929][RECEIVE-MESSAGE-NO-HANG]]
+  - [[id:579149820371][RECEIVE-MESSAGE-NO-HANG]]
   - SB-CONCURRENCY:RECEIVE-MESSAGE
-  - [[id:2133153310738][SEND-MESSAGE]]
+  - [[id:2133153311419][SEND-MESSAGE]]
   - SB-CONCURRENCY:GRAB-FRLOCK-WRITE-LOCK
-  - [[id:1053520094808][GET-HOST-BY-NAME]]
+  - [[id:1053520094345][GET-HOST-BY-NAME]]
   - SB-POSIX:FORK
   - DSP/AUD:CHROMAPRINT
   - (CURSOR-NEXT-NODUP (RDB-DUP-CURSOR))
@@ -5587,7 +5756,7 @@ WAIT-UNTIL-FD-USABLE names a compiled function:
   - OBJ/STORE::GET-UNIQUE-VALUES
   - OBJ/BTREE::MAP-INDEX-FROM-END
   - OBJ/BTREE::MAP-INDEX-FROM-START
-  - [[id:2598209719116][MAP-INDEX-VALUES]]
+  - [[id:2598209718458][MAP-INDEX-VALUES]]
   - OBJ/BTREE::MAP-BTREE-FROM-END
   - OBJ/BTREE::MAP-BTREE-FROM-START
   - OBJ/BTREE::MAP-BTREE-VALUES
@@ -5604,8 +5773,10 @@ WAIT-UNTIL-FD-USABLE names a compiled function:
 :ID: 554288393411
 :CUSTOM_ID: SB-SYS:MEMORY-FAULT-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MEMORY-FAULT-ERROR names a compiled function:
   Lambda-list: (CONTEXT-SAP ADDRESS-SAP)
   Derived type: (FUNCTION (T T) NIL)
@@ -5618,6 +5789,7 @@ MEMORY-FAULT-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:ME
   Direct superclasses: SB-SYS:SYSTEM-CONDITION, ERROR
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -5629,8 +5801,10 @@ MEMORY-FAULT-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:ME
 :ID: 4269762029469
 :CUSTOM_ID: SB-SYS:SAP-REF-WORD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-REF-WORD names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -5644,13 +5818,14 @@ SAP-REF-WORD names a compiled function:
                   ((UNSIGNED-BYTE 64) SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
   - SB-INTROSPECT:FIND-FUNCTION-CALLERS
   - SB-INTROSPECT::MAP-CALLER-CODE-COMPONENTS
   - SB-SPROF::EXTRACT-TRACES
-  - [[id:2470220492610][FREE-STATIC-VECTOR]]
+  - [[id:2470220492713][FREE-STATIC-VECTOR]]
 
 :definitions:
 - SYS:SRC;CODE;STUBS.LISP
@@ -5663,11 +5838,14 @@ SAP-REF-WORD names a compiled function:
 :ID: 2026734619469
 :CUSTOM_ID: SB-SYS:EXIT-CODE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 EXIT-CODE names a type-specifier:
   Lambda-list: ()
   Expansion: (SIGNED-BYTE 32)
+
 #+end_example
 
 :definitions:
@@ -5678,8 +5856,10 @@ EXIT-CODE names a type-specifier:
 :ID: 2215362393749
 :CUSTOM_ID: SB-SYS:SAP-REF-SAP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-REF-SAP names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -5694,6 +5874,7 @@ SAP-REF-SAP names a compiled function:
                    FIXNUM)
                   (VALUES SB-SYS:SYSTEM-AREA-POINTER &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -5712,12 +5893,15 @@ SAP-REF-SAP names a compiled function:
 :ID: 490907983952
 :CUSTOM_ID: SB-SYS:REOPEN-SHARED-OBJECTS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 REOPEN-SHARED-OBJECTS names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES LIST &OPTIONAL))
   Source file: SYS:SRC;CODE;FOREIGN-LOAD.LISP
+
 #+end_example
 
 :definitions:
@@ -5728,14 +5912,17 @@ REOPEN-SHARED-OBJECTS names a compiled function:
 :ID: 3189485212534
 :CUSTOM_ID: SB-SYS:REMOVE-FD-HANDLER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 REMOVE-FD-HANDLER names a compiled function:
   Lambda-list: (HANDLER)
   Derived type: (FUNCTION (T) (VALUES SEQUENCE &OPTIONAL))
   Documentation:
     Removes HANDLER from the list of active handlers.
   Source file: SYS:SRC;CODE;SERVE-EVENT.LISP
+
 #+end_example
 
 - Called by
@@ -5749,11 +5936,14 @@ REMOVE-FD-HANDLER names a compiled function:
 :ID: 1860372959058
 :CUSTOM_ID: SB-SYS:ALLOW-WITH-INTERRUPTS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ALLOW-WITH-INTERRUPTS names a macro:
   Lambda-list: (&BODY BODY)
   Source file: SYS:SRC;CODE;SIGNAL.LISP
+
 #+end_example
 
 :definitions:
@@ -5764,8 +5954,10 @@ ALLOW-WITH-INTERRUPTS names a macro:
 :ID: 3133004249069
 :CUSTOM_ID: SB-SYS:SIGNED-SAP-REF-32
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIGNED-SAP-REF-32 names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -5778,6 +5970,7 @@ SIGNED-SAP-REF-32 names a compiled function:
   Declared type: (FUNCTION ((SIGNED-BYTE 32) SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (SIGNED-BYTE 32) &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -5795,12 +5988,15 @@ SIGNED-SAP-REF-32 names a compiled function:
 :ID: 1114233467408
 :CUSTOM_ID: SB-SYS:OS-COLD-INIT-OR-REINIT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 OS-COLD-INIT-OR-REINIT names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES NULL &OPTIONAL))
   Source file: SYS:SRC;CODE;COMMON-OS.LISP
+
 #+end_example
 
 :definitions:
@@ -5811,8 +6007,10 @@ OS-COLD-INIT-OR-REINIT names a compiled function:
 :ID: 3226937952773
 :CUSTOM_ID: SB-SYS:BREAKPOINT-ERROR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BREAKPOINT-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:BREAKPOINT-ERROR>:
   Class precedence-list: SB-SYS:BREAKPOINT-ERROR, SB-SYS:SYSTEM-CONDITION,
                          ERROR, SERIOUS-CONDITION, CONDITION,
@@ -5820,6 +6018,7 @@ BREAKPOINT-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:BREA
   Direct superclasses: SB-SYS:SYSTEM-CONDITION, ERROR
   No subclasses.
   No direct slots.
+
 #+end_example
 
 :definitions:
@@ -5830,14 +6029,17 @@ BREAKPOINT-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:BREA
 :ID: 2496008084222
 :CUSTOM_ID: SB-SYS:*SHORT-SITE-NAME*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*SHORT-SITE-NAME* names a global variable:
+
+*SHORT-SITE-NAME* names a global variable:
   Declared type: (OR SIMPLE-STRING NULL)
   Declared always-bound.
   Value: NIL
   Documentation:
     The value of SHORT-SITE-NAME.
+
 #+end_example
 
 :definitions:
@@ -5848,8 +6050,10 @@ BREAKPOINT-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:BREA
 :ID: 4128972992761
 :CUSTOM_ID: SB-SYS:DECODE-INTERNAL-TIME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DECODE-INTERNAL-TIME names a compiled function:
   Lambda-list: (TIME)
   Derived type: (FUNCTION ((UNSIGNED-BYTE 61))
@@ -5858,6 +6062,7 @@ DECODE-INTERNAL-TIME names a compiled function:
     Returns internal time value TIME decoded into seconds and microseconds.
   Inline proclamation: INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;DEADLINE.LISP
+
 #+end_example
 
 :definitions:
@@ -5868,12 +6073,15 @@ DECODE-INTERNAL-TIME names a compiled function:
 :ID: 3238257603401
 :CUSTOM_ID: SB-SYS:EXTERN-ALIEN-NAME
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 EXTERN-ALIEN-NAME names a compiled function:
   Lambda-list: (NAME)
   Derived type: (FUNCTION (T) (VALUES BASE-STRING &OPTIONAL))
   Source file: SYS:SRC;CODE;ALIENEVAL.LISP
+
 #+end_example
 
 :definitions:
@@ -5884,16 +6092,19 @@ EXTERN-ALIEN-NAME names a compiled function:
 :ID: 440971643751
 :CUSTOM_ID: SB-SYS:*PERIODIC-POLLING-FUNCTION*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*PERIODIC-POLLING-FUNCTION* names a special variable:
+
+*PERIODIC-POLLING-FUNCTION* names a special variable:
   Declared type: (OR FUNCTION SYMBOL)
   Value: NIL
   Documentation:
     Either NIL, or a designator for a function callable without any
     arguments. Called when the system has been waiting for input for
-,    longer then *PERIODIC-POLLING-PERIOD* seconds. Shared between all
+    longer then *PERIODIC-POLLING-PERIOD* seconds. Shared between all
     threads, unless locally bound. EXPERIMENTAL.
+
 #+end_example
 
 :definitions:
@@ -5904,8 +6115,10 @@ EXTERN-ALIEN-NAME names a compiled function:
 :ID: 1094085917989
 :CUSTOM_ID: SB-SYS:SIGNAL-DEADLINE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIGNAL-DEADLINE names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES NULL &OPTIONAL))
@@ -5914,6 +6127,7 @@ SIGNAL-DEADLINE names a compiled function:
     restart with it. Implementors of blocking functions are responsible
     for calling this when a deadline is reached.
   Source file: SYS:SRC;CODE;DEADLINE.LISP
+
 #+end_example
 
 :definitions:
@@ -5924,21 +6138,24 @@ SIGNAL-DEADLINE names a compiled function:
 :ID: 2157084579514
 :CUSTOM_ID: SB-SYS:*ALLOW-WITH-INTERRUPTS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*ALLOW-WITH-INTERRUPTS* names a special variable:
+
+*ALLOW-WITH-INTERRUPTS* names a special variable:
   Declared always-bound.
   Value: T
+
 #+end_example
 
 - Bound by
   - SB-CONCURRENCY:OPEN-GATE
   - SB-CONCURRENCY:RECEIVE-PENDING-MESSAGES
-  - [[id:579149819929][RECEIVE-MESSAGE-NO-HANG]]
+  - [[id:579149820371][RECEIVE-MESSAGE-NO-HANG]]
   - SB-CONCURRENCY:RECEIVE-MESSAGE
-  - [[id:2133153310738][SEND-MESSAGE]]
+  - [[id:2133153311419][SEND-MESSAGE]]
   - SB-CONCURRENCY:GRAB-FRLOCK-WRITE-LOCK
-  - [[id:1053520094808][GET-HOST-BY-NAME]]
+  - [[id:1053520094345][GET-HOST-BY-NAME]]
   - SB-POSIX:FORK
   - DSP/AUD:CHROMAPRINT
   - (CURSOR-NEXT-NODUP (RDB-DUP-CURSOR))
@@ -6003,7 +6220,7 @@ SIGNAL-DEADLINE names a compiled function:
   - OBJ/STORE::GET-UNIQUE-VALUES
   - OBJ/BTREE::MAP-INDEX-FROM-END
   - OBJ/BTREE::MAP-INDEX-FROM-START
-  - [[id:2598209719116][MAP-INDEX-VALUES]]
+  - [[id:2598209718458][MAP-INDEX-VALUES]]
   - OBJ/BTREE::MAP-BTREE-FROM-END
   - OBJ/BTREE::MAP-BTREE-FROM-START
   - OBJ/BTREE::MAP-BTREE-VALUES
@@ -6015,11 +6232,11 @@ SIGNAL-DEADLINE names a compiled function:
 - Referenced by
   - SB-CONCURRENCY:OPEN-GATE
   - SB-CONCURRENCY:RECEIVE-PENDING-MESSAGES
-  - [[id:579149819929][RECEIVE-MESSAGE-NO-HANG]]
+  - [[id:579149820371][RECEIVE-MESSAGE-NO-HANG]]
   - SB-CONCURRENCY:RECEIVE-MESSAGE
-  - [[id:2133153310738][SEND-MESSAGE]]
+  - [[id:2133153311419][SEND-MESSAGE]]
   - SB-CONCURRENCY:GRAB-FRLOCK-WRITE-LOCK
-  - [[id:1053520094808][GET-HOST-BY-NAME]]
+  - [[id:1053520094345][GET-HOST-BY-NAME]]
   - SB-POSIX:FORK
   - DSP/AUD:CHROMAPRINT
   - (CURSOR-NEXT-NODUP (RDB-DUP-CURSOR))
@@ -6084,7 +6301,7 @@ SIGNAL-DEADLINE names a compiled function:
   - OBJ/STORE::GET-UNIQUE-VALUES
   - OBJ/BTREE::MAP-INDEX-FROM-END
   - OBJ/BTREE::MAP-INDEX-FROM-START
-  - [[id:2598209719116][MAP-INDEX-VALUES]]
+  - [[id:2598209718458][MAP-INDEX-VALUES]]
   - OBJ/BTREE::MAP-BTREE-FROM-END
   - OBJ/BTREE::MAP-BTREE-FROM-START
   - OBJ/BTREE::MAP-BTREE-VALUES
@@ -6103,13 +6320,16 @@ SIGNAL-DEADLINE names a compiled function:
 :ID: 3313225805514
 :CUSTOM_ID: SB-SYS:ALLOCATE-SYSTEM-MEMORY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ALLOCATE-SYSTEM-MEMORY names a compiled function:
   Lambda-list: (BYTES)
   Declared type: (FUNCTION (T) (VALUES SB-SYS:SYSTEM-AREA-POINTER &OPTIONAL))
   Inline proclamation: MAYBE-INLINE (inline expansion available)
   Source file: SYS:SRC;CODE;ALLOC.LISP
+
 #+end_example
 
 :definitions:
@@ -6120,11 +6340,14 @@ ALLOCATE-SYSTEM-MEMORY names a compiled function:
 :ID: 2039960842602
 :CUSTOM_ID: SB-SYS:FOREIGN-SYMBOL-DATAREF-SAP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FOREIGN-SYMBOL-DATAREF-SAP names an undefined function
   Declared type: (FUNCTION (SIMPLE-STRING)
                   (VALUES SB-SYS:SYSTEM-AREA-POINTER &OPTIONAL))
+
 #+end_example
 
 :definitions:
@@ -6136,24 +6359,27 @@ FOREIGN-SYMBOL-DATAREF-SAP names an undefined function
 :ID: 2194501140389
 :CUSTOM_ID: SB-SYS:SAP+
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP+ names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER (SIGNED-BYTE 64))
                   (VALUES SB-SYS:SYSTEM-AREA-POINTER &OPTIONAL))
   Known attributes: flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
   - SB-POSIX:STRTOD
   - SB-COVER::CODE-COVERAGE-MARKS
-  - [[id:1734665123574][MAKE-NODE]]
+  - SB-SPROF::MAKE-NODE
   - SB-SPROF::EXTRACT-TRACES
   - SB-SPROF::SPROF-DATA-TRACE
   - SB-SPROF:SAMPLE-PC
-  - [[id:2470220492610][FREE-STATIC-VECTOR]]
+  - [[id:2470220492713][FREE-STATIC-VECTOR]]
   - IO/STATIC::%ALLOCATE-STATIC-VECTOR
   - STD/ALIEN::IOBUF-COPY-INTO-LISP-ARRAY
   - STD/ALIEN::IOBUF-COPY-FROM-LISP-ARRAY
@@ -6188,8 +6414,10 @@ SAP+ names a compiled function:
 :ID: 3912545321880
 :CUSTOM_ID: SB-SYS:WITH-PINNED-OBJECTS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-PINNED-OBJECTS names a macro:
   Lambda-list: ((&REST OBJECTS) &BODY BODY)
   Documentation:
@@ -6197,6 +6425,7 @@ WITH-PINNED-OBJECTS names a macro:
     for the duration of BODY.  Useful for e.g. foreign calls where anotherthread
     may trigger garbage collection.
   Source file: SYS:SRC;COMPILER;GENERIC;PINNED-OBJECTS.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -6234,10 +6463,13 @@ WITH-PINNED-OBJECTS names a macro:
 :ID: 3051413338167
 :CUSTOM_ID: SB-SYS:*SHARED-OBJECTS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*SHARED-OBJECTS* names a global variable:
+
+*SHARED-OBJECTS* names a global variable:
   Value: NIL
+
 #+end_example
 
 - Referenced by
@@ -6254,8 +6486,10 @@ WITH-PINNED-OBJECTS names a macro:
 :ID: 2881657274544
 :CUSTOM_ID: SB-SYS:WITH-FD-HANDLER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-FD-HANDLER names a macro:
   Lambda-list: ((FD DIRECTION FUNCTION) &REST BODY)
   Documentation:
@@ -6263,6 +6497,7 @@ WITH-FD-HANDLER names a macro:
     DIRECTION should be either :INPUT or :OUTPUT, FD is the file descriptor to
     use, and FUNCTION is the function to call whenever FD is usable.
   Source file: SYS:SRC;CODE;SERVE-EVENT.LISP
+
 #+end_example
 
 :definitions:
@@ -6273,12 +6508,15 @@ WITH-FD-HANDLER names a macro:
 :ID: 1399391050724
 :CUSTOM_ID: SB-SYS:SYSTEM-CONDITION-ADDRESS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SYSTEM-CONDITION-ADDRESS names a compiled function:
   Lambda-list: (CONDITION)
   Declared type: (FUNCTION (T) *)
   Source file: SYS:SRC;CODE;TARGET-ERROR.LISP
+
 #+end_example
 
 :definitions:
@@ -6289,8 +6527,10 @@ SYSTEM-CONDITION-ADDRESS names a compiled function:
 :ID: 2235307766895
 :CUSTOM_ID: SB-SYS:CANCEL-DEADLINE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CANCEL-DEADLINE names a compiled function:
   Lambda-list: (&OPTIONAL CONDITION)
   Derived type: (FUNCTION (&OPTIONAL T) *)
@@ -6298,6 +6538,7 @@ CANCEL-DEADLINE names a compiled function:
     Find and invoke the CANCEL-DEADLINE restart associated with
     CONDITION, or return NIL if the restart is not found.
   Source file: SYS:SRC;CODE;DEADLINE.LISP
+
 #+end_example
 
 :definitions:
@@ -6308,8 +6549,10 @@ CANCEL-DEADLINE names a compiled function:
 :ID: 2761725850200
 :CUSTOM_ID: SB-SYS:VECTOR-SAP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 VECTOR-SAP names a compiled function:
   Lambda-list: (X)
   Declared type: (FUNCTION
@@ -6337,6 +6580,7 @@ VECTOR-SAP names a compiled function:
                   (VALUES SB-SYS:SYSTEM-AREA-POINTER &OPTIONAL))
   Known attributes: flushable, unsafely-flushable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -6396,10 +6640,13 @@ VECTOR-SAP names a compiled function:
 :ID: 4313682572535
 :CUSTOM_ID: SB-SYS:*TTY*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*TTY* names a special variable:
-  Value: #<TWO-WAY-STREAM :INPUT-STREAM #<SB-SYS:FD-STREAM for "standardinput" {1203FB8E53}> :OUTPUT-STREAM #<SB-SYS:FD-STREAM for "standardoutput" {1203FB8F93}> {1203FB90D3}>
+
+*TTY* names a special variable:
+  Value: #<SB-SYS:FD-STREAM for "the terminal" {1203F98BC3}>
+
 #+end_example
 
 :definitions:
@@ -6410,9 +6657,11 @@ VECTOR-SAP names a compiled function:
 :ID: 1631142351025
 :CUSTOM_ID: SB-SYS:*LINKAGE-INFO*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*LINKAGE-INFO* names a global variable:
+
+*LINKAGE-INFO* names a global variable:
   Declared type: (CONS HASH-TABLE T)
   Declared always-bound.
   Value: (#<HASH-TABLE :TEST EQUAL :COUNT 4059 {1200014C03}>
@@ -6452,6 +6701,7 @@ VECTOR-SAP names a compiled function:
           "avformat_alloc_context" "av_append_packet" "av_get_packet"
           "av_dict_set_int" "av_dict_set" "av_dict_count" "av_dict_get"
           "av_dict_iterate" "av_strerror" "avfilter_version" ...)
+
 #+end_example
 
 :definitions:
@@ -6462,12 +6712,15 @@ VECTOR-SAP names a compiled function:
 :ID: 3396272554505
 :CUSTOM_ID: SB-SYS:OS-DEINIT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 OS-DEINIT names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;COMMON-OS.LISP
+
 #+end_example
 
 :definitions:
@@ -6478,12 +6731,15 @@ OS-DEINIT names a compiled function:
 :ID: 3567906797353
 :CUSTOM_ID: SB-SYS:CLOSE-SHARED-OBJECTS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 CLOSE-SHARED-OBJECTS names a compiled function:
   Lambda-list: ()
   Derived type: (FUNCTION NIL *)
   Source file: SYS:SRC;CODE;FOREIGN-LOAD.LISP
+
 #+end_example
 
 :definitions:
@@ -6494,8 +6750,10 @@ CLOSE-SHARED-OBJECTS names a compiled function:
 :ID: 2161823470845
 :CUSTOM_ID: SB-SYS:WITHOUT-INTERRUPTS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITHOUT-INTERRUPTS names a macro:
   Lambda-list: (&BODY BODY)
   Documentation:
@@ -6534,16 +6792,17 @@ WITHOUT-INTERRUPTS names a macro:
         ;; regardless of the interrupt policy in effect when it is called.
         (lambda () (with-local-interrupts ...)))
   Source file: SYS:SRC;CODE;SIGNAL.LISP
+
 #+end_example
 
 - Macroexpanded by
   - SB-CONCURRENCY:OPEN-GATE
   - SB-CONCURRENCY:RECEIVE-PENDING-MESSAGES
-  - [[id:579149819929][RECEIVE-MESSAGE-NO-HANG]]
+  - [[id:579149820371][RECEIVE-MESSAGE-NO-HANG]]
   - SB-CONCURRENCY:RECEIVE-MESSAGE
-  - [[id:2133153310738][SEND-MESSAGE]]
+  - [[id:2133153311419][SEND-MESSAGE]]
   - SB-CONCURRENCY:GRAB-FRLOCK-WRITE-LOCK
-  - [[id:1053520094808][GET-HOST-BY-NAME]]
+  - [[id:1053520094345][GET-HOST-BY-NAME]]
   - SB-POSIX:FORK
   - DSP/AUD:CHROMAPRINT
   - (CURSOR-NEXT-NODUP (RDB-DUP-CURSOR))
@@ -6608,7 +6867,7 @@ WITHOUT-INTERRUPTS names a macro:
   - OBJ/STORE::GET-UNIQUE-VALUES
   - OBJ/BTREE::MAP-INDEX-FROM-END
   - OBJ/BTREE::MAP-INDEX-FROM-START
-  - [[id:2598209719116][MAP-INDEX-VALUES]]
+  - [[id:2598209718458][MAP-INDEX-VALUES]]
   - OBJ/BTREE::MAP-BTREE-FROM-END
   - OBJ/BTREE::MAP-BTREE-FROM-START
   - OBJ/BTREE::MAP-BTREE-VALUES
@@ -6625,13 +6884,16 @@ WITHOUT-INTERRUPTS names a macro:
 :ID: 2837791471043
 :CUSTOM_ID: SB-SYS:IN-INTERRUPTION
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 IN-INTERRUPTION names a macro:
   Lambda-list: ((&KEY) &BODY BODY)
   Documentation:
     Convenience macro on top of INVOKE-INTERRUPTION.
   Source file: SYS:SRC;CODE;TARGET-SIGNAL-COMMON.LISP
+
 #+end_example
 
 :definitions:
@@ -6642,8 +6904,10 @@ IN-INTERRUPTION names a macro:
 :ID: 2926539615598
 :CUSTOM_ID: SB-SYS:SIGNED-SAP-REF-16
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIGNED-SAP-REF-16 names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -6656,6 +6920,7 @@ SIGNED-SAP-REF-16 names a compiled function:
   Declared type: (FUNCTION ((SIGNED-BYTE 16) SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (SIGNED-BYTE 16) &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -6673,8 +6938,10 @@ SIGNED-SAP-REF-16 names a compiled function:
 :ID: 4338179488877
 :CUSTOM_ID: SB-SYS:SERVE-ALL-EVENTS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SERVE-ALL-EVENTS names a compiled function:
   Lambda-list: (&OPTIONAL TIMEOUT)
   Derived type: (FUNCTION (&OPTIONAL T) (VALUES BOOLEAN &OPTIONAL))
@@ -6684,6 +6951,7 @@ SERVE-ALL-EVENTS names a compiled function:
     timeout of 0 until there are no more events to serve. SERVE-ALL-EVENTSreturns
     T if SERVE-EVENT did something and NIL if not.
   Source file: SYS:SRC;CODE;SERVE-EVENT.LISP
+
 #+end_example
 
 :definitions:
@@ -6694,11 +6962,14 @@ SERVE-ALL-EVENTS names a compiled function:
 :ID: 1960192907682
 :CUSTOM_ID: SB-SYS:*EXIT-IN-PROGRESS*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*EXIT-IN-PROGRESS* names a special variable:
+
+*EXIT-IN-PROGRESS* names a special variable:
   Declared always-bound.
   Value: NIL
+
 #+end_example
 
 :definitions:
@@ -6709,8 +6980,10 @@ SERVE-ALL-EVENTS names a compiled function:
 :ID: 636799627264
 :CUSTOM_ID: SB-SYS:SIGNED-SAP-REF-WORD
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIGNED-SAP-REF-WORD names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -6723,6 +6996,7 @@ SIGNED-SAP-REF-WORD names a compiled function:
   Declared type: (FUNCTION ((SIGNED-BYTE 64) SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (SIGNED-BYTE 64) &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -6736,11 +7010,14 @@ SIGNED-SAP-REF-WORD names a compiled function:
 :ID: 249287805780
 :CUSTOM_ID: SB-SYS:WITH-CODE-PAGES-PINNED
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-CODE-PAGES-PINNED names a macro:
   Lambda-list: ((SPACE) &BODY BODY)
   Source file: SYS:SRC;COMPILER;GENERIC;PINNED-OBJECTS.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -6754,11 +7031,14 @@ WITH-CODE-PAGES-PINNED names a macro:
 :ID: 1635244024876
 :CUSTOM_ID: SB-SYS:WITH-LOCAL-INTERRUPTS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-LOCAL-INTERRUPTS names a macro:
   Lambda-list: (&BODY BODY)
   Source file: SYS:SRC;CODE;SIGNAL.LISP
+
 #+end_example
 
 :definitions:
@@ -6769,8 +7049,10 @@ WITH-LOCAL-INTERRUPTS names a macro:
 :ID: 1458682101516
 :CUSTOM_ID: SB-SYS:ADD-FD-HANDLER
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 ADD-FD-HANDLER names a compiled function:
   Lambda-list: (FD DIRECTION FUNCTION)
   Derived type: (FUNCTION (T T T) (VALUES SB-IMPL::HANDLER &OPTIONAL))
@@ -6779,6 +7061,7 @@ ADD-FD-HANDLER names a compiled function:
     either :INPUT or :OUTPUT. The value returned should be passed to
     SB-SYS:REMOVE-FD-HANDLER when it is no longer needed.
   Source file: SYS:SRC;CODE;SERVE-EVENT.LISP
+
 #+end_example
 
 - Called by
@@ -6793,11 +7076,14 @@ ADD-FD-HANDLER names a compiled function:
 :ID: 4331864549937
 :CUSTOM_ID: SB-SYS:%SAP-REF-64-INDEXED
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SAP-REF-64-INDEXED names an undefined function
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+
 #+end_example
 
 :definitions:
@@ -6809,11 +7095,14 @@ ADD-FD-HANDLER names a compiled function:
 :ID: 1669561032322
 :CUSTOM_ID: SB-SYS:OS-CONTEXT-T
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 OS-CONTEXT-T names an alien type:
   Expansion: #<SB-ALIEN-INTERNALS:ALIEN-TYPE (:STRUCT
                                               SB-VM::OS-CONTEXT-T-STRUCT) NIL{120008C0C3}>
+
 #+end_example
 
 :definitions:
@@ -6824,12 +7113,15 @@ OS-CONTEXT-T names an alien type:
 :ID: 1867430363458
 :CUSTOM_ID: SB-SYS:FIND-DYNAMIC-FOREIGN-SYMBOL-ADDRESS
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FIND-DYNAMIC-FOREIGN-SYMBOL-ADDRESS names a compiled function:
   Lambda-list: (SYMBOL)
   Derived type: (FUNCTION (T) (VALUES (OR NULL (UNSIGNED-BYTE 64)) &OPTIONAL))
   Source file: SYS:SRC;CODE;UNIX-FOREIGN-LOAD.LISP
+
 #+end_example
 
 :definitions:
@@ -6840,10 +7132,13 @@ FIND-DYNAMIC-FOREIGN-SYMBOL-ADDRESS names a compiled function:
 :ID: 2122374769518
 :CUSTOM_ID: SB-SYS:*STDERR*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
-,*STDERR* names a special variable:
-  Value: #<SB-SYS:FD-STREAM for "standard error" {1203FB8D13}>
+
+*STDERR* names a special variable:
+  Value: #<SB-SYS:FD-STREAM for "standard error" {1203F98803}>
+
 #+end_example
 
 - Referenced by
@@ -6857,8 +7152,10 @@ FIND-DYNAMIC-FOREIGN-SYMBOL-ADDRESS names a compiled function:
 :ID: 2091419448904
 :CUSTOM_ID: SB-SYS:SAP-
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP- names a compiled function:
   Lambda-list: (X Y)
   Declared type: (FUNCTION
@@ -6866,6 +7163,7 @@ SAP- names a compiled function:
                   (VALUES (SIGNED-BYTE 64) &OPTIONAL))
   Known attributes: flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -6882,11 +7180,14 @@ SAP- names a compiled function:
 :ID: 1462696841547
 :CUSTOM_ID: SB-SYS:%SIGNED-SAP-REF-16-INDEXED
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIGNED-SAP-REF-16-INDEXED names an undefined function
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (SIGNED-BYTE 16) &OPTIONAL))
+
 #+end_example
 
 :definitions:
@@ -6898,8 +7199,10 @@ SAP- names a compiled function:
 :ID: 2056983640140
 :CUSTOM_ID: SB-SYS:%STANDARD-CHAR-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %STANDARD-CHAR-P names a compiled function:
   Lambda-list: (THING)
   Declared type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
@@ -6908,6 +7211,7 @@ SAP- names a compiled function:
     STANDARD-CHAR-P in that THING doesn't have to be a character.
   Known attributes: foldable, flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;TARGET-CHAR.LISP
+
 #+end_example
 
 - Called by
@@ -6926,13 +7230,16 @@ SAP- names a compiled function:
 :ID: 4019044683927
 :CUSTOM_ID: SB-SYS:FD-STREAM-P
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 FD-STREAM-P names a compiled function:
   A predicate for SB-SYS:FD-STREAM
   Lambda-list: (OBJECT)
   Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
   Source file: SYS:SRC;CODE;FD-STREAM.LISP
+
 #+end_example
 
 :definitions:
@@ -6943,8 +7250,10 @@ FD-STREAM-P names a compiled function:
 :ID: 2561417814094
 :CUSTOM_ID: SB-SYS:SAP-REF-LISPOBJ
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-REF-LISPOBJ names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -6957,6 +7266,7 @@ SAP-REF-LISPOBJ names a compiled function:
   Declared type: (FUNCTION (T SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES T &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -6971,8 +7281,10 @@ SAP-REF-LISPOBJ names a compiled function:
 :ID: 2630163808398
 :CUSTOM_ID: SB-SYS:IO-TIMEOUT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 IO-TIMEOUT names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:IO-TIMEOUT>:
   Class precedence-list: SB-SYS:IO-TIMEOUT, STREAM-ERROR, ERROR, TIMEOUT,
                          SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
@@ -6982,6 +7294,7 @@ IO-TIMEOUT names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:IO-TIMEOUT
     SB-KERNEL::DIRECTION
       Initargs: :DIRECTION
       Readers: SB-KERNEL::IO-TIMEOUT-DIRECTION
+
 #+end_example
 
 :definitions:
@@ -6992,8 +7305,10 @@ IO-TIMEOUT names the condition-class #<SB-PCL::CONDITION-CLASS SB-SYS:IO-TIMEOUT
 :ID: 1073536941340
 :CUSTOM_ID: SB-SYS:WITH-DEADLINE
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 WITH-DEADLINE names a macro:
   Lambda-list: ((&KEY SECONDS OVERRIDE) &BODY BODY)
   Documentation:
@@ -7011,6 +7326,7 @@ WITH-DEADLINE names a macro:
     
     Experimental.
   Source file: SYS:SRC;CODE;DEADLINE.LISP
+
 #+end_example
 
 - Macroexpanded by
@@ -7024,8 +7340,10 @@ WITH-DEADLINE names a macro:
 :ID: 835351505408
 :CUSTOM_ID: SB-SYS:SIGNED-SAP-REF-8
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SIGNED-SAP-REF-8 names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -7038,6 +7356,7 @@ SIGNED-SAP-REF-8 names a compiled function:
   Declared type: (FUNCTION ((SIGNED-BYTE 8) SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (SIGNED-BYTE 8) &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -7055,8 +7374,10 @@ SIGNED-SAP-REF-8 names a compiled function:
 :ID: 1523855629636
 :CUSTOM_ID: SB-SYS:SAP<=
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP<= names a compiled function:
   Lambda-list: (X Y)
   Declared type: (FUNCTION
@@ -7064,6 +7385,7 @@ SAP<= names a compiled function:
                   (VALUES BOOLEAN &OPTIONAL))
   Known attributes: flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 :definitions:
@@ -7078,8 +7400,10 @@ SAP<= names a compiled function:
 :ID: 2980569903387
 :CUSTOM_ID: SB-SYS:SAP-REF-32
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 SAP-REF-32 names a compiled function:
   Lambda-list: (SAP OFFSET)
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
@@ -7095,6 +7419,7 @@ SAP-REF-32 names a compiled function:
                   ((UNSIGNED-BYTE 32) SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (UNSIGNED-BYTE 32) &OPTIONAL))
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -7117,11 +7442,14 @@ SAP-REF-32 names a compiled function:
 :ID: 3521970206692
 :CUSTOM_ID: SB-SYS:%SIGNED-SAP-REF-64-INDEXED
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 %SIGNED-SAP-REF-64-INDEXED names an undefined function
   Declared type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER FIXNUM)
                   (VALUES (SIGNED-BYTE 64) &OPTIONAL))
+
 #+end_example
 
 :definitions:
@@ -7133,12 +7461,15 @@ SAP-REF-32 names a compiled function:
 :ID: 1788660732203
 :CUSTOM_ID: SB-SYS:DEALLOCATE-SYSTEM-MEMORY
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 DEALLOCATE-SYSTEM-MEMORY names a compiled function:
   Lambda-list: (ADDR BYTES)
   Declared type: (FUNCTION (T T) (VALUES NULL &OPTIONAL))
   Source file: SYS:SRC;CODE;ALLOC.LISP
+
 #+end_example
 
 - Called by
@@ -7152,8 +7483,10 @@ DEALLOCATE-SYSTEM-MEMORY names a compiled function:
 :ID: 2772424204985
 :CUSTOM_ID: SB-SYS:INT-SAP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INT-SAP names a compiled function:
   Lambda-list: (X)
   Declared type: (FUNCTION ((UNSIGNED-BYTE 64))
@@ -7162,6 +7495,7 @@ INT-SAP names a compiled function:
     Creates a SAP pointing at the virtual address X.
   Known attributes: flushable, unsafely-flushable, movable
   Source file: SYS:SRC;CODE;STUBS.LISP
+
 #+end_example
 
 - Called by
@@ -7179,8 +7513,8 @@ INT-SAP names a compiled function:
   - (MAKE-COMPRESSING-STREAM ((EQL ZSTD) T))
   - (STREAM-READ-CHAR (STATIC-STREAM))
   - (STREAM-READ-BYTE (STATIC-STREAM))
-  - [[id:2470220492610][FREE-STATIC-VECTOR]]
-  - [[id:2153861425878][STATIC-VECTOR-POINTER]]
+  - [[id:2470220492713][FREE-STATIC-VECTOR]]
+  - [[id:2153861425277][STATIC-VECTOR-POINTER]]
   - URING::IO-URING-RECVMSG-PAYLOAD
   - URING::IO-URING-RECVMSG-CMSG-NEXTHDR
   - URING::IO-URING-RECVMSG-CMSG-FIRSTHDR
@@ -7196,8 +7530,10 @@ INT-SAP names a compiled function:
 :ID: 159295612139
 :CUSTOM_ID: SB-SYS:INVALIDATE-DESCRIPTOR
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 INVALIDATE-DESCRIPTOR names a compiled function:
   Lambda-list: (FD)
   Derived type: (FUNCTION (T) (VALUES SEQUENCE &OPTIONAL))
@@ -7205,6 +7541,7 @@ INVALIDATE-DESCRIPTOR names a compiled function:
     Remove any handlers referring to FD. This should only be used whenattempting
     to recover from a detected inconsistency.
   Source file: SYS:SRC;CODE;SERVE-EVENT.LISP
+
 #+end_example
 
 - Called by
@@ -7221,12 +7558,15 @@ INVALIDATE-DESCRIPTOR names a compiled function:
 :ID: 3067190413710
 :CUSTOM_ID: SB-SYS:BEEP
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 BEEP names a compiled function:
   Lambda-list: (STREAM)
   Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
   Source file: SYS:SRC;CODE;FD-STREAM.LISP
+
 #+end_example
 
 :definitions:
@@ -7237,11 +7577,14 @@ BEEP names a compiled function:
 :ID: 3608120148581
 :CUSTOM_ID: SB-SYS:NLX-PROTECT
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 NLX-PROTECT names a special operator:
   Lambda-list: (PROTECTED &BODY CLEANUP)
   Source file: SYS:SRC;COMPILER;IR1-TRANSLATORS.LISP
+
 #+end_example
 
 :definitions:
@@ -7252,8 +7595,10 @@ NLX-PROTECT names a special operator:
 :ID: 3016351617043
 :CUSTOM_ID: SB-SYS:MAKE-FD-STREAM
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 MAKE-FD-STREAM names a compiled function:
   Lambda-list: (FD &KEY (CLASS (QUOTE FD-STREAM)) (INPUT NIL INPUT-P)
                 (OUTPUT NIL OUTPUT-P) (ELEMENT-TYPE (QUOTE BASE-CHAR))
@@ -7274,6 +7619,7 @@ MAKE-FD-STREAM names a compiled function:
                   (:DUAL-CHANNEL-P T) (:NAME T) (:AUTO-CLOSE T))
                  (VALUES SB-SYS:FD-STREAM &OPTIONAL))
   Source file: SYS:SRC;CODE;FD-STREAM.LISP
+
 #+end_example
 
 - Called by

@@ -1,0 +1,446 @@
+#+SETUPFILE: ../../clean.theme
+* SB-MD5
+:PROPERTIES:
+:CUSTOM_ID: SB-MD5
+:ID: 37
+:END:
+- dependencies
+  - COMMON-LISP
+
+** INITIAL-MD5-REGS :compiled:function:
+:PROPERTIES:
+:ID: 2161048426354
+:CUSTOM_ID: SB-MD5:INITIAL-MD5-REGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+INITIAL-MD5-REGS names a compiled function:
+  Lambda-list: UNKNOWN
+  Derived type: FUNCTION
+  Documentation:
+    Create the initial working state of an MD5 run.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MD5:MAKE-MD5-STATE
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** UPDATE-MD5-STATE :compiled:function:
+:PROPERTIES:
+:ID: 508396112508
+:CUSTOM_ID: SB-MD5:UPDATE-MD5-STATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UPDATE-MD5-STATE names a compiled function:
+  Lambda-list: (STATE SEQUENCE &KEY (START 0) (END (LENGTH SEQUENCE)))
+  Derived type: (FUNCTION
+                 (SB-MD5:MD5-STATE (SIMPLE-ARRAY * (*)) &KEY (:START T)
+                  (:END FIXNUM))
+                 (VALUES SB-MD5:MD5-STATE &OPTIONAL))
+  Documentation:
+    Update the given md5-state from SEQUENCE, which is either a
+    simple-string or a simple-array with element-type (unsigned-byte 8),
+    bounded by START and END, which must be numeric bounding-indices.
+    Note that usage on simple-strings is DEPRECATED, since this will not
+    work correctly if CHAR-CODE-LIMIT is more than 256.  String input
+    should be converted to (UNSIGNED-BYTE 8) simple-arrays with
+    external-format conversion routines beforehand.
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MD5:MD5SUM-STREAM
+  - SB-MD5:MD5SUM-SEQUENCE
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** MD5-REGS :type:
+:PROPERTIES:
+:ID: 2552190556917
+:CUSTOM_ID: SB-MD5:MD5-REGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MD5-REGS names a type-specifier:
+  Documentation:
+    The working state of the MD5 algorithm, which contains the 4 32-bit
+    registers A, B, C and D.
+  Lambda-list: ()
+  Expansion: (SB-MD5::UB32-VECTOR 4)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** FINALIZE-MD5-STATE :compiled:function:
+:PROPERTIES:
+:ID: 3311390840522
+:CUSTOM_ID: SB-MD5:FINALIZE-MD5-STATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FINALIZE-MD5-STATE names a compiled function:
+  Lambda-list: (STATE)
+  Derived type: (FUNCTION (SB-MD5:MD5-STATE) (VALUES (NOT NULL) &OPTIONAL))
+  Documentation:
+    If the given md5-state has not already been finalized, finalize it,
+    by processing any remaining input in its buffer, with suitable padding
+    and appended bit-length, as specified by the MD5 standard.
+    
+    The resulting MD5 message-digest is returned as an array of sixteen
+    (unsigned-byte 8) values.  Calling UPDATE-MD5-STATE after a call to
+    FINALIZE-MD5-STATE results in unspecified behaviour.
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MD5:MD5SUM-STREAM
+  - SB-MD5:MD5SUM-SEQUENCE
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** MD5-STATE-P :compiled:function:
+:PROPERTIES:
+:ID: 799239926796
+:CUSTOM_ID: SB-MD5:MD5-STATE-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MD5-STATE-P names a compiled function:
+  A predicate for SB-MD5:MD5-STATE
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** MD5REGS-DIGEST :compiled:function:
+:PROPERTIES:
+:ID: 2905954160816
+:CUSTOM_ID: SB-MD5:MD5REGS-DIGEST
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MD5REGS-DIGEST names a compiled function:
+  Lambda-list: UNKNOWN
+  Derived type: FUNCTION
+  Documentation:
+    Create the final 16 byte message-digest from the MD5 working state
+    in REGS.  Returns a (simple-array (unsigned-byte 8) (16)).
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MD5:FINALIZE-MD5-STATE
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** FILL-BLOCK-CHAR :compiled:function:
+:PROPERTIES:
+:ID: 2490156057038
+:CUSTOM_ID: SB-MD5:FILL-BLOCK-CHAR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FILL-BLOCK-CHAR names a compiled function:
+  Lambda-list: UNKNOWN
+  Derived type: FUNCTION
+  Documentation:
+    DEPRECATED: Convert a complete 64 character input string segment
+    starting from OFFSET into the given 16 word MD5 block.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MD5:UPDATE-MD5-STATE
+  - SB-MD5:FILL-BLOCK
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** MD5SUM-SEQUENCE :compiled:function:
+:PROPERTIES:
+:ID: 2727058476418
+:CUSTOM_ID: SB-MD5:MD5SUM-SEQUENCE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MD5SUM-SEQUENCE names a compiled function:
+  Lambda-list: (SEQUENCE &KEY (START 0) END)
+  Derived type: (FUNCTION
+                 ((VECTOR (UNSIGNED-BYTE 8)) &KEY (:START FIXNUM) (:END T))
+                 (VALUES (NOT NULL) &OPTIONAL))
+  Documentation:
+    Calculate the MD5 message-digest of data in SEQUENCE, which should
+    be a 1d SIMPLE-ARRAY with element type (UNSIGNED-BYTE 8). On CMU CL
+    and SBCL non-simple and non-1d arrays with this element-type are also
+    supported.
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MD5:MD5SUM-STRING
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** MD5-STATE :class:
+:PROPERTIES:
+:ID: 2701765821312
+:CUSTOM_ID: SB-MD5:MD5-STATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MD5-STATE names the structure-class #<STRUCTURE-CLASS SB-MD5:MD5-STATE>:
+  Class precedence-list: SB-MD5:MD5-STATE, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Slots:
+    SB-MD5::REGS
+      Type: SB-MD5:MD5-REGS
+      Initform: (SB-MD5:INITIAL-MD5-REGS)
+    SB-MD5::AMOUNT
+      Type: (INTEGER 0 *)
+      Initform: 0
+    BLOCK
+      Type: SB-MD5::MD5-BLOCK
+      Initform: (SB-MD5::MAKE-UB32-VECTOR 16)
+    SB-MD5::BUFFER
+      Type: (SIMPLE-ARRAY (UNSIGNED-BYTE 8) (64))
+      Initform: (MAKE-ARRAY 64 :ELEMENT-TYPE '(UNSIGNED-BYTE 8))
+    SB-MD5::BUFFER-INDEX
+      Type: (INTEGER 0 63)
+      Initform: 0
+    SB-MD5::FINALIZED-P
+      Type: T
+      Initform: NIL
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** MAKE-MD5-STATE :compiled:function:
+:PROPERTIES:
+:ID: 1391615383198
+:CUSTOM_ID: SB-MD5:MAKE-MD5-STATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-MD5-STATE names a compiled function:
+  A constructor for SB-MD5:MD5-STATE
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES SB-MD5:MD5-STATE &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MD5:MD5SUM-STREAM
+  - SB-MD5:MD5SUM-SEQUENCE
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** MD5SUM-STREAM :compiled:function:
+:PROPERTIES:
+:ID: 2325855951414
+:CUSTOM_ID: SB-MD5:MD5SUM-STREAM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MD5SUM-STREAM names a compiled function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) (VALUES (NOT NULL) &OPTIONAL))
+  Documentation:
+    Calculate an MD5 message-digest of the contents of STREAM.  Its
+    element-type has to be (UNSIGNED-BYTE 8). Use on character streams is
+    DEPRECATED, as this will not work correctly on implementations with
+    CHAR-CODE-LIMIT > 256 and ignores character coding issues.
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MD5:MD5SUM-FILE
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** FILL-BLOCK :compiled:function:
+:PROPERTIES:
+:ID: 234412424922
+:CUSTOM_ID: SB-MD5:FILL-BLOCK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FILL-BLOCK names a compiled function:
+  Lambda-list: UNKNOWN
+  Derived type: FUNCTION
+  Documentation:
+    Convert a complete 64 byte input vector segment into the given 16
+    word MD5 block.  This currently works on (unsigned-byte 8) and
+    character simple-arrays, via the functions FILL-BLOCK-UB8 and
+    FILL-BLOCK-CHAR respectively.  Note that it will not work correctly
+    on character simple-arrays if CHAR-CODE-LIMIT is greater than 256.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** MD5SUM-FILE :compiled:function:
+:PROPERTIES:
+:ID: 3112883724656
+:CUSTOM_ID: SB-MD5:MD5SUM-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MD5SUM-FILE names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES (NOT NULL) &OPTIONAL))
+  Documentation:
+    Calculate the MD5 message-digest of the file specified by PATHNAME.
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** MD5SUM-STRING :compiled:function:
+:PROPERTIES:
+:ID: 1715818843210
+:CUSTOM_ID: SB-MD5:MD5SUM-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MD5SUM-STRING names a compiled function:
+  Lambda-list: (STRING &KEY (EXTERNAL-FORMAT DEFAULT) (START 0) END)
+  Derived type: (FUNCTION
+                 (STRING &KEY (:EXTERNAL-FORMAT T) (:START FIXNUM) (:END T))
+                 (VALUES (NOT NULL) &OPTIONAL))
+  Documentation:
+    Calculate the MD5 message-digest of the binary representation of
+    STRING (as octets) in the external format specified by
+    EXTERNAL-FORMAT. The boundaries START and END refer to character
+    positions in the string, not to octets in the resulting binary
+    representation.  The permissible external format specifiers are
+    determined by the underlying implementation.
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-COVER:REPORT
+  - NET/SRV/HTTP::ENCODE-SESSION-STRING
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** UPDATE-MD5-BLOCK :compiled:function:
+:PROPERTIES:
+:ID: 3298386565272
+:CUSTOM_ID: SB-MD5:UPDATE-MD5-BLOCK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UPDATE-MD5-BLOCK names a compiled function:
+  Lambda-list: UNKNOWN
+  Derived type: FUNCTION
+  Documentation:
+    This is the core part of the MD5 algorithm.  It takes a complete 16
+    word block of input, and updates the working state in registers A,
+    B, C, and D accordingly.
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MD5:FINALIZE-MD5-STATE
+  - SB-MD5:UPDATE-MD5-STATE
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
+** FILL-BLOCK-UB8 :compiled:function:
+:PROPERTIES:
+:ID: 3390201711872
+:CUSTOM_ID: SB-MD5:FILL-BLOCK-UB8
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FILL-BLOCK-UB8 names a compiled function:
+  Lambda-list: UNKNOWN
+  Derived type: FUNCTION
+  Documentation:
+    Convert a complete 64 (unsigned-byte 8) input vector segment
+    starting from OFFSET into the given 16 word MD5 block.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MD5:FINALIZE-MD5-STATE
+  - SB-MD5:UPDATE-MD5-STATE
+  - SB-MD5:FILL-BLOCK
+
+:definitions:
+- SYS:CONTRIB;SB-MD5;MD5.LISP.NEWEST
+:end:
