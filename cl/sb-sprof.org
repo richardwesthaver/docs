@@ -1,0 +1,517 @@
+#+setupfile: ../../clean.theme
+* SB-SPROF
+:PROPERTIES:
+:CUSTOM_ID: SB-SPROF
+:ID: 38
+:END:
+- dependencies
+  - COMMON-LISP
+  - SB-EXT
+  - SB-UNIX
+  - SB-ALIEN
+  - SB-SYS
+  - SB-INT
+
+** *REPORT-SORT-BY​* :var:
+:PROPERTIES:
+:ID: 3838432516020
+:CUSTOM_ID: SB-SPROF:*REPORT-SORT-BY*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*REPORT-SORT-BY* names a special variable:
+  Declared type: (MEMBER :CUMULATIVE-SAMPLES :SAMPLES)
+  Value: :SAMPLES
+  Documentation:
+    Method for sorting the flat report: either by :SAMPLES or by :CUMULATIVE-SAMPLES.
+#+end_example
+
+- Bound by
+  - SB-SPROF:REPORT
+
+- Referenced by
+  - SB-SPROF:REPORT
+  - SB-SPROF::PRINT-FLAT
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;REPORT.LISP.NEWEST
+- SYS:CONTRIB;SB-SPROF;REPORT.LISP.NEWEST
+  - [[id:4051234310493][TYPE]]
+:end:
+** REPORT :compiled:function:
+:PROPERTIES:
+:ID: 2694078288418
+:CUSTOM_ID: SB-SPROF:REPORT
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+REPORT names a compiled function:
+  Lambda-list: (&KEY (TYPE GRAPH) MAX MIN-PERCENT CALL-GRAPH
+                ((SORT-BY *REPORT-SORT-BY*) *REPORT-SORT-BY*)
+                ((SORT-ORDER *REPORT-SORT-ORDER*) *REPORT-SORT-ORDER*)
+                (STREAM *STANDARD-OUTPUT*) ((SHOW-PROGRESS *SHOW-PROGRESS*)))
+  Derived type: (FUNCTION
+                 (&KEY (:TYPE T) (:MAX T) (:MIN-PERCENT T) (:CALL-GRAPH T)
+                  (:SORT-BY (MEMBER :CUMULATIVE-SAMPLES :SAMPLES))
+                  (:SORT-ORDER (MEMBER :ASCENDING :DESCENDING)) (:STREAM T)
+                  (:SHOW-PROGRESS T))
+                 (VALUES T &OPTIONAL))
+  Documentation:
+    Report statistical profiling results.  The following keyword
+       args are recognized:
+    
+      - :TYPE <type>
+    
+          Specifies the type of report to generate. If :FLAT, show flat
+          report, if :GRAPH show a call graph and a flat report. If nil,
+          don't print out a report.
+    
+      - :STREAM <stream>
+    
+          Specify a stream to print the report on.  Default is
+          *STANDARD-OUTPUT*.
+    
+      - :MAX <max>
+    
+          Don't show more than `<max>` entries in the flat report.
+    
+      - :MIN-PERCENT <min-percent>
+    
+          Don't show functions taking less than `<min-percent>` of the
+          total time in the flat report.
+    
+      - :SORT-BY <column>
+    
+          If :SAMPLES, sort flat report by number of samples taken.
+          If :CUMULATIVE-SAMPLES, sort flat report by cumulative number ofsamples
+          taken (shows how much time each function spent on stack.) Default
+          is *REPORT-SORT-BY*.
+    
+      - :SORT-ORDER <order>
+    
+          If :DESCENDING, sort flat report in descending order. If :ASCENDING,
+          sort flat report in ascending order. Default is *REPORT-SORT-ORDER*.
+    
+      - :SHOW-PROGRESS <bool>
+    
+         If true, print progress messages while generating the call graph.
+    
+      - :CALL-GRAPH <graph>
+    
+         Print a report from `<graph>` instead of the latest profiling
+         results.
+    
+    Value of this function is a CALL-GRAPH object representing the
+    resulting call-graph, or NIL if there are no samples (e.g. right after
+    calling RESET.)
+    
+    Profiling is stopped before the call graph is generated.
+  Source file: SYS:CONTRIB;SB-SPROF;REPORT.LISP.NEWEST
+#+end_example
+
+- Called by
+  - SWANK:SWANK-SPROF-GET-CALL-GRAPH
+  - RT/FLAMEGRAPH::AGGREGATE-RAW-DATA
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;REPORT.LISP.NEWEST
+:end:
+** *MAX-SAMPLES​* :var:
+:PROPERTIES:
+:ID: 3237299889131
+:CUSTOM_ID: SB-SPROF:*MAX-SAMPLES*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*MAX-SAMPLES* names a special variable:
+  Declared type: (UNSIGNED-BYTE 44)
+  Value: 50000
+  Documentation:
+    Default maximum number of stack traces collected.
+#+end_example
+
+- Referenced by
+  - SB-SPROF:START-PROFILING
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;INTERFACE.LISP.NEWEST
+- SYS:CONTRIB;SB-SPROF;INTERFACE.LISP.NEWEST
+  - [[id:4051234310493][TYPE]]
+:end:
+** RESET :compiled:function:
+:PROPERTIES:
+:ID: 4166733496054
+:CUSTOM_ID: SB-SPROF:RESET
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+RESET names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Documentation:
+    Reset the profiler.
+  Source file: SYS:CONTRIB;SB-SPROF;INTERFACE.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;INTERFACE.LISP.NEWEST
+:end:
+** PROFILE-CALL-COUNTS :compiled:function:
+:PROPERTIES:
+:ID: 2419952053910
+:CUSTOM_ID: SB-SPROF:PROFILE-CALL-COUNTS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+PROFILE-CALL-COUNTS names a compiled function:
+  Lambda-list: (&REST NAMES)
+,  Derived type: (FUNCTION * (VALUES NULL &OPTIONAL))
+  Documentation:
+    Mark the functions named by NAMES as being subject to call counting
+    during statistical profiling. If a string is used as a name, it will
+    be interpreted as a package name. In this case call counting will be
+    done for all functions with names like X or (SETF X), where X is
+    a symbol with the package as its home package.
+  Source file: SYS:CONTRIB;SB-SPROF;CALL-COUNTING.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;CALL-COUNTING.LISP.NEWEST
+:end:
+** STOP-PROFILING :compiled:function:
+:PROPERTIES:
+:ID: 311337461595
+:CUSTOM_ID: SB-SPROF:STOP-PROFILING
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+STOP-PROFILING names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Documentation:
+    Stop profiling if profiling.
+  Source file: SYS:CONTRIB;SB-SPROF;INTERFACE.LISP.NEWEST
+#+end_example
+
+- Called by
+  - SWANK:SWANK-SPROF-STOP
+  - [[id:4166733496046][RESET]]
+  - SB-SPROF:START-PROFILING
+  - SB-SPROF::MAKE-CALL-GRAPH
+  - (DO-TEST (TEST))
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;INTERFACE.LISP.NEWEST
+:end:
+** WITH-SAMPLING :compiled:macro:function:
+:PROPERTIES:
+:ID: 2732129548667
+:CUSTOM_ID: SB-SPROF:WITH-SAMPLING
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+WITH-SAMPLING names a macro:
+  Lambda-list: ((&OPTIONAL (ON T)) &BODY BODY)
+  Documentation:
+    Evaluate body with statistical sampling turned on or off in the currentthread.
+  Source file: SYS:CONTRIB;SB-SPROF;RECORD.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;RECORD.LISP.NEWEST
+:end:
+** STOP-SAMPLING :compiled:function:
+:PROPERTIES:
+:ID: 3655912393460
+:CUSTOM_ID: SB-SPROF:STOP-SAMPLING
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+STOP-SAMPLING names a compiled function:
+  Lambda-list: (&OPTIONAL (THREAD *CURRENT-THREAD*))
+  Derived type: (FUNCTION (&OPTIONAL T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Block SIGPROF in the specified thread
+  Source file: SYS:CONTRIB;SB-SPROF;RECORD.LISP.NEWEST
+#+end_example
+
+- Called by
+  - SB-SPROF:START-PROFILING
+  - SB-SPROF::CALL-WITH-SAMPLING
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;RECORD.LISP.NEWEST
+:end:
+** SAMPLE-PC :compiled:function:
+:PROPERTIES:
+:ID: 3449737827040
+:CUSTOM_ID: SB-SPROF:SAMPLE-PC
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SAMPLE-PC names a compiled function:
+  Lambda-list: (INFO PC-OR-OFFSET)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Documentation:
+    Extract and return program counter from INFO and PC-OR-OFFSET.
+    
+    Can be applied to the arguments passed by MAP-TRACE-PC-LOCS and
+    MAP-ALL-PC-LOCS.
+    
+    EXPERIMENTAL: Interface subject to change.
+  Source file: SYS:CONTRIB;SB-SPROF;RECORD.LISP.NEWEST
+#+end_example
+
+- Called by
+  - SB-SPROF::SAMPLE-COUNTS-BY-PC
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;RECORD.LISP.NEWEST
+:end:
+** WITH-PROFILING :compiled:macro:function:
+:PROPERTIES:
+:ID: 4063786456622
+:CUSTOM_ID: SB-SPROF:WITH-PROFILING
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+WITH-PROFILING names a macro:
+  Lambda-list: ((&KEY (SAMPLE-INTERVAL (QUOTE *SAMPLE-INTERVAL*))
+                 ALLOC-INTERVAL (MAX-SAMPLES (QUOTE *MAX-SAMPLES*)) (RESET NIL)
+                 (MODE (QUOTE *SAMPLING-MODE*)) (LOOP NIL) MAX-DEPTH
+                 SHOW-PROGRESS (THREADS ALL) (REPORT NIL))
+                &BODY BODY)
+  Documentation:
+    Evaluate BODY with statistical profiling turned on. If LOOP is true,
+    loop around the BODY until a sufficient number of samples has beencollected.
+    Returns the values from the last evaluation of BODY.
+    
+    The following keyword args are recognized:
+    
+    - :SAMPLE-INTERVAL <n>
+    
+        Take a sample every <n> seconds. Default is *SAMPLE-INTERVAL*.
+    
+    - :MODE <mode>
+    
+        If :CPU, run the profiler in CPU profiling mode. If :ALLOC, run
+        the profiler in allocation profiling mode. If :TIME, run the
+        profiler in wallclock profiling mode.
+    
+    - :MAX-SAMPLES <max>
+    
+        If :LOOP is NIL (the default), collect no more than <max>
+        samples. If :LOOP is T, repeat evaluating body until <max>
+        samples are taken. Default is *MAX-SAMPLES*.
+    
+    - :REPORT <type>
+    
+        If specified, call REPORT with :TYPE <type> at the end.
+    
+    - :RESET <bool>
+    
+        If true, call RESET at the beginning.
+    
+    - :THREADS <list-form>
+    
+        Form that evaluates to the list threads to profile, or :ALL to
+        indicate that all threads should be profiled. Defaults to all
+        threads.
+    
+        :THREADS has no effect on call-counting at the moment.
+    
+        On some platforms (e.g. Darwin) the signals used by the profiler
+        are not properly delivered to threads in proportion to their CPU
+        usage when doing :CPU profiling. If you see empty call graphs, or
+        are obviously missing several samples from certain threads, you
+        may be falling afoul of this. In this case using :MODE :TIME is
+        likely to work better.
+    
+    - :LOOP <bool>
+    
+        If false (the default), evaluate BODY only once. If true
+        repeatedly evaluate BODY.
+  Source file: SYS:CONTRIB;SB-SPROF;INTERFACE.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;INTERFACE.LISP.NEWEST
+:end:
+** UNPROFILE-CALL-COUNTS :compiled:function:
+:PROPERTIES:
+:ID: 2709838809109
+:CUSTOM_ID: SB-SPROF:UNPROFILE-CALL-COUNTS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UNPROFILE-CALL-COUNTS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES HASH-TABLE &OPTIONAL))
+  Documentation:
+    Clear all call counting information. Call counting will be done for no
+    functions during statistical profiling.
+  Source file: SYS:CONTRIB;SB-SPROF;CALL-COUNTING.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;CALL-COUNTING.LISP.NEWEST
+:end:
+** START-PROFILING :compiled:function:
+:PROPERTIES:
+:ID: 1419567042484
+:CUSTOM_ID: SB-SPROF:START-PROFILING
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+START-PROFILING names a compiled function:
+  Lambda-list: (&KEY (MAX-SAMPLES *MAX-SAMPLES*) (MODE *SAMPLING-MODE*)
+                (SAMPLE-INTERVAL *SAMPLE-INTERVAL*) ALLOC-INTERVAL MAX-DEPTH
+                (THREADS ALL))
+  Derived type: (FUNCTION
+                 (&KEY (:MAX-SAMPLES T) (:MODE T)
+                  (:SAMPLE-INTERVAL (OR (FLOAT (0.0)) (RATIONAL (0))))
+                  (:ALLOC-INTERVAL T) (:MAX-DEPTH T) (:THREADS T))
+                 (VALUES (MEMBER :TIME :ALLOC :CPU) &OPTIONAL))
+  Documentation:
+    Start profiling statistically in the current thread if not alreadyprofiling.
+    The following keyword args are recognized:
+    
+    - :SAMPLE-INTERVAL <n>
+    
+        Take a sample every <n> seconds. Default is *SAMPLE-INTERVAL*.
+    
+    - :MODE <mode>
+    
+        If :CPU, run the profiler in CPU profiling mode. If :ALLOC, run
+        the profiler in allocation profiling mode. If :TIME, run the
+        profiler in wallclock profiling mode.
+    
+    - :MAX-SAMPLES <max>
+    
+        Maximum number of stack traces to collect. Default is
+        *MAX-SAMPLES*.
+    
+    - :THREADS <list>
+    
+        List threads to profile, or :ALL to indicate that all threads
+        should be profiled. Defaults to :ALL.
+    
+        :THREADS has no effect on call-counting at the moment.
+    
+        On some platforms (e.g. Darwin) the signals used by the profiler
+        are not properly delivered to threads in proportion to their CPU
+        usage when doing :CPU profiling. If you see empty call graphs, or
+        are obviously missing several samples from certain threads, you
+        may be falling afoul of this.
+  Source file: SYS:CONTRIB;SB-SPROF;INTERFACE.LISP.NEWEST
+#+end_example
+
+- Called by
+  - SWANK:SWANK-SPROF-START
+  - (DO-TEST (TEST))
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;INTERFACE.LISP.NEWEST
+:end:
+** *REPORT-SORT-ORDER​* :var:
+:PROPERTIES:
+:ID: 2280055712
+:CUSTOM_ID: SB-SPROF:*REPORT-SORT-ORDER*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*REPORT-SORT-ORDER* names a special variable:
+  Declared type: (MEMBER :ASCENDING :DESCENDING)
+  Value: :DESCENDING
+  Documentation:
+    Order for sorting the flat report: either :DESCENDING or :ASCENDING.
+#+end_example
+
+- Bound by
+  - SB-SPROF:REPORT
+
+- Referenced by
+  - SB-SPROF:REPORT
+  - SB-SPROF::PRINT-FLAT
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;REPORT.LISP.NEWEST
+- SYS:CONTRIB;SB-SPROF;REPORT.LISP.NEWEST
+  - [[id:4051234310493][TYPE]]
+:end:
+** MAP-TRACES :compiled:function:
+:PROPERTIES:
+:ID: 654861202579
+:CUSTOM_ID: SB-SPROF:MAP-TRACES
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+MAP-TRACES names a compiled function:
+  Lambda-list: (FUNCTION SAMPLES)
+  Derived type: (FUNCTION (T T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Call FUNCTION on each trace in SAMPLES
+    
+    The signature of FUNCTION must be compatible with (thread trace).
+    
+    FUNCTION is called once for each trace where THREAD is the
+    SB-THREAD:THREAD instance that was sampled to produce TRACE, and TRACE
+    is an opaque object to be passed to MAP-TRACE-PC-LOCS.
+    
+    EXPERIMENTAL: Interface subject to change.
+  Source file: SYS:CONTRIB;SB-SPROF;RECORD.LISP.NEWEST
+#+end_example
+
+- Called by
+  - SB-SPROF::MAKE-CALL-GRAPH-1
+  - SB-SPROF::MAP-ALL-PC-LOCS
+  - [[id:3359923586468][MAKE-GRAPH]]
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;RECORD.LISP.NEWEST
+:end:
+** START-SAMPLING :compiled:function:
+:PROPERTIES:
+:ID: 3435372650730
+:CUSTOM_ID: SB-SPROF:START-SAMPLING
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+START-SAMPLING names a compiled function:
+  Lambda-list: (&OPTIONAL (THREAD *CURRENT-THREAD*))
+  Derived type: (FUNCTION (&OPTIONAL T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Unblock SIGPROF in the specified thread
+  Source file: SYS:CONTRIB;SB-SPROF;RECORD.LISP.NEWEST
+#+end_example
+
+- Called by
+  - SB-SPROF:START-PROFILING
+  - SB-SPROF::CALL-WITH-SAMPLING
+  - SB-SPROF:START-SAMPLING
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;RECORD.LISP.NEWEST
+:end:
+** *SAMPLE-INTERVAL​* :var:
+:PROPERTIES:
+:ID: 391152358058
+:CUSTOM_ID: SB-SPROF:*SAMPLE-INTERVAL*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*SAMPLE-INTERVAL* names a special variable:
+  Declared type: (OR (FLOAT (0.0)) (RATIONAL (0)))
+  Value: 0.01
+  Documentation:
+    Default number of seconds between samples.
+#+end_example
+
+- Referenced by
+  - SB-SPROF:START-PROFILING
+
+:definitions:
+- SYS:CONTRIB;SB-SPROF;INTERFACE.LISP.NEWEST
+- SYS:CONTRIB;SB-SPROF;INTERFACE.LISP.NEWEST
+  - [[id:4051234310493][TYPE]]
+:end:

@@ -1,0 +1,1617 @@
+#+setupfile: ../../clean.theme
+* SB-SEQUENCE
+:PROPERTIES:
+:CUSTOM_ID: SB-SEQUENCE
+:ID: 29
+:LOCK: T
+:AKA: SEQUENCE
+:END:
+semi-public: implements something which might eventually
+be submitted as a CDR
+
+** FILL :generic:function:
+:PROPERTIES:
+:ID: 1387423981558
+:CUSTOM_ID: SB-SEQUENCE:FILL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FILL names a generic function:
+  Lambda-list: (SEQUENCE ITEM &KEY START END)
+  Argument precedence order: (SEQUENCE ITEM)
+  Derived type: (FUNCTION (T T &KEY (:START T) (:END T)) *)
+  Method-combination: STANDARD
+  Methods:
+    (FILL (SEQUENCE T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE ITEM &KEY START END)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** FIND-IF :generic:function:
+:PROPERTIES:
+:ID: 2657849157214
+:CUSTOM_ID: SB-SEQUENCE:FIND-IF
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FIND-IF names a generic function:
+  Lambda-list: (PRED SEQUENCE &KEY FROM-END START END KEY)
+  Argument precedence order: (SEQUENCE PRED)
+  Derived type: (FUNCTION (T T &KEY (:FROM-END T) (:START T) (:END T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (FIND-IF (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (PRED SEQUENCE &KEY FROM-END START END KEY)
+:end:
+** ITERATOR-ELEMENT :generic:function:
+:PROPERTIES:
+:ID: 1956641605054
+:CUSTOM_ID: SB-SEQUENCE:ITERATOR-ELEMENT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ITERATOR-ELEMENT names a generic function:
+  Lambda-list: (SEQUENCE ITERATOR)
+  Argument precedence order: (SEQUENCE ITERATOR)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Returns the element of SEQUENCE associated to the position of
+    ITERATOR.
+  Method-combination: STANDARD
+  Methods:
+    (ITERATOR-ELEMENT (LIST T))
+    (ITERATOR-ELEMENT (VECTOR T))
+    (ITERATOR-ELEMENT (SEQUENCE T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+
+(SETF ITERATOR-ELEMENT) names a generic function:
+  Lambda-list: (NEW-VALUE SEQUENCE ITERATOR)
+  Argument precedence order: (NEW-VALUE SEQUENCE ITERATOR)
+  Derived type: (FUNCTION (T T T) *)
+  Documentation:
+    Destructively modifies SEQUENCE by replacing the sequence element
+    associated to position of ITERATOR with NEW-VALUE.
+  Method-combination: STANDARD
+  Methods:
+    ((SETF ITERATOR-ELEMENT) (T LIST T))
+    ((SETF ITERATOR-ELEMENT) (T VECTOR T))
+    ((SETF ITERATOR-ELEMENT) (T SEQUENCE T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:4220964109155][LIST]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:3926096147540][VECTOR]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE ITERATOR)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** SEARCH :generic:function:
+:PROPERTIES:
+:ID: 3456299916061
+:CUSTOM_ID: SB-SEQUENCE:SEARCH
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SEARCH names a generic function:
+  Lambda-list: (SEQUENCE1 SEQUENCE2 &KEY FROM-END START1 END1 START2 END2 TEST
+                TEST-NOT KEY)
+  Argument precedence order: (SEQUENCE1 SEQUENCE2)
+  Derived type: (FUNCTION
+                 (T T &KEY (:FROM-END T) (:START1 T) (:END1 T) (:START2 T)
+                  (:END2 T) (:TEST T) (:TEST-NOT T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (SEARCH (SEQUENCE SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE SEQUENCE)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE1 SEQUENCE2 &KEY FROM-END START1 END1 START2 END2 TEST TEST-NOT
+     KEY)
+:end:
+** CONCATENATE :generic:function:
+:PROPERTIES:
+:ID: 479241987263
+:CUSTOM_ID: SB-SEQUENCE:CONCATENATE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CONCATENATE names a generic function:
+  Lambda-list: (RESULT-PROTOTYPE &REST SEQUENCES)
+  Derived type: (FUNCTION (T &REST T) *)
+  Documentation:
+    Implements CL:CONCATENATE for extended sequences.
+    
+    RESULT-PROTOTYPE corresponds to the RESULT-TYPE of CL:CONCATENATE
+    but receives a prototype instance of an extended sequence class
+    instead of a type specifier. By dispatching on RESULT-PROTOTYPE,
+    methods on this generic function specify how extended sequence
+    classes act when they are specified as the result type in a
+    CL:CONCATENATE call. RESULT-PROTOTYPE may not be fully initialized
+    and thus should only be used for dispatch and to determine its
+    class.
+  Method-combination: STANDARD
+  Methods:
+    (CONCATENATE (SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (RESULT-PROTOTYPE &REST SEQUENCES)
+:end:
+** ITERATOR-ENDP :generic:function:
+:PROPERTIES:
+:ID: 4121661365058
+:CUSTOM_ID: SB-SEQUENCE:ITERATOR-ENDP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ITERATOR-ENDP names a generic function:
+  Lambda-list: (SEQUENCE ITERATOR LIMIT FROM-END)
+  Argument precedence order: (SEQUENCE ITERATOR LIMIT FROM-END)
+  Derived type: (FUNCTION (T T T T) *)
+  Documentation:
+    Returns non-NIL when ITERATOR has reached LIMIT (which may
+    correspond to the end of SEQUENCE) with respect to the iteration
+    direction encoded in FROM-END.
+  Method-combination: STANDARD
+  Methods:
+    (ITERATOR-ENDP (LIST T T T))
+    (ITERATOR-ENDP (VECTOR T T T))
+    (ITERATOR-ENDP (SEQUENCE T T T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:4220964109155][LIST]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:3926096147540][VECTOR]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE ITERATOR LIMIT FROM-END)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** REPLACE :generic:function:
+:PROPERTIES:
+:ID: 2157328560813
+:CUSTOM_ID: SB-SEQUENCE:REPLACE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+REPLACE names a generic function:
+  Lambda-list: (SEQUENCE1 SEQUENCE2 &KEY START1 END1 START2 END2)
+  Argument precedence order: (SEQUENCE2 SEQUENCE1)
+  Derived type: (FUNCTION
+                 (T T &KEY (:START1 T) (:END1 T) (:START2 T) (:END2 T)) *)
+  Method-combination: STANDARD
+  Methods:
+    (REPLACE (SEQUENCE SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE SEQUENCE)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE1 SEQUENCE2 &KEY START1 END1 START2 END2)
+:end:
+** REVERSE :generic:function:
+:PROPERTIES:
+:ID: 1310930200963
+:CUSTOM_ID: SB-SEQUENCE:REVERSE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+REVERSE names a generic function:
+  Lambda-list: (SEQUENCE)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (REVERSE (SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** ADJUST-SEQUENCE :generic:function:
+:PROPERTIES:
+:ID: 3813247806623
+:CUSTOM_ID: SB-SEQUENCE:ADJUST-SEQUENCE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ADJUST-SEQUENCE names a generic function:
+  Lambda-list: (SEQUENCE LENGTH &KEY INITIAL-ELEMENT INITIAL-CONTENTS)
+  Argument precedence order: (SEQUENCE LENGTH)
+  Derived type: (FUNCTION (T T &KEY (:INITIAL-ELEMENT T) (:INITIAL-CONTENTS T))
+                 *)
+  Documentation:
+    Returns destructively modified SEQUENCE or a freshly allocated
+    sequence of the same class as SEQUENCE of length LENGTH. Elements
+    of the returned sequence are initialized to INITIAL-ELEMENT, if
+    supplied, initialized to INITIAL-CONTENTS if supplied, or identical
+    to the elements of SEQUENCE if neither is supplied. Signals a
+    SEQUENCE:PROTOCOL-UNIMPLEMENTED error if the sequence protocol is
+    not implemented for the class of SEQUENCE.
+  Method-combination: STANDARD
+  Methods:
+    (ADJUST-SEQUENCE (LIST T))
+    (ADJUST-SEQUENCE (VECTOR T))
+    (ADJUST-SEQUENCE (SEQUENCE T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:4220964109155][LIST]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:3926096147540][VECTOR]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE LENGTH &KEY INITIAL-ELEMENT INITIAL-CONTENTS)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** SUBSTITUTE :generic:function:
+:PROPERTIES:
+:ID: 3911959984589
+:CUSTOM_ID: SB-SEQUENCE:SUBSTITUTE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SUBSTITUTE names a generic function:
+  Lambda-list: (NEW OLD SEQUENCE &KEY START END FROM-END TEST TEST-NOT COUNT
+                KEY)
+  Argument precedence order: (SEQUENCE NEW OLD)
+  Derived type: (FUNCTION
+                 (T T T &KEY (:START T) (:END T) (:FROM-END T) (:TEST T)
+                  (:TEST-NOT T) (:COUNT T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (SUBSTITUTE (T T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (NEW OLD SEQUENCE &KEY START END FROM-END TEST TEST-NOT COUNT KEY)
+:end:
+** WITH-SEQUENCE-ITERATOR-FUNCTIONS :compiled:macro:function:
+:PROPERTIES:
+:ID: 1375702144920
+:CUSTOM_ID: SB-SEQUENCE:WITH-SEQUENCE-ITERATOR-FUNCTIONS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WITH-SEQUENCE-ITERATOR-FUNCTIONS names a macro:
+  Lambda-list: ((&OPTIONAL STEP ENDP ELT SETF INDEX COPY)
+                (SEQUENCE &REST ARGS &KEY FROM-END START END) &BODY BODY)
+  Documentation:
+    Executes BODY with the names STEP, ENDP, ELT, SETF, INDEX and COPY
+    bound to local functions which execute the iteration state query and
+    mutation functions returned by SEQUENCE:MAKE-SEQUENCE-ITERATOR for
+    SEQUENCE and ARGS. When some names are not supplied or NIL is supplied
+    for a given name, no local functions are established for those names.
+    The functions established for STEP, ENDP, ELT, SETF, INDEX and COPY
+    have dynamic extent.
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+:end:
+** FIND :generic:function:
+:PROPERTIES:
+:ID: 81421309456
+:CUSTOM_ID: SB-SEQUENCE:FIND
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FIND names a generic function:
+  Lambda-list: (ITEM SEQUENCE &KEY FROM-END START END TEST TEST-NOT KEY)
+  Argument precedence order: (SEQUENCE ITEM)
+  Derived type: (FUNCTION
+                 (T T &KEY (:FROM-END T) (:START T) (:END T) (:TEST T)
+                  (:TEST-NOT T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (FIND (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (ITEM SEQUENCE &KEY FROM-END START END TEST TEST-NOT KEY)
+:end:
+** SORT :generic:function:
+:PROPERTIES:
+:ID: 4372332263952
+:CUSTOM_ID: SB-SEQUENCE:SORT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SORT names a generic function:
+  Lambda-list: (SEQUENCE PREDICATE &KEY KEY)
+  Argument precedence order: (SEQUENCE PREDICATE)
+  Derived type: (FUNCTION (T T &KEY (:KEY T)) *)
+  Method-combination: STANDARD
+  Methods:
+    (SORT (SEQUENCE T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE PREDICATE &KEY KEY)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** DOSEQUENCE :compiled:macro:function:
+:PROPERTIES:
+:ID: 3752391989485
+:CUSTOM_ID: SB-SEQUENCE:DOSEQUENCE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOSEQUENCE names a macro:
+  Lambda-list: ((ELEMENT SEQUENCE &OPTIONAL RETURN) &BODY BODY)
+  Documentation:
+    Executes BODY with ELEMENT subsequently bound to each element of
+    SEQUENCE, then returns RETURN.
+  Source file: SYS:SRC;CODE;SEQ.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;SEQ.LISP
+:end:
+** POSITION :generic:function:
+:PROPERTIES:
+:ID: 2335864378484
+:CUSTOM_ID: SB-SEQUENCE:POSITION
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+POSITION names a generic function:
+  Lambda-list: (ITEM SEQUENCE &KEY FROM-END START END TEST TEST-NOT KEY)
+  Argument precedence order: (SEQUENCE ITEM)
+  Derived type: (FUNCTION
+                 (T T &KEY (:FROM-END T) (:START T) (:END T) (:TEST T)
+                  (:TEST-NOT T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (POSITION (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (ITEM SEQUENCE &KEY FROM-END START END TEST TEST-NOT KEY)
+:end:
+** ITERATOR-STEP :generic:function:
+:PROPERTIES:
+:ID: 3609782693021
+:CUSTOM_ID: SB-SEQUENCE:ITERATOR-STEP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ITERATOR-STEP names a generic function:
+  Lambda-list: (SEQUENCE ITERATOR FROM-END)
+  Argument precedence order: (SEQUENCE ITERATOR FROM-END)
+  Derived type: (FUNCTION (T T T) *)
+  Documentation:
+    Moves ITERATOR one position forward or backward in SEQUENCE
+    depending on the iteration direction encoded in FROM-END.
+  Method-combination: STANDARD
+  Methods:
+    (ITERATOR-STEP (LIST T T))
+    (ITERATOR-STEP (VECTOR T T))
+    (ITERATOR-STEP (SEQUENCE T T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:4220964109155][LIST]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:3926096147540][VECTOR]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE ITERATOR FROM-END)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** WITH-SEQUENCE-ITERATOR :compiled:macro:function:
+:PROPERTIES:
+:ID: 1748309034591
+:CUSTOM_ID: SB-SEQUENCE:WITH-SEQUENCE-ITERATOR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WITH-SEQUENCE-ITERATOR names a macro:
+  Lambda-list: ((&OPTIONAL ITERATOR LIMIT FROM-END-P STEP ENDP ELEMENT
+                 SET-ELEMENT INDEX COPY)
+                (SEQUENCE &KEY FROM-END (START 0) END) &BODY BODY)
+  Documentation:
+    Executes BODY with the elements of VARS bound to the iteration
+    state returned by SEQUENCE:MAKE-SEQUENCE-ITERATOR for SEQUENCE and
+    ARGS. Elements of VARS may be NIL in which case the corresponding
+    value returned by SEQUENCE:MAKE-SEQUENCE-ITERATOR is ignored.
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+:end:
+** NSUBSTITUTE :generic:function:
+:PROPERTIES:
+:ID: 2036723533969
+:CUSTOM_ID: SB-SEQUENCE:NSUBSTITUTE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+NSUBSTITUTE names a generic function:
+  Lambda-list: (NEW OLD SEQUENCE &KEY START END FROM-END TEST TEST-NOT COUNT
+                KEY)
+  Argument precedence order: (SEQUENCE NEW OLD)
+  Derived type: (FUNCTION
+                 (T T T &KEY (:START T) (:END T) (:FROM-END T) (:TEST T)
+                  (:TEST-NOT T) (:COUNT T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (NSUBSTITUTE (T T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (NEW OLD SEQUENCE &KEY START END FROM-END TEST TEST-NOT COUNT KEY)
+:end:
+** PROTOCOL-UNIMPLEMENTED-OPERATION :generic:function:
+:PROPERTIES:
+:ID: 1237046516671
+:CUSTOM_ID: SB-SEQUENCE:PROTOCOL-UNIMPLEMENTED-OPERATION
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PROTOCOL-UNIMPLEMENTED-OPERATION names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (PROTOCOL-UNIMPLEMENTED-OPERATION (PROTOCOL-UNIMPLEMENTED))
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - SB-SEQUENCE:PROTOCOL-UNIMPLEMENTED
+:end:
+** CANONIZE-TEST :compiled:function:
+:PROPERTIES:
+:ID: 3402896575043
+:CUSTOM_ID: SB-SEQUENCE:CANONIZE-TEST
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CANONIZE-TEST names a compiled function:
+  Lambda-list: (TEST TEST-NOT)
+  Derived type: (FUNCTION (T T) (VALUES FUNCTION &OPTIONAL))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+:end:
+** ITERATOR-INDEX :generic:function:
+:PROPERTIES:
+:ID: 425545160684
+:CUSTOM_ID: SB-SEQUENCE:ITERATOR-INDEX
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ITERATOR-INDEX names a generic function:
+  Lambda-list: (SEQUENCE ITERATOR)
+  Argument precedence order: (SEQUENCE ITERATOR)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Returns the position of ITERATOR in SEQUENCE.
+  Method-combination: STANDARD
+  Methods:
+    (ITERATOR-INDEX (LIST T))
+    (ITERATOR-INDEX (VECTOR T))
+    (ITERATOR-INDEX (SEQUENCE T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:4220964109155][LIST]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:3926096147540][VECTOR]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE ITERATOR)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** COUNT-IF-NOT :generic:function:
+:PROPERTIES:
+:ID: 194205801546
+:CUSTOM_ID: SB-SEQUENCE:COUNT-IF-NOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COUNT-IF-NOT names a generic function:
+  Lambda-list: (PRED SEQUENCE &KEY FROM-END START END KEY)
+  Argument precedence order: (SEQUENCE PRED)
+  Derived type: (FUNCTION (T T &KEY (:FROM-END T) (:START T) (:END T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (COUNT-IF-NOT (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (PRED SEQUENCE &KEY FROM-END START END KEY)
+:end:
+** ELT :generic:function:
+:PROPERTIES:
+:ID: 356519165472
+:CUSTOM_ID: SB-SEQUENCE:ELT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ELT names a generic function:
+  Lambda-list: (SEQUENCE INDEX)
+  Argument precedence order: (SEQUENCE INDEX)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Returns the element at position INDEX of SEQUENCE or signals a
+    SEQUENCE:PROTOCOL-UNIMPLEMENTED error if the sequence protocol is
+    not implemented for the class of SEQUENCE.
+  Method-combination: STANDARD
+  Methods:
+    (ELT (LIST T))
+    (ELT (VECTOR T))
+    (ELT (SEQUENCE T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+
+(SETF ELT) names a generic function:
+  Lambda-list: (NEW-VALUE SEQUENCE INDEX)
+  Argument precedence order: (SEQUENCE NEW-VALUE INDEX)
+  Derived type: (FUNCTION (T T T) *)
+  Documentation:
+    Replaces the element at position INDEX of SEQUENCE with NEW-VALUE
+    and returns NEW-VALUE or signals a SEQUENCE:PROTOCOL-UNIMPLEMENTED
+    error if the sequence protocol is not implemented for the class of
+    SEQUENCE.
+  Method-combination: STANDARD
+  Methods:
+    ((SETF ELT) (T LIST T))
+    ((SETF ELT) (T VECTOR T))
+    ((SETF ELT) (T SEQUENCE T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+- Called by
+  - (TOML-PARSE-DATETIME-LOCAL (T))
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:4220964109155][LIST]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:3926096147540][VECTOR]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE INDEX)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** DELETE :generic:function:
+:PROPERTIES:
+:ID: 129818220438
+:CUSTOM_ID: SB-SEQUENCE:DELETE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DELETE names a generic function:
+  Lambda-list: (ITEM SEQUENCE &KEY FROM-END TEST TEST-NOT START END COUNT KEY)
+  Argument precedence order: (SEQUENCE ITEM)
+  Derived type: (FUNCTION
+                 (T T &KEY (:START T) (:END T) (:FROM-END T) (:TEST T)
+                  (:TEST-NOT T) (:COUNT T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (DELETE (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (ITEM SEQUENCE &KEY FROM-END TEST TEST-NOT START END COUNT KEY)
+:end:
+** MAKE-SEQUENCE-LIKE :generic:function:
+:PROPERTIES:
+:ID: 3871272741525
+:CUSTOM_ID: SB-SEQUENCE:MAKE-SEQUENCE-LIKE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MAKE-SEQUENCE-LIKE names a generic function:
+  Lambda-list: (SEQUENCE LENGTH &KEY INITIAL-ELEMENT INITIAL-CONTENTS)
+  Argument precedence order: (SEQUENCE LENGTH)
+  Derived type: (FUNCTION (T T &KEY (:INITIAL-ELEMENT T) (:INITIAL-CONTENTS T))
+                 *)
+  Documentation:
+    Returns a freshly allocated sequence of length LENGTH and of the
+    same class as SEQUENCE. Elements of the new sequence are
+    initialized to INITIAL-ELEMENT, if supplied, initialized to
+    INITIAL-CONTENTS if supplied, or undefined if neither is supplied.
+    Signals a SEQUENCE:PROTOCOL-UNIMPLEMENTED error if the sequence
+    protocol is not implemented for the class of SEQUENCE.
+  Method-combination: STANDARD
+  Methods:
+    (MAKE-SEQUENCE-LIKE (LIST T))
+    (MAKE-SEQUENCE-LIKE (VECTOR T))
+    (MAKE-SEQUENCE-LIKE (SEQUENCE T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:4220964109155][LIST]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:3926096147540][VECTOR]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE LENGTH &KEY INITIAL-ELEMENT INITIAL-CONTENTS)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** DELETE-IF-NOT :generic:function:
+:PROPERTIES:
+:ID: 3334821979489
+:CUSTOM_ID: SB-SEQUENCE:DELETE-IF-NOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DELETE-IF-NOT names a generic function:
+  Lambda-list: (PREDICATE SEQUENCE &KEY FROM-END START END COUNT KEY)
+  Argument precedence order: (SEQUENCE PREDICATE)
+  Derived type: (FUNCTION
+                 (T T &KEY (:FROM-END T) (:START T) (:END T) (:COUNT T)
+                  (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (DELETE-IF-NOT (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (PREDICATE SEQUENCE &KEY FROM-END START END COUNT KEY)
+:end:
+** FIND-IF-NOT :generic:function:
+:PROPERTIES:
+:ID: 1392759858828
+:CUSTOM_ID: SB-SEQUENCE:FIND-IF-NOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FIND-IF-NOT names a generic function:
+  Lambda-list: (PRED SEQUENCE &KEY FROM-END START END KEY)
+  Argument precedence order: (SEQUENCE PRED)
+  Derived type: (FUNCTION (T T &KEY (:FROM-END T) (:START T) (:END T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (FIND-IF-NOT (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (PRED SEQUENCE &KEY FROM-END START END KEY)
+:end:
+** MERGE :generic:function:
+:PROPERTIES:
+:ID: 938290569246
+:CUSTOM_ID: SB-SEQUENCE:MERGE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MERGE names a generic function:
+  Lambda-list: (RESULT-PROTOTYPE SEQUENCE1 SEQUENCE2 PREDICATE &KEY KEY)
+  Argument precedence order: (RESULT-PROTOTYPE SEQUENCE1 SEQUENCE2 PREDICATE)
+  Derived type: (FUNCTION (T T T T &KEY (:KEY T)) *)
+  Documentation:
+    Implements CL:MERGE for extended sequences.
+    
+    RESULT-PROTOTYPE corresponds to the RESULT-TYPE of CL:MERGE but
+    receives a prototype instance of an extended sequence class
+    instead of a type specifier. By dispatching on RESULT-PROTOTYPE,
+    methods on this generic function specify how extended sequence
+    classes act when they are specified as the result type in a
+    CL:MERGE call. RESULT-PROTOTYPE may not be fully initialized and
+    thus should only be used for dispatch and to determine its class.
+    
+    Another difference to CL:MERGE is that PREDICATE is a function,
+    not a function designator.
+  Method-combination: STANDARD
+  Methods:
+    (MERGE (SEQUENCE SEQUENCE SEQUENCE FUNCTION))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE SEQUENCE SEQUENCE FUNCTION)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (RESULT-PROTOTYPE SEQUENCE1 SEQUENCE2 PREDICATE &KEY KEY)
+:end:
+** COPY-SEQ :generic:function:
+:PROPERTIES:
+:ID: 2280258712899
+:CUSTOM_ID: SB-SEQUENCE:COPY-SEQ
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COPY-SEQ names a generic function:
+  Lambda-list: (SEQUENCE)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COPY-SEQ (SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** EMPTYP :generic:function:
+:PROPERTIES:
+:ID: 3659350349076
+:CUSTOM_ID: SB-SEQUENCE:EMPTYP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+EMPTYP names a generic function:
+  Lambda-list: (SEQUENCE)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Returns T if SEQUENCE is an empty sequence and NIL
+    otherwise. Signals an error if SEQUENCE is not a sequence.
+  Method-combination: STANDARD
+  Methods:
+    (EMPTYP (BTREE))
+    (EMPTYP (LIST))
+    (EMPTYP (VECTOR))
+    (EMPTYP (SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+- Called by
+  - SKEL/CORE::SK-PRINT-SLOT
+  - SKEL/CORE::SK-DIR
+  - [[id:3342523453298][READ-FILE-HEADER]]
+  - DOC::READ-FILE-HEADLINE-DESCRIPTION
+  - (PUBLISH (FILE-HEADING))
+  - [[id:1358592406059][FUZZY-MATCH]]
+  - [[id:92127239723][FIND-REPO-ROOT]]
+  - (ORG-PARSE ((EQL SECTION) STRING))
+  - [[id:209165056466][ORG-TAG-SPLIT]]
+  - [[id:3159170441687][MAKE-SQL-DF]]
+  - [[id:2151450004685][COMPLETING-READ]]
+  - DAT/TOML::TOML-READ-KEY
+  - DAT/INI::INI-READ-PAIR
+  - OPENSSL:FORMAT-ERROR-QUEUE
+  - (DEFINE-KEYMAP)
+  - (MAKE (PROJECT))
+  - (PRINT-OBJECT (PROJECT-METADATA T))
+  - [[id:1007333192292][STARTS-WITH]]
+  - [[id:1219347281589][SSPLIT]]
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:4220964109155][LIST]]
+- /home/ellis/src/core/lib/obj/store.lisp
+  - [[id:3768750222096][BTREE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:3926096147540][VECTOR]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** PROTOCOL-UNIMPLEMENTED :compiled:function:condition:class:
+:PROPERTIES:
+:ID: 430154352978
+:CUSTOM_ID: SB-SEQUENCE:PROTOCOL-UNIMPLEMENTED
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PROTOCOL-UNIMPLEMENTED names a compiled function:
+  Lambda-list: (OPERATION SEQUENCE)
+  Derived type: (FUNCTION (T T) NIL)
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+
+PROTOCOL-UNIMPLEMENTED names the condition-class #<SB-PCL::CONDITION-CLASS SB-SEQUENCE:PROTOCOL-UNIMPLEMENTED>:
+  Documentation:
+    This error is signaled if a sequence operation is applied to an
+    instance of a sequence class that does not support the
+    operation.
+  Class precedence-list: SB-SEQUENCE:PROTOCOL-UNIMPLEMENTED, TYPE-ERROR, ERROR,
+                         SERIOUS-CONDITION, SB-INT:REFERENCE-CONDITION,
+                         CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: TYPE-ERROR, SB-INT:REFERENCE-CONDITION
+  No subclasses.
+  Direct slots:
+    SB-IMPL::OPERATION
+      Initargs: :OPERATION
+      Readers: SB-SEQUENCE:PROTOCOL-UNIMPLEMENTED-OPERATION
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+:end:
+** REMOVE :generic:function:
+:PROPERTIES:
+:ID: 1205025835042
+:CUSTOM_ID: SB-SEQUENCE:REMOVE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+REMOVE names a generic function:
+  Lambda-list: (ITEM SEQUENCE &KEY FROM-END TEST TEST-NOT START END COUNT KEY)
+  Argument precedence order: (SEQUENCE ITEM)
+  Derived type: (FUNCTION
+                 (T T &KEY (:START T) (:END T) (:FROM-END T) (:TEST T)
+                  (:TEST-NOT T) (:COUNT T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (REMOVE (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (ITEM SEQUENCE &KEY FROM-END TEST TEST-NOT START END COUNT KEY)
+:end:
+** MISMATCH :generic:function:
+:PROPERTIES:
+:ID: 110308604247
+:CUSTOM_ID: SB-SEQUENCE:MISMATCH
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MISMATCH names a generic function:
+  Lambda-list: (SEQUENCE1 SEQUENCE2 &KEY FROM-END START1 END1 START2 END2 TEST
+                TEST-NOT KEY)
+  Argument precedence order: (SEQUENCE1 SEQUENCE2)
+  Derived type: (FUNCTION
+                 (T T &KEY (:FROM-END T) (:START1 T) (:END1 T) (:START2 T)
+                  (:END2 T) (:TEST T) (:TEST-NOT T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (MISMATCH (SEQUENCE SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE SEQUENCE)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE1 SEQUENCE2 &KEY FROM-END START1 END1 START2 END2 TEST TEST-NOT
+     KEY)
+:end:
+** COUNT :generic:function:
+:PROPERTIES:
+:ID: 1581105065100
+:CUSTOM_ID: SB-SEQUENCE:COUNT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COUNT names a generic function:
+  Lambda-list: (ITEM SEQUENCE &KEY FROM-END START END TEST TEST-NOT KEY)
+  Argument precedence order: (SEQUENCE ITEM)
+  Derived type: (FUNCTION
+                 (T T &KEY (:FROM-END T) (:START T) (:END T) (:TEST T)
+                  (:TEST-NOT T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (COUNT (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (ITEM SEQUENCE &KEY FROM-END START END TEST TEST-NOT KEY)
+:end:
+** NSUBSTITUTE-IF-NOT :generic:function:
+:PROPERTIES:
+:ID: 73359872418
+:CUSTOM_ID: SB-SEQUENCE:NSUBSTITUTE-IF-NOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+NSUBSTITUTE-IF-NOT names a generic function:
+  Lambda-list: (NEW PREDICATE SEQUENCE &KEY START END FROM-END COUNT KEY)
+  Argument precedence order: (SEQUENCE NEW PREDICATE)
+  Derived type: (FUNCTION
+                 (T T T &KEY (:FROM-END T) (:START T) (:END T) (:COUNT T)
+                  (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (NSUBSTITUTE-IF-NOT (T T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (NEW PREDICATE SEQUENCE &KEY START END FROM-END COUNT KEY)
+:end:
+** MAP :generic:function:
+:PROPERTIES:
+:ID: 3773556832331
+:CUSTOM_ID: SB-SEQUENCE:MAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MAP names a generic function:
+  Lambda-list: (RESULT-PROTOTYPE FUNCTION SEQUENCE &REST SEQUENCES)
+  Argument precedence order: (RESULT-PROTOTYPE FUNCTION SEQUENCE)
+  Derived type: (FUNCTION (T T T &REST T) *)
+  Documentation:
+    Implements CL:MAP for extended sequences.
+    
+    RESULT-PROTOTYPE corresponds to the RESULT-TYPE of CL:MAP but
+    receives a prototype instance of an extended sequence class
+    instead of a type specifier. By dispatching on RESULT-PROTOTYPE,
+    methods on this generic function specify how extended sequence
+    classes act when they are specified as the result type in a CL:MAP
+    call. RESULT-PROTOTYPE may not be fully initialized and thus
+    should only be used for dispatch and to determine its class.
+    
+    Another difference to CL:MAP is that FUNCTION is a function, not a
+    function designator.
+  Method-combination: STANDARD
+  Methods:
+    (MAP (SEQUENCE FUNCTION SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE FUNCTION SEQUENCE)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (RESULT-PROTOTYPE FUNCTION SEQUENCE &REST SEQUENCES)
+:end:
+** REMOVE-DUPLICATES :generic:function:
+:PROPERTIES:
+:ID: 1054318716650
+:CUSTOM_ID: SB-SEQUENCE:REMOVE-DUPLICATES
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+REMOVE-DUPLICATES names a generic function:
+  Lambda-list: (SEQUENCE &KEY FROM-END TEST TEST-NOT START END KEY)
+  Derived type: (FUNCTION
+                 (T &KEY (:FROM-END T) (:START T) (:END T) (:TEST T)
+                  (:TEST-NOT T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (REMOVE-DUPLICATES (SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE &KEY FROM-END TEST TEST-NOT START END KEY)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** STABLE-SORT :generic:function:
+:PROPERTIES:
+:ID: 4309945141851
+:CUSTOM_ID: SB-SEQUENCE:STABLE-SORT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STABLE-SORT names a generic function:
+  Lambda-list: (SEQUENCE PREDICATE &KEY KEY)
+  Argument precedence order: (SEQUENCE PREDICATE)
+  Derived type: (FUNCTION (T T &KEY (:KEY T)) *)
+  Method-combination: STANDARD
+  Methods:
+    (STABLE-SORT (SEQUENCE T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE PREDICATE &KEY KEY)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** SUBSEQ :generic:function:
+:PROPERTIES:
+:ID: 3602043456738
+:CUSTOM_ID: SB-SEQUENCE:SUBSEQ
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SUBSEQ names a generic function:
+  Lambda-list: (SEQUENCE START &OPTIONAL END)
+  Argument precedence order: (SEQUENCE START)
+  Derived type: (FUNCTION (T T &OPTIONAL T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SUBSEQ (SEQUENCE T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE START &OPTIONAL END)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** REMOVE-IF-NOT :generic:function:
+:PROPERTIES:
+:ID: 2934989656496
+:CUSTOM_ID: SB-SEQUENCE:REMOVE-IF-NOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+REMOVE-IF-NOT names a generic function:
+  Lambda-list: (PREDICATE SEQUENCE &KEY FROM-END START END COUNT KEY)
+  Argument precedence order: (SEQUENCE PREDICATE)
+  Derived type: (FUNCTION
+                 (T T &KEY (:FROM-END T) (:START T) (:END T) (:COUNT T)
+                  (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (REMOVE-IF-NOT (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (PREDICATE SEQUENCE &KEY FROM-END START END COUNT KEY)
+:end:
+** ITERATOR-COPY :generic:function:
+:PROPERTIES:
+:ID: 1345007981468
+:CUSTOM_ID: SB-SEQUENCE:ITERATOR-COPY
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ITERATOR-COPY names a generic function:
+  Lambda-list: (SEQUENCE ITERATOR)
+  Argument precedence order: (SEQUENCE ITERATOR)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Returns a copy of ITERATOR which also traverses SEQUENCE but can
+    be mutated independently of ITERATOR.
+  Method-combination: STANDARD
+  Methods:
+    (ITERATOR-COPY (LIST T))
+    (ITERATOR-COPY (VECTOR T))
+    (ITERATOR-COPY (SEQUENCE T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:4220964109155][LIST]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:3926096147540][VECTOR]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE ITERATOR)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** NSUBSTITUTE-IF :generic:function:
+:PROPERTIES:
+:ID: 1325283025707
+:CUSTOM_ID: SB-SEQUENCE:NSUBSTITUTE-IF
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+NSUBSTITUTE-IF names a generic function:
+  Lambda-list: (NEW PREDICATE SEQUENCE &KEY START END FROM-END COUNT KEY)
+  Argument precedence order: (SEQUENCE NEW PREDICATE)
+  Derived type: (FUNCTION
+                 (T T T &KEY (:FROM-END T) (:START T) (:END T) (:COUNT T)
+                  (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (NSUBSTITUTE-IF (T T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (NEW PREDICATE SEQUENCE &KEY START END FROM-END COUNT KEY)
+:end:
+** MAKE-SEQUENCE-ITERATOR :generic:function:
+:PROPERTIES:
+:ID: 4095119437076
+:CUSTOM_ID: SB-SEQUENCE:MAKE-SEQUENCE-ITERATOR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MAKE-SEQUENCE-ITERATOR names a generic function:
+  Lambda-list: (SEQUENCE &KEY FROM-END START END)
+  Derived type: (FUNCTION (T &KEY (:FROM-END T) (:START T) (:END T)) *)
+  Documentation:
+    Returns a sequence iterator for SEQUENCE or, if START and/or END
+    are supplied, the subsequence bounded by START and END as nine
+    values:
+    
+    1. iterator state
+    2. limit
+    3. from-end
+    4. step function
+    5. endp function
+    6. element function
+    7. setf element function
+    8. index function
+    9. copy state function
+    
+    If FROM-END is NIL, the constructed iterator visits the specified
+    elements in the order in which they appear in SEQUENCE. Otherwise,
+    the elements are visited in the opposite order.
+    
+    The six functions (items 4-9 in the list) have the same contract as
+    the generic functions described in
+    SB-MANUAL:@EXSEQ-SIMPLE-ITERATOR-PROTOCOL. In fact, when there is
+    no specialized method for a particular SEQUENCE subclass,
+    SB-SEQUENCE:MAKE-SEQUENCE-ITERATOR calls
+    SB-SEQUENCE:MAKE-SIMPLE-SEQUENCE-ITERATOR and returns those six
+    generic functions.
+  Method-combination: STANDARD
+  Methods:
+    (MAKE-SEQUENCE-ITERATOR (VECTOR))
+    (MAKE-SEQUENCE-ITERATOR (LIST))
+    (MAKE-SEQUENCE-ITERATOR (SEQUENCE))
+    (MAKE-SEQUENCE-ITERATOR (T))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:4220964109155][LIST]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:3926096147540][VECTOR]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE &KEY FROM-END START END)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** POSITION-IF :generic:function:
+:PROPERTIES:
+:ID: 3766332778316
+:CUSTOM_ID: SB-SEQUENCE:POSITION-IF
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+POSITION-IF names a generic function:
+  Lambda-list: (PRED SEQUENCE &KEY FROM-END START END KEY)
+  Argument precedence order: (SEQUENCE PRED)
+  Derived type: (FUNCTION (T T &KEY (:FROM-END T) (:START T) (:END T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (POSITION-IF (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (PRED SEQUENCE &KEY FROM-END START END KEY)
+:end:
+** REDUCE :generic:function:
+:PROPERTIES:
+:ID: 4037376303458
+:CUSTOM_ID: SB-SEQUENCE:REDUCE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+REDUCE names a generic function:
+  Lambda-list: (FUNCTION SEQUENCE &KEY FROM-END START END INITIAL-VALUE)
+  Argument precedence order: (SEQUENCE FUNCTION)
+  Derived type: (FUNCTION
+                 (T T &KEY (:FROM-END T) (:START T) (:END T) (:INITIAL-VALUE T)
+                  (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (REDUCE (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (FUNCTION SEQUENCE &KEY FROM-END START END INITIAL-VALUE)
+:end:
+** SUBSTITUTE-IF :generic:function:
+:PROPERTIES:
+:ID: 2104138871497
+:CUSTOM_ID: SB-SEQUENCE:SUBSTITUTE-IF
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SUBSTITUTE-IF names a generic function:
+  Lambda-list: (NEW PREDICATE SEQUENCE &KEY START END FROM-END COUNT KEY)
+  Argument precedence order: (SEQUENCE NEW PREDICATE)
+  Derived type: (FUNCTION
+                 (T T T &KEY (:FROM-END T) (:START T) (:END T) (:COUNT T)
+                  (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (SUBSTITUTE-IF (T T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (NEW PREDICATE SEQUENCE &KEY START END FROM-END COUNT KEY)
+:end:
+** POSITION-IF-NOT :generic:function:
+:PROPERTIES:
+:ID: 4035971000158
+:CUSTOM_ID: SB-SEQUENCE:POSITION-IF-NOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+POSITION-IF-NOT names a generic function:
+  Lambda-list: (PRED SEQUENCE &KEY FROM-END START END KEY)
+  Argument precedence order: (SEQUENCE PRED)
+  Derived type: (FUNCTION (T T &KEY (:FROM-END T) (:START T) (:END T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (POSITION-IF-NOT (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (PRED SEQUENCE &KEY FROM-END START END KEY)
+:end:
+** LENGTH :generic:function:
+:PROPERTIES:
+:ID: 2284091845585
+:CUSTOM_ID: SB-SEQUENCE:LENGTH
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+LENGTH names a generic function:
+  Lambda-list: (SEQUENCE)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Returns the length of SEQUENCE or signals a
+    SEQUENCE:PROTOCOL-UNIMPLEMENTED error if the sequence protocol is
+    not implemented for the class of SEQUENCE.
+  Method-combination: STANDARD
+  Methods:
+    (LENGTH (TLV))
+    (LENGTH (STATIC-STREAM))
+    (LENGTH (IO-VEC))
+    (LENGTH (IO-VECTOR-CLASS))
+      Documentation:
+        automatically generated reader method
+    (LENGTH (FOREIGN-VECTOR))
+    (LENGTH (LIST))
+    (LENGTH (VECTOR))
+    (LENGTH (SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+- Called by
+  - (ROW-COUNT (RECORD-BATCH))
+  - OBJ/URI::LOOKING-AT
+  - SYS:IO-VECTOR
+  - SYS:IO-VEC
+
+:definitions:
+- /home/ellis/src/core/lib/net/codec/tlv.lisp
+  - [[id:114624149689][TLV]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:4220964109155][LIST]]
+- /home/ellis/src/core/alien/sys/io.lisp
+  - SYS:IO-VEC
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:3926096147540][VECTOR]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- /home/ellis/src/core/lib/io/static.lisp
+  - [[id:3532715530036][STATIC-STREAM]]
+- /home/ellis/src/core/std/alien.lisp
+  - [[id:2791262271762][FOREIGN-VECTOR]]
+- /home/ellis/src/core/alien/sys/io.lisp
+  - SYS::IO-VECTOR-CLASS
+:end:
+** DELETE-IF :generic:function:
+:PROPERTIES:
+:ID: 3050855097704
+:CUSTOM_ID: SB-SEQUENCE:DELETE-IF
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DELETE-IF names a generic function:
+  Lambda-list: (PREDICATE SEQUENCE &KEY FROM-END START END COUNT KEY)
+  Argument precedence order: (SEQUENCE PREDICATE)
+  Derived type: (FUNCTION
+                 (T T &KEY (:FROM-END T) (:START T) (:END T) (:COUNT T)
+                  (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (DELETE-IF (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (PREDICATE SEQUENCE &KEY FROM-END START END COUNT KEY)
+:end:
+** COUNT-IF :generic:function:
+:PROPERTIES:
+:ID: 1224670363117
+:CUSTOM_ID: SB-SEQUENCE:COUNT-IF
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COUNT-IF names a generic function:
+  Lambda-list: (PRED SEQUENCE &KEY FROM-END START END KEY)
+  Argument precedence order: (SEQUENCE PRED)
+  Derived type: (FUNCTION (T T &KEY (:FROM-END T) (:START T) (:END T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (COUNT-IF (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (PRED SEQUENCE &KEY FROM-END START END KEY)
+:end:
+** DELETE-DUPLICATES :generic:function:
+:PROPERTIES:
+:ID: 3593954427728
+:CUSTOM_ID: SB-SEQUENCE:DELETE-DUPLICATES
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DELETE-DUPLICATES names a generic function:
+  Lambda-list: (SEQUENCE &KEY FROM-END TEST TEST-NOT START END KEY)
+  Derived type: (FUNCTION
+                 (T &KEY (:FROM-END T) (:START T) (:END T) (:TEST T)
+                  (:TEST-NOT T) (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (DELETE-DUPLICATES (SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE &KEY FROM-END TEST TEST-NOT START END KEY)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** MAKE-SIMPLE-SEQUENCE-ITERATOR :generic:function:
+:PROPERTIES:
+:ID: 3415032733853
+:CUSTOM_ID: SB-SEQUENCE:MAKE-SIMPLE-SEQUENCE-ITERATOR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MAKE-SIMPLE-SEQUENCE-ITERATOR names a generic function:
+  Lambda-list: (SEQUENCE &KEY FROM-END START END)
+  Derived type: (FUNCTION (T &KEY (:FROM-END T) (:START T) (:END T)) *)
+  Documentation:
+    Returns a sequence iterator for SEQUENCE, START, END and FROM-END
+    as three values:
+    
+    1. iterator state
+    2. limit
+    3. from-end
+    
+    The returned iterator can be used with the generic iterator
+    functions described in SB-MANUAL:@EXSEQ-SIMPLE-ITERATOR-PROTOCOL.
+  Method-combination: STANDARD
+  Methods:
+    (MAKE-SIMPLE-SEQUENCE-ITERATOR (LIST))
+    (MAKE-SIMPLE-SEQUENCE-ITERATOR (VECTOR))
+    (MAKE-SIMPLE-SEQUENCE-ITERATOR (SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:4220964109155][LIST]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:3926096147540][VECTOR]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE &KEY FROM-END START END)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** CANONIZE-KEY :compiled:function:
+:PROPERTIES:
+:ID: 2528380071833
+:CUSTOM_ID: SB-SEQUENCE:CANONIZE-KEY
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CANONIZE-KEY names a compiled function:
+  Lambda-list: (KEY)
+  Derived type: (FUNCTION (T) (VALUES FUNCTION &OPTIONAL))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+:end:
+** NREVERSE :generic:function:
+:PROPERTIES:
+:ID: 4156087737071
+:CUSTOM_ID: SB-SEQUENCE:NREVERSE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+NREVERSE names a generic function:
+  Lambda-list: (SEQUENCE)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (NREVERSE (SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (SEQUENCE)
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+:end:
+** SUBSTITUTE-IF-NOT :generic:function:
+:PROPERTIES:
+:ID: 124694880555
+:CUSTOM_ID: SB-SEQUENCE:SUBSTITUTE-IF-NOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SUBSTITUTE-IF-NOT names a generic function:
+  Lambda-list: (NEW PREDICATE SEQUENCE &KEY START END FROM-END COUNT KEY)
+  Argument precedence order: (SEQUENCE NEW PREDICATE)
+  Derived type: (FUNCTION
+                 (T T T &KEY (:FROM-END T) (:START T) (:END T) (:COUNT T)
+                  (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (SUBSTITUTE-IF-NOT (T T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (NEW PREDICATE SEQUENCE &KEY START END FROM-END COUNT KEY)
+:end:
+** REMOVE-IF :generic:function:
+:PROPERTIES:
+:ID: 4304406569288
+:CUSTOM_ID: SB-SEQUENCE:REMOVE-IF
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+REMOVE-IF names a generic function:
+  Lambda-list: (PREDICATE SEQUENCE &KEY FROM-END START END COUNT KEY)
+  Argument precedence order: (SEQUENCE PREDICATE)
+  Derived type: (FUNCTION
+                 (T T &KEY (:FROM-END T) (:START T) (:END T) (:COUNT T)
+                  (:KEY T))
+                 *)
+  Method-combination: STANDARD
+  Methods:
+    (REMOVE-IF (T SEQUENCE))
+  Source file: SYS:SRC;PCL;SEQUENCE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - [[id:1168732872702][SEQUENCE]]
+- SYS:SRC;PCL;SEQUENCE.LISP
+  - (PREDICATE SEQUENCE &KEY FROM-END START END COUNT KEY)
+:end:

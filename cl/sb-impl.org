@@ -1,0 +1,830 @@
+#+setupfile: ../../clean.theme
+* SB-IMPL
+:PROPERTIES:
+:CUSTOM_ID: SB-IMPL
+:ID: 7
+:LOCK: T
+:END:
+private: a grab bag of implementation details
+
+- dependencies
+  - COMMON-LISP
+  - SB-ALIEN
+  - SB-BIGNUM
+  - SB-EXT
+  - SB-GRAY
+  - SB-INT
+  - SB-KERNEL
+  - SB-SYS
+
+** WITH-READ-BUFFER :compiled:macro:function:
+:PROPERTIES:
+:ID: 2276204465138
+:CUSTOM_ID: SB-IMPL:WITH-READ-BUFFER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WITH-READ-BUFFER names a macro:
+  Lambda-list: (NIL &BODY BODY)
+  Source file: SYS:SRC;CODE;READER.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;READER.LISP
+:end:
+** %LOOKUP-FINALIZER :compiled:function:
+:PROPERTIES:
+:ID: 2036217140168
+:CUSTOM_ID: SB-IMPL:%LOOKUP-FINALIZER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+%LOOKUP-FINALIZER names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) *)
+  Source file: SYS:SRC;CODE;FINAL.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;FINAL.LISP
+:end:
+** +SXSTATE-MAX-CHAIN-LENGTH-BITS​+ :constant:var:
+:PROPERTIES:
+:ID: 3718240554274
+:CUSTOM_ID: SB-IMPL:+SXSTATE-MAX-CHAIN-LENGTH-BITS+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++SXSTATE-MAX-CHAIN-LENGTH-BITS+ names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+:end:
+** FINALIZER-OBJECT :compiled:function:
+:PROPERTIES:
+:ID: 2287027211184
+:CUSTOM_ID: SB-IMPL:FINALIZER-OBJECT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FINALIZER-OBJECT names a compiled function:
+  Lambda-list: (NODE)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;CODE;FINAL.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;FINAL.LISP
+:end:
+** +SXSTATE-LIMIT-BITS​+ :constant:var:
+:PROPERTIES:
+:ID: 2958430408364
+:CUSTOM_ID: SB-IMPL:+SXSTATE-LIMIT-BITS+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++SXSTATE-LIMIT-BITS+ names a constant variable:
+  Value: 31
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+:end:
+** ANSI-STREAM-READ-BYTE :compiled:function:
+:PROPERTIES:
+:ID: 3645176716172
+:CUSTOM_ID: SB-IMPL:ANSI-STREAM-READ-BYTE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ANSI-STREAM-READ-BYTE names a compiled function:
+  Lambda-list: (STREAM EOF-ERROR-P EOF-VALUE RECURSIVE-P)
+  Derived type: (FUNCTION (T T T T) *)
+  Source file: SYS:SRC;CODE;STREAM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;STREAM.LISP
+:end:
+** FLAT-HASH-TABLE-P :compiled:function:
+:PROPERTIES:
+:ID: 2653877291806
+:CUSTOM_ID: SB-IMPL:FLAT-HASH-TABLE-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FLAT-HASH-TABLE-P names a compiled function:
+  Lambda-list: (TABLE)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+:end:
+** TEST-COPY-PACKED-INFO :compiled:function:
+:PROPERTIES:
+:ID: 1043667824880
+:CUSTOM_ID: SB-IMPL:TEST-COPY-PACKED-INFO
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+TEST-COPY-PACKED-INFO names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES SB-INT:PACKED-INFO &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;INFO-VECTOR.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;INFO-VECTOR.LISP
+:end:
+** FORMAT-MILLISECONDS :compiled:function:
+:PROPERTIES:
+:ID: 3742394397503
+:CUSTOM_ID: SB-IMPL:FORMAT-MILLISECONDS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FORMAT-MILLISECONDS names a compiled function:
+  Lambda-list: (STREAM USEC &OPTIONAL COLONP ATP)
+  Derived type: (FUNCTION (T T &OPTIONAL T T)
+                 (VALUES (OR NULL (SIMPLE-BASE-STRING 8)) &OPTIONAL))
+  Source file: SYS:SRC;CODE;TIME.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TIME.LISP
+:end:
+** 1-ARG-T :compiled:function:
+:PROPERTIES:
+:ID: 2119355514492
+:CUSTOM_ID: SB-IMPL:1-ARG-T
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+1-ARG-T names a compiled function:
+  Lambda-list: (A)
+  Derived type: (FUNCTION (T) (VALUES (MEMBER T) &OPTIONAL))
+  Source file: SYS:SRC;CODE;DEFSETFS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEFSETFS.LISP
+:end:
+** TRUNCATED-HASH-P :compiled:function:
+:PROPERTIES:
+:ID: 3450086202013
+:CUSTOM_ID: SB-IMPL:TRUNCATED-HASH-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+TRUNCATED-HASH-P names a compiled function:
+  Lambda-list: (HASH)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+:end:
+** TOKEN-DELIMITERP :compiled:function:
+:PROPERTIES:
+:ID: 440018462436
+:CUSTOM_ID: SB-IMPL:TOKEN-DELIMITERP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+TOKEN-DELIMITERP names a compiled function:
+  Lambda-list: (CHAR RT)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;READER.LISP
+#+end_example
+
+- Called by
+  - SB-COVER::MAKE-RECORDING-READ-LIST
+
+:definitions:
+- SYS:SRC;CODE;READER.LISP
+:end:
+** HASHSET-STATISTICS :compiled:function:
+:PROPERTIES:
+:ID: 4132149599121
+:CUSTOM_ID: SB-IMPL:HASHSET-STATISTICS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+HASHSET-STATISTICS names a compiled function:
+  Lambda-list: (STORAGE)
+  Derived type: (FUNCTION (T)
+                 (VALUES (OR FLOAT NULL) SIMPLE-VECTOR (SINGLE-FLOAT 0.0)
+                         &OPTIONAL))
+  Source file: SYS:SRC;CODE;HASHSET.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;HASHSET.LISP
+:end:
+** 2-ARG-NIL :compiled:function:
+:PROPERTIES:
+:ID: 2891656795699
+:CUSTOM_ID: SB-IMPL:2-ARG-NIL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+2-ARG-NIL names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (T T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;DEFSETFS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEFSETFS.LISP
+:end:
+** ANSI-STREAM-CLEAR-INPUT :compiled:function:
+:PROPERTIES:
+:ID: 1975321538258
+:CUSTOM_ID: SB-IMPL:ANSI-STREAM-CLEAR-INPUT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ANSI-STREAM-CLEAR-INPUT names a compiled function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;STREAM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;STREAM.LISP
+:end:
+** WHITESPACE[2]P :compiled:function:
+:PROPERTIES:
+:ID: 1870293724758
+:CUSTOM_ID: SB-IMPL:WHITESPACE[2]P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WHITESPACE[2]P names a compiled function:
+  Lambda-list: (CHAR RT)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;READER.LISP
+#+end_example
+
+- Called by
+  - SB-COVER::MAKE-RECORDING-READ-LIST
+
+:definitions:
+- SYS:SRC;CODE;READER.LISP
+:end:
+** 3-ARG-NIL :compiled:function:
+:PROPERTIES:
+:ID: 1314579581732
+:CUSTOM_ID: SB-IMPL:3-ARG-NIL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+3-ARG-NIL names a compiled function:
+  Lambda-list: (A B C)
+  Derived type: (FUNCTION (T T T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;DEFSETFS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEFSETFS.LISP
+:end:
+** SHOW-PACKAGE-UTILIZATION :compiled:function:
+:PROPERTIES:
+:ID: 4265685843589
+:CUSTOM_ID: SB-IMPL:SHOW-PACKAGE-UTILIZATION
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SHOW-PACKAGE-UTILIZATION names a compiled function:
+  Lambda-list: (&AUX (TOT-NCELLS 0))
+  Derived type: (FUNCTION NIL (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;DEFPACKAGE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEFPACKAGE.LISP
+:end:
+** SXSTATE-LIMIT :compiled:function:
+:PROPERTIES:
+:ID: 432593099581
+:CUSTOM_ID: SB-IMPL:SXSTATE-LIMIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SXSTATE-LIMIT names a compiled function:
+  Lambda-list: (SXSTATE)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (OR (INTEGER 1 2147483647)
+                      (INTEGER 4611686018427387903 4611686018427387903))
+                  &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+:end:
+** PRINT-LAMBDA-LIST :compiled:function:
+:PROPERTIES:
+:ID: 2450982216060
+:CUSTOM_ID: SB-IMPL:PRINT-LAMBDA-LIST
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRINT-LAMBDA-LIST names a compiled function:
+  Lambda-list: (STREAM LAMBDA-LIST &OPTIONAL COLON AT)
+  Derived type: (FUNCTION (T T &OPTIONAL T T)
+                 (VALUES (OR STRING NULL) &OPTIONAL))
+  Source file: SYS:SRC;CODE;EARLY-EXTENSIONS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;EARLY-EXTENSIONS.LISP
+:end:
+** +INTERNAL-FEATURES​+ :constant:var:
+:PROPERTIES:
+:ID: 1481560990966
+:CUSTOM_ID: SB-IMPL:+INTERNAL-FEATURES+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++INTERNAL-FEATURES+ names a constant variable:
+  Declared always-bound.
+  Value: (:ALIEN-CALLBACKS :AVX2 :AVX512 :BITPACKED-MUTEX
+          :C-STACK-IS-CONTROL-STACK :CALL-SYMBOL :COMPACT-INSTANCE-HEADER
+          :COMPARE-AND-SWAP-VOPS :CYCLE-COUNTER :EXECUTABLE-FUNINSTANCES
+          :FP-AND-PC-STANDARD-SAVE :GENERATIONAL :IMMOBILE-CODE :IMMOBILE-SPACE
+          :INT3-BREAKPOINTS :LARGEFILE :LINKAGE-SPACE :NO-CONTINUE-UNWIND
+          :OS-PROVIDES-CLOCK-GETTIME :OS-PROVIDES-GETPROTOBY-R
+          :OS-PROVIDES-POSIX-SPAWN :OS-PROVIDES-SUSECONDS-T
+          :RELOCATABLE-STATIC-SPACE :SB-DOC :SB-EVAL :SB-SIMD-PACK
+          :SB-SIMD-PACK-256 :SB-SIMD-PACK-512 :SB-SOURCE-LOCATIONS
+          :SB-XREF-FOR-INTERNALS :SOFT-CARD-MARKS
+          :STACK-GROWS-DOWNWARD-NOT-UPWARD :SYSTEM-TLABS :TLS-LOAD-INDIRECT
+          :UNBIND-IN-UNWIND :UNDEFINED-FUN-RESTARTS
+          :UNWIND-TO-FRAME-AND-CALL-VOP :USE-CONS-REGION)
+#+end_example
+
+- Referenced by
+  - SWANK/SBCL::CALL-WITH-DEBOOTSTRAPPING
+** MAKE-SXSTATE :compiled:function:
+:PROPERTIES:
+:ID: 4137460131307
+:CUSTOM_ID: SB-IMPL:MAKE-SXSTATE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MAKE-SXSTATE names a compiled function:
+  Lambda-list: (LIMIT MAX-CHAIN-LENGTH)
+  Derived type: (FUNCTION (T T) (VALUES INTEGER &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+:end:
+** 0-ARG-NIL :compiled:function:
+:PROPERTIES:
+:ID: 2833431412023
+:CUSTOM_ID: SB-IMPL:0-ARG-NIL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+0-ARG-NIL names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;DEFSETFS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEFSETFS.LISP
+:end:
+** EOF-OR-LOSE :compiled:macro:function:
+:PROPERTIES:
+:ID: 2004267780451
+:CUSTOM_ID: SB-IMPL:EOF-OR-LOSE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+EOF-OR-LOSE names a macro:
+  Lambda-list: (STREAM EOF-ERROR-P EOF-VALUE)
+  Source file: SYS:SRC;CODE;SYSMACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;SYSMACS.LISP
+:end:
+** ANSI-STREAM-READ-SEQUENCE :compiled:function:
+:PROPERTIES:
+:ID: 1480849151462
+:CUSTOM_ID: SB-IMPL:ANSI-STREAM-READ-SEQUENCE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ANSI-STREAM-READ-SEQUENCE names a compiled function:
+  Lambda-list: (SEQ STREAM START %END)
+  Derived type: (FUNCTION
+                 (T SB-KERNEL:ANSI-STREAM (UNSIGNED-BYTE 44)
+                  (OR NULL (UNSIGNED-BYTE 44)))
+                 (VALUES (UNSIGNED-BYTE 44) &OPTIONAL))
+  Source file: SYS:SRC;CODE;STREAM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;STREAM.LISP
+:end:
+** N-ARG-NIL :compiled:function:
+:PROPERTIES:
+:ID: 3119191836308
+:CUSTOM_ID: SB-IMPL:N-ARG-NIL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-ARG-NIL names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;DEFSETFS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEFSETFS.LISP
+:end:
+** +HIGHEST-SXSTATE-LIMIT​+ :constant:var:
+:PROPERTIES:
+:ID: 3251066767118
+:CUSTOM_ID: SB-IMPL:+HIGHEST-SXSTATE-LIMIT+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++HIGHEST-SXSTATE-LIMIT+ names a constant variable:
+  Value: 2147483647
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+:end:
+** DISPATCH-TABLES :compiled:function:
+:PROPERTIES:
+:ID: 923346027300
+:CUSTOM_ID: SB-IMPL:DISPATCH-TABLES
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DISPATCH-TABLES names a compiled function:
+  Lambda-list: (READTABLE &OPTIONAL (HASH-TABLE-P T))
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES LIST &OPTIONAL))
+  Source file: SYS:SRC;CODE;READER.LISP
+
+(SETF DISPATCH-TABLES) names a compiled function:
+  Lambda-list: (NEW-ALIST READTABLE)
+  Derived type: (FUNCTION (T T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;READER.LISP
+#+end_example
+
+- Called by
+  - STD/NAMED-READTABLES::%MAKE-READTABLE-ITERATOR
+
+:definitions:
+- SYS:SRC;CODE;READER.LISP
+:end:
+** FORMAT-MICROSECONDS :compiled:function:
+:PROPERTIES:
+:ID: 1360496680352
+:CUSTOM_ID: SB-IMPL:FORMAT-MICROSECONDS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FORMAT-MICROSECONDS names a compiled function:
+  Lambda-list: (STREAM USEC &OPTIONAL COLONP ATP)
+  Derived type: (FUNCTION (T T &OPTIONAL T T)
+                 (VALUES (OR NULL (SIMPLE-BASE-STRING 8)) &OPTIONAL))
+  Source file: SYS:SRC;CODE;TIME.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TIME.LISP
+:end:
+** PRINT-TYPE-SPECIFIER :compiled:function:
+:PROPERTIES:
+:ID: 2707713939138
+:CUSTOM_ID: SB-IMPL:PRINT-TYPE-SPECIFIER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRINT-TYPE-SPECIFIER names a compiled function:
+  Lambda-list: (STREAM TYPE-SPECIFIER &OPTIONAL COLON AT)
+  Derived type: (FUNCTION (T T &OPTIONAL T T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;CODE;EARLY-EXTENSIONS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;EARLY-EXTENSIONS.LISP
+:end:
+** *ID->PACKAGE​*
+:PROPERTIES:
+:ID: 1380247468620
+:CUSTOM_ID: SB-IMPL:*ID->PACKAGE*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*ID->PACKAGE* names a symbol macro:
+  Expansion: (TRULY-THE SIMPLE-VECTOR
+                        (SB-SYS:SAP-REF-LISPOBJ
+                         (SB-SYS:FOREIGN-SYMBOL-SAP "lisp_package_vector" T)0))
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;SYMBOL.LISP
+:end:
+** SXSTATE-MAX-CHAIN-LENGTH :compiled:function:
+:PROPERTIES:
+:ID: 2808961499708
+:CUSTOM_ID: SB-IMPL:SXSTATE-MAX-CHAIN-LENGTH
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SXSTATE-MAX-CHAIN-LENGTH names a compiled function:
+  Lambda-list: (SXSTATE)
+  Derived type: (FUNCTION (T) (VALUES INTEGER &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+:end:
+** ANSI-STREAM-READ-LINE :compiled:function:
+:PROPERTIES:
+:ID: 2812087008089
+:CUSTOM_ID: SB-IMPL:ANSI-STREAM-READ-LINE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ANSI-STREAM-READ-LINE names a compiled function:
+  Lambda-list: (STREAM EOF-ERROR-P EOF-VALUE)
+  Derived type: (FUNCTION (T T T) (VALUES T BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;CODE;STREAM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;STREAM.LISP
+:end:
+** N-ARG-T :compiled:function:
+:PROPERTIES:
+:ID: 4060100892698
+:CUSTOM_ID: SB-IMPL:N-ARG-T
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-ARG-T names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES (MEMBER T) &OPTIONAL))
+  Source file: SYS:SRC;CODE;DEFSETFS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEFSETFS.LISP
+:end:
+** IN-STREAM-FROM-DESIGNATOR :compiled:macro:function:
+:PROPERTIES:
+:ID: 1327652518557
+:CUSTOM_ID: SB-IMPL:IN-STREAM-FROM-DESIGNATOR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+IN-STREAM-FROM-DESIGNATOR names a macro:
+  Lambda-list: (STREAM)
+  Source file: SYS:SRC;CODE;SYSMACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;SYSMACS.LISP
+:end:
+** PRINT-TYPE :compiled:function:
+:PROPERTIES:
+:ID: 1631454257222
+:CUSTOM_ID: SB-IMPL:PRINT-TYPE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRINT-TYPE names a compiled function:
+  Lambda-list: (STREAM TYPE &OPTIONAL COLON AT)
+  Derived type: (FUNCTION (T T &OPTIONAL T T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;CODE;EARLY-EXTENSIONS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;EARLY-EXTENSIONS.LISP
+:end:
+** SHOW-FINALIZERS :compiled:function:
+:PROPERTIES:
+:ID: 319932761416
+:CUSTOM_ID: SB-IMPL:SHOW-FINALIZERS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SHOW-FINALIZERS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;FINAL.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;FINAL.LISP
+:end:
+** TEST-MAKE-PACKED-INFO :compiled:function:
+:PROPERTIES:
+:ID: 30178328497
+:CUSTOM_ID: SB-IMPL:TEST-MAKE-PACKED-INFO
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+TEST-MAKE-PACKED-INFO names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES SB-INT:PACKED-INFO &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;INFO-VECTOR.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;INFO-VECTOR.LISP
+:end:
+** INSTALL-HASH-TABLE-LOCK :compiled:function:
+:PROPERTIES:
+:ID: 1685818807315
+:CUSTOM_ID: SB-IMPL:INSTALL-HASH-TABLE-LOCK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INSTALL-HASH-TABLE-LOCK names a compiled function:
+  Lambda-list: (TABLE)
+  Declared type: (FUNCTION (HASH-TABLE) (VALUES SB-THREAD:MUTEX &OPTIONAL))
+  Source file: SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+#+end_example
+
+- Called by
+  - SB-INTROSPECT:MAP-ROOT
+
+:definitions:
+- SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** CHARACTER-MACRO-ARRAY :compiled:function:
+:PROPERTIES:
+:ID: 3235155519966
+:CUSTOM_ID: SB-IMPL:CHARACTER-MACRO-ARRAY
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CHARACTER-MACRO-ARRAY names a compiled function:
+  In EARLY deprecation since SBCL version 2.0.6. Use SB-IMPL::BASE-CHAR-MACRO-ARRAY instead.
+  Lambda-list: (READTABLE)
+  Derived type: (FUNCTION (T) (VALUES (SIMPLE-VECTOR 128) &OPTIONAL))
+  Documentation:
+    The function SB-IMPL:CHARACTER-MACRO-ARRAY has been deprecated as of SBCLversion 2.0.6.
+    
+    Use SB-IMPL::BASE-CHAR-MACRO-ARRAY instead.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;READER.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;READER.LISP
+- SYS:SRC;CODE;READER.LISP
+  - (DEPRECATED FUNCTION)
+:end:
+** %MAKUNBOUND :compiled:function:
+:PROPERTIES:
+:ID: 211023482230
+:CUSTOM_ID: SB-IMPL:%MAKUNBOUND
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+%MAKUNBOUND names a compiled function:
+  Lambda-list: (SYMBOL)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;SYMBOL.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;SYMBOL.LISP
+:end:
+** HASH-TABLE-HASH-FUN-STATE :compiled:function:
+:PROPERTIES:
+:ID: 2671117091513
+:CUSTOM_ID: SB-IMPL:HASH-TABLE-HASH-FUN-STATE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+HASH-TABLE-HASH-FUN-STATE names a compiled function:
+  Lambda-list: (TABLE)
+  Derived type: (FUNCTION (T) (VALUES FIXNUM &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-HASH-TABLE.LISP
+:end:
+** ANSI-STREAM-READ-CHAR-NO-HANG :compiled:function:
+:PROPERTIES:
+:ID: 4148779215993
+:CUSTOM_ID: SB-IMPL:ANSI-STREAM-READ-CHAR-NO-HANG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ANSI-STREAM-READ-CHAR-NO-HANG names a compiled function:
+  Lambda-list: (STREAM EOF-ERROR-P EOF-VALUE RECURSIVE-P)
+  Derived type: (FUNCTION (T T T T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;CODE;STREAM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;STREAM.LISP
+:end:
+** ANSI-STREAM-READ-CHAR :compiled:function:
+:PROPERTIES:
+:ID: 3046280197059
+:CUSTOM_ID: SB-IMPL:ANSI-STREAM-READ-CHAR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ANSI-STREAM-READ-CHAR names a compiled function:
+  Lambda-list: (STREAM EOF-ERROR-P EOF-VALUE RECURSIVE-P)
+  Derived type: (FUNCTION (T T T T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;CODE;STREAM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;STREAM.LISP
+:end:
+** CHARACTER-MACRO-HASH-TABLE :compiled:function:
+:PROPERTIES:
+:ID: 3800849234535
+:CUSTOM_ID: SB-IMPL:CHARACTER-MACRO-HASH-TABLE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CHARACTER-MACRO-HASH-TABLE names a compiled function:
+  In EARLY deprecation since SBCL version 2.0.6. Use SB-IMPL::EXTENDED-CHAR-TABLE instead.
+  Lambda-list: (READTABLE)
+  Derived type: (FUNCTION (T) (VALUES HASH-TABLE &OPTIONAL))
+  Documentation:
+    The function SB-IMPL:CHARACTER-MACRO-HASH-TABLE has been deprecated as ofSBCL version 2.0.6.
+    
+    Use SB-IMPL::EXTENDED-CHAR-TABLE instead.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;READER.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;READER.LISP
+- SYS:SRC;CODE;READER.LISP
+  - (DEPRECATED FUNCTION)
+:end:
+** 1-ARG-NIL :compiled:function:
+:PROPERTIES:
+:ID: 1945601052734
+:CUSTOM_ID: SB-IMPL:1-ARG-NIL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+1-ARG-NIL names a compiled function:
+  Lambda-list: (A)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;DEFSETFS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEFSETFS.LISP
+:end:
+** ANSI-STREAM-LISTEN :compiled:function:
+:PROPERTIES:
+:ID: 3642740887957
+:CUSTOM_ID: SB-IMPL:ANSI-STREAM-LISTEN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ANSI-STREAM-LISTEN names a compiled function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) (VALUES (NOT (MEMBER :EOF)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;STREAM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;STREAM.LISP
+:end:

@@ -1,0 +1,2432 @@
+#+setupfile: ../../clean.theme
+* SB-UNIX
+:PROPERTIES:
+:CUSTOM_ID: SB-UNIX
+:ID: 10
+:LOCK: T
+:END:
+private: a wrapper layer for SBCL itself to use when talking with
+an underlying Unix-y operating system.  This was a public package in
+CMU CL, but that was different.  CMU CL's UNIX package tried to
+provide a comprehensive, stable Unix interface suitable for the end
+user.  This package only tries to implement what happens to be needed
+by the current implementation of SBCL, and makes no guarantees of
+interface stability.
+
+- dependencies
+  - COMMON-LISP
+  - SB-ALIEN
+  - SB-EXT
+  - SB-INT
+  - SB-SYS
+
+- dependents
+  - [[#SB-SPROF][SB-SPROF]]
+  - [[#SB-VM][SB-VM]]
+
+** UNIX-KILL :compiled:function:
+:PROPERTIES:
+:ID: 4231325680939
+:CUSTOM_ID: SB-UNIX:UNIX-KILL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-KILL names a compiled function:
+  Lambda-list: (PID SIGNAL)
+  Declared type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;TARGET-SIGNAL.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-SIGNAL.LISP
+:end:
+** RU-NIVCSW
+:PROPERTIES:
+:ID: 1346923516672
+:CUSTOM_ID: SB-UNIX:RU-NIVCSW
+:ALLOC: HEAP IMMOBILE
+:END:** RU-OUBLOCK
+:PROPERTIES:
+:ID: 1990072049111
+:CUSTOM_ID: SB-UNIX:RU-OUBLOCK
+:ALLOC: HEAP IMMOBILE
+:END:** EIO :constant:var:
+:PROPERTIES:
+:ID: 442978094275
+:CUSTOM_ID: SB-UNIX:EIO
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+EIO names a constant variable:
+  Value: 5
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** TV-SEC
+:PROPERTIES:
+:ID: 399319949850
+:CUSTOM_ID: SB-UNIX:TV-SEC
+:ALLOC: HEAP IMMOBILE
+:END:** INO-T :alien:
+:PROPERTIES:
+:ID: 357854320259
+:CUSTOM_ID: SB-UNIX:INO-T
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INO-T names an alien type:
+  Expansion: #<ALIEN-TYPE (UNSIGNED 64)>
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** ST-NLINK
+:PROPERTIES:
+:ID: 106141551102
+:CUSTOM_ID: SB-UNIX:ST-NLINK
+:ALLOC: HEAP IMMOBILE
+:END:** SIGVTALRM :constant:var:
+:PROPERTIES:
+:ID: 4202929823132
+:CUSTOM_ID: SB-UNIX:SIGVTALRM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGVTALRM names a constant variable:
+  Value: 26
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-POLL :compiled:function:
+:PROPERTIES:
+:ID: 2597252116834
+:CUSTOM_ID: SB-UNIX:UNIX-POLL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-POLL names a compiled function:
+  Lambda-list: (POLLFDS NFDS TO-MSEC)
+  Derived type: (FUNCTION (T FIXNUM FIXNUM)
+                 (VALUES (OR (UNSIGNED-BYTE 31) NULL) (SIGNED-BYTE 32)
+                         &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** ST-UID
+:PROPERTIES:
+:ID: 3338891585723
+:CUSTOM_ID: SB-UNIX:ST-UID
+:ALLOC: HEAP IMMOBILE
+:END:** O_RDONLY :constant:var:
+:PROPERTIES:
+:ID: 721582514928
+:CUSTOM_ID: SB-UNIX:O_RDONLY
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+O_RDONLY names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** L_SET :constant:var:
+:PROPERTIES:
+:ID: 2254560406601
+:CUSTOM_ID: SB-UNIX:L_SET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+L_SET names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SIGINT :constant:var:
+:PROPERTIES:
+:ID: 1516470899694
+:CUSTOM_ID: SB-UNIX:SIGINT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGINT names a constant variable:
+  Value: 2
+#+end_example
+
+- Referenced by
+  - (INSTALL-SIGINT-HANDLER IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** EEXIST :constant:var:
+:PROPERTIES:
+:ID: 2018720395731
+:CUSTOM_ID: SB-UNIX:EEXIST
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+EEXIST names a constant variable:
+  Value: 17
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** TV-USEC
+:PROPERTIES:
+:ID: 555082032165
+:CUSTOM_ID: SB-UNIX:TV-USEC
+:ALLOC: HEAP IMMOBILE
+:END:** UNIX-GETHOSTNAME :compiled:function:
+:PROPERTIES:
+:ID: 3526065631664
+:CUSTOM_ID: SB-UNIX:UNIX-GETHOSTNAME
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-GETHOSTNAME names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL
+                 (VALUES (OR SIMPLE-STRING NULL) &OPTIONAL (SIGNED-BYTE 32)))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+- Called by
+  - [[id:635477445701][GET-HOST-NAME]]
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SIGPROF :constant:var:
+:PROPERTIES:
+:ID: 1610313845215
+:CUSTOM_ID: SB-UNIX:SIGPROF
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGPROF names a constant variable:
+  Value: 27
+#+end_example
+
+- Referenced by
+  - SB-SPROF:START-PROFILING
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** R_OK :constant:var:
+:PROPERTIES:
+:ID: 3304536907676
+:CUSTOM_ID: SB-UNIX:R_OK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+R_OK names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-SIMPLE-POLL :compiled:function:
+:PROPERTIES:
+:ID: 1849689335789
+:CUSTOM_ID: SB-UNIX:UNIX-SIMPLE-POLL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-SIMPLE-POLL names a compiled function:
+  Lambda-list: (FD DIRECTION TO-MSEC)
+  Derived type: (FUNCTION (FIXNUM T FIXNUM) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+- Called by
+  - (SOCKET-CONNECT (SOCKET))
+  - IO/SYS:WAIT-UNTIL-FD-READY
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** FD
+:PROPERTIES:
+:ID: 2047393980918
+:CUSTOM_ID: SB-UNIX:FD
+:ALLOC: HEAP IMMOBILE
+:END:** POLLNVAL :constant:var:
+:PROPERTIES:
+:ID: 3532000115615
+:CUSTOM_ID: SB-UNIX:POLLNVAL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+POLLNVAL names a constant variable:
+  Value: 32
+#+end_example
+
+- Referenced by
+  - IO/SYS::PROCESS-POLL-REVENTS
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** O_EXCL :constant:var:
+:PROPERTIES:
+:ID: 3205305072178
+:CUSTOM_ID: SB-UNIX:O_EXCL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+O_EXCL names a constant variable:
+  Value: 128
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** RUSAGE_SELF :constant:var:
+:PROPERTIES:
+:ID: 3403633664885
+:CUSTOM_ID: SB-UNIX:RUSAGE_SELF
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+RUSAGE_SELF names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SIGSYS :constant:var:
+:PROPERTIES:
+:ID: 2298253992493
+:CUSTOM_ID: SB-UNIX:SIGSYS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGSYS names a constant variable:
+  Value: 31
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** SIGSTOP :constant:var:
+:PROPERTIES:
+:ID: 1009560785931
+:CUSTOM_ID: SB-UNIX:SIGSTOP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGSTOP names a constant variable:
+  Value: 19
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** CLOCK-MONOTONIC-RAW :constant:var:
+:PROPERTIES:
+:ID: 3091215708441
+:CUSTOM_ID: SB-UNIX:CLOCK-MONOTONIC-RAW
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CLOCK-MONOTONIC-RAW names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** SIGTTOU :constant:var:
+:PROPERTIES:
+:ID: 3795906127312
+:CUSTOM_ID: SB-UNIX:SIGTTOU
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGTTOU names a constant variable:
+  Value: 22
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** SIGQUIT :constant:var:
+:PROPERTIES:
+:ID: 1168952023108
+:CUSTOM_ID: SB-UNIX:SIGQUIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGQUIT names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** FD-ISSET :compiled:function:
+:PROPERTIES:
+:ID: 2181041288596
+:CUSTOM_ID: SB-UNIX:FD-ISSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FD-ISSET names a compiled function:
+  Lambda-list: (OFFSET FD-SET)
+  Declared type: (FUNCTION ((UNSIGNED-BYTE 10) T) *)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 10) T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** O_RDWR :constant:var:
+:PROPERTIES:
+:ID: 3969359122274
+:CUSTOM_ID: SB-UNIX:O_RDWR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+O_RDWR names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** SIGTERM :constant:var:
+:PROPERTIES:
+:ID: 1849226681911
+:CUSTOM_ID: SB-UNIX:SIGTERM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGTERM names a constant variable:
+  Value: 15
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-ISATTY :compiled:function:
+:PROPERTIES:
+:ID: 1373212560556
+:CUSTOM_ID: SB-UNIX:UNIX-ISATTY
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-ISATTY names a compiled function:
+  Lambda-list: (FD)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 31))
+                 (VALUES (OR (UNSIGNED-BYTE 31) NULL) (SIGNED-BYTE 32)
+                         &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SIGALRM :constant:var:
+:PROPERTIES:
+:ID: 774337071008
+:CUSTOM_ID: SB-UNIX:SIGALRM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGALRM names a constant variable:
+  Value: 14
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** USER-HOMEDIR :compiled:function:
+:PROPERTIES:
+:ID: 2878670277442
+:CUSTOM_ID: SB-UNIX:USER-HOMEDIR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+USER-HOMEDIR names a compiled function:
+  Lambda-list: (UID)
+  Derived type: (FUNCTION (T) (VALUES SIMPLE-STRING &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** CLOCK-REALTIME :constant:var:
+:PROPERTIES:
+:ID: 4020723567077
+:CUSTOM_ID: SB-UNIX:CLOCK-REALTIME
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CLOCK-REALTIME names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** GID-T :alien:
+:PROPERTIES:
+:ID: 2119762703889
+:CUSTOM_ID: SB-UNIX:GID-T
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+GID-T names an alien type:
+  Expansion: #<ALIEN-TYPE (UNSIGNED 32)>
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** TIME-T :alien:
+:PROPERTIES:
+:ID: 480380733758
+:CUSTOM_ID: SB-UNIX:TIME-T
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+TIME-T names an alien type:
+  Expansion: #<ALIEN-TYPE (SIGNED 64)>
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** SIGTTIN :constant:var:
+:PROPERTIES:
+:ID: 102552422418
+:CUSTOM_ID: SB-UNIX:SIGTTIN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGTTIN names a constant variable:
+  Value: 21
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** RU-NSWAP
+:PROPERTIES:
+:ID: 312981737435
+:CUSTOM_ID: SB-UNIX:RU-NSWAP
+:ALLOC: HEAP IMMOBILE
+:END:** SIGUSR1 :constant:var:
+:PROPERTIES:
+:ID: 1921374450507
+:CUSTOM_ID: SB-UNIX:SIGUSR1
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGUSR1 names a constant variable:
+  Value: 10
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** RUSAGE_CHILDREN :constant:var:
+:PROPERTIES:
+:ID: 4334251390786
+:CUSTOM_ID: SB-UNIX:RUSAGE_CHILDREN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+RUSAGE_CHILDREN names a constant variable:
+  Value: -1
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** UNIX-MKDIR :compiled:function:
+:PROPERTIES:
+:ID: 41644211177
+:CUSTOM_ID: SB-UNIX:UNIX-MKDIR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-MKDIR names a compiled function:
+  Lambda-list: (NAME MODE)
+  Derived type: (FUNCTION (SIMPLE-STRING (UNSIGNED-BYTE 32))
+                 (VALUES BOOLEAN (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** UNIX-SETITIMER :compiled:function:
+:PROPERTIES:
+:ID: 1975385155340
+:CUSTOM_ID: SB-UNIX:UNIX-SETITIMER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-SETITIMER names a compiled function:
+  Lambda-list: (WHICH INT-SECS INT-USEC VAL-SECS VAL-USEC)
+  Derived type: (FUNCTION
+                 ((MEMBER :REAL :VIRTUAL :PROFILE) UNSIGNED-BYTE (MOD 1000000)
+                  UNSIGNED-BYTE (MOD 1000000))
+                 (VALUES (MEMBER T) (UNSIGNED-BYTE 63) (MOD 1000000)
+                         (UNSIGNED-BYTE 63) (MOD 1000000) &OPTIONAL))
+  Documentation:
+    UNIX-SETITIMER sets the INTERVAL and VALUE slots of one of three system
+    timers (:real :virtual or :profile). A SIGALRM, SIGVTALRM, or SIGPROF
+    respectively will be delivered in VALUE <seconds+microseconds> from now.
+    INTERVAL, when non-zero, is reloaded into the timer on each expiration.
+    Setting VALUE to zero disables the timer. See the Unix man page for more
+    details. On success, unix-setitimer returns the
+    old contents of the INTERVAL and VALUE slots as in unix-getitimer.
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+- Called by
+  - SB-SPROF:STOP-PROFILING
+  - SB-SPROF:START-PROFILING
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SIGPIPE :constant:var:
+:PROPERTIES:
+:ID: 277612586430
+:CUSTOM_ID: SB-UNIX:SIGPIPE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGPIPE names a constant variable:
+  Value: 13
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-FAST-SELECT :compiled:function:
+:PROPERTIES:
+:ID: 1387192836486
+:CUSTOM_ID: SB-UNIX:UNIX-FAST-SELECT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-FAST-SELECT names a compiled function:
+  Lambda-list: (NUM-DESCRIPTORS READ-FDS WRITE-FDS EXCEPTION-FDS TIMEOUT-SECS
+                TIMEOUT-USECS)
+  Derived type: (FUNCTION
+                 (INTEGER
+                  (OR
+                   (SB-ALIEN:ALIEN
+                    (*
+                     (SB-ALIEN:STRUCT SB-UNIX:FD-SET
+                      (SB-UNIX::FDS-BITS (ARRAY (SB-ALIEN:UNSIGNED 64) 16)
+                       :OFFSET 0))))
+                   NULL)
+                  (OR
+                   (SB-ALIEN:ALIEN
+                    (*
+                     (SB-ALIEN:STRUCT SB-UNIX:FD-SET
+                      (SB-UNIX::FDS-BITS (ARRAY (SB-ALIEN:UNSIGNED 64) 16)
+                       :OFFSET 0))))
+                   NULL)
+                  (OR
+                   (SB-ALIEN:ALIEN
+                    (*
+                     (SB-ALIEN:STRUCT SB-UNIX:FD-SET
+                      (SB-UNIX::FDS-BITS (ARRAY (SB-ALIEN:UNSIGNED 64) 16)
+                       :OFFSET 0))))
+                   NULL)
+                  (OR (UNSIGNED-BYTE 31) NULL) (OR (UNSIGNED-BYTE 31) NULL))
+                 (VALUES (OR (UNSIGNED-BYTE 31) NULL) (SIGNED-BYTE 32)
+                         &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** UNIX-GETITIMER :compiled:function:
+:PROPERTIES:
+:ID: 91591038680
+:CUSTOM_ID: SB-UNIX:UNIX-GETITIMER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-GETITIMER names a compiled function:
+  Lambda-list: (WHICH)
+  Derived type: (FUNCTION ((MEMBER :REAL :VIRTUAL :PROFILE))
+                 (VALUES (MEMBER T) (UNSIGNED-BYTE 63) (MOD 1000000)
+                         (UNSIGNED-BYTE 63) (MOD 1000000) &OPTIONAL))
+  Documentation:
+    UNIX-GETITIMER returns the INTERVAL and VALUE slots of one of
+    three system timers (:real :virtual or :profile). On success,
+    unix-getitimer returns 5 values,
+    T, it-interval-secs, it-interval-usec, it-value-secs, it-value-usec.
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** UNIX-LSEEK :compiled:function:
+:PROPERTIES:
+:ID: 3147910403812
+:CUSTOM_ID: SB-UNIX:UNIX-LSEEK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-LSEEK names a compiled function:
+  Lambda-list: (FD OFFSET WHENCE)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 31) T (MOD 3))
+                 (VALUES (OR (UNSIGNED-BYTE 63) NULL) (SIGNED-BYTE 32)
+                         &OPTIONAL))
+  Documentation:
+    Unix-lseek accepts a file descriptor and moves the file pointer by
+    OFFSET octets.  Whence can be any of the following:
+    
+    L_SET        Set the file pointer.
+    L_INCR       Increment the file pointer.
+    L_XTND       Extend the file size.
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** ST-ATIME
+:PROPERTIES:
+:ID: 1666222762578
+:CUSTOM_ID: SB-UNIX:ST-ATIME
+:ALLOC: HEAP IMMOBILE
+:END:** UNIX-GETPID :compiled:function:
+:PROPERTIES:
+:ID: 1418694443031
+:CUSTOM_ID: SB-UNIX:UNIX-GETPID
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-GETPID names a compiled function:
+  Lambda-list: ()
+  Declared type: (FUNCTION NIL (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** TIOCGPGRP :constant:var:
+:PROPERTIES:
+:ID: 4335083115817
+:CUSTOM_ID: SB-UNIX:TIOCGPGRP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+TIOCGPGRP names a constant variable:
+  Value: 21519
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-FSTAT :compiled:function:
+:PROPERTIES:
+:ID: 3899599906209
+:CUSTOM_ID: SB-UNIX:UNIX-FSTAT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-FSTAT names a compiled function:
+  Lambda-list: (FD)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 31))
+                 (VALUES BOOLEAN (INTEGER -2147483648 18446744073709551615)
+                         &OPTIONAL (UNSIGNED-BYTE 64) (UNSIGNED-BYTE 32)
+                         (UNSIGNED-BYTE 64) (UNSIGNED-BYTE 32)
+                         (UNSIGNED-BYTE 32) (UNSIGNED-BYTE 64) (SIGNED-BYTE 64)
+                         (SIGNED-BYTE 64) (SIGNED-BYTE 64) (SIGNED-BYTE 64)
+                         (SIGNED-BYTE 64) (SIGNED-BYTE 64)))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+- Called by
+  - (ADD-FD-HANDLER IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** RU-IDRSS
+:PROPERTIES:
+:ID: 4102405809490
+:CUSTOM_ID: SB-UNIX:RU-IDRSS
+:ALLOC: HEAP IMMOBILE
+:END:** UNIX-UID
+:PROPERTIES:
+:ID: 2236830227775
+:CUSTOM_ID: SB-UNIX:UNIX-UID
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-UID names a type-specifier:
+  Lambda-list: ()
+  Expansion: (UNSIGNED-BYTE 32)
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SIGCONT :constant:var:
+:PROPERTIES:
+:ID: 3325007611240
+:CUSTOM_ID: SB-UNIX:SIGCONT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGCONT names a constant variable:
+  Value: 18
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-PATHNAME
+:PROPERTIES:
+:ID: 2781556487458
+:CUSTOM_ID: SB-UNIX:UNIX-PATHNAME
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-PATHNAME names a type-specifier:
+  Lambda-list: ()
+  Expansion: SIMPLE-STRING
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** UNIX-PID
+:PROPERTIES:
+:ID: 1935950688520
+:CUSTOM_ID: SB-UNIX:UNIX-PID
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-PID names a type-specifier:
+  Lambda-list: ()
+  Expansion: (UNSIGNED-BYTE 32)
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SIGBUS :constant:var:
+:PROPERTIES:
+:ID: 40448733125
+:CUSTOM_ID: SB-UNIX:SIGBUS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGBUS names a constant variable:
+  Value: 7
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** SIGUSR2 :constant:var:
+:PROPERTIES:
+:ID: 1904194167822
+:CUSTOM_ID: SB-UNIX:SIGUSR2
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGUSR2 names a constant variable:
+  Value: 12
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-READLINK :compiled:function:
+:PROPERTIES:
+:ID: 3806148908223
+:CUSTOM_ID: SB-UNIX:UNIX-READLINK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-READLINK names a compiled function:
+  Lambda-list: (PATH)
+  Derived type: (FUNCTION (SIMPLE-STRING)
+                 (VALUES (OR SIMPLE-STRING NULL) (OR NULL (SIGNED-BYTE 32))
+                         &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** UNIX-REALPATH :compiled:function:
+:PROPERTIES:
+:ID: 2602292026008
+:CUSTOM_ID: SB-UNIX:UNIX-REALPATH
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-REALPATH names a compiled function:
+  Lambda-list: (PATH)
+  Derived type: (FUNCTION (SIMPLE-STRING)
+                 (VALUES (OR SIMPLE-STRING NULL) (OR NULL (SIGNED-BYTE 32))
+                         &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** L_XTND :constant:var:
+:PROPERTIES:
+:ID: 3624548366222
+:CUSTOM_ID: SB-UNIX:L_XTND
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+L_XTND names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** UNIX-GID
+:PROPERTIES:
+:ID: 107713861188
+:CUSTOM_ID: SB-UNIX:UNIX-GID
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-GID names a type-specifier:
+  Lambda-list: ()
+  Expansion: (UNSIGNED-BYTE 32)
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SIGURG :constant:var:
+:PROPERTIES:
+:ID: 514875712542
+:CUSTOM_ID: SB-UNIX:SIGURG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGURG names a constant variable:
+  Value: 23
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** CLOCK-GETTIME :compiled:function:
+:PROPERTIES:
+:ID: 3069672803296
+:CUSTOM_ID: SB-UNIX:CLOCK-GETTIME
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CLOCK-GETTIME names a compiled function:
+  Lambda-list: (CLOCKID)
+  Derived type: (FUNCTION ((SIGNED-BYTE 32))
+                 (VALUES FIXNUM (MOD 1000000001) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+- Called by
+  - IO/SYS:GET-MONOTONIC-TIME
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** UNIX-TMPFILE :compiled:function:
+:PROPERTIES:
+:ID: 3201515535026
+:CUSTOM_ID: SB-UNIX:UNIX-TMPFILE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-TMPFILE names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES SB-INT:STDIO-FILE &OPTIONAL))
+  Source file: SYS:SRC;CODE;FD-STREAM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;FD-STREAM.LISP
+:end:
+** POLLFD
+:PROPERTIES:
+:ID: 2924898031519
+:CUSTOM_ID: SB-UNIX:POLLFD
+:ALLOC: HEAP IMMOBILE
+:END:
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** TIMEVAL
+:PROPERTIES:
+:ID: 3752414253191
+:CUSTOM_ID: SB-UNIX:TIMEVAL
+:ALLOC: HEAP IMMOBILE
+:END:
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** S-IFREG :constant:var:
+:PROPERTIES:
+:ID: 2174803300324
+:CUSTOM_ID: SB-UNIX:S-IFREG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+S-IFREG names a constant variable:
+  Value: 32768
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** DEV-T :alien:
+:PROPERTIES:
+:ID: 309921426270
+:CUSTOM_ID: SB-UNIX:DEV-T
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DEV-T names an alien type:
+  Expansion: #<ALIEN-TYPE (UNSIGNED 64)>
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** CLOCK-MONOTONIC-COARSE :constant:var:
+:PROPERTIES:
+:ID: 3508500493868
+:CUSTOM_ID: SB-UNIX:CLOCK-MONOTONIC-COARSE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CLOCK-MONOTONIC-COARSE names a constant variable:
+  Value: 6
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** SIGILL :constant:var:
+:PROPERTIES:
+:ID: 760945392180
+:CUSTOM_ID: SB-UNIX:SIGILL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGILL names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** EVENTS
+:PROPERTIES:
+:ID: 489156570396
+:CUSTOM_ID: SB-UNIX:EVENTS
+:ALLOC: HEAP IMMOBILE
+:END:** O_NOCTTY :constant:var:
+:PROPERTIES:
+:ID: 3995055873773
+:CUSTOM_ID: SB-UNIX:O_NOCTTY
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+O_NOCTTY names a constant variable:
+  Value: 256
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** WCONTINUED :constant:var:
+:PROPERTIES:
+:ID: 1096636513066
+:CUSTOM_ID: SB-UNIX:WCONTINUED
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WCONTINUED names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** RU-MINFLT
+:PROPERTIES:
+:ID: 3082657401372
+:CUSTOM_ID: SB-UNIX:RU-MINFLT
+:ALLOC: HEAP IMMOBILE
+:END:** UNIX-WRITE :compiled:function:
+:PROPERTIES:
+:ID: 812618591100
+:CUSTOM_ID: SB-UNIX:UNIX-WRITE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-WRITE names a compiled function:
+  Lambda-list: (FD BUF OFFSET LEN)
+  Derived type: (FUNCTION
+                 ((UNSIGNED-BYTE 31)
+                  (OR SIMPLE-BASE-STRING (SIMPLE-ARRAY CHARACTER (*))
+                      (SIMPLE-ARRAY SINGLE-FLOAT (*))
+                      (SIMPLE-ARRAY DOUBLE-FLOAT (*)) SIMPLE-BIT-VECTOR
+                      (SIMPLE-ARRAY (UNSIGNED-BYTE 2) (*))
+                      (SIMPLE-ARRAY (UNSIGNED-BYTE 4) (*))
+                      (SIMPLE-ARRAY (UNSIGNED-BYTE 7) (*))
+                      (SIMPLE-ARRAY (UNSIGNED-BYTE 8) (*))
+                      (SIMPLE-ARRAY (UNSIGNED-BYTE 15) (*))
+                      (SIMPLE-ARRAY (UNSIGNED-BYTE 16) (*))
+                      (SIMPLE-ARRAY (UNSIGNED-BYTE 31) (*))
+                      (SIMPLE-ARRAY (UNSIGNED-BYTE 32) (*))
+                      (SIMPLE-ARRAY (UNSIGNED-BYTE 62) (*))
+                      (SIMPLE-ARRAY (UNSIGNED-BYTE 63) (*))
+                      (SIMPLE-ARRAY (UNSIGNED-BYTE 64) (*))
+                      (SIMPLE-ARRAY (SIGNED-BYTE 8) (*))
+                      (SIMPLE-ARRAY (SIGNED-BYTE 16) (*))
+                      (SIMPLE-ARRAY (SIGNED-BYTE 32) (*))
+                      (SIMPLE-ARRAY FIXNUM (*))
+                      (SIMPLE-ARRAY (SIGNED-BYTE 64) (*))
+                      (SIMPLE-ARRAY (COMPLEX SINGLE-FLOAT) (*))
+                      (SIMPLE-ARRAY (COMPLEX DOUBLE-FLOAT) (*))
+                      SB-SYS:SYSTEM-AREA-POINTER)
+                  (UNSIGNED-BYTE 44) (UNSIGNED-BYTE 44))
+                 (VALUES (OR NULL (UNSIGNED-BYTE 44)) (SIGNED-BYTE 32)
+                         &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** POLLERR :constant:var:
+:PROPERTIES:
+:ID: 2167225409579
+:CUSTOM_ID: SB-UNIX:POLLERR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+POLLERR names a constant variable:
+  Value: 8
+#+end_example
+
+- Referenced by
+  - IO/SYS::PROCESS-POLL-REVENTS
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** ST-BLOCKS
+:PROPERTIES:
+:ID: 425644380787
+:CUSTOM_ID: SB-UNIX:ST-BLOCKS
+:ALLOC: HEAP IMMOBILE
+:END:** EINTR :constant:var:
+:PROPERTIES:
+:ID: 361851755045
+:CUSTOM_ID: SB-UNIX:EINTR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+EINTR names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** SIGTRAP :constant:var:
+:PROPERTIES:
+:ID: 2979913095217
+:CUSTOM_ID: SB-UNIX:SIGTRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGTRAP names a constant variable:
+  Value: 5
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** REVENTS
+:PROPERTIES:
+:ID: 3990084431376
+:CUSTOM_ID: SB-UNIX:REVENTS
+:ALLOC: HEAP IMMOBILE
+:END:** SIGXFSZ :constant:var:
+:PROPERTIES:
+:ID: 2432237123695
+:CUSTOM_ID: SB-UNIX:SIGXFSZ
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGXFSZ names a constant variable:
+  Value: 25
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** FD-TYPE :compiled:function:
+:PROPERTIES:
+:ID: 2885021500540
+:CUSTOM_ID: SB-UNIX:FD-TYPE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FD-TYPE names a compiled function:
+  Lambda-list: (FD)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 31))
+                 (VALUES
+                  (MEMBER :DIRECTORY :CHARACTER :BLOCK :REGULAR :SOCKET :LINK
+                          :FIFO :UNKNOWN)
+                  &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** RAISE :compiled:macro:function:
+:PROPERTIES:
+:ID: 983188632344
+:CUSTOM_ID: SB-UNIX:RAISE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+RAISE names a macro:
+  Lambda-list: (SIGNAL)
+  Source file: SYS:SRC;CODE;TARGET-SIGNAL.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-SIGNAL.LISP
+:end:
+** FD-ZERO :compiled:function:
+:PROPERTIES:
+:ID: 3853729435196
+:CUSTOM_ID: SB-UNIX:FD-ZERO
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FD-ZERO names a compiled function:
+  Lambda-list: (FD-SET)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SB-MKSTEMP :compiled:function:
+:PROPERTIES:
+:ID: 2884044650463
+:CUSTOM_ID: SB-UNIX:SB-MKSTEMP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SB-MKSTEMP names a compiled function:
+  Lambda-list: (TEMPLATE-STRING MODE)
+  Derived type: (FUNCTION (STRING (UNSIGNED-BYTE 32))
+                 (VALUES (OR (UNSIGNED-BYTE 31) NULL)
+                         (OR SIMPLE-STRING (SIGNED-BYTE 32)) &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** ST-DEV
+:PROPERTIES:
+:ID: 2957836775281
+:CUSTOM_ID: SB-UNIX:ST-DEV
+:ALLOC: HEAP IMMOBILE
+:END:** UNIX-FCLOSE :compiled:function:
+:PROPERTIES:
+:ID: 2858722893594
+:CUSTOM_ID: SB-UNIX:UNIX-FCLOSE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-FCLOSE names a compiled function:
+  Lambda-list: (FILE)
+  Derived type: (FUNCTION (T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:SRC;CODE;FD-STREAM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;FD-STREAM.LISP
+:end:
+** FD-SETSIZE :constant:var:
+:PROPERTIES:
+:ID: 4120984216559
+:CUSTOM_ID: SB-UNIX:FD-SETSIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FD-SETSIZE names a constant variable:
+  Value: 1024
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** S-IFLNK :constant:var:
+:PROPERTIES:
+:ID: 721081391738
+:CUSTOM_ID: SB-UNIX:S-IFLNK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+S-IFLNK names a constant variable:
+  Value: 40960
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** SIGWINCH :constant:var:
+:PROPERTIES:
+:ID: 3368993841820
+:CUSTOM_ID: SB-UNIX:SIGWINCH
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGWINCH names a constant variable:
+  Value: 28
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** POSIX-GETCWD/ :compiled:function:
+:PROPERTIES:
+:ID: 3926503941526
+:CUSTOM_ID: SB-UNIX:POSIX-GETCWD/
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+POSIX-GETCWD/ names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES SIMPLE-STRING &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+- Called by
+  - UIOP/OS:GETCWD
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** L_INCR :constant:var:
+:PROPERTIES:
+:ID: 254813922764
+:CUSTOM_ID: SB-UNIX:L_INCR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+L_INCR names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** RU-NVCSW
+:PROPERTIES:
+:ID: 3626033775694
+:CUSTOM_ID: SB-UNIX:RU-NVCSW
+:ALLOC: HEAP IMMOBILE
+:END:** ST-SIZE
+:PROPERTIES:
+:ID: 1200666389775
+:CUSTOM_ID: SB-UNIX:ST-SIZE
+:ALLOC: HEAP IMMOBILE
+:END:** SIGIO :constant:var:
+:PROPERTIES:
+:ID: 1743576896846
+:CUSTOM_ID: SB-UNIX:SIGIO
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGIO names a constant variable:
+  Value: 29
+#+end_example
+
+- Referenced by
+  - SWANK/SBCL::SET-SIGIO-HANDLER
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** ST-RDEV
+:PROPERTIES:
+:ID: 2538669698347
+:CUSTOM_ID: SB-UNIX:ST-RDEV
+:ALLOC: HEAP IMMOBILE
+:END:** UNIX-ACCESS :compiled:function:
+:PROPERTIES:
+:ID: 690815880776
+:CUSTOM_ID: SB-UNIX:UNIX-ACCESS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-ACCESS names a compiled function:
+  Lambda-list: (PATH MODE)
+  Derived type: (FUNCTION (SIMPLE-STRING (UNSIGNED-BYTE 3))
+                 (VALUES BOOLEAN (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+- Called by
+  - [[id:4223902476482][PATHNAME-EXECUTABLE-P]]
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** EWOULDBLOCK :constant:var:
+:PROPERTIES:
+:ID: 3440446375544
+:CUSTOM_ID: SB-UNIX:EWOULDBLOCK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+EWOULDBLOCK names a constant variable:
+  Value: 11
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** SIGFPE :constant:var:
+:PROPERTIES:
+:ID: 1435593012085
+:CUSTOM_ID: SB-UNIX:SIGFPE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGFPE names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-GETRUSAGE :compiled:function:
+:PROPERTIES:
+:ID: 1839294231435
+:CUSTOM_ID: SB-UNIX:UNIX-GETRUSAGE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-GETRUSAGE names a compiled function:
+  Lambda-list: (WHO)
+  Derived type: (FUNCTION (T)
+                 (VALUES BOOLEAN
+                         (INTEGER -9223381260226812662775808
+                          9223381260226812661775807)
+                         &OPTIONAL
+                         (INTEGER -9223381260226812662775808
+                          9223381260226812661775807)
+                         (SIGNED-BYTE 64) (SIGNED-BYTE 64) (SIGNED-BYTE 64)
+                         (SIGNED-BYTE 64) (SIGNED-BYTE 64) (SIGNED-BYTE 64)
+                         (SIGNED-BYTE 64) (SIGNED-BYTE 64) (SIGNED-BYTE 64)
+                         (SIGNED-BYTE 64) (SIGNED-BYTE 64) (SIGNED-BYTE 64)
+                         (SIGNED-BYTE 64) (SIGNED-BYTE 64)))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** CLOCK-MONOTONIC :constant:var:
+:PROPERTIES:
+:ID: 3612952694710
+:CUSTOM_ID: SB-UNIX:CLOCK-MONOTONIC
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CLOCK-MONOTONIC names a constant variable:
+  Value: 1
+#+end_example
+
+- Referenced by
+  - IO/SYS:GET-MONOTONIC-TIME
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-READ :compiled:function:
+:PROPERTIES:
+:ID: 2910784992621
+:CUSTOM_ID: SB-UNIX:UNIX-READ
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-READ names a compiled function:
+  Lambda-list: (FD BUF LEN)
+  Derived type: (FUNCTION
+                 ((UNSIGNED-BYTE 31) SB-SYS:SYSTEM-AREA-POINTER
+                  (UNSIGNED-BYTE 44))
+                 (VALUES (OR NULL (UNSIGNED-BYTE 44)) (SIGNED-BYTE 32)
+                         &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** CLOCK-PROCESS-CPUTIME-ID :constant:var:
+:PROPERTIES:
+:ID: 3154963645032
+:CUSTOM_ID: SB-UNIX:CLOCK-PROCESS-CPUTIME-ID
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CLOCK-PROCESS-CPUTIME-ID names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** WUNTRACED :constant:var:
+:PROPERTIES:
+:ID: 1681645421749
+:CUSTOM_ID: SB-UNIX:WUNTRACED
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WUNTRACED names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-KILLPG :compiled:function:
+:PROPERTIES:
+:ID: 3626396328166
+:CUSTOM_ID: SB-UNIX:UNIX-KILLPG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-KILLPG names a compiled function:
+  Lambda-list: (PGRP SIGNAL)
+  Declared type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;TARGET-SIGNAL.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-SIGNAL.LISP
+:end:
+** RU-MSGRCV
+:PROPERTIES:
+:ID: 3995047629756
+:CUSTOM_ID: SB-UNIX:RU-MSGRCV
+:ALLOC: HEAP IMMOBILE
+:END:** ST-GID
+:PROPERTIES:
+:ID: 1617109168811
+:CUSTOM_ID: SB-UNIX:ST-GID
+:ALLOC: HEAP IMMOBILE
+:END:** ST-MODE
+:PROPERTIES:
+:ID: 84051318633
+:CUSTOM_ID: SB-UNIX:ST-MODE
+:ALLOC: HEAP IMMOBILE
+:END:** FD-CLR :compiled:function:
+:PROPERTIES:
+:ID: 36655175952
+:CUSTOM_ID: SB-UNIX:FD-CLR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FD-CLR names a compiled function:
+  Lambda-list: (OFFSET FD-SET)
+  Declared type: (FUNCTION ((UNSIGNED-BYTE 10) T) *)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 10) T) (VALUES T &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** RU-UTIME
+:PROPERTIES:
+:ID: 2143818907697
+:CUSTOM_ID: SB-UNIX:RU-UTIME
+:ALLOC: HEAP IMMOBILE
+:END:** UNIX-IOCTL :compiled:function:
+:PROPERTIES:
+:ID: 3395870020449
+:CUSTOM_ID: SB-UNIX:UNIX-IOCTL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-IOCTL names a compiled function:
+  Lambda-list: (FD CMD ARG)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 31) (UNSIGNED-BYTE 64) T)
+                 (VALUES BOOLEAN (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+- Called by
+  - (IOCTL)
+  - [[id:3285947385086][IOCTL]]
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SIGSEGV :constant:var:
+:PROPERTIES:
+:ID: 976872542216
+:CUSTOM_ID: SB-UNIX:SIGSEGV
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGSEGV names a constant variable:
+  Value: 11
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** RU-STIME
+:PROPERTIES:
+:ID: 1138208263056
+:CUSTOM_ID: SB-UNIX:RU-STIME
+:ALLOC: HEAP IMMOBILE
+:END:** SC-NPROCESSORS-ONLN :constant:var:
+:PROPERTIES:
+:ID: 1444652064916
+:CUSTOM_ID: SB-UNIX:SC-NPROCESSORS-ONLN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SC-NPROCESSORS-ONLN names a constant variable:
+  Value: 84
+#+end_example
+
+- Referenced by
+  - [[id:4076839094289][NUM-CPUS]]
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** RU-MAXRSS
+:PROPERTIES:
+:ID: 2525542828831
+:CUSTOM_ID: SB-UNIX:RU-MAXRSS
+:ALLOC: HEAP IMMOBILE
+:END:** UNIX-LSTAT :compiled:function:
+:PROPERTIES:
+:ID: 3411442753519
+:CUSTOM_ID: SB-UNIX:UNIX-LSTAT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-LSTAT names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (SIMPLE-STRING)
+                 (VALUES BOOLEAN (INTEGER -2147483648 18446744073709551615)
+                         &OPTIONAL (UNSIGNED-BYTE 64) (UNSIGNED-BYTE 32)
+                         (UNSIGNED-BYTE 64) (UNSIGNED-BYTE 32)
+                         (UNSIGNED-BYTE 32) (UNSIGNED-BYTE 64) (SIGNED-BYTE 64)
+                         (SIGNED-BYTE 64) (SIGNED-BYTE 64) (SIGNED-BYTE 64)
+                         (SIGNED-BYTE 64) (SIGNED-BYTE 64)))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** UID-HOMEDIR :compiled:function:
+:PROPERTIES:
+:ID: 674120673036
+:CUSTOM_ID: SB-UNIX:UID-HOMEDIR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UID-HOMEDIR names a compiled function:
+  Lambda-list: (UID)
+  Derived type: (FUNCTION (T) (VALUES SIMPLE-STRING &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** ST-CTIME
+:PROPERTIES:
+:ID: 1629330117288
+:CUSTOM_ID: SB-UNIX:ST-CTIME
+:ALLOC: HEAP IMMOBILE
+:END:** RU-IXRSS
+:PROPERTIES:
+:ID: 3690121582101
+:CUSTOM_ID: SB-UNIX:RU-IXRSS
+:ALLOC: HEAP IMMOBILE
+:END:** EBADF :constant:var:
+:PROPERTIES:
+:ID: 533400667052
+:CUSTOM_ID: SB-UNIX:EBADF
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+EBADF names a constant variable:
+  Value: 9
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** X_OK :constant:var:
+:PROPERTIES:
+:ID: 858361714425
+:CUSTOM_ID: SB-UNIX:X_OK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+X_OK names a constant variable:
+  Value: 1
+#+end_example
+
+- Referenced by
+  - [[id:4223902476482][PATHNAME-EXECUTABLE-P]]
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-STAT :compiled:function:
+:PROPERTIES:
+:ID: 546554838084
+:CUSTOM_ID: SB-UNIX:UNIX-STAT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-STAT names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (SIMPLE-STRING)
+                 (VALUES BOOLEAN (INTEGER -2147483648 18446744073709551615)
+                         &OPTIONAL (UNSIGNED-BYTE 64) (UNSIGNED-BYTE 32)
+                         (UNSIGNED-BYTE 64) (UNSIGNED-BYTE 32)
+                         (UNSIGNED-BYTE 32) (UNSIGNED-BYTE 64) (SIGNED-BYTE 64)
+                         (SIGNED-BYTE 64) (SIGNED-BYTE 64) (SIGNED-BYTE 64)
+                         (SIGNED-BYTE 64) (SIGNED-BYTE 64)))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+- Called by
+  - UIOP/FILESYSTEM:PROBE-FILE*
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** POLLOUT :constant:var:
+:PROPERTIES:
+:ID: 616668466204
+:CUSTOM_ID: SB-UNIX:POLLOUT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+POLLOUT names a constant variable:
+  Value: 4
+#+end_example
+
+- Referenced by
+  - IO/SYS::PROCESS-POLL-REVENTS
+  - IO/SYS::COMPUTE-POLL-FLAGS
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-OPEN :compiled:function:
+:PROPERTIES:
+:ID: 1733731956450
+:CUSTOM_ID: SB-UNIX:UNIX-OPEN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-OPEN names a compiled function:
+  Lambda-list: (PATH FLAGS MODE &KEY)
+  Derived type: (FUNCTION (SIMPLE-STRING FIXNUM (UNSIGNED-BYTE 32) &KEY)
+                 (VALUES (OR (UNSIGNED-BYTE 31) NULL)
+                         (OR (INTEGER -2147483648 3) (INTEGER 5 2147483647))
+                         &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** ELOOP :constant:var:
+:PROPERTIES:
+:ID: 487825867790
+:CUSTOM_ID: SB-UNIX:ELOOP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ELOOP names a constant variable:
+  Value: 40
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** NANOSLEEP :compiled:function:
+:PROPERTIES:
+:ID: 2755025811319
+:CUSTOM_ID: SB-UNIX:NANOSLEEP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+NANOSLEEP names a compiled function:
+  Lambda-list: (SECS NSECS)
+  Derived type: (FUNCTION (T T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** POLLIN :constant:var:
+:PROPERTIES:
+:ID: 2514740682939
+:CUSTOM_ID: SB-UNIX:POLLIN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+POLLIN names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** FD-SET :compiled:function:
+:PROPERTIES:
+:ID: 3536916899111
+:CUSTOM_ID: SB-UNIX:FD-SET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FD-SET names a compiled function:
+  Lambda-list: (OFFSET FD-SET)
+  Declared type: (FUNCTION ((UNSIGNED-BYTE 10) T) *)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 10) T) (VALUES T &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** UNIX-GETUID :compiled:function:
+:PROPERTIES:
+:ID: 3199193468303
+:CUSTOM_ID: SB-UNIX:UNIX-GETUID
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-GETUID names a compiled function:
+  Lambda-list: ()
+  Declared type: (FUNCTION NIL (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** W_OK :constant:var:
+:PROPERTIES:
+:ID: 1770714589989
+:CUSTOM_ID: SB-UNIX:W_OK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+W_OK names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** O_CREAT :constant:var:
+:PROPERTIES:
+:ID: 3144505732639
+:CUSTOM_ID: SB-UNIX:O_CREAT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+O_CREAT names a constant variable:
+  Value: 64
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** RU-MAJFLT
+:PROPERTIES:
+:ID: 1699451419467
+:CUSTOM_ID: SB-UNIX:RU-MAJFLT
+:ALLOC: HEAP IMMOBILE
+:END:** POSIX-GETCWD :compiled:function:
+:PROPERTIES:
+:ID: 555491739884
+:CUSTOM_ID: SB-UNIX:POSIX-GETCWD
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+POSIX-GETCWD names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+- Called by
+  - SB-POSIX:GETCWD
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** O_APPEND :constant:var:
+:PROPERTIES:
+:ID: 1623520866940
+:CUSTOM_ID: SB-UNIX:O_APPEND
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+O_APPEND names a constant variable:
+  Value: 1024
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** RU-INBLOCK
+:PROPERTIES:
+:ID: 3712191212303
+:CUSTOM_ID: SB-UNIX:RU-INBLOCK
+:ALLOC: HEAP IMMOBILE
+:END:** UNIX-PIPE :compiled:function:
+:PROPERTIES:
+:ID: 4376244684768
+:CUSTOM_ID: SB-UNIX:UNIX-PIPE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-PIPE names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL
+                 (VALUES (OR NULL (SIGNED-BYTE 32)) (SIGNED-BYTE 32)&OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** UNIX-OFFSET :alien:
+:PROPERTIES:
+:ID: 174660356200
+:CUSTOM_ID: SB-UNIX:UNIX-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-OFFSET names an alien type:
+  Expansion: #<ALIEN-TYPE (SIGNED 64)>
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** ST-BLKSIZE
+:PROPERTIES:
+:ID: 4208574405047
+:CUSTOM_ID: SB-UNIX:ST-BLKSIZE
+:ALLOC: HEAP IMMOBILE
+:END:** CLOCK-THREAD-CPUTIME-ID :constant:var:
+:PROPERTIES:
+:ID: 4031655034269
+:CUSTOM_ID: SB-UNIX:CLOCK-THREAD-CPUTIME-ID
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CLOCK-THREAD-CPUTIME-ID names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-GETTIMEOFDAY :compiled:function:
+:PROPERTIES:
+:ID: 1060674289228
+:CUSTOM_ID: SB-UNIX:UNIX-GETTIMEOFDAY
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-GETTIMEOFDAY names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL
+                 (VALUES (MEMBER T) (SIGNED-BYTE 64) (SIGNED-BYTE 64) NULL NULL
+                         &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SIGTSTP :constant:var:
+:PROPERTIES:
+:ID: 1037191906168
+:CUSTOM_ID: SB-UNIX:SIGTSTP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGTSTP names a constant variable:
+  Value: 20
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** POLLHUP :constant:var:
+:PROPERTIES:
+:ID: 70506678709
+:CUSTOM_ID: SB-UNIX:POLLHUP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+POLLHUP names a constant variable:
+  Value: 16
+#+end_example
+
+- Referenced by
+  - IO/SYS::PROCESS-POLL-REVENTS
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** O_WRONLY :constant:var:
+:PROPERTIES:
+:ID: 1234368007256
+:CUSTOM_ID: SB-UNIX:O_WRONLY
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+O_WRONLY names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** EPIPE :constant:var:
+:PROPERTIES:
+:ID: 2393086266431
+:CUSTOM_ID: SB-UNIX:EPIPE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+EPIPE names a constant variable:
+  Value: 32
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** SIGXCPU :constant:var:
+:PROPERTIES:
+:ID: 3094053207305
+:CUSTOM_ID: SB-UNIX:SIGXCPU
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGXCPU names a constant variable:
+  Value: 24
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** S-IFDIR :constant:var:
+:PROPERTIES:
+:ID: 306614954338
+:CUSTOM_ID: SB-UNIX:S-IFDIR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+S-IFDIR names a constant variable:
+  Value: 16384
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** ST-MTIME
+:PROPERTIES:
+:ID: 3838244969025
+:CUSTOM_ID: SB-UNIX:ST-MTIME
+:ALLOC: HEAP IMMOBILE
+:END:** F_OK :constant:var:
+:PROPERTIES:
+:ID: 1813233593398
+:CUSTOM_ID: SB-UNIX:F_OK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+F_OK names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** PTHREAD-KILL :compiled:macro:function:
+:PROPERTIES:
+:ID: 375930328188
+:CUSTOM_ID: SB-UNIX:PTHREAD-KILL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PTHREAD-KILL names a macro:
+  Lambda-list: (OS-THREAD SIGNAL)
+  Source file: SYS:SRC;CODE;TARGET-SIGNAL.LISP
+#+end_example
+
+- Macroexpanded by
+  - SB-SPROF:START-PROFILING
+
+:definitions:
+- SYS:SRC;CODE;TARGET-SIGNAL.LISP
+:end:
+** UNIX-UNLINK :compiled:function:
+:PROPERTIES:
+:ID: 1613287245879
+:CUSTOM_ID: SB-UNIX:UNIX-UNLINK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-UNLINK names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (SIMPLE-STRING)
+                 (VALUES BOOLEAN (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SIGCHLD :constant:var:
+:PROPERTIES:
+:ID: 762518034656
+:CUSTOM_ID: SB-UNIX:SIGCHLD
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGCHLD names a constant variable:
+  Value: 17
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UID-T :alien:
+:PROPERTIES:
+:ID: 3478123777138
+:CUSTOM_ID: SB-UNIX:UID-T
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UID-T names an alien type:
+  Expansion: #<ALIEN-TYPE (UNSIGNED 32)>
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** WNOHANG :constant:var:
+:PROPERTIES:
+:ID: 1966066604859
+:CUSTOM_ID: SB-UNIX:WNOHANG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WNOHANG names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** ENOENT :constant:var:
+:PROPERTIES:
+:ID: 1333139901790
+:CUSTOM_ID: SB-UNIX:ENOENT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ENOENT names a constant variable:
+  Value: 2
+#+end_example
+
+- Referenced by
+  - SB-BSD-SOCKETS::GETPROTOBYNAME
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-EXIT :compiled:function:
+:PROPERTIES:
+:ID: 3019925419429
+:CUSTOM_ID: SB-UNIX:UNIX-EXIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-EXIT names a compiled function:
+  In EARLY deprecation since SBCL version 1.0.56.55. Use SB-SYS:OS-EXITinstead.
+  Lambda-list: (CODE)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN (SIGNED-BYTE 32) &OPTIONAL))
+  Documentation:
+    The function SB-UNIX:UNIX-EXIT has been deprecated as of SBCL version1.0.56.55.
+    
+    Use SB-SYS:OS-EXIT instead.
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+- SYS:SRC;CODE;UNIX.LISP
+  - (DEPRECATED FUNCTION)
+:end:
+** RU-MSGSND
+:PROPERTIES:
+:ID: 3786651710393
+:CUSTOM_ID: SB-UNIX:RU-MSGSND
+:ALLOC: HEAP IMMOBILE
+:END:** UID-USERNAME :compiled:function:
+:PROPERTIES:
+:ID: 809813269746
+:CUSTOM_ID: SB-UNIX:UID-USERNAME
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UID-USERNAME names a compiled function:
+  Lambda-list: (UID)
+  Derived type: (FUNCTION (T) (VALUES SIMPLE-STRING &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** VOID-SYSCALL :compiled:macro:function:
+:PROPERTIES:
+:ID: 1851176415369
+:CUSTOM_ID: SB-UNIX:VOID-SYSCALL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+VOID-SYSCALL names a macro:
+  Lambda-list: ((NAME &REST ARG-TYPES) &REST ARGS)
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** UNIX-RENAME :compiled:function:
+:PROPERTIES:
+:ID: 1516788199178
+:CUSTOM_ID: SB-UNIX:UNIX-RENAME
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-RENAME names a compiled function:
+  Lambda-list: (NAME1 NAME2)
+  Derived type: (FUNCTION (SIMPLE-STRING SIMPLE-STRING)
+                 (VALUES BOOLEAN (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** O_TRUNC :constant:var:
+:PROPERTIES:
+:ID: 3581123449072
+:CUSTOM_ID: SB-UNIX:O_TRUNC
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+O_TRUNC names a constant variable:
+  Value: 512
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** EAGAIN :constant:var:
+:PROPERTIES:
+:ID: 2271313579760
+:CUSTOM_ID: SB-UNIX:EAGAIN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+EAGAIN names a constant variable:
+  Value: 11
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** RU-ISRSS
+:PROPERTIES:
+:ID: 2309016271839
+:CUSTOM_ID: SB-UNIX:RU-ISRSS
+:ALLOC: HEAP IMMOBILE
+:END:** UNIX-FILE-MODE
+:PROPERTIES:
+:ID: 3236247702954
+:CUSTOM_ID: SB-UNIX:UNIX-FILE-MODE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-FILE-MODE names a type-specifier:
+  Lambda-list: ()
+  Expansion: (UNSIGNED-BYTE 32)
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** RU-NSIGNALS
+:PROPERTIES:
+:ID: 3087253331904
+:CUSTOM_ID: SB-UNIX:RU-NSIGNALS
+:ALLOC: HEAP IMMOBILE
+:END:** S-IFMT :constant:var:
+:PROPERTIES:
+:ID: 186258989754
+:CUSTOM_ID: SB-UNIX:S-IFMT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+S-IFMT names a constant variable:
+  Value: 61440
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-CLOSE :compiled:function:
+:PROPERTIES:
+:ID: 784613778516
+:CUSTOM_ID: SB-UNIX:UNIX-CLOSE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-CLOSE names a compiled function:
+  Lambda-list: (FD)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 31))
+                 (VALUES BOOLEAN (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:
+** SIGKILL :constant:var:
+:PROPERTIES:
+:ID: 2480813450379
+:CUSTOM_ID: SB-UNIX:SIGKILL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGKILL names a constant variable:
+  Value: 9
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** SIGHUP :constant:var:
+:PROPERTIES:
+:ID: 2658251518419
+:CUSTOM_ID: SB-UNIX:SIGHUP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGHUP names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:OUTPUT;STUFF-GROVELED-FROM-HEADERS.LISP
+:end:
+** UNIX-DUP :compiled:function:
+:PROPERTIES:
+:ID: 2894324654713
+:CUSTOM_ID: SB-UNIX:UNIX-DUP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNIX-DUP names a compiled function:
+  Lambda-list: (FD)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 31))
+                 (VALUES (OR (UNSIGNED-BYTE 31) NULL) (SIGNED-BYTE 32)
+                         &OPTIONAL))
+  Source file: SYS:SRC;CODE;UNIX.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNIX.LISP
+:end:

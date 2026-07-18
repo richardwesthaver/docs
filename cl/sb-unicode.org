@@ -1,0 +1,1255 @@
+#+setupfile: ../../clean.theme
+* SB-UNICODE
+:PROPERTIES:
+:CUSTOM_ID: SB-UNICODE
+:ID: 32
+:LOCK: T
+:END:
+public: algorithms for Unicode data
+
+- dependencies
+  - COMMON-LISP
+  - SB-INT
+
+- dependents
+  - [[#STD/STRING][STD/STRING]]
+
+** WHITESPACE-P :compiled:function:
+:PROPERTIES:
+:ID: 236283586750
+:CUSTOM_ID: SB-UNICODE:WHITESPACE-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+WHITESPACE-P names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES (OR NULL (MOD 1114112)) &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER is whitespace according to Unicode
+    and NIL otherwise
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+- Called by
+  - SKEL/MPK/MPD::READ-MPD-PAIR
+  - SKEL/MPK/MPD::READ-MPD-VALUE
+  - POD::READ-CONTAINERFILE-FROM
+  - POD::READ-CONTAINERFILE-LINE
+  - CLI/TOOLS/PACMAN::SKIP-MAKEPKG-JUNK
+  - CLI/TOOLS/PACMAN::READ-MAKEPKG-ARRAY
+  - [[id:714563330166][EDITOR-SEXP-END]]
+  - [[id:1783980373962][EDITOR-SEXP-START]]
+  - CRY/GPG::LOAD-GPG-CONFIG-FILE
+  - DAT/BIB::READ-BIBTEX-FIELD
+  - [[id:2066703120444][READ-COMMAND*]]
+  - [[id:933207805893][REWRITE-URLS]]
+  - [[id:164355415698][READ-ATTRIBUTE]]
+  - OBJ/URL::SKIP-WHITESPACE
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** SCRIPT :compiled:function:
+:PROPERTIES:
+:ID: 41976092650
+:CUSTOM_ID: SB-UNICODE:SCRIPT
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SCRIPT names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (MEMBER NIL :GEORGIAN :MYANMAR :TIBETAN :LAO :THAI :SINHALA
+                          :MALAYALAM :KANNADA :TELUGU :TAMIL :ORIYA :GUJARATI
+                          :GURMUKHI :BENGALI :DEVANAGARI :THAANA :SYRIAC
+                          :ARABIC :HEBREW :ARMENIAN :CYRILLIC :GREEK :LATIN
+                          :COMMON :UNKNOWN :HANGUL :ETHIOPIC :CHEROKEE
+                          :CANADIAN-ABORIGINAL :OGHAM :RUNIC :KHMER :MONGOLIAN
+                          :HIRAGANA :KATAKANA :BOPOMOFO :HAN :YI :OLD-ITALIC
+                          :GOTHIC :DESERET :INHERITED :TAGALOG :HANUNOO :BUHID
+                          :TAGBANWA :LIMBU :TAI-LE :LINEAR-B :UGARITIC :SHAVIAN
+                          :OSMANYA :CYPRIOT :BRAILLE :BUGINESE :COPTIC
+                          :NEW-TAI-LUE :GLAGOLITIC :TIFINAGH :SYLOTI-NAGRI
+                          :OLD-PERSIAN :KHAROSHTHI :BALINESE :CUNEIFORM
+                          :PHOENICIAN :PHAGS-PA :NKO :SUNDANESE :LEPCHA
+                          :OL-CHIKI :VAI :SAURASHTRA :KAYAH-LI :REJANG :LYCIAN
+                          :CARIAN :LYDIAN :CHAM :TAI-THAM :TAI-VIET :AVESTAN
+                          :EGYPTIAN-HIEROGLYPHS :SAMARITAN :LISU :BAMUM
+                          :JAVANESE :MEETEI-MAYEK :IMPERIAL-ARAMAIC
+                          :OLD-SOUTH-ARABIAN :INSCRIPTIONAL-PARTHIAN
+                          :INSCRIPTIONAL-PAHLAVI :OLD-TURKIC :KAITHI :BATAK
+                          :BRAHMI :MANDAIC :CHAKMA :MEROITIC-CURSIVE
+                          :MEROITIC-HIEROGLYPHS :MIAO :SHARADA :SORA-SOMPENG
+                          :TAKRI :BASSA-VAH :MAHAJANI :PAHAWH-HMONG
+                          :CAUCASIAN-ALBANIAN :MANICHAEAN :PALMYRENE :DUPLOYAN
+                          :MENDE-KIKAKUI :PAU-CIN-HAU :ELBASAN :MODI
+                          :PSALTER-PAHLAVI :GRANTHA :MRO :SIDDHAM :KHOJKI
+                          :NABATAEAN :TIRHUTA :KHUDAWADI :OLD-NORTH-ARABIAN
+                          :WARANG-CITI :LINEAR-A :OLD-PERMIC :AHOM
+                          :ANATOLIAN-HIEROGLYPHS :HATRAN :MULTANI
+                          :OLD-HUNGARIAN :SIGNWRITING :ADLAM :BHAIKSUKI
+                          :MARCHEN :NEWA :OSAGE :TANGUT :MASARAM-GONDI
+                          :NAG-MUNDARI :KAWI :VITHKUQI :TOTO :TANGSA
+                          :OLD-UYGHUR :CYPRO-MINOAN :YEZIDI
+                          :KHITAN-SMALL-SCRIPT :DIVES-AKURU :CHORASMIAN :WANCHO
+                          :NYIAKENG-PUACHUE-HMONG :NANDINAGARI :ELYMAIC
+                          :OLD-SOGDIAN :SOGDIAN :HANIFI-ROHINGYA :MEDEFAIDRIN
+                          :MAKASAR :GUNJALA-GONDI :DOGRA :ZANABAZAR-SQUARE
+                          :SOYOMBO :NUSHU)
+                  &OPTIONAL))
+  Documentation:
+    Returns the Script property of CHARACTER as a keyword.
+    If CHARACTER does not have a known script, returns :UNKNOWN
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** BIDI-MIRRORING-GLYPH :compiled:function:
+:PROPERTIES:
+:ID: 3150994775983
+:CUSTOM_ID: SB-UNICODE:BIDI-MIRRORING-GLYPH
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+BIDI-MIRRORING-GLYPH names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES (OR CHARACTER NULL) &OPTIONAL))
+  Documentation:
+    Returns the mirror image of CHARACTER if it exists.
+    Otherwise, returns NIL.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** SENTENCE-BREAK-CLASS :compiled:function:
+:PROPERTIES:
+:ID: 3998597673571
+:CUSTOM_ID: SB-UNICODE:SENTENCE-BREAK-CLASS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SENTENCE-BREAK-CLASS names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (MEMBER :LF NIL :CR :EXTEND :SEP :FORMAT :SP :LOWER :UPPER
+                          :OLETTER :NUMERIC :ATERM :SCONTINUE :STERM :CLOSE)
+                  &OPTIONAL))
+  Documentation:
+    Returns the sentence breaking class of CHARACTER, as specified in UAX #29.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** UNICODE<= :compiled:function:
+:PROPERTIES:
+:ID: 478494085188
+:CUSTOM_ID: SB-UNICODE:UNICODE<=
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UNICODE<= names a compiled function:
+  Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2)
+  Derived type: (FUNCTION
+                 (T T &KEY (:START1 T) (:END1 T) (:START2 T) (:END2 T))
+                 (VALUES (OR (UNSIGNED-BYTE 44) BOOLEAN) &OPTIONAL))
+  Documentation:
+    Tests if STRING1 and STRING2 are either UNICODE< or UNICODE=
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** LINES :compiled:function:
+:PROPERTIES:
+:ID: 1990126767796
+:CUSTOM_ID: SB-UNICODE:LINES
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+LINES names a compiled function:
+  Lambda-list: (STRING &KEY (MARGIN *PRINT-RIGHT-MARGIN*))
+  Derived type: (FUNCTION (T &KEY (:MARGIN T)) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Breaks STRING into lines that are no wider than :MARGIN according to the
+    line breaking rules outlined in UAX #14. Combining marks will always bekept
+    together with their base characters, and spaces (but not other types of
+    whitespace) will be removed from the end of lines. If :MARGIN isunspecified,
+    it defaults to 80 characters
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+- Called by
+  - (PUBLISH (SYMBOL-DOCUMENTATION))
+  - DOC::ORG-NORMALIZE-DESCRIPTION
+  - [[id:201556014389][MAKE-HG-REPO]]
+  - [[id:3215334536044][FIND-HG-REQUIRES]]
+  - VC/HG::FIND-HG-SUBMODULES
+  - [[id:322729418689][FIND-HG-BOOKMARKS]]
+  - [[id:1447885832504][YTDL-LIST]]
+  - [[id:3154016486823][YTDL-EXTRACTORS]]
+  - [[id:3580508278426][PRINT-IN-BOX]]
+  - [[id:4234738574007][ASM-SEARCH]]
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** UTF8-DECODE-FROM-SAP :compiled:function:
+:PROPERTIES:
+:ID: 3203813642318
+:CUSTOM_ID: SB-UNICODE:UTF8-DECODE-FROM-SAP
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UTF8-DECODE-FROM-SAP names a compiled function:
+  Lambda-list: (SAP &OPTIONAL (COUNT NIL COUNT-SUPPLIED) &AUX
+                (LENGTH-IN-CHARS 0) (START SAP))
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES SIMPLE-STRING &OPTIONAL))
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** ALPHABETIC-P :compiled:function:
+:PROPERTIES:
+:ID: 1205795328686
+:CUSTOM_ID: SB-UNICODE:ALPHABETIC-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+ALPHABETIC-P names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (OR (MOD 1114112) NULL
+                      (CONS (MEMBER :NL :LO :LM :LT :LL :LU) LIST))
+                  &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER is Alphabetic according to the Unicode standard
+    and NIL otherwise
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+- Called by
+  - DAT/TOML::TOML-READ-STRING
+  - DAT/TOML::TOML-BARE-CHAR-P
+  - DAT/INI::INI-KEY-CHAR-P
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** UPPERCASE-P :compiled:function:
+:PROPERTIES:
+:ID: 93350454819
+:CUSTOM_ID: SB-UNICODE:UPPERCASE-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UPPERCASE-P names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES (OR (MOD 1114112) BOOLEAN) &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER has the Unicode property Uppercase and NIL otherwise
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** NORMALIZED-P :compiled:function:
+:PROPERTIES:
+:ID: 472769644842
+:CUSTOM_ID: SB-UNICODE:NORMALIZED-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+NORMALIZED-P names a compiled function:
+  Lambda-list: (STRING &OPTIONAL (FORM NFD))
+  Derived type: (FUNCTION (STRING &OPTIONAL T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Tests if STRING is normalized to FORM
+  Source file: SYS:SRC;CODE;UNICODE-NORM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNICODE-NORM.LISP
+:end:
+** PROPLIST-P :compiled:function:
+:PROPERTIES:
+:ID: 1405552683186
+:CUSTOM_ID: SB-UNICODE:PROPLIST-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+PROPLIST-P names a compiled function:
+  Lambda-list: (CHARACTER PROPERTY)
+  Derived type: (FUNCTION (T T) (VALUES (OR NULL (MOD 1114112)) &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER has the specified PROPERTY.
+    PROPERTY is a keyword representing one of the properties from PropList.txt,
+    with underscores replaced by dashes.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** COMBINING-CLASS :compiled:function:
+:PROPERTIES:
+:ID: 3229841726877
+:CUSTOM_ID: SB-UNICODE:COMBINING-CLASS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMBINING-CLASS names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES (MOD 241) &OPTIONAL))
+  Documentation:
+    Returns the canonical combining class (CCC) of CHARACTER
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;UNICODE-NORM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNICODE-NORM.LISP
+:end:
+** UNICODE> :compiled:function:
+:PROPERTIES:
+:ID: 2076199196314
+:CUSTOM_ID: SB-UNICODE:UNICODE>
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UNICODE> names a compiled function:
+  Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2)
+  Derived type: (FUNCTION
+                 (T T &KEY (:START1 T) (:END1 T) (:START2 T) (:END2 T))
+                 (VALUES (OR (UNSIGNED-BYTE 44) BOOLEAN) &OPTIONAL))
+  Documentation:
+    Tests if STRING2 is UNICODE< STRING1.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** GRAPHEME-BREAK-CLASS :compiled:function:
+:PROPERTIES:
+:ID: 4036386640050
+:CUSTOM_ID: SB-UNICODE:GRAPHEME-BREAK-CLASS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+GRAPHEME-BREAK-CLASS names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (MEMBER :V :L :T :LV :LVT NIL :LF :CR :CONTROL :EXTEND :ZWJ
+                          :REGIONAL-INDICATOR :PREPEND :SPACING-MARK)
+                  &OPTIONAL))
+  Documentation:
+    Returns the grapheme breaking class of CHARACTER, as specified in UAX #29.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** EAST-ASIAN-WIDTH :compiled:function:
+:PROPERTIES:
+:ID: 3461370686508
+:CUSTOM_ID: SB-UNICODE:EAST-ASIAN-WIDTH
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+EAST-ASIAN-WIDTH names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T)
+                 (VALUES (MEMBER :N :A :H :W :F :NA NIL) &OPTIONAL))
+  Documentation:
+    Returns the East Asian Width property of CHARACTER as
+    one of the keywords :N (Narrow), :A (Ambiguous), :H (Halfwidth),
+    :W (Wide), :F (Fullwidth), or :NA (Not applicable)
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** UPPERCASE :compiled:function:
+:PROPERTIES:
+:ID: 4237315428608
+:CUSTOM_ID: SB-UNICODE:UPPERCASE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UPPERCASE names a compiled function:
+  Lambda-list: (STRING &KEY LOCALE)
+  Derived type: (FUNCTION (T &KEY (:LOCALE T)) (VALUES STRING &OPTIONAL))
+  Documentation:
+    Returns the full uppercase of STRING according to the Unicode standard.
+    The result is not guaranteed to have the same length as the input.If :LOCALE
+    is NIL, no language-specific case transformations are applied. If :LOCALEis a
+    keyword representing a two-letter ISO country code, the case transforms ofthat
+    locale are used. If :LOCALE is T, the user's current locale is used (Unixand
+    Win32 only).
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** LINE-BREAK-CLASS :compiled:function:
+:PROPERTIES:
+:ID: 2127952412523
+:CUSTOM_ID: SB-UNICODE:LINE-BREAK-CLASS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+LINE-BREAK-CLASS names a compiled function:
+  Lambda-list: (CHARACTER &KEY RESOLVE)
+  Derived type: (FUNCTION (T &KEY (:RESOLVE T))
+                 (VALUES
+                  (MEMBER :NIL NIL :JV :JL :H3 :H2 :JT :NS :NL :LF :IS :IN :ID
+                          :HY :HL :GL :EX :EM :EB :CR :ZWJ :ZW :WJ :SY :SP :SG
+                          :SA :RI :QU :PR :PO :OP :NU :XX :AI :AL :B2 :BA :BB
+                          :BK :CB :CJ :CL :CM :CP)
+                  &OPTIONAL))
+  Documentation:
+    Returns the line breaking class of CHARACTER, as specified in UAX #14.
+    If :RESOLVE is NIL, returns the character class found in the property file.
+    If :RESOLVE is non-NIL, certain line-breaking classes will be mapped toother
+    classes as specified in the applicable standards. Additionally, if :RESOLVE
+    is :EAST-ASIAN, Ambigious (class :AI) characters will be mapped to the
+    Ideographic (:ID) class instead of Alphabetic (:AL).
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** MATH-P :compiled:function:
+:PROPERTIES:
+:ID: 4230635091480
+:CUSTOM_ID: SB-UNICODE:MATH-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+MATH-P names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES (OR (MOD 1114112) BOOLEAN) &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER is a mathematical symbol according to Unicode and
+    NIL otherwise
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** AGE :compiled:function:
+:PROPERTIES:
+:ID: 2499940191391
+:CUSTOM_ID: SB-UNICODE:AGE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+AGE names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T)
+                 (VALUES (OR (MOD 31) NULL) (OR (UNSIGNED-BYTE 3) NULL)
+                         &OPTIONAL))
+  Documentation:
+    Returns the version of Unicode in which CHARACTER was assigned as a pair
+    of values, both integers, representing the major and minor versionrespectively.
+    If CHARACTER is not assigned in Unicode, returns NIL for both values.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** WORDS :compiled:function:
+:PROPERTIES:
+:ID: 4261286991559
+:CUSTOM_ID: SB-UNICODE:WORDS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+WORDS names a compiled function:
+  Lambda-list: (STRING)
+  Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Breaks STRING into words according to the default
+    word breaking rules specified in UAX #29. Returns a list of strings
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** UNICODE= :compiled:function:
+:PROPERTIES:
+:ID: 2093379477956
+:CUSTOM_ID: SB-UNICODE:UNICODE=
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UNICODE= names a compiled function:
+  Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2 (STRICTT))
+  Derived type: (FUNCTION
+                 (T T &KEY (:START1 T) (:END1 T) (:START2 T) (:END2 T)
+                  (:STRICT T))
+                 (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Determines whether STRING1 and STRING2 are canonically equivalent according
+    to Unicode. The START and END arguments behave like the arguments toSTRING=.
+    If :STRICT is NIL, UNICODE= tests compatibility equavalence instead.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** HANGUL-SYLLABLE-TYPE :compiled:function:
+:PROPERTIES:
+:ID: 3523794736999
+:CUSTOM_ID: SB-UNICODE:HANGUL-SYLLABLE-TYPE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+HANGUL-SYLLABLE-TYPE names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES (MEMBER :V :L :T :LV :LVT NIL)&OPTIONAL))
+  Documentation:
+    Returns the Hangul syllable type of CHARACTER.
+    The syllable type can be one of :L, :V, :T, :LV, or :LVT.
+    If the character is not a Hangul syllable or Jamo, returns NIL
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** UTF8-DECODE-FROM-OCTETS :compiled:function:
+:PROPERTIES:
+:ID: 2130788211153
+:CUSTOM_ID: SB-UNICODE:UTF8-DECODE-FROM-OCTETS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UTF8-DECODE-FROM-OCTETS names a compiled function:
+  Lambda-list: (UB8-VECTOR)
+  Derived type: (FUNCTION ((SIMPLE-ARRAY (UNSIGNED-BYTE 8) (*)))
+                 (VALUES SIMPLE-STRING &OPTIONAL))
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** SCALAR-P :compiled:function:
+:PROPERTIES:
+:ID: 235138972997
+:CUSTOM_ID: SB-UNICODE:SCALAR-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SCALAR-P names a compiled function:
+  Lambda-list: (C)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** SENTENCES :compiled:function:
+:PROPERTIES:
+:ID: 2895209523208
+:CUSTOM_ID: SB-UNICODE:SENTENCES
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SENTENCES names a compiled function:
+  Lambda-list: (STRING)
+  Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Breaks STRING into sentences according to the default
+    sentence breaking rules specified in UAX #29
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** DECIMAL-VALUE :compiled:function:
+:PROPERTIES:
+:ID: 2562827861712
+:CUSTOM_ID: SB-UNICODE:DECIMAL-VALUE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+DECIMAL-VALUE names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES (OR (UNSIGNED-BYTE 4) NULL) &OPTIONAL))
+  Documentation:
+    Returns the decimal digit value associated with CHARACTER or NIL if
+    there is no such value.
+    
+    The only characters in Unicode with a decimal digit value are those
+    that are part of a range of characters that encode the digits 0-9.
+    Because of this, (decimal-digit c) <=> (digit-char-p c 10) in
+    #+sb-unicode builds
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** CHAR-BLOCK :compiled:function:
+:PROPERTIES:
+:ID: 1423443818695
+:CUSTOM_ID: SB-UNICODE:CHAR-BLOCK
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+CHAR-BLOCK names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (MEMBER :NO-BLOCK :GURMUKHI :BENGALI :DEVANAGARI
+                          :ARABIC-EXTENDED-A :ARABIC-EXTENDED-B
+                          :SYRIAC-SUPPLEMENT :MANDAIC :SAMARITAN :NKO :THAANA
+                          :ARABIC-SUPPLEMENT :SYRIAC :ARABIC :HEBREW :ARMENIAN
+                          :CYRILLIC-SUPPLEMENT :CYRILLIC :GREEK-AND-COPTIC
+                          :COMBINING-DIACRITICAL-MARKS
+                          :SPACING-MODIFIER-LETTERS :IPA-EXTENSIONS
+                          :LATIN-EXTENDED-B :LATIN-EXTENDED-A
+                          :LATIN-1-SUPPLEMENT :BASIC-LATIN :GUJARATI :ORIYA
+                          :TAMIL :TELUGU :KANNADA :MALAYALAM :SINHALA :THAI
+                          :LAO :TIBETAN :MYANMAR :GEORGIAN :HANGUL-JAMO
+                          :ETHIOPIC :ETHIOPIC-SUPPLEMENT :CHEROKEE
+                          :UNIFIED-CANADIAN-ABORIGINAL-SYLLABICS :OGHAM :RUNIC
+                          :TAGALOG :HANUNOO :BUHID :TAGBANWA :KHMER :MONGOLIAN
+                          :UNIFIED-CANADIAN-ABORIGINAL-SYLLABICS-EXTENDED
+                          :LIMBU :TAI-LE :NEW-TAI-LUE :KHMER-SYMBOLS :BUGINESE
+                          :TAI-THAM :COMBINING-DIACRITICAL-MARKS-EXTENDED
+                          :BALINESE :SUNDANESE :BATAK :LEPCHA :OL-CHIKI
+                          :CYRILLIC-EXTENDED-C :GEORGIAN-EXTENDED
+                          :SUNDANESE-SUPPLEMENT :VEDIC-EXTENSIONS
+                          :PHONETIC-EXTENSIONS :PHONETIC-EXTENSIONS-SUPPLEMENT
+                          :COMBINING-DIACRITICAL-MARKS-SUPPLEMENT
+                          :LATIN-EXTENDED-ADDITIONAL :GREEK-EXTENDED
+                          :GENERAL-PUNCTUATION :SUPERSCRIPTS-AND-SUBSCRIPTS
+                          :CURRENCY-SYMBOLS
+                          :COMBINING-DIACRITICAL-MARKS-FOR-SYMBOLS
+                          :LETTERLIKE-SYMBOLS :NUMBER-FORMS :ARROWS
+                          :MATHEMATICAL-OPERATORS :MISCELLANEOUS-TECHNICAL
+                          :CONTROL-PICTURES :OPTICAL-CHARACTER-RECOGNITION
+                          :ENCLOSED-ALPHANUMERICS :BOX-DRAWING :BLOCK-ELEMENTS
+                          :GEOMETRIC-SHAPES :MISCELLANEOUS-SYMBOLS :DINGBATS
+                          :MISCELLANEOUS-MATHEMATICAL-SYMBOLS-A
+                          :SUPPLEMENTAL-ARROWS-A :BRAILLE-PATTERNS
+                          :SUPPLEMENTAL-ARROWS-B
+                          :MISCELLANEOUS-MATHEMATICAL-SYMBOLS-B
+                          :SUPPLEMENTAL-MATHEMATICAL-OPERATORS
+                          :MISCELLANEOUS-SYMBOLS-AND-ARROWS :GLAGOLITIC
+                          :LATIN-EXTENDED-C :COPTIC :GEORGIAN-SUPPLEMENT
+                          :TIFINAGH :ETHIOPIC-EXTENDED :CYRILLIC-EXTENDED-A
+                          :SUPPLEMENTAL-PUNCTUATION :CJK-RADICALS-SUPPLEMENT
+                          :KANGXI-RADICALS :IDEOGRAPHIC-DESCRIPTION-CHARACTERS
+                          :CJK-SYMBOLS-AND-PUNCTUATION :HIRAGANA :KATAKANA
+                          :BOPOMOFO :HANGUL-COMPATIBILITY-JAMO :KANBUN
+                          :BOPOMOFO-EXTENDED :CJK-STROKES
+                          :KATAKANA-PHONETIC-EXTENSIONS
+                          :ENCLOSED-CJK-LETTERS-AND-MONTHS :CJK-COMPATIBILITY
+                          :CJK-UNIFIED-IDEOGRAPHS-EXTENSION-A
+                          :YIJING-HEXAGRAM-SYMBOLS :CJK-UNIFIED-IDEOGRAPHS
+                          :YI-SYLLABLES :YI-RADICALS :LISU :VAI
+                          :CYRILLIC-EXTENDED-B :BAMUM :MODIFIER-TONE-LETTERS
+                          :LATIN-EXTENDED-D :SYLOTI-NAGRI
+                          :COMMON-INDIC-NUMBER-FORMS :PHAGS-PA :SAURASHTRA
+                          :DEVANAGARI-EXTENDED :KAYAH-LI :REJANG
+                          :HANGUL-JAMO-EXTENDED-A :JAVANESE :MYANMAR-EXTENDED-B
+                          :CHAM :MYANMAR-EXTENDED-A :TAI-VIET
+                          :MEETEI-MAYEK-EXTENSIONS :ETHIOPIC-EXTENDED-A
+                          :LATIN-EXTENDED-E :CHEROKEE-SUPPLEMENT :MEETEI-MAYEK
+                          :HANGUL-SYLLABLES :HANGUL-JAMO-EXTENDED-B
+                          :HIGH-SURROGATES :HIGH-PRIVATE-USE-SURROGATES
+                          :LOW-SURROGATES :PRIVATE-USE-AREA
+                          :CJK-COMPATIBILITY-IDEOGRAPHS
+                          :ALPHABETIC-PRESENTATION-FORMS
+                          :ARABIC-PRESENTATION-FORMS-A :VARIATION-SELECTORS
+                          :VERTICAL-FORMS :COMBINING-HALF-MARKS
+                          :CJK-COMPATIBILITY-FORMS :SMALL-FORM-VARIANTS
+                          :ARABIC-PRESENTATION-FORMS-B
+                          :HALFWIDTH-AND-FULLWIDTH-FORMS :SPECIALS
+                          :LINEAR-B-SYLLABARY :LINEAR-B-IDEOGRAMS
+                          :AEGEAN-NUMBERS :ANCIENT-GREEK-NUMBERS
+                          :ANCIENT-SYMBOLS :PHAISTOS-DISC :LYCIAN :CARIAN
+                          :COPTIC-EPACT-NUMBERS :OLD-ITALIC :GOTHIC :OLD-PERMIC
+                          :UGARITIC :OLD-PERSIAN :DESERET :SHAVIAN :OSMANYA
+                          :OSAGE :ELBASAN :CAUCASIAN-ALBANIAN :VITHKUQI
+                          :LINEAR-A :LATIN-EXTENDED-F :CYPRIOT-SYLLABARY
+                          :IMPERIAL-ARAMAIC :PALMYRENE :NABATAEAN :HATRAN
+                          :PHOENICIAN :LYDIAN :MEROITIC-HIEROGLYPHS
+                          :MEROITIC-CURSIVE :KHAROSHTHI :OLD-SOUTH-ARABIAN
+                          :OLD-NORTH-ARABIAN :MANICHAEAN :AVESTAN
+                          :INSCRIPTIONAL-PARTHIAN :INSCRIPTIONAL-PAHLAVI
+                          :PSALTER-PAHLAVI :OLD-TURKIC :OLD-HUNGARIAN
+                          :HANIFI-ROHINGYA :RUMI-NUMERAL-SYMBOLS :YEZIDI
+                          :ARABIC-EXTENDED-C :OLD-SOGDIAN :SOGDIAN :OLD-UYGHUR
+                          :CHORASMIAN :ELYMAIC :BRAHMI :KAITHI :SORA-SOMPENG
+                          :CHAKMA :MAHAJANI :SHARADA :SINHALA-ARCHAIC-NUMBERS
+                          :KHOJKI :MULTANI :KHUDAWADI :GRANTHA :NEWA :TIRHUTA
+                          :SIDDHAM :MODI :MONGOLIAN-SUPPLEMENT :TAKRI :AHOM
+                          :DOGRA :WARANG-CITI :DIVES-AKURU :NANDINAGARI
+                          :ZANABAZAR-SQUARE :SOYOMBO
+                          :UNIFIED-CANADIAN-ABORIGINAL-SYLLABICS-EXTENDED-A
+                          :PAU-CIN-HAU :DEVANAGARI-EXTENDED-A :BHAIKSUKI
+                          :MARCHEN :MASARAM-GONDI :GUNJALA-GONDI :MAKASAR :KAWI
+                          :LISU-SUPPLEMENT :TAMIL-SUPPLEMENT :CUNEIFORM
+                          :CUNEIFORM-NUMBERS-AND-PUNCTUATION
+                          :EARLY-DYNASTIC-CUNEIFORM :CYPRO-MINOAN
+                          :EGYPTIAN-HIEROGLYPHS
+                          :EGYPTIAN-HIEROGLYPH-FORMAT-CONTROLS
+                          :ANATOLIAN-HIEROGLYPHS :BAMUM-SUPPLEMENT :MRO :TANGSA
+                          :BASSA-VAH :PAHAWH-HMONG :MEDEFAIDRIN :MIAO
+                          :IDEOGRAPHIC-SYMBOLS-AND-PUNCTUATION :TANGUT
+                          :TANGUT-COMPONENTS :KHITAN-SMALL-SCRIPT
+                          :TANGUT-SUPPLEMENT :KANA-EXTENDED-B :KANA-SUPPLEMENT
+                          :KANA-EXTENDED-A :SMALL-KANA-EXTENSION :NUSHU
+                          :DUPLOYAN :SHORTHAND-FORMAT-CONTROLS
+                          :ZNAMENNY-MUSICAL-NOTATION :BYZANTINE-MUSICAL-SYMBOLS
+                          :MUSICAL-SYMBOLS :ANCIENT-GREEK-MUSICAL-NOTATION
+                          :KAKTOVIK-NUMERALS :MAYAN-NUMERALS
+                          :TAI-XUAN-JING-SYMBOLS :COUNTING-ROD-NUMERALS
+                          :MATHEMATICAL-ALPHANUMERIC-SYMBOLS
+                          :SUTTON-SIGNWRITING :LATIN-EXTENDED-G
+                          :GLAGOLITIC-SUPPLEMENT :CYRILLIC-EXTENDED-D
+                          :NYIAKENG-PUACHUE-HMONG :TOTO :WANCHO :NAG-MUNDARI
+                          :ETHIOPIC-EXTENDED-B :MENDE-KIKAKUI :ADLAM
+                          :INDIC-SIYAQ-NUMBERS :OTTOMAN-SIYAQ-NUMBERS
+                          :ARABIC-MATHEMATICAL-ALPHABETIC-SYMBOLS
+                          :MAHJONG-TILES :DOMINO-TILES :PLAYING-CARDS
+                          :SUPPLEMENTARY-PRIVATE-USE-AREA-B
+                          :SUPPLEMENTARY-PRIVATE-USE-AREA-A
+                          :VARIATION-SELECTORS-SUPPLEMENT :TAGS
+                          :CJK-UNIFIED-IDEOGRAPHS-EXTENSION-H
+                          :CJK-UNIFIED-IDEOGRAPHS-EXTENSION-G
+                          :CJK-COMPATIBILITY-IDEOGRAPHS-SUPPLEMENT
+                          :CJK-UNIFIED-IDEOGRAPHS-EXTENSION-F
+                          :CJK-UNIFIED-IDEOGRAPHS-EXTENSION-E
+                          :CJK-UNIFIED-IDEOGRAPHS-EXTENSION-D
+                          :CJK-UNIFIED-IDEOGRAPHS-EXTENSION-C
+                          :CJK-UNIFIED-IDEOGRAPHS-EXTENSION-B
+                          :SYMBOLS-FOR-LEGACY-COMPUTING
+                          :SYMBOLS-AND-PICTOGRAPHS-EXTENDED-A :CHESS-SYMBOLS
+                          :SUPPLEMENTAL-SYMBOLS-AND-PICTOGRAPHS
+                          :SUPPLEMENTAL-ARROWS-C :GEOMETRIC-SHAPES-EXTENDED
+                          :ALCHEMICAL-SYMBOLS :TRANSPORT-AND-MAP-SYMBOLS
+                          :ORNAMENTAL-DINGBATS :EMOTICONS
+                          :MISCELLANEOUS-SYMBOLS-AND-PICTOGRAPHS
+                          :ENCLOSED-IDEOGRAPHIC-SUPPLEMENT
+                          :ENCLOSED-ALPHANUMERIC-SUPPLEMENT)
+                  &OPTIONAL))
+  Documentation:
+    Returns the Unicode block in which CHARACTER resides as a keyword.
+    If CHARACTER does not have a known block, returns :NO-BLOCK
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** GENERAL-CATEGORY :compiled:function:
+:PROPERTIES:
+:ID: 2128687289647
+:CUSTOM_ID: SB-UNICODE:GENERAL-CATEGORY
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+GENERAL-CATEGORY names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (MEMBER NIL :SK :SC :PS :PO :PI :ZS :ZP :ZL :SO :SM :LU :LL
+                          :LT :LM :LO :CC :CF :CO :CS :CN :MC :ME :MN :ND :NL
+                          :NO :PC :PD :PE :PF)
+                  &OPTIONAL))
+  Documentation:
+    Returns the general category of CHARACTER as it appears in UnicodeData.txt
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** UNICODE>= :compiled:function:
+:PROPERTIES:
+:ID: 2608442141682
+:CUSTOM_ID: SB-UNICODE:UNICODE>=
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UNICODE>= names a compiled function:
+  Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2)
+  Derived type: (FUNCTION
+                 (T T &KEY (:START1 T) (:END1 T) (:START2 T) (:END2 T))
+                 (VALUES (OR (UNSIGNED-BYTE 44) BOOLEAN) &OPTIONAL))
+  Documentation:
+    Tests if STRING1 and STRING2 are either UNICODE= or UNICODE>
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** CASEFOLD :compiled:function:
+:PROPERTIES:
+:ID: 3048702371662
+:CUSTOM_ID: SB-UNICODE:CASEFOLD
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+CASEFOLD names a compiled function:
+  Lambda-list: (STRING)
+  Derived type: (FUNCTION (T) (VALUES STRING &OPTIONAL))
+  Documentation:
+    Returns the full casefolding of STRING according to the Unicode standard.
+    Casefolding removes case information in a way that allows the results to beused
+    for case-insensitive comparisons.
+    The result is not guaranteed to have the same length as the input.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** MIRRORED-P :compiled:function:
+:PROPERTIES:
+:ID: 494607730330
+:CUSTOM_ID: SB-UNICODE:MIRRORED-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+MIRRORED-P names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER needs to be mirrored in bidirectional text.
+    Otherwise, returns NIL.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** NUMERIC-VALUE :compiled:function:
+:PROPERTIES:
+:ID: 2375271493539
+:CUSTOM_ID: SB-UNICODE:NUMERIC-VALUE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+NUMERIC-VALUE names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Returns the numeric value of CHARACTER or NIL if there is no such value.
+    Numeric value is the most general of the Unicode numeric properties.
+    The only constraint on the numeric value is that it be a rational number.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** UNICODE< :compiled:function:
+:PROPERTIES:
+:ID: 2110559759981
+:CUSTOM_ID: SB-UNICODE:UNICODE<
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UNICODE< names a compiled function:
+  Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2)
+  Derived type: (FUNCTION
+                 (T T &KEY (:START1 T) (:END1 T) (:START2 T) (:END2 T))
+                 (VALUES (OR (UNSIGNED-BYTE 44) BOOLEAN) &OPTIONAL))
+  Documentation:
+    Determines whether STRING1 sorts before STRING2 using the Unicode Collation
+    Algorithm. The function uses an untailored Default Unicode CollationElement Table
+    to produce the sort keys. The function uses the Shifted method for dealing
+    with variable-weight characters, as described in UTS #10
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** IDEOGRAPHIC-P :compiled:function:
+:PROPERTIES:
+:ID: 1406172240632
+:CUSTOM_ID: SB-UNICODE:IDEOGRAPHIC-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+IDEOGRAPHIC-P names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES (OR NULL (MOD 1114112)) &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER has the Unicode property Ideographic,
+    which loosely corresponds to the set of "Chinese characters"
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** HEX-DIGIT-P :compiled:function:
+:PROPERTIES:
+:ID: 1674180030924
+:CUSTOM_ID: SB-UNICODE:HEX-DIGIT-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+HEX-DIGIT-P names a compiled function:
+  Lambda-list: (CHARACTER &KEY ASCII)
+  Derived type: (FUNCTION (T &KEY (:ASCII T))
+                 (VALUES (OR NULL (MOD 1114112)) &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER is a hexadecimal digit and NIL otherwise.
+    If :ASCII is non-NIL, fullwidth equivalents of the Latin letters A throughF
+    are excluded.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** LOWERCASE :compiled:function:
+:PROPERTIES:
+:ID: 481038722499
+:CUSTOM_ID: SB-UNICODE:LOWERCASE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+LOWERCASE names a compiled function:
+  Lambda-list: (STRING &KEY LOCALE)
+  Derived type: (FUNCTION (T &KEY (:LOCALE T)) (VALUES STRING &OPTIONAL))
+  Documentation:
+    Returns the full lowercase of STRING according to the Unicode standard.
+    The result is not guaranteed to have the same length as the input.
+    :LOCALE has the same semantics as the :LOCALE argument to UPPERCASE.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** BIDI-CLASS :compiled:function:
+:PROPERTIES:
+:ID: 4088008242313
+:CUSTOM_ID: SB-UNICODE:BIDI-CLASS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+BIDI-CLASS names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (MEMBER :BN :AL :AN :B :CS :EN :ES :ET :L :LRE :LRO :NSM :ON
+                          :PDF :R :RLE :RLO :S :WS :LRI :RLI :FSI :PDI NIL)
+                  &OPTIONAL))
+  Documentation:
+    Returns the bidirectional class of CHARACTER
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** UNICODE-EQUAL :compiled:function:
+:PROPERTIES:
+:ID: 2597554293305
+:CUSTOM_ID: SB-UNICODE:UNICODE-EQUAL
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UNICODE-EQUAL names a compiled function:
+  Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2 (STRICTT))
+  Derived type: (FUNCTION
+                 (T T &KEY (:START1 T) (:END1 T) (:START2 T) (:END2 T)
+                  (:STRICT T))
+                 (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Determines whether STRING1 and STRING2 are canonically equivalent after
+    casefolding (that is, ignoring case differences) according to Unicode. The
+    START and END arguments behave like the arguments to STRING=. If :STRICT is
+    NIL, UNICODE= tests compatibility equavalence instead.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** SOFT-DOTTED-P :compiled:function:
+:PROPERTIES:
+:ID: 33801636839
+:CUSTOM_ID: SB-UNICODE:SOFT-DOTTED-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOFT-DOTTED-P names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES (OR NULL (MOD 1114112)) &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER has a soft dot (such as the dots on i and j) which
+    disappears when accents are placed on top of it. and NIL otherwise
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** UNICODE-1-NAME :compiled:function:
+:PROPERTIES:
+:ID: 3645559686404
+:CUSTOM_ID: SB-UNICODE:UNICODE-1-NAME
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UNICODE-1-NAME names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T)
+                 (VALUES (OR NUMBER NULL SIMPLE-BASE-STRING) &OPTIONAL))
+  Documentation:
+    Returns the name assigned to CHARACTER in Unicode 1.0 if it is distinct
+    from the name currently assigned to CHARACTER. Otherwise, returns NIL.
+    This property has been officially obsoleted by the Unicode standard, and
+    is only included for backwards compatibility.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** DEFAULT-IGNORABLE-P :compiled:function:
+:PROPERTIES:
+:ID: 3583909242902
+:CUSTOM_ID: SB-UNICODE:DEFAULT-IGNORABLE-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+DEFAULT-IGNORABLE-P names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER is a Default_Ignorable_Code_Point
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** LOWERCASE-P :compiled:function:
+:PROPERTIES:
+:ID: 1113519862607
+:CUSTOM_ID: SB-UNICODE:LOWERCASE-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+LOWERCASE-P names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES (OR (MOD 1114112) BOOLEAN) &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER has the Unicode property Lowercase and NIL otherwise
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** TITLECASE :compiled:function:
+:PROPERTIES:
+:ID: 613704616855
+:CUSTOM_ID: SB-UNICODE:TITLECASE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+TITLECASE names a compiled function:
+  Lambda-list: (STRING &KEY LOCALE)
+  Derived type: (FUNCTION (T &KEY (:LOCALE T))
+                 (VALUES (SIMPLE-ARRAY CHARACTER (*)) &OPTIONAL))
+  Documentation:
+    Returns the titlecase of STRING. The resulting string can
+    be longer than the input.
+    :LOCALE has the same semantics as the :LOCALE argument to UPPERCASE.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** DIGIT-VALUE :compiled:function:
+:PROPERTIES:
+:ID: 471040378446
+:CUSTOM_ID: SB-UNICODE:DIGIT-VALUE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+DIGIT-VALUE names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES (OR (MOD 10) NULL) &OPTIONAL))
+  Documentation:
+    Returns the Unicode digit value of CHARACTER or NIL if it doesn't exist.
+    
+    Digit values are guaranteed to be integers between 0 and 9 inclusive.
+    All characters with decimal digit values have the same digit value,
+    but there are characters (such as digits of number systems without a 0value)
+    that have a digit value but no decimal digit value
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** CASED-P :compiled:function:
+:PROPERTIES:
+:ID: 1399186454145
+:CUSTOM_ID: SB-UNICODE:CASED-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+CASED-P names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T) (VALUES (OR (MOD 1114112) BOOLEAN) &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER has a (Unicode) case, and NIL otherwise
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** CASE-IGNORABLE-P :compiled:function:
+:PROPERTIES:
+:ID: 551478757016
+:CUSTOM_ID: SB-UNICODE:CASE-IGNORABLE-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+CASE-IGNORABLE-P names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (OR (CONS (MEMBER :SK :LM :CF :ME :MN) LIST) NULL
+                      (CONS (MEMBER :SINGLE-QUOTE) NULL)
+                      (CONS (MEMBER :MIDNUMLET :MIDLETTER) CONS))
+                  &OPTIONAL))
+  Documentation:
+    Returns T if CHARACTER is Case Ignorable as defined in Unicode 6.3, Chapter
+    3
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** WORD-BREAK-CLASS :compiled:function:
+:PROPERTIES:
+:ID: 1932690744846
+:CUSTOM_ID: SB-UNICODE:WORD-BREAK-CLASS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+WORD-BREAK-CLASS names a compiled function:
+  Lambda-list: (CHARACTER)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (MEMBER :LF NIL :CR :NEWLINE :EXTEND :ZWJ :REGIONAL-INDICATOR
+                          :FORMAT :KATAKANA :HEBREW-LETTER :ALETTER
+                          :SINGLE-QUOTE :DOUBLE-QUOTE :MIDNUMLET :MIDLETTER
+                          :MIDNUM :NUMERIC :EXTENDNUMLET :WSEGSPACE)
+                  &OPTIONAL))
+  Documentation:
+    Returns the word breaking class of CHARACTER, as specified in UAX #29.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** NORMALIZE-STRING :compiled:function:
+:PROPERTIES:
+:ID: 4225070114025
+:CUSTOM_ID: SB-UNICODE:NORMALIZE-STRING
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+NORMALIZE-STRING names a compiled function:
+  Lambda-list: (STRING &OPTIONAL (FORM NFD) FILTER)
+  Derived type: (FUNCTION (STRING &OPTIONAL (MEMBER :NFD :NFKD :NFC :NFKC) T)
+                 (VALUES STRING &OPTIONAL))
+  Documentation:
+    Normalize STRING to the Unicode normalization form FORM.
+    Acceptable values for form are :NFD, :NFC, :NFKD, and :NFKC.
+    If FILTER is a function it is called on each decomposed character and
+    only characters for which it returns T are collected.
+  Source file: SYS:SRC;CODE;UNICODE-NORM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;UNICODE-NORM.LISP
+:end:
+** CONFUSABLE-P :compiled:function:
+:PROPERTIES:
+:ID: 3166159087080
+:CUSTOM_ID: SB-UNICODE:CONFUSABLE-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+CONFUSABLE-P names a compiled function:
+  Lambda-list: (STRING1 STRING2 &KEY (START1 0) END1 (START2 0) END2)
+  Derived type: (FUNCTION
+                 (T T &KEY (:START1 T) (:END1 T) (:START2 T) (:END2 T))
+                 (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Determines whether STRING1 and STRING2 could be visually confusable
+    according to the IDNA confusableSummary.txt table
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:
+** GRAPHEMES :compiled:function:
+:PROPERTIES:
+:ID: 600760715607
+:CUSTOM_ID: SB-UNICODE:GRAPHEMES
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+GRAPHEMES names a compiled function:
+  Lambda-list: (STRING)
+  Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Breaks STRING into graphemes according to the default
+    grapheme breaking rules specified in UAX #29, returning a list of strings.
+  Source file: SYS:SRC;CODE;TARGET-UNICODE.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-UNICODE.LISP
+:end:

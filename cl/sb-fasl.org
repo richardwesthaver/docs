@@ -1,0 +1,177 @@
+#+setupfile: ../../clean.theme
+* SB-FASL
+:PROPERTIES:
+:CUSTOM_ID: SB-FASL
+:ID: 21
+:LOCK: T
+:END:
+private: stuff related to fasload logic (and GENESIS)
+
+- dependencies
+  - COMMON-LISP
+  - SB-ALIEN
+  - SB-EXT
+  - SB-INT
+  - SB-KERNEL
+  - SB-SYS
+
+- dependents
+  - [[#SB-C][SB-C]]
+
+** +FASL-FILE-VERSION​+ :constant:var:
+:PROPERTIES:
+:ID: 1283024837235
+:CUSTOM_ID: SB-FASL:+FASL-FILE-VERSION+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++FASL-FILE-VERSION+ names a constant variable:
+  Value: 78
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;LOAD.LISP
+:end:
+** *ASSEMBLER-ROUTINES​* :global:var:
+:PROPERTIES:
+:ID: 3704537893315
+:CUSTOM_ID: SB-FASL:*ASSEMBLER-ROUTINES*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*ASSEMBLER-ROUTINES* names a global variable:
+  Declared type: SB-KERNEL:CODE-COMPONENT
+  Declared always-bound.
+  Value: #<code id=0 [0] {B80000000F..B8000053B0}>
+#+end_example
+
+- Referenced by
+  - [[id:1734665123574][MAKE-NODE]]
+  - SB-SPROF::DEBUG-INFO
+
+:definitions:
+- SYS:SRC;CODE;LOAD.LISP
+:end:
+** +BACKEND-FASL-FILE-IMPLEMENTATION​+ :constant:var:
+:PROPERTIES:
+:ID: 1813688902704
+:CUSTOM_ID: SB-FASL:+BACKEND-FASL-FILE-IMPLEMENTATION+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++BACKEND-FASL-FILE-IMPLEMENTATION+ names a constant variable:
+  Value: :X86-64
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** COMPUTE-FEATURES-AFFECTING-FASL-FORMAT :compiled:function:
+:PROPERTIES:
+:ID: 3603393266213
+:CUSTOM_ID: SB-FASL:COMPUTE-FEATURES-AFFECTING-FASL-FORMAT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPUTE-FEATURES-AFFECTING-FASL-FORMAT names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES SIMPLE-STRING &OPTIONAL))
+  Source file: SYS:SRC;CODE;LOAD.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;LOAD.LISP
+:end:
+** GET-ASM-ROUTINE :compiled:function:
+:PROPERTIES:
+:ID: 3614186610649
+:CUSTOM_ID: SB-FASL:GET-ASM-ROUTINE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+GET-ASM-ROUTINE names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (T) (VALUES (OR NULL (UNSIGNED-BYTE 64)) &OPTIONAL))
+  Source file: SYS:SRC;CODE;TARGET-LOAD.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-LOAD.LISP
+:end:
+** %ASM-ROUTINE-TABLE :compiled:function:
+:PROPERTIES:
+:ID: 2902017086205
+:CUSTOM_ID: SB-FASL:%ASM-ROUTINE-TABLE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+%ASM-ROUTINE-TABLE names a compiled function:
+  Lambda-list: (CODE-OBJ)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;CODE;TARGET-LOAD.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;TARGET-LOAD.LISP
+:end:
+** *FASL-HEADER-STRING-START-STRING​* :global:var:
+:PROPERTIES:
+:ID: 3032250709466
+:CUSTOM_ID: SB-FASL:*FASL-HEADER-STRING-START-STRING*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*FASL-HEADER-STRING-START-STRING* names a global variable:
+  Declared always-bound.
+  Value: "# FASL"
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;LOAD.LISP
+:end:
+** KNOWN-LAYOUT-FOP :compiled:function:
+:PROPERTIES:
+:ID: 2411943073811
+:CUSTOM_ID: SB-FASL:KNOWN-LAYOUT-FOP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+KNOWN-LAYOUT-FOP names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (T) (VALUES (OR (INTEGER 104 112) NULL) &OPTIONAL))
+  Source file: SYS:SRC;CODE;LOAD.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;LOAD.LISP
+:end:
+** +FASL-HEADER-STRING-STOP-CHAR-CODE​+ :constant:var:
+:PROPERTIES:
+:ID: 3853658233482
+:CUSTOM_ID: SB-FASL:+FASL-HEADER-STRING-STOP-CHAR-CODE+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++FASL-HEADER-STRING-STOP-CHAR-CODE+ names a constant variable:
+  Value: 255
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;LOAD.LISP
+:end:
+** *FASL-FILE-TYPE​* :global:var:
+:PROPERTIES:
+:ID: 3324286812270
+:CUSTOM_ID: SB-FASL:*FASL-FILE-TYPE*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*FASL-FILE-TYPE* names a global variable:
+  Declared type: SIMPLE-STRING
+  Declared always-bound.
+  Value: "fasl"
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;LOAD.LISP
+:end:

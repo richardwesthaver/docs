@@ -1,0 +1,2481 @@
+#+setupfile: ../../clean.theme
+* SB-BSD-SOCKETS
+:PROPERTIES:
+:CUSTOM_ID: SB-BSD-SOCKETS
+:ID: 82
+:END:
+A thinly-disguised BSD socket API for SBCL.  Ideas stolen from the BSD
+socket API for C and Graham Barr's IO::Socket classes for Perl.
+
+We represent sockets as CLOS objects, and rename a lot of methods and
+arguments to fit Lisp style more closely.
+
+- dependencies
+  - COMMON-LISP
+  - SB-BSD-SOCKETS-INTERNAL
+
+- dependents
+  - [[#STD-USER][STD-USER]]
+  - [[#SKEL/MPK/MPD][SKEL/MPK/MPD]]
+  - [[#NET/CORE][NET/CORE]]
+
+** SOCKET-BIND :generic:function:
+:PROPERTIES:
+:ID: 2315805527925
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-BIND
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-BIND names a generic function:
+  Lambda-list: (SOCKET &REST ADDRESS)
+  Derived type: (FUNCTION (T &REST T) *)
+  Documentation:
+    Bind SOCKET to ADDRESS, which may vary according to socket family.
+    For the INET family, pass ADDRESS and PORT as two arguments; for local
+    address family sockets, pass the filename string. See also bind(2).
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-BIND (LIBPOD-CLIENT))
+    (SOCKET-BIND (WRAPPED-SOCKET))
+    (SOCKET-BIND (SOCKET))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - (SOCKET-BIND (LIBPOD-CLIENT))
+  - NET/SRV::SOCKET-BIND*
+  - [[id:1888820834903][UDP-RECEIVE-PING]]
+  - [[id:4182764746022][UDP-ECHO]]
+  - [[id:1049943188013][TCP-RECEIVE-PING]]
+  - [[id:2154363012590][TCP-ECHO]]
+  - NET/CORE::PORT-OPEN-P
+  - [[id:2176053075983][MAKE-SOCKET]]
+  - (SOCKET-BIND (WRAPPED-SOCKET))
+  - (CREATE-SOCKET IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET &REST ADDRESS)
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/pod/client.lisp
+  - [[id:2849915693921][LIBPOD-CLIENT]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** OPERATION-NOT-PERMITTED-ERROR :condition:class:
+:PROPERTIES:
+:ID: 1581174271802
+:CUSTOM_ID: SB-BSD-SOCKETS:OPERATION-NOT-PERMITTED-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+OPERATION-NOT-PERMITTED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:OPERATION-NOT-PERMITTED-ERROR>:
+  Class precedence-list: OPERATION-NOT-PERMITTED-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::EPERM
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** INET-SOCKET :class:
+:PROPERTIES:
+:ID: 120981578070
+:CUSTOM_ID: SB-BSD-SOCKETS:INET-SOCKET
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+INET-SOCKET names the standard-class #<STANDARD-CLASS SB-BSD-SOCKETS:INET-SOCKET>:
+  Documentation:
+    Class representing TCP and UDP over IPv4 sockets.
+    
+    Examples:
+    
+        (make-instance 'sb-bsd-sockets:inet-socket :type :stream :protocol :tcp)
+    
+        (make-instance 'sb-bsd-sockets:inet-socket :type :datagram :protocol :udp)
+  Class precedence-list: INET-SOCKET, SOCKET, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET
+  Direct subclasses: POD::LIBPOD-TCP-SOCKET
+  Direct slots:
+    FAMILY
+      Initform: SB-BSD-SOCKETS-INTERNAL::AF-INET
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;INET4.LISP.NEWEST
+:end:
+** SOCKOPT-BROADCAST :compiled:function:
+:PROPERTIES:
+:ID: 4275352677480
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-BROADCAST
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-BROADCAST names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Return the value of the SO-BROADCAST socket option for SOCKET. This canalso be
+    updated with SETF.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-BROADCAST) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** ADDRESS-FAMILY-NOT-SUPPORTED :condition:class:
+:PROPERTIES:
+:ID: 2775438986141
+:CUSTOM_ID: SB-BSD-SOCKETS:ADDRESS-FAMILY-NOT-SUPPORTED
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+ADDRESS-FAMILY-NOT-SUPPORTED names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:ADDRESS-FAMILY-NOT-SUPPORTED>:
+  Class precedence-list: ADDRESS-FAMILY-NOT-SUPPORTED, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::EAFNOSUPPORT
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** NO-RECOVERY-ERROR :condition:class:
+:PROPERTIES:
+:ID: 3041721641261
+:CUSTOM_ID: SB-BSD-SOCKETS:NO-RECOVERY-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+NO-RECOVERY-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:NO-RECOVERY-ERROR>:
+  Class precedence-list: NO-RECOVERY-ERROR, NAME-SERVICE-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: NAME-SERVICE-ERROR
+  No subclasses.
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+:end:
+** SOCKOPT-SEND-LOW-WATER :compiled:function:
+:PROPERTIES:
+:ID: 4162453960377
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-SEND-LOW-WATER
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-SEND-LOW-WATER names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-SEND-LOW-WATER) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** SOCKET-TYPE-NOT-SUPPORTED-ERROR :condition:class:
+:PROPERTIES:
+:ID: 2642261626909
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-TYPE-NOT-SUPPORTED-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-TYPE-NOT-SUPPORTED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:SOCKET-TYPE-NOT-SUPPORTED-ERROR>:
+  Class precedence-list: SOCKET-TYPE-NOT-SUPPORTED-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::ESOCKTNOSUPPORT
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** INTERRUPTED-ERROR :condition:class:
+:PROPERTIES:
+:ID: 1613995504661
+:CUSTOM_ID: SB-BSD-SOCKETS:INTERRUPTED-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+INTERRUPTED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:INTERRUPTED-ERROR>:
+  Class precedence-list: INTERRUPTED-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::EINTR
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** SOCKOPT-SEND-BUFFER :compiled:function:
+:PROPERTIES:
+:ID: 3036485599189
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-SEND-BUFFER
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-SEND-BUFFER names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-SEND-BUFFER) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** SOCKET-NAME :generic:function:
+:PROPERTIES:
+:ID: 3561705610498
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-NAME
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-NAME names a generic function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Return the address (as vector of bytes) and port that SOCKET is
+    bound to, as multiple values.
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-NAME (WRAPPED-SOCKET))
+    (SOCKET-NAME (SOCKET))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - (SOCKET-NAMESTRING (LOCAL-SOCKET))
+  - (SOCKET-NAMESTRING (INET6-SOCKET))
+  - (SOCKET-NAMESTRING (INET-SOCKET))
+  - NET/SRV/HTTP::WAKE-TCP-SERVICE-FOR-SHUTDOWN
+  - (PROCESS-CONNECTION (HTTP-SERVICE T))
+  - (PROCESS-CONNECTION (UDP-SERVICE T))
+  - [[id:1569855171067][SERVICE-MAKE-REQUEST]]
+  - (START-LISTENING AROUND (NET-SERVICE))
+  - (SOCKET-NAME (WRAPPED-SOCKET))
+  - (PORT (WRAPPED-SOCKET))
+  - (PORT (SOCKET))
+  - (HOST (WRAPPED-SOCKET))
+  - (HOST (SOCKET))
+  - (LOCAL-PORT IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET)
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** OUT-OF-MEMORY-ERROR :condition:class:
+:PROPERTIES:
+:ID: 1244194199176
+:CUSTOM_ID: SB-BSD-SOCKETS:OUT-OF-MEMORY-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+OUT-OF-MEMORY-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:OUT-OF-MEMORY-ERROR>:
+  Class precedence-list: OUT-OF-MEMORY-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::ENOMEM
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** MAKE-INET-ADDRESS :compiled:function:
+:PROPERTIES:
+:ID: 2283934591580
+:CUSTOM_ID: SB-BSD-SOCKETS:MAKE-INET-ADDRESS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+MAKE-INET-ADDRESS names a compiled function:
+  Lambda-list: (DOTTED-QUADS)
+  Derived type: (FUNCTION (STRING)
+                 (VALUES (SIMPLE-ARRAY (UNSIGNED-BYTE 8) (4)) &OPTIONAL))
+  Documentation:
+    Return a vector of octets given a string DOTTED-QUADS in the format
+    "127.0.0.1". Signals an error if the string is malformed.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;INET4.LISP.NEWEST
+#+end_example
+
+- Called by
+  - NET/PROTO/DNS::TRY-SERVER
+  - [[id:692147055178][MAKE-NETMASK]]
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;INET4.LISP.NEWEST
+:end:
+** OPERATION-NOT-SUPPORTED-ERROR :condition:class:
+:PROPERTIES:
+:ID: 104376272479
+:CUSTOM_ID: SB-BSD-SOCKETS:OPERATION-NOT-SUPPORTED-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+OPERATION-NOT-SUPPORTED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:OPERATION-NOT-SUPPORTED-ERROR>:
+  Class precedence-list: OPERATION-NOT-SUPPORTED-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::EOPNOTSUPP
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** SOCKET-FILE-DESCRIPTOR :generic:function:
+:PROPERTIES:
+:ID: 170297784564
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-FILE-DESCRIPTOR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-FILE-DESCRIPTOR names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-FILE-DESCRIPTOR (WRAPPED-SOCKET))
+    (SOCKET-FILE-DESCRIPTOR (SOCKET))
+      Documentation:
+        automatically generated reader method
+#+end_example
+
+- Called by
+  - ((SETF NON-BLOCKING-MODE) (T SOCKET))
+  - (NON-BLOCKING-MODE (SOCKET))
+  - (SOCKOPT-BIND-TO-DEVICE)
+  - [[id:3755407715263][SOCKOPT-BIND-TO-DEVICE]]
+  - (SOCKOPT-TCP-NODELAY)
+  - [[id:2322289316084][SOCKOPT-TCP-NODELAY]]
+  - (SOCKOPT-BROADCAST)
+  - [[id:4275352677480][SOCKOPT-BROADCAST]]
+  - (SOCKOPT-DONT-ROUTE)
+  - [[id:4040382699472][SOCKOPT-DONT-ROUTE]]
+  - (SOCKOPT-DEBUG)
+  - [[id:909668490684][SOCKOPT-DEBUG]]
+  - (SOCKOPT-PASS-CREDENTIALS)
+  - [[id:1687215227689][SOCKOPT-PASS-CREDENTIALS]]
+  - (SOCKOPT-BSD-COMPATIBLE)
+  - [[id:2625967853969][SOCKOPT-BSD-COMPATIBLE]]
+  - (SOCKOPT-OOB-INLINE)
+  - [[id:856862024363][SOCKOPT-OOB-INLINE]]
+  - (SOCKOPT-KEEP-ALIVE)
+  - [[id:2103856659612][SOCKOPT-KEEP-ALIVE]]
+  - (SOCKOPT-REUSE-ADDRESS)
+  - [[id:1891060594323][SOCKOPT-REUSE-ADDRESS]]
+  - (SOCKOPT-TCP-USER-TIMEOUT)
+  - [[id:29990184413][SOCKOPT-TCP-USER-TIMEOUT]]
+  - (SOCKOPT-TCP-KEEPINTVL)
+  - [[id:1178302204532][SOCKOPT-TCP-KEEPINTVL]]
+  - (SOCKOPT-TCP-KEEPIDLE)
+  - [[id:1362204786536][SOCKOPT-TCP-KEEPIDLE]]
+  - (SOCKOPT-TCP-KEEPCNT)
+  - [[id:822757944049][SOCKOPT-TCP-KEEPCNT]]
+  - (SOCKOPT-PRIORITY)
+  - [[id:1027266665413][SOCKOPT-PRIORITY]]
+  - (SOCKOPT-RECEIVE-BUFFER)
+  - [[id:2602145297293][SOCKOPT-RECEIVE-BUFFER]]
+  - (SOCKOPT-SEND-BUFFER)
+  - [[id:3036485599189][SOCKOPT-SEND-BUFFER]]
+  - (SOCKOPT-ERROR)
+  - [[id:871361329155][SOCKOPT-ERROR]]
+  - (SOCKOPT-TYPE)
+  - [[id:3554616952962][SOCKOPT-TYPE]]
+  - (SOCKOPT-SEND-LOW-WATER)
+  - [[id:4162453960377][SOCKOPT-SEND-LOW-WATER]]
+  - (SOCKOPT-RECEIVE-LOW-WATER)
+  - [[id:106935767678][SOCKOPT-RECEIVE-LOW-WATER]]
+  - (SOCKET-CLOSE (SOCKET))
+  - (SOCKET-MAKE-STREAM (SOCKET))
+  - (SOCKET-SHUTDOWN (SOCKET))
+  - (SOCKET-OPEN-P (SOCKET))
+  - (SOCKET-LISTEN (SOCKET T))
+  - (SOCKET-SEND (SOCKET T T))
+  - (SOCKET-RECEIVE (SOCKET T T))
+  - (SOCKET-NAME (SOCKET))
+  - (SOCKET-PEERNAME (SOCKET))
+  - (SOCKET-CONNECT (SOCKET))
+  - (SOCKET-ACCEPT (SOCKET))
+  - (SOCKET-BIND (SOCKET))
+  - (FD (DBUS-UNIX-CONNECTION))
+  - (SOCKET-DISCONNECT (NETLINK-SOCKET))
+  - (SOCKET-DISCONNECT (UNIX-SOCKET))
+  - (SOCKET-DISCONNECT (UDP-SOCKET))
+  - (SHARED-INITIALIZE AFTER (SOCKET T))
+  - (FD (SOCKET))
+  - (FD (WRAPPED-SOCKET))
+  - (SOCKET-FILE-DESCRIPTOR (WRAPPED-SOCKET))
+  - (SOCKOPT-PEERCRED)
+  - [[id:1992367909219][SOCKOPT-PEERCRED]]
+  - (SOCKOPT-ZEROCOPY)
+  - IO/SOCKET:SOCKOPT-ZEROCOPY
+  - (SOCKOPT-TCP-INFO)
+  - IO/SOCKET:SOCKOPT-TCP-INFO
+  - (SOCKOPT-ICMP-FILTER)
+  - IO/SOCKET:SOCKOPT-ICMP-FILTER
+  - (SOCKOPT-IP-RECEIVE-ERROR)
+  - IO/SOCKET:SOCKOPT-IP-RECEIVE-ERROR
+  - (SOCKOPT-IP-HEADER-INCLUDE)
+  - IO/SOCKET:SOCKOPT-IP-HEADER-INCLUDE
+  - (SOCKOPT-TCP-WINDOW-CLAMP)
+  - IO/SOCKET:SOCKOPT-TCP-WINDOW-CLAMP
+  - (SOCKOPT-TCP-SYNCNT)
+  - IO/SOCKET:SOCKOPT-TCP-SYNCNT
+  - (SOCKOPT-TCP-QUICKACK)
+  - IO/SOCKET:SOCKOPT-TCP-QUICKACK
+  - (SOCKOPT-TCP-LINGER2)
+  - IO/SOCKET:SOCKOPT-TCP-LINGER2
+  - (SOCKOPT-TCP-DEFER-ACCEPT)
+  - IO/SOCKET:SOCKOPT-TCP-DEFER-ACCEPT
+  - (SOCKOPT-TCP-CORK)
+  - IO/SOCKET:SOCKOPT-TCP-CORK
+  - (SOCKOPT-TCP-MAXSEG)
+  - IO/SOCKET:SOCKOPT-TCP-MAXSEG
+  - (SOCKOPT-REUSE-PORT)
+  - IO/SOCKET:SOCKOPT-REUSE-PORT
+  - (SOCKOPT-LINGER)
+  - [[id:537702008127][SOCKOPT-LINGER]]
+  - (SOCKOPT-SEND-TIMEOUT)
+  - [[id:1270747248741][SOCKOPT-SEND-TIMEOUT]]
+  - (SOCKOPT-RECEIVE-TIMEOUT)
+  - [[id:432355278405][SOCKOPT-RECEIVE-TIMEOUT]]
+  - (SOCKET-FD IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** HOST-ENT :class:
+:PROPERTIES:
+:ID: 1908841591574
+:CUSTOM_ID: SB-BSD-SOCKETS:HOST-ENT
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+HOST-ENT names the standard-class #<STANDARD-CLASS SB-BSD-SOCKETS:HOST-ENT>:
+  Documentation:
+    This class represents the results of an address lookup.
+  Class precedence-list: HOST-ENT, STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STANDARD-OBJECT
+  No subclasses.
+  Direct slots:
+    SB-BSD-SOCKETS::NAME
+      Initargs: :NAME
+      Readers: HOST-ENT-NAME
+      Documentation:
+       The name of the host
+    SB-BSD-SOCKETS::ALIASES
+      Initargs: :ALIASES
+      Readers: HOST-ENT-ALIASES
+    SB-BSD-SOCKETS::ADDRESS-TYPE
+      Initargs: :TYPE
+      Readers: HOST-ENT-ADDRESS-TYPE
+    SB-BSD-SOCKETS::ADDRESSES
+      Initargs: :ADDRESSES
+      Readers: HOST-ENT-ADDRESSES
+      Documentation:
+       A list of addresses for this host.
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+:end:
+** NO-BUFFERS-ERROR :condition:class:
+:PROPERTIES:
+:ID: 2556241461878
+:CUSTOM_ID: SB-BSD-SOCKETS:NO-BUFFERS-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+NO-BUFFERS-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:NO-BUFFERS-ERROR>:
+  Class precedence-list: NO-BUFFERS-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::ENOBUFS
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** SOCKET :generic:function:class:
+:PROPERTIES:
+:ID: 2512777137462
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET (SWANK-CONNECTION))
+      Documentation:
+        socket used to communicate with the Swank server.
+    (SOCKET (WRAPPED-SOCKET))
+      Documentation:
+        automatically generated reader method
+
+(SETF SOCKET) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SOCKET) (T WRAPPED-SOCKET))
+      Documentation:
+        automatically generated writer method
+
+SOCKET names the standard-class #<STANDARD-CLASS SB-BSD-SOCKETS:SOCKET>:
+  Documentation:
+    Common superclass of all sockets, not meant to be
+    directly instantiated.
+  Class precedence-list: SOCKET, STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STANDARD-OBJECT
+  Direct subclasses: NETLINK-SOCKET, UNIX-SOCKET, UDP-SOCKET, TCP-SOCKET,
+                     LOCAL-SOCKET, INET6-SOCKET, INET-SOCKET
+  Direct slots:
+    SB-BSD-SOCKETS::FILE-DESCRIPTOR
+      Initargs: :DESCRIPTOR
+      Readers: SOCKET-FILE-DESCRIPTOR
+    FAMILY
+      Initform: (ERROR "No socket family")
+      Readers: SOCKET-FAMILY
+    SB-BSD-SOCKETS::PROTOCOL
+      Initargs: :PROTOCOL
+      Readers: SOCKET-PROTOCOL
+      Documentation:
+       Protocol used by the socket. If a
+       keyword, the symbol-name of the keyword will be passed to
+       GET-PROTOCOL-BY-NAME downcased, and the returned value used as
+       protocol. Other values are used as-is.
+    TYPE
+      Initargs: :TYPE
+      Readers: SOCKET-TYPE
+      Documentation:
+       Type of the socket: :STREAM or :DATAGRAM.
+    STREAM
+#+end_example
+
+- Called by
+  - NET/SRV/HTTP::WAKE-TCP-SERVICE-FOR-SHUTDOWN
+  - NET/SRV/HTTP::SSL-P
+  - (STOP (NET-SERVICE))
+  - (STARTED-P (NET-SERVICE))
+  - (ACCEPT (NET-SERVICE))
+  - (START-LISTENING (NET-SERVICE))
+  - NET/SRV::SOCKET-BIND*
+  - (START-LISTENING AROUND (NET-SERVICE))
+  - (CREATE-REQUEST-WORKER-THREAD (THREAD-PER-CONNECTION-ENGINE T))
+  - (SEND-MESSAGE (T DBUS-UNIX-CONNECTION))
+  - (SEND-LINE (T DBUS-UNIX-CONNECTION))
+  - (RECEIVE-LINE (DBUS-UNIX-CONNECTION))
+  - (RECEIVE-MESSAGE-NO-HANG (STANDARD-DBUS-CONNECTION))
+  - (DISCONNECT (DBUS-UNIX-CONNECTION))
+  - (FD (DBUS-UNIX-CONNECTION))
+  - NET/PROTO/SWANK::SLIME-DISPATCH-EVENTS
+  - NET/PROTO/SWANK::SLIME-NET-READ
+  - NET/PROTO/SWANK::SLIME-SEND
+  - (SOCKET-NAMESTRING (WRAPPED-SOCKET))
+  - (SOCKET-PEERNAME (WRAPPED-SOCKET))
+  - (SOCKET-NAME (WRAPPED-SOCKET))
+  - (SOCKET-SHUTDOWN (WRAPPED-SOCKET))
+  - (SOCKET-LISTEN (WRAPPED-SOCKET T))
+  - (SOCKET-ACCEPT (WRAPPED-SOCKET))
+  - (SOCKET-RECEIVE (WRAPPED-SOCKET T T))
+  - (SOCKET-SEND (WRAPPED-SOCKET T T))
+  - (SOCKET-BIND (WRAPPED-SOCKET))
+  - (SOCKET-CONNECT (WRAPPED-SOCKET))
+  - (FREE-SOCKADDR-FOR (WRAPPED-SOCKET T))
+  - (SIZE-OF-SOCKADDR (WRAPPED-SOCKET))
+  - (MAKE-SOCKADDR-FOR (WRAPPED-SOCKET))
+  - (SOCKET-MAKE-STREAM (WRAPPED-SOCKET))
+  - (SOCKET-CLOSE (WRAPPED-SOCKET))
+  - (SOCKET-OPEN-P (WRAPPED-SOCKET))
+  - (SOCKET-FILE-DESCRIPTOR (WRAPPED-SOCKET))
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+- /home/ellis/src/core/lib/net/proto/swank.lisp
+  - [[id:3608289852583][SWANK-CONNECTION]]
+:end:
+** SOCKOPT-KEEP-ALIVE :compiled:function:
+:PROPERTIES:
+:ID: 2103856659612
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-KEEP-ALIVE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-KEEP-ALIVE names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Return the value of the SO-KEEPALIVE socket option for SOCKET. This canalso be
+    updated with SETF.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-KEEP-ALIVE) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** SOCKET-OPEN-P :generic:function:
+:PROPERTIES:
+:ID: 3339486377001
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-OPEN-P
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-OPEN-P names a generic function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Return true if SOCKET is open; otherwise, return false.
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-OPEN-P (WRAPPED-SOCKET))
+    (SOCKET-OPEN-P (SOCKET))
+    (SOCKET-OPEN-P (T))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - (SOCKET-OPEN-P (WRAPPED-SOCKET))
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET)
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** SOCKET-PROTOCOL :generic:function:
+:PROPERTIES:
+:ID: 2135558988437
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-PROTOCOL
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-PROTOCOL names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-PROTOCOL (SOCKET))
+      Documentation:
+        Protocol used by the socket. If a
+        keyword, the symbol-name of the keyword will be passed to
+        GET-PROTOCOL-BY-NAME downcased, and the returned value used as
+        protocol. Other values are used as-is.
+#+end_example
+
+- Called by
+  - (SOCKET-ACCEPT (SOCKET))
+  - NET/SRV/HTTP::SSL-P
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+:end:
+** CONNECTION-REFUSED-ERROR :condition:class:
+:PROPERTIES:
+:ID: 548928959035
+:CUSTOM_ID: SB-BSD-SOCKETS:CONNECTION-REFUSED-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+CONNECTION-REFUSED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:CONNECTION-REFUSED-ERROR>:
+  Class precedence-list: CONNECTION-REFUSED-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::ECONNREFUSED
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** SOCKOPT-TCP-USER-TIMEOUT :compiled:function:
+:PROPERTIES:
+:ID: 29990184413
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-TCP-USER-TIMEOUT
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-TCP-USER-TIMEOUT names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-TCP-USER-TIMEOUT) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** NAME-SERVICE-ERROR :compiled:function:condition:class:
+:PROPERTIES:
+:ID: 4282406888348
+:CUSTOM_ID: SB-BSD-SOCKETS:NAME-SERVICE-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+NAME-SERVICE-ERROR names a compiled function:
+  Lambda-list: (WHERE ERRNO)
+  Derived type: (FUNCTION (T T) NIL)
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+
+NAME-SERVICE-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:NAME-SERVICE-ERROR>:
+  Class precedence-list: NAME-SERVICE-ERROR, ERROR, SERIOUS-CONDITION,
+                         CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ERROR
+  Direct subclasses: SB-BSD-SOCKETS::NO-ADDRESS-ERROR, NO-RECOVERY-ERROR,
+                     TRY-AGAIN-ERROR, HOST-NOT-FOUND-ERROR, NETDB-SUCCESS-ERROR,
+                     NETDB-INTERNAL-ERROR
+  Direct slots:
+    SB-BSD-SOCKETS::ERRNO
+      Initargs: :ERRNO
+      Initform: 'NIL
+      Readers: SB-BSD-SOCKETS::NAME-SERVICE-ERROR-ERRNO
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: 'NIL
+      Readers: SB-BSD-SOCKETS::NAME-SERVICE-ERROR-SYMBOL
+    SB-BSD-SOCKETS::SYSCALL
+      Initargs: :SYSCALL
+      Initform: '"an unknown location"
+      Readers: SB-BSD-SOCKETS::NAME-SERVICE-ERROR-SYSCALL
+#+end_example
+
+- Called by
+  - [[id:42564957134][GET-HOST-BY-ADDRESS]]
+  - [[id:1053520094808][GET-HOST-BY-NAME]]
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+:end:
+** SOCKOPT-TCP-KEEPCNT :compiled:function:
+:PROPERTIES:
+:ID: 822757944049
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-TCP-KEEPCNT
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-TCP-KEEPCNT names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-TCP-KEEPCNT) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** HOST-ENT-ADDRESSES :generic:function:
+:PROPERTIES:
+:ID: 4286185486185
+:CUSTOM_ID: SB-BSD-SOCKETS:HOST-ENT-ADDRESSES
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+HOST-ENT-ADDRESSES names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (HOST-ENT-ADDRESSES (HOST-ENT))
+      Documentation:
+        A list of addresses for this host.
+#+end_example
+
+- Called by
+  - [[id:1053520094808][GET-HOST-BY-NAME]]
+  - (HOST-ENT-ADDRESS (HOST-ENT))
+  - [[id:3093696310533][GET-ADDRESS-BY-NAME]]
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+  - [[id:1908841591574][HOST-ENT]]
+:end:
+** MAKE-INET6-ADDRESS :compiled:function:
+:PROPERTIES:
+:ID: 2484197347926
+:CUSTOM_ID: SB-BSD-SOCKETS:MAKE-INET6-ADDRESS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+MAKE-INET6-ADDRESS names a compiled function:
+  Lambda-list: (COLON-SEPARATED-INTEGERS)
+  Derived type: (FUNCTION (STRING)
+                 (VALUES (SIMPLE-ARRAY (UNSIGNED-BYTE 8) (16)) &OPTIONAL))
+  Documentation:
+    Return a vector of octets given a string representation of an IPv6
+    address COLON-SEPARATED-INTEGERS. Signal an error if the string is
+    malformed.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;INET6.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;INET6.LISP.NEWEST
+:end:
+** UNKNOWN-PROTOCOL :condition:class:
+:PROPERTIES:
+:ID: 151625949115
+:CUSTOM_ID: SB-BSD-SOCKETS:UNKNOWN-PROTOCOL
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+UNKNOWN-PROTOCOL names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:UNKNOWN-PROTOCOL>:
+  Class precedence-list: UNKNOWN-PROTOCOL, ERROR, SERIOUS-CONDITION, CONDITION,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ERROR
+  No subclasses.
+  Direct slots:
+    SB-BSD-SOCKETS::NAME
+      Initargs: :NAME
+      Readers: SB-BSD-SOCKETS::UNKNOWN-PROTOCOL-NAME
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;INET.LISP.NEWEST
+:end:
+** SOCKOPT-BSD-COMPATIBLE :compiled:function:
+:PROPERTIES:
+:ID: 2625967853969
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-BSD-COMPATIBLE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-BSD-COMPATIBLE names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Return the value of the SO-BSDCOMPAT socket option for SOCKET. This canalso be
+    updated with SETF. Available only on Linux.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-BSD-COMPATIBLE) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** SOCKOPT-PRIORITY :compiled:function:
+:PROPERTIES:
+:ID: 1027266665413
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-PRIORITY
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-PRIORITY names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-PRIORITY) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** SOCKET-ERROR :compiled:function:condition:class:
+:PROPERTIES:
+:ID: 1528386196203
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-ERROR names a compiled function:
+  Lambda-list: (WHERE &OPTIONAL (ERRNO (SOCKET-ERRNO)))
+  Derived type: (FUNCTION (T &OPTIONAL T) NIL)
+  Documentation:
+    Signal an appropriate error for syscall WHERE and ERRNO.
+    
+    WHERE should be a string naming the failed function.
+    
+    When supplied, ERRNO should be the UNIX error number associated to the
+    failed call. The default behavior is to use the current value of the
+    errno variable.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+
+SOCKET-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:SOCKET-ERROR>:
+  Documentation:
+    Common base class of socket related conditions.
+  Class precedence-list: SOCKET-ERROR, ERROR, SERIOUS-CONDITION, CONDITION,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ERROR
+  Direct subclasses: OPERATION-IN-PROGRESS, ADDRESS-FAMILY-NOT-SUPPORTED,
+                     NOT-CONNECTED-ERROR, NETWORK-UNREACHABLE-ERROR,
+                     SOCKET-TYPE-NOT-SUPPORTED-ERROR,
+                     PROTOCOL-NOT-SUPPORTED-ERROR,
+                     OPERATION-NOT-PERMITTED-ERROR,
+                     OPERATION-NOT-SUPPORTED-ERROR, OUT-OF-MEMORY-ERROR,
+                     NO-BUFFERS-ERROR, INVALID-ARGUMENT-ERROR,
+                     OPERATION-TIMEOUT-ERROR, CONNECTION-REFUSED-ERROR,
+                     BAD-FILE-DESCRIPTOR-ERROR, INTERRUPTED-ERROR,
+                     ADDRESS-IN-USE-ERROR
+  Direct slots:
+    SB-BSD-SOCKETS::ERRNO
+      Initargs: :ERRNO
+      Initform: 'NIL
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-ERRNO
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: 'NIL
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+    SB-BSD-SOCKETS::SYSCALL
+      Initargs: :SYSCALL
+      Initform: '"outer space"
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYSCALL
+#+end_example
+
+- Called by
+  - ((SETF NON-BLOCKING-MODE) (T SOCKET))
+  - [[id:2484197347926][MAKE-INET6-ADDRESS]]
+  - SB-BSD-SOCKETS::UNPARSE-INET6-ADDRESS
+  - (SOCKOPT-BIND-TO-DEVICE)
+  - [[id:3755407715263][SOCKOPT-BIND-TO-DEVICE]]
+  - (SOCKOPT-TCP-NODELAY)
+  - [[id:2322289316084][SOCKOPT-TCP-NODELAY]]
+  - (SOCKOPT-BROADCAST)
+  - [[id:4275352677480][SOCKOPT-BROADCAST]]
+  - (SOCKOPT-DONT-ROUTE)
+  - [[id:4040382699472][SOCKOPT-DONT-ROUTE]]
+  - (SOCKOPT-DEBUG)
+  - [[id:909668490684][SOCKOPT-DEBUG]]
+  - (SOCKOPT-PASS-CREDENTIALS)
+  - [[id:1687215227689][SOCKOPT-PASS-CREDENTIALS]]
+  - (SOCKOPT-BSD-COMPATIBLE)
+  - [[id:2625967853969][SOCKOPT-BSD-COMPATIBLE]]
+  - (SOCKOPT-OOB-INLINE)
+  - [[id:856862024363][SOCKOPT-OOB-INLINE]]
+  - (SOCKOPT-KEEP-ALIVE)
+  - [[id:2103856659612][SOCKOPT-KEEP-ALIVE]]
+  - (SOCKOPT-REUSE-ADDRESS)
+  - [[id:1891060594323][SOCKOPT-REUSE-ADDRESS]]
+  - (SOCKOPT-TCP-USER-TIMEOUT)
+  - [[id:29990184413][SOCKOPT-TCP-USER-TIMEOUT]]
+  - (SOCKOPT-TCP-KEEPINTVL)
+  - [[id:1178302204532][SOCKOPT-TCP-KEEPINTVL]]
+  - (SOCKOPT-TCP-KEEPIDLE)
+  - [[id:1362204786536][SOCKOPT-TCP-KEEPIDLE]]
+  - (SOCKOPT-TCP-KEEPCNT)
+  - [[id:822757944049][SOCKOPT-TCP-KEEPCNT]]
+  - (SOCKOPT-PRIORITY)
+  - [[id:1027266665413][SOCKOPT-PRIORITY]]
+  - (SOCKOPT-RECEIVE-BUFFER)
+  - [[id:2602145297293][SOCKOPT-RECEIVE-BUFFER]]
+  - (SOCKOPT-SEND-BUFFER)
+  - [[id:3036485599189][SOCKOPT-SEND-BUFFER]]
+  - (SOCKOPT-ERROR)
+  - [[id:871361329155][SOCKOPT-ERROR]]
+  - (SOCKOPT-TYPE)
+  - [[id:3554616952962][SOCKOPT-TYPE]]
+  - (SOCKOPT-SEND-LOW-WATER)
+  - [[id:4162453960377][SOCKOPT-SEND-LOW-WATER]]
+  - (SOCKOPT-RECEIVE-LOW-WATER)
+  - [[id:106935767678][SOCKOPT-RECEIVE-LOW-WATER]]
+  - (SOCKET-CLOSE (SOCKET))
+  - (SOCKET-SHUTDOWN (SOCKET))
+  - (SOCKET-LISTEN (SOCKET T))
+  - (SOCKET-SEND (SOCKET T T))
+  - (SOCKET-RECEIVE (SOCKET T T))
+  - (SOCKET-NAME (SOCKET))
+  - (SOCKET-PEERNAME (SOCKET))
+  - (SOCKET-CONNECT (SOCKET))
+  - (SOCKET-ACCEPT (SOCKET))
+  - (SOCKET-BIND (SOCKET))
+  - (SHARED-INITIALIZE AFTER (SOCKET T))
+  - (SOCKOPT-PEERCRED)
+  - [[id:1992367909219][SOCKOPT-PEERCRED]]
+  - (SOCKOPT-ZEROCOPY)
+  - IO/SOCKET:SOCKOPT-ZEROCOPY
+  - (SOCKOPT-TCP-INFO)
+  - IO/SOCKET:SOCKOPT-TCP-INFO
+  - (SOCKOPT-ICMP-FILTER)
+  - IO/SOCKET:SOCKOPT-ICMP-FILTER
+  - (SOCKOPT-IP-RECEIVE-ERROR)
+  - IO/SOCKET:SOCKOPT-IP-RECEIVE-ERROR
+  - (SOCKOPT-IP-HEADER-INCLUDE)
+  - IO/SOCKET:SOCKOPT-IP-HEADER-INCLUDE
+  - (SOCKOPT-TCP-WINDOW-CLAMP)
+  - IO/SOCKET:SOCKOPT-TCP-WINDOW-CLAMP
+  - (SOCKOPT-TCP-SYNCNT)
+  - IO/SOCKET:SOCKOPT-TCP-SYNCNT
+  - (SOCKOPT-TCP-QUICKACK)
+  - IO/SOCKET:SOCKOPT-TCP-QUICKACK
+  - (SOCKOPT-TCP-LINGER2)
+  - IO/SOCKET:SOCKOPT-TCP-LINGER2
+  - (SOCKOPT-TCP-DEFER-ACCEPT)
+  - IO/SOCKET:SOCKOPT-TCP-DEFER-ACCEPT
+  - (SOCKOPT-TCP-CORK)
+  - IO/SOCKET:SOCKOPT-TCP-CORK
+  - (SOCKOPT-TCP-MAXSEG)
+  - IO/SOCKET:SOCKOPT-TCP-MAXSEG
+  - (SOCKOPT-REUSE-PORT)
+  - IO/SOCKET:SOCKOPT-REUSE-PORT
+  - (SOCKOPT-LINGER)
+  - [[id:537702008127][SOCKOPT-LINGER]]
+  - (SOCKOPT-SEND-TIMEOUT)
+  - [[id:1270747248741][SOCKOPT-SEND-TIMEOUT]]
+  - (SOCKOPT-RECEIVE-TIMEOUT)
+  - [[id:432355278405][SOCKOPT-RECEIVE-TIMEOUT]]
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** SOCKET-PEERNAME :generic:function:
+:PROPERTIES:
+:ID: 961898438524
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-PEERNAME
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-PEERNAME names a generic function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Return SOCKET's peer; depending on the address family this may
+    return multiple values
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-PEERNAME (WRAPPED-SOCKET))
+    (SOCKET-PEERNAME (SOCKET))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - (SOCKET-PEERSTRING (LOCAL-SOCKET))
+  - (SOCKET-PEERSTRING (INET6-SOCKET))
+  - (SOCKET-PEERSTRING (INET-SOCKET))
+  - (PROCESS-CONNECTION (HTTP-SERVICE T))
+  - (PROCESS-CONNECTION (UDP-SERVICE T))
+  - [[id:1569855171067][SERVICE-MAKE-REQUEST]]
+  - (CREATE-REQUEST-WORKER-THREAD (THREAD-PER-CONNECTION-ENGINE T))
+  - (SOCKET-PEERNAME (WRAPPED-SOCKET))
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET)
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** SOCKET-SEND :generic:function:
+:PROPERTIES:
+:ID: 1721164294233
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-SEND
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-SEND names a generic function:
+  Lambda-list: (SOCKET BUFFER LENGTH &KEY ADDRESS EXTERNAL-FORMAT OOB EOR
+                       DONTROUTE DONTWAIT NOSIGNAL CONFIRM MORE)
+  Argument precedence order: (SOCKET BUFFER LENGTH)
+  Derived type: (FUNCTION
+                 (T T T &KEY (:ADDRESS T) (:EXTERNAL-FORMAT T) (:OOB T)
+                  (:EOR T) (:DONTROUTE T) (:DONTWAIT T) (:NOSIGNAL T)
+                  (:CONFIRM T) (:MORE T))
+                 *)
+  Documentation:
+    Send LENGTH octets from BUFFER into SOCKET, using sendto(2). If
+    BUFFER is a string, it will converted to octets according to
+    EXTERNAL-FORMAT. If LENGTH is NIL, the length of the octet buffer is
+    used. The format of ADDRESS depends on the socket type (for example
+    for INET domain sockets it would be a list of an IP address and a
+    port). If no socket address is provided, send(2) will be called
+    instead. Returns the number of octets written.
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-SEND (LIBPOD-CLIENT T T))
+    (SOCKET-SEND (WRAPPED-SOCKET T T))
+    (SOCKET-SEND (SOCKET T T))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - (SOCKET-SEND (LIBPOD-CLIENT T T))
+  - NET/PROTO/DM::DM
+  - NET/PROTO/DNS::TRY-SERVER
+  - (SEND (SOCKET T))
+  - (SOCKET-SEND (WRAPPED-SOCKET T T))
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET BUFFER LENGTH &KEY ADDRESS EXTERNAL-FORMAT OOB EOR DONTROUTE
+            DONTWAIT NOSIGNAL CONFIRM MORE)
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/pod/client.lisp
+  - [[id:2849915693921][LIBPOD-CLIENT]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** HOST-ENT-ADDRESS :generic:function:
+:PROPERTIES:
+:ID: 4061179491997
+:CUSTOM_ID: SB-BSD-SOCKETS:HOST-ENT-ADDRESS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+HOST-ENT-ADDRESS names a generic function:
+  Lambda-list: (HOST-ENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Return some valid address for HOST-ENT.
+  Method-combination: STANDARD
+  Methods:
+    (HOST-ENT-ADDRESS (HOST-ENT))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - NET/PROTO/SWANK::SLIME-NET-CONNECT
+  - [[id:2470844387086][HOSTNAME]]
+  - (CREATE-SOCKET IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+  - SWANK/SBCL::RESOLVE-HOSTNAME
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (HOST-ENT)
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+  - [[id:1908841591574][HOST-ENT]]
+:end:
+** GET-PROTOCOL-BY-NAME :compiled:function:
+:PROPERTIES:
+:ID: 3474320354500
+:CUSTOM_ID: SB-BSD-SOCKETS:GET-PROTOCOL-BY-NAME
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+GET-PROTOCOL-BY-NAME names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Given a protocol name, return the protocol number, the protocol name, and
+    a list of protocol aliases.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;INET.LISP.NEWEST
+#+end_example
+
+- Called by
+  - (SOCKOPT-TCP-NODELAY)
+  - [[id:2322289316084][SOCKOPT-TCP-NODELAY]]
+  - (SOCKOPT-TCP-USER-TIMEOUT)
+  - [[id:29990184413][SOCKOPT-TCP-USER-TIMEOUT]]
+  - (SOCKOPT-TCP-KEEPINTVL)
+  - [[id:1178302204532][SOCKOPT-TCP-KEEPINTVL]]
+  - (SOCKOPT-TCP-KEEPIDLE)
+  - [[id:1362204786536][SOCKOPT-TCP-KEEPIDLE]]
+  - (SOCKOPT-TCP-KEEPCNT)
+  - [[id:822757944049][SOCKOPT-TCP-KEEPCNT]]
+  - (SHARED-INITIALIZE AFTER (SOCKET T))
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;INET.LISP.NEWEST
+:end:
+** TRY-AGAIN-ERROR :condition:class:
+:PROPERTIES:
+:ID: 4078804184940
+:CUSTOM_ID: SB-BSD-SOCKETS:TRY-AGAIN-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+TRY-AGAIN-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:TRY-AGAIN-ERROR>:
+  Class precedence-list: TRY-AGAIN-ERROR, NAME-SERVICE-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: NAME-SERVICE-ERROR
+  No subclasses.
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+:end:
+** SOCKET-LISTEN :generic:function:
+:PROPERTIES:
+:ID: 3550967992037
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-LISTEN
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-LISTEN names a generic function:
+  Lambda-list: (SOCKET BACKLOG)
+  Argument precedence order: (SOCKET BACKLOG)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Mark SOCKET as willing to accept incoming connections.  The
+    integer BACKLOG defines the maximum length that the queue of pending
+    connections may grow to before new connection attempts are refused.
+    See also listen(2).
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-LISTEN (LIBPOD-CLIENT T))
+    (SOCKET-LISTEN (WRAPPED-SOCKET T))
+    (SOCKET-LISTEN (SOCKET T))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - (SOCKET-LISTEN (LIBPOD-CLIENT T))
+  - (ACCEPT (NET-SERVICE))
+  - (START-LISTENING (NET-SERVICE))
+  - [[id:2176053075983][MAKE-SOCKET]]
+  - (SOCKET-LISTEN (WRAPPED-SOCKET T))
+  - (CREATE-SOCKET IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET BACKLOG)
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/pod/client.lisp
+  - [[id:2849915693921][LIBPOD-CLIENT]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** HOST-NOT-FOUND-ERROR :condition:class:
+:PROPERTIES:
+:ID: 3416496597044
+:CUSTOM_ID: SB-BSD-SOCKETS:HOST-NOT-FOUND-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+HOST-NOT-FOUND-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:HOST-NOT-FOUND-ERROR>:
+  Class precedence-list: HOST-NOT-FOUND-ERROR, NAME-SERVICE-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: NAME-SERVICE-ERROR
+  No subclasses.
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+:end:
+** OPERATION-TIMEOUT-ERROR :condition:class:
+:PROPERTIES:
+:ID: 3971871085154
+:CUSTOM_ID: SB-BSD-SOCKETS:OPERATION-TIMEOUT-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+OPERATION-TIMEOUT-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:OPERATION-TIMEOUT-ERROR>:
+  Class precedence-list: OPERATION-TIMEOUT-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::ETIMEDOUT
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** INET6-SOCKET :class:
+:PROPERTIES:
+:ID: 1844801065565
+:CUSTOM_ID: SB-BSD-SOCKETS:INET6-SOCKET
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+INET6-SOCKET names the standard-class #<STANDARD-CLASS SB-BSD-SOCKETS:INET6-SOCKET>:
+  Documentation:
+    Class representing TCP and UDP over IPv6 sockets.
+    
+    Examples:
+    
+        (make-instance 'sb-bsd-sockets:inet6-socket :type :stream :protocol :tcp)
+    
+        (make-instance 'sb-bsd-sockets:inet6-socket :type :datagram :protocol :udp)
+  Class precedence-list: INET6-SOCKET, SOCKET, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET
+  No subclasses.
+  Direct slots:
+    FAMILY
+      Initform: SB-BSD-SOCKETS-INTERNAL::AF-INET6
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;INET6.LISP.NEWEST
+:end:
+** LOCAL-ABSTRACT-SOCKET :class:
+:PROPERTIES:
+:ID: 3552552270073
+:CUSTOM_ID: SB-BSD-SOCKETS:LOCAL-ABSTRACT-SOCKET
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+LOCAL-ABSTRACT-SOCKET names the standard-class #<STANDARD-CLASS SB-BSD-SOCKETS:LOCAL-ABSTRACT-SOCKET>:
+  Documentation:
+    Class representing local domain (AF_LOCAL) sockets with
+    addresses in the abstract namespace.
+  Class precedence-list: LOCAL-ABSTRACT-SOCKET, LOCAL-SOCKET, SOCKET,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: LOCAL-SOCKET
+  No subclasses.
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;LOCAL.LISP.NEWEST
+:end:
+** SOCKET-RECEIVE :generic:function:
+:PROPERTIES:
+:ID: 3013242781680
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-RECEIVE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-RECEIVE names a generic function:
+  Lambda-list: (SOCKET BUFFER LENGTH &KEY OOB PEEK WAITALL DONTWAIT
+                       ELEMENT-TYPE)
+  Argument precedence order: (SOCKET BUFFER LENGTH)
+  Derived type: (FUNCTION
+                 (T T T &KEY (:OOB T) (:PEEK T) (:WAITALL T) (:DONTWAIT T)
+                  (:ELEMENT-TYPE T))
+                 *)
+  Documentation:
+    Read LENGTH octets from SOCKET into BUFFER (or a freshly-consed
+    buffer if NIL), using recvfrom(2). If LENGTH is NIL, the length of
+    BUFFER is used, so at least one of these two arguments must be
+    non-NIL. If BUFFER is supplied, it had better be of an element type
+    one octet wide. Returns the buffer, its length, and the address of the
+    peer that sent it, as multiple values. On datagram sockets, sets
+    MSG_TRUNC so that the actual packet length is returned even if
+    the buffer was too small.
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-RECEIVE (LIBPOD-CLIENT T T))
+    (SOCKET-RECEIVE (WRAPPED-SOCKET T T))
+    (SOCKET-RECEIVE (SOCKET T T))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - (SOCKET-RECEIVE (LIBPOD-CLIENT T T))
+  - NET/PROTO/DNS::TRY-SERVER
+  - (RECEIVE (SOCKET))
+  - [[id:1888820834903][UDP-RECEIVE-PING]]
+  - [[id:4182764746022][UDP-ECHO]]
+  - [[id:1049943188013][TCP-RECEIVE-PING]]
+  - [[id:2154363012590][TCP-ECHO]]
+  - (SOCKET-RECEIVE (WRAPPED-SOCKET T T))
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET BUFFER LENGTH &KEY OOB PEEK WAITALL DONTWAIT ELEMENT-TYPE)
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/pod/client.lisp
+  - [[id:2849915693921][LIBPOD-CLIENT]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** NOT-CONNECTED-ERROR :condition:class:
+:PROPERTIES:
+:ID: 1654705594481
+:CUSTOM_ID: SB-BSD-SOCKETS:NOT-CONNECTED-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+NOT-CONNECTED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:NOT-CONNECTED-ERROR>:
+  Class precedence-list: NOT-CONNECTED-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::ENOTCONN
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** OPERATION-IN-PROGRESS :condition:class:
+:PROPERTIES:
+:ID: 3756216681821
+:CUSTOM_ID: SB-BSD-SOCKETS:OPERATION-IN-PROGRESS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+OPERATION-IN-PROGRESS names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:OPERATION-IN-PROGRESS>:
+  Class precedence-list: OPERATION-IN-PROGRESS, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::EINPROGRESS
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** NETDB-SUCCESS-ERROR :condition:class:
+:PROPERTIES:
+:ID: 3797093581331
+:CUSTOM_ID: SB-BSD-SOCKETS:NETDB-SUCCESS-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+NETDB-SUCCESS-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:NETDB-SUCCESS-ERROR>:
+  Class precedence-list: NETDB-SUCCESS-ERROR, NAME-SERVICE-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: NAME-SERVICE-ERROR
+  No subclasses.
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+:end:
+** SOCKET-TYPE :generic:function:
+:PROPERTIES:
+:ID: 2663148638777
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-TYPE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-TYPE names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-TYPE (SOCKET))
+      Documentation:
+        Type of the socket: :STREAM or :DATAGRAM.
+#+end_example
+
+- Called by
+  - (SOCKET-RECEIVE (SOCKET T T))
+  - (SOCKET-ACCEPT (SOCKET))
+  - (SOCKET-DISCONNECT (NETLINK-SOCKET))
+  - (SOCKET-DISCONNECT (UNIX-SOCKET))
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+:end:
+** GET-HOST-BY-NAME :compiled:function:
+:PROPERTIES:
+:ID: 1053520094808
+:CUSTOM_ID: SB-BSD-SOCKETS:GET-HOST-BY-NAME
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+GET-HOST-BY-NAME names a compiled function:
+  Lambda-list: (HOST-NAME)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Returns a HOST-ENT instance for HOST-NAME or signals a NAME-SERVICE-ERROR.
+    
+    Another HOST-ENT instance containing zero, one or more IPv6 addresses
+    may be returned as a second return value.
+    
+    HOST-NAME may also be an IP address in dotted quad notation or some other
+    weird stuff - see getaddrinfo(3) for the details.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+#+end_example
+
+- Called by
+  - NET/PROTO/SWANK::SLIME-NET-CONNECT
+  - [[id:3093696310533][GET-ADDRESS-BY-NAME]]
+  - SWANK/SBCL::RESOLVE-HOSTNAME
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+:end:
+** SOCKOPT-ERROR :compiled:function:
+:PROPERTIES:
+:ID: 871361329155
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-ERROR names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-ERROR) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+- Called by
+  - (SOCKET-CONNECT (SOCKET))
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** GET-HOST-BY-ADDRESS :compiled:function:
+:PROPERTIES:
+:ID: 42564957134
+:CUSTOM_ID: SB-BSD-SOCKETS:GET-HOST-BY-ADDRESS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+GET-HOST-BY-ADDRESS names a compiled function:
+  Lambda-list: (ADDRESS)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Returns a HOST-ENT instance for ADDRESS, which should be a vector of
+    (integer 0 255) with 4 elements in case of an IPv4 address and 16
+    elements in case of an IPv6 address, or signals a NAME-SERVICE-ERROR.
+    See gethostbyaddr(3) for details.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+#+end_example
+
+- Called by
+  - [[id:2470844387086][HOSTNAME]]
+  - CRY/TLS::CERTIFICATE-DNS-ALT-NAMES
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+:end:
+** NETWORK-UNREACHABLE-ERROR :condition:class:
+:PROPERTIES:
+:ID: 7671696289
+:CUSTOM_ID: SB-BSD-SOCKETS:NETWORK-UNREACHABLE-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+NETWORK-UNREACHABLE-ERROR names the condition-class #<SB-PCL::CONDITION-CLASSSB-BSD-SOCKETS:NETWORK-UNREACHABLE-ERROR>:
+  Class precedence-list: NETWORK-UNREACHABLE-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::ENETUNREACH
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** SOCKOPT-REUSE-ADDRESS :compiled:function:
+:PROPERTIES:
+:ID: 1891060594323
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-REUSE-ADDRESS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-REUSE-ADDRESS names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Return the value of the SO-REUSEADDR socket option for SOCKET. This canalso be
+    updated with SETF.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-REUSE-ADDRESS) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** PROTOCOL-NOT-SUPPORTED-ERROR :condition:class:
+:PROPERTIES:
+:ID: 393251724066
+:CUSTOM_ID: SB-BSD-SOCKETS:PROTOCOL-NOT-SUPPORTED-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+PROTOCOL-NOT-SUPPORTED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:PROTOCOL-NOT-SUPPORTED-ERROR>:
+  Class precedence-list: PROTOCOL-NOT-SUPPORTED-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::EPROTONOSUPPORT
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** SOCKET-CONNECT :generic:function:
+:PROPERTIES:
+:ID: 512326557760
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-CONNECT
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-CONNECT names a generic function:
+  Lambda-list: (SOCKET &REST ADDRESS)
+  Derived type: (FUNCTION (T &REST T) *)
+  Documentation:
+    Perform the connect(2) call to connect SOCKET to a remote PEER.
+    No useful return value.
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-CONNECT (LIBPOD-CLIENT))
+    (SOCKET-CONNECT (WRAPPED-SOCKET))
+    (SOCKET-CONNECT (SOCKET))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - SKEL/MPK/MPD:MPC-CONNECT
+  - (BUILD (PROJECT-CONTAINERFILE))
+  - (SOCKET-CONNECT (LIBPOD-CLIENT))
+  - NET/SRV/HTTP::WAKE-TCP-SERVICE-FOR-SHUTDOWN
+  - [[id:2460044734616][REQ]]
+  - NET/PROTO/DBUS::OPEN-SOCKET-CONNECTION
+  - NET/PROTO/SWANK::SLIME-NET-CONNECT
+  - NET/PROTO/DNS::TRY-SERVER
+  - (CONNECT (LOCAL-SOCKET T))
+  - (CONNECT (SOCKET T))
+  - [[id:2176053075983][MAKE-SOCKET]]
+  - (SOCKET-CONNECT (WRAPPED-SOCKET))
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET &REST ADDRESS)
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/pod/client.lisp
+  - [[id:2849915693921][LIBPOD-CLIENT]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** INVALID-ARGUMENT-ERROR :condition:class:
+:PROPERTIES:
+:ID: 1209115062402
+:CUSTOM_ID: SB-BSD-SOCKETS:INVALID-ARGUMENT-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+INVALID-ARGUMENT-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:INVALID-ARGUMENT-ERROR>:
+  Class precedence-list: INVALID-ARGUMENT-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::EINVAL
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** SOCKOPT-BIND-TO-DEVICE :compiled:function:
+:PROPERTIES:
+:ID: 3755407715263
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-BIND-TO-DEVICE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-BIND-TO-DEVICE names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-BIND-TO-DEVICE) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES (OR SIMPLE-STRING NULL) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** ADDRESS-IN-USE-ERROR :condition:class:
+:PROPERTIES:
+:ID: 22259150246
+:CUSTOM_ID: SB-BSD-SOCKETS:ADDRESS-IN-USE-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+ADDRESS-IN-USE-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:ADDRESS-IN-USE-ERROR>:
+  Class precedence-list: ADDRESS-IN-USE-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::EADDRINUSE
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:
+** SOCKOPT-TYPE :compiled:function:
+:PROPERTIES:
+:ID: 3554616952962
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-TYPE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-TYPE names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-TYPE) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** HOST-ENT-ALIASES :generic:function:
+:PROPERTIES:
+:ID: 3060974700438
+:CUSTOM_ID: SB-BSD-SOCKETS:HOST-ENT-ALIASES
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+HOST-ENT-ALIASES names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (HOST-ENT-ALIASES (HOST-ENT))
+      Documentation:
+        automatically generated reader method
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+  - [[id:1908841591574][HOST-ENT]]
+:end:
+** SOCKOPT-RECEIVE-LOW-WATER :compiled:function:
+:PROPERTIES:
+:ID: 106935767678
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-RECEIVE-LOW-WATER
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-RECEIVE-LOW-WATER names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-RECEIVE-LOW-WATER) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** HOST-ENT-NAME :generic:function:
+:PROPERTIES:
+:ID: 2708056897982
+:CUSTOM_ID: SB-BSD-SOCKETS:HOST-ENT-NAME
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+HOST-ENT-NAME names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (HOST-ENT-NAME (HOST-ENT))
+      Documentation:
+        The name of the host
+#+end_example
+
+- Called by
+  - CRY/TLS::CERTIFICATE-DNS-ALT-NAMES
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+  - [[id:1908841591574][HOST-ENT]]
+:end:
+** NON-BLOCKING-MODE :generic:function:
+:PROPERTIES:
+:ID: 2357305101543
+:CUSTOM_ID: SB-BSD-SOCKETS:NON-BLOCKING-MODE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+NON-BLOCKING-MODE names a generic function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Is SOCKET in non-blocking mode?
+  Method-combination: STANDARD
+  Methods:
+    (NON-BLOCKING-MODE (SOCKET))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+
+(SETF NON-BLOCKING-MODE) names a generic function:
+  Lambda-list: (NON-BLOCKING-P SOCKET)
+  Argument precedence order: (NON-BLOCKING-P SOCKET)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Put SOCKET in non-blocking mode - or not, according to
+    NON-BLOCKING-P
+  Method-combination: STANDARD
+  Methods:
+    ((SETF NON-BLOCKING-MODE) (T SOCKET))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET)
+- SYS:CONTRIB;SB-BSD-SOCKETS;MISC.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+:end:
+** SOCKET-SHUTDOWN :generic:function:
+:PROPERTIES:
+:ID: 3747777927978
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-SHUTDOWN
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-SHUTDOWN names a generic function:
+  Lambda-list: (SOCKET &KEY DIRECTION)
+  Derived type: (FUNCTION (T &KEY (:DIRECTION T)) *)
+  Documentation:
+    Indicate that no communication in DIRECTION will be performed on
+    SOCKET.
+    
+    DIRECTION has to be one of :INPUT, :OUTPUT or :IO.
+    
+    After a shutdown, no input and/or output of the indicated DIRECTION
+    can be performed on SOCKET.
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-SHUTDOWN (LIBPOD-CLIENT))
+    (SOCKET-SHUTDOWN (WRAPPED-SOCKET))
+    (SOCKET-SHUTDOWN (SOCKET))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - (SOCKET-SHUTDOWN (LIBPOD-CLIENT))
+  - (SOCKET-SHUTDOWN (WRAPPED-SOCKET))
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET &KEY DIRECTION)
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/pod/client.lisp
+  - [[id:2849915693921][LIBPOD-CLIENT]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** SOCKET-ACCEPT :generic:function:
+:PROPERTIES:
+:ID: 3481094202246
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-ACCEPT
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-ACCEPT names a generic function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Perform the accept(2) call, returning a newly-created connected
+    socket and the peer address as multiple values
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-ACCEPT (LIBPOD-CLIENT))
+    (SOCKET-ACCEPT (WRAPPED-SOCKET))
+    (SOCKET-ACCEPT (SOCKET))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - (SOCKET-ACCEPT (LIBPOD-CLIENT))
+  - (ACCEPT (NET-SERVICE))
+  - (SOCKET-ACCEPT (WRAPPED-SOCKET))
+  - [[id:3837681228476][ACCEPT]]
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET)
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/pod/client.lisp
+  - [[id:2849915693921][LIBPOD-CLIENT]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** SOCKOPT-TCP-KEEPINTVL :compiled:function:
+:PROPERTIES:
+:ID: 1178302204532
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-TCP-KEEPINTVL
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-TCP-KEEPINTVL names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-TCP-KEEPINTVL) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** NETDB-INTERNAL-ERROR :condition:class:
+:PROPERTIES:
+:ID: 2146846016365
+:CUSTOM_ID: SB-BSD-SOCKETS:NETDB-INTERNAL-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+NETDB-INTERNAL-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-BSD-SOCKETS:NETDB-INTERNAL-ERROR>:
+  Class precedence-list: NETDB-INTERNAL-ERROR, NAME-SERVICE-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: NAME-SERVICE-ERROR
+  No subclasses.
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+:end:
+** SOCKOPT-TCP-NODELAY :compiled:function:
+:PROPERTIES:
+:ID: 2322289316084
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-TCP-NODELAY
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-TCP-NODELAY names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Return the value of the TCP-NODELAY socket option for SOCKET. This can alsobe
+    updated with SETF.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-TCP-NODELAY) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** LOCAL-SOCKET :class:
+:PROPERTIES:
+:ID: 2444231780300
+:CUSTOM_ID: SB-BSD-SOCKETS:LOCAL-SOCKET
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+LOCAL-SOCKET names the standard-class #<STANDARD-CLASS SB-BSD-SOCKETS:LOCAL-SOCKET>:
+  Documentation:
+    Class representing local domain (AF_LOCAL) sockets,
+    also known as Unix-domain sockets.
+  Class precedence-list: LOCAL-SOCKET, SOCKET, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET
+  Direct subclasses: POD::LIBPOD-UNIX-SOCKET, LOCAL-ABSTRACT-SOCKET
+  Direct slots:
+    FAMILY
+      Initform: SB-BSD-SOCKETS-INTERNAL::AF-LOCAL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;LOCAL.LISP.NEWEST
+:end:
+** SOCKET-FAMILY :generic:function:
+:PROPERTIES:
+:ID: 3124911222942
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-FAMILY
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-FAMILY names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-FAMILY (UDP-SOCKET))
+      Documentation:
+        automatically generated reader method
+    (SOCKET-FAMILY (TCP-SOCKET))
+      Documentation:
+        automatically generated reader method
+    (SOCKET-FAMILY (SOCKET))
+      Documentation:
+        automatically generated reader method
+#+end_example
+
+- Called by
+  - (SIZE-OF-SOCKADDR (UDP-SOCKET))
+  - (SIZE-OF-SOCKADDR (TCP-SOCKET))
+  - (SHARED-INITIALIZE AFTER (SOCKET T))
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/net/socket.lisp
+  - [[id:3860131828870][UDP-SOCKET]]
+- /home/ellis/src/core/lib/net/socket.lisp
+  - [[id:3745971078797][TCP-SOCKET]]
+:end:
+** SOCKOPT-TCP-KEEPIDLE :compiled:function:
+:PROPERTIES:
+:ID: 1362204786536
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-TCP-KEEPIDLE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-TCP-KEEPIDLE names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-TCP-KEEPIDLE) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** SOCKET-MAKE-STREAM :generic:function:
+:PROPERTIES:
+:ID: 4258851294574
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-MAKE-STREAM
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-MAKE-STREAM names a generic function:
+  Lambda-list: (SOCKET &KEY INPUT OUTPUT ELEMENT-TYPE EXTERNAL-FORMAT BUFFERING
+                       TIMEOUT)
+  Derived type: (FUNCTION
+                 (T &KEY (:INPUT T) (:OUTPUT T) (:ELEMENT-TYPE T)
+                  (:EXTERNAL-FORMAT T) (:BUFFERING T) (:TIMEOUT T)
+                  (:AUTO-CLOSE T) (:SERVE-EVENTS T) &ALLOW-OTHER-KEYS)
+                 *)
+  Documentation:
+    Find or create a STREAM that can be used for IO on SOCKET (which
+    must be connected).  Specify whether the stream is for INPUT, OUTPUT,
+    or both (it is an error to specify neither).
+    
+    ELEMENT-TYPE and EXTERNAL-FORMAT are as per OPEN.
+    
+    TIMEOUT specifies a read timeout for the stream.
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-MAKE-STREAM (LIBPOD-CLIENT))
+    (SOCKET-MAKE-STREAM (WRAPPED-SOCKET))
+    (SOCKET-MAKE-STREAM (SOCKET))
+      Documentation:
+        Default method for SOCKET objects.
+        
+        ELEMENT-TYPE defaults to CHARACTER, to construct a bivalent stream,
+        capable of both binary and character IO use :DEFAULT.
+        
+        Acceptable values for BUFFERING are :FULL, :LINE and :NONE, default
+        is :FULL, ie. output is buffered till it is explicitly flushed using
+        CLOSE or FINISH-OUTPUT. (FORCE-OUTPUT forces some output to be
+        flushed: to ensure all buffered output is flused use FINISH-OUTPUT.)
+        
+        Streams have no TIMEOUT by default. If one is provided, it is the
+        number of seconds the system will at most wait for input to appear on
+        the socket stream when trying to read from it.
+        
+        If AUTO-CLOSE is true, the underlying OS socket is automatically
+        closed after the stream and the socket have been garbage collected.
+        Default is false.
+        
+        If SERVE-EVENTS is true, blocking IO on the socket will dispatch to
+        the recursive event loop. Default is false.
+        
+        The stream for SOCKET will be cached, and a second invocation of this
+        method will return the same stream. This may lead to oddities if this
+        function is invoked with inconsistent arguments (e.g., one might
+        request an input stream and get an output stream in response).
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - SKEL/MPK/MPD::SEND-COMMAND
+  - SKEL/MPK/MPD:MPC-CONNECT
+  - [[id:3518615458549][LIBPOD-REQUEST]]
+  - (SOCKET-MAKE-STREAM (LIBPOD-CLIENT))
+  - (PROCESS-CONNECTION (HTTP-SERVICE T))
+  - (PROCESS-CONNECTION (UDP-SERVICE T))
+  - (ACCEPT (NET-SERVICE))
+  - (CREATE-REQUEST-WORKER-THREAD (THREAD-PER-CONNECTION-ENGINE T))
+  - [[id:693440399338][SEND-SERVICE-UNAVAILABLE-RESPONSE]]
+  - [[id:2460044734616][REQ]]
+  - (SEND-MESSAGE (T DBUS-UNIX-CONNECTION))
+  - (SEND-LINE (T DBUS-UNIX-CONNECTION))
+  - (RECEIVE-LINE (DBUS-UNIX-CONNECTION))
+  - (RECEIVE-MESSAGE-NO-HANG (STANDARD-DBUS-CONNECTION))
+  - NET/PROTO/DBUS::OPEN-SOCKET-CONNECTION
+  - NET/PROTO/SWANK::SLIME-NET-READ
+  - NET/PROTO/SWANK::SLIME-SEND
+  - NET/PROTO/SWANK::SLIME-NET-SEND
+  - [[id:2176053075983][MAKE-SOCKET]]
+  - (SOCKET-MAKE-STREAM (WRAPPED-SOCKET))
+  - SWANK/SBCL::MAKE-SOCKET-IO-STREAM
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET &KEY INPUT OUTPUT ELEMENT-TYPE EXTERNAL-FORMAT BUFFERING TIMEOUT)
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/pod/client.lisp
+  - [[id:2849915693921][LIBPOD-CLIENT]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** SOCKOPT-DEBUG :compiled:function:
+:PROPERTIES:
+:ID: 909668490684
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-DEBUG
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-DEBUG names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Return the value of the SO-DEBUG socket option for SOCKET. This can also be
+    updated with SETF.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-DEBUG) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** SOCKOPT-DONT-ROUTE :compiled:function:
+:PROPERTIES:
+:ID: 4040382699472
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-DONT-ROUTE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-DONT-ROUTE names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Return the value of the SO-DONTROUTE socket option for SOCKET. This canalso be
+    updated with SETF.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-DONT-ROUTE) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** SOCKOPT-PASS-CREDENTIALS :compiled:function:
+:PROPERTIES:
+:ID: 1687215227689
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-PASS-CREDENTIALS
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-PASS-CREDENTIALS names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Return the value of the SO-PASSCRED socket option for SOCKET. This can alsobe
+    updated with SETF. Available only on Linux.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-PASS-CREDENTIALS) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** SOCKET-CLOSE :generic:function:
+:PROPERTIES:
+:ID: 31270033813
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKET-CLOSE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKET-CLOSE names a generic function:
+  Lambda-list: (SOCKET &KEY ABORT)
+  Derived type: (FUNCTION (T &KEY (:ABORT T)) *)
+  Documentation:
+    Close SOCKET, unless it was already closed.
+    
+    If SOCKET-MAKE-STREAM has been called, calls CLOSE using ABORT on that
+    stream. Otherwise closes the socket file descriptor using close(2).
+  Method-combination: STANDARD
+  Methods:
+    (SOCKET-CLOSE (LIBPOD-CLIENT))
+    (SOCKET-CLOSE (WRAPPED-SOCKET))
+    (SOCKET-CLOSE :BEFORE (WRAPPED-SOCKET))
+    (SOCKET-CLOSE (SOCKET))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+#+end_example
+
+- Called by
+  - SKEL/MPK/MPD::MPC-DISCONNECT
+  - (BUILD (PROJECT-CONTAINERFILE))
+  - (SOCKET-CLOSE (LIBPOD-CLIENT))
+  - NET/SRV/HTTP::WAKE-TCP-SERVICE-FOR-SHUTDOWN
+  - (STOP (NET-SERVICE))
+  - (ACCEPT (NET-SERVICE))
+  - (DISCONNECT (DBUS-UNIX-CONNECTION))
+  - NET/PROTO/DBUS::OPEN-SOCKET-CONNECTION
+  - NET/PROTO/SWANK::SLIME-DISPATCH-EVENTS
+  - NET/PROTO/DNS::TRY-SERVER
+  - [[id:1888820834903][UDP-RECEIVE-PING]]
+  - [[id:1049943188013][TCP-RECEIVE-PING]]
+  - NET/CORE::PORT-OPEN-P
+  - (SOCKET-CLOSE (WRAPPED-SOCKET))
+  - (CLOSE-SOCKET IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;PROTOCOL.LISP.NEWEST
+  - (SOCKET &KEY ABORT)
+- /home/ellis/src/core/lib/net/obj.lisp
+  - (BEFORE WRAPPED-SOCKET)
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+  - [[id:2512777137462][SOCKET]]
+- /home/ellis/src/core/lib/pod/client.lisp
+  - [[id:2849915693921][LIBPOD-CLIENT]]
+- /home/ellis/src/core/lib/net/obj.lisp
+  - [[id:2508281814856][WRAPPED-SOCKET]]
+:end:
+** SOCKOPT-OOB-INLINE :compiled:function:
+:PROPERTIES:
+:ID: 856862024363
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-OOB-INLINE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-OOB-INLINE names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Return the value of the SO-OOBINLINE socket option for SOCKET. This canalso be
+    updated with SETF.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-OOB-INLINE) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** HOST-ENT-ADDRESS-TYPE :generic:function:
+:PROPERTIES:
+:ID: 1884941052636
+:CUSTOM_ID: SB-BSD-SOCKETS:HOST-ENT-ADDRESS-TYPE
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+HOST-ENT-ADDRESS-TYPE names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (HOST-ENT-ADDRESS-TYPE (HOST-ENT))
+      Documentation:
+        automatically generated reader method
+#+end_example
+
+- Called by
+  - (CREATE-SOCKET IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;NAME-SERVICE.LISP.NEWEST
+  - [[id:1908841591574][HOST-ENT]]
+:end:
+** MAKE-INET-SOCKET :compiled:function:
+:PROPERTIES:
+:ID: 306399676011
+:CUSTOM_ID: SB-BSD-SOCKETS:MAKE-INET-SOCKET
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+MAKE-INET-SOCKET names a compiled function:
+  In LATE deprecation since SBCL version 1.2.15. Use COMMON-LISP:MAKE-INSTANCEinstead.
+  Lambda-list: (TYPE PROTOCOL)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    The function SB-BSD-SOCKETS:MAKE-INET-SOCKET has been deprecated as of SBCLversion 1.2.15.
+    
+    Use COMMON-LISP:MAKE-INSTANCE instead.
+    
+    Make an INET socket.
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;INET4.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;INET4.LISP.NEWEST
+- SYS:CONTRIB;SB-BSD-SOCKETS;INET4.LISP.NEWEST
+  - (DEPRECATED FUNCTION)
+:end:
+** SOCKOPT-RECEIVE-BUFFER :compiled:function:
+:PROPERTIES:
+:ID: 2602145297293
+:CUSTOM_ID: SB-BSD-SOCKETS:SOCKOPT-RECEIVE-BUFFER
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+SOCKOPT-RECEIVE-BUFFER names a compiled function:
+  Lambda-list: (SOCKET)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+
+(SETF SOCKOPT-RECEIVE-BUFFER) names a compiled function:
+  Lambda-list: (NEW-VALUE SOCKET)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKOPT.LISP.NEWEST
+:end:
+** BAD-FILE-DESCRIPTOR-ERROR :condition:class:
+:PROPERTIES:
+:ID: 3564803540840
+:CUSTOM_ID: SB-BSD-SOCKETS:BAD-FILE-DESCRIPTOR-ERROR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+BAD-FILE-DESCRIPTOR-ERROR names the condition-class #<SB-PCL::CONDITION-CLASSSB-BSD-SOCKETS:BAD-FILE-DESCRIPTOR-ERROR>:
+  Class precedence-list: BAD-FILE-DESCRIPTOR-ERROR, SOCKET-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SOCKET-ERROR
+  No subclasses.
+  Direct slots:
+    SYMBOL
+      Initargs: :SYMBOL
+      Initform: ''SB-BSD-SOCKETS-INTERNAL::EBADF
+      Readers: SB-BSD-SOCKETS::SOCKET-ERROR-SYMBOL
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-BSD-SOCKETS;SOCKETS.LISP.NEWEST
+:end:

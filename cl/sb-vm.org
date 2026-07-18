@@ -1,0 +1,6904 @@
+#+setupfile: ../../clean.theme
+* SB-VM
+:PROPERTIES:
+:CUSTOM_ID: SB-VM
+:ID: 6
+:LOCK: T
+:END:
+internal: the default place to hide information about the hardware and data
+structure representations
+
+- dependencies
+  - COMMON-LISP
+  - SB-ALIEN
+  - SB-ALIEN-INTERNALS
+  - SB-ASSEM
+  - SB-C
+  - SB-EXT
+  - SB-INT
+  - SB-KERNEL
+  - SB-SYS
+  - SB-UNIX
+
+- dependents
+  - [[#SB-ROTATE-BYTE][SB-ROTATE-BYTE]]
+  - [[#IRONCLAD-VM][IRONCLAD-VM]]
+  - [[#SB-X86-64-ASM][SB-X86-64-ASM]]
+  - [[#SB-DI][SB-DI]]
+
+** SAETP-N-PAD-ELEMENTS :compiled:function:
+:PROPERTIES:
+:ID: 4070048445357
+:CUSTOM_ID: SB-VM:SAETP-N-PAD-ELEMENTS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAETP-N-PAD-ELEMENTS names a compiled function:
+  An accessor for SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES)
+                 (VALUES BIT &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+:end:
+** DOUBLE-FLOAT-SIGNIFICAND-BYTE :constant:var:
+:PROPERTIES:
+:ID: 1907530544854
+:CUSTOM_ID: SB-VM:DOUBLE-FLOAT-SIGNIFICAND-BYTE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-FLOAT-SIGNIFICAND-BYTE names a constant variable:
+  Value: (52 . 0)
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** ARRAY-FLAGS-DATA-POSITION :constant:var:
+:PROPERTIES:
+:ID: 62030453180
+:CUSTOM_ID: SB-VM:ARRAY-FLAGS-DATA-POSITION
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARRAY-FLAGS-DATA-POSITION names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** FLOAT-UNDERFLOW-TRAP-BIT :constant:var:
+:PROPERTIES:
+:ID: 1860732149015
+:CUSTOM_ID: SB-VM:FLOAT-UNDERFLOW-TRAP-BIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FLOAT-UNDERFLOW-TRAP-BIT names a constant variable:
+  Value: 16
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** UNUSE-ARENA :compiled:function:
+:PROPERTIES:
+:ID: 1256099234652
+:CUSTOM_ID: SB-VM:UNUSE-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNUSE-ARENA names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL NULL))
+  Source file: SYS:SRC;CODE;ARENA.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** +VECTOR-ALLOC-MIXED-REGION-BIT​+ :constant:var:
+:PROPERTIES:
+:ID: 588074330796
+:CUSTOM_ID: SB-VM:+VECTOR-ALLOC-MIXED-REGION-BIT+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++VECTOR-ALLOC-MIXED-REGION-BIT+ names a constant variable:
+  Value: 268435456
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** *ARENA-EXHAUSTION-HANDLER​* :global:var:
+:PROPERTIES:
+:ID: 3875696090753
+:CUSTOM_ID: SB-VM:*ARENA-EXHAUSTION-HANDLER*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*ARENA-EXHAUSTION-HANDLER* names a global variable:
+  Declared type: FUNCTION
+  Declared always-bound.
+  Value: #<FUNCTION SB-VM::DEFAULT-ARENA-EXTENSION-TEST>
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** SIMPLE-FUN-ENTRY-SAP :compiled:function:
+:PROPERTIES:
+:ID: 2231363875206
+:CUSTOM_ID: SB-VM:SIMPLE-FUN-ENTRY-SAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-FUN-ENTRY-SAP names a compiled function:
+  Lambda-list: (FUN)
+  Derived type: (FUNCTION (T) (VALUES SB-SYS:SYSTEM-AREA-POINTER &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;SIMPLE-FUN.LISP
+#+end_example
+
+- Called by
+  - [[id:2763828005667][GET-SIMPLE-FUN-INSTRUCTION-MODEL]]
+
+:definitions:
+- SYS:SRC;CODE;SIMPLE-FUN.LISP
+:end:
+** *CONTROL-STACK-END​* :global:var:
+:PROPERTIES:
+:ID: 791909811136
+:CUSTOM_ID: SB-VM:*CONTROL-STACK-END*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*CONTROL-STACK-END* names a special variable:
+  Declared always-bound.
+  Value: 69929907470336
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** RATIO-DENOMINATOR-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1870426676643
+:CUSTOM_ID: SB-VM:RATIO-DENOMINATOR-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+RATIO-DENOMINATOR-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** WIDETAG-MASK :constant:var:
+:PROPERTIES:
+:ID: 1195868404715
+:CUSTOM_ID: SB-VM:WIDETAG-MASK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WIDETAG-MASK names a constant variable:
+  Value: 255
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** N-FIXNUM-TAG-BITS :constant:var:
+:PROPERTIES:
+:ID: 1363004764810
+:CUSTOM_ID: SB-VM:N-FIXNUM-TAG-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-FIXNUM-TAG-BITS names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** FDEFN-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 621974271109
+:CUSTOM_ID: SB-VM:FDEFN-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FDEFN-WIDETAG names a constant variable:
+  Value: 93
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** C-FIND-HEAP->ARENA :compiled:function:
+:PROPERTIES:
+:ID: 3691449451313
+:CUSTOM_ID: SB-VM:C-FIND-HEAP->ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+C-FIND-HEAP->ARENA names a compiled function:
+  Lambda-list: (&OPTIONAL ARENA)
+  Derived type: (FUNCTION (&OPTIONAL T) (VALUES LIST &OPTIONAL))
+  Source file: SYS:SRC;CODE;ARENA.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** SYMBOL-FDEFN-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3710077042365
+:CUSTOM_ID: SB-VM:SYMBOL-FDEFN-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SYMBOL-FDEFN-SLOT names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** BINDING-SIZE :constant:var:
+:PROPERTIES:
+:ID: 2124708917233
+:CUSTOM_ID: SB-VM:BINDING-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+BINDING-SIZE names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** POINTS-TO-ARENA :compiled:function:
+:PROPERTIES:
+:ID: 4089086600735
+:CUSTOM_ID: SB-VM:POINTS-TO-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+POINTS-TO-ARENA names a compiled function:
+  Lambda-list: (OBJ)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (OR
+                   (AND (NOT PACKAGE) (NOT SYMBOL) (NOT SB-KERNEL:FDEFN)
+                        (NOT SB-KERNEL:LAYOUT) (NOT SB-KERNEL:CLASSOID))
+                   NULL)
+                  &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** FLOAT-OVERFLOW-TRAP-BIT :constant:var:
+:PROPERTIES:
+:ID: 267168263558
+:CUSTOM_ID: SB-VM:FLOAT-OVERFLOW-TRAP-BIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FLOAT-OVERFLOW-TRAP-BIT names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** *PRIMITIVE-OBJECTS​* :global:var:
+:PROPERTIES:
+:ID: 838557991005
+:CUSTOM_ID: SB-VM:*PRIMITIVE-OBJECTS*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*PRIMITIVE-OBJECTS* names a global variable:
+  Declared always-bound.
+  Value: (#S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-VM::THREAD
+             :WIDETAG NIL
+             :LOWTAG NIL
+             :LENGTH 49
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((0 SB-VM:NO-TLS-VALUE-MARKER) (1 SB-VM::STEPPING)
+                      (2 SB-VM::BINDING-STACK-POINTER :POINTER T :SPECIAL
+                       SB-VM::*BINDING-STACK-POINTER*)
+                      (3 SB-VM::CURRENT-CATCH-BLOCK :SPECIAL
+                       SB-VM:*CURRENT-CATCH-BLOCK*)
+                      (4 SB-VM::CURRENT-UNWIND-PROTECT-BLOCK :SPECIAL
+                       SB-VM::*CURRENT-UNWIND-PROTECT-BLOCK*)
+                      (5 SB-VM::PSEUDO-ATOMIC-BITS)
+                      (6 SB-VM::ALIEN-STACK-POINTER :POINTER T :SPECIAL
+                       SB-C:*ALIEN-STACK-POINTER*)
+                      (7 SB-VM::PROFILE-DATA :POINTER T)
+                      (8 SB-VM::BOXED-TLAB :LENGTH 3)
+                      (11 SB-VM::CONS-TLAB :LENGTH 3)
+                      (14 SB-VM::MIXED-TLAB :LENGTH 3)
+                      (17 SB-VM::MSAN-PARAM-TLS)
+                      (18 SB-VM::OS-ADDRESS :POINTER T) (19 SB-VM::OS-THREAD)
+                      (20 SB-VM::ALIEN-STACK-START :POINTER T)
+                      (21 SB-VM::BINDING-STACK-START :POINTER T :SPECIAL
+                       SB-VM:*BINDING-STACK-START*)
+                      (22 SB-VM::CONTROL-STACK-START :POINTER T :SPECIAL
+                       SB-VM:*CONTROL-STACK-START*)
+                      (23 SB-VM::CONTROL-STACK-END :POINTER T :SPECIAL
+                       SB-VM:*CONTROL-STACK-END*)
+                      (24 SB-VM::THIS :POINTER T) (25 SB-VM::PREV :POINTER T)
+                      (26 SB-VM::NEXT :POINTER T) (27 SB-VM::STATE-WORD)
+                      (28 SB-VM::SPROF-DATA)
+                      (29 SB-VM::SPROF-ENABLE :SPECIAL
+                       SB-THREAD::*SPROF-ENABLE*)
+                      (30 ARENA) (31 SB-VM::BREAKPOINT-MISC :POINTER T)
+                      (32 SB-VM:TLS-SIZE) (33 SB-VM::FFCALL-ACTIVE-P)
+                      (34 SB-VM::CONTROL-STACK-POINTER)
+                      (35 SB-VM::SYMBOL-TLAB :LENGTH 3)
+                      (38 SB-VM::SYS-MIXED-TLAB :LENGTH 3)
+                      (41 SB-VM::SYS-CONS-TLAB :LENGTH 3) (44 SB-VM::REMSET)
+                      (45 SB-VM::SLOW-PATH-ALLOCS)
+                      (46 SB-VM::ET-FIND-FREEISH-PAGE) (47 SB-VM::ET-BZEROING)
+                      (48 SB-VM::LISP-THREAD :POINTER T :SPECIAL
+                       *CURRENT-THREAD*)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SIMD-PACK-512
+             :WIDETAG SB-VM:SIMD-PACK-512-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 10
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 SB-VM::TAG :REF-TRANS SB-KERNEL:%SIMD-PACK-512-TAG
+                       :ATTRIBUTES (SB-C:MOVABLE SB-ASSEM::FLUSHABLE) :TYPE
+                       (UNSIGNED-BYTE 4))
+                      (2 SB-VM::P0 :TYPE (UNSIGNED-BYTE 64))
+                      (3 SB-VM::P1 :TYPE (UNSIGNED-BYTE 64))
+                      (4 SB-VM::P2 :TYPE (UNSIGNED-BYTE 64))
+                      (5 SB-VM::P3 :TYPE (UNSIGNED-BYTE 64))
+                      (6 SB-VM::P4 :TYPE (UNSIGNED-BYTE 64))
+                      (7 SB-VM::P5 :TYPE (UNSIGNED-BYTE 64))
+                      (8 SB-VM::P6 :TYPE (UNSIGNED-BYTE 64))
+                      (9 SB-VM::P7 :TYPE (UNSIGNED-BYTE 64))))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SIMD-PACK-256
+             :WIDETAG SB-VM:SIMD-PACK-256-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 6
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 SB-VM::TAG :REF-TRANS SB-KERNEL:%SIMD-PACK-256-TAG
+                       :ATTRIBUTES (SB-C:MOVABLE SB-ASSEM::FLUSHABLE) :TYPE
+                       (UNSIGNED-BYTE 4))
+                      (2 SB-VM::P0 :TYPE (UNSIGNED-BYTE 64))
+                      (3 SB-VM::P1 :TYPE (UNSIGNED-BYTE 64))
+                      (4 SB-VM::P2 :TYPE (UNSIGNED-BYTE 64))
+                      (5 SB-VM::P3 :TYPE (UNSIGNED-BYTE 64))))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SIMD-PACK
+             :WIDETAG SB-VM:SIMD-PACK-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 4
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 SB-VM::TAG :REF-TRANS SB-KERNEL:%SIMD-PACK-TAG
+                       :ATTRIBUTES (SB-C:MOVABLE SB-ASSEM::FLUSHABLE) :TYPE
+                       (UNSIGNED-BYTE 4))
+                      (2 SB-VM::LO-VALUE :TYPE (UNSIGNED-BYTE 64))
+                      (3 SB-VM::HI-VALUE :TYPE (UNSIGNED-BYTE 64))))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-KERNEL:COMPLEX-DOUBLE-FLOAT
+             :WIDETAG SB-VM:COMPLEX-DOUBLE-FLOAT-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 4
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 SB-VM::FILLER) (2 REAL) (3 SB-VM::IMAG)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-KERNEL:COMPLEX-SINGLE-FLOAT
+             :WIDETAG SB-VM:COMPLEX-SINGLE-FLOAT-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 2
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 SB-VM::DATA)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SYMBOL
+             :WIDETAG SB-VM:SYMBOL-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 6
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 SB-VM::HASH) (2 SB-VM::VALUE :INIT :UNBOUND)
+                      (3 SB-KERNEL:FDEFN)
+                      (4 INFO :REF-TRANS SB-KERNEL:SYMBOL-%INFO :REF-KNOWN
+                       (SB-ASSEM::FLUSHABLE) :CAS-TRANS
+                       SB-IMPL::CAS-SYMBOL-%INFO :TYPE
+                       (OR SB-KERNEL:INSTANCE LIST) :INIT :NULL)
+                      (5 SB-VM::NAME :REF-TRANS SYMBOL-NAME :INIT :ARG)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-C:CATCH-BLOCK
+             :WIDETAG NIL
+             :LOWTAG NIL
+             :LENGTH 6
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((0 SB-VM::UWP) (1 SB-VM::CFP) (2 SB-VM::ENTRY-PC)
+                      (3 SB-VM::BSP) (4 SB-VM::PREVIOUS-CATCH) (5 SB-VM::TAG)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-C:UNWIND-BLOCK
+             :WIDETAG NIL
+             :LOWTAG NIL
+             :LENGTH 5
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((0 SB-VM::UWP) (1 SB-VM::CFP) (2 SB-VM::ENTRY-PC)
+                      (3 SB-VM::BSP) (4 SB-VM::CURRENT-CATCH)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-VM::BINDING
+             :WIDETAG NIL
+             :LOWTAG NIL
+             :LENGTH 2
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((0 SB-VM::VALUE) (1 SYMBOL)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME WEAK-POINTER
+             :WIDETAG SB-VM:WEAK-POINTER-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 2
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 SB-VM::VALUE :REF-TRANS SB-VM::%WEAK-POINTER-VALUE
+                       :REF-KNOWN (SB-ASSEM::FLUSHABLE) :INIT :ARG)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-VM::SAP
+             :WIDETAG SB-VM:SAP-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 2
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 SB-VM::POINTER :POINTER T)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-VM::VALUE-CELL
+             :WIDETAG SB-VM:VALUE-CELL-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 2
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 SB-VM::VALUE :SET-TRANS SB-KERNEL:VALUE-CELL-SET
+                       :SET-KNOWN NIL :REF-TRANS SB-KERNEL:VALUE-CELL-REF
+                       :REF-KNOWN (SB-ASSEM::FLUSHABLE) :INIT :ARG)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-KERNEL:FUNCALLABLE-INSTANCE
+             :WIDETAG SB-VM:FUNCALLABLE-INSTANCE-WIDETAG
+             :LOWTAG SB-VM:FUN-POINTER-LOWTAG
+             :LENGTH 5
+             :VARIABLE-LENGTH-P T
+             :SLOTS #((1 SB-VM::TRAMPOLINE) (2 SB-VM::INSTWORD1)
+                      (3 SB-VM::INSTWORD2)
+                      (4 FUNCTION :TYPE FUNCTION :REF-KNOWN
+                       (SB-ASSEM::FLUSHABLE) :REF-TRANS
+                       SB-KERNEL:%FUNCALLABLE-INSTANCE-FUN :SET-KNOWN NIL
+                       :SET-TRANS (SETF SB-KERNEL:%FUNCALLABLE-INSTANCE-FUN))
+                      (5 INFO)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-KERNEL:CLOSURE
+             :WIDETAG SB-VM:CLOSURE-WIDETAG
+             :LOWTAG SB-VM:FUN-POINTER-LOWTAG
+             :LENGTH 2
+             :VARIABLE-LENGTH-P T
+             :SLOTS #((1 SB-VM::FUN :INIT :ARG :REF-TRANS
+                       SB-VM::%CLOSURE-CALLEE)
+                      (2 INFO)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-KERNEL:SIMPLE-FUN
+             :WIDETAG SB-VM:SIMPLE-FUN-WIDETAG
+             :LOWTAG SB-VM:FUN-POINTER-LOWTAG
+             :LENGTH 2
+             :VARIABLE-LENGTH-P T
+             :SLOTS #((1 SB-VM::SELF :SET-KNOWN NIL :SET-TRANS
+                       (SETF SB-VM::%SIMPLE-FUN-SELF))
+                      (2 SB-VM::INSTS)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-KERNEL:FDEFN
+             :WIDETAG SB-VM:FDEFN-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 4
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 SB-VM::BITS)
+                      (2 SB-VM::NAME :REF-TRANS SB-KERNEL:FDEFN-NAME)
+                      (3 SB-VM::FUN)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-VM::CODE
+             :WIDETAG SB-VM:CODE-HEADER-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 4
+             :VARIABLE-LENGTH-P T
+             :SLOTS #((1 SB-VM::BOXED-SIZE :TYPE FIXNUM :REF-KNOWN
+                       (SB-ASSEM::FLUSHABLE SB-C:MOVABLE) :REF-TRANS
+                       SB-VM::%CODE-BOXED-SIZE)
+                      (2 SB-VM::FIXUPS :TYPE T :REF-KNOWN (SB-ASSEM::FLUSHABLE)
+                       :REF-TRANS SB-VM::%CODE-FIXUPS)
+                      (3 SB-VM::DEBUG-INFO :TYPE T :REF-KNOWN
+                       (SB-ASSEM::FLUSHABLE) :REF-TRANS
+                       SB-KERNEL:%CODE-DEBUG-INFO)
+                      (4 SB-VM::CONSTANTS)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME VECTOR
+             :WIDETAG T
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 2
+             :VARIABLE-LENGTH-P T
+             :SLOTS #((1 LENGTH :REF-TRANS SB-C::VECTOR-LENGTH :TYPE
+                       SB-INT:INDEX)
+                      (2 SB-VM::DATA)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME ARRAY
+             :WIDETAG T
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 7
+             :VARIABLE-LENGTH-P T
+             :SLOTS #((1 FILL-POINTER :TYPE SB-INT:INDEX :REF-TRANS
+                       SB-KERNEL:%ARRAY-FILL-POINTER :REF-KNOWN
+                       (SB-ASSEM::FLUSHABLE) :SET-TRANS
+                       (SETF SB-KERNEL:%ARRAY-FILL-POINTER) :SET-KNOWN NIL)
+                      (2 SB-VM::ELEMENTS :TYPE SB-INT:INDEX :REF-TRANS
+                       SB-KERNEL:%ARRAY-AVAILABLE-ELEMENTS :REF-KNOWN
+                       (SB-ASSEM::FLUSHABLE) :SET-TRANS
+                       (SETF SB-KERNEL:%ARRAY-AVAILABLE-ELEMENTS) :SET-KNOWN
+                       NIL)
+                      (3 SB-VM::DATA :TYPE ARRAY :REF-TRANS
+                       SB-KERNEL:%ARRAY-DATA :REF-KNOWN (SB-ASSEM::FLUSHABLE)
+                       :SET-TRANS (SETF SB-KERNEL:%ARRAY-DATA) :SET-KNOWN NIL)
+                      (4 SB-VM::DISPLACEMENT :TYPE SB-INT:INDEX :REF-TRANS
+                       SB-KERNEL:%ARRAY-DISPLACEMENT :REF-KNOWN
+                       (SB-ASSEM::FLUSHABLE) :SET-TRANS
+                       (SETF SB-KERNEL:%ARRAY-DISPLACEMENT) :SET-KNOWN NIL)
+                      (5 SB-VM::DISPLACED-P :TYPE T :REF-TRANS
+                       SB-KERNEL:%ARRAY-DISPLACED-P :REF-KNOWN
+                       (SB-ASSEM::FLUSHABLE) :SET-TRANS
+                       (SETF SB-KERNEL:%ARRAY-DISPLACED-P) :SET-KNOWN NIL)
+                      (6 SB-VM::DISPLACED-FROM :TYPE LIST :REF-TRANS
+                       SB-KERNEL:%ARRAY-DISPLACED-FROM :REF-KNOWN
+                       (SB-ASSEM::FLUSHABLE) :SET-TRANS
+                       (SETF SB-KERNEL:%ARRAY-DISPLACED-FROM) :SET-KNOWN NIL)
+                      (7 SB-VM::DIMENSIONS)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME COMPLEX
+             :WIDETAG SB-VM:COMPLEX-RATIONAL-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 3
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 REAL :TYPE REAL :REF-KNOWN
+                       (SB-ASSEM::FLUSHABLE SB-C:MOVABLE) :REF-TRANS
+                       SB-KERNEL:%REALPART :INIT :ARG)
+                      (2 SB-VM::IMAG :TYPE REAL :REF-KNOWN
+                       (SB-ASSEM::FLUSHABLE SB-C:MOVABLE) :REF-TRANS
+                       SB-KERNEL:%IMAGPART :INIT :ARG)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME DOUBLE-FLOAT
+             :WIDETAG SB-VM:DOUBLE-FLOAT-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 2
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 SB-VM::VALUE)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME RATIO
+             :WIDETAG SB-VM:RATIO-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 3
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((1 NUMERATOR :TYPE (AND INTEGER (NOT (EQL 0))) :REF-KNOWN
+                       (SB-C:FOLDABLE SB-ASSEM::FLUSHABLE SB-C:MOVABLE)
+                       :REF-TRANS SB-KERNEL:%NUMERATOR :INIT :ARG)
+                      (2 DENOMINATOR :TYPE (INTEGER 2) :REF-KNOWN
+                       (SB-C:FOLDABLE SB-ASSEM::FLUSHABLE SB-C:MOVABLE)
+                       :REF-TRANS SB-KERNEL:%DENOMINATOR :INIT :ARG)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME BIGNUM
+             :WIDETAG SB-VM:BIGNUM-WIDETAG
+             :LOWTAG SB-VM:OTHER-POINTER-LOWTAG
+             :LENGTH 1
+             :VARIABLE-LENGTH-P T
+             :SLOTS #((1 SB-VM::DIGITS)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME SB-KERNEL:INSTANCE
+             :WIDETAG SB-VM:INSTANCE-WIDETAG
+             :LOWTAG SB-VM:INSTANCE-POINTER-LOWTAG
+             :LENGTH 1
+             :VARIABLE-LENGTH-P T
+             :SLOTS #((1 SB-VM::SLOTS)))
+          #S(SB-VM:PRIMITIVE-OBJECT
+             :NAME CONS
+             :WIDETAG NIL
+             :LOWTAG SB-VM:LIST-POINTER-LOWTAG
+             :LENGTH 2
+             :VARIABLE-LENGTH-P NIL
+             :SLOTS #((0 CAR :REF-TRANS CAR :SET-TRANS SB-KERNEL:%RPLACA :INIT
+                       :ARG :CAS-TRANS SB-KERNEL:%COMPARE-AND-SWAP-CAR)
+                      (1 CDR :REF-TRANS CDR :SET-TRANS SB-KERNEL:%RPLACD :INIT
+                       :ARG :CAS-TRANS SB-KERNEL:%COMPARE-AND-SWAP-CDR))))
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** *STATIC-CODE-SPACE-FREE-POINTER​*
+:PROPERTIES:
+:ID: 2279924267281
+:CUSTOM_ID: SB-VM:*STATIC-CODE-SPACE-FREE-POINTER*
+:ALLOC: HEAP IMMOBILE
+:END:** SINGLE-FLOAT-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3335154902487
+:CUSTOM_ID: SB-VM:SINGLE-FLOAT-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-FLOAT-WIDETAG names a constant variable:
+  Value: 25
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-UNSIGNED-BYTE-32-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 1581102529797
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-32-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-UNSIGNED-BYTE-32-WIDETAG names a constant variable:
+  Value: 173
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** LONG-FLOAT-NORMAL-EXPONENT-MIN
+:PROPERTIES:
+:ID: 537084848358
+:CUSTOM_ID: SB-VM:LONG-FLOAT-NORMAL-EXPONENT-MIN
+:ALLOC: HEAP IMMOBILE
+:END:** %MEMORY-BARRIER :compiled:vop:function:
+:PROPERTIES:
+:ID: 4187942451259
+:CUSTOM_ID: SB-VM:%MEMORY-BARRIER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+%MEMORY-BARRIER names a compiled function:
+  Lambda-list: ()
+  Declared type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Source file: SYS:SRC;CODE;BARRIER.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BARRIER.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** DOUBLE-FLOAT-EXPONENT-BYTE :constant:var:
+:PROPERTIES:
+:ID: 790309827639
+:CUSTOM_ID: SB-VM:DOUBLE-FLOAT-EXPONENT-BYTE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-FLOAT-EXPONENT-BYTE names a constant variable:
+  Value: (11 . 52)
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** GENCGC-PAGE-BYTES :constant:var:
+:PROPERTIES:
+:ID: 186685240675
+:CUSTOM_ID: SB-VM:GENCGC-PAGE-BYTES
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+GENCGC-PAGE-BYTES names a constant variable:
+  Value: 32768
+#+end_example
+
+- Referenced by
+  - SB-INTROSPECT::LARGEST-OBJECTS
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** CATCH-BLOCK-CFP-SLOT :constant:var:
+:PROPERTIES:
+:ID: 891400579471
+:CUSTOM_ID: SB-VM:CATCH-BLOCK-CFP-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CATCH-BLOCK-CFP-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** LONG-FLOAT-BIAS
+:PROPERTIES:
+:ID: 2413693592631
+:CUSTOM_ID: SB-VM:LONG-FLOAT-BIAS
+:ALLOC: HEAP IMMOBILE
+:END:** RETURN-PC-RETURN-POINT-OFFSET
+:PROPERTIES:
+:ID: 753772775770
+:CUSTOM_ID: SB-VM:RETURN-PC-RETURN-POINT-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END:** CURRENT-FLOAT-TRAP :compiled:macro:function:
+:PROPERTIES:
+:ID: 2028093247904
+:CUSTOM_ID: SB-VM:CURRENT-FLOAT-TRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CURRENT-FLOAT-TRAP names a macro:
+  Lambda-list: (&REST TRAPS)
+  Source file: SYS:SRC;CODE;FLOAT-TRAP.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;FLOAT-TRAP.LISP
+:end:
+** CONTEXT-FLOAT-REGISTER :compiled:function:
+:PROPERTIES:
+:ID: 3082941080400
+:CUSTOM_ID: SB-VM:CONTEXT-FLOAT-REGISTER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CONTEXT-FLOAT-REGISTER names a compiled function:
+  Lambda-list: (CONTEXT INDEX FORMAT &OPTIONAL INTEGER)
+  Derived type: (FUNCTION (T T T &OPTIONAL T)
+                 (VALUES
+                  (OR FLOAT UNSIGNED-BYTE
+                      (OR (SB-EXT:SIMD-PACK-256 SINGLE-FLOAT)
+                          (SB-EXT:SIMD-PACK-256 DOUBLE-FLOAT)
+                          (SB-EXT:SIMD-PACK-256 (UNSIGNED-BYTE 64)))
+                      (OR (SB-EXT:SIMD-PACK-512 SINGLE-FLOAT)
+                          (SB-EXT:SIMD-PACK-512 DOUBLE-FLOAT)
+                          (SB-EXT:SIMD-PACK-512 (UNSIGNED-BYTE 64)))
+                      (COMPLEX SINGLE-FLOAT) (COMPLEX DOUBLE-FLOAT)
+                      (OR (SB-EXT:SIMD-PACK SINGLE-FLOAT)
+                          (SB-EXT:SIMD-PACK DOUBLE-FLOAT)
+                          (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 64))))
+                  &OPTIONAL
+                  (OR (INTEGER 4 4) (INTEGER 8 8) (INTEGER 16 16)
+                      (INTEGER 32 32) (INTEGER 64 64))))
+  Source file: SYS:SRC;CODE;X86-64-VM.LISP
+
+(SETF CONTEXT-FLOAT-REGISTER) has setf-expansion: SB-VM::%SET-CONTEXT-FLOAT-REGISTER
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;X86-64-VM.LISP
+- SYS:SRC;CODE;DEFSETFS.LISP
+:end:
+** ARENA-BYTES-USED :compiled:function:
+:PROPERTIES:
+:ID: 3341524484086
+:CUSTOM_ID: SB-VM:ARENA-BYTES-USED
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARENA-BYTES-USED names a compiled function:
+  Lambda-list: (ARENA)
+  Derived type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Source file: SYS:SRC;CODE;ARENA.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** SIMD-PACK-512-SIZE :constant:var:
+:PROPERTIES:
+:ID: 1086823502532
+:CUSTOM_ID: SB-VM:SIMD-PACK-512-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-512-SIZE names a constant variable:
+  Value: 10
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** WEAK-POINTER-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2643490196446
+:CUSTOM_ID: SB-VM:WEAK-POINTER-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WEAK-POINTER-WIDETAG names a constant variable:
+  Value: 89
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SINGLE-FLOAT-EXPONENT-BYTE :constant:var:
+:PROPERTIES:
+:ID: 2856324546716
+:CUSTOM_ID: SB-VM:SINGLE-FLOAT-EXPONENT-BYTE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-FLOAT-EXPONENT-BYTE names a constant variable:
+  Value: (8 . 23)
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** *SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES​* :global:var:
+:PROPERTIES:
+:ID: 1467766601625
+:CUSTOM_ID: SB-VM:*SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES* names a global variable:
+  Declared type: (SIMPLE-VECTOR 25)
+  Declared always-bound.
+  Value: #(#S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER NIL
+              :CTYPE #<SB-KERNEL:NAMED-TYPE NIL>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT #:MU
+              :N-BITS 0
+              :TYPECODE 133
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-NIL
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER BASE-CHAR
+              :CTYPE #<SB-KERNEL:CHARACTER-SET-TYPE BASE-CHAR>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT #\Nul
+              :N-BITS 8
+              :TYPECODE 225
+              :COMPLEX-TYPECODE 233
+              :PRIMITIVE-TYPE-NAME SIMPLE-BASE-STRING
+              :N-PAD-ELEMENTS 1)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER CHARACTER
+              :CTYPE #<SB-KERNEL:CHARACTER-SET-TYPE CHARACTER>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT #\Nul
+              :N-BITS 32
+              :TYPECODE 229
+              :COMPLEX-TYPECODE 237
+              :PRIMITIVE-TYPE-NAME SB-KERNEL:SIMPLE-CHARACTER-STRING
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER SINGLE-FLOAT
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE SINGLE-FLOAT>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0.0
+              :N-BITS 32
+              :TYPECODE 209
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-SINGLE-FLOAT
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER DOUBLE-FLOAT
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE DOUBLE-FLOAT>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0.0d0
+              :N-BITS 64
+              :TYPECODE 213
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-DOUBLE-FLOAT
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER BIT
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE BIT>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 1
+              :TYPECODE 141
+              :COMPLEX-TYPECODE 241
+              :PRIMITIVE-TYPE-NAME SIMPLE-BIT-VECTOR
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (UNSIGNED-BYTE 2)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (UNSIGNED-BYTE 2)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 2
+              :TYPECODE 145
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-UNSIGNED-BYTE-2
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (UNSIGNED-BYTE 4)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (UNSIGNED-BYTE 4)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 4
+              :TYPECODE 149
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-UNSIGNED-BYTE-4
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (UNSIGNED-BYTE 7)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (UNSIGNED-BYTE 7)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 8
+              :TYPECODE 153
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-UNSIGNED-BYTE-7
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (UNSIGNED-BYTE 8)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (UNSIGNED-BYTE 8)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 8
+              :TYPECODE 157
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-UNSIGNED-BYTE-8
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (UNSIGNED-BYTE 15)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (UNSIGNED-BYTE 15)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 16
+              :TYPECODE 161
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-UNSIGNED-BYTE-15
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (UNSIGNED-BYTE 16)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (UNSIGNED-BYTE 16)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 16
+              :TYPECODE 165
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-UNSIGNED-BYTE-16
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (UNSIGNED-BYTE 31)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (UNSIGNED-BYTE 31)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 32
+              :TYPECODE 169
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-UNSIGNED-BYTE-31
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (UNSIGNED-BYTE 32)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (UNSIGNED-BYTE 32)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 32
+              :TYPECODE 173
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-UNSIGNED-BYTE-32
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (UNSIGNED-BYTE 62)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (UNSIGNED-BYTE 62)>
+              :FIXNUM-P T
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 64
+              :TYPECODE 177
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-UNSIGNED-FIXNUM
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (UNSIGNED-BYTE 63)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (UNSIGNED-BYTE 63)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 64
+              :TYPECODE 181
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-UNSIGNED-BYTE-63
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (UNSIGNED-BYTE 64)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (UNSIGNED-BYTE 64)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 64
+              :TYPECODE 185
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-UNSIGNED-BYTE-64
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (SIGNED-BYTE 8)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (SIGNED-BYTE 8)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 8
+              :TYPECODE 189
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-SIGNED-BYTE-8
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (SIGNED-BYTE 16)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (SIGNED-BYTE 16)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 16
+              :TYPECODE 193
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-SIGNED-BYTE-16
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (SIGNED-BYTE 32)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (SIGNED-BYTE 32)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 32
+              :TYPECODE 197
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-SIGNED-BYTE-32
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER FIXNUM
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE FIXNUM>
+              :FIXNUM-P T
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 64
+              :TYPECODE 201
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-FIXNUM
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (SIGNED-BYTE 64)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (SIGNED-BYTE 64)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 64
+              :TYPECODE 205
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-SIGNED-BYTE-64
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (COMPLEX SINGLE-FLOAT)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (COMPLEX SINGLE-FLOAT)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT #C(0.0 0.0)
+              :N-BITS 64
+              :TYPECODE 217
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-COMPLEX-SINGLE-FLOAT
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER (COMPLEX DOUBLE-FLOAT)
+              :CTYPE #<SB-KERNEL:NUMERIC-UNION-TYPE (COMPLEX DOUBLE-FLOAT)>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT #C(0.0d0 0.0d0)
+              :N-BITS 128
+              :TYPECODE 221
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SB-VM::SIMPLE-ARRAY-COMPLEX-DOUBLE-FLOAT
+              :N-PAD-ELEMENTS 0)
+           #S(SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+              :SPECIFIER T
+              :CTYPE #<SB-KERNEL:NAMED-TYPE T>
+              :FIXNUM-P NIL
+              :INITIAL-ELEMENT-DEFAULT 0
+              :N-BITS 64
+              :TYPECODE 137
+              :COMPLEX-TYPECODE NIL
+              :PRIMITIVE-TYPE-NAME SIMPLE-VECTOR
+              :N-PAD-ELEMENTS 0))
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+:end:
+** DESTROY-ARENA :compiled:function:
+:PROPERTIES:
+:ID: 447693759365
+:CUSTOM_ID: SB-VM:DESTROY-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DESTROY-ARENA names a compiled function:
+  Lambda-list: (ARENA)
+  Derived type: (FUNCTION (T) (VALUES (MEMBER T) &OPTIONAL))
+  Source file: SYS:SRC;CODE;ARENA.LISP
+#+end_example
+
+- Called by
+  - SB-INTROSPECT::COLLECT-XREF
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** UNWIND-BLOCK-SIZE :constant:var:
+:PROPERTIES:
+:ID: 587278714787
+:CUSTOM_ID: SB-VM:UNWIND-BLOCK-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNWIND-BLOCK-SIZE names a constant variable:
+  Value: 5
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIGNED-REG-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 2308835246231
+:CUSTOM_ID: SB-VM:SIGNED-REG-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGNED-REG-SC-NUMBER names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** SAP-POINTER-SLOT :constant:var:
+:PROPERTIES:
+:ID: 4227296560628
+:CUSTOM_ID: SB-VM:SAP-POINTER-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAP-POINTER-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SINGLE-FLOAT-SIZE
+:PROPERTIES:
+:ID: 414496284184
+:CUSTOM_ID: SB-VM:SINGLE-FLOAT-SIZE
+:ALLOC: HEAP IMMOBILE
+:END:** ARENA-USERDATA :compiled:function:
+:PROPERTIES:
+:ID: 3319356140617
+:CUSTOM_ID: SB-VM:ARENA-USERDATA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARENA-USERDATA names a compiled function:
+  An accessor for SB-VM:ARENA
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM:ARENA) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+
+(SETF ARENA-USERDATA) names a compiled function:
+  An accessor for SB-VM:ARENA
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION (T SB-VM:ARENA) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+:end:
+** SAETP-TYPECODE :compiled:function:
+:PROPERTIES:
+:ID: 3956204029693
+:CUSTOM_ID: SB-VM:SAETP-TYPECODE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAETP-TYPECODE names a compiled function:
+  An accessor for SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES)
+                 (VALUES (UNSIGNED-BYTE 44) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+:end:
+** COMPLEX-SINGLE-FLOAT-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2330736425450
+:CUSTOM_ID: SB-VM:COMPLEX-SINGLE-FLOAT-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-SINGLE-FLOAT-WIDETAG names a constant variable:
+  Value: 37
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** COMPLEX-DOUBLE-FLOAT-SIZE :constant:var:
+:PROPERTIES:
+:ID: 1042425652601
+:CUSTOM_ID: SB-VM:COMPLEX-DOUBLE-FLOAT-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-DOUBLE-FLOAT-SIZE names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-UNSIGNED-BYTE-64-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3290257432661
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-64-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-UNSIGNED-BYTE-64-WIDETAG names a constant variable:
+  Value: 185
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** PAD4-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 3572943118394
+:CUSTOM_ID: SB-VM:PAD4-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PAD4-LOWTAG names a constant variable:
+  Value: 12
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SHOW-HEAP->ARENA :compiled:function:
+:PROPERTIES:
+:ID: 587555088517
+:CUSTOM_ID: SB-VM:SHOW-HEAP->ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SHOW-HEAP->ARENA names a compiled function:
+  Lambda-list: (L)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** SIMD-PACK-256-P1-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3006804015946
+:CUSTOM_ID: SB-VM:SIMD-PACK-256-P1-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-256-P1-SLOT names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** IGNORE-ME-SC-NUMBER
+:PROPERTIES:
+:ID: 2402772057020
+:CUSTOM_ID: SB-VM:IGNORE-ME-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END:** DESCRIPTOR-REG-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 3607048119772
+:CUSTOM_ID: SB-VM:DESCRIPTOR-REG-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DESCRIPTOR-REG-SC-NUMBER names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** UNWIND-BLOCK-ENTRY-PC-SLOT :constant:var:
+:PROPERTIES:
+:ID: 4082972609893
+:CUSTOM_ID: SB-VM:UNWIND-BLOCK-ENTRY-PC-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNWIND-BLOCK-ENTRY-PC-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** DOUBLE-FLOAT-BIAS :constant:var:
+:PROPERTIES:
+:ID: 2202712761220
+:CUSTOM_ID: SB-VM:DOUBLE-FLOAT-BIAS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-FLOAT-BIAS names a constant variable:
+  Value: 1022
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** DOUBLE-FLOAT-NORMAL-EXPONENT-MIN :constant:var:
+:PROPERTIES:
+:ID: 1201891419256
+:CUSTOM_ID: SB-VM:DOUBLE-FLOAT-NORMAL-EXPONENT-MIN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-FLOAT-NORMAL-EXPONENT-MIN names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** SIGFPE-HANDLER :compiled:function:
+:PROPERTIES:
+:ID: 136126772453
+:CUSTOM_ID: SB-VM:SIGFPE-HANDLER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGFPE-HANDLER names a compiled function:
+  Lambda-list: (SIGNAL INFO CONTEXT)
+  Derived type: (FUNCTION (T SB-SYS:SYSTEM-AREA-POINTER T) *)
+  Source file: SYS:SRC;CODE;FLOAT-TRAP.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;FLOAT-TRAP.LISP
+:end:
+** CONTROL-STACK-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 2859787847334
+:CUSTOM_ID: SB-VM:CONTROL-STACK-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CONTROL-STACK-SC-NUMBER names a constant variable:
+  Value: 6
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** N-POSITIVE-FIXNUM-BITS :constant:var:
+:PROPERTIES:
+:ID: 3864648377493
+:CUSTOM_ID: SB-VM:N-POSITIVE-FIXNUM-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-POSITIVE-FIXNUM-BITS names a constant variable:
+  Value: 62
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** MAP-ALLOCATED-OBJECTS :compiled:function:
+:PROPERTIES:
+:ID: 1248963898662
+:CUSTOM_ID: SB-VM:MAP-ALLOCATED-OBJECTS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MAP-ALLOCATED-OBJECTS names a compiled function:
+  Lambda-list: (FUN &REST SPACES)
+  Dynamic-extent arguments: positional=(0)
+  Derived type: (FUNCTION (FUNCTION &REST T) *)
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+- Called by
+  - SB-INTROSPECT::LARGEST-OBJECTS
+  - SB-INTROSPECT::OBJECT-SIZE-HISTOGRAM
+  - SB-INTROSPECT::MAP-ALLOCATED-CODE-COMPONENTS
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** SINGLE-STEP-BREAKPOINT-TRAP
+:PROPERTIES:
+:ID: 1896480576871
+:CUSTOM_ID: SB-VM:SINGLE-STEP-BREAKPOINT-TRAP
+:ALLOC: HEAP IMMOBILE
+:END:** SAETP-COMPLEX-TYPECODE :compiled:function:
+:PROPERTIES:
+:ID: 14479411258
+:CUSTOM_ID: SB-VM:SAETP-COMPLEX-TYPECODE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAETP-COMPLEX-TYPECODE names a compiled function:
+  An accessor for SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES)
+                 (VALUES (OR NULL (UNSIGNED-BYTE 44)) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+:end:
+** NO-TLS-VALUE-MARKER :constant:var:
+:PROPERTIES:
+:ID: 2099888480851
+:CUSTOM_ID: SB-VM:NO-TLS-VALUE-MARKER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+NO-TLS-VALUE-MARKER names a constant variable:
+  Value: 18446744073709551615
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** FUNCALLABLE-INSTANCE-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 1769454724429
+:CUSTOM_ID: SB-VM:FUNCALLABLE-INSTANCE-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUNCALLABLE-INSTANCE-WIDETAG names a constant variable:
+  Value: 61
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** FUN-END-BREAKPOINT-TRAP :constant:var:
+:PROPERTIES:
+:ID: 2676373739014
+:CUSTOM_ID: SB-VM:FUN-END-BREAKPOINT-TRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUN-END-BREAKPOINT-TRAP names a constant variable:
+  Value: 12
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** PAGE-TABLE
+:PROPERTIES:
+:ID: 1866797617634
+:CUSTOM_ID: SB-VM:PAGE-TABLE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PAGE-TABLE names an alien variable:
+  Value: #<ALIEN-VALUE :SAP #X7F33A6BFF018 :TYPE (*
+                                                  (SB-ALIEN:STRUCT SB-VM::PAGE
+                                                   (SB-VM::START
+                                                    (SB-ALIEN:UNSIGNED 32)
+                                                    :OFFSET 0)
+                                                   (SB-VM::WORDS-USED*
+                                                    (SB-ALIEN:UNSIGNED 16)
+                                                    :OFFSET 32)
+                                                   (SB-VM::FLAGS
+                                                    (SB-ALIEN:UNSIGNED 8)
+                                                    :OFFSET 48)
+                                                   (SB-VM::GEN
+                                                    (SB-ALIEN:SIGNED 8) :OFFSET
+                                                    56)))>
+  Type: (*
+         (SB-ALIEN:STRUCT SB-VM::PAGE (SB-VM::START (UNSIGNED 32) :OFFSET 0)
+,          (SB-VM::WORDS-USED* (UNSIGNED 16) :OFFSET 32)
+          (SB-VM::FLAGS (UNSIGNED 8) :OFFSET 48)
+          (SB-VM::GEN (SIGNED 8) :OFFSET 56)))
+  Address: #x555ED38D3EB8
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;GC.LISP
+:end:
+** INSTANCE-POINTER-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 3523854401889
+:CUSTOM_ID: SB-VM:INSTANCE-POINTER-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INSTANCE-POINTER-LOWTAG names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** INTERNAL-ERROR-ARGS :compiled:function:
+:PROPERTIES:
+:ID: 404128048126
+:CUSTOM_ID: SB-VM:INTERNAL-ERROR-ARGS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INTERNAL-ERROR-ARGS names a compiled function:
+  Lambda-list: (CONTEXT)
+  Derived type: (FUNCTION
+                 ((SB-ALIEN:ALIEN
+,                   (* (SB-ALIEN:STRUCT SB-VM::OS-CONTEXT-T-STRUCT))))
+                 (VALUES (NOT NULL) LIST &OPTIONAL T))
+  Source file: SYS:SRC;CODE;X86-64-VM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;X86-64-VM.LISP
+:end:
+** SIMPLE-FUN-ARGLIST-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3910912436351
+:CUSTOM_ID: SB-VM:SIMPLE-FUN-ARGLIST-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-FUN-ARGLIST-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** FLOAT-TRAPS-BYTE :constant:var:
+:PROPERTIES:
+:ID: 576473008950
+:CUSTOM_ID: SB-VM:FLOAT-TRAPS-BYTE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FLOAT-TRAPS-BYTE names a constant variable:
+  Value: (6 . 7)
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** *READ-ONLY-SPACE-FREE-POINTER​*
+:PROPERTIES:
+:ID: 730367258044
+:CUSTOM_ID: SB-VM:*READ-ONLY-SPACE-FREE-POINTER*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*READ-ONLY-SPACE-FREE-POINTER* names an alien variable:
+  Value: #.(INT-SAP #X11FFFFDCD0)
+  Type: SYSTEM-AREA-POINTER
+  Address: #x555ED38D0BF8
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;MISC-ALIENS.LISP
+:end:
+** COMPLEX-IMAG-SLOT :constant:var:
+:PROPERTIES:
+:ID: 4342359450469
+:CUSTOM_ID: SB-VM:COMPLEX-IMAG-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-IMAG-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** FUN-POINTER-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 1094291214414
+:CUSTOM_ID: SB-VM:FUN-POINTER-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUN-POINTER-LOWTAG names a constant variable:
+  Value: 11
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** UNINITIALIZED-LOAD-TRAP :constant:var:
+:PROPERTIES:
+:ID: 1768409856840
+:CUSTOM_ID: SB-VM:UNINITIALIZED-LOAD-TRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNINITIALIZED-LOAD-TRAP names a constant variable:
+  Value: 17
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** WORD-SHIFT :constant:var:
+:PROPERTIES:
+:ID: 3172004670824
+:CUSTOM_ID: SB-VM:WORD-SHIFT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WORD-SHIFT names a constant variable:
+  Value: 3
+#+end_example
+
+- Referenced by
+  - SB-INTROSPECT::OBJECT-SIZE-HISTOGRAM
+  - SB-INTROSPECT:FIND-FUNCTION-CALLERS
+  - SB-INTROSPECT::MAP-CALLER-CODE-COMPONENTS
+  - SB-COVER::CODE-COVERAGE-MARKS
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** BINDING-SYMBOL-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3181352516686
+:CUSTOM_ID: SB-VM:BINDING-SYMBOL-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+BINDING-SYMBOL-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** CONS-SIZE :constant:var:
+:PROPERTIES:
+:ID: 4136636458417
+:CUSTOM_ID: SB-VM:CONS-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CONS-SIZE names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** COPY-NUMBER-TO-HEAP :compiled:function:
+:PROPERTIES:
+:ID: 2300325448139
+:CUSTOM_ID: SB-VM:COPY-NUMBER-TO-HEAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COPY-NUMBER-TO-HEAP names a compiled function:
+  Lambda-list: (N)
+  Derived type: (FUNCTION (T) (VALUES NUMBER &OPTIONAL))
+  Source file: SYS:SRC;CODE;ARENA.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** N-WORD-BITS :constant:var:
+:PROPERTIES:
+:ID: 2847230091517
+:CUSTOM_ID: SB-VM:N-WORD-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-WORD-BITS names a constant variable:
+  Value: 64
+#+end_example
+
+- Referenced by
+  - SB-ACLREPL::N-WORD-BITS-HEX-FORMAT
+  - (INSPECTED-DESCRIPTION (BIGNUM))
+  - SB-ACLREPL::LABEL-AT
+  - SB-ACLREPL::DISPLAY-INSPECT
+  - SB-ROTATE-BYTE::%ROTATE-BYTE-DERIVE-TYPE-OPTIMIZER
+  - SB-COVER::GEN-MONIKER
+  - IRONCLAD::MD5-REGS-DIGEST
+  - IRONCLAD::IRONCLAD-IMPLEMENTATION-FEATURES
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** HEXDUMP :compiled:function:
+:PROPERTIES:
+:ID: 746976952126
+:CUSTOM_ID: SB-VM:HEXDUMP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+HEXDUMP names a compiled function:
+  Lambda-list: (THING &OPTIONAL (COUNT 2 COUNTP) (DECODE T))
+  Derived type: (FUNCTION (T &OPTIONAL T T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;SHARE-VM.LISP
+#+end_example
+
+- Called by
+  - [[id:1461387226586][HEXDUMP-OBJECT]]
+
+:definitions:
+- SYS:SRC;CODE;SHARE-VM.LISP
+:end:
+** OTHER-IMMEDIATE-2-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 977258992363
+:CUSTOM_ID: SB-VM:OTHER-IMMEDIATE-2-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+OTHER-IMMEDIATE-2-LOWTAG names a constant variable:
+  Value: 9
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-UNSIGNED-BYTE-31-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3860770134645
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-31-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-UNSIGNED-BYTE-31-WIDETAG names a constant variable:
+  Value: 169
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMPLE-VECTOR-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 1150570539123
+:CUSTOM_ID: SB-VM:SIMPLE-VECTOR-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-VECTOR-WIDETAG names a constant variable:
+  Value: 137
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** VALID-BIT-BASH-SAETP-P :compiled:function:
+:PROPERTIES:
+:ID: 1307529326600
+:CUSTOM_ID: SB-VM:VALID-BIT-BASH-SAETP-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+VALID-BIT-BASH-SAETP-P names a compiled function:
+  Lambda-list: (SAETP)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+:end:
+** SIMD-PACK-512-P5-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2282885610865
+:CUSTOM_ID: SB-VM:SIMD-PACK-512-P5-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-512-P5-SLOT names a constant variable:
+  Value: 7
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** THREAD-CURRENT-ARENA :compiled:macro:function:
+:PROPERTIES:
+:ID: 4259114259419
+:CUSTOM_ID: SB-VM:THREAD-CURRENT-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+THREAD-CURRENT-ARENA names a macro:
+  Lambda-list: ()
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** FIXEDOBJ-SPACE-SIZE :constant:var:
+:PROPERTIES:
+:ID: 2681923644017
+:CUSTOM_ID: SB-VM:FIXEDOBJ-SPACE-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FIXEDOBJ-SPACE-SIZE names a constant variable:
+  Value: 62914560
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** SIMD-PACK-512-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2807795904698
+:CUSTOM_ID: SB-VM:SIMD-PACK-512-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-512-WIDETAG names a constant variable:
+  Value: 109
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** CERROR-TRAP :constant:var:
+:PROPERTIES:
+:ID: 2383162461579
+:CUSTOM_ID: SB-VM:CERROR-TRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CERROR-TRAP names a constant variable:
+  Value: 10
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** CLOSURE-INFO-OFFSET :constant:var:
+:PROPERTIES:
+:ID: 2703511778170
+:CUSTOM_ID: SB-VM:CLOSURE-INFO-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CLOSURE-INFO-OFFSET names a constant variable:
+  Value: 2
+#+end_example
+
+- Referenced by
+  - SB-INTROSPECT:MAP-ROOT
+  - [[id:1805801775833][DEEP-SIZE]]
+  - ((SETF KERNEL-INFO) (T FUNCALLABLE-STANDARD-OBJECT T))
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** CHARACTER-STACK-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 1268401323666
+:CUSTOM_ID: SB-VM:CHARACTER-STACK-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CHARACTER-STACK-SC-NUMBER names a constant variable:
+  Value: 9
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** FIXEDOBJ-SPACE-START
+:PROPERTIES:
+:ID: 4373593177545
+:CUSTOM_ID: SB-VM:FIXEDOBJ-SPACE-START
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FIXEDOBJ-SPACE-START names an alien variable:
+  Value: 1342177280
+  Type: (UNSIGNED 64)
+  Address: #x555ED38D0C58
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ALLOC.LISP
+:end:
+** RATIO-NUMERATOR-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1915563281061
+:CUSTOM_ID: SB-VM:RATIO-NUMERATOR-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+RATIO-NUMERATOR-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMD-PACK-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3398183621690
+:CUSTOM_ID: SB-VM:SIMD-PACK-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-WIDETAG names a constant variable:
+  Value: 101
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMD-PACK-LO-VALUE-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2017411854992
+:CUSTOM_ID: SB-VM:SIMD-PACK-LO-VALUE-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-LO-VALUE-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** CONTROL-STACK-POINTER-VALID-P :compiled:function:
+:PROPERTIES:
+:ID: 2970433173775
+:CUSTOM_ID: SB-VM:CONTROL-STACK-POINTER-VALID-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CONTROL-STACK-POINTER-VALID-P names a compiled function:
+  Lambda-list: (X &OPTIONAL (ALIGNED T))
+  Derived type: (FUNCTION (SB-SYS:SYSTEM-AREA-POINTER &OPTIONAL T)
+                 (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;DEBUG-INT.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG-INT.LISP
+:end:
+** SC-OFFSET-LIMIT :constant:var:
+:PROPERTIES:
+:ID: 1317899662192
+:CUSTOM_ID: SB-VM:SC-OFFSET-LIMIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SC-OFFSET-LIMIT names a constant variable:
+  Value: 2097152
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** CODE-HEADER-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2302254839691
+:CUSTOM_ID: SB-VM:CODE-HEADER-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CODE-HEADER-WIDETAG names a constant variable:
+  Value: 53
+#+end_example
+
+- Referenced by
+  - SB-INTROSPECT:FIND-FUNCTION-CALLERS
+  - SB-INTROSPECT::MAP-CALLER-CODE-COMPONENTS
+  - SB-INTROSPECT::MAP-ALLOCATED-CODE-COMPONENTS
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** COMPLEX-DOUBLE-FLOAT-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 1082524958454
+:CUSTOM_ID: SB-VM:COMPLEX-DOUBLE-FLOAT-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-DOUBLE-FLOAT-WIDETAG names a constant variable:
+  Value: 41
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMPLE-CHARACTER-STRING-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 1332257557403
+:CUSTOM_ID: SB-VM:SIMPLE-CHARACTER-STRING-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-CHARACTER-STRING-WIDETAG names a constant variable:
+  Value: 229
+#+end_example
+
+- Referenced by
+  - IO/STATIC::%ALLOCATE-STATIC-VECTOR
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** +STATIC-FDEFNS​+ :constant:var:
+:PROPERTIES:
+:ID: 4161247360110
+:CUSTOM_ID: SB-VM:+STATIC-FDEFNS+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++STATIC-FDEFNS+ names a constant variable:
+  Value: #(SB-KERNEL:TWO-ARG-+ SB-KERNEL:TWO-ARG-- SB-KERNEL:TWO-ARG-*
+           SB-KERNEL:TWO-ARG-/ SB-KERNEL:TWO-ARG-< SB-KERNEL:TWO-ARG->
+           SB-KERNEL:TWO-ARG-=)
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** CODE-LINKAGE-ELTS-SLOT
+:PROPERTIES:
+:ID: 1555431705896
+:CUSTOM_ID: SB-VM:CODE-LINKAGE-ELTS-SLOT
+:ALLOC: HEAP IMMOBILE
+:END:** SINGLE-STEP-BEFORE-TRAP :constant:var:
+:PROPERTIES:
+:ID: 907559965943
+:CUSTOM_ID: SB-VM:SINGLE-STEP-BEFORE-TRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-STEP-BEFORE-TRAP names a constant variable:
+  Value: 14
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** SIMPLE-BASE-STRING-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2045914723177
+:CUSTOM_ID: SB-VM:SIMPLE-BASE-STRING-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-BASE-STRING-WIDETAG names a constant variable:
+  Value: 225
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** THREAD-STATE-WORD-SLOT :constant:var:
+:PROPERTIES:
+:ID: 241223967673
+:CUSTOM_ID: SB-VM:THREAD-STATE-WORD-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+THREAD-STATE-WORD-SLOT names a constant variable:
+  Value: 27
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** NON-DESCRIPTOR-REG-SC-NUMBER
+:PROPERTIES:
+:ID: 1113988329287
+:CUSTOM_ID: SB-VM:NON-DESCRIPTOR-REG-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END:** CODE-CONSTANTS-OFFSET :constant:var:
+:PROPERTIES:
+:ID: 692646485056
+:CUSTOM_ID: SB-VM:CODE-CONSTANTS-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CODE-CONSTANTS-OFFSET names a constant variable:
+  Value: 4
+#+end_example
+
+- Referenced by
+  - SB-INTROSPECT::MAP-CODE-CONSTANTS
+  - (EMACS-INSPECT (CODE-COMPONENT))
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** BREAKPOINT-TRAP :constant:var:
+:PROPERTIES:
+:ID: 1043466192188
+:CUSTOM_ID: SB-VM:BREAKPOINT-TRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+BREAKPOINT-TRAP names a constant variable:
+  Value: 11
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** INSTANCE-LENGTH-SHIFT :constant:var:
+:PROPERTIES:
+:ID: 2007779732959
+:CUSTOM_ID: SB-VM:INSTANCE-LENGTH-SHIFT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INSTANCE-LENGTH-SHIFT names a constant variable:
+  Value: 10
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** PENDING-INTERRUPT-TRAP :constant:var:
+:PROPERTIES:
+:ID: 2591590041494
+:CUSTOM_ID: SB-VM:PENDING-INTERRUPT-TRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PENDING-INTERRUPT-TRAP names a constant variable:
+  Value: 9
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** CONS-CAR-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2063266092610
+:CUSTOM_ID: SB-VM:CONS-CAR-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CONS-CAR-SLOT names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-SIGNED-BYTE-8-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2232570582428
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-SIGNED-BYTE-8-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-SIGNED-BYTE-8-WIDETAG names a constant variable:
+  Value: 189
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** FUNCALLABLE-INSTANCE-TRAMPOLINE-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3655942536188
+:CUSTOM_ID: SB-VM:FUNCALLABLE-INSTANCE-TRAMPOLINE-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUNCALLABLE-INSTANCE-TRAMPOLINE-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** STABLE-HASH-REQUIRED-FLAG :constant:var:
+:PROPERTIES:
+:ID: 3567118362192
+:CUSTOM_ID: SB-VM:STABLE-HASH-REQUIRED-FLAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STABLE-HASH-REQUIRED-FLAG names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SHORT-HEADER-MAX-WORDS :constant:var:
+:PROPERTIES:
+:ID: 2452616004999
+:CUSTOM_ID: SB-VM:SHORT-HEADER-MAX-WORDS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SHORT-HEADER-MAX-WORDS names a constant variable:
+  Value: 32767
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** COMPLEX-ARRAY-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 1383634878662
+:CUSTOM_ID: SB-VM:COMPLEX-ARRAY-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-ARRAY-WIDETAG names a constant variable:
+  Value: 249
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** PRIMITIVE-OBJECT-P :compiled:function:
+:PROPERTIES:
+:ID: 1354605760684
+:CUSTOM_ID: SB-VM:PRIMITIVE-OBJECT-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRIMITIVE-OBJECT-P names a compiled function:
+  A predicate for SB-VM:PRIMITIVE-OBJECT
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** SIMD-PACK-512-P7-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3172894688812
+:CUSTOM_ID: SB-VM:SIMD-PACK-512-P7-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-512-P7-SLOT names a constant variable:
+  Value: 9
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** PRIMITIVE-OBJECT-WIDETAG :compiled:function:
+:PROPERTIES:
+:ID: 45779019043
+:CUSTOM_ID: SB-VM:PRIMITIVE-OBJECT-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRIMITIVE-OBJECT-WIDETAG names a compiled function:
+  An accessor for SB-VM:PRIMITIVE-OBJECT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM:PRIMITIVE-OBJECT) (VALUES SYMBOL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** SIMPLE-FUN-SOURCE-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3668995233203
+:CUSTOM_ID: SB-VM:SIMPLE-FUN-SOURCE-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-FUN-SOURCE-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SAETP-FIXNUM-P :compiled:function:
+:PROPERTIES:
+:ID: 2255666036812
+:CUSTOM_ID: SB-VM:SAETP-FIXNUM-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAETP-FIXNUM-P names a compiled function:
+  An accessor for SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES)
+                 (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+:end:
+** WITH-ARENA :compiled:macro:function:
+:PROPERTIES:
+:ID: 2767687168719
+:CUSTOM_ID: SB-VM:WITH-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WITH-ARENA names a macro:
+  Lambda-list: ((ARENA) &BODY BODY)
+  Source file: SYS:SRC;CODE;ARENA.LISP
+#+end_example
+
+- Macroexpanded by
+  - SB-INTROSPECT::COLLECT-XREF
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** FIXNUM-TAG-MASK :constant:var:
+:PROPERTIES:
+:ID: 1608845557098
+:CUSTOM_ID: SB-VM:FIXNUM-TAG-MASK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FIXNUM-TAG-MASK names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** INSTANCE-LENGTH-MASK :constant:var:
+:PROPERTIES:
+:ID: 2989283384950
+:CUSTOM_ID: SB-VM:INSTANCE-LENGTH-MASK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INSTANCE-LENGTH-MASK names a constant variable:
+  Value: 16383
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** *BINDING-STACK-START​* :global:var:
+:PROPERTIES:
+:ID: 4063488716211
+:CUSTOM_ID: SB-VM:*BINDING-STACK-START*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*BINDING-STACK-START* names a special variable:
+  Declared always-bound.
+  Value: 69929907470336
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SAETP-N-BITS-SHIFT :compiled:function:
+:PROPERTIES:
+:ID: 3681079616497
+:CUSTOM_ID: SB-VM:SAETP-N-BITS-SHIFT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAETP-N-BITS-SHIFT names a compiled function:
+  Lambda-list: (SAETP)
+  Derived type: (FUNCTION (T)
+                 (VALUES (OR (INTEGER -1 7) (INTEGER 63 63)) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+:end:
+** WEAK-POINTER-NEXT-SLOT
+:PROPERTIES:
+:ID: 1259108712072
+:CUSTOM_ID: SB-VM:WEAK-POINTER-NEXT-SLOT
+:ALLOC: HEAP IMMOBILE
+:END:** CARD-TABLE-REG :constant:var:
+:PROPERTIES:
+:ID: 4295656613893
+:CUSTOM_ID: SB-VM:CARD-TABLE-REG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CARD-TABLE-REG names a constant variable:
+  Value: 12
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** COMPLEX-DOUBLE-FLOAT-IMAG-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2582759636486
+:CUSTOM_ID: SB-VM:COMPLEX-DOUBLE-FLOAT-IMAG-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-DOUBLE-FLOAT-IMAG-SLOT names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** VALUE-CELL-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2183896615172
+:CUSTOM_ID: SB-VM:VALUE-CELL-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+VALUE-CELL-WIDETAG names a constant variable:
+  Value: 77
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** CODE-FIXUPS-SLOT :constant:var:
+:PROPERTIES:
+:ID: 12928659603
+:CUSTOM_ID: SB-VM:CODE-FIXUPS-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CODE-FIXUPS-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** DOUBLE-FLOAT-HIDDEN-BIT :constant:var:
+:PROPERTIES:
+:ID: 1012326759882
+:CUSTOM_ID: SB-VM:DOUBLE-FLOAT-HIDDEN-BIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-FLOAT-HIDDEN-BIT names a constant variable:
+  Value: 4503599627370496
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** N-LOWTAG-BITS :constant:var:
+:PROPERTIES:
+:ID: 989973088308
+:CUSTOM_ID: SB-VM:N-LOWTAG-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-LOWTAG-BITS names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** +ARRAY-FILL-POINTER-P​+ :constant:var:
+:PROPERTIES:
+:ID: 1769525728129
+:CUSTOM_ID: SB-VM:+ARRAY-FILL-POINTER-P+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++ARRAY-FILL-POINTER-P+ names a constant variable:
+  Value: 128
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SINGLE-FLOAT-BIAS :constant:var:
+:PROPERTIES:
+:ID: 1303125368514
+:CUSTOM_ID: SB-VM:SINGLE-FLOAT-BIAS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-FLOAT-BIAS names a constant variable:
+  Value: 126
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** N-LINKAGE-INDEX-BITS :constant:var:
+:PROPERTIES:
+:ID: 764206693052
+:CUSTOM_ID: SB-VM:N-LINKAGE-INDEX-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-LINKAGE-INDEX-BITS names a constant variable:
+  Value: 19
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** SINGLE-STACK-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 4202002753682
+:CUSTOM_ID: SB-VM:SINGLE-STACK-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-STACK-SC-NUMBER names a constant variable:
+  Value: 11
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** PAD3-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 1774146477784
+:CUSTOM_ID: SB-VM:PAD3-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PAD3-LOWTAG names a constant variable:
+  Value: 10
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** EMIT-LONG-NOP :compiled:function:
+:PROPERTIES:
+:ID: 3288665363024
+:CUSTOM_ID: SB-VM:EMIT-LONG-NOP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+EMIT-LONG-NOP names a compiled function:
+  Lambda-list: (SEGMENT AMOUNT)
+  Derived type: (FUNCTION (SB-ASSEM:SEGMENT T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;X86-64;INSTS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;INSTS.LISP
+:end:
+** COMPLEX-DOUBLE-FLOAT-REAL-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3302014609365
+:CUSTOM_ID: SB-VM:COMPLEX-DOUBLE-FLOAT-REAL-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-DOUBLE-FLOAT-REAL-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** *FIXEDOBJ-SPACE-FREE-POINTER​*
+:PROPERTIES:
+:ID: 664048811108
+:CUSTOM_ID: SB-VM:*FIXEDOBJ-SPACE-FREE-POINTER*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*FIXEDOBJ-SPACE-FREE-POINTER* names an alien variable:
+  Value: #.(INT-SAP #X502AD800)
+  Type: SYSTEM-AREA-POINTER
+  Address: #x555ED38D0C18
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ALLOC.LISP
+:end:
+** GENCGC-ALLOC-GRANULARITY :constant:var:
+:PROPERTIES:
+:ID: 3846172584593
+:CUSTOM_ID: SB-VM:GENCGC-ALLOC-GRANULARITY
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+GENCGC-ALLOC-GRANULARITY names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** CATCH-BLOCK-UWP-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1037671108148
+:CUSTOM_ID: SB-VM:CATCH-BLOCK-UWP-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CATCH-BLOCK-UWP-SLOT names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-COMPLEX-DOUBLE-FLOAT-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2709792228240
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-COMPLEX-DOUBLE-FLOAT-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-COMPLEX-DOUBLE-FLOAT-WIDETAG names a constant variable:
+  Value: 221
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** COMPLEX-BIT-VECTOR-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2690214359205
+:CUSTOM_ID: SB-VM:COMPLEX-BIT-VECTOR-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-BIT-VECTOR-WIDETAG names a constant variable:
+  Value: 241
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** LONG-FLOAT-HIDDEN-BIT
+:PROPERTIES:
+:ID: 2845544856347
+:CUSTOM_ID: SB-VM:LONG-FLOAT-HIDDEN-BIT
+:ALLOC: HEAP IMMOBILE
+:END:** ARENA-CONTENTS :compiled:function:
+:PROPERTIES:
+:ID: 912913267695
+:CUSTOM_ID: SB-VM:ARENA-CONTENTS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARENA-CONTENTS names a compiled function:
+  Lambda-list: (ARENA)
+  Derived type: (FUNCTION (T) (VALUES SIMPLE-VECTOR &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** STATIC-CODE-SPACE-START
+:PROPERTIES:
+:ID: 2165582301212
+:CUSTOM_ID: SB-VM:STATIC-CODE-SPACE-START
+:ALLOC: HEAP IMMOBILE
+:END:** CONTEXT-REGISTER :compiled:function:
+:PROPERTIES:
+:ID: 1659184358813
+:CUSTOM_ID: SB-VM:CONTEXT-REGISTER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CONTEXT-REGISTER names a compiled function:
+  Lambda-list: (CONTEXT INDEX)
+  Derived type: (FUNCTION
+                 ((SB-ALIEN:ALIEN
+,                   (* (SB-ALIEN:STRUCT SB-VM::OS-CONTEXT-T-STRUCT)))
+                  T)
+                 (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;SHARE-VM.LISP
+
+(SETF CONTEXT-REGISTER) has setf-expansion: SB-VM::%SET-CONTEXT-REGISTER
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;SHARE-VM.LISP
+- SYS:SRC;CODE;DEFSETFS.LISP
+:end:
+** N-FIXNUM-BITS :constant:var:
+:PROPERTIES:
+:ID: 3200846814219
+:CUSTOM_ID: SB-VM:N-FIXNUM-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-FIXNUM-BITS names a constant variable:
+  Value: 63
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** OCFP-SAVE-OFFSET :constant:var:
+:PROPERTIES:
+:ID: 3363546325741
+:CUSTOM_ID: SB-VM:OCFP-SAVE-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+OCFP-SAVE-OFFSET names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** STATIC-FUN-OFFSET
+:PROPERTIES:
+:ID: 2844792781763
+:CUSTOM_ID: SB-VM:STATIC-FUN-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END:** CATCH-BLOCK-PREVIOUS-CATCH-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3681875817174
+:CUSTOM_ID: SB-VM:CATCH-BLOCK-PREVIOUS-CATCH-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CATCH-BLOCK-PREVIOUS-CATCH-SLOT names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** BIGNUM-DIGITS-OFFSET :constant:var:
+:PROPERTIES:
+:ID: 2460339220451
+:CUSTOM_ID: SB-VM:BIGNUM-DIGITS-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+BIGNUM-DIGITS-OFFSET names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-UNSIGNED-BYTE-15-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 1501455618365
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-15-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-UNSIGNED-BYTE-15-WIDETAG names a constant variable:
+  Value: 161
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SC-OFFSET-BITS :constant:var:
+:PROPERTIES:
+:ID: 2676868340899
+:CUSTOM_ID: SB-VM:SC-OFFSET-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SC-OFFSET-BITS names a constant variable:
+  Value: 21
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** N-WIDETAG-BITS :constant:var:
+:PROPERTIES:
+:ID: 2331948928033
+:CUSTOM_ID: SB-VM:N-WIDETAG-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-WIDETAG-BITS names a constant variable:
+  Value: 8
+#+end_example
+
+- Referenced by
+  - (INSPECTED-DESCRIPTION (CHARACTER))
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** SYMBOL-TLS-INDEX-SLOT
+:PROPERTIES:
+:ID: 621841096762
+:CUSTOM_ID: SB-VM:SYMBOL-TLS-INDEX-SLOT
+:ALLOC: HEAP IMMOBILE
+:END:** VECTOR-WEAK-FLAG :constant:var:
+:PROPERTIES:
+:ID: 4055123445101
+:CUSTOM_ID: SB-VM:VECTOR-WEAK-FLAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+VECTOR-WEAK-FLAG names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SAETP-PRIMITIVE-TYPE-NAME :compiled:function:
+:PROPERTIES:
+:ID: 2921846020599
+:CUSTOM_ID: SB-VM:SAETP-PRIMITIVE-TYPE-NAME
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAETP-PRIMITIVE-TYPE-NAME names a compiled function:
+  An accessor for SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES)
+                 (VALUES SYMBOL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+:end:
+** SLOT-SPECIAL :compiled:function:
+:PROPERTIES:
+:ID: 3161353184201
+:CUSTOM_ID: SB-VM:SLOT-SPECIAL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SLOT-SPECIAL names a compiled function:
+  Lambda-list: (SLOT)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** FP-CONSTANT-SC-NUMBER
+:PROPERTIES:
+:ID: 1166160413540
+:CUSTOM_ID: SB-VM:FP-CONSTANT-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END:** FUNCTION-LAYOUT
+:PROPERTIES:
+:ID: 3073759704819
+:CUSTOM_ID: SB-VM:FUNCTION-LAYOUT
+:ALLOC: HEAP IMMOBILE
+:END:** COMPLEX-DOUBLE-FLOAT-FILLER-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3358805417458
+:CUSTOM_ID: SB-VM:COMPLEX-DOUBLE-FLOAT-FILLER-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-DOUBLE-FLOAT-FILLER-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SINGLE-FLOAT-NORMAL-EXPONENT-MAX :constant:var:
+:PROPERTIES:
+:ID: 148268366565
+:CUSTOM_ID: SB-VM:SINGLE-FLOAT-NORMAL-EXPONENT-MAX
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-FLOAT-NORMAL-EXPONENT-MAX names a constant variable:
+  Value: 254
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** PRIMITIVE-OBJECT-LOWTAG :compiled:function:
+:PROPERTIES:
+:ID: 3788404011242
+:CUSTOM_ID: SB-VM:PRIMITIVE-OBJECT-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRIMITIVE-OBJECT-LOWTAG names a compiled function:
+  An accessor for SB-VM:PRIMITIVE-OBJECT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM:PRIMITIVE-OBJECT) (VALUES SYMBOL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** CONSTANT-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 2425951800727
+:CUSTOM_ID: SB-VM:CONSTANT-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CONSTANT-SC-NUMBER names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** SIMPLE-FUN-INFO-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1746978151302
+:CUSTOM_ID: SB-VM:SIMPLE-FUN-INFO-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-FUN-INFO-SLOT names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** CODE-BOXED-SIZE-SLOT :constant:var:
+:PROPERTIES:
+:ID: 540421856477
+:CUSTOM_ID: SB-VM:CODE-BOXED-SIZE-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CODE-BOXED-SIZE-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** STATIC-SPACE-START
+:PROPERTIES:
+:ID: 755371113372
+:CUSTOM_ID: SB-VM:STATIC-SPACE-START
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STATIC-SPACE-START names an alien variable:
+  Value: 90159953477632
+  Type: (UNSIGNED 64)
+  Address: #x555ED38D3BF0
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;MISC-ALIENS.LISP
+:end:
+** ARENA-P :compiled:function:
+:PROPERTIES:
+:ID: 2260916701511
+:CUSTOM_ID: SB-VM:ARENA-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARENA-P names a compiled function:
+  A predicate for SB-VM:ARENA
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+:end:
+** SYMBOL-VALUE-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1659303776196
+:CUSTOM_ID: SB-VM:SYMBOL-VALUE-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SYMBOL-VALUE-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** VECTOR-ADDR-HASHING-FLAG :constant:var:
+:PROPERTIES:
+:ID: 351244246847
+:CUSTOM_ID: SB-VM:VECTOR-ADDR-HASHING-FLAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+VECTOR-ADDR-HASHING-FLAG names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** CODE-SLOTS-PER-SIMPLE-FUN :constant:var:
+:PROPERTIES:
+:ID: 3916909072687
+:CUSTOM_ID: SB-VM:CODE-SLOTS-PER-SIMPLE-FUN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CODE-SLOTS-PER-SIMPLE-FUN names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMD-PACK-512-P0-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1776550697434
+:CUSTOM_ID: SB-VM:SIMD-PACK-512-P0-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-512-P0-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** INSTANCE-DATA-START :constant:var:
+:PROPERTIES:
+:ID: 2867697880293
+:CUSTOM_ID: SB-VM:INSTANCE-DATA-START
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INSTANCE-DATA-START names a constant variable:
+  Value: 0
+#+end_example
+
+- Referenced by
+  - SB-INTROSPECT:MAP-ROOT
+  - [[id:1805801775833][DEEP-SIZE]]
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** OTHER-IMMEDIATE-1-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 1980048915611
+:CUSTOM_ID: SB-VM:OTHER-IMMEDIATE-1-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+OTHER-IMMEDIATE-1-LOWTAG names a constant variable:
+  Value: 5
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** VALUE-CELL-SIZE :constant:var:
+:PROPERTIES:
+:ID: 2879581624588
+:CUSTOM_ID: SB-VM:VALUE-CELL-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+VALUE-CELL-SIZE names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-UNSIGNED-FIXNUM-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3013949905724
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-UNSIGNED-FIXNUM-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-UNSIGNED-FIXNUM-WIDETAG names a constant variable:
+  Value: 177
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** LONG-FLOAT-TRAPPING-NAN-BIT
+:PROPERTIES:
+:ID: 747856966809
+:CUSTOM_ID: SB-VM:LONG-FLOAT-TRAPPING-NAN-BIT
+:ALLOC: HEAP IMMOBILE
+:END:** SAP-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3544886735320
+:CUSTOM_ID: SB-VM:SAP-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAP-WIDETAG names a constant variable:
+  Value: 49
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-SIGNED-BYTE-16-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3368716557140
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-SIGNED-BYTE-16-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-SIGNED-BYTE-16-WIDETAG names a constant variable:
+  Value: 193
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** PAD2-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 2351176788704
+:CUSTOM_ID: SB-VM:PAD2-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PAD2-LOWTAG names a constant variable:
+  Value: 6
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** FIND-CONTAINING-ARENA :compiled:function:
+:PROPERTIES:
+:ID: 870397280383
+:CUSTOM_ID: SB-VM:FIND-CONTAINING-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FIND-CONTAINING-ARENA names a compiled function:
+  Lambda-list: (ADDR)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 64))
+                 (VALUES (OR SB-VM:ARENA NULL) &OPTIONAL))
+  Source file: SYS:SRC;CODE;ARENA.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** SINGLE-STEP-AROUND-TRAP :constant:var:
+:PROPERTIES:
+:ID: 4148593655645
+:CUSTOM_ID: SB-VM:SINGLE-STEP-AROUND-TRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-STEP-AROUND-TRAP names a constant variable:
+  Value: 13
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** FIXUP-CODE-OBJECT :compiled:function:
+:PROPERTIES:
+:ID: 966285189852
+:CUSTOM_ID: SB-VM:FIXUP-CODE-OBJECT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FIXUP-CODE-OBJECT names a compiled function:
+  Lambda-list: (CODE OFFSET VALUE KIND FLAVOR)
+  Derived type: (FUNCTION (T (UNSIGNED-BYTE 44) T T T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;X86-64;INSTS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;INSTS.LISP
+:end:
+** STATIC-SYMBOL-P :compiled:function:
+:PROPERTIES:
+:ID: 2971887526042
+:CUSTOM_ID: SB-VM:STATIC-SYMBOL-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STATIC-SYMBOL-P names a compiled function:
+  Lambda-list: (SYMBOL)
+  Declared type: (FUNCTION (T) (VALUES (OR (MOD 14) BOOLEAN) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;STATIC-SYMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;STATIC-SYMS.LISP
+:end:
+** THREAD-SPROF-DATA-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1604160630472
+:CUSTOM_ID: SB-VM:THREAD-SPROF-DATA-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+THREAD-SPROF-DATA-SLOT names a constant variable:
+  Value: 28
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** DOUBLE-FLOAT-VALUE-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1529391245142
+:CUSTOM_ID: SB-VM:DOUBLE-FLOAT-VALUE-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-FLOAT-VALUE-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** %WRITE-BARRIER :compiled:vop:function:
+:PROPERTIES:
+:ID: 1578398337767
+:CUSTOM_ID: SB-VM:%WRITE-BARRIER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+%WRITE-BARRIER names a compiled function:
+  Lambda-list: ()
+  Declared type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Source file: SYS:SRC;CODE;BARRIER.LISP
+#+end_example
+
+- Called by
+  - SB-CONCURRENCY:RELEASE-FRLOCK-WRITE-LOCK
+  - SB-CONCURRENCY::%%GRAB-FRLOCK-WRITE-LOCK
+  - URING::IO-URING-LOAD-SQ-HEAD
+
+:definitions:
+- SYS:SRC;CODE;BARRIER.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** HIDE-ARENA :compiled:function:
+:PROPERTIES:
+:ID: 2995539182039
+:CUSTOM_ID: SB-VM:HIDE-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+HIDE-ARENA names a compiled function:
+  Lambda-list: (ARENA)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;CODE;ARENA.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** DOUBLE-FLOAT-HI-SIGNIFICAND-BYTE :constant:var:
+:PROPERTIES:
+:ID: 2842755746828
+:CUSTOM_ID: SB-VM:DOUBLE-FLOAT-HI-SIGNIFICAND-BYTE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-FLOAT-HI-SIGNIFICAND-BYTE names a constant variable:
+  Value: (20 . 0)
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** CODE-HEADER-SIZE-SHIFT :constant:var:
+:PROPERTIES:
+:ID: 3625068345785
+:CUSTOM_ID: SB-VM:CODE-HEADER-SIZE-SHIFT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CODE-HEADER-SIZE-SHIFT names a constant variable:
+  Value: 32
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** PAD-DATA-BLOCK :compiled:macro:function:
+:PROPERTIES:
+:ID: 3232783751885
+:CUSTOM_ID: SB-VM:PAD-DATA-BLOCK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PAD-DATA-BLOCK names a macro:
+  Lambda-list: (WORDS)
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** LOWTAG-LIMIT :constant:var:
+:PROPERTIES:
+:ID: 1894739249331
+:CUSTOM_ID: SB-VM:LOWTAG-LIMIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+LOWTAG-LIMIT names a constant variable:
+  Value: 16
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** N-MACHINE-WORD-BYTES :constant:var:
+:PROPERTIES:
+:ID: 2720898729544
+:CUSTOM_ID: SB-VM:N-MACHINE-WORD-BYTES
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-MACHINE-WORD-BYTES names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** *STATIC-SPACE-FREE-POINTER​*
+:PROPERTIES:
+:ID: 887434128045
+:CUSTOM_ID: SB-VM:*STATIC-SPACE-FREE-POINTER*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*STATIC-SPACE-FREE-POINTER* names an alien variable:
+  Value: #.(INT-SAP #X5200000017D0)
+  Type: SYSTEM-AREA-POINTER
+  Address: #x555ED38D0C00
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;MISC-ALIENS.LISP
+:end:
+** WITHOUT-ARENA :compiled:macro:function:
+:PROPERTIES:
+:ID: 2404175382756
+:CUSTOM_ID: SB-VM:WITHOUT-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WITHOUT-ARENA names a macro:
+  Lambda-list: (&BODY BODY)
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** FLOAT-SIGN-SHIFT :constant:var:
+:PROPERTIES:
+:ID: 1383838670623
+:CUSTOM_ID: SB-VM:FLOAT-SIGN-SHIFT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FLOAT-SIGN-SHIFT names a constant variable:
+  Value: 31
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** PRIMITIVE-OBJECT-NAME :compiled:function:
+:PROPERTIES:
+:ID: 2806723540893
+:CUSTOM_ID: SB-VM:PRIMITIVE-OBJECT-NAME
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRIMITIVE-OBJECT-NAME names a compiled function:
+  An accessor for SB-VM:PRIMITIVE-OBJECT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM:PRIMITIVE-OBJECT) (VALUES SYMBOL &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** ARENA :class:
+:PROPERTIES:
+:ID: 273026505799
+:CUSTOM_ID: SB-VM:ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARENA names the structure-class #<STRUCTURE-CLASS SB-VM:ARENA>:
+  Class precedence-list: ARENA, STRUCTURE-OBJECT, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Slots:
+    SB-VM::CURRENT-BLOCK
+      Type: SB-EXT:WORD (unboxed)
+      Initform: 0
+    SB-VM::FIRST-BLOCK
+      Type: SB-EXT:WORD (unboxed)
+      Initform: 0
+    SB-VM::HUGE-OBJECTS
+      Type: SB-EXT:WORD (unboxed)
+      Initform: 0
+    SB-VM::ORIGINAL-SIZE
+      Type: SB-EXT:WORD (unboxed)
+      Initform: 0
+    SB-VM::GROWTH-AMOUNT
+      Type: SB-EXT:WORD (unboxed)
+      Initform: 0
+    SB-VM::HUGE-OBJECT-THRESHOLD
+      Type: SB-EXT:WORD (unboxed)
+      Initform: 0
+    SB-VM::SIZE-LIMIT
+      Type: SB-EXT:WORD (unboxed)
+      Initform: 0
+    LENGTH
+      Type: SB-EXT:WORD (unboxed)
+      Initform: 0
+    SB-VM::BYTES-WASTED
+      Type: SB-EXT:WORD (unboxed)
+      Initform: 0
+    SB-VM::EXHAUSTED
+      Type: BOOLEAN
+      Initform: NIL
+    SB-INT:INDEX
+      Type: FIXNUM
+      Initform: 0
+    SB-VM::HIDDEN
+      Type: T
+      Initform: NIL
+    SB-VM::TOKEN
+      Type: SB-EXT:WORD (unboxed)
+      Initform: 0
+    SB-VM::USERDATA
+      Type: T
+      Initform: NIL
+    SB-VM::LINK
+      Type: T
+      Initform: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+:end:
+** INVALID-ARG-COUNT-TRAP :constant:var:
+:PROPERTIES:
+:ID: 1003466607512
+:CUSTOM_ID: SB-VM:INVALID-ARG-COUNT-TRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INVALID-ARG-COUNT-TRAP names a constant variable:
+  Value: 15
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** MAX-INTERRUPTS :constant:var:
+:PROPERTIES:
+:ID: 1668298239803
+:CUSTOM_ID: SB-VM:MAX-INTERRUPTS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MAX-INTERRUPTS names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** SYMBOL-FROM-TLS-INDEX :compiled:function:
+:PROPERTIES:
+:ID: 3284167829585
+:CUSTOM_ID: SB-VM:SYMBOL-FROM-TLS-INDEX
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SYMBOL-FROM-TLS-INDEX names a compiled function:
+  Lambda-list: (INDEX)
+  Declared type: (FUNCTION (INTEGER)
+                  (VALUES &OPTIONAL (OR SYMBOL (INTEGER 0 0)) &REST T))
+  Derived type: (FUNCTION (INTEGER)
+                 (VALUES (OR SYMBOL (INTEGER 0 0)) &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** WORD-REG-SC-NUMBER
+:PROPERTIES:
+:ID: 2798323737362
+:CUSTOM_ID: SB-VM:WORD-REG-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END:** +STATIC-SYMBOLS​+ :constant:var:
+:PROPERTIES:
+:ID: 4378515384580
+:CUSTOM_ID: SB-VM:+STATIC-SYMBOLS+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++STATIC-SYMBOLS+ names a constant variable:
+,  Value: #(T SB-VM::*IMMOBILE-CODEBLOB-TREE* SB-VM::*IMMOBILE-CODEBLOB-VECTOR*
+,           SB-VM::*DYNSPACE-CODEBLOB-TREE* *LINKAGE-NAME-MAP*
+,           SB-IMPL::**FINALIZER-STORE** SB-IMPL::*FINALIZER-REHASHLIST*
+,           SB-IMPL::*FINALIZERS-TRIGGERED* SB-IMPL::*RUN-GC-HOOKS*
+,           SB-THREAD::*STARTING-THREADS* SB-VM::*FREE-TLS-INDEX*
+,           SB-VM::*TLS-SYMBOL-MAP* SB-APROF::*N-PROFILE-SITES*
+           SB-VM::CALLBACK-WRAPPER-TRAMPOLINE)
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** INLINE-CONSTANT-VALUE :compiled:function:
+:PROPERTIES:
+:ID: 1074873557455
+:CUSTOM_ID: SB-VM:INLINE-CONSTANT-VALUE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INLINE-CONSTANT-VALUE names a compiled function:
+  Lambda-list: (CONSTANT)
+  Derived type: (FUNCTION (T)
+                 (VALUES SB-ASSEM:LABEL SB-X86-64-ASM::EA &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;X86-64;INSTS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;INSTS.LISP
+:end:
+** SYMBOL-NAME-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2793431954922
+:CUSTOM_ID: SB-VM:SYMBOL-NAME-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SYMBOL-NAME-SLOT names a constant variable:
+  Value: 5
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** FLOAT-DENORMAL-TRAP-BIT :constant:var:
+:PROPERTIES:
+:ID: 2219901789480
+:CUSTOM_ID: SB-VM:FLOAT-DENORMAL-TRAP-BIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FLOAT-DENORMAL-TRAP-BIT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** SPACE-BYTES :compiled:function:
+:PROPERTIES:
+:ID: 1967741236020
+:CUSTOM_ID: SB-VM:SPACE-BYTES
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SPACE-BYTES names a compiled function:
+  Lambda-list: (SPACE)
+  Derived type: (FUNCTION (T) (VALUES NUMBER &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** SC-NUMBER-BITS :constant:var:
+:PROPERTIES:
+:ID: 2357481456688
+:CUSTOM_ID: SB-VM:SC-NUMBER-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SC-NUMBER-BITS names a constant variable:
+  Value: 6
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** SIMD-PACK-SIZE :constant:var:
+:PROPERTIES:
+:ID: 2978810227799
+:CUSTOM_ID: SB-VM:SIMD-PACK-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-SIZE names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** ARRAY-DISPLACED-FROM-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3443957673506
+:CUSTOM_ID: SB-VM:ARRAY-DISPLACED-FROM-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARRAY-DISPLACED-FROM-SLOT names a constant variable:
+  Value: 6
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** FINITE-SC-OFFSET-BITS :constant:var:
+:PROPERTIES:
+:ID: 406607916806
+:CUSTOM_ID: SB-VM:FINITE-SC-OFFSET-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FINITE-SC-OFFSET-BITS names a constant variable:
+  Value: 5
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** DO-REFERENCED-OBJECT :compiled:macro:function:
+:PROPERTIES:
+:ID: 1761219829349
+:CUSTOM_ID: SB-VM:DO-REFERENCED-OBJECT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DO-REFERENCED-OBJECT names a macro:
+  Lambda-list: ((OBJ FUNCTOID &REST MORE) &REST ALTERATIONS)
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+- Macroexpanded by
+  - SB-INTROSPECT:MAP-ROOT
+  - [[id:1805801775833][DEEP-SIZE]]
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** LONG-FLOAT-DIGITS
+:PROPERTIES:
+:ID: 4379098577588
+:CUSTOM_ID: SB-VM:LONG-FLOAT-DIGITS
+:ALLOC: HEAP IMMOBILE
+:END:** *CONTROL-STACK-START​* :global:var:
+:PROPERTIES:
+:ID: 1227697684161
+:CUSTOM_ID: SB-VM:*CONTROL-STACK-START*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*CONTROL-STACK-START* names a special variable:
+  Declared always-bound.
+  Value: 69929906421760
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SLOT-NAME :compiled:function:
+:PROPERTIES:
+:ID: 3962423198076
+:CUSTOM_ID: SB-VM:SLOT-NAME
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SLOT-NAME names a compiled function:
+  Lambda-list: (SLOT)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** DOUBLE-STACK-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 701529316463
+:CUSTOM_ID: SB-VM:DOUBLE-STACK-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-STACK-SC-NUMBER names a constant variable:
+  Value: 12
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** PRIMITIVE-OBJECT-SLOTS :compiled:function:
+:PROPERTIES:
+:ID: 598308394263
+:CUSTOM_ID: SB-VM:PRIMITIVE-OBJECT-SLOTS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRIMITIVE-OBJECT-SLOTS names a compiled function:
+  An accessor for SB-VM:PRIMITIVE-OBJECT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM:PRIMITIVE-OBJECT) (VALUES VECTOR &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** PAD5-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 3225327490313
+:CUSTOM_ID: SB-VM:PAD5-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PAD5-LOWTAG names a constant variable:
+  Value: 14
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-SIGNED-BYTE-32-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3068320489857
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-SIGNED-BYTE-32-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-SIGNED-BYTE-32-WIDETAG names a constant variable:
+  Value: 197
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** WEAK-POINTER-SIZE :constant:var:
+:PROPERTIES:
+:ID: 1123506264893
+:CUSTOM_ID: SB-VM:WEAK-POINTER-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WEAK-POINTER-SIZE names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SINGLE-REG-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 3581334491434
+:CUSTOM_ID: SB-VM:SINGLE-REG-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-REG-SC-NUMBER names a constant variable:
+  Value: 27
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** FUNCALLABLE-INSTANCE-INFO-OFFSET :constant:var:
+:PROPERTIES:
+:ID: 381557195753
+:CUSTOM_ID: SB-VM:FUNCALLABLE-INSTANCE-INFO-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUNCALLABLE-INSTANCE-INFO-OFFSET names a constant variable:
+  Value: 5
+#+end_example
+
+- Referenced by
+  - SB-INTROSPECT:MAP-ROOT
+  - [[id:1805801775833][DEEP-SIZE]]
+  - ((SETF KERNEL-INFO) (T FUNCALLABLE-STANDARD-OBJECT T))
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** MEMORY-USAGE :compiled:function:
+:PROPERTIES:
+:ID: 1094054956940
+:CUSTOM_ID: SB-VM:MEMORY-USAGE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MEMORY-USAGE names a compiled function:
+  Lambda-list: (&KEY PRINT-SPACES (COUNT-SPACES (QUOTE (DYNAMIC IMMOBILE)))
+                (PRINT-SUMMARY T) CUTOFF)
+  Derived type: (FUNCTION
+                 (&KEY (:PRINT-SPACES T) (:COUNT-SPACES T) (:PRINT-SUMMARY T)
+                  (:CUTOFF (OR NULL SINGLE-FLOAT)))
+                 (VALUES &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** PRIMITIVE-OBJECT :compiled:function:class:
+:PROPERTIES:
+:ID: 2458834601562
+:CUSTOM_ID: SB-VM:PRIMITIVE-OBJECT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRIMITIVE-OBJECT names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+
+PRIMITIVE-OBJECT names the structure-class #<STRUCTURE-CLASS SB-VM:PRIMITIVE-OBJECT>:
+  Class precedence-list: SB-VM:PRIMITIVE-OBJECT, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Sealed.
+  Slots:
+    SB-VM::NAME
+      Type: SYMBOL
+      Initform: NIL
+    SB-VM::WIDETAG
+      Type: SYMBOL
+      Initform: NIL
+    SB-VM::LOWTAG
+      Type: SYMBOL
+      Initform: NIL
+    LENGTH
+      Type: FIXNUM
+      Initform: 0
+    SB-VM::VARIABLE-LENGTH-P
+      Type: BOOLEAN
+      Initform: NIL
+    SB-VM::SLOTS
+      Type: VECTOR
+      Initform: #()
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+  - [[id:2131768191127][FREEZE-TYPE]]
+:end:
+** NEXT-FREE-PAGE
+:PROPERTIES:
+:ID: 737416876951
+:CUSTOM_ID: SB-VM:NEXT-FREE-PAGE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+NEXT-FREE-PAGE names an alien variable:
+  Value: 28428
+  Type: (SIGNED 32)
+  Address: #x555ED38D40A8
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** OTHER-IMMEDIATE-0-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 3935991335008
+:CUSTOM_ID: SB-VM:OTHER-IMMEDIATE-0-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+OTHER-IMMEDIATE-0-LOWTAG names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** VALUE-CELL-VALUE-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2096289464099
+:CUSTOM_ID: SB-VM:VALUE-CELL-VALUE-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+VALUE-CELL-VALUE-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** FLOATING-POINT-MODES :compiled:function:
+:PROPERTIES:
+:ID: 2652807505937
+:CUSTOM_ID: SB-VM:FLOATING-POINT-MODES
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FLOATING-POINT-MODES names a compiled function:
+  Lambda-list: ()
+  Declared type: (FUNCTION NIL (VALUES (UNSIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:SRC;CODE;X86-64-VM.LISP
+
+(SETF FLOATING-POINT-MODES) names a compiled function:
+  Lambda-list: (VAL)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;X86-64-VM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;X86-64-VM.LISP
+:end:
+** IMMOBILE-CARD-BYTES :constant:var:
+:PROPERTIES:
+:ID: 2711927930512
+:CUSTOM_ID: SB-VM:IMMOBILE-CARD-BYTES
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+IMMOBILE-CARD-BYTES names a constant variable:
+  Value: 2048
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** SIMD-PACK-512-P6-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1633894076451
+:CUSTOM_ID: SB-VM:SIMD-PACK-512-P6-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-512-P6-SLOT names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** CLOSURE-FUN-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3011377392140
+:CUSTOM_ID: SB-VM:CLOSURE-FUN-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CLOSURE-FUN-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** CANONICALIZE-INLINE-CONSTANT :compiled:function:
+:PROPERTIES:
+:ID: 1708845100832
+:CUSTOM_ID: SB-VM:CANONICALIZE-INLINE-CONSTANT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CANONICALIZE-INLINE-CONSTANT names a compiled function:
+  Lambda-list: (CONSTANT)
+  Derived type: (FUNCTION (T) (VALUES CONS &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;X86-64;INSTS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;INSTS.LISP
+:end:
+** SIMPLE-ARRAY-UNSIGNED-BYTE-2-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3986990967433
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-2-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-UNSIGNED-BYTE-2-WIDETAG names a constant variable:
+  Value: 145
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** PAD0-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 1204809200351
+:CUSTOM_ID: SB-VM:PAD0-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PAD0-LOWTAG names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** +HIGHEST-NORMAL-GENERATION​+ :constant:var:
+:PROPERTIES:
+:ID: 3792400543654
+:CUSTOM_ID: SB-VM:+HIGHEST-NORMAL-GENERATION+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++HIGHEST-NORMAL-GENERATION+ names a constant variable:
+  Value: 5
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** FDEFN-FUN-SLOT :constant:var:
+:PROPERTIES:
+:ID: 326940412096
+:CUSTOM_ID: SB-VM:FDEFN-FUN-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FDEFN-FUN-SLOT names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMD-PACK-512-P1-SLOT :constant:var:
+:PROPERTIES:
+:ID: 4052246933456
+:CUSTOM_ID: SB-VM:SIMD-PACK-512-P1-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-512-P1-SLOT names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** *TEXT-SPACE-FREE-POINTER​*
+:PROPERTIES:
+:ID: 4320457784712
+:CUSTOM_ID: SB-VM:*TEXT-SPACE-FREE-POINTER*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*TEXT-SPACE-FREE-POINTER* names an alien variable:
+  Value: #.(INT-SAP #XB801EFAEE0)
+  Type: SYSTEM-AREA-POINTER
+  Address: #x555ED38D0C68
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ALLOC.LISP
+:end:
+** CATCH-BLOCK-SIZE :constant:var:
+:PROPERTIES:
+:ID: 3304571483645
+:CUSTOM_ID: SB-VM:CATCH-BLOCK-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CATCH-BLOCK-SIZE names a constant variable:
+  Value: 6
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SYMBOL-INFO-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1903473406790
+:CUSTOM_ID: SB-VM:SYMBOL-INFO-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SYMBOL-INFO-SLOT names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** ZERO-SC-NUMBER
+:PROPERTIES:
+:ID: 4190315218273
+:CUSTOM_ID: SB-VM:ZERO-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END:** FIXNUMIZE :compiled:function:
+:PROPERTIES:
+:ID: 4157427243003
+:CUSTOM_ID: SB-VM:FIXNUMIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FIXNUMIZE names a compiled function:
+  Lambda-list: (NUM)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (OR (INTEGER -9223372036854775808 -2) (INTEGER 0 0)
+                      (INTEGER 2 9223372036854775806))
+                  &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;UTILS.LISP
+#+end_example
+
+- Called by
+  - IO/STATIC::%ALLOCATE-STATIC-VECTOR
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;UTILS.LISP
+:end:
+** REWIND-ARENA :compiled:function:
+:PROPERTIES:
+:ID: 752682757534
+:CUSTOM_ID: SB-VM:REWIND-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+REWIND-ARENA names a compiled function:
+  Lambda-list: (ARENA)
+  Derived type: (FUNCTION (T) (VALUES SB-VM:ARENA &OPTIONAL))
+  Source file: SYS:SRC;CODE;ARENA.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** SINGLE-FLOAT-DIGITS :constant:var:
+:PROPERTIES:
+:ID: 2193412887185
+:CUSTOM_ID: SB-VM:SINGLE-FLOAT-DIGITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-FLOAT-DIGITS names a constant variable:
+  Value: 24
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** SYMBOL-HASH-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2740521820695
+:CUSTOM_ID: SB-VM:SYMBOL-HASH-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SYMBOL-HASH-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** LIST-ALLOCATED-OBJECTS :compiled:function:
+:PROPERTIES:
+:ID: 3102478527576
+:CUSTOM_ID: SB-VM:LIST-ALLOCATED-OBJECTS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+LIST-ALLOCATED-OBJECTS names a compiled function:
+  Lambda-list: (SPACE &KEY TYPE LARGER SMALLER COUNT TEST)
+  Dynamic-extent arguments: keyword=(:TEST)
+  Derived type: (FUNCTION
+                 ((MEMBER :DYNAMIC :IMMOBILE :READ-ONLY :STATIC :ALL) &KEY
+                  (:TYPE (OR (UNSIGNED-BYTE 8) NULL))
+                  (:LARGER (OR NULL (UNSIGNED-BYTE 44)))
+                  (:SMALLER (OR NULL (UNSIGNED-BYTE 44)))
+                  (:COUNT (OR NULL (UNSIGNED-BYTE 44)))
+                  (:TEST (OR NULL FUNCTION)))
+                 (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** DOUBLE-FLOAT-HI-EXPONENT-BYTE :constant:var:
+:PROPERTIES:
+:ID: 2148036808551
+:CUSTOM_ID: SB-VM:DOUBLE-FLOAT-HI-EXPONENT-BYTE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-FLOAT-HI-EXPONENT-BYTE names a constant variable:
+  Value: (11 . 20)
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** LONG-FLOAT-SIGNIFICAND-BYTE
+:PROPERTIES:
+:ID: 1814946509197
+:CUSTOM_ID: SB-VM:LONG-FLOAT-SIGNIFICAND-BYTE
+:ALLOC: HEAP IMMOBILE
+:END:** FDEFN-RAW-ADDR-SLOT
+:PROPERTIES:
+:ID: 2006746305777
+:CUSTOM_ID: SB-VM:FDEFN-RAW-ADDR-SLOT
+:ALLOC: HEAP IMMOBILE
+:END:** HALT-TRAP :constant:var:
+:PROPERTIES:
+:ID: 2531949851939
+:CUSTOM_ID: SB-VM:HALT-TRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+HALT-TRAP names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** COMPLEX-SINGLE-REG-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 871914766156
+:CUSTOM_ID: SB-VM:COMPLEX-SINGLE-REG-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-SINGLE-REG-SC-NUMBER names a constant variable:
+  Value: 29
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** SLOT-OFFSET :compiled:function:
+:PROPERTIES:
+:ID: 3629044449691
+:CUSTOM_ID: SB-VM:SLOT-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SLOT-OFFSET names a compiled function:
+  Lambda-list: (SLOT)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** EVEN-FIXNUM-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 1909104628931
+:CUSTOM_ID: SB-VM:EVEN-FIXNUM-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+EVEN-FIXNUM-LOWTAG names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMD-PACK-512-P2-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1589829518072
+:CUSTOM_ID: SB-VM:SIMD-PACK-512-P2-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-512-P2-SLOT names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** COMPLEX-BASE-STRING-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2316681302189
+:CUSTOM_ID: SB-VM:COMPLEX-BASE-STRING-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-BASE-STRING-WIDETAG names a constant variable:
+  Value: 233
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMD-PACK-256-P3-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2528971760589
+:CUSTOM_ID: SB-VM:SIMD-PACK-256-P3-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-256-P3-SLOT names a constant variable:
+  Value: 5
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** ARRAY-DISPLACED-P-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1483338348301
+:CUSTOM_ID: SB-VM:ARRAY-DISPLACED-P-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARRAY-DISPLACED-P-SLOT names a constant variable:
+  Value: 5
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** RETURN-PC-SAVE-OFFSET :constant:var:
+:PROPERTIES:
+:ID: 3502798608694
+:CUSTOM_ID: SB-VM:RETURN-PC-SAVE-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+RETURN-PC-SAVE-OFFSET names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** BINDING-VALUE-SLOT :constant:var:
+:PROPERTIES:
+:ID: 4229805005594
+:CUSTOM_ID: SB-VM:BINDING-VALUE-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+BINDING-VALUE-SLOT names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** STATIC-CODE-SPACE-END
+:PROPERTIES:
+:ID: 3270619295632
+:CUSTOM_ID: SB-VM:STATIC-CODE-SPACE-END
+:ALLOC: HEAP IMMOBILE
+:END:** SIMPLE-ARRAY-UNSIGNED-BYTE-16-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 706720106433
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-16-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-UNSIGNED-BYTE-16-WIDETAG names a constant variable:
+  Value: 165
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SYMBOL-SIZE :constant:var:
+:PROPERTIES:
+:ID: 2201982421884
+:CUSTOM_ID: SB-VM:SYMBOL-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SYMBOL-SIZE names a constant variable:
+  Value: 6
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** ODD-FIXNUM-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 2422289332246
+:CUSTOM_ID: SB-VM:ODD-FIXNUM-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ODD-FIXNUM-LOWTAG names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-FIXNUM-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 958276780726
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-FIXNUM-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-FIXNUM-WIDETAG names a constant variable:
+  Value: 201
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SAP-SIZE :constant:var:
+:PROPERTIES:
+:ID: 2461774451471
+:CUSTOM_ID: SB-VM:SAP-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAP-SIZE names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** COMPLEX-SINGLE-STACK-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 395002274824
+:CUSTOM_ID: SB-VM:COMPLEX-SINGLE-STACK-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-SINGLE-STACK-SC-NUMBER names a constant variable:
+  Value: 13
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** FILLER-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3432735449544
+:CUSTOM_ID: SB-VM:FILLER-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FILLER-WIDETAG names a constant variable:
+  Value: 113
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** TLS-SIZE
+:PROPERTIES:
+:ID: 2045718826828
+:CUSTOM_ID: SB-VM:TLS-SIZE
+:ALLOC: HEAP IMMOBILE
+:END:** SIMD-PACK-256-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 1481432069581
+:CUSTOM_ID: SB-VM:SIMD-PACK-256-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-256-WIDETAG names a constant variable:
+  Value: 105
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** LOWTAG-MASK :constant:var:
+:PROPERTIES:
+:ID: 2881578894802
+:CUSTOM_ID: SB-VM:LOWTAG-MASK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+LOWTAG-MASK names a constant variable:
+  Value: 15
+#+end_example
+
+- Referenced by
+  - SB-ACLREPL::DISPLAY-INSPECT
+  - SB-SPROF::EXTRACT-TRACES
+  - IO/STATIC::STATIC-VECTOR-ADDRESS
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** NIL-VALUE
+:PROPERTIES:
+:ID: 3157600779391
+:CUSTOM_ID: SB-VM:NIL-VALUE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+NIL-VALUE names a symbol macro:
+  Expansion: (TRULY-THE FIXNUM (GET-LISP-OBJ-ADDRESS NIL))
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** ARRAY-RANK-POSITION :constant:var:
+:PROPERTIES:
+:ID: 4223705189316
+:CUSTOM_ID: SB-VM:ARRAY-RANK-POSITION
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARRAY-RANK-POSITION names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMPLE-FUN-SELF-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2880798950331
+:CUSTOM_ID: SB-VM:SIMPLE-FUN-SELF-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-FUN-SELF-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SC-OFFSET
+:PROPERTIES:
+:ID: 1764575988104
+:CUSTOM_ID: SB-VM:SC-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SC-OFFSET names a type-specifier:
+  Lambda-list: ()
+  Expansion: (INTEGER 0 (2097152))
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** SINGLE-FLOAT-SIGNIFICAND-BYTE :constant:var:
+:PROPERTIES:
+:ID: 1336766159359
+:CUSTOM_ID: SB-VM:SINGLE-FLOAT-SIGNIFICAND-BYTE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-FLOAT-SIGNIFICAND-BYTE names a constant variable:
+  Value: (23 . 0)
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** IS-LISP-POINTER :compiled:function:
+:PROPERTIES:
+:ID: 1736024153917
+:CUSTOM_ID: SB-VM:IS-LISP-POINTER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+IS-LISP-POINTER names a compiled function:
+  Lambda-list: (ADDR)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+#+end_example
+
+- Called by
+  - SB-INTROSPECT:MAP-ROOT
+  - SB-INTROSPECT:ALLOCATION-INFORMATION
+  - [[id:1805801775833][DEEP-SIZE]]
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** SIMD-PACK-256-SIZE :constant:var:
+:PROPERTIES:
+:ID: 4031111581637
+:CUSTOM_ID: SB-VM:SIMD-PACK-256-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-256-SIZE names a constant variable:
+  Value: 6
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** DOUBLE-FLOAT-DIGITS :constant:var:
+:PROPERTIES:
+:ID: 1272197508236
+:CUSTOM_ID: SB-VM:DOUBLE-FLOAT-DIGITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-FLOAT-DIGITS names a constant variable:
+  Value: 53
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** FIND-ARENA-PTR :compiled:function:
+:PROPERTIES:
+:ID: 1611339780577
+:CUSTOM_ID: SB-VM:FIND-ARENA-PTR
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+FIND-ARENA-PTR names a compiled function:
+  Lambda-list: (THIS &OPTIONAL ALL &AUX WITNESS (N 0))
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES UNSIGNED-BYTE T &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** OTHER-POINTER-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 1343798904365
+:CUSTOM_ID: SB-VM:OTHER-POINTER-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+OTHER-POINTER-LOWTAG names a constant variable:
+  Value: 15
+#+end_example
+
+- Referenced by
+  - IO/STATIC::%ALLOCATE-STATIC-VECTOR
+  - (MOV128)
+  - (XOR128)
+  - (GMAC-MUL-FAST)
+  - (AES-NI-DECRYPT)
+  - (AES-NI-ENCRYPT)
+  - (AES-NI-GENERATE-ROUND-KEYS)
+  - (CHACHA-CORE-FAST)
+  - (SALSA-CORE-FAST)
+  - (UPDATE-SHA1-BLOCK)
+  - (SHA256-EXPAND-BLOCK)
+  - (EXPAND-BLOCK)
+  - (FILL-BLOCK-UB8)
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** IMMEDIATE-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 1589652988119
+:CUSTOM_ID: SB-VM:IMMEDIATE-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+IMMEDIATE-SC-NUMBER names a constant variable:
+  Value: 5
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** CONTEXT-PC :compiled:function:
+:PROPERTIES:
+:ID: 2432175047896
+:CUSTOM_ID: SB-VM:CONTEXT-PC
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CONTEXT-PC names a compiled function:
+  Lambda-list: (CONTEXT)
+  Derived type: (FUNCTION
+                 ((SB-ALIEN:ALIEN
+,                   (* (SB-ALIEN:STRUCT SB-VM::OS-CONTEXT-T-STRUCT))))
+                 (VALUES SB-SYS:SYSTEM-AREA-POINTER &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;SHARE-VM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;SHARE-VM.LISP
+:end:
+** CODE-DEBUG-INFO-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2906505448458
+:CUSTOM_ID: SB-VM:CODE-DEBUG-INFO-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CODE-DEBUG-INFO-SLOT names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** COMPLEX-VECTOR-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2961674865123
+:CUSTOM_ID: SB-VM:COMPLEX-VECTOR-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-VECTOR-WIDETAG names a constant variable:
+  Value: 245
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** INSTANCE-SLOTS-OFFSET :constant:var:
+:PROPERTIES:
+:ID: 1575848322153
+:CUSTOM_ID: SB-VM:INSTANCE-SLOTS-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INSTANCE-SLOTS-OFFSET names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3358966162235
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-WIDETAG names a constant variable:
+  Value: 129
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** +VECTOR-SHAREABLE-NONSTD​+ :constant:var:
+:PROPERTIES:
+:ID: 2406254211956
+:CUSTOM_ID: SB-VM:+VECTOR-SHAREABLE-NONSTD+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++VECTOR-SHAREABLE-NONSTD+ names a constant variable:
+  Value: 16
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SYMBOL-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 937844890614
+:CUSTOM_ID: SB-VM:SYMBOL-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SYMBOL-WIDETAG names a constant variable:
+  Value: 45
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** NEW-ARENA :compiled:function:
+:PROPERTIES:
+:ID: 1931839902595
+:CUSTOM_ID: SB-VM:NEW-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+NEW-ARENA names a compiled function:
+  Lambda-list: (SIZE &OPTIONAL (GROWTH-AMOUNT SIZE) (MAX-EXTENSIONS 7) &KEY
+                HIDABLE)
+  Declared type: (FUNCTION
+                  ((INTEGER 65536 4611686018427387903) &OPTIONAL
+                   (INTEGER 32768 4611686018427387903) FIXNUM &KEY
+                   (:HIDABLE BOOLEAN))
+                  (VALUES SB-VM:ARENA &OPTIONAL))
+  Documentation:
+    Create a new arena of SIZE bytes which can be grown additively by GROWTH-AMOUNT
+    one or more times, not to exceed MAX-EXTENSIONS times
+  Source file: SYS:SRC;CODE;ARENA.LISP
+#+end_example
+
+- Called by
+  - SB-INTROSPECT::COLLECT-XREF
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** COMPLEX-CHARACTER-STRING-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3413009378299
+:CUSTOM_ID: SB-VM:COMPLEX-CHARACTER-STRING-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-CHARACTER-STRING-WIDETAG names a constant variable:
+  Value: 237
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** WITH-PSEUDO-ATOMIC-FOREIGN-CALLS :compiled:macro:function:
+:PROPERTIES:
+:ID: 4384920648607
+:CUSTOM_ID: SB-VM:WITH-PSEUDO-ATOMIC-FOREIGN-CALLS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WITH-PSEUDO-ATOMIC-FOREIGN-CALLS names a macro:
+  Lambda-list: (&BODY BODY)
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** LONG-FLOAT-EXPONENT-BYTE
+:PROPERTIES:
+:ID: 456655682014
+:CUSTOM_ID: SB-VM:LONG-FLOAT-EXPONENT-BYTE
+:ALLOC: HEAP IMMOBILE
+:END:** COMPLEX-REAL-SLOT :constant:var:
+:PROPERTIES:
+:ID: 409792105160
+:CUSTOM_ID: SB-VM:COMPLEX-REAL-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-REAL-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** ARENA-BYTES-WASTED :compiled:function:
+:PROPERTIES:
+:ID: 781836219341
+:CUSTOM_ID: SB-VM:ARENA-BYTES-WASTED
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARENA-BYTES-WASTED names a compiled function:
+  An accessor for SB-VM:ARENA
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM:ARENA) (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+
+(SETF ARENA-BYTES-WASTED) names a compiled function:
+  An accessor for SB-VM:ARENA
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 64) SB-VM:ARENA)
+                 (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+:end:
+** CATCH-BLOCK-ENTRY-PC-SLOT :constant:var:
+:PROPERTIES:
+:ID: 4015616326866
+:CUSTOM_ID: SB-VM:CATCH-BLOCK-ENTRY-PC-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CATCH-BLOCK-ENTRY-PC-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** DSD-INDEX-SHIFT :constant:var:
+:PROPERTIES:
+:ID: 2930238873285
+:CUSTOM_ID: SB-VM:DSD-INDEX-SHIFT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DSD-INDEX-SHIFT names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEFSTRUCT.LISP
+:end:
+** READ-ONLY-SPACE-END
+:PROPERTIES:
+:ID: 692674988122
+:CUSTOM_ID: SB-VM:READ-ONLY-SPACE-END
+:ALLOC: HEAP IMMOBILE
+:END:** SIMD-PACK-HI-VALUE-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3542388235196
+:CUSTOM_ID: SB-VM:SIMD-PACK-HI-VALUE-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-HI-VALUE-SLOT names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** +VECTOR-SHAREABLE​+ :constant:var:
+:PROPERTIES:
+:ID: 2291120962780
+:CUSTOM_ID: SB-VM:+VECTOR-SHAREABLE+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++VECTOR-SHAREABLE+ names a constant variable:
+  Value: 32
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** VECTOR-HASHING-FLAG :constant:var:
+:PROPERTIES:
+:ID: 1202296880218
+:CUSTOM_ID: SB-VM:VECTOR-HASHING-FLAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+VECTOR-HASHING-FLAG names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** %COMPILER-BARRIER :compiled:vop:function:
+:PROPERTIES:
+:ID: 3610783944770
+:CUSTOM_ID: SB-VM:%COMPILER-BARRIER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+%COMPILER-BARRIER names a compiled function:
+  Lambda-list: ()
+  Declared type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Source file: SYS:SRC;CODE;BARRIER.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BARRIER.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** LARGE-OBJECT-SIZE :constant:var:
+:PROPERTIES:
+:ID: 3717639013913
+:CUSTOM_ID: SB-VM:LARGE-OBJECT-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+LARGE-OBJECT-SIZE names a constant variable:
+  Value: 131072
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+:end:
+** SORT-INLINE-CONSTANTS :compiled:function:
+:PROPERTIES:
+:ID: 1423330384298
+:CUSTOM_ID: SB-VM:SORT-INLINE-CONSTANTS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SORT-INLINE-CONSTANTS names a compiled function:
+  Lambda-list: (CONSTANTS)
+  Derived type: (FUNCTION (T) (VALUES SIMPLE-VECTOR &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;X86-64;INSTS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;INSTS.LISP
+:end:
+** UNDEFINED-FUNCTION-TRAP
+:PROPERTIES:
+:ID: 2573581501585
+:CUSTOM_ID: SB-VM:UNDEFINED-FUNCTION-TRAP
+:ALLOC: HEAP IMMOBILE
+:END:** FLOAT-DIVIDE-BY-ZERO-TRAP-BIT :constant:var:
+:PROPERTIES:
+:ID: 2984591380427
+:CUSTOM_ID: SB-VM:FLOAT-DIVIDE-BY-ZERO-TRAP-BIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FLOAT-DIVIDE-BY-ZERO-TRAP-BIT names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** CONS-CDR-SLOT :constant:var:
+:PROPERTIES:
+:ID: 241569475578
+:CUSTOM_ID: SB-VM:CONS-CDR-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CONS-CDR-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** +PSEUDO-STATIC-GENERATION​+ :constant:var:
+:PROPERTIES:
+:ID: 26285409126
+:CUSTOM_ID: SB-VM:+PSEUDO-STATIC-GENERATION+
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
++PSEUDO-STATIC-GENERATION+ names a constant variable:
+  Value: 6
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** UNWIND-BLOCK-CFP-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2995512785531
+:CUSTOM_ID: SB-VM:UNWIND-BLOCK-CFP-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNWIND-BLOCK-CFP-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** CHARACTER-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2944612457988
+:CUSTOM_ID: SB-VM:CHARACTER-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CHARACTER-WIDETAG names a constant variable:
+  Value: 81
+#+end_example
+
+- Referenced by
+  - (INSPECTED-DESCRIPTION (CHARACTER))
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** VECTOR-DATA-OFFSET :constant:var:
+:PROPERTIES:
+:ID: 2007887360998
+:CUSTOM_ID: SB-VM:VECTOR-DATA-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+VECTOR-DATA-OFFSET names a constant variable:
+  Value: 2
+#+end_example
+
+- Referenced by
+  - (INC-COUNTER-BLOCK)
+  - (MOV128)
+  - (XOR128)
+  - (GMAC-MUL-FAST)
+  - (AES-NI-DECRYPT)
+  - (AES-NI-ENCRYPT)
+  - (AES-NI-GENERATE-ROUND-KEYS)
+  - (CHACHA-CORE-FAST)
+  - (SALSA-CORE-FAST)
+  - (UPDATE-SHA1-BLOCK)
+  - (SHA256-EXPAND-BLOCK)
+  - (EXPAND-BLOCK)
+  - (FILL-BLOCK-UB8)
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** BOXED-CONTEXT-REGISTER :compiled:function:
+:PROPERTIES:
+:ID: 3056839456830
+:CUSTOM_ID: SB-VM:BOXED-CONTEXT-REGISTER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+BOXED-CONTEXT-REGISTER names a compiled function:
+  Lambda-list: (CONTEXT INDEX)
+  Derived type: (FUNCTION
+                 ((SB-ALIEN:ALIEN
+,                   (* (SB-ALIEN:STRUCT SB-VM::OS-CONTEXT-T-STRUCT)))
+                  T)
+                 (VALUES T &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;SHARE-VM.LISP
+
+(SETF BOXED-CONTEXT-REGISTER) has setf-expansion: SB-VM::%SET-BOXED-CONTEXT-REGISTER
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;SHARE-VM.LISP
+- SYS:SRC;CODE;DEFSETFS.LISP
+:end:
+** ARRAY-FILL-POINTER-SLOT :constant:var:
+:PROPERTIES:
+:ID: 266545426446
+:CUSTOM_ID: SB-VM:ARRAY-FILL-POINTER-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARRAY-FILL-POINTER-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** FDEFN-SIZE :constant:var:
+:PROPERTIES:
+:ID: 2610686889135
+:CUSTOM_ID: SB-VM:FDEFN-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FDEFN-SIZE names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** EMIT-INLINE-CONSTANT :compiled:function:
+:PROPERTIES:
+:ID: 4078001799598
+:CUSTOM_ID: SB-VM:EMIT-INLINE-CONSTANT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+EMIT-INLINE-CONSTANT names a compiled function:
+  Lambda-list: (SECTION CONSTANT LABEL)
+  Derived type: (FUNCTION (T T T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;X86-64;INSTS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;INSTS.LISP
+:end:
+** ARRAY-DATA-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2865305853654
+:CUSTOM_ID: SB-VM:ARRAY-DATA-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARRAY-DATA-SLOT names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** ARRAY-DISPLACEMENT-SLOT :constant:var:
+:PROPERTIES:
+:ID: 4087225023178
+:CUSTOM_ID: SB-VM:ARRAY-DISPLACEMENT-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARRAY-DISPLACEMENT-SLOT names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** DOUBLE-FLOAT-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 168992731609
+:CUSTOM_ID: SB-VM:DOUBLE-FLOAT-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-FLOAT-WIDETAG names a constant variable:
+  Value: 29
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SINGLE-FLOAT-HIDDEN-BIT :constant:var:
+:PROPERTIES:
+:ID: 340154749641
+:CUSTOM_ID: SB-VM:SINGLE-FLOAT-HIDDEN-BIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-FLOAT-HIDDEN-BIT names a constant variable:
+  Value: 8388608
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** NFP-SAVE-OFFSET
+:PROPERTIES:
+:ID: 3092931234200
+:CUSTOM_ID: SB-VM:NFP-SAVE-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END:** SIMPLE-ARRAY-DOUBLE-FLOAT-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 1187351993801
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-DOUBLE-FLOAT-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-DOUBLE-FLOAT-WIDETAG names a constant variable:
+  Value: 213
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** PRIMITIVE-OBJECT-VARIABLE-LENGTH-P :compiled:function:
+:PROPERTIES:
+:ID: 1996029512597
+:CUSTOM_ID: SB-VM:PRIMITIVE-OBJECT-VARIABLE-LENGTH-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRIMITIVE-OBJECT-VARIABLE-LENGTH-P names a compiled function:
+  An accessor for SB-VM:PRIMITIVE-OBJECT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM:PRIMITIVE-OBJECT) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** FLOAT-STICKY-BITS :constant:var:
+:PROPERTIES:
+:ID: 643566843553
+:CUSTOM_ID: SB-VM:FLOAT-STICKY-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FLOAT-STICKY-BITS names a constant variable:
+  Value: (6 . 0)
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** FDEFN-NAME-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3006631389428
+:CUSTOM_ID: SB-VM:FDEFN-NAME-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FDEFN-NAME-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** READ-ONLY-SPACE-START
+:PROPERTIES:
+:ID: 469954588518
+:CUSTOM_ID: SB-VM:READ-ONLY-SPACE-START
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+READ-ONLY-SPACE-START names an alien variable:
+  Value: 77289947136
+  Type: (UNSIGNED 64)
+  Address: #x555ED38D3BE0
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;MISC-ALIENS.LISP
+:end:
+** VECTOR-WEAK-VISITED-FLAG
+:PROPERTIES:
+:ID: 877771034942
+:CUSTOM_ID: SB-VM:VECTOR-WEAK-VISITED-FLAG
+:ALLOC: HEAP IMMOBILE
+:END:** STATIC-SYMBOL-OFFSET :compiled:function:
+:PROPERTIES:
+:ID: 568868304854
+:CUSTOM_ID: SB-VM:STATIC-SYMBOL-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STATIC-SYMBOL-OFFSET names a compiled function:
+  Lambda-list: (SYMBOL)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (OR (INTEGER -1046440 -1046440) (INTEGER -1046392 -1046392)
+                      (INTEGER -1046344 -1045816) (INTEGER -120 -120)
+                      (INTEGER 0 0))
+                  &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;UTILS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;UTILS.LISP
+:end:
+** SIMD-PACK-512-P3-SLOT :constant:var:
+:PROPERTIES:
+:ID: 108398278425
+:CUSTOM_ID: SB-VM:SIMD-PACK-512-P3-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-512-P3-SLOT names a constant variable:
+  Value: 5
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** UNWIND-BLOCK-UWP-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3970499919107
+:CUSTOM_ID: SB-VM:UNWIND-BLOCK-UWP-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNWIND-BLOCK-UWP-SLOT names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMPLE-FUN-INSTS-OFFSET :constant:var:
+:PROPERTIES:
+:ID: 3240776387146
+:CUSTOM_ID: SB-VM:SIMPLE-FUN-INSTS-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-FUN-INSTS-OFFSET names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** PRIMITIVE-OBJECT-LENGTH :compiled:function:
+:PROPERTIES:
+:ID: 1662157273492
+:CUSTOM_ID: SB-VM:PRIMITIVE-OBJECT-LENGTH
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRIMITIVE-OBJECT-LENGTH names a compiled function:
+  An accessor for SB-VM:PRIMITIVE-OBJECT
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM:PRIMITIVE-OBJECT) (VALUES FIXNUM &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** NULL-SC-NUMBER
+:PROPERTIES:
+:ID: 3040645737072
+:CUSTOM_ID: SB-VM:NULL-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END:** SIMPLE-ARRAY-SINGLE-FLOAT-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3679799204295
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-SINGLE-FLOAT-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-SINGLE-FLOAT-WIDETAG names a constant variable:
+  Value: 209
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SAETP-SPECIFIER :compiled:function:
+:PROPERTIES:
+:ID: 2667907451132
+:CUSTOM_ID: SB-VM:SAETP-SPECIFIER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAETP-SPECIFIER names a compiled function:
+  An accessor for SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES)
+                 (VALUES (OR CONS SYMBOL) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+:end:
+** GENCGC-CARD-BYTES :constant:var:
+:PROPERTIES:
+:ID: 1435664634176
+:CUSTOM_ID: SB-VM:GENCGC-CARD-BYTES
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+GENCGC-CARD-BYTES names a constant variable:
+  Value: 1024
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** SYMBOL-PACKAGE-ID-SLOT
+:PROPERTIES:
+:ID: 845613452051
+:CUSTOM_ID: SB-VM:SYMBOL-PACKAGE-ID-SLOT
+:ALLOC: HEAP IMMOBILE
+:END:** OTHER-IMMEDIATE-3-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 1170944951437
+:CUSTOM_ID: SB-VM:OTHER-IMMEDIATE-3-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+OTHER-IMMEDIATE-3-LOWTAG names a constant variable:
+  Value: 13
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMPLE-FUN-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 984482451802
+:CUSTOM_ID: SB-VM:SIMPLE-FUN-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-FUN-WIDETAG names a constant variable:
+  Value: 65
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** DOUBLE-REG-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 4255487460714
+:CUSTOM_ID: SB-VM:DOUBLE-REG-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-REG-SC-NUMBER names a constant variable:
+  Value: 28
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** UNBOUND-MARKER-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3401246278058
+:CUSTOM_ID: SB-VM:UNBOUND-MARKER-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNBOUND-MARKER-WIDETAG names a constant variable:
+  Value: 9
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-UNSIGNED-BYTE-8-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 1882432053425
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-8-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-UNSIGNED-BYTE-8-WIDETAG names a constant variable:
+  Value: 157
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** BIGNUM-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 1929374679207
+:CUSTOM_ID: SB-VM:BIGNUM-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+BIGNUM-WIDETAG names a constant variable:
+  Value: 17
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-UNSIGNED-BYTE-7-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2597480162744
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-7-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-UNSIGNED-BYTE-7-WIDETAG names a constant variable:
+  Value: 153
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** PAD1-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 301900212115
+:CUSTOM_ID: SB-VM:PAD1-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PAD1-LOWTAG names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** COMPLEX-DOUBLE-REG-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 1183650707493
+:CUSTOM_ID: SB-VM:COMPLEX-DOUBLE-REG-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-DOUBLE-REG-SC-NUMBER names a constant variable:
+  Value: 30
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** INSTANCE-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2001226667061
+:CUSTOM_ID: SB-VM:INSTANCE-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INSTANCE-WIDETAG names a constant variable:
+  Value: 57
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** DOUBLE-FLOAT-NORMAL-EXPONENT-MAX :constant:var:
+:PROPERTIES:
+:ID: 341566680300
+:CUSTOM_ID: SB-VM:DOUBLE-FLOAT-NORMAL-EXPONENT-MAX
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-FLOAT-NORMAL-EXPONENT-MAX names a constant variable:
+  Value: 2046
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** UNWIND-BLOCK-CODE-SLOT
+:PROPERTIES:
+:ID: 3799730202829
+:CUSTOM_ID: SB-VM:UNWIND-BLOCK-CODE-SLOT
+:ALLOC: HEAP IMMOBILE
+:END:** UNHIDE-ARENA :compiled:function:
+:PROPERTIES:
+:ID: 4163039715130
+:CUSTOM_ID: SB-VM:UNHIDE-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNHIDE-ARENA names a compiled function:
+  Lambda-list: (ARENA)
+  Derived type: (FUNCTION (T) (VALUES SB-VM:ARENA &OPTIONAL))
+  Source file: SYS:SRC;CODE;ARENA.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** LRA-SAVE-OFFSET
+:PROPERTIES:
+:ID: 3303551204864
+:CUSTOM_ID: SB-VM:LRA-SAVE-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END:** UNSIGNED-STACK-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 2703238457131
+:CUSTOM_ID: SB-VM:UNSIGNED-STACK-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNSIGNED-STACK-SC-NUMBER names a constant variable:
+  Value: 8
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** RATIO-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2164793052645
+:CUSTOM_ID: SB-VM:RATIO-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+RATIO-WIDETAG names a constant variable:
+  Value: 21
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SINGLE-VALUE-RETURN-BYTE-OFFSET :constant:var:
+:PROPERTIES:
+:ID: 3284332513360
+:CUSTOM_ID: SB-VM:SINGLE-VALUE-RETURN-BYTE-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-VALUE-RETURN-BYTE-OFFSET names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** SAETP-CTYPE :compiled:function:
+:PROPERTIES:
+:ID: 2349113830636
+:CUSTOM_ID: SB-VM:SAETP-CTYPE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAETP-CTYPE names a compiled function:
+  An accessor for SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES)
+                 (VALUES (OR SB-KERNEL:CTYPE NULL) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+
+(SETF SAETP-CTYPE) names a compiled function:
+  An accessor for SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION
+                 ((OR SB-KERNEL:CTYPE NULL)
+                  SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES)
+                 (VALUES (OR SB-KERNEL:CTYPE NULL) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+:end:
+** ARENA-LENGTH :compiled:function:
+:PROPERTIES:
+:ID: 2123453743955
+:CUSTOM_ID: SB-VM:ARENA-LENGTH
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARENA-LENGTH names a compiled function:
+  An accessor for SB-VM:ARENA
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM:ARENA) (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+
+(SETF ARENA-LENGTH) names a compiled function:
+  An accessor for SB-VM:ARENA
+  Lambda-list: (VALUE INSTANCE)
+  Derived type: (FUNCTION ((UNSIGNED-BYTE 64) SB-VM:ARENA)
+                 (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;LATE-OBJDEF.LISP
+:end:
+** CLOSURE-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 655910655383
+:CUSTOM_ID: SB-VM:CLOSURE-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CLOSURE-WIDETAG names a constant variable:
+  Value: 69
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** CHARACTER-REG-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 1234582349326
+:CUSTOM_ID: SB-VM:CHARACTER-REG-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CHARACTER-REG-SC-NUMBER names a constant variable:
+  Value: 24
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** IN-SAME-ARENA :compiled:macro:function:
+:PROPERTIES:
+:ID: 1940968340392
+:CUSTOM_ID: SB-VM:IN-SAME-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+IN-SAME-ARENA names a macro:
+  Lambda-list: ((OBJECT REASON) &REST FORMS)
+  Source file: SYS:SRC;CODE;ARENA.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ARENA.LISP
+:end:
+** %SPACE-BOUNDS :compiled:function:
+:PROPERTIES:
+:ID: 1644847197560
+:CUSTOM_ID: SB-VM:%SPACE-BOUNDS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+%SPACE-BOUNDS names a compiled function:
+  Lambda-list: (SPACE)
+  Derived type: (FUNCTION (T) (VALUES T T &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** FINITE-SC-OFFSET-LIMIT :constant:var:
+:PROPERTIES:
+:ID: 265526239353
+:CUSTOM_ID: SB-VM:FINITE-SC-OFFSET-LIMIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FINITE-SC-OFFSET-LIMIT names a constant variable:
+  Value: 32
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** COMPLEX-SIZE :constant:var:
+:PROPERTIES:
+:ID: 4017308811332
+:CUSTOM_ID: SB-VM:COMPLEX-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-SIZE names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** ANY-REG-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 863642640610
+:CUSTOM_ID: SB-VM:ANY-REG-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ANY-REG-SC-NUMBER names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** DYNAMIC-SPACE-START
+:PROPERTIES:
+:ID: 82162940975
+:CUSTOM_ID: SB-VM:DYNAMIC-SPACE-START
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DYNAMIC-SPACE-START names an alien variable:
+  Value: 77309411328
+  Type: (UNSIGNED 64)
+  Address: #x555ED38D3BD8
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;MISC-ALIENS.LISP
+:end:
+** RATIO-SIZE :constant:var:
+:PROPERTIES:
+:ID: 3438899090470
+:CUSTOM_ID: SB-VM:RATIO-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+RATIO-SIZE names a constant variable:
+  Value: 3
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** COMPLEX-SINGLE-FLOAT-DATA-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3872052699413
+:CUSTOM_ID: SB-VM:COMPLEX-SINGLE-FLOAT-DATA-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-SINGLE-FLOAT-DATA-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** ARRAY-DIMENSIONS-OFFSET :constant:var:
+:PROPERTIES:
+:ID: 3459797876397
+:CUSTOM_ID: SB-VM:ARRAY-DIMENSIONS-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARRAY-DIMENSIONS-OFFSET names a constant variable:
+  Value: 7
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** ALIEN-LINKAGE-SPACE-SIZE :constant:var:
+:PROPERTIES:
+:ID: 824928102569
+:CUSTOM_ID: SB-VM:ALIEN-LINKAGE-SPACE-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ALIEN-LINKAGE-SPACE-SIZE names a constant variable:
+  Value: 1048576
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** SIMD-PACK-512-TAG-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1268917058049
+:CUSTOM_ID: SB-VM:SIMD-PACK-512-TAG-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-512-TAG-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** %READ-BARRIER :compiled:vop:function:
+:PROPERTIES:
+:ID: 2811942704951
+:CUSTOM_ID: SB-VM:%READ-BARRIER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+%READ-BARRIER names a compiled function:
+  Lambda-list: ()
+  Declared type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Source file: SYS:SRC;CODE;BARRIER.LISP
+#+end_example
+
+- Called by
+  - SB-CONCURRENCY:FRLOCK-READ-END
+  - SB-CONCURRENCY:FRLOCK-READ-BEGIN
+
+:definitions:
+- SYS:SRC;CODE;BARRIER.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** INSTANCE-USAGE :compiled:function:
+:PROPERTIES:
+:ID: 3476057521708
+:CUSTOM_ID: SB-VM:INSTANCE-USAGE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INSTANCE-USAGE names a compiled function:
+  Lambda-list: (SPACE &KEY (TOP-N 15))
+  Derived type: (FUNCTION
+                 ((MEMBER :DYNAMIC :IMMOBILE :READ-ONLY :STATIC) &KEY
+                  (:TOP-N (OR NULL FIXNUM)))
+                 (VALUES &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** COMPLEX-RATIONAL-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3981969919927
+:CUSTOM_ID: SB-VM:COMPLEX-RATIONAL-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-RATIONAL-WIDETAG names a constant variable:
+  Value: 33
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** ARRAY-FLAGS-POSITION :constant:var:
+:PROPERTIES:
+:ID: 777004060021
+:CUSTOM_ID: SB-VM:ARRAY-FLAGS-POSITION
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARRAY-FLAGS-POSITION names a constant variable:
+  Value: 16
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SINGLE-FLOAT-NORMAL-EXPONENT-MIN :constant:var:
+:PROPERTIES:
+:ID: 3685990138508
+:CUSTOM_ID: SB-VM:SINGLE-FLOAT-NORMAL-EXPONENT-MIN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SINGLE-FLOAT-NORMAL-EXPONENT-MIN names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;PARMS.LISP
+:end:
+** SIMD-PACK-256-P2-SLOT :constant:var:
+:PROPERTIES:
+:ID: 3844300658654
+:CUSTOM_ID: SB-VM:SIMD-PACK-256-P2-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-256-P2-SLOT names a constant variable:
+  Value: 4
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** LIST-POINTER-LOWTAG :constant:var:
+:PROPERTIES:
+:ID: 1718986790840
+:CUSTOM_ID: SB-VM:LIST-POINTER-LOWTAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+LIST-POINTER-LOWTAG names a constant variable:
+  Value: 7
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SAETP-N-BITS :compiled:function:
+:PROPERTIES:
+:ID: 3635113187140
+:CUSTOM_ID: SB-VM:SAETP-N-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAETP-N-BITS names a compiled function:
+  An accessor for SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES)
+                 (VALUES (MOD 129) &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+:end:
+** COMPLEX-SINGLE-FLOAT-SIZE :constant:var:
+:PROPERTIES:
+:ID: 2671813060940
+:CUSTOM_ID: SB-VM:COMPLEX-SINGLE-FLOAT-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-SINGLE-FLOAT-SIZE names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SAETP-INITIAL-ELEMENT-DEFAULT :compiled:function:
+:PROPERTIES:
+:ID: 1085345103524
+:CUSTOM_ID: SB-VM:SAETP-INITIAL-ELEMENT-DEFAULT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAETP-INITIAL-ELEMENT-DEFAULT names a compiled function:
+  An accessor for SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES
+  Lambda-list: (INSTANCE)
+  Derived type: (FUNCTION (SB-VM::SPECIALIZED-ARRAY-ELEMENT-TYPE-PROPERTIES)
+                 (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-ARRAY.LISP
+:end:
+** DUMP-ARENA-OBJECTS
+:PROPERTIES:
+:ID: 3159119944923
+:CUSTOM_ID: SB-VM:DUMP-ARENA-OBJECTS
+:ALLOC: HEAP IMMOBILE
+:END:** FLOAT-INVALID-TRAP-BIT :constant:var:
+:PROPERTIES:
+:ID: 4034354070069
+:CUSTOM_ID: SB-VM:FLOAT-INVALID-TRAP-BIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FLOAT-INVALID-TRAP-BIT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** N-MACHINE-WORD-BITS :constant:var:
+:PROPERTIES:
+:ID: 3423249482031
+:CUSTOM_ID: SB-VM:N-MACHINE-WORD-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-MACHINE-WORD-BITS names a constant variable:
+  Value: 64
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** UNSIGNED-REG-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 1075083771743
+:CUSTOM_ID: SB-VM:UNSIGNED-REG-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNSIGNED-REG-SC-NUMBER names a constant variable:
+  Value: 26
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** SIMPLE-ARRAY-UNSIGNED-BYTE-63-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3129740904018
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-63-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-UNSIGNED-BYTE-63-WIDETAG names a constant variable:
+  Value: 181
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-COMPLEX-SINGLE-FLOAT-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 3655895799549
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-COMPLEX-SINGLE-FLOAT-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-COMPLEX-SINGLE-FLOAT-WIDETAG names a constant variable:
+  Value: 217
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** MEMORY-FAULT-EMULATION-TRAP :constant:var:
+:PROPERTIES:
+:ID: 230271694158
+:CUSTOM_ID: SB-VM:MEMORY-FAULT-EMULATION-TRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MEMORY-FAULT-EMULATION-TRAP names a constant variable:
+  Value: 16
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** DSD-RAW-TYPE-MASK :constant:var:
+:PROPERTIES:
+:ID: 2757543730051
+:CUSTOM_ID: SB-VM:DSD-RAW-TYPE-MASK
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DSD-RAW-TYPE-MASK names a constant variable:
+  Value: 7
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEFSTRUCT.LISP
+:end:
+** ALIEN-LINKAGE-SPACE-START
+:PROPERTIES:
+:ID: 3004152151397
+:CUSTOM_ID: SB-VM:ALIEN-LINKAGE-SPACE-START
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ALIEN-LINKAGE-SPACE-START names a symbol macro:
+  Expansion: (EXTERN-ALIEN "ALIEN_LINKAGE_SPACE_START" UNSIGNED)
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;MISC-ALIENS.LISP
+:end:
+** PRINT-ALLOCATED-OBJECTS :compiled:function:
+:PROPERTIES:
+:ID: 1689099814919
+:CUSTOM_ID: SB-VM:PRINT-ALLOCATED-OBJECTS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRINT-ALLOCATED-OBJECTS names a compiled function:
+  Lambda-list: (SPACE &KEY (PERCENT 0) (PAGES 5) TYPE LARGER SMALLER COUNT
+                (STREAM *STANDARD-OUTPUT*))
+  Derived type: (FUNCTION
+                 ((MEMBER :DYNAMIC :IMMOBILE :READ-ONLY :STATIC) &KEY
+                  (:PERCENT (MOD 100)) (:PAGES (UNSIGNED-BYTE 44))
+                  (:TYPE (OR NULL (UNSIGNED-BYTE 44)))
+                  (:LARGER (OR NULL (UNSIGNED-BYTE 44)))
+                  (:SMALLER (OR NULL (UNSIGNED-BYTE 44)))
+                  (:COUNT (OR NULL (UNSIGNED-BYTE 44))) (:STREAM STREAM))
+                 (VALUES &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** SIMPLE-ARRAY-SIGNED-BYTE-64-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 1939148148155
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-SIGNED-BYTE-64-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-SIGNED-BYTE-64-WIDETAG names a constant variable:
+  Value: 205
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** CATCH-BLOCK-CODE-SLOT
+:PROPERTIES:
+:ID: 1602162079807
+:CUSTOM_ID: SB-VM:CATCH-BLOCK-CODE-SLOT
+:ALLOC: HEAP IMMOBILE
+:END:** CATCH-BLOCK-TAG-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2278358801874
+:CUSTOM_ID: SB-VM:CATCH-BLOCK-TAG-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CATCH-BLOCK-TAG-SLOT names a constant variable:
+  Value: 5
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** LONG-FLOAT-NORMAL-EXPONENT-MAX
+:PROPERTIES:
+:ID: 1463403778746
+:CUSTOM_ID: SB-VM:LONG-FLOAT-NORMAL-EXPONENT-MAX
+:ALLOC: HEAP IMMOBILE
+:END:** FINITE-SC-OFFSET-MAP
+:PROPERTIES:
+:ID: 1171594090281
+:CUSTOM_ID: SB-VM:FINITE-SC-OFFSET-MAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FINITE-SC-OFFSET-MAP names a type-specifier:
+  Lambda-list: ()
+  Expansion: (UNSIGNED-BYTE 32)
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** N-WORD-BYTES :constant:var:
+:PROPERTIES:
+:ID: 2299669358178
+:CUSTOM_ID: SB-VM:N-WORD-BYTES
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-WORD-BYTES names a constant variable:
+  Value: 8
+#+end_example
+
+- Referenced by
+  - (DEFINE-PROTOCOL-CLASS)
+  - IO/STATIC::%ALLOCATE-STATIC-VECTOR
+  - (INC-COUNTER-BLOCK)
+  - (MOV128)
+  - (XOR128)
+  - (GMAC-MUL-FAST)
+  - (AES-NI-DECRYPT)
+  - (AES-NI-ENCRYPT)
+  - (AES-NI-GENERATE-ROUND-KEYS)
+  - (CHACHA-CORE-FAST)
+  - (SALSA-CORE-FAST)
+  - (UPDATE-SHA1-BLOCK)
+  - (SHA256-EXPAND-BLOCK)
+  - (EXPAND-BLOCK)
+  - (FILL-BLOCK-UB8)
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** CODE-FROM-SERIALNO :compiled:function:
+:PROPERTIES:
+:ID: 1647500327323
+:CUSTOM_ID: SB-VM:CODE-FROM-SERIALNO
+:ALLOC: HEAP DYNAMIC
+:END: 
+#+begin_example
+CODE-FROM-SERIALNO names a compiled function:
+  Lambda-list: (SERIAL)
+  Derived type: (FUNCTION (T)
+                 (VALUES (OR SB-KERNEL:CODE-COMPONENT NULL) &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** TEXT-SPACE-START
+:PROPERTIES:
+:ID: 3553756986710
+:CUSTOM_ID: SB-VM:TEXT-SPACE-START
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+TEXT-SPACE-START names an alien variable:
+  Value: 790273982464
+  Type: (UNSIGNED 64)
+  Address: #x555ED38D0C60
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;MISC-ALIENS.LISP
+:end:
+** %DATA-DEPENDENCY-BARRIER :compiled:vop:function:
+:PROPERTIES:
+:ID: 4092775349539
+:CUSTOM_ID: SB-VM:%DATA-DEPENDENCY-BARRIER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+%DATA-DEPENDENCY-BARRIER names a compiled function:
+  Lambda-list: ()
+  Declared type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Source file: SYS:SRC;CODE;BARRIER.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;BARRIER.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** TEXT-SPACE-SIZE
+:PROPERTIES:
+:ID: 2502263220551
+:CUSTOM_ID: SB-VM:TEXT-SPACE-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+TEXT-SPACE-SIZE names an alien variable:
+  Value: 167772160
+  Type: (UNSIGNED 32)
+  Address: #x555ED38A98B8
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;ALLOC.LISP
+:end:
+** COMPLEX-DOUBLE-STACK-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 1256394974099
+:CUSTOM_ID: SB-VM:COMPLEX-DOUBLE-STACK-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+COMPLEX-DOUBLE-STACK-SC-NUMBER names a constant variable:
+  Value: 14
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** STATIC-SPACE-SIZE :constant:var:
+:PROPERTIES:
+:ID: 1524737651814
+:CUSTOM_ID: SB-VM:STATIC-SPACE-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STATIC-SPACE-SIZE names a constant variable:
+  Value: 1048576
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** DOUBLE-FLOAT-SIZE :constant:var:
+:PROPERTIES:
+:ID: 950049804809
+:CUSTOM_ID: SB-VM:DOUBLE-FLOAT-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+DOUBLE-FLOAT-SIZE names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** AFTER-BREAKPOINT-TRAP
+:PROPERTIES:
+:ID: 399089793093
+:CUSTOM_ID: SB-VM:AFTER-BREAKPOINT-TRAP
+:ALLOC: HEAP IMMOBILE
+:END:** LDB-MONITOR :compiled:function:
+:PROPERTIES:
+:ID: 49930217254
+:CUSTOM_ID: SB-VM:LDB-MONITOR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+LDB-MONITOR names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Source file: SYS:SRC;CODE;MISC-ALIENS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;MISC-ALIENS.LISP
+:end:
+** CATCH-BLOCK-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 1986320681405
+:CUSTOM_ID: SB-VM:CATCH-BLOCK-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CATCH-BLOCK-SC-NUMBER names a constant variable:
+  Value: 41
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** SIMPLE-BIT-VECTOR-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 567182135328
+:CUSTOM_ID: SB-VM:SIMPLE-BIT-VECTOR-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-BIT-VECTOR-WIDETAG names a constant variable:
+  Value: 141
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** FINITE-SC-OFFSET
+:PROPERTIES:
+:ID: 1224861465448
+:CUSTOM_ID: SB-VM:FINITE-SC-OFFSET
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FINITE-SC-OFFSET names a type-specifier:
+  Lambda-list: ()
+  Expansion: (INTEGER 0 (32))
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** SIMD-PACK-TAG-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2838872597880
+:CUSTOM_ID: SB-VM:SIMD-PACK-TAG-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-TAG-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** MAP-CODE-OBJECTS :compiled:function:
+:PROPERTIES:
+:ID: 2741542944386
+:CUSTOM_ID: SB-VM:MAP-CODE-OBJECTS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MAP-CODE-OBJECTS names a compiled function:
+  Lambda-list: (FUN)
+  Dynamic-extent arguments: positional=(0)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;ROOM.LISP
+#+end_example
+
+- Called by
+  - SB-INTROSPECT::COLLECT-XREF
+  - SB-SPROF::BUILD-SERIALNO-TO-CODE-MAP
+
+:definitions:
+- SYS:SRC;CODE;ROOM.LISP
+:end:
+** SIMPLE-FUN-NAME-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1247493938428
+:CUSTOM_ID: SB-VM:SIMPLE-FUN-NAME-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-FUN-NAME-SLOT names a constant variable:
+  Value: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** *CURRENT-CATCH-BLOCK​* :global:var:
+:PROPERTIES:
+:ID: 2751243162782
+:CUSTOM_ID: SB-VM:*CURRENT-CATCH-BLOCK*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*CURRENT-CATCH-BLOCK* names a special variable:
+  Declared always-bound.
+  Value: 69929907466700
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** WEAK-POINTER-VALUE-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1998650752706
+:CUSTOM_ID: SB-VM:WEAK-POINTER-VALUE-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+WEAK-POINTER-VALUE-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** CONTEXT-FLOATING-POINT-MODES :compiled:function:
+:PROPERTIES:
+:ID: 2930245415510
+:CUSTOM_ID: SB-VM:CONTEXT-FLOATING-POINT-MODES
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+CONTEXT-FLOATING-POINT-MODES names a compiled function:
+  Lambda-list: (CONTEXT)
+  Declared type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:SRC;CODE;X86-64-VM.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;X86-64-VM.LISP
+:end:
+** SIMPLE-ARRAY-NIL-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 2472677239513
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-NIL-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-NIL-WIDETAG names a constant variable:
+  Value: 133
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** ARRAY-ELEMENTS-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2327188427032
+:CUSTOM_ID: SB-VM:ARRAY-ELEMENTS-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARRAY-ELEMENTS-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** ALIEN-LINKAGE-TABLE-ENTRY-SIZE :constant:var:
+:PROPERTIES:
+:ID: 2992521244374
+:CUSTOM_ID: SB-VM:ALIEN-LINKAGE-TABLE-ENTRY-SIZE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ALIEN-LINKAGE-TABLE-ENTRY-SIZE names a constant variable:
+  Value: 16
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** SIMD-PACK-256-TAG-SLOT :constant:var:
+:PROPERTIES:
+:ID: 4031718016065
+:CUSTOM_ID: SB-VM:SIMD-PACK-256-TAG-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-256-TAG-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMD-PACK-512-P4-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2467927288556
+:CUSTOM_ID: SB-VM:SIMD-PACK-512-P4-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-512-P4-SLOT names a constant variable:
+  Value: 6
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMD-PACK-256-P0-SLOT :constant:var:
+:PROPERTIES:
+:ID: 2674584850063
+:CUSTOM_ID: SB-VM:SIMD-PACK-256-P0-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMD-PACK-256-P0-SLOT names a constant variable:
+  Value: 2
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SAP-REG-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 1444354906899
+:CUSTOM_ID: SB-VM:SAP-REG-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAP-REG-SC-NUMBER names a constant variable:
+  Value: 25
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** VECTOR-LENGTH-SLOT :constant:var:
+:PROPERTIES:
+:ID: 1793397657065
+:CUSTOM_ID: SB-VM:VECTOR-LENGTH-SLOT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+VECTOR-LENGTH-SLOT names a constant variable:
+  Value: 1
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;OBJDEF.LISP
+:end:
+** SIMPLE-ARRAY-UNSIGNED-BYTE-4-WIDETAG :constant:var:
+:PROPERTIES:
+:ID: 176241308232
+:CUSTOM_ID: SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-4-WIDETAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIMPLE-ARRAY-UNSIGNED-BYTE-4-WIDETAG names a constant variable:
+  Value: 149
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SWITCH-TO-ARENA :compiled:cmacro:vop:function:
+:PROPERTIES:
+:ID: 3924762772295
+:CUSTOM_ID: SB-VM:SWITCH-TO-ARENA
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SWITCH-TO-ARENA names a compiled function:
+  Lambda-list: (A)
+  Derived type: (FUNCTION (T) (VALUES &OPTIONAL))
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+
+SWITCH-TO-ARENA has a compiler-macro:
+  Source file: SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+#+end_example
+
+- Called by
+  - SB-INTROSPECT::COLLECT-XREF
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** ERROR-TRAP :constant:var:
+:PROPERTIES:
+:ID: 1297515414001
+:CUSTOM_ID: SB-VM:ERROR-TRAP
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ERROR-TRAP names a constant variable:
+  Value: 18
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;PARMS.LISP
+:end:
+** SC-NUMBER-LIMIT :constant:var:
+:PROPERTIES:
+:ID: 1908499237017
+:CUSTOM_ID: SB-VM:SC-NUMBER-LIMIT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SC-NUMBER-LIMIT names a constant variable:
+  Value: 62
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;VM-MACS.LISP
+:end:
+** FIND-PAGE-INDEX :compiled:function:
+:PROPERTIES:
+:ID: 3034245587510
+:CUSTOM_ID: SB-VM:FIND-PAGE-INDEX
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FIND-PAGE-INDEX names a compiled function:
+  Lambda-list: (ADDRESS)
+  Declared type: (FUNCTION (T) (VALUES (INTEGER -1 562949953421311) &OPTIONAL))
+  Derived type: (FUNCTION (T) (VALUES (INTEGER -1 2147483647) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:SRC;CODE;GC.LISP
+#+end_example
+
+- Called by
+  - SB-INTROSPECT::LARGEST-OBJECTS
+  - SB-INTROSPECT:ALLOCATION-INFORMATION
+
+:definitions:
+- SYS:SRC;CODE;GC.LISP
+:end:
+** N-BYTE-BITS :constant:var:
+:PROPERTIES:
+:ID: 4015062674218
+:CUSTOM_ID: SB-VM:N-BYTE-BITS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+N-BYTE-BITS names a constant variable:
+  Value: 8
+#+end_example
+
+- Referenced by
+  - IO/SOCKET::COMPUTE-ICMP-CHECKSUM
+  - [[id:4155813689157][BREF]]
+  - [[id:2694048387327][SAP-REF]]
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
+:end:
+** HASH-SLOT-PRESENT-FLAG :constant:var:
+:PROPERTIES:
+:ID: 1475529675057
+:CUSTOM_ID: SB-VM:HASH-SLOT-PRESENT-FLAG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+HASH-SLOT-PRESENT-FLAG names a constant variable:
+  Value: 9
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
+:end:
+** SANCTIFY-FOR-EXECUTION
+:PROPERTIES:
+:ID: 2672884529788
+:CUSTOM_ID: SB-VM:SANCTIFY-FOR-EXECUTION
+:ALLOC: HEAP IMMOBILE
+:END:** SAP-STACK-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 1498612465988
+:CUSTOM_ID: SB-VM:SAP-STACK-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SAP-STACK-SC-NUMBER names a constant variable:
+  Value: 10
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:
+** SIGNED-STACK-SC-NUMBER :constant:var:
+:PROPERTIES:
+:ID: 1257924361156
+:CUSTOM_ID: SB-VM:SIGNED-STACK-SC-NUMBER
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+SIGNED-STACK-SC-NUMBER names a constant variable:
+  Value: 7
+#+end_example
+
+:definitions:
+- SYS:SRC;COMPILER;X86-64;VM.LISP
+:end:

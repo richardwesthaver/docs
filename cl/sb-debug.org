@@ -1,0 +1,638 @@
+#+setupfile: ../../clean.theme
+* SB-DEBUG
+:PROPERTIES:
+:CUSTOM_ID: SB-DEBUG
+:ID: 11
+:LOCK: T
+:END:
+sorta public: Eventually this should become the debugger interface, with
+basic stuff like BACKTRACE and ARG. For now, the actual supported
+interface is still mixed indiscriminately with low-level internal
+implementation stuff like SB-DEBUG:*STACK-TOP-HINT* and unsupported
+stuff like SB-DEBUG::*TRACED-FUNS*.
+
+- dependencies
+  - COMMON-LISP
+  - SB-EXT
+  - SB-INT
+  - SB-KERNEL
+  - SB-SYS
+
+- dependents
+  - [[#STD-USER][STD-USER]]
+  - [[#PK-USER][PK-USER]]
+  - [[#MK-USER][MK-USER]]
+  - [[#SK-USER][SK-USER]]
+  - [[#CORE][CORE]]
+  - [[#HR-USER][HR-USER]]
+  - [[#KR-USER][KR-USER]]
+  - [[#COMMON-LISP-USER][COMMON-LISP-USER]]
+
+** *STACK-TOP-HINT​* :global:var:
+:PROPERTIES:
+:ID: 3793725000439
+:CUSTOM_ID: SB-DEBUG:*STACK-TOP-HINT*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*STACK-TOP-HINT* names a special variable:
+  Declared always-bound.
+  Value: NIL
+#+end_example
+
+- Bound by
+  - SB-ACLREPL::DEBUG-LOOP
+  - (CALL-WITH-DEBUGGER-HOOK IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+  - (CALL-WITH-DEBUGGING-ENVIRONMENT IN
+                                     /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+- Referenced by
+  - SB-ACLREPL::DEBUG-LOOP
+  - (CALL-WITH-DEBUGGING-ENVIRONMENT IN
+                                     /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:SRC;CODE;EARLY-EXTENSIONS.LISP
+:end:
+** BACKTRACE :compiled:function:
+:PROPERTIES:
+:ID: 1169767727952
+:CUSTOM_ID: SB-DEBUG:BACKTRACE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+BACKTRACE names a compiled function:
+  Lambda-list: (&OPTIONAL (COUNT *BACKTRACE-FRAME-COUNT*) (STREAM *DEBUG-IO*))
+  Derived type: (FUNCTION (&OPTIONAL T T) *)
+  Source file: SYS:SRC;CODE;DEBUG.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** *TRACE-ENCAPSULATE-DEFAULT​* :var:
+:PROPERTIES:
+:ID: 4065770458684
+:CUSTOM_ID: SB-DEBUG:*TRACE-ENCAPSULATE-DEFAULT*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*TRACE-ENCAPSULATE-DEFAULT* names a special variable:
+  Value: T
+  Documentation:
+    The default value for the :ENCAPSULATE option to TRACE.
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;NTRACE.LISP
+:end:
+** ARG :compiled:function:
+:PROPERTIES:
+:ID: 1087978266940
+:CUSTOM_ID: SB-DEBUG:ARG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+ARG names a compiled function:
+  Lambda-list: (N)
+  Derived type: (FUNCTION (T)
+                 (VALUES T &OPTIONAL
+                         (OR (INTEGER 4 4) (INTEGER 8 8) (INTEGER 16 16)
+                             (INTEGER 32 32) (INTEGER 64 64))))
+  Documentation:
+    Return the N'th argument's value if possible. Argument zero is the first
+    argument in a frame's default printed representation. Count keyword/value
+    pairs as separate arguments.
+  Source file: SYS:SRC;CODE;DEBUG.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** *IN-THE-DEBUGGER​* :global:var:
+:PROPERTIES:
+:ID: 2850566326117
+:CUSTOM_ID: SB-DEBUG:*IN-THE-DEBUGGER*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*IN-THE-DEBUGGER* names a special variable:
+  Declared always-bound.
+  Value: NIL
+  Documentation:
+    This is T while in the debugger.
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** *DEBUG-HELP-STRING​* :global:var:
+:PROPERTIES:
+:ID: 1394883087368
+:CUSTOM_ID: SB-DEBUG:*DEBUG-HELP-STRING*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*DEBUG-HELP-STRING* names a global variable:
+  Declared always-bound.
+  Value: #<(SIMPLE-BASE-STRING
+            3445) The debug prompt is square brackets, with number(s)indicating the current
+  control stack level and, if you've entered the debugger recursively, how
+  deeply recursed you are.
+Any command -- includin... {11FF3CFADF}>
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** PRINT-BACKTRACE :compiled:function:
+:PROPERTIES:
+:ID: 2844754688713
+:CUSTOM_ID: SB-DEBUG:PRINT-BACKTRACE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRINT-BACKTRACE names a compiled function:
+  Lambda-list: (&KEY (STREAM *DEBUG-IO*) (START 0) (FROM DEBUGGER-FRAME)
+                (COUNT *BACKTRACE-FRAME-COUNT*) (PRINT-THREAD T)
+                (PRINT-PC *BACKTRACE-PRINT-PC*)
+                (ARGUMENT-LIMIT *DEFAULT-ARGUMENT-LIMIT*)
+                (PRINT-FRAME-SOURCE NIL)
+                (METHOD-FRAME-STYLE *METHOD-FRAME-STYLE*)
+,                (EMERGENCY-BEST-EFFORT (> *DEBUG-COMMAND-LEVEL* 1)))
+  Derived type: (FUNCTION
+                 (&KEY (:STREAM T) (:START T) (:FROM T) (:COUNT T)
+                  (:PRINT-THREAD T) (:PRINT-PC T) (:ARGUMENT-LIMIT T)
+                  (:PRINT-FRAME-SOURCE T) (:METHOD-FRAME-STYLE T)
+                  (:EMERGENCY-BEST-EFFORT T))
+                 *)
+  Documentation:
+    Print a listing of the call stack to STREAM, defaulting to *DEBUG-IO*.
+    
+    COUNT is the number of frames to backtrace, defaulting to
+    *BACKTRACE-FRAME-COUNT*.
+    
+    START is the number of the frame the backtrace should start from.
+    
+    FROM specifies the frame relative to which the frames are numbered.Possible
+    values are an explicit SB-DI:FRAME object, and the
+    keywords :CURRENT-FRAME, :INTERRUPTED-FRAME, and :DEBUGGER-FRAME. Default
+    is :DEBUGGER-FRAME.
+    
+      :CURRENT-FRAME
+        specifies the caller of PRINT-BACKTRACE.
+    
+      :INTERRUPTED-FRAME
+        specifies the first interrupted frame on the stack (typically the frame
+        where the error occured, as opposed to error handling frames) if any,
+        otherwise behaving as :CURRENT-FRAME.
+    
+      :DEBUGGER-FRAME
+        specifies the currently debugged frame when inside the debugger, and
+        behaves as :INTERRUPTED-FRAME outside the debugger.
+    
+    If PRINT-THREAD is true (default), backtrace is preceded by printing the
+    thread object the backtrace is from.
+    
+    If PRINT-FRAME-SOURCE is true (default is false), each frame is followed by
+    printing the currently executing source form in the function responsiblefor
+    that frame, when available. Requires the function to have been compiled at
+    DEBUG 2 or higher. If PRINT-FRAME-SOURCE is :ALWAYS, it also reports "no
+    source available" for frames for which were compiled at lower debugsettings.
+    
+    METHOD-FRAME-STYLE (defaulting to *METHOD-FRAME-STYLE*), determines howframes
+    corresponding to method functions are printed. Possible values
+,    are :MINIMAL, :NORMAL, and :FULL. See *METHOD-FRAME-STYLE* for more
+    information.
+    
+    If EMERGENCY-BEST-EFFORT is true then try to print as much information as
+    possible while navigating and ignoring possible errors.
+  Source file: SYS:SRC;CODE;DEBUG.LISP
+#+end_example
+
+- Called by
+  - SB-ACLREPL::BT-CMD
+  - UIOP/IMAGE:RAW-PRINT-BACKTRACE
+  - [[id:2605223337270][FATAL!]]
+  - [[id:2961176477485][ERROR!]]
+  - STD/CORE::HANDLE-SERIOUS-CONDITION
+  - [[id:2832934037078][GET-BACKTRACE]]
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** MAP-BACKTRACE :compiled:function:
+:PROPERTIES:
+:ID: 2402082458872
+:CUSTOM_ID: SB-DEBUG:MAP-BACKTRACE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+MAP-BACKTRACE names a compiled function:
+  Lambda-list: (FUNCTION &KEY (START 0) (FROM DEBUGGER-FRAME)
+                (COUNT *BACKTRACE-FRAME-COUNT*))
+  Dynamic-extent arguments: positional=(0)
+  Derived type: (FUNCTION (T &KEY (:START T) (:FROM T) (:COUNT T))
+                 (VALUES T &OPTIONAL))
+  Documentation:
+    Calls the designated FUNCTION with each frame on the call stack.
+    Returns the last value returned by FUNCTION.
+    
+    COUNT is the number of frames to backtrace, defaulting to
+    *BACKTRACE-FRAME-COUNT*.
+    
+    START is the number of the frame the backtrace should start from.
+    
+    FROM specifies the frame relative to which the frames are numbered.Possible
+    values are an explicit SB-DI:FRAME object, and the
+    keywords :CURRENT-FRAME, :INTERRUPTED-FRAME, and :DEBUGGER-FRAME. Default
+    is :DEBUGGER-FRAME.
+    
+      :CURRENT-FRAME
+        specifies the caller of MAP-BACKTRACE.
+    
+      :INTERRUPTED-FRAME
+        specifies the first interrupted frame on the stack (typically the frame
+        where the error occurred, as opposed to error handling frames) if any,
+        otherwise behaving as :CURRENT-FRAME.
+    
+      :DEBUGGER-FRAME
+        specifies the currently debugged frame when inside the debugger, and
+        behaves as :INTERRUPTED-FRAME outside the debugger.
+  Source file: SYS:SRC;CODE;DEBUG.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** *TRACE-REPORT-DEFAULT​* :var:
+:PROPERTIES:
+:ID: 1297589646184
+:CUSTOM_ID: SB-DEBUG:*TRACE-REPORT-DEFAULT*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*TRACE-REPORT-DEFAULT* names a special variable:
+  Value: TRACE
+  Documentation:
+    The default value for the :REPORT option to TRACE.
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;NTRACE.LISP
+:end:
+** FRAME-HAS-DEBUG-TAG-P :compiled:function:
+:PROPERTIES:
+:ID: 2811550333431
+:CUSTOM_ID: SB-DEBUG:FRAME-HAS-DEBUG-TAG-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FRAME-HAS-DEBUG-TAG-P names a compiled function:
+  Lambda-list: (FRAME)
+  Derived type: (FUNCTION (T)
+                 (VALUES T &OPTIONAL
+                         (OR (INTEGER 4 4) (INTEGER 8 8) (INTEGER 16 16)
+                             (INTEGER 32 32) (INTEGER 64 64))))
+  Source file: SYS:SRC;CODE;DEBUG.LISP
+#+end_example
+
+- Called by
+  - (RESTART-FRAME IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+  - (RETURN-FROM-FRAME IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+  - (FRAME-RESTARTABLE-P IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** LIST-BACKTRACE :compiled:function:
+:PROPERTIES:
+:ID: 964773858371
+:CUSTOM_ID: SB-DEBUG:LIST-BACKTRACE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+LIST-BACKTRACE names a compiled function:
+  Lambda-list: (&KEY (COUNT *BACKTRACE-FRAME-COUNT*)
+                (ARGUMENT-LIMIT *DEFAULT-ARGUMENT-LIMIT*) (START 0)
+                (FROM DEBUGGER-FRAME) (METHOD-FRAME-STYLE *METHOD-FRAME-STYLE*))
+  Derived type: (FUNCTION
+                 (&KEY (:COUNT T) (:ARGUMENT-LIMIT T) (:START T) (:FROM T)
+                  (:METHOD-FRAME-STYLE T))
+                 (VALUES LIST &OPTIONAL))
+  Documentation:
+    Returns a list describing the call stack. Each frame is represented
+    by a sublist:
+    
+      (<name> ...args...)
+    
+    where the name describes the function responsible for the frame. The name
+    might not be bound to the actual function object. Unavailable arguments are
+    represented by dummy objects that print as #<unavailable argument>. Objects
+    with dynamic-extent allocation by the current thread are represented by
+    substitutes to avoid references to them from leaking outside their legal
+    extent.
+    
+    COUNT is the number of frames to backtrace, defaulting to
+    *BACKTRACE-FRAME-COUNT*.
+    
+    START is the number of the frame the backtrace should start from.
+    
+    FROM specifies the frame relative to which the frames are numbered.Possible
+    values are an explicit SB-DI:FRAME object, and the
+    keywords :CURRENT-FRAME, :INTERRUPTED-FRAME, and :DEBUGGER-FRAME. Default
+    is :DEBUGGER-FRAME.
+    
+      :CURRENT-FRAME
+        specifies the caller of LIST-BACKTRACE.
+    
+      :INTERRUPTED-FRAME
+        specifies the first interrupted frame on the stack (typically the frame
+        where the error occured, as opposed to error handling frames) if any,
+        otherwise behaving as :CURRENT-FRAME.
+    
+      :DEBUGGER-FRAME
+        specifies the currently debugged frame when inside the debugger, and
+        behaves as :INTERRUPTED-FRAME outside the debugger.
+    
+    METHOD-FRAME-STYLE (defaulting to *METHOD-FRAME-STYLE*), determines howframes
+    corresponding to method functions are printed. Possible values
+,    are :MINIMAL, :NORMAL, and :FULL. See *METHOD-FRAME-STYLE* for more
+    information.
+  Source file: SYS:SRC;CODE;DEBUG.LISP
+#+end_example
+
+- Called by
+  - (HANDLE-REQUEST (HTTP-SERVICE HTTP-SERVICE-REQUEST))
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** BACKTRACE-AS-LIST :compiled:function:
+:PROPERTIES:
+:ID: 3347844618383
+:CUSTOM_ID: SB-DEBUG:BACKTRACE-AS-LIST
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+BACKTRACE-AS-LIST names a compiled function:
+  Lambda-list: (&OPTIONAL (COUNT *BACKTRACE-FRAME-COUNT*))
+  Derived type: (FUNCTION (&OPTIONAL T) *)
+  Source file: SYS:SRC;CODE;DEBUG.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** *FLUSH-DEBUG-ERRORS​* :var:
+:PROPERTIES:
+:ID: 2406498097821
+:CUSTOM_ID: SB-DEBUG:*FLUSH-DEBUG-ERRORS*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*FLUSH-DEBUG-ERRORS* names a special variable:
+  Value: NIL
+  Documentation:
+    When set, avoid calling INVOKE-DEBUGGER recursively when errors occur while
+    executing in the debugger.
+#+end_example
+
+- Referenced by
+  - SB-ACLREPL::DEBUG-LOOP
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** *TRACE-INDENTATION-STEP​* :var:
+:PROPERTIES:
+:ID: 1219596770068
+:CUSTOM_ID: SB-DEBUG:*TRACE-INDENTATION-STEP*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*TRACE-INDENTATION-STEP* names a special variable:
+  Value: 2
+  Documentation:
+    The increase in trace indentation at each call level.
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;NTRACE.LISP
+:end:
+** *DEBUG-CONDITION​*
+:PROPERTIES:
+:ID: 1652582663618
+:CUSTOM_ID: SB-DEBUG:*DEBUG-CONDITION*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*DEBUG-CONDITION* names a special variable:
+  Currently unbound.
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** VAR :compiled:function:
+:PROPERTIES:
+:ID: 4174682097378
+:CUSTOM_ID: SB-DEBUG:VAR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+VAR names a compiled function:
+  Lambda-list: (NAME &OPTIONAL (ID 0 ID-SUPPLIED))
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES T &OPTIONAL))
+  Documentation:
+    Return a variable's value if possible. NAME is a simple-string or symbol.
+    If it is a simple-string, it is an initial substring of the
+    variable's name. If name is a symbol, it has the same name and
+    package as the variable whose value this function returns. If the
+    symbol is uninterned, then the variable has the same name as the
+    symbol, but it has no package.
+    
+    If name is the initial substring of variables with different names,
+    then this returns no values after displaying the ambiguous names.
+    If name determines multiple variables with the same name, then you
+    must use the optional ID argument to specify which one you want. If
+    you left ID unspecified, then this returns no values after
+    displaying the distinguishing id values.
+    
+    The result of this function is limited to the availability of
+    variable information. This is SETFable.
+  Source file: SYS:SRC;CODE;DEBUG.LISP
+
+(SETF VAR) names a compiled function:
+  Lambda-list: (VALUE NAME &OPTIONAL (ID 0 ID-SUPPLIED))
+  Derived type: (FUNCTION (T T &OPTIONAL T) (VALUES T &OPTIONAL))
+  Source file: SYS:SRC;CODE;DEBUG.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** INTERNAL-DEBUG :compiled:function:
+:PROPERTIES:
+:ID: 605832275435
+:CUSTOM_ID: SB-DEBUG:INTERNAL-DEBUG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+INTERNAL-DEBUG names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Source file: SYS:SRC;CODE;DEBUG.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** UNWIND-TO-FRAME-AND-CALL :compiled:vop:function:
+:PROPERTIES:
+:ID: 3901917550600
+:CUSTOM_ID: SB-DEBUG:UNWIND-TO-FRAME-AND-CALL
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+UNWIND-TO-FRAME-AND-CALL names a compiled function:
+  Lambda-list: (FRAME THUNK)
+  Derived type: (FUNCTION (T T) (VALUES &OPTIONAL))
+  Source file: SYS:SRC;CODE;DEBUG.LISP
+#+end_example
+
+- Called by
+  - (RESTART-FRAME IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+  - (RETURN-FROM-FRAME IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** *DEBUG-READTABLE​* :var:
+:PROPERTIES:
+:ID: 339298626374
+:CUSTOM_ID: SB-DEBUG:*DEBUG-READTABLE*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*DEBUG-READTABLE* names a special variable:
+  Value: #<READTABLE {12000560C3}>
+  Documentation:
+,    *READTABLE* for the debugger
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** BACKTRACE-ALL-THREADS :compiled:function:
+:PROPERTIES:
+:ID: 4313576110977
+:CUSTOM_ID: SB-DEBUG:BACKTRACE-ALL-THREADS
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+BACKTRACE-ALL-THREADS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES CONS &OPTIONAL))
+  Source file: SYS:SRC;CODE;DEBUG.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** *METHOD-FRAME-STYLE​* :var:
+:PROPERTIES:
+:ID: 1664073234041
+:CUSTOM_ID: SB-DEBUG:*METHOD-FRAME-STYLE*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*METHOD-FRAME-STYLE* names a special variable:
+  Declared type: (MEMBER :FULL :NORMAL :MINIMAL)
+  Value: :NORMAL
+  Documentation:
+    Determines how frames corresponding to method functions are represented in
+    backtraces. Possible values are :MINIMAL, :NORMAL, and :FULL.
+    
+      :MINIMAL represents them as
+    
+        (<gf-name> ...args...)
+    
+        if all arguments are available, and only a single method is applicableto
+        the arguments -- otherwise behaves as :NORMAL.
+    
+      :NORMAL represents them as
+    
+        ((:method <gf-name> [<qualifier>*] (<specializer>*)) ...args...)
+    
+        The frame is then followed by either [fast-method] or [slow-method],
+        designating the kind of method function. (See below.)
+    
+      :FULL represents them using the actual funcallable method function name:
+    
+        ((sb-pcl:fast-method <gf-name> [<qualifier>*](<specializer>*)) ...args...)
+    
+       or
+    
+        ((sb-pcl:slow-method <gf-name> [<qualifier>*](<specializer>*)) ...args...)
+    
+       In the this case arguments may include values internal to SBCL's method
+       dispatch machinery.
+#+end_example
+
+- Bound by
+  - (RESTART-FRAME IN /home/ellis/src/core/lib/swank/sbcl.lisp)
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** *DEBUG-BEGINNER-HELP-P​* :var:
+:PROPERTIES:
+:ID: 1383976038126
+:CUSTOM_ID: SB-DEBUG:*DEBUG-BEGINNER-HELP-P*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*DEBUG-BEGINNER-HELP-P* names a special variable:
+  Value: T
+  Documentation:
+    Should the debugger display beginner-oriented help messages?
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:
+** *MAX-TRACE-INDENTATION​* :var:
+:PROPERTIES:
+:ID: 12073975913
+:CUSTOM_ID: SB-DEBUG:*MAX-TRACE-INDENTATION*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*MAX-TRACE-INDENTATION* names a special variable:
+  Value: 40
+  Documentation:
+    If the trace indentation exceeds this value, then indentation restarts
+    at 0.
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;NTRACE.LISP
+:end:
+** *BACKTRACE-FRAME-COUNT​* :var:
+:PROPERTIES:
+:ID: 130138835615
+:CUSTOM_ID: SB-DEBUG:*BACKTRACE-FRAME-COUNT*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*BACKTRACE-FRAME-COUNT* names a special variable:
+  Declared type: UNSIGNED-BYTE
+  Value: 1000
+  Documentation:
+    Default number of frames to backtrace. Defaults to 1000.
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;DEBUG.LISP
+:end:

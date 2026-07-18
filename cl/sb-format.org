@@ -1,0 +1,81 @@
+#+setupfile: ../../clean.theme
+* SB-FORMAT
+:PROPERTIES:
+:CUSTOM_ID: SB-FORMAT
+:ID: 24
+:LOCK: T
+:END:
+private: implementation of FORMAT and friends
+
+- dependencies
+  - COMMON-LISP
+  - SB-EXT
+  - SB-INT
+  - SB-KERNEL
+
+** FORMAT-ERROR :compiled:function:condition:class:
+:PROPERTIES:
+:ID: 3467258076077
+:CUSTOM_ID: SB-FORMAT:FORMAT-ERROR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FORMAT-ERROR names a compiled function:
+  Lambda-list: (COMPLAINT &REST ARGS)
+  Declared type: (FUNCTION (STRING &REST T) NIL)
+  Known attributes: unwind, any
+  Source file: SYS:SRC;CODE;FORMAT-DIRECTIVE.LISP
+
+FORMAT-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS SB-FORMAT:FORMAT-ERROR>:
+  Class precedence-list: SB-FORMAT:FORMAT-ERROR, ERROR, SERIOUS-CONDITION,
+                         SB-INT:REFERENCE-CONDITION, CONDITION,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ERROR, SB-INT:REFERENCE-CONDITION
+  No subclasses.
+  Direct slots:
+    SB-FORMAT::COMPLAINT
+      Initargs: :COMPLAINT
+      Readers: SB-FORMAT::FORMAT-ERROR-COMPLAINT
+    SB-FORMAT::ARGS
+      Initargs: :ARGS
+      Initform: 'NIL
+      Readers: SB-FORMAT::FORMAT-ERROR-ARGS
+    SB-FORMAT::CONTROL-STRING
+      Initargs: :CONTROL-STRING
+      Initform: 'SB-FORMAT::*DEFAULT-FORMAT-ERROR-CONTROL-STRING*
+      Readers: SB-FORMAT::FORMAT-ERROR-CONTROL-STRING
+    SB-FORMAT::OFFSET
+      Initargs: :OFFSET
+      Initform: 'SB-FORMAT::*DEFAULT-FORMAT-ERROR-OFFSET*
+      Readers: SB-FORMAT::FORMAT-ERROR-OFFSET
+    SB-FORMAT::SECOND-RELATIVE
+      Initargs: :SECOND-RELATIVE
+      Initform: 'NIL
+      Readers: SB-FORMAT::FORMAT-ERROR-SECOND-RELATIVE
+    SB-FORMAT::PRINT-BANNER
+      Initargs: :PRINT-BANNER
+      Initform: 'T
+      Readers: SB-FORMAT::FORMAT-ERROR-PRINT-BANNER
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;FORMAT-DIRECTIVE.LISP
+- SYS:SRC;COMPILER;FNDB.LISP
+  - [[id:468600361341][DEFKNOWN]]
+:end:
+** %COMPILER-WALK-FORMAT-STRING :compiled:function:
+:PROPERTIES:
+:ID: 408154563005
+:CUSTOM_ID: SB-FORMAT:%COMPILER-WALK-FORMAT-STRING
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+%COMPILER-WALK-FORMAT-STRING names a compiled function:
+  Lambda-list: (STRING ARGS)
+  Derived type: (FUNCTION (T T) *)
+  Source file: SYS:SRC;CODE;FORMAT.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;FORMAT.LISP
+:end:

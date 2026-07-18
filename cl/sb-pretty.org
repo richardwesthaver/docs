@@ -1,0 +1,222 @@
+#+setupfile: ../../clean.theme
+* SB-PRETTY
+:PROPERTIES:
+:CUSTOM_ID: SB-PRETTY
+:ID: 20
+:LOCK: T
+:END:
+private: implementation of pretty-printing
+
+- dependencies
+  - COMMON-LISP
+  - SB-EXT
+  - SB-INT
+  - SB-KERNEL
+
+** OUTPUT-PRETTY-OBJECT :compiled:function:
+:PROPERTIES:
+:ID: 2475083950582
+:CUSTOM_ID: SB-PRETTY:OUTPUT-PRETTY-OBJECT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+OUTPUT-PRETTY-OBJECT names a compiled function:
+  Lambda-list: (STREAM FUN OBJECT)
+  Derived type: (FUNCTION (T T T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:SRC;CODE;PPRINT.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;PPRINT.LISP
+:end:
+** PRETTY-STREAM :class:
+:PROPERTIES:
+:ID: 4141422312514
+:CUSTOM_ID: SB-PRETTY:PRETTY-STREAM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRETTY-STREAM names the structure-class #<STRUCTURE-CLASS SB-PRETTY:PRETTY-STREAM>:
+  Class precedence-list: SB-PRETTY:PRETTY-STREAM, SB-KERNEL:ANSI-STREAM,STREAM,
+                         STRUCTURE-OBJECT, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SB-KERNEL:ANSI-STREAM
+  No subclasses.
+  Slots:
+    SB-IMPL::IN-BUFFER
+      Type: (OR SB-KERNEL:ANSI-STREAM-IN-BUFFER NULL)
+      Initform: NIL
+    SB-IMPL::CIN-BUFFER
+      Type: (OR SB-IMPL::ANSI-STREAM-CIN-BUFFER NULL)
+      Initform: NIL
+    SB-IMPL::CSIZE-BUFFER
+      Type: (OR SB-IMPL::ANSI-STREAM-CSIZE-BUFFER NULL)
+      Initform: NIL
+    SB-IMPL::IN-INDEX
+      Type: (INTEGER 0 512)
+      Initform: SB-IMPL::+ANSI-STREAM-IN-BUFFER-LENGTH+
+    SB-IMPL::IN
+      Type: FUNCTION
+      Initform: #'SB-KERNEL:ILL-IN
+    SB-IMPL::BIN
+      Type: FUNCTION
+      Initform: #'SB-KERNEL:ILL-BIN
+    SB-IMPL::N-BIN
+      Type: (SB-INT:SFUNCTION
+             (STREAM
+              (OR (SB-KERNEL:SIMPLE-UNBOXED-ARRAY (*))
+                  SB-SYS:SYSTEM-AREA-POINTER)
+              (OR SB-IMPL::ANSI-STREAM-CSIZE-BUFFER NULL) SB-INT:INDEX
+              SB-INT:INDEX &OPTIONAL T)
+             SB-INT:INDEX)
+      Initform: #'SB-KERNEL:ILL-BIN
+    SB-PRETTY::COUT
+,      Type: (SB-INT:SFUNCTION * T)
+      Initform: #'SB-PRETTY::PRETTY-OUT
+    SB-IMPL::BOUT
+,      Type: (SB-INT:SFUNCTION * T)
+      Initform: #'SB-KERNEL:ILL-BOUT
+    SB-PRETTY::SOUT
+,      Type: (SB-INT:SFUNCTION * T)
+      Initform: #'SB-PRETTY::PRETTY-SOUT
+    SB-PRETTY::MISC
+      Type: (FUNCTION (STREAM (INTEGER 0 17) T) *)
+      Initform: #'SB-PRETTY::PRETTY-MISC
+    SB-IMPL::INPUT-CHAR-POS
+      Type: (OR NULL (OR (INTEGER -512 0) SB-INT:INDEX))
+      Initform: NIL
+    SB-PRETTY::TARGET
+      Type: STREAM
+      Initform: (SB-INT:MISSING-ARG)
+    SB-KERNEL:LINE-LENGTH
+      Type: SB-PRETTY::COLUMN
+      Initform: (SB-INT:MISSING-ARG)
+    SB-PRETTY::CHAR-OUT-ONESHOT-HOOK
+      Type: (OR NULL FUNCTION)
+      Initform: NIL
+    SB-PRETTY::BUFFER
+      Type: (SIMPLE-ARRAY CHARACTER (*))
+      Initform: (MAKE-STRING SB-PRETTY::INITIAL-BUFFER-SIZE)
+    SB-PRETTY::BUFFER-FILL-POINTER
+      Type: SB-INT:INDEX
+      Initform: 0
+    SB-PRETTY::BUFFER-SIGNIFICANT-SPACES
+      Type: LIST
+      Initform: NIL
+    SB-PRETTY::BUFFER-OFFSET
+      Type: SB-PRETTY::POSN
+      Initform: 0
+    SB-PRETTY::BUFFER-START-COLUMN
+      Type: SB-PRETTY::COLUMN
+      Initform: (SB-INT:MISSING-ARG)
+    SB-PRETTY::LINE-NUMBER
+      Type: SB-INT:INDEX
+      Initform: 0
+    SB-PRETTY::PRINT-LINES
+      Type: (OR SB-INT:INDEX NULL)
+      Initform: *PRINT-LINES*
+    SB-PRETTY::BLOCKS
+      Type: LIST
+      Initform: (LIST (SB-PRETTY::MAKE-LOGICAL-BLOCK))
+    SB-PRETTY::PREFIX
+      Type: (SIMPLE-ARRAY CHARACTER (*))
+      Initform: (MAKE-STRING SB-PRETTY::INITIAL-BUFFER-SIZE)
+    SB-PRETTY::SUFFIX
+      Type: (SIMPLE-ARRAY CHARACTER (*))
+      Initform: (MAKE-STRING SB-PRETTY::INITIAL-BUFFER-SIZE)
+    SB-PRETTY::QUEUE-TAIL
+      Type: LIST
+      Initform: NIL
+    SB-PRETTY::QUEUE-HEAD
+      Type: LIST
+      Initform: NIL
+    SB-PRETTY::PENDING-BLOCKS
+      Type: LIST
+      Initform: NIL
+    SB-PRETTY::PENDING-BLOCKS-LENGTH
+      Type: SB-INT:INDEX
+      Initform: 0
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;EARLY-PPRINT.LISP
+:end:
+** NOTE-SIGNIFICANT-SPACE :compiled:function:
+:PROPERTIES:
+:ID: 1952732978521
+:CUSTOM_ID: SB-PRETTY:NOTE-SIGNIFICANT-SPACE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+NOTE-SIGNIFICANT-SPACE names a compiled function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (STREAM) (VALUES LIST &OPTIONAL))
+  Source file: SYS:SRC;CODE;PPRINT.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;PPRINT.LISP
+:end:
+** PRETTY-STREAM-P :compiled:function:
+:PROPERTIES:
+:ID: 3894292539740
+:CUSTOM_ID: SB-PRETTY:PRETTY-STREAM-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PRETTY-STREAM-P names a compiled function:
+  A predicate for SB-PRETTY:PRETTY-STREAM
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:SRC;CODE;EARLY-PPRINT.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;EARLY-PPRINT.LISP
+:end:
+** PPRINT-DISPATCH-TABLE :class:
+:PROPERTIES:
+:ID: 3322615035084
+:CUSTOM_ID: SB-PRETTY:PPRINT-DISPATCH-TABLE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+PPRINT-DISPATCH-TABLE names the structure-class #<STRUCTURE-CLASS SB-PRETTY:PPRINT-DISPATCH-TABLE>:
+  Class precedence-list: SB-PRETTY:PPRINT-DISPATCH-TABLE, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Sealed.
+  Slots:
+    SB-PRETTY::ENTRIES
+      Type: SIMPLE-VECTOR
+      Initform: #()
+    SB-PRETTY::CONS-ENTRIES
+      Type: (OR FUNCTION HASH-TABLE)
+      Initform: (MAKE-HASH-TABLE :TEST 'EQL)
+    SB-PRETTY::NUMBER-MATCHABLE-P
+      Type: T
+      Initform: NIL
+    SB-PRETTY::ONLY-INITIAL-ENTRIES
+      Type: BOOLEAN
+      Initform: NIL
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;HOST-PPRINT.LISP
+- SYS:SRC;CODE;HOST-PPRINT.LISP
+  - [[id:2131768191127][FREEZE-TYPE]]
+:end:
+** *PPRINT-QUOTE-WITH-SYNTACTIC-SUGAR​* :var:
+:PROPERTIES:
+:ID: 2139178970221
+:CUSTOM_ID: SB-PRETTY:*PPRINT-QUOTE-WITH-SYNTACTIC-SUGAR*
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+,*PPRINT-QUOTE-WITH-SYNTACTIC-SUGAR* names a special variable:
+  Value: T
+#+end_example
+
+:definitions:
+- SYS:SRC;CODE;PPRINT.LISP
+:end:

@@ -1,0 +1,1264 @@
+#+setupfile: ../../clean.theme
+* SB-GRAY
+:PROPERTIES:
+:CUSTOM_ID: SB-GRAY
+:ID: 33
+:LOCK: T
+:END:
+public: an implementation of the stream-definition-by-user
+Lisp extension proposal by David N. Gray
+
+- dependencies
+  - COMMON-LISP
+  - SB-EXT
+  - SB-INT
+
+- dependents
+  - [[#IO/ZSTD][IO/ZSTD]]
+  - [[#ORGAN][ORGAN]]
+  - [[#IO/CHUNKY][IO/CHUNKY]]
+  - [[#SB-KERNEL][SB-KERNEL]]
+  - [[#STD-USER][STD-USER]]
+  - [[#NET/REQ][NET/REQ]]
+  - [[#STD/STREAM][STD/STREAM]]
+  - [[#IO/FAST][IO/FAST]]
+  - [[#IRONCLAD][IRONCLAD]]
+  - [[#IO/STREAM][IO/STREAM]]
+  - [[#NET/SRV][NET/SRV]]
+  - [[#CRY/TLS][CRY/TLS]]
+  - [[#COMMON-LISP-USER][COMMON-LISP-USER]]
+  - [[#IO/FLATE][IO/FLATE]]
+  - [[#SB-IMPL][SB-IMPL]]
+
+** STREAM-UNREAD-CHAR :generic:function:
+:PROPERTIES:
+:ID: 275815060985
+:CUSTOM_ID: SB-GRAY:STREAM-UNREAD-CHAR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-UNREAD-CHAR names a generic function:
+  Lambda-list: (STREAM CHARACTER)
+  Argument precedence order: (STREAM CHARACTER)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Undo the last call to STREAM-READ-CHAR, as in UNREAD-CHAR.
+    Return NIL. Every subclass of FUNDAMENTAL-CHARACTER-INPUT-STREAM
+    must define a method for this function.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-UNREAD-CHAR (STATIC-STREAM T))
+    (STREAM-UNREAD-CHAR (DECODING-STREAM T))
+    (STREAM-UNREAD-CHAR (SLIME-INPUT-STREAM T))
+    (STREAM-UNREAD-CHAR (COUNTING-CHARACTER-INPUT-STREAM T))
+    (STREAM-UNREAD-CHAR (WRAPPED-CHARACTER-INPUT-STREAM T))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM CHARACTER)
+- /home/ellis/src/core/lib/io/static.lisp
+  - [[id:3532715530036][STATIC-STREAM]]
+- /home/ellis/src/core/lib/io/stream.lisp
+  - [[id:54197076231][DECODING-STREAM]]
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-INPUT-STREAM
+- /home/ellis/src/core/std/stream.lisp
+  - [[id:3406118833174][WRAPPED-CHARACTER-INPUT-STREAM]]
+- /home/ellis/src/core/std/stream.lisp
+  - [[id:3176487262072][COUNTING-CHARACTER-INPUT-STREAM]]
+:end:
+** FUNDAMENTAL-OUTPUT-STREAM :class:
+:PROPERTIES:
+:ID: 418505402997
+:CUSTOM_ID: SB-GRAY:FUNDAMENTAL-OUTPUT-STREAM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUNDAMENTAL-OUTPUT-STREAM names the standard-class #<STANDARD-CLASS SB-GRAY:FUNDAMENTAL-OUTPUT-STREAM>:
+  Documentation:
+    Superclass of all Gray output streams.
+  Class precedence-list: FUNDAMENTAL-OUTPUT-STREAM, FUNDAMENTAL-STREAM,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, STREAM, T
+  Direct superclasses: FUNDAMENTAL-STREAM
+  Direct subclasses: IO/FAST:FAST-OUTPUT-STREAM,
+                     FUNDAMENTAL-BINARY-OUTPUT-STREAM,
+                     FUNDAMENTAL-CHARACTER-OUTPUT-STREAM
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS-CLASS.LISP
+:end:
+** STREAM-LINE-COLUMN :generic:function:
+:PROPERTIES:
+:ID: 1781275952028
+:CUSTOM_ID: SB-GRAY:STREAM-LINE-COLUMN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-LINE-COLUMN names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Return the column number where the next character
+    will be written, or NIL if that is not meaningful for this stream.
+    The first column on a line is numbered 0. This function is used in
+    the implementation of PPRINT and the FORMAT ~T directive. For every
+    character output stream class that is defined, a method must be
+    defined for this function, although it is permissible for it to
+    always return NIL.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-LINE-COLUMN (SLIME-INPUT-STREAM))
+    (STREAM-LINE-COLUMN (SLIME-OUTPUT-STREAM))
+    (STREAM-LINE-COLUMN (WRAPPED-CHARACTER-OUTPUT-STREAM))
+    (STREAM-LINE-COLUMN (FUNDAMENTAL-CHARACTER-OUTPUT-STREAM))
+    (STREAM-LINE-COLUMN (FORM-TRACKING-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-INPUT-STREAM
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-OUTPUT-STREAM
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - SB-INT:FORM-TRACKING-STREAM
+- /home/ellis/src/core/std/stream.lisp
+  - [[id:929482013224][WRAPPED-CHARACTER-OUTPUT-STREAM]]
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:2401139974697][FUNDAMENTAL-CHARACTER-OUTPUT-STREAM]]
+:end:
+** STREAM-FRESH-LINE :generic:function:
+:PROPERTIES:
+:ID: 213161564710
+:CUSTOM_ID: SB-GRAY:STREAM-FRESH-LINE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-FRESH-LINE names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Outputs a new line to the Stream if it is not positioned at the
+    beginning of a line. Returns T if it output a new line, nil
+    otherwise. Used by FRESH-LINE. The default method uses
+    STREAM-START-LINE-P and STREAM-TERPRI.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-FRESH-LINE (SLIME-OUTPUT-STREAM))
+    (STREAM-FRESH-LINE (FUNDAMENTAL-CHARACTER-OUTPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-OUTPUT-STREAM
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:2401139974697][FUNDAMENTAL-CHARACTER-OUTPUT-STREAM]]
+:end:
+** STREAM-WRITE-STRING :generic:function:
+:PROPERTIES:
+:ID: 4143475146949
+:CUSTOM_ID: SB-GRAY:STREAM-WRITE-STRING
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-WRITE-STRING names a generic function:
+  Lambda-list: (STREAM STRING &OPTIONAL START END)
+  Argument precedence order: (STREAM STRING)
+  Derived type: (FUNCTION (T T &OPTIONAL T T) *)
+  Documentation:
+    This is used by WRITE-STRING. It writes the string to the stream,
+    optionally delimited by start and end, which default to 0 and NIL.
+    The string argument is returned. The default method provided by
+    FUNDAMENTAL-CHARACTER-OUTPUT-STREAM uses repeated calls to
+    STREAM-WRITE-CHAR.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-WRITE-STRING (STATIC-STREAM T))
+    (STREAM-WRITE-STRING (SLIME-OUTPUT-STREAM T))
+    (STREAM-WRITE-STRING (FUNDAMENTAL-CHARACTER-OUTPUT-STREAM T))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM STRING &OPTIONAL START END)
+- /home/ellis/src/core/lib/io/static.lisp
+  - [[id:3532715530036][STATIC-STREAM]]
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-OUTPUT-STREAM
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:2401139974697][FUNDAMENTAL-CHARACTER-OUTPUT-STREAM]]
+:end:
+** STREAM-WRITE-SEQUENCE :generic:function:
+:PROPERTIES:
+:ID: 3942000968347
+:CUSTOM_ID: SB-GRAY:STREAM-WRITE-SEQUENCE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-WRITE-SEQUENCE names a generic function:
+  Lambda-list: (STREAM SEQ &OPTIONAL START END)
+  Argument precedence order: (STREAM SEQ)
+  Derived type: (FUNCTION (T T &OPTIONAL T T) *)
+  Documentation:
+    This is like CL:WRITE-SEQUENCE, but for Gray streams.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-WRITE-SEQUENCE (SSL-STREAM T))
+    (STREAM-WRITE-SEQUENCE (ZSTD-COMPRESSING-STREAM T))
+    (STREAM-WRITE-SEQUENCE (COMPRESSING-STREAM T))
+    (STREAM-WRITE-SEQUENCE (BLOCK-OUTPUT-STREAM T))
+    (STREAM-WRITE-SEQUENCE (CHUNKED-OUTPUT-STREAM T))
+      Documentation:
+        Outputs SEQUENCE by appending it to the output buffer if it's
+        small enough.  Large sequences are written directly using
+        WRITE-CHUNK.
+    (STREAM-WRITE-SEQUENCE (FAST-OUTPUT-STREAM T))
+    (STREAM-WRITE-SEQUENCE (STATIC-STREAM SEQUENCE))
+    (STREAM-WRITE-SEQUENCE (VECTOR-OUTPUT-STREAM T))
+      Documentation:
+        Just calls VECTOR-PUSH-EXTEND repeatedly.
+    (STREAM-WRITE-SEQUENCE (AUTHENTICATING-STREAM T))
+    (STREAM-WRITE-SEQUENCE (DECRYPTING-OUTPUT-STREAM T))
+    (STREAM-WRITE-SEQUENCE (ENCRYPTING-OUTPUT-STREAM T))
+    (STREAM-WRITE-SEQUENCE (DIGESTING-STREAM T))
+    (STREAM-WRITE-SEQUENCE (OCTET-OUTPUT-STREAM T))
+    (STREAM-WRITE-SEQUENCE (FUNDAMENTAL-BINARY-OUTPUT-STREAM SEQUENCE))
+    (STREAM-WRITE-SEQUENCE (FUNDAMENTAL-CHARACTER-OUTPUT-STREAM SEQUENCE))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+- Called by
+  - (STREAM-WRITE-SEQUENCE (BLOCK-OUTPUT-STREAM T))
+  - (STREAM-WRITE-STRING (STATIC-STREAM T))
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM SEQ &OPTIONAL START END)
+- /home/ellis/src/core/lib/cry/tls/stream.lisp
+  - CRY/TLS::SSL-STREAM
+- /home/ellis/src/core/lib/io/static.lisp
+  - (STATIC-STREAM SEQUENCE)
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::DIGESTING-STREAM
+- /home/ellis/src/core/lib/io/flate.lisp
+  - [[id:815508714869][COMPRESSING-STREAM]]
+- /home/ellis/src/core/lib/io/fast.lisp
+  - IO/FAST:FAST-OUTPUT-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:2595185529160][BLOCK-OUTPUT-STREAM]]
+- /home/ellis/src/core/std/stream.lisp
+  - STD/STREAM::OCTET-OUTPUT-STREAM
+- /home/ellis/src/core/lib/io/stream.lisp
+  - IO/STREAM::VECTOR-OUTPUT-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:934130767254][CHUNKED-OUTPUT-STREAM]]
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::AUTHENTICATING-STREAM
+- /home/ellis/src/core/lib/io/zstd.lisp
+  - IO/ZSTD::ZSTD-COMPRESSING-STREAM
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::DECRYPTING-OUTPUT-STREAM
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::ENCRYPTING-OUTPUT-STREAM
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (FUNDAMENTAL-BINARY-OUTPUT-STREAM SEQUENCE)
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (FUNDAMENTAL-CHARACTER-OUTPUT-STREAM SEQUENCE)
+:end:
+** STREAM-PEEK-CHAR :generic:function:
+:PROPERTIES:
+:ID: 2289980601682
+:CUSTOM_ID: SB-GRAY:STREAM-PEEK-CHAR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-PEEK-CHAR names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    This is used to implement PEEK-CHAR; this corresponds to PEEK-TYPE
+    of NIL. It returns either a character or :EOF. The default method
+    calls STREAM-READ-CHAR and STREAM-UNREAD-CHAR.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-PEEK-CHAR (STATIC-STREAM))
+    (STREAM-PEEK-CHAR (FUNDAMENTAL-CHARACTER-INPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- /home/ellis/src/core/lib/io/static.lisp
+  - [[id:3532715530036][STATIC-STREAM]]
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:4339743008273][FUNDAMENTAL-CHARACTER-INPUT-STREAM]]
+:end:
+** STREAM-READ-SEQUENCE :generic:function:
+:PROPERTIES:
+:ID: 1839536862854
+:CUSTOM_ID: SB-GRAY:STREAM-READ-SEQUENCE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-READ-SEQUENCE names a generic function:
+  Lambda-list: (STREAM SEQ &OPTIONAL START END)
+  Argument precedence order: (STREAM SEQ)
+  Derived type: (FUNCTION (T T &OPTIONAL T T) *)
+  Documentation:
+    This is like CL:READ-SEQUENCE, but for Gray streams.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-READ-SEQUENCE (KEEP-ALIVE-CHUNKED-STREAM VECTOR))
+    (STREAM-READ-SEQUENCE (KEEP-ALIVE-STREAM VECTOR))
+    (STREAM-READ-SEQUENCE (SSL-STREAM T))
+    (STREAM-READ-SEQUENCE (DECOMPRESSING-DEFLATE-STREAM T))
+    (STREAM-READ-SEQUENCE (ZSTD-DECOMPRESSING-STREAM T))
+    (STREAM-READ-SEQUENCE (BLOCK-INPUT-STREAM T))
+    (STREAM-READ-SEQUENCE (CHUNKED-INPUT-STREAM T))
+    (STREAM-READ-SEQUENCE (FAST-INPUT-STREAM T))
+    (STREAM-READ-SEQUENCE (STATIC-STREAM SEQUENCE))
+    (STREAM-READ-SEQUENCE (PEEKING-INPUT-STREAM T))
+    (STREAM-READ-SEQUENCE (BOUND-INPUT-STREAM T))
+    (STREAM-READ-SEQUENCE (VECTOR-INPUT-STREAM T))
+      Documentation:
+        Traverses both sequences in parallel until the end of one of them
+        is reached.
+    (STREAM-READ-SEQUENCE (LIST-INPUT-STREAM T))
+      Documentation:
+        Repeatedly pops elements from the list until it's empty.
+    (STREAM-READ-SEQUENCE (DECRYPTING-INPUT-STREAM T))
+    (STREAM-READ-SEQUENCE (ENCRYPTING-INPUT-STREAM T))
+    (STREAM-READ-SEQUENCE (OCTET-INPUT-STREAM T))
+    (STREAM-READ-SEQUENCE (FUNDAMENTAL-BINARY-INPUT-STREAM SEQUENCE))
+    (STREAM-READ-SEQUENCE (FUNDAMENTAL-CHARACTER-INPUT-STREAM SEQUENCE))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+- Called by
+  - (STREAM-READ-SEQUENCE (BLOCK-INPUT-STREAM T))
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM SEQ &OPTIONAL START END)
+- /home/ellis/src/core/lib/cry/tls/stream.lisp
+  - CRY/TLS::SSL-STREAM
+- /home/ellis/src/core/lib/io/static.lisp
+  - (STATIC-STREAM SEQUENCE)
+- /home/ellis/src/core/lib/net/req.lisp
+  - (KEEP-ALIVE-STREAM VECTOR)
+- /home/ellis/src/core/lib/io/fast.lisp
+  - IO/FAST:FAST-INPUT-STREAM
+- /home/ellis/src/core/lib/io/stream.lisp
+  - IO/STREAM::LIST-INPUT-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:1934677226806][BLOCK-INPUT-STREAM]]
+- /home/ellis/src/core/lib/io/stream.lisp
+  - [[id:1023260367374][BOUND-INPUT-STREAM]]
+- /home/ellis/src/core/std/stream.lisp
+  - STD/STREAM::OCTET-INPUT-STREAM
+- /home/ellis/src/core/lib/io/stream.lisp
+  - IO/STREAM::VECTOR-INPUT-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:2117598739251][CHUNKED-INPUT-STREAM]]
+- /home/ellis/src/core/lib/io/stream.lisp
+  - [[id:1064228681404][PEEKING-INPUT-STREAM]]
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::DECRYPTING-INPUT-STREAM
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::ENCRYPTING-INPUT-STREAM
+- /home/ellis/src/core/lib/net/req.lisp
+  - (KEEP-ALIVE-CHUNKED-STREAM VECTOR)
+- /home/ellis/src/core/lib/io/zstd.lisp
+  - IO/ZSTD::ZSTD-DECOMPRESSING-STREAM
+- /home/ellis/src/core/lib/io/deflate.lisp
+  - [[id:570659410691][DECOMPRESSING-DEFLATE-STREAM]]
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (FUNDAMENTAL-BINARY-INPUT-STREAM SEQUENCE)
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (FUNDAMENTAL-CHARACTER-INPUT-STREAM SEQUENCE)
+:end:
+** STREAM-READ-CHAR :generic:function:
+:PROPERTIES:
+:ID: 2833852830376
+:CUSTOM_ID: SB-GRAY:STREAM-READ-CHAR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-READ-CHAR names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Read one character from the stream. Return either a
+    character object, or the symbol :EOF if the stream is at end-of-file.
+    Every subclass of FUNDAMENTAL-CHARACTER-INPUT-STREAM must define a
+    method for this function.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-READ-CHAR (STATIC-STREAM))
+    (STREAM-READ-CHAR (PEEKING-INPUT-STREAM))
+    (STREAM-READ-CHAR (BOUND-INPUT-STREAM))
+    (STREAM-READ-CHAR (DECODING-STREAM))
+    (STREAM-READ-CHAR (VECTOR-INPUT-STREAM))
+      Documentation:
+        Reads one char and increments INDEX pointer.
+    (STREAM-READ-CHAR (LIST-INPUT-STREAM))
+      Documentation:
+        Reads one char and increments INDEX pointer.
+    (STREAM-READ-CHAR (SLIME-INPUT-STREAM))
+    (STREAM-READ-CHAR (COUNTING-CHARACTER-INPUT-STREAM))
+    (STREAM-READ-CHAR (WRAPPED-CHARACTER-INPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- /home/ellis/src/core/lib/io/static.lisp
+  - [[id:3532715530036][STATIC-STREAM]]
+- /home/ellis/src/core/lib/io/stream.lisp
+  - [[id:54197076231][DECODING-STREAM]]
+- /home/ellis/src/core/lib/io/stream.lisp
+  - IO/STREAM::LIST-INPUT-STREAM
+- /home/ellis/src/core/lib/io/stream.lisp
+  - [[id:1023260367374][BOUND-INPUT-STREAM]]
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-INPUT-STREAM
+- /home/ellis/src/core/lib/io/stream.lisp
+  - IO/STREAM::VECTOR-INPUT-STREAM
+- /home/ellis/src/core/lib/io/stream.lisp
+  - [[id:1064228681404][PEEKING-INPUT-STREAM]]
+- /home/ellis/src/core/std/stream.lisp
+  - [[id:3406118833174][WRAPPED-CHARACTER-INPUT-STREAM]]
+- /home/ellis/src/core/std/stream.lisp
+  - [[id:3176487262072][COUNTING-CHARACTER-INPUT-STREAM]]
+:end:
+** STREAM-WRITE-BYTE :generic:function:
+:PROPERTIES:
+:ID: 621812231864
+:CUSTOM_ID: SB-GRAY:STREAM-WRITE-BYTE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-WRITE-BYTE names a generic function:
+  Lambda-list: (STREAM INTEGER)
+  Argument precedence order: (STREAM INTEGER)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Implements WRITE-BYTE; writes the integer to the stream and
+    returns the integer as the result.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-WRITE-BYTE (SSL-STREAM T))
+    (STREAM-WRITE-BYTE (ZSTD-COMPRESSING-STREAM T))
+    (STREAM-WRITE-BYTE (BLOCK-OUTPUT-STREAM T))
+    (STREAM-WRITE-BYTE (CHUNKED-OUTPUT-STREAM T))
+      Documentation:
+        Writes one byte by simply adding it to the end of the output
+        buffer (if output chunking is enabled).  The buffer is flushed
+        if necessary.
+    (STREAM-WRITE-BYTE (FAST-OUTPUT-STREAM T))
+    (STREAM-WRITE-BYTE (STATIC-STREAM T))
+    (STREAM-WRITE-BYTE (VECTOR-OUTPUT-STREAM T))
+      Documentation:
+        Writes a byte (octet) by extending the underlying vector.
+    (STREAM-WRITE-BYTE (AUTHENTICATING-STREAM T))
+    (STREAM-WRITE-BYTE (DECRYPTING-OUTPUT-STREAM T))
+    (STREAM-WRITE-BYTE (ENCRYPTING-OUTPUT-STREAM T))
+    (STREAM-WRITE-BYTE (DIGESTING-STREAM T))
+    (STREAM-WRITE-BYTE (OCTET-OUTPUT-STREAM T))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM INTEGER)
+- /home/ellis/src/core/lib/cry/tls/stream.lisp
+  - CRY/TLS::SSL-STREAM
+- /home/ellis/src/core/lib/io/static.lisp
+  - [[id:3532715530036][STATIC-STREAM]]
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::DIGESTING-STREAM
+- /home/ellis/src/core/lib/io/fast.lisp
+  - IO/FAST:FAST-OUTPUT-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:2595185529160][BLOCK-OUTPUT-STREAM]]
+- /home/ellis/src/core/std/stream.lisp
+  - STD/STREAM::OCTET-OUTPUT-STREAM
+- /home/ellis/src/core/lib/io/stream.lisp
+  - IO/STREAM::VECTOR-OUTPUT-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:934130767254][CHUNKED-OUTPUT-STREAM]]
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::AUTHENTICATING-STREAM
+- /home/ellis/src/core/lib/io/zstd.lisp
+  - IO/ZSTD::ZSTD-COMPRESSING-STREAM
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::DECRYPTING-OUTPUT-STREAM
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::ENCRYPTING-OUTPUT-STREAM
+:end:
+** FUNDAMENTAL-BINARY-STREAM :class:
+:PROPERTIES:
+:ID: 297298668106
+:CUSTOM_ID: SB-GRAY:FUNDAMENTAL-BINARY-STREAM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUNDAMENTAL-BINARY-STREAM names the standard-class #<STANDARD-CLASS SB-GRAY:FUNDAMENTAL-BINARY-STREAM>:
+  Documentation:
+    Superclass of all Gray streams whose element-type
+    is a subtype of unsigned-byte or signed-byte.
+  Class precedence-list: FUNDAMENTAL-BINARY-STREAM, FUNDAMENTAL-STREAM,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, STREAM, T
+  Direct superclasses: FUNDAMENTAL-STREAM
+  Direct subclasses: BLOCK-STREAM, FUNDAMENTAL-BINARY-OUTPUT-STREAM,
+                     FUNDAMENTAL-BINARY-INPUT-STREAM
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS-CLASS.LISP
+:end:
+** STREAM-START-LINE-P :generic:function:
+:PROPERTIES:
+:ID: 2285208735400
+:CUSTOM_ID: SB-GRAY:STREAM-START-LINE-P
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-START-LINE-P names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Is STREAM known to be positioned at the beginning of a line?
+    It is permissible for an implementation to always return
+    NIL. This is used in the implementation of FRESH-LINE. Note that
+    while a value of 0 from STREAM-LINE-COLUMN also indicates the
+    beginning of a line, there are cases where STREAM-START-LINE-P can be
+    meaningfully implemented although STREAM-LINE-COLUMN can't be. For
+    example, for a window using variable-width characters, the column
+    number isn't very meaningful, but the beginning of the line does have
+    a clear meaning. The default method for STREAM-START-LINE-P on class
+    FUNDAMENTAL-CHARACTER-OUTPUT-STREAM uses STREAM-LINE-COLUMN, so if
+    that is defined to return NIL, then a method should be provided for
+    either STREAM-START-LINE-P or STREAM-FRESH-LINE.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-START-LINE-P (FUNDAMENTAL-CHARACTER-OUTPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:2401139974697][FUNDAMENTAL-CHARACTER-OUTPUT-STREAM]]
+:end:
+** STREAM-READ-BYTE :generic:function:
+:PROPERTIES:
+:ID: 563537099032
+:CUSTOM_ID: SB-GRAY:STREAM-READ-BYTE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-READ-BYTE names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Used by READ-BYTE; returns either an integer, or the symbol :EOF
+    if the stream is at end-of-file.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-READ-BYTE (KEEP-ALIVE-CHUNKED-STREAM))
+      Documentation:
+        Return :EOF or byte read.  When we hit :EOF or finish reading ourchunk,
+           call the close-action on our underlying-stream and return :EOF
+    (STREAM-READ-BYTE (KEEP-ALIVE-STREAM))
+      Documentation:
+        Return :EOF or byte read.  When we hit EOF or finish reading ourallowed content,
+           call the close-action on our underlying-stream and return EOF.
+    (STREAM-READ-BYTE (SSL-STREAM))
+    (STREAM-READ-BYTE (DECOMPRESSING-STREAM))
+    (STREAM-READ-BYTE (ZSTD-DECOMPRESSING-STREAM))
+    (STREAM-READ-BYTE (BLOCK-INPUT-STREAM))
+    (STREAM-READ-BYTE (CHUNKED-INPUT-STREAM))
+    (STREAM-READ-BYTE (FAST-INPUT-STREAM))
+    (STREAM-READ-BYTE (STATIC-STREAM))
+    (STREAM-READ-BYTE (PEEKING-INPUT-STREAM))
+    (STREAM-READ-BYTE (BOUND-INPUT-STREAM))
+    (STREAM-READ-BYTE (VECTOR-INPUT-STREAM))
+      Documentation:
+        Reads one byte and increments INDEX pointer unless we're beyond
+        END pointer.
+    (STREAM-READ-BYTE (LIST-INPUT-STREAM))
+      Documentation:
+        Reads one byte by simply popping it off of the top of the list.
+    (STREAM-READ-BYTE (DECRYPTING-INPUT-STREAM))
+    (STREAM-READ-BYTE (ENCRYPTING-INPUT-STREAM))
+    (STREAM-READ-BYTE (OCTET-INPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+- Called by
+  - (STREAM-READ-CHAR (BOUND-INPUT-STREAM))
+  - (STREAM-READ-CHAR (VECTOR-INPUT-STREAM))
+  - (STREAM-READ-CHAR (LIST-INPUT-STREAM))
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- /home/ellis/src/core/lib/cry/tls/stream.lisp
+  - CRY/TLS::SSL-STREAM
+- /home/ellis/src/core/lib/io/static.lisp
+  - [[id:3532715530036][STATIC-STREAM]]
+- /home/ellis/src/core/lib/net/req.lisp
+  - NET/REQ::KEEP-ALIVE-STREAM
+- /home/ellis/src/core/lib/io/fast.lisp
+  - IO/FAST:FAST-INPUT-STREAM
+- /home/ellis/src/core/lib/io/stream.lisp
+  - IO/STREAM::LIST-INPUT-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:1934677226806][BLOCK-INPUT-STREAM]]
+- /home/ellis/src/core/lib/io/stream.lisp
+  - [[id:1023260367374][BOUND-INPUT-STREAM]]
+- /home/ellis/src/core/std/stream.lisp
+  - STD/STREAM::OCTET-INPUT-STREAM
+- /home/ellis/src/core/lib/io/stream.lisp
+  - IO/STREAM::VECTOR-INPUT-STREAM
+- /home/ellis/src/core/lib/io/deflate.lisp
+  - [[id:3299396369255][DECOMPRESSING-STREAM]]
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:2117598739251][CHUNKED-INPUT-STREAM]]
+- /home/ellis/src/core/lib/io/stream.lisp
+  - [[id:1064228681404][PEEKING-INPUT-STREAM]]
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::DECRYPTING-INPUT-STREAM
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::ENCRYPTING-INPUT-STREAM
+- /home/ellis/src/core/lib/net/req.lisp
+  - NET/REQ::KEEP-ALIVE-CHUNKED-STREAM
+- /home/ellis/src/core/lib/io/zstd.lisp
+  - IO/ZSTD::ZSTD-DECOMPRESSING-STREAM
+:end:
+** STREAM-LISTEN :generic:function:
+:PROPERTIES:
+:ID: 3473050268592
+:CUSTOM_ID: SB-GRAY:STREAM-LISTEN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-LISTEN names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    This is used by LISTEN. It returns true or false. The default method uses
+    STREAM-READ-CHAR-NO-HANG and STREAM-UNREAD-CHAR. Most streams should
+    define their own method since it will usually be trivial and will
+    always be more efficient than the default method.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-LISTEN (SSL-STREAM))
+    (STREAM-LISTEN (ZSTD-DECOMPRESSING-STREAM))
+    (STREAM-LISTEN (CHUNKED-INPUT-STREAM))
+    (STREAM-LISTEN (VECTOR-INPUT-STREAM))
+      Documentation:
+        Checking whether INDEX is beyond END.
+    (STREAM-LISTEN (LIST-INPUT-STREAM))
+      Documentation:
+        Checks whether list is not empty.
+    (STREAM-LISTEN (SLIME-INPUT-STREAM))
+    (STREAM-LISTEN (FUNDAMENTAL-CHARACTER-INPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- /home/ellis/src/core/lib/cry/tls/stream.lisp
+  - CRY/TLS::SSL-STREAM
+- /home/ellis/src/core/lib/io/stream.lisp
+  - IO/STREAM::LIST-INPUT-STREAM
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-INPUT-STREAM
+- /home/ellis/src/core/lib/io/stream.lisp
+  - IO/STREAM::VECTOR-INPUT-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:2117598739251][CHUNKED-INPUT-STREAM]]
+- /home/ellis/src/core/lib/io/zstd.lisp
+  - IO/ZSTD::ZSTD-DECOMPRESSING-STREAM
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:4339743008273][FUNDAMENTAL-CHARACTER-INPUT-STREAM]]
+:end:
+** FUNDAMENTAL-CHARACTER-STREAM :class:
+:PROPERTIES:
+:ID: 142511585853
+:CUSTOM_ID: SB-GRAY:FUNDAMENTAL-CHARACTER-STREAM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUNDAMENTAL-CHARACTER-STREAM names the standard-class #<STANDARD-CLASS SB-GRAY:FUNDAMENTAL-CHARACTER-STREAM>:
+  Documentation:
+    Superclass of all Gray streams whose element-type is a subtype ofcharacter.
+  Class precedence-list: FUNDAMENTAL-CHARACTER-STREAM, FUNDAMENTAL-STREAM,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, STREAM, T
+  Direct superclasses: FUNDAMENTAL-STREAM
+  Direct subclasses: FUNDAMENTAL-CHARACTER-OUTPUT-STREAM,
+                     FUNDAMENTAL-CHARACTER-INPUT-STREAM
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS-CLASS.LISP
+:end:
+** STREAM-TERPRI :generic:function:
+:PROPERTIES:
+:ID: 178785148388
+:CUSTOM_ID: SB-GRAY:STREAM-TERPRI
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-TERPRI names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Writes an end of line, as for TERPRI. Returns NIL. The default
+    method does (STREAM-WRITE-CHAR stream #\Newline).
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-TERPRI (FUNDAMENTAL-CHARACTER-OUTPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:2401139974697][FUNDAMENTAL-CHARACTER-OUTPUT-STREAM]]
+:end:
+** STREAM-READ-LINE :generic:function:
+:PROPERTIES:
+:ID: 1639578704675
+:CUSTOM_ID: SB-GRAY:STREAM-READ-LINE
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-READ-LINE names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    This is used by READ-LINE. A string is returned as the first value. The
+    second value is true if the string was terminated by end-of-file
+    instead of the end of a line. The default method uses repeated
+    calls to STREAM-READ-CHAR.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-READ-LINE (FUNDAMENTAL-CHARACTER-INPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:4339743008273][FUNDAMENTAL-CHARACTER-INPUT-STREAM]]
+:end:
+** FUNDAMENTAL-CHARACTER-INPUT-STREAM :class:
+:PROPERTIES:
+:ID: 4339743008273
+:CUSTOM_ID: SB-GRAY:FUNDAMENTAL-CHARACTER-INPUT-STREAM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUNDAMENTAL-CHARACTER-INPUT-STREAM names the standard-class #<STANDARD-CLASS SB-GRAY:FUNDAMENTAL-CHARACTER-INPUT-STREAM>:
+  Documentation:
+    Superclass of all Gray input streams whose element-type
+    is a subtype of character.
+  Class precedence-list: FUNDAMENTAL-CHARACTER-INPUT-STREAM,
+                         FUNDAMENTAL-INPUT-STREAM, FUNDAMENTAL-CHARACTER-STREAM,
+                         FUNDAMENTAL-STREAM, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, STREAM, T
+  Direct superclasses: FUNDAMENTAL-INPUT-STREAM, FUNDAMENTAL-CHARACTER-STREAM
+  Direct subclasses: DECODING-STREAM, FLEX-INPUT-STREAM,
+                     SWANK/GRAY::SLIME-INPUT-STREAM,
+                     WRAPPED-CHARACTER-INPUT-STREAM
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS-CLASS.LISP
+:end:
+** FUNDAMENTAL-INPUT-STREAM :class:
+:PROPERTIES:
+:ID: 2360721120609
+:CUSTOM_ID: SB-GRAY:FUNDAMENTAL-INPUT-STREAM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUNDAMENTAL-INPUT-STREAM names the standard-class #<STANDARD-CLASS SB-GRAY:FUNDAMENTAL-INPUT-STREAM>:
+  Documentation:
+    Superclass of all Gray input streams.
+  Class precedence-list: FUNDAMENTAL-INPUT-STREAM, FUNDAMENTAL-STREAM,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, STREAM, T
+  Direct superclasses: FUNDAMENTAL-STREAM
+  Direct subclasses: NET/REQ::KEEP-ALIVE-STREAM, IO/FAST:FAST-INPUT-STREAM,
+                     FUNDAMENTAL-BINARY-INPUT-STREAM,
+                     FUNDAMENTAL-CHARACTER-INPUT-STREAM
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS-CLASS.LISP
+:end:
+** FUNDAMENTAL-BINARY-INPUT-STREAM :class:
+:PROPERTIES:
+:ID: 2283708765526
+:CUSTOM_ID: SB-GRAY:FUNDAMENTAL-BINARY-INPUT-STREAM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUNDAMENTAL-BINARY-INPUT-STREAM names the standard-class #<STANDARD-CLASS SB-GRAY:FUNDAMENTAL-BINARY-INPUT-STREAM>:
+  Documentation:
+    Superclass of all Gray input streams whose element-type
+    is a subtype of unsigned-byte or signed-byte.
+  Class precedence-list: FUNDAMENTAL-BINARY-INPUT-STREAM,
+                         FUNDAMENTAL-INPUT-STREAM, FUNDAMENTAL-BINARY-STREAM,
+                         FUNDAMENTAL-STREAM, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, STREAM, T
+  Direct superclasses: FUNDAMENTAL-INPUT-STREAM, FUNDAMENTAL-BINARY-STREAM
+  Direct subclasses: CRY/TLS::SSL-STREAM, DECOMPRESSING-STREAM,
+                     BLOCK-INPUT-STREAM, CHUNKED-INPUT-STREAM,
+                     PEEKING-INPUT-STREAM, BOUND-INPUT-STREAM,
+                     IO/STREAM::IN-MEMORY-INPUT-STREAM, FLEX-INPUT-STREAM,
+                     IRONCLAD::DECRYPTING-INPUT-STREAM,
+                     IRONCLAD::ENCRYPTING-INPUT-STREAM,
+                     STD/STREAM::OCTET-INPUT-STREAM
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS-CLASS.LISP
+:end:
+** STREAM-CLEAR-OUTPUT :generic:function:
+:PROPERTIES:
+:ID: 1312273803771
+:CUSTOM_ID: SB-GRAY:STREAM-CLEAR-OUTPUT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-CLEAR-OUTPUT names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    This is like CL:CLEAR-OUTPUT, but for Gray streams: clear the given
+    output STREAM. The default method does nothing.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-CLEAR-OUTPUT (CHUNKED-OUTPUT-STREAM))
+      Documentation:
+        We clear output by resetting the output buffer and clearing
+        the underlying stream.
+    (STREAM-CLEAR-OUTPUT (DIGESTING-STREAM))
+    (STREAM-CLEAR-OUTPUT (OCTET-OUTPUT-STREAM))
+    (STREAM-CLEAR-OUTPUT (FUNDAMENTAL-OUTPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- /home/ellis/src/core/lib/ironclad/stream.lisp
+  - IRONCLAD::DIGESTING-STREAM
+- /home/ellis/src/core/std/stream.lisp
+  - STD/STREAM::OCTET-OUTPUT-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:934130767254][CHUNKED-OUTPUT-STREAM]]
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:418505402997][FUNDAMENTAL-OUTPUT-STREAM]]
+:end:
+** FUNDAMENTAL-STREAM :class:
+:PROPERTIES:
+:ID: 2327673888943
+:CUSTOM_ID: SB-GRAY:FUNDAMENTAL-STREAM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUNDAMENTAL-STREAM names the standard-class #<STANDARD-CLASS SB-GRAY:FUNDAMENTAL-STREAM>:
+  Documentation:
+    Base class for all Gray streams.
+  Class precedence-list: FUNDAMENTAL-STREAM, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, STREAM, T
+  Direct superclasses: STANDARD-OBJECT, STREAM
+  Direct subclasses: ORG-STREAM, IO/FAST::FAST-IO-STREAM, STATIC-STREAM,
+                     IO/STREAM::ALIEN-STREAM, WRAPPED-STREAM,
+                     FUNDAMENTAL-BINARY-STREAM, FUNDAMENTAL-CHARACTER-STREAM,
+                     FUNDAMENTAL-OUTPUT-STREAM, FUNDAMENTAL-INPUT-STREAM
+  Direct slots:
+    SB-GRAY::OPEN-P
+      Initform: T
+      Readers: SB-GRAY::STREAM-OPEN-P
+      Writers: (SETF SB-GRAY::STREAM-OPEN-P)
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS-CLASS.LISP
+:end:
+** STREAM-CLEAR-INPUT :generic:function:
+:PROPERTIES:
+:ID: 3472248163621
+:CUSTOM_ID: SB-GRAY:STREAM-CLEAR-INPUT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-CLEAR-INPUT names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    This is like CL:CLEAR-INPUT, but for Gray streams, returning NIL.
+    The default method does nothing.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-CLEAR-INPUT (CHUNKED-INPUT-STREAM))
+    (STREAM-CLEAR-INPUT (SLIME-INPUT-STREAM))
+    (STREAM-CLEAR-INPUT (FUNDAMENTAL-CHARACTER-INPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-INPUT-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:2117598739251][CHUNKED-INPUT-STREAM]]
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:4339743008273][FUNDAMENTAL-CHARACTER-INPUT-STREAM]]
+:end:
+** FUNDAMENTAL-BINARY-OUTPUT-STREAM :class:
+:PROPERTIES:
+:ID: 3145919213947
+:CUSTOM_ID: SB-GRAY:FUNDAMENTAL-BINARY-OUTPUT-STREAM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUNDAMENTAL-BINARY-OUTPUT-STREAM names the standard-class #<STANDARD-CLASS SB-GRAY:FUNDAMENTAL-BINARY-OUTPUT-STREAM>:
+  Documentation:
+    Superclass of all Gray output streams whose element-type
+    is a subtype of unsigned-byte or signed-byte.
+  Class precedence-list: FUNDAMENTAL-BINARY-OUTPUT-STREAM,
+                         FUNDAMENTAL-OUTPUT-STREAM, FUNDAMENTAL-BINARY-STREAM,
+                         FUNDAMENTAL-STREAM, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, STREAM, T
+  Direct superclasses: FUNDAMENTAL-OUTPUT-STREAM, FUNDAMENTAL-BINARY-STREAM
+  Direct subclasses: CRY/TLS::SSL-STREAM, COMPRESSING-STREAM,
+                     BLOCK-OUTPUT-STREAM, CHUNKED-OUTPUT-STREAM,
+                     IO/STREAM::IN-MEMORY-OUTPUT-STREAM, FLEX-OUTPUT-STREAM,
+                     IRONCLAD::AUTHENTICATING-STREAM,
+                     IRONCLAD::DECRYPTING-OUTPUT-STREAM,
+                     IRONCLAD::ENCRYPTING-OUTPUT-STREAM,
+                     IRONCLAD::DIGESTING-STREAM, STD/STREAM::OCTET-OUTPUT-STREAM
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS-CLASS.LISP
+:end:
+** FUNDAMENTAL-CHARACTER-OUTPUT-STREAM :class:
+:PROPERTIES:
+:ID: 2401139974697
+:CUSTOM_ID: SB-GRAY:FUNDAMENTAL-CHARACTER-OUTPUT-STREAM
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+FUNDAMENTAL-CHARACTER-OUTPUT-STREAM names the standard-class #<STANDARD-CLASSSB-GRAY:FUNDAMENTAL-CHARACTER-OUTPUT-STREAM>:
+  Documentation:
+    Superclass of all Gray output streams whose element-type
+    is a subtype of character.
+  Class precedence-list: FUNDAMENTAL-CHARACTER-OUTPUT-STREAM,
+                         FUNDAMENTAL-OUTPUT-STREAM,
+                         FUNDAMENTAL-CHARACTER-STREAM, FUNDAMENTAL-STREAM,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, STREAM, T
+  Direct superclasses: FUNDAMENTAL-OUTPUT-STREAM, FUNDAMENTAL-CHARACTER-STREAM
+  Direct subclasses: SWANK/GRAY::SLIME-OUTPUT-STREAM,
+                     WRAPPED-CHARACTER-OUTPUT-STREAM
+  No direct slots.
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS-CLASS.LISP
+:end:
+** STREAM-READ-CHAR-NO-HANG :generic:function:
+:PROPERTIES:
+:ID: 1111108227001
+:CUSTOM_ID: SB-GRAY:STREAM-READ-CHAR-NO-HANG
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-READ-CHAR-NO-HANG names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    This is used to implement READ-CHAR-NO-HANG. It returns either a
+    character, or NIL if no input is currently available, or :EOF if
+    end-of-file is reached. The default method provided by
+    FUNDAMENTAL-CHARACTER-INPUT-STREAM simply calls STREAM-READ-CHAR; this
+    is sufficient for file streams, but interactive streams should define
+    their own method.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-READ-CHAR-NO-HANG (SLIME-INPUT-STREAM))
+    (STREAM-READ-CHAR-NO-HANG (FUNDAMENTAL-CHARACTER-INPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-INPUT-STREAM
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:4339743008273][FUNDAMENTAL-CHARACTER-INPUT-STREAM]]
+:end:
+** STREAM-FINISH-OUTPUT :generic:function:
+:PROPERTIES:
+:ID: 407963181497
+:CUSTOM_ID: SB-GRAY:STREAM-FINISH-OUTPUT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-FINISH-OUTPUT names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Attempts to ensure that all output sent to the Stream has reached
+    its destination, and only then returns false. Implements
+    FINISH-OUTPUT. The default method does nothing.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-FINISH-OUTPUT (SSL-STREAM))
+    (STREAM-FINISH-OUTPUT (ZSTD-COMPRESSING-STREAM))
+    (STREAM-FINISH-OUTPUT (CHUNKED-OUTPUT-STREAM))
+      Documentation:
+        Flush the output buffer if output chunking is on, then operate
+        on the underlying stream.
+    (STREAM-FINISH-OUTPUT (SLIME-OUTPUT-STREAM))
+    (STREAM-FINISH-OUTPUT (FUNDAMENTAL-OUTPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+- Called by
+  - (STREAM-FORCE-OUTPUT (SLIME-OUTPUT-STREAM))
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- /home/ellis/src/core/lib/cry/tls/stream.lisp
+  - CRY/TLS::SSL-STREAM
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-OUTPUT-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:934130767254][CHUNKED-OUTPUT-STREAM]]
+- /home/ellis/src/core/lib/io/zstd.lisp
+  - IO/ZSTD::ZSTD-COMPRESSING-STREAM
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:418505402997][FUNDAMENTAL-OUTPUT-STREAM]]
+:end:
+** STREAM-ADVANCE-TO-COLUMN :generic:function:
+:PROPERTIES:
+:ID: 2765366934217
+:CUSTOM_ID: SB-GRAY:STREAM-ADVANCE-TO-COLUMN
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-ADVANCE-TO-COLUMN names a generic function:
+  Lambda-list: (STREAM COLUMN)
+  Argument precedence order: (STREAM COLUMN)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Write enough blank space so that the next character will be
+    written at the specified column. Returns true if the operation is
+    successful, or NIL if it is not supported for this stream. This is
+    intended for use by by PPRINT and FORMAT ~T. The default method
+    uses STREAM-LINE-COLUMN and repeated calls to STREAM-WRITE-CHAR
+    with a #\SPACE character; it returns NIL if STREAM-LINE-COLUMN
+    returns NIL.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-ADVANCE-TO-COLUMN (FUNDAMENTAL-CHARACTER-OUTPUT-STREAM T))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM COLUMN)
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:2401139974697][FUNDAMENTAL-CHARACTER-OUTPUT-STREAM]]
+:end:
+** STREAM-WRITE-CHAR :generic:function:
+:PROPERTIES:
+:ID: 3905279866173
+:CUSTOM_ID: SB-GRAY:STREAM-WRITE-CHAR
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-WRITE-CHAR names a generic function:
+  Lambda-list: (STREAM CHARACTER)
+  Argument precedence order: (STREAM CHARACTER)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Write CHARACTER to STREAM and return CHARACTER. Every
+    subclass of FUNDAMENTAL-CHARACTER-OUTPUT-STREAM must have a method
+    defined for this function.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-WRITE-CHAR (STATIC-STREAM T))
+    (STREAM-WRITE-CHAR (SLIME-OUTPUT-STREAM T))
+    (STREAM-WRITE-CHAR (PREFIXED-CHARACTER-OUTPUT-STREAM T))
+    (STREAM-WRITE-CHAR (WRAPPED-CHARACTER-OUTPUT-STREAM T))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM CHARACTER)
+- /home/ellis/src/core/lib/io/static.lisp
+  - [[id:3532715530036][STATIC-STREAM]]
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-OUTPUT-STREAM
+- /home/ellis/src/core/std/stream.lisp
+  - [[id:929482013224][WRAPPED-CHARACTER-OUTPUT-STREAM]]
+- /home/ellis/src/core/std/stream.lisp
+  - [[id:2828405072872][PREFIXED-CHARACTER-OUTPUT-STREAM]]
+:end:
+** STREAM-LINE-LENGTH :generic:function:
+:PROPERTIES:
+:ID: 96154650923
+:CUSTOM_ID: SB-GRAY:STREAM-LINE-LENGTH
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-LINE-LENGTH names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Return the stream line length or NIL.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-LINE-LENGTH (FUNDAMENTAL-CHARACTER-INPUT-STREAM))
+    (STREAM-LINE-LENGTH (FUNDAMENTAL-CHARACTER-OUTPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- /home/ellis/src/core/lib/swank/sbcl.lisp
+  - [[id:4339743008273][FUNDAMENTAL-CHARACTER-INPUT-STREAM]]
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:2401139974697][FUNDAMENTAL-CHARACTER-OUTPUT-STREAM]]
+:end:
+** STREAM-FORCE-OUTPUT :generic:function:
+:PROPERTIES:
+:ID: 1255018935171
+:CUSTOM_ID: SB-GRAY:STREAM-FORCE-OUTPUT
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-FORCE-OUTPUT names a generic function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Attempts to force any buffered output to be sent. Implements
+    FORCE-OUTPUT. The default method does nothing.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-FORCE-OUTPUT (SSL-STREAM))
+    (STREAM-FORCE-OUTPUT (CHUNKED-OUTPUT-STREAM))
+      Documentation:
+        Flush the output buffer if output chunking is on, then operate
+        on the underlying stream.
+    (STREAM-FORCE-OUTPUT (SLIME-OUTPUT-STREAM))
+    (STREAM-FORCE-OUTPUT (FUNDAMENTAL-OUTPUT-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+- Called by
+  - (STREAM-FINISH-OUTPUT (SSL-STREAM))
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM)
+- /home/ellis/src/core/lib/cry/tls/stream.lisp
+  - CRY/TLS::SSL-STREAM
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-OUTPUT-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:934130767254][CHUNKED-OUTPUT-STREAM]]
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:418505402997][FUNDAMENTAL-OUTPUT-STREAM]]
+:end:
+** STREAM-FILE-POSITION :generic:function:
+:PROPERTIES:
+:ID: 3113997911290
+:CUSTOM_ID: SB-GRAY:STREAM-FILE-POSITION
+:ALLOC: HEAP IMMOBILE
+:END: 
+#+begin_example
+STREAM-FILE-POSITION names a generic function:
+  Lambda-list: (STREAM &OPTIONAL POSITION-SPEC)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Used by FILE-POSITION. Returns or changes the current position withinSTREAM.
+  Method-combination: STANDARD
+  Methods:
+    (STREAM-FILE-POSITION (BLOCK-STREAM))
+    (STREAM-FILE-POSITION (FAST-IO-STREAM))
+    (STREAM-FILE-POSITION (STATIC-STREAM))
+    (STREAM-FILE-POSITION (PEEKING-INPUT-STREAM))
+    (STREAM-FILE-POSITION (VECTOR-OUTPUT-STREAM))
+      Documentation:
+        Simply returns the fill pointer of the underlying vector.
+    (STREAM-FILE-POSITION (VECTOR-INPUT-STREAM))
+      Documentation:
+        Simply returns the index into the underlying vector.
+    (STREAM-FILE-POSITION (SLIME-INPUT-STREAM))
+    (STREAM-FILE-POSITION (SLIME-OUTPUT-STREAM))
+    (STREAM-FILE-POSITION (FUNDAMENTAL-STREAM))
+    (STREAM-FILE-POSITION (ANSI-STREAM))
+  Source file: SYS:SRC;PCL;GRAY-STREAMS.LISP
+#+end_example
+
+:definitions:
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - (STREAM &OPTIONAL POSITION-SPEC)
+- SYS:SRC;CODE;STREAM.LISP
+  - SB-KERNEL:ANSI-STREAM
+- /home/ellis/src/core/lib/io/chunky.lisp
+  - [[id:85474724046][BLOCK-STREAM]]
+- /home/ellis/src/core/lib/io/static.lisp
+  - [[id:3532715530036][STATIC-STREAM]]
+- /home/ellis/src/core/lib/io/fast.lisp
+  - IO/FAST::FAST-IO-STREAM
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-INPUT-STREAM
+- SYS:SRC;PCL;GRAY-STREAMS.LISP
+  - [[id:2327673888943][FUNDAMENTAL-STREAM]]
+- /home/ellis/src/core/lib/io/stream.lisp
+  - IO/STREAM::VECTOR-INPUT-STREAM
+- /home/ellis/src/core/lib/swank/gray.lisp
+  - SWANK/GRAY::SLIME-OUTPUT-STREAM
+- /home/ellis/src/core/lib/io/stream.lisp
+  - [[id:1064228681404][PEEKING-INPUT-STREAM]]
+- /home/ellis/src/core/lib/io/stream.lisp
+  - IO/STREAM::VECTOR-OUTPUT-STREAM
+:end:
