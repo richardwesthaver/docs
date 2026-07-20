@@ -35,10 +35,7 @@
 
 #+RESULTS:
 #+begin_example
-30 days-agenda (W28-W32):
-Friday     10 July 2026
-Saturday   11 July 2026
-Sunday     12 July 2026
+30 days-agenda (W29-W33):
 Monday     13 July 2026 W29
 Tuesday    14 July 2026
 Wednesday  15 July 2026
@@ -66,8 +63,10 @@ Wednesday   5 August 2026
 Thursday    6 August 2026
 Friday      7 August 2026
 Saturday    8 August 2026
+Sunday      9 August 2026
+Monday     10 August 2026 W33
+Tuesday    11 August 2026
 #+end_example
-
 #+CALL: hg-churn() :dir ~/src/infra/
 
 #+RESULTS:
@@ -104,7 +103,6 @@ Saturday    8 August 2026
 2026-06    114 
 2026-07     10 
 #+end_example
-
 #+CALL: project-vc-files() :dir ~/src/infra/
 
 #+RESULTS:
@@ -115,6 +113,7 @@ Saturday    8 August 2026
 | [[https://vc.compiler.company/infra/box/file/tip/.hgignore][box/.hgignore]]                                                                                           |   40 | 2025-11-13 20:07:57 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/hostname][box/airootfs/etc/hostname]]                                                                               |    8 | 2026-07-11 23:50:25 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/locale.conf][box/airootfs/etc/locale.conf]]                                                                            |   13 | 2026-03-27 10:36:01 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/localtime][box/airootfs/etc/localtime]]                                                                              |   23 | 2026-07-11 23:02:03 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/mkinitcpio.conf.d/archiso.conf][box/airootfs/etc/mkinitcpio.conf.d/archiso.conf]]                                                         |  211 | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/mkinitcpio.d/linux.preset][box/airootfs/etc/mkinitcpio.d/linux.preset]]                                                              |  209 | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/modprobe.d/broadcom-wl.conf][box/airootfs/etc/modprobe.d/broadcom-wl.conf]]                                                            |  380 | 2026-03-27 10:36:01 |
@@ -122,6 +121,7 @@ Saturday    8 August 2026
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/pacman.d/hooks/uncomment-mirrors.hook][box/airootfs/etc/pacman.d/hooks/uncomment-mirrors.hook]]                                                  |  342 | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/pacman.d/hooks/zzzz99-remove-custom-hooks-from-airootfs.hook][box/airootfs/etc/pacman.d/hooks/zzzz99-remove-custom-hooks-from-airootfs.hook]]                           |  586 | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/passwd][box/airootfs/etc/passwd]]                                                                                 |   35 | 2026-03-27 10:36:01 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/resolv.conf][box/airootfs/etc/resolv.conf]]                                                                            |   37 | 2026-07-11 23:02:03 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/shadow][box/airootfs/etc/shadow]]                                                                                 |   18 | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/ssh/sshd_config.d/10-archiso.conf][box/airootfs/etc/ssh/sshd_config.d/10-archiso.conf]]                                                      |   96 | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/journald.conf.d/volatile-storage.conf][box/airootfs/etc/systemd/journald.conf.d/volatile-storage.conf]]                                          |   27 | 2026-03-27 10:36:01 |
@@ -132,11 +132,28 @@ Saturday    8 August 2026
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/networkd.conf.d/ipv6-privacy-extensions.conf][box/airootfs/etc/systemd/networkd.conf.d/ipv6-privacy-extensions.conf]]                                   |   36 | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/resolved.conf.d/archiso.conf][box/airootfs/etc/systemd/resolved.conf.d/archiso.conf]]                                                   |   81 | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/choose-mirror.service][box/airootfs/etc/systemd/system/choose-mirror.service]]                                                   |  197 | 2026-03-27 10:36:01 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/dbus-org.freedesktop.network1.service][box/airootfs/etc/systemd/system/dbus-org.freedesktop.network1.service]]                                   |   48 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/dbus-org.freedesktop.resolve1.service][box/airootfs/etc/systemd/system/dbus-org.freedesktop.resolve1.service]]                                   |   48 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/dbus-org.freedesktop.timesync1.service][box/airootfs/etc/systemd/system/dbus-org.freedesktop.timesync1.service]]                                  |   49 | 2026-07-11 23:02:03 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/etc-pacman.d-gnupg.mount][box/airootfs/etc/systemd/system/etc-pacman.d-gnupg.mount]]                                                |  141 | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/getty@tty1.service.d/autologin.conf][box/airootfs/etc/systemd/system/getty@tty1.service.d/autologin.conf]]                                     |   95 | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/livecd-alsa-unmuter.service][box/airootfs/etc/systemd/system/livecd-alsa-unmuter.service]]                                             |  374 | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/livecd-talk.service][box/airootfs/etc/systemd/system/livecd-talk.service]]                                                     |  449 | 2026-03-27 10:36:01 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/multi-user.target.wants/choose-mirror.service][box/airootfs/etc/systemd/system/multi-user.target.wants/choose-mirror.service]]                           |   24 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/multi-user.target.wants/hv_kvp_daemon.service][box/airootfs/etc/systemd/system/multi-user.target.wants/hv_kvp_daemon.service]]                           |   45 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/multi-user.target.wants/hv_vss_daemon.service][box/airootfs/etc/systemd/system/multi-user.target.wants/hv_vss_daemon.service]]                           |   45 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/multi-user.target.wants/iwd.service][box/airootfs/etc/systemd/system/multi-user.target.wants/iwd.service]]                                     |   35 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/multi-user.target.wants/pacman-init.service][box/airootfs/etc/systemd/system/multi-user.target.wants/pacman-init.service]]                             |   22 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/multi-user.target.wants/sshd.service][box/airootfs/etc/systemd/system/multi-user.target.wants/sshd.service]]                                    |   36 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/multi-user.target.wants/systemd-networkd.service][box/airootfs/etc/systemd/system/multi-user.target.wants/systemd-networkd.service]]                        |   48 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/multi-user.target.wants/systemd-resolved.service][box/airootfs/etc/systemd/system/multi-user.target.wants/systemd-resolved.service]]                        |   48 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/network-online.target.wants/systemd-networkd-wait-online.service][box/airootfs/etc/systemd/system/network-online.target.wants/systemd-networkd-wait-online.service]]        |   60 | 2026-07-11 23:02:03 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/pacman-init.service][box/airootfs/etc/systemd/system/pacman-init.service]]                                                     |  363 | 2026-03-27 10:36:01 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/sockets.target.wants/pcscd.socket][box/airootfs/etc/systemd/system/sockets.target.wants/pcscd.socket]]                                       |   36 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/sockets.target.wants/systemd-networkd.socket][box/airootfs/etc/systemd/system/sockets.target.wants/systemd-networkd.socket]]                            |   47 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/sound.target.wants/livecd-alsa-unmuter.service][box/airootfs/etc/systemd/system/sound.target.wants/livecd-alsa-unmuter.service]]                          |   30 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/sysinit.target.wants/systemd-time-wait-sync.service][box/airootfs/etc/systemd/system/sysinit.target.wants/systemd-time-wait-sync.service]]                     |   54 | 2026-07-11 23:02:03 |
+| [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service][box/airootfs/etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service]]                          |   49 | 2026-07-11 23:02:03 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/etc/systemd/system/systemd-networkd-wait-online.service.d/wait-for-only-one-interface.conf][box/airootfs/etc/systemd/system/systemd-networkd-wait-online.service.d/wait-for-only-one-interface.conf]] |  334 | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/root/.automated_script.sh][box/airootfs/root/.automated_script.sh]]                                                                  | 1.6k | 2026-03-27 10:36:01 |
 | [[https://vc.compiler.company/infra/box/file/tip/airootfs/root/.gnupg/scdaemon.conf][box/airootfs/root/.gnupg/scdaemon.conf]]                                                                  |   76 | 2026-03-27 10:36:01 |

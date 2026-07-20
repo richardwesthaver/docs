@@ -1,0 +1,1819 @@
+#+TITLE: SB-SIMD-SSE4.1
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* SB-SIMD-SSE4.1
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1
+:END:
+- shadowed symbols
+  - S64.2-NON-TEMPORAL-ROW-MAJOR-AREF
+  - S64.2-NON-TEMPORAL-AREF
+  - S32.4-NON-TEMPORAL-ROW-MAJOR-AREF
+  - S32.4-NON-TEMPORAL-AREF
+  - S16.8-NON-TEMPORAL-ROW-MAJOR-AREF
+  - S16.8-NON-TEMPORAL-AREF
+  - S8.16-NON-TEMPORAL-ROW-MAJOR-AREF
+  - S8.16-NON-TEMPORAL-AREF
+  - U64.2-NON-TEMPORAL-ROW-MAJOR-AREF
+  - U64.2-NON-TEMPORAL-AREF
+  - U32.4-NON-TEMPORAL-ROW-MAJOR-AREF
+  - U32.4-NON-TEMPORAL-AREF
+  - U16.8-NON-TEMPORAL-ROW-MAJOR-AREF
+  - U16.8-NON-TEMPORAL-AREF
+  - U8.16-NON-TEMPORAL-ROW-MAJOR-AREF
+  - U8.16-NON-TEMPORAL-AREF
+  - F64.2-NON-TEMPORAL-ROW-MAJOR-AREF
+  - F64.2-NON-TEMPORAL-AREF
+  - F32.4-NON-TEMPORAL-ROW-MAJOR-AREF
+  - F32.4-NON-TEMPORAL-AREF
+
+- dependencies
+  - [[id:COMMON-LISP][COMMON-LISP]]
+  - [[id:SB-SIMD-INTERNALS][SB-SIMD-INTERNALS]]
+  - [[id:SB-SIMD-SSSE3][SB-SIMD-SSSE3]]
+
+- dependents
+  - [[id:SB-SIMD-SSE4.2][SB-SIMD-SSE4.2]]
+
+** U32.4-NON-TEMPORAL-AREF :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U32.4-NON-TEMPORAL-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U32.4-NON-TEMPORAL-AREF names a compiled function:
+  Lambda-list: (ARRAY &REST INDICES)
+  Derived type: (FUNCTION ((ARRAY (UNSIGNED-BYTE 32)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 32)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+U32.4-NON-TEMPORAL-AREF has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF U32.4-NON-TEMPORAL-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY &REST INDICES)
+  Derived type: (FUNCTION (T (ARRAY (UNSIGNED-BYTE 32)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 32)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF U32.4-NON-TEMPORAL-AREF) has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** U64.2-NON-TEMPORAL-ROW-MAJOR-AREF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U64.2-NON-TEMPORAL-ROW-MAJOR-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U64.2-NON-TEMPORAL-ROW-MAJOR-AREF names a compiled function:
+  Lambda-list: (ARRAY INDEX)
+  Derived type: (FUNCTION
+                 ((ARRAY (UNSIGNED-BYTE 64))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 64)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF U64.2-NON-TEMPORAL-ROW-MAJOR-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY INDEX)
+  Derived type: (FUNCTION
+                 (T (ARRAY (UNSIGNED-BYTE 64))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 64)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** S8.16-INSERT :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S8.16-INSERT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S8.16-INSERT names a compiled function:
+  Lambda-list: (ARGUMENT-0 ARGUMENT-1 ARGUMENT-2)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 8)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** F32.4-IF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F32.4-IF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F32.4-IF names a compiled function:
+  Lambda-list: (MASK A B)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK SINGLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+:end:
+** F64.2-IF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F64.2-IF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F64.2-IF names a compiled function:
+  Lambda-list: (MASK A B)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK DOUBLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+:end:
+** F64.2-TRUNCATE :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F64.2-TRUNCATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F64.2-TRUNCATE names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK DOUBLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+:end:
+** F32.4-TRUNCATE :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F32.4-TRUNCATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F32.4-TRUNCATE names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK SINGLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+:end:
+** U32.4-ELT :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U32.4-ELT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U32.4-ELT names a compiled function:
+  Lambda-list: (ARGUMENT-0 ARGUMENT-1)
+  Derived type: (FUNCTION (T T) (VALUES (UNSIGNED-BYTE 32) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** U16.8-MINPOS :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U16.8-MINPOS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U16.8-MINPOS names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 16)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S32.4-FROM-S8.16 :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S32.4-FROM-S8.16
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S32.4-FROM-S8.16 names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** U64.2-ELT :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U64.2-ELT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U64.2-ELT names a compiled function:
+  Lambda-list: (ARGUMENT-0 ARGUMENT-1)
+  Derived type: (FUNCTION (T T) (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** U8.16-NON-TEMPORAL-ROW-MAJOR-AREF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U8.16-NON-TEMPORAL-ROW-MAJOR-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U8.16-NON-TEMPORAL-ROW-MAJOR-AREF names a compiled function:
+  Lambda-list: (ARRAY INDEX)
+  Derived type: (FUNCTION
+                 ((ARRAY (UNSIGNED-BYTE 8))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 8)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF U8.16-NON-TEMPORAL-ROW-MAJOR-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY INDEX)
+  Derived type: (FUNCTION
+                 (T (ARRAY (UNSIGNED-BYTE 8))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 8)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** F32.4-ROUND :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F32.4-ROUND
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F32.4-ROUND names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK SINGLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+:end:
+** F64.2-FLOOR :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F64.2-FLOOR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F64.2-FLOOR names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK DOUBLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+:end:
+** S16.8-NON-TEMPORAL-ROW-MAJOR-AREF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S16.8-NON-TEMPORAL-ROW-MAJOR-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S16.8-NON-TEMPORAL-ROW-MAJOR-AREF names a compiled function:
+  Lambda-list: (ARRAY INDEX)
+  Derived type: (FUNCTION
+                 ((ARRAY (SIGNED-BYTE 16))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 16)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF S16.8-NON-TEMPORAL-ROW-MAJOR-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY INDEX)
+  Derived type: (FUNCTION
+                 (T (ARRAY (SIGNED-BYTE 16))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 16)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** U8.16-ELT :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U8.16-ELT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U8.16-ELT names a compiled function:
+  Lambda-list: (ARGUMENT-0 ARGUMENT-1)
+  Derived type: (FUNCTION (T T) (VALUES (UNSIGNED-BYTE 8) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S64.2/= :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2/=
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2/= names a compiled function:
+  Lambda-list: (ARG &REST MORE-ARGS)
+  Derived type: (FUNCTION (T &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 64)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-UNEQUALS.LISP.NEWEST
+
+S64.2/= has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-UNEQUALS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-UNEQUALS.LISP.NEWEST
+:end:
+** S16.8-IF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S16.8-IF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S16.8-IF names a compiled function:
+  Lambda-list: (MASK A B)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 16)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+:end:
+** U16.8-NON-TEMPORAL-AREF :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U16.8-NON-TEMPORAL-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U16.8-NON-TEMPORAL-AREF names a compiled function:
+  Lambda-list: (ARRAY &REST INDICES)
+  Derived type: (FUNCTION ((ARRAY (UNSIGNED-BYTE 16)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 16)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+U16.8-NON-TEMPORAL-AREF has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF U16.8-NON-TEMPORAL-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY &REST INDICES)
+  Derived type: (FUNCTION (T (ARRAY (UNSIGNED-BYTE 16)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 16)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF U16.8-NON-TEMPORAL-AREF) has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** S32.4-MAX :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S32.4-MAX
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S32.4-MAX names a compiled function:
+  Lambda-list: (ARG &REST MORE-ARGS)
+  Derived type: (FUNCTION (T &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+S32.4-MAX has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+:end:
+** F32.4-FLOOR :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F32.4-FLOOR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F32.4-FLOOR names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK SINGLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+:end:
+** U8.16-INSERT :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U8.16-INSERT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U8.16-INSERT names a compiled function:
+  Lambda-list: (ARGUMENT-0 ARGUMENT-1 ARGUMENT-2)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 8)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** U64.2-IF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U64.2-IF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U64.2-IF names a compiled function:
+  Lambda-list: (MASK A B)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 64)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+:end:
+** U16.8-NON-TEMPORAL-ROW-MAJOR-AREF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U16.8-NON-TEMPORAL-ROW-MAJOR-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U16.8-NON-TEMPORAL-ROW-MAJOR-AREF names a compiled function:
+  Lambda-list: (ARRAY INDEX)
+  Derived type: (FUNCTION
+                 ((ARRAY (UNSIGNED-BYTE 16))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 16)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF U16.8-NON-TEMPORAL-ROW-MAJOR-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY INDEX)
+  Derived type: (FUNCTION
+                 (T (ARRAY (UNSIGNED-BYTE 16))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 16)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** S32.4-FROM-U16.8 :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S32.4-FROM-U16.8
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S32.4-FROM-U16.8 names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** U8.16-NON-TEMPORAL-AREF :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U8.16-NON-TEMPORAL-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U8.16-NON-TEMPORAL-AREF names a compiled function:
+  Lambda-list: (ARRAY &REST INDICES)
+  Derived type: (FUNCTION ((ARRAY (UNSIGNED-BYTE 8)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 8)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+U8.16-NON-TEMPORAL-AREF has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF U8.16-NON-TEMPORAL-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY &REST INDICES)
+  Derived type: (FUNCTION (T (ARRAY (UNSIGNED-BYTE 8)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 8)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF U8.16-NON-TEMPORAL-AREF) has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** F64.2-NON-TEMPORAL-AREF :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F64.2-NON-TEMPORAL-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F64.2-NON-TEMPORAL-AREF names a compiled function:
+  Lambda-list: (ARRAY &REST INDICES)
+  Derived type: (FUNCTION ((ARRAY DOUBLE-FLOAT) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK DOUBLE-FLOAT) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+F64.2-NON-TEMPORAL-AREF has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF F64.2-NON-TEMPORAL-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY &REST INDICES)
+  Derived type: (FUNCTION (T (ARRAY DOUBLE-FLOAT) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK DOUBLE-FLOAT) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF F64.2-NON-TEMPORAL-AREF) has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** S64.2-FROM-S8.16 :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2-FROM-S8.16
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2-FROM-S8.16 names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 64)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S32.4-IF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S32.4-IF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S32.4-IF names a compiled function:
+  Lambda-list: (MASK A B)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+:end:
+** F64.2-CEILING :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F64.2-CEILING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F64.2-CEILING names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK DOUBLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+:end:
+** S8.16-NON-TEMPORAL-AREF :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S8.16-NON-TEMPORAL-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S8.16-NON-TEMPORAL-AREF names a compiled function:
+  Lambda-list: (ARRAY &REST INDICES)
+  Derived type: (FUNCTION ((ARRAY (SIGNED-BYTE 8)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 8)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+S8.16-NON-TEMPORAL-AREF has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF S8.16-NON-TEMPORAL-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY &REST INDICES)
+  Derived type: (FUNCTION (T (ARRAY (SIGNED-BYTE 8)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 8)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF S8.16-NON-TEMPORAL-AREF) has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** S8.16-MAX :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S8.16-MAX
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S8.16-MAX names a compiled function:
+  Lambda-list: (ARG &REST MORE-ARGS)
+  Derived type: (FUNCTION (T &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 8)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+S8.16-MAX has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+:end:
+** S32.4-FROM-S16.8 :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S32.4-FROM-S16.8
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S32.4-FROM-S16.8 names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S64.2-IF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2-IF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2-IF names a compiled function:
+  Lambda-list: (MASK A B)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 64)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+:end:
+** U32.4-INSERT :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U32.4-INSERT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U32.4-INSERT names a compiled function:
+  Lambda-list: (ARGUMENT-0 ARGUMENT-1 ARGUMENT-2)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 32)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S32.4-NON-TEMPORAL-AREF :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S32.4-NON-TEMPORAL-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S32.4-NON-TEMPORAL-AREF names a compiled function:
+  Lambda-list: (ARRAY &REST INDICES)
+  Derived type: (FUNCTION ((ARRAY (SIGNED-BYTE 32)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+S32.4-NON-TEMPORAL-AREF has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF S32.4-NON-TEMPORAL-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY &REST INDICES)
+  Derived type: (FUNCTION (T (ARRAY (SIGNED-BYTE 32)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF S32.4-NON-TEMPORAL-AREF) has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** U64.2-NON-TEMPORAL-AREF :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U64.2-NON-TEMPORAL-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U64.2-NON-TEMPORAL-AREF names a compiled function:
+  Lambda-list: (ARRAY &REST INDICES)
+  Derived type: (FUNCTION ((ARRAY (UNSIGNED-BYTE 64)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 64)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+U64.2-NON-TEMPORAL-AREF has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF U64.2-NON-TEMPORAL-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY &REST INDICES)
+  Derived type: (FUNCTION (T (ARRAY (UNSIGNED-BYTE 64)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 64)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF U64.2-NON-TEMPORAL-AREF) has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** S64.2-NON-TEMPORAL-ROW-MAJOR-AREF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2-NON-TEMPORAL-ROW-MAJOR-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2-NON-TEMPORAL-ROW-MAJOR-AREF names a compiled function:
+  Lambda-list: (ARRAY INDEX)
+  Derived type: (FUNCTION
+                 ((ARRAY (SIGNED-BYTE 64))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 64)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF S64.2-NON-TEMPORAL-ROW-MAJOR-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY INDEX)
+  Derived type: (FUNCTION
+                 (T (ARRAY (SIGNED-BYTE 64))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 64)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** U16.8-IF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U16.8-IF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U16.8-IF names a compiled function:
+  Lambda-list: (MASK A B)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 16)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+:end:
+** U16.8-MAX :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U16.8-MAX
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U16.8-MAX names a compiled function:
+  Lambda-list: (ARG &REST MORE-ARGS)
+  Derived type: (FUNCTION (T &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 16)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+U16.8-MAX has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+:end:
+** S8.16-MIN :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S8.16-MIN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S8.16-MIN names a compiled function:
+  Lambda-list: (ARG &REST MORE-ARGS)
+  Derived type: (FUNCTION (T &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 8)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+S8.16-MIN has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+:end:
+** S32.4-FROM-U8.16 :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S32.4-FROM-U8.16
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S32.4-FROM-U8.16 names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** U64.2/= :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U64.2/=
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U64.2/= names a compiled function:
+  Lambda-list: (ARG &REST MORE-ARGS)
+  Derived type: (FUNCTION (T &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 64)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-UNEQUALS.LISP.NEWEST
+
+U64.2/= has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-UNEQUALS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-UNEQUALS.LISP.NEWEST
+:end:
+** S32.4-NON-TEMPORAL-ROW-MAJOR-AREF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S32.4-NON-TEMPORAL-ROW-MAJOR-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S32.4-NON-TEMPORAL-ROW-MAJOR-AREF names a compiled function:
+  Lambda-list: (ARRAY INDEX)
+  Derived type: (FUNCTION
+                 ((ARRAY (SIGNED-BYTE 32))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF S32.4-NON-TEMPORAL-ROW-MAJOR-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY INDEX)
+  Derived type: (FUNCTION
+                 (T (ARRAY (SIGNED-BYTE 32))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** F32.4-CEILING :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F32.4-CEILING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F32.4-CEILING names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK SINGLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+:end:
+** F64.2-NON-TEMPORAL-ROW-MAJOR-AREF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F64.2-NON-TEMPORAL-ROW-MAJOR-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F64.2-NON-TEMPORAL-ROW-MAJOR-AREF names a compiled function:
+  Lambda-list: (ARRAY INDEX)
+  Derived type: (FUNCTION
+                 ((ARRAY DOUBLE-FLOAT)
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK DOUBLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF F64.2-NON-TEMPORAL-ROW-MAJOR-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY INDEX)
+  Derived type: (FUNCTION
+                 (T (ARRAY DOUBLE-FLOAT)
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK DOUBLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** F32.4-INSERT :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F32.4-INSERT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F32.4-INSERT names a compiled function:
+  Lambda-list: (ARGUMENT-0 ARGUMENT-1 ARGUMENT-2)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK SINGLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** U32.4-MAX :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U32.4-MAX
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U32.4-MAX names a compiled function:
+  Lambda-list: (ARG &REST MORE-ARGS)
+  Derived type: (FUNCTION (T &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 32)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+U32.4-MAX has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+:end:
+** S32.4-MULLO :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S32.4-MULLO
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S32.4-MULLO names a compiled function:
+  Lambda-list: (&REST ARGS)
+  Derived type: (FUNCTION *
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+S32.4-MULLO has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+:end:
+** U32.4-IF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U32.4-IF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U32.4-IF names a compiled function:
+  Lambda-list: (MASK A B)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 32)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+:end:
+** S32.4-INSERT :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S32.4-INSERT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S32.4-INSERT names a compiled function:
+  Lambda-list: (ARGUMENT-0 ARGUMENT-1 ARGUMENT-2)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S16.8-FROM-U8.16 :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S16.8-FROM-U8.16
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S16.8-FROM-U8.16 names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 16)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S8.16-ELT :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S8.16-ELT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S8.16-ELT names a compiled function:
+  Lambda-list: (ARGUMENT-0 ARGUMENT-1)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 8) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S64.2-NON-TEMPORAL-AREF :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2-NON-TEMPORAL-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2-NON-TEMPORAL-AREF names a compiled function:
+  Lambda-list: (ARRAY &REST INDICES)
+  Derived type: (FUNCTION ((ARRAY (SIGNED-BYTE 64)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 64)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+S64.2-NON-TEMPORAL-AREF has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF S64.2-NON-TEMPORAL-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY &REST INDICES)
+  Derived type: (FUNCTION (T (ARRAY (SIGNED-BYTE 64)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 64)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF S64.2-NON-TEMPORAL-AREF) has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** S16.8-PACK :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S16.8-PACK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S16.8-PACK names a compiled function:
+  Lambda-list: (ARGUMENT-0 ARGUMENT-1)
+  Derived type: (FUNCTION (T T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 16)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** F32.4-NON-TEMPORAL-ROW-MAJOR-AREF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F32.4-NON-TEMPORAL-ROW-MAJOR-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F32.4-NON-TEMPORAL-ROW-MAJOR-AREF names a compiled function:
+  Lambda-list: (ARRAY INDEX)
+  Derived type: (FUNCTION
+                 ((ARRAY SINGLE-FLOAT)
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK SINGLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF F32.4-NON-TEMPORAL-ROW-MAJOR-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY INDEX)
+  Derived type: (FUNCTION
+                 (T (ARRAY SINGLE-FLOAT)
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK SINGLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** S32.4-MIN :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S32.4-MIN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S32.4-MIN names a compiled function:
+  Lambda-list: (ARG &REST MORE-ARGS)
+  Derived type: (FUNCTION (T &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 32)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+S32.4-MIN has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+:end:
+** S64.2-FROM-U32.4 :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2-FROM-U32.4
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2-FROM-U32.4 names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 64)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S8.16-NON-TEMPORAL-ROW-MAJOR-AREF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S8.16-NON-TEMPORAL-ROW-MAJOR-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S8.16-NON-TEMPORAL-ROW-MAJOR-AREF names a compiled function:
+  Lambda-list: (ARRAY INDEX)
+  Derived type: (FUNCTION
+                 ((ARRAY (SIGNED-BYTE 8))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 8)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF S8.16-NON-TEMPORAL-ROW-MAJOR-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY INDEX)
+  Derived type: (FUNCTION
+                 (T (ARRAY (SIGNED-BYTE 8))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 8)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** S64.2-FROM-U8.16 :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2-FROM-U8.16
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2-FROM-U8.16 names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 64)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S64.2-MUL :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2-MUL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2-MUL names a compiled function:
+  Lambda-list: (&REST ARGS)
+  Derived type: (FUNCTION *
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 64)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+S64.2-MUL has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+:end:
+** S64.2-FROM-S16.8 :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2-FROM-S16.8
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2-FROM-S16.8 names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 64)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** U32.4-NON-TEMPORAL-ROW-MAJOR-AREF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U32.4-NON-TEMPORAL-ROW-MAJOR-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U32.4-NON-TEMPORAL-ROW-MAJOR-AREF names a compiled function:
+  Lambda-list: (ARRAY INDEX)
+  Derived type: (FUNCTION
+                 ((ARRAY (UNSIGNED-BYTE 32))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 32)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF U32.4-NON-TEMPORAL-ROW-MAJOR-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY INDEX)
+  Derived type: (FUNCTION
+                 (T (ARRAY (UNSIGNED-BYTE 32))
+                  (INTEGER -17592186044414 17592186044414))
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 32)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** S8.16-IF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S8.16-IF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S8.16-IF names a compiled function:
+  Lambda-list: (MASK A B)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 8)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+:end:
+** S64.2-FROM-U16.8 :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2-FROM-U16.8
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2-FROM-U16.8 names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 64)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S32.4-ELT :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S32.4-ELT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S32.4-ELT names a compiled function:
+  Lambda-list: (ARGUMENT-0 ARGUMENT-1)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S64.2= :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2=
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2= names a compiled function:
+  Lambda-list: (ARG &REST MORE-ARGS)
+  Derived type: (FUNCTION (T &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 64)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-COMPARISONS.LISP.NEWEST
+
+S64.2= has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-COMPARISONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-COMPARISONS.LISP.NEWEST
+:end:
+** U32.4-MIN :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U32.4-MIN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U32.4-MIN names a compiled function:
+  Lambda-list: (ARG &REST MORE-ARGS)
+  Derived type: (FUNCTION (T &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 32)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+U32.4-MIN has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+:end:
+** F64.2-ROUND :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F64.2-ROUND
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F64.2-ROUND names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK DOUBLE-FLOAT) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ROUNDERS.LISP.NEWEST
+:end:
+** S64.2-ELT :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2-ELT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2-ELT names a compiled function:
+  Lambda-list: (ARGUMENT-0 ARGUMENT-1)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 64) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** U16.8-MIN :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U16.8-MIN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U16.8-MIN names a compiled function:
+  Lambda-list: (ARG &REST MORE-ARGS)
+  Derived type: (FUNCTION (T &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 16)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+U16.8-MIN has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-ASSOCIATIVES.LISP.NEWEST
+:end:
+** S16.8-FROM-S8.16 :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S16.8-FROM-S8.16
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S16.8-FROM-S8.16 names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 16)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** F32.4-NON-TEMPORAL-AREF :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:F32.4-NON-TEMPORAL-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+F32.4-NON-TEMPORAL-AREF names a compiled function:
+  Lambda-list: (ARRAY &REST INDICES)
+  Derived type: (FUNCTION ((ARRAY SINGLE-FLOAT) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK SINGLE-FLOAT) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+F32.4-NON-TEMPORAL-AREF has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF F32.4-NON-TEMPORAL-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY &REST INDICES)
+  Derived type: (FUNCTION (T (ARRAY SINGLE-FLOAT) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK SINGLE-FLOAT) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF F32.4-NON-TEMPORAL-AREF) has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:
+** U64.2= :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U64.2=
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U64.2= names a compiled function:
+  Lambda-list: (ARG &REST MORE-ARGS)
+  Derived type: (FUNCTION (T &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 64)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-COMPARISONS.LISP.NEWEST
+
+U64.2= has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-COMPARISONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-COMPARISONS.LISP.NEWEST
+:end:
+** U8.16-IF :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:U8.16-IF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+U8.16-IF names a compiled function:
+  Lambda-list: (MASK A B)
+  Derived type: (FUNCTION (T T T)
+                 (VALUES (SB-EXT:SIMD-PACK (UNSIGNED-BYTE 8)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-IFS.LISP.NEWEST
+:end:
+** S64.2-FROM-S32.4 :compiled:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S64.2-FROM-S32.4
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S64.2-FROM-S32.4 names a compiled function:
+  Lambda-list: (ARGUMENT-0)
+  Derived type: (FUNCTION (T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 64)) &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-INSTRUCTIONS.LISP.NEWEST
+:end:
+** S16.8-NON-TEMPORAL-AREF :compiled:cmacro:function:
+:PROPERTIES:
+:ID: SB-SIMD-SSE4.1:S16.8-NON-TEMPORAL-AREF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+S16.8-NON-TEMPORAL-AREF names a compiled function:
+  Lambda-list: (ARRAY &REST INDICES)
+  Derived type: (FUNCTION ((ARRAY (SIGNED-BYTE 16)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 16)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+S16.8-NON-TEMPORAL-AREF has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF S16.8-NON-TEMPORAL-AREF) names a compiled function:
+  Lambda-list: (VALUE ARRAY &REST INDICES)
+  Derived type: (FUNCTION (T (ARRAY (SIGNED-BYTE 16)) &REST T)
+                 (VALUES (SB-EXT:SIMD-PACK (SIGNED-BYTE 16)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+(SETF S16.8-NON-TEMPORAL-AREF) has a compiler-macro:
+  Source file: SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-SIMD;CODE;DEFINE-AREFS.LISP.NEWEST
+:end:

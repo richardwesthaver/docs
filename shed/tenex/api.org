@@ -16,67 +16,76 @@ HTTP Client Libraries
 * Systems
 ** TENEX
 :PROPERTIES:
-:ID: 3401162555296176003
+:ID: 1951780977660855262
 :EXPORT_FILE_NAME: api/tenex
 :LOCATION: [[vc:shed/tenex:tenex.sys][tenex.sys]]
 :END:
 *** Packages
 **** TENEX/CLOUDFLARE
 :PROPERTIES:
+:ID: TENEX/CLOUDFLARE
+:AKA: CLOUDFLARE
 :END:
+- dependencies
+  - [[id:COMMON-LISP][COMMON-LISP]]
+  - [[id:STD][STD]]
+  - [[id:TENEX][TENEX]]
 
 ***** *CLOUDFLARE-USER-AGENT​*
 :PROPERTIES:
-:ID: 520050761158
-:CUSTOM_ID: TENEX/CLOUDFLARE:*CLOUDFLARE-USER-AGENT*
+:ID: TENEX/CLOUDFLARE:*CLOUDFLARE-USER-AGENT*
 :ALLOC: HEAP IMMOBILE
 :END:
 ***** CLOUDFLARE-REQUEST :compiled:function:
 :PROPERTIES:
-:ID: 3803998619239
-:CUSTOM_ID: TENEX/CLOUDFLARE:CLOUDFLARE-REQUEST
+:ID: TENEX/CLOUDFLARE:CLOUDFLARE-REQUEST
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 CLOUDFLARE-REQUEST names a compiled function:
   Lambda-list: (PATH KEY &REST ARGS)
   Derived type: (FUNCTION (T T &REST T) *)
   Source file: /home/ellis/src/shed/tenex/cloudflare.lisp
+
 #+end_example
 
 :definitions:
-- [[vc:shed/tenex:cloudflare.lisp#l36][cloudflare.lisp:36]]
+- [[vc:shed/tenex:cloudflare.lisp#l34][cloudflare.lisp:34]]
 :end:
-
 ***** CLOUDFLARE-URI :compiled:function:
 :PROPERTIES:
-:ID: 2826865981774
-:CUSTOM_ID: TENEX/CLOUDFLARE:CLOUDFLARE-URI
+:ID: TENEX/CLOUDFLARE:CLOUDFLARE-URI
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 CLOUDFLARE-URI names a compiled function:
   Lambda-list: (PATH)
   Derived type: (FUNCTION (T) *)
   Source file: /home/ellis/src/shed/tenex/cloudflare.lisp
+
 #+end_example
 
 - Called by
   - TENEX/CLOUDFLARE:CLOUDFLARE-REQUEST
 
 :definitions:
-- [[vc:shed/tenex:cloudflare.lisp#l34][cloudflare.lisp:34]]
+- [[vc:shed/tenex:cloudflare.lisp#l32][cloudflare.lisp:32]]
 :end:
-
 ***** *CLOUDFLARE-ENDPOINT​* :var:
 :PROPERTIES:
-:ID: 800585066169
-:CUSTOM_ID: TENEX/CLOUDFLARE:*CLOUDFLARE-ENDPOINT*
+:ID: TENEX/CLOUDFLARE:*CLOUDFLARE-ENDPOINT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 *CLOUDFLARE-ENDPOINT* names a special variable:
   Value: "https://api.cloudflare.com/client/v4/"
+
 #+end_example
 
 - Referenced by
@@ -85,16 +94,17 @@ CLOUDFLARE-URI names a compiled function:
 :definitions:
 - [[vc:shed/tenex:cloudflare.lisp][cloudflare.lisp]]
 :end:
-
 ***** *CLOUDFLARE-API-VERSION​* :var:
 :PROPERTIES:
-:ID: 2212759523255
-:CUSTOM_ID: TENEX/CLOUDFLARE:*CLOUDFLARE-API-VERSION*
+:ID: TENEX/CLOUDFLARE:*CLOUDFLARE-API-VERSION*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 *CLOUDFLARE-API-VERSION* names a special variable:
   Value: 4
+
 #+end_example
 
 :definitions:
@@ -103,17 +113,23 @@ CLOUDFLARE-URI names a compiled function:
 
 **** TENEX-INT
 :PROPERTIES:
+:ID: TENEX-INT
 :END:
+- dependencies
+  - [[id:COMMON-LISP][COMMON-LISP]]
+  - [[id:STD][STD]]
 
 ***** *TENEX-PACKAGES​* :var:
 :PROPERTIES:
-:ID: 3565403032217
-:CUSTOM_ID: TENEX-INT:*TENEX-PACKAGES*
+:ID: TENEX-INT:*TENEX-PACKAGES*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 *TENEX-PACKAGES* names a special variable:
   Value: NIL
+
 #+end_example
 
 :definitions:
@@ -122,27 +138,54 @@ CLOUDFLARE-URI names a compiled function:
 
 **** TENEX/NWS
 :PROPERTIES:
+:ID: TENEX/NWS
+:AKA: NWS
 :END:
+- dependencies
+  - [[id:COMMON-LISP][COMMON-LISP]]
+  - [[id:STD][STD]]
+  - [[id:LOG][LOG]]
+  - [[id:TENEX][TENEX]]
 
 ***** *NWS-ENDPOINT​*
 :PROPERTIES:
-:ID: 2498812273552
-:CUSTOM_ID: TENEX/NWS:*NWS-ENDPOINT*
+:ID: TENEX/NWS:*NWS-ENDPOINT*
 :ALLOC: HEAP IMMOBILE
 :END:
+
+**** TENEX/TRANSMISSION
+:PROPERTIES:
+:ID: TENEX/TRANSMISSION
+:AKA: TRANSMISSION
+:END:
+- dependencies
+  - [[id:COMMON-LISP][COMMON-LISP]]
+  - [[id:STD][STD]]
+  - [[id:TENEX][TENEX]]
+  - [[id:OBJ/URI][OBJ/URI]]
+  - [[id:NET][NET]]
+
 **** TENEX/DISCORD
 :PROPERTIES:
+:ID: TENEX/DISCORD
+:AKA: DISCORD
 :END:
+- dependencies
+  - [[id:COMMON-LISP][COMMON-LISP]]
+  - [[id:STD][STD]]
+  - [[id:TENEX][TENEX]]
 
 ***** *DISCORD-USER-AGENT​* :var:
 :PROPERTIES:
-:ID: 4236625521404
-:CUSTOM_ID: TENEX/DISCORD:*DISCORD-USER-AGENT*
+:ID: TENEX/DISCORD:*DISCORD-USER-AGENT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 *DISCORD-USER-AGENT* names a special variable:
   Value: "DiscordBot (https://compiler.company,0.1.0)"
+
 #+end_example
 
 - Referenced by
@@ -151,33 +194,35 @@ CLOUDFLARE-URI names a compiled function:
 :definitions:
 - [[vc:shed/tenex:discord.lisp][discord.lisp]]
 :end:
-
 ***** DISCORD-REQUEST :compiled:function:
 :PROPERTIES:
-:ID: 3538365207448
-:CUSTOM_ID: TENEX/DISCORD:DISCORD-REQUEST
+:ID: TENEX/DISCORD:DISCORD-REQUEST
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 DISCORD-REQUEST names a compiled function:
   Lambda-list: (PATH &REST ARGS)
   Derived type: (FUNCTION (T &REST T) *)
   Source file: /home/ellis/src/shed/tenex/discord.lisp
+
 #+end_example
 
 :definitions:
-- [[vc:shed/tenex:discord.lisp#l36][discord.lisp:36]]
+- [[vc:shed/tenex:discord.lisp#l34][discord.lisp:34]]
 :end:
-
 ***** *DISCORD-ENDPOINT​* :var:
 :PROPERTIES:
-:ID: 2828126196447
-:CUSTOM_ID: TENEX/DISCORD:*DISCORD-ENDPOINT*
+:ID: TENEX/DISCORD:*DISCORD-ENDPOINT*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 *DISCORD-ENDPOINT* names a special variable:
   Value: "https://discord.com/api/v10/"
+
 #+end_example
 
 - Referenced by
@@ -186,41 +231,63 @@ DISCORD-REQUEST names a compiled function:
 :definitions:
 - [[vc:shed/tenex:discord.lisp][discord.lisp]]
 :end:
-
 ***** *DISCORD-API-VERSION​* :var:
 :PROPERTIES:
-:ID: 425279431479
-:CUSTOM_ID: TENEX/DISCORD:*DISCORD-API-VERSION*
+:ID: TENEX/DISCORD:*DISCORD-API-VERSION*
 :ALLOC: HEAP IMMOBILE
-:END: 
+:END:
+ 
 #+begin_example
+
 *DISCORD-API-VERSION* names a special variable:
   Value: 10
+
 #+end_example
 
 :definitions:
 - [[vc:shed/tenex:discord.lisp][discord.lisp]]
 :end:
-
 ***** DISCORD-URI :compiled:function:
 :PROPERTIES:
-:ID: 2753015356441
-:CUSTOM_ID: TENEX/DISCORD:DISCORD-URI
+:ID: TENEX/DISCORD:DISCORD-URI
 :ALLOC: HEAP DYNAMIC
-:END: 
+:END:
+ 
 #+begin_example
+
 DISCORD-URI names a compiled function:
   Lambda-list: (PATH)
   Derived type: (FUNCTION (T) *)
   Source file: /home/ellis/src/shed/tenex/discord.lisp
+
 #+end_example
 
 - Called by
   - TENEX/DISCORD:DISCORD-REQUEST
 
 :definitions:
-- [[vc:shed/tenex:discord.lisp#l34][discord.lisp:34]]
+- [[vc:shed/tenex:discord.lisp#l32][discord.lisp:32]]
 :end:
+
+**** TENEX
+:PROPERTIES:
+:ID: TENEX
+:END:
+- dependencies
+  - [[id:COMMON-LISP][COMMON-LISP]]
+  - [[id:STD][STD]]
+  - [[id:OBJ][OBJ]]
+  - [[id:DAT][DAT]]
+  - [[id:LOG][LOG]]
+  - [[id:RDB][RDB]]
+  - [[id:CRY][CRY]]
+  - [[id:NET][NET]]
+
+- dependents
+  - [[id:TENEX/CLOUDFLARE][TENEX/CLOUDFLARE]]
+  - [[id:TENEX/NWS][TENEX/NWS]]
+  - [[id:TENEX/TRANSMISSION][TENEX/TRANSMISSION]]
+  - [[id:TENEX/DISCORD][TENEX/DISCORD]]
 
 
 *** Components
@@ -332,7 +399,7 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization#basic
 :end:
 
 :tasks:
-- ref 2026-07-11 :: https://github.com/j0rsa/transmission-rpc/blob/main/src/types/response.rs
-- ref 2026-07-11 :: https://github.com/j0rsa/transmission-rpc/blob/main/src/types/request.rs
+- ref 2026-07-19 :: https://github.com/j0rsa/transmission-rpc/blob/main/src/types/response.rs
+- ref 2026-07-19 :: https://github.com/j0rsa/transmission-rpc/blob/main/src/types/request.rs
 :end:
 
