@@ -1,0 +1,184 @@
+#+TITLE: SB-ACLREPL
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* SB-ACLREPL
+:PROPERTIES:
+:ID: SB-ACLREPL
+:END:
+- shadowed symbols
+  - *REPL-PROMPT-FUN*
+  - *REPL-READ-FORM-FUN*
+  - SCRUB-CONTROL-STACK
+
+- dependencies
+  - [[id:COMMON-LISP][COMMON-LISP]]
+  - [[id:SB-EXT][SB-EXT]]
+
+** MAKE-REPL-FUN :compiled:function:
+:PROPERTIES:
+:ID: SB-ACLREPL:MAKE-REPL-FUN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-REPL-FUN names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL
+                 (VALUES (FUNCTION (T) (VALUES NULL &OPTIONAL)) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-ACLREPL;REPL.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-ACLREPL;REPL.LISP.NEWEST
+:end:
+** ALIAS :compiled:macro:function:
+:PROPERTIES:
+:ID: SB-ACLREPL:ALIAS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ALIAS names a macro:
+  Lambda-list: (NAME-PARAM ARGS &REST BODY)
+  Source file: SYS:CONTRIB;SB-ACLREPL;REPL.LISP.NEWEST
+
+(SETF ALIAS) has a complex setf-expansion:
+  Lambda-list: (NAME &KEY ABBR-LEN DESCRIPTION)
+  (undocumented)
+  Source file: SYS:CONTRIB;SB-ACLREPL;REPL.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-ACLREPL;REPL.LISP.NEWEST
+:end:
+** *EXIT-ON-EOF​* :var:
+:PROPERTIES:
+:ID: SB-ACLREPL:*EXIT-ON-EOF*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*EXIT-ON-EOF* names a special variable:
+  Value: T
+  Documentation:
+    If T, then exit when the EOF character is entered.
+
+#+end_example
+
+- Bound by
+  - SB-ACLREPL:MAKE-REPL-FUN
+
+- Referenced by
+  - SB-ACLREPL:MAKE-REPL-FUN
+  - SB-ACLREPL::PROCESS-CMD
+
+:definitions:
+- SYS:CONTRIB;SB-ACLREPL;REPL.LISP.NEWEST
+:end:
+** *COMMAND-CHAR​* :var:
+:PROPERTIES:
+:ID: SB-ACLREPL:*COMMAND-CHAR*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*COMMAND-CHAR* names a special variable:
+  Value: #\:
+  Documentation:
+    Prefix character for a top-level command
+
+#+end_example
+
+- Bound by
+  - SB-ACLREPL:MAKE-REPL-FUN
+
+- Referenced by
+  - SB-ACLREPL:MAKE-REPL-FUN
+  - SB-ACLREPL::PROCESS-CMD
+  - SB-ACLREPL::DISPATCH-COMMAND-LINE
+  - SB-ACLREPL::READ-CMD
+
+:definitions:
+- SYS:CONTRIB;SB-ACLREPL;REPL.LISP.NEWEST
+:end:
+** *USE-SHORT-PACKAGE-NAME​* :var:
+:PROPERTIES:
+:ID: SB-ACLREPL:*USE-SHORT-PACKAGE-NAME*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*USE-SHORT-PACKAGE-NAME* names a special variable:
+  Value: T
+  Documentation:
+    When T, use the shortest package nickname in a prompt.
+
+#+end_example
+
+- Bound by
+  - SB-ACLREPL:MAKE-REPL-FUN
+
+- Referenced by
+  - SB-ACLREPL:MAKE-REPL-FUN
+  - SB-ACLREPL::PROMPT-PACKAGE-NAME
+
+:definitions:
+- SYS:CONTRIB;SB-ACLREPL;REPL.LISP.NEWEST
+:end:
+** *PROMPT​* :var:
+:PROPERTIES:
+:ID: SB-ACLREPL:*PROMPT*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*PROMPT* names a special variable:
+  Value: "~:[~3*~;[~:*~D~:[~;~:*:~D~]~:[~;i~]~:[~;c~]] ~]~A(~D): "
+  Documentation:
+    The current prompt string or formatter function.
+
+#+end_example
+
+- Bound by
+  - SB-ACLREPL:MAKE-REPL-FUN
+
+- Referenced by
+  - SB-ACLREPL:MAKE-REPL-FUN
+  - SB-ACLREPL::REPL-PROMPT-FUN
+
+:definitions:
+- SYS:CONTRIB;SB-ACLREPL;REPL.LISP.NEWEST
+:end:
+** *MAX-HISTORY​* :var:
+:PROPERTIES:
+:ID: SB-ACLREPL:*MAX-HISTORY*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*MAX-HISTORY* names a special variable:
+  Value: 100
+  Documentation:
+    Maximum number of history commands to remember
+
+#+end_example
+
+- Bound by
+  - SB-ACLREPL:MAKE-REPL-FUN
+
+- Referenced by
+  - SB-ACLREPL:MAKE-REPL-FUN
+  - SB-ACLREPL::ADD-TO-HISTORY
+
+:definitions:
+- SYS:CONTRIB;SB-ACLREPL;REPL.LISP.NEWEST
+:end:

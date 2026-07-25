@@ -17,7 +17,7 @@ A fork of CLX formerly maintained by [[gh:sharplispers][sharplispers]]
 * Systems
 ** XLIB
 :PROPERTIES:
-:ID: 4507470165635611590
+:ID: 2360604991645957653
 :VERSION: 0.7.7
 :EXPORT_FILE_NAME: api/xlib
 :LOCATION: [[vc:shed/xlib:xlib.sys][xlib.sys]]
@@ -18727,12 +18727,12 @@ DRAWABLE-ID names a compiled function:
   - XLIB:DBE-ALLOCATE-BACK-BUFFER-NAME
   - XLIB:SCREEN-SAVER-QUERY-INFO
   - XLIB/GLX:SWAP-BUFFERS
+  - XLIB/GLX:MAKE-CURRENT
+  - XLIB/GLX:GET-DRAWABLE-ATTRIBUTES
   - XLIB::RENDER-QUERY-FILTERS
   - XLIB:RENDER-CREATE-PICTURE
   - [[id:SK-USER::PUT-IMAGE][PUT-IMAGE]]
   - [[id:SK-USER::GET-IMAGE][GET-IMAGE]]
-  - XLIB/GLX:MAKE-CURRENT
-  - XLIB/GLX:GET-DRAWABLE-ATTRIBUTES
   - XLIB::SET-RGB-COLORMAPS
   - XLIB::GET-DRAWABLE-GEOMETRY-BUFFER
   - (.REQUEST-BODY. IN GET-DRAWABLE-GEOMETRY-BUFFER)
@@ -18758,12 +18758,12 @@ DRAWABLE-ID names a compiled function:
   - [[id:SK-USER::DRAW-POINT][DRAW-POINT]]
   - XLIB::NO-EXPOSURE-EVENT-PUT
   - XLIB::GRAPHICS-EXPOSURE-EVENT-PUT
-  - [[id:SK-USER::COPY-AREA][COPY-AREA]]
-  - [[id:SK-USER::CREATE-PIXMAP][CREATE-PIXMAP]]
   - [[id:SK-USER::CREATE-GCONTEXT][CREATE-GCONTEXT]]
+  - [[id:SK-USER::CREATE-PIXMAP][CREATE-PIXMAP]]
   - XLIB::COPY-GCONTEXT-LOCAL-STATE
   - (.REQUEST-BODY. IN COPY-GCONTEXT-LOCAL-STATE)
   - [[id:SK-USER::COPY-PLANE][COPY-PLANE]]
+  - [[id:SK-USER::COPY-AREA][COPY-AREA]]
   - [[id:SK-USER::DRAWABLE-EQUAL][DRAWABLE-EQUAL]]
   - XLIB::PRINT-DRAWABLE
   - [[id:SK-USER::QUERY-BEST-STIPPLE][QUERY-BEST-STIPPLE]]
@@ -19108,7 +19108,7 @@ ADD-ACCESS-HOST names a compiled function:
   Lambda-list: (DISPLAY HOST &OPTIONAL (FAMILY INTERNET))
   Derived type: (FUNCTION
                  (XLIB:DISPLAY (OR STRING SYMBOL CONS) &OPTIONAL
-                  (OR (MEMBER :INTERNET :DECNET :CHAOS NIL) (UNSIGNED-BYTE 8)))
+                  (OR (MEMBER NIL :CHAOS :DECNET :INTERNET) (UNSIGNED-BYTE 8)))
                  *)
   Source file: /home/ellis/src/shed/xlib/requests.lisp
 
@@ -20050,11 +20050,11 @@ COLOR-GREEN names a compiled function:
 - Called by
   - [[id:SK-USER::SET-STANDARD-COLORMAP][SET-STANDARD-COLORMAP]]
   - XLIB::SET-RGB-COLORMAPS
-  - [[id:SK-USER::RECOLOR-CURSOR][RECOLOR-CURSOR]]
   - [[id:SK-USER::STORE-COLOR][STORE-COLOR]]
   - [[id:SK-USER::ALLOC-COLOR][ALLOC-COLOR]]
   - [[id:OBJ/COLOR:COLOR-RGB][COLOR-RGB]]
   - XLIB::PRINT-COLOR
+  - [[id:SK-USER::RECOLOR-CURSOR][RECOLOR-CURSOR]]
   - [[id:SK-USER::CREATE-GLYPH-CURSOR][CREATE-GLYPH-CURSOR]]
   - [[id:SK-USER::CREATE-CURSOR][CREATE-CURSOR]]
 
@@ -20870,6 +20870,7 @@ SCREEN-ROOT names a compiled function:
 #+end_example
 
 - Called by
+  - XLIB/GLX::GET-VISUAL-CONFIGS
   - XLIB::INITIALIZE-RESOURCE-DATABASE
   - XLIB::SET-ROOT-RESOURCES
   - [[id:SK-USER::ROOT-RESOURCES][ROOT-RESOURCES]]
@@ -20878,11 +20879,10 @@ SCREEN-ROOT names a compiled function:
   - [[id:SK-USER::CUT-BUFFER][CUT-BUFFER]]
   - [[id:SK-USER::WITHDRAW-WINDOW][WITHDRAW-WINDOW]]
   - [[id:SK-USER::ICONIFY-WINDOW][ICONIFY-WINDOW]]
-  - XLIB/GLX:CREATE-CONTEXT
   - [[id:SK-USER::GLOBAL-POINTER-POSITION][GLOBAL-POINTER-POSITION]]
   - [[id:CLI/TERM:PRINT-SCREEN][PRINT-SCREEN]]
+  - XLIB/GLX:CREATE-CONTEXT
   - [[id:SK-USER::QUERY-BEST-CURSOR][QUERY-BEST-CURSOR]]
-  - XLIB/GLX::GET-VISUAL-CONFIGS
   - XLIB/TRUETYPE:DRAWABLE-SCREEN
 
 :definitions:
@@ -21234,11 +21234,11 @@ WITH-DISPLAY names a macro:
   - [[id:SK-USER::OPEN-FONT][OPEN-FONT]]
   - [[id:SK-USER::QUEUE-EVENT][QUEUE-EVENT]]
   - [[id:SK-USER::COPY-COLORMAP-AND-FREE][COPY-COLORMAP-AND-FREE]]
-  - [[id:SK-USER::CREATE-PIXMAP][CREATE-PIXMAP]]
+  - [[id:CLI/TERM:CREATE-WINDOW][CREATE-WINDOW]]
   - [[id:SK-USER::COPY-GCONTEXT-COMPONENTS][COPY-GCONTEXT-COMPONENTS]]
   - [[id:SK-USER::CREATE-GCONTEXT][CREATE-GCONTEXT]]
   - XLIB::RESTORE-GCONTEXT-TEMP-STATE
-  - [[id:CLI/TERM:CREATE-WINDOW][CREATE-WINDOW]]
+  - [[id:SK-USER::CREATE-PIXMAP][CREATE-PIXMAP]]
   - XLIB::COPY-GCONTEXT-LOCAL-STATE
   - [[id:SK-USER::FORCE-GCONTEXT-CHANGES][FORCE-GCONTEXT-CHANGES]]
   - [[id:SK-USER::DISPLAY-FORCE-OUTPUT][DISPLAY-FORCE-OUTPUT]]
@@ -21770,12 +21770,13 @@ DRAWABLE-DISPLAY names a compiled function:
   - XLIB::DRI2-DESTROY-DRAWABLE
   - XLIB::DRI2-CREATE-DRAWABLE
   - XLIB:DBE-GET-VISUAL-INFO
+  - XLIB/GLX::GET-VISUAL-CONFIGS
+  - XLIB/GLX:MAKE-CURRENT
+  - XLIB/GLX:GET-DRAWABLE-ATTRIBUTES
   - XLIB::RENDER-QUERY-FILTERS
   - XLIB:RENDER-CREATE-PICTURE
   - [[id:SK-USER::PUT-IMAGE][PUT-IMAGE]]
   - [[id:SK-USER::GET-IMAGE][GET-IMAGE]]
-  - XLIB/GLX:MAKE-CURRENT
-  - XLIB/GLX:GET-DRAWABLE-ATTRIBUTES
   - [[id:SK-USER::DRAWABLE-ROOT][DRAWABLE-ROOT]]
   - XLIB::GET-DRAWABLE-GEOMETRY-BUFFER
   - XLIB::CHANGE-DRAWABLE-GEOMETRY
@@ -21792,18 +21793,17 @@ DRAWABLE-DISPLAY names a compiled function:
   - [[id:SK-USER::DRAW-LINE][DRAW-LINE]]
   - [[id:SK-USER::DRAW-POINTS][DRAW-POINTS]]
   - [[id:SK-USER::DRAW-POINT][DRAW-POINT]]
-  - XLIB/GLX:CREATE-CONTEXT
-  - [[id:SK-USER::COPY-AREA][COPY-AREA]]
-  - [[id:SK-USER::CREATE-PIXMAP][CREATE-PIXMAP]]
   - [[id:SK-USER::CREATE-GCONTEXT][CREATE-GCONTEXT]]
+  - [[id:SK-USER::CREATE-PIXMAP][CREATE-PIXMAP]]
   - [[id:SK-USER::COPY-PLANE][COPY-PLANE]]
+  - [[id:SK-USER::COPY-AREA][COPY-AREA]]
   - [[id:SK-USER::DRAWABLE-EQUAL][DRAWABLE-EQUAL]]
   - [[id:CLI/TERM:PRINT-SCREEN][PRINT-SCREEN]]
   - XLIB::PRINT-DRAWABLE
+  - XLIB/GLX:CREATE-CONTEXT
   - [[id:SK-USER::QUERY-BEST-STIPPLE][QUERY-BEST-STIPPLE]]
   - [[id:SK-USER::QUERY-BEST-TILE][QUERY-BEST-TILE]]
   - [[id:SK-USER::QUERY-BEST-CURSOR][QUERY-BEST-CURSOR]]
-  - XLIB/GLX::GET-VISUAL-CONFIGS
   - XLIB/TRUETYPE:DRAW-TEXT-LINE
   - XLIB/TRUETYPE:DRAW-TEXT
   - XLIB/TRUETYPE::GET-DRAWABLE-PEN-PICTURE
@@ -21976,7 +21976,6 @@ GCONTEXT-ID names a compiled function:
   - [[id:SK-USER::DRAW-LINE][DRAW-LINE]]
   - [[id:SK-USER::DRAW-POINTS][DRAW-POINTS]]
   - [[id:SK-USER::DRAW-POINT][DRAW-POINT]]
-  - [[id:SK-USER::COPY-AREA][COPY-AREA]]
   - [[id:SK-USER::FREE-GCONTEXT][FREE-GCONTEXT]]
   - [[id:SK-USER::COPY-GCONTEXT-COMPONENTS][COPY-GCONTEXT-COMPONENTS]]
   - (.REQUEST-BODY. IN COPY-GCONTEXT-COMPONENTS)
@@ -21987,6 +21986,7 @@ GCONTEXT-ID names a compiled function:
   - XLIB::FORCE-GCONTEXT-CHANGES-INTERNAL
   - [[id:SK-USER::GCONTEXT-FONT][GCONTEXT-FONT]]
   - [[id:SK-USER::COPY-PLANE][COPY-PLANE]]
+  - [[id:SK-USER::COPY-AREA][COPY-AREA]]
   - [[id:SK-USER::GCONTEXT-EQUAL][GCONTEXT-EQUAL]]
   - XLIB::PRINT-GCONTEXT
 
@@ -22039,18 +22039,18 @@ COLORMAP-ID names a compiled function:
   - XLIB::SET-RGB-COLORMAPS
   - XLIB::SET-WINDOW-COLORMAP
   - XLIB::COLORMAP-NOTIFY-EVENT-PUT
-  - [[id:SK-USER::FREE-COLORMAP][FREE-COLORMAP]]
   - [[id:SK-USER::COPY-COLORMAP-AND-FREE][COPY-COLORMAP-AND-FREE]]
+  - [[id:SK-USER::FREE-COLORMAP][FREE-COLORMAP]]
+  - [[id:CLI/TERM:CREATE-WINDOW][CREATE-WINDOW]]
   - [[id:SK-USER::LOOKUP-COLOR][LOOKUP-COLOR]]
   - [[id:SK-USER::QUERY-COLORS][QUERY-COLORS]]
   - [[id:SK-USER::STORE-COLOR][STORE-COLOR]]
-  - [[id:SK-USER::ALLOC-COLOR-PLANES][ALLOC-COLOR-PLANES]]
-  - [[id:SK-USER::ALLOC-COLOR-CELLS][ALLOC-COLOR-CELLS]]
-  - [[id:CLI/TERM:CREATE-WINDOW][CREATE-WINDOW]]
   - [[id:SK-USER::FREE-COLORS][FREE-COLORS]]
+  - [[id:SK-USER::ALLOC-COLOR-PLANES][ALLOC-COLOR-PLANES]]
   - [[id:SK-USER::ALLOC-COLOR][ALLOC-COLOR]]
   - [[id:SK-USER::UNINSTALL-COLORMAP][UNINSTALL-COLORMAP]]
   - [[id:SK-USER::INSTALL-COLORMAP][INSTALL-COLORMAP]]
+  - [[id:SK-USER::ALLOC-COLOR-CELLS][ALLOC-COLOR-CELLS]]
   - [[id:SK-USER::COLORMAP-EQUAL][COLORMAP-EQUAL]]
   - XLIB::PRINT-COLORMAP
 
@@ -22621,7 +22621,7 @@ SEG-SEQ names a type-specifier:
 GCONTEXT-FILL-STYLE names a compiled function:
   Lambda-list: (GCONTEXT)
   Derived type: (FUNCTION (XLIB:GCONTEXT)
-                 (VALUES (MEMBER NIL :OPAQUE-STIPPLED :STIPPLED :TILED :SOLID)
+                 (VALUES (MEMBER :SOLID :TILED :STIPPLED :OPAQUE-STIPPLED NIL)
                          &OPTIONAL))
   Source file: /home/ellis/src/shed/xlib/gcontext.lisp
 
@@ -23169,7 +23169,7 @@ RR-GET-CRTC-GAMMA names a compiled function:
 GCONTEXT-LINE-STYLE names a compiled function:
   Lambda-list: (GCONTEXT)
   Derived type: (FUNCTION (XLIB:GCONTEXT)
-                 (VALUES (MEMBER :SOLID :DASH :DOUBLE-DASH NIL) &OPTIONAL))
+                 (VALUES (MEMBER NIL :DOUBLE-DASH :DASH :SOLID) &OPTIONAL))
   Source file: /home/ellis/src/shed/xlib/gcontext.lisp
 
 (SETF GCONTEXT-LINE-STYLE) has setf-expansion: XLIB::SET-GCONTEXT-LINE-STYLE
@@ -23353,7 +23353,7 @@ FONT-ID names a compiled function:
 WINDOW-CLASS names a compiled function:
   Lambda-list: (WINDOW)
   Derived type: (FUNCTION (XLIB:WINDOW)
-                 (VALUES (MEMBER :COPY :INPUT-OUTPUT :INPUT-ONLY) &OPTIONAL))
+                 (VALUES (MEMBER :INPUT-ONLY :INPUT-OUTPUT :COPY) &OPTIONAL))
   Source file: /home/ellis/src/shed/xlib/attributes.lisp
 
 #+end_example
@@ -23577,10 +23577,10 @@ CURSOR-DISPLAY names a compiled function:
 
 - Called by
   - XLIB::RENDER-CREATE-ANIM-CURSOR
-  - [[id:SK-USER::RECOLOR-CURSOR][RECOLOR-CURSOR]]
   - [[id:SK-USER::FREE-CURSOR][FREE-CURSOR]]
   - [[id:SK-USER::CURSOR-EQUAL][CURSOR-EQUAL]]
   - XLIB::PRINT-CURSOR
+  - [[id:SK-USER::RECOLOR-CURSOR][RECOLOR-CURSOR]]
 
 :definitions:
 - [[vc:shed/xlib:xlib.lisp#l407][xlib.lisp:407]]
@@ -23773,7 +23773,7 @@ CHANGE-KEYBOARD-CONTROL names a compiled function:
                   (:LED (OR (UNSIGNED-BYTE 8) NULL))
                   (:LED-MODE (MEMBER NIL :ON :OFF))
                   (:KEY (OR (UNSIGNED-BYTE 8) NULL))
-                  (:AUTO-REPEAT-MODE (MEMBER :ON :OFF :DEFAULT NIL)))
+                  (:AUTO-REPEAT-MODE (MEMBER NIL :DEFAULT :OFF :ON)))
                  *)
   Source file: /home/ellis/src/shed/xlib/requests.lisp
 
@@ -25569,16 +25569,8 @@ WINDOW-ID names a compiled function:
   - XLIB::RR-OUTPUT-PROPERTY-NOTIFY-EVENT-PUT
   - XLIB::RR-OUTPUT-CHANGE-NOTIFY-EVENT-PUT
   - XLIB/XTEST:COMPARE-CURSOR
-  - XLIB::XFREE86-VIDMODE-NOTIFY-EVENT-PUT
-  - XLIB:SHAPE-GET-RECTANGLES
-  - XLIB:SHAPE-INPUT-SELECTED-P
-  - XLIB:SHAPE-SELECT-INPUT
-  - XLIB:SHAPE-QUERY-EXTENTS
-  - XLIB:SHAPE-OFFSET
-  - XLIB:SHAPE-COMBINE
-  - XLIB:SHAPE-MASK
-  - XLIB:SHAPE-RECTANGLES
-  - XLIB::SHAPE-NOTIFY-EVENT-PUT
+  - XLIB::RR-CRTC-CHANGE-NOTIFY-EVENT-PUT
+  - XLIB::RR-SCREEN-CHANGE-NOTIFY-EVENT-PUT
   - XLIB::SET-TRANSIENT-FOR
   - XLIB::SET-WM-COLORMAP-WINDOWS
   - XLIB::ENCODE-WM-HINTS
@@ -25588,6 +25580,7 @@ WINDOW-ID names a compiled function:
   - XLIB::GET-WINDOW-ATTRIBUTES-BUFFER
   - (.REQUEST-BODY. IN GET-WINDOW-ATTRIBUTES-BUFFER)
   - XLIB::CHANGE-WINDOW-ATTRIBUTE
+  - XLIB:SHAPE-SELECT-INPUT
   - [[id:SK-USER::QUERY-TREE][QUERY-TREE]]
   - XLIB::CLIENT-MESSAGE-EVENT-PUT
   - XLIB::COLORMAP-NOTIFY-EVENT-PUT
@@ -25617,9 +25610,8 @@ WINDOW-ID names a compiled function:
   - [[id:SK-USER::POINTER-POSITION][POINTER-POSITION]]
   - [[id:SK-USER::QUERY-POINTER][QUERY-POINTER]]
   - [[id:SK-USER::UNGRAB-KEY][UNGRAB-KEY]]
-  - [[id:SK-USER::CLEAR-AREA][CLEAR-AREA]]
-  - [[id:SK-USER::SET-INPUT-FOCUS][SET-INPUT-FOCUS]]
-  - [[id:SK-USER::WARP-POINTER-RELATIVE-IF-INSIDE][WARP-POINTER-RELATIVE-IF-INSIDE]]
+  - [[id:SK-USER::CIRCULATE-WINDOW-DOWN][CIRCULATE-WINDOW-DOWN]]
+  - [[id:CLI/TERM:CREATE-WINDOW][CREATE-WINDOW]]
   - [[id:SK-USER::DELETE-PROPERTY][DELETE-PROPERTY]]
   - [[id:SK-USER::GRAB-KEY][GRAB-KEY]]
   - [[id:SK-USER::GRAB-KEYBOARD][GRAB-KEYBOARD]]
@@ -25628,30 +25620,38 @@ WINDOW-ID names a compiled function:
   - [[id:SK-USER::WARP-POINTER][WARP-POINTER]]
   - [[id:SK-USER::TRANSLATE-COORDINATES][TRANSLATE-COORDINATES]]
   - [[id:SK-USER::MOTION-EVENTS][MOTION-EVENTS]]
-  - [[id:CLI/TERM:CREATE-WINDOW][CREATE-WINDOW]]
+  - [[id:SK-USER::CLEAR-AREA][CLEAR-AREA]]
+  - [[id:SK-USER::SET-INPUT-FOCUS][SET-INPUT-FOCUS]]
+  - [[id:SK-USER::WARP-POINTER-RELATIVE-IF-INSIDE][WARP-POINTER-RELATIVE-IF-INSIDE]]
   - [[id:SK-USER::INSTALLED-COLORMAPS][INSTALLED-COLORMAPS]]
   - [[id:SK-USER::CREATE-COLORMAP][CREATE-COLORMAP]]
   - [[id:SK-USER::WINDOW-EQUAL][WINDOW-EQUAL]]
   - [[id:SK-USER::CHANGE-PROPERTY][CHANGE-PROPERTY]]
   - [[id:SK-USER::QUERY-BEST-CURSOR][QUERY-BEST-CURSOR]]
-  - [[id:SK-USER::REMOVE-FROM-SAVE-SET][REMOVE-FROM-SAVE-SET]]
-  - [[id:SK-USER::MAP-WINDOW][MAP-WINDOW]]
-  - [[id:SK-USER::DESTROY-WINDOW][DESTROY-WINDOW]]
   - [[id:SK-USER::MAP-SUBWINDOWS][MAP-SUBWINDOWS]]
+  - [[id:SK-USER::DESTROY-WINDOW][DESTROY-WINDOW]]
   - [[id:SK-USER::UNMAP-WINDOW][UNMAP-WINDOW]]
+  - [[id:SK-USER::DESTROY-SUBWINDOWS][DESTROY-SUBWINDOWS]]
   - [[id:SK-USER::UNMAP-SUBWINDOWS][UNMAP-SUBWINDOWS]]
   - [[id:SK-USER::CIRCULATE-WINDOW-UP][CIRCULATE-WINDOW-UP]]
-  - [[id:SK-USER::DESTROY-SUBWINDOWS][DESTROY-SUBWINDOWS]]
-  - [[id:SK-USER::CIRCULATE-WINDOW-DOWN][CIRCULATE-WINDOW-DOWN]]
   - [[id:SK-USER::ADD-TO-SAVE-SET][ADD-TO-SAVE-SET]]
+  - [[id:SK-USER::REMOVE-FROM-SAVE-SET][REMOVE-FROM-SAVE-SET]]
+  - [[id:SK-USER::MAP-WINDOW][MAP-WINDOW]]
   - [[id:SK-USER::REPARENT-WINDOW][REPARENT-WINDOW]]
-  - XLIB::RR-CRTC-CHANGE-NOTIFY-EVENT-PUT
-  - XLIB::RR-SCREEN-CHANGE-NOTIFY-EVENT-PUT
+  - XLIB::XFREE86-VIDMODE-NOTIFY-EVENT-PUT
+  - XLIB:SHAPE-GET-RECTANGLES
+  - XLIB:SHAPE-INPUT-SELECTED-P
+  - XLIB:SHAPE-RECTANGLES
+  - XLIB::SHAPE-NOTIFY-EVENT-PUT
   - [[id:SK-USER::GRAB-BUTTON][GRAB-BUTTON]]
   - [[id:SK-USER::GRAB-POINTER][GRAB-POINTER]]
+  - XLIB:SHAPE-QUERY-EXTENTS
   - [[id:SK-USER::SEND-EVENT][SEND-EVENT]]
   - [[id:SK-USER::CONVERT-SELECTION][CONVERT-SELECTION]]
   - [[id:SK-USER::SET-SELECTION-OWNER][SET-SELECTION-OWNER]]
+  - XLIB:SHAPE-OFFSET
+  - XLIB:SHAPE-COMBINE
+  - XLIB:SHAPE-MASK
   - [[id:SK-USER::LIST-PROPERTIES][LIST-PROPERTIES]]
   - [[id:SK-USER::ROTATE-PROPERTIES][ROTATE-PROPERTIES]]
   - [[id:SK-USER::GET-PROPERTY][GET-PROPERTY]]
@@ -26615,14 +26615,6 @@ WINDOW-DISPLAY names a compiled function:
   - XLIB:RR-SELECT-INPUT
   - XLIB:RR-SET-SCREEN-CONFIG
   - XLIB:FIND-WINDOW-PICTURE-FORMAT
-  - XLIB:SHAPE-GET-RECTANGLES
-  - XLIB:SHAPE-INPUT-SELECTED-P
-  - XLIB:SHAPE-SELECT-INPUT
-  - XLIB:SHAPE-QUERY-EXTENTS
-  - XLIB:SHAPE-OFFSET
-  - XLIB:SHAPE-COMBINE
-  - XLIB:SHAPE-MASK
-  - XLIB:SHAPE-RECTANGLES
   - [[id:SK-USER::GET-STANDARD-COLORMAP][GET-STANDARD-COLORMAP]]
   - [[id:SK-USER::RGB-COLORMAPS][RGB-COLORMAPS]]
   - [[id:SK-USER::TRANSIENT-FOR][TRANSIENT-FOR]]
@@ -26636,12 +26628,13 @@ WINDOW-DISPLAY names a compiled function:
   - XLIB::PUT-WINDOW-ATTRIBUTE-CHANGES
   - XLIB::GET-WINDOW-ATTRIBUTES-BUFFER
   - XLIB::CHANGE-WINDOW-ATTRIBUTE
+  - XLIB:SHAPE-SELECT-INPUT
   - [[id:SK-USER::QUERY-TREE][QUERY-TREE]]
   - [[id:SK-USER::POINTER-POSITION][POINTER-POSITION]]
   - [[id:SK-USER::QUERY-POINTER][QUERY-POINTER]]
   - [[id:SK-USER::UNGRAB-KEY][UNGRAB-KEY]]
-  - [[id:SK-USER::CLEAR-AREA][CLEAR-AREA]]
-  - [[id:SK-USER::WARP-POINTER-RELATIVE-IF-INSIDE][WARP-POINTER-RELATIVE-IF-INSIDE]]
+  - [[id:SK-USER::CIRCULATE-WINDOW-DOWN][CIRCULATE-WINDOW-DOWN]]
+  - [[id:CLI/TERM:CREATE-WINDOW][CREATE-WINDOW]]
   - [[id:SK-USER::DELETE-PROPERTY][DELETE-PROPERTY]]
   - [[id:SK-USER::GRAB-KEY][GRAB-KEY]]
   - [[id:SK-USER::GRAB-KEYBOARD][GRAB-KEYBOARD]]
@@ -26650,26 +26643,33 @@ WINDOW-DISPLAY names a compiled function:
   - [[id:SK-USER::WARP-POINTER][WARP-POINTER]]
   - [[id:SK-USER::TRANSLATE-COORDINATES][TRANSLATE-COORDINATES]]
   - [[id:SK-USER::MOTION-EVENTS][MOTION-EVENTS]]
-  - [[id:CLI/TERM:CREATE-WINDOW][CREATE-WINDOW]]
+  - [[id:SK-USER::CLEAR-AREA][CLEAR-AREA]]
+  - [[id:SK-USER::WARP-POINTER-RELATIVE-IF-INSIDE][WARP-POINTER-RELATIVE-IF-INSIDE]]
   - [[id:SK-USER::INSTALLED-COLORMAPS][INSTALLED-COLORMAPS]]
   - [[id:SK-USER::CREATE-COLORMAP][CREATE-COLORMAP]]
   - [[id:SK-USER::WINDOW-EQUAL][WINDOW-EQUAL]]
   - [[id:SK-USER::CHANGE-PROPERTY][CHANGE-PROPERTY]]
-  - [[id:SK-USER::REMOVE-FROM-SAVE-SET][REMOVE-FROM-SAVE-SET]]
-  - [[id:SK-USER::MAP-WINDOW][MAP-WINDOW]]
-  - [[id:SK-USER::DESTROY-WINDOW][DESTROY-WINDOW]]
   - [[id:SK-USER::MAP-SUBWINDOWS][MAP-SUBWINDOWS]]
+  - [[id:SK-USER::DESTROY-WINDOW][DESTROY-WINDOW]]
   - [[id:SK-USER::UNMAP-WINDOW][UNMAP-WINDOW]]
+  - [[id:SK-USER::DESTROY-SUBWINDOWS][DESTROY-SUBWINDOWS]]
   - [[id:SK-USER::UNMAP-SUBWINDOWS][UNMAP-SUBWINDOWS]]
   - [[id:SK-USER::CIRCULATE-WINDOW-UP][CIRCULATE-WINDOW-UP]]
-  - [[id:SK-USER::DESTROY-SUBWINDOWS][DESTROY-SUBWINDOWS]]
-  - [[id:SK-USER::CIRCULATE-WINDOW-DOWN][CIRCULATE-WINDOW-DOWN]]
   - [[id:SK-USER::ADD-TO-SAVE-SET][ADD-TO-SAVE-SET]]
+  - [[id:SK-USER::REMOVE-FROM-SAVE-SET][REMOVE-FROM-SAVE-SET]]
+  - [[id:SK-USER::MAP-WINDOW][MAP-WINDOW]]
   - [[id:SK-USER::REPARENT-WINDOW][REPARENT-WINDOW]]
+  - XLIB:SHAPE-GET-RECTANGLES
+  - XLIB:SHAPE-INPUT-SELECTED-P
+  - XLIB:SHAPE-RECTANGLES
   - [[id:SK-USER::GRAB-BUTTON][GRAB-BUTTON]]
   - [[id:SK-USER::GRAB-POINTER][GRAB-POINTER]]
+  - XLIB:SHAPE-QUERY-EXTENTS
   - [[id:SK-USER::SEND-EVENT][SEND-EVENT]]
   - [[id:SK-USER::CONVERT-SELECTION][CONVERT-SELECTION]]
+  - XLIB:SHAPE-OFFSET
+  - XLIB:SHAPE-COMBINE
+  - XLIB:SHAPE-MASK
   - [[id:SK-USER::LIST-PROPERTIES][LIST-PROPERTIES]]
   - [[id:SK-USER::ROTATE-PROPERTIES][ROTATE-PROPERTIES]]
   - [[id:SK-USER::GET-PROPERTY][GET-PROPERTY]]
@@ -27044,7 +27044,7 @@ PUT-RAW-IMAGE names a compiled function:
                   (:X (SIGNED-BYTE 16)) (:Y (SIGNED-BYTE 16))
                   (:WIDTH (UNSIGNED-BYTE 16)) (:HEIGHT (UNSIGNED-BYTE 16))
                   (:LEFT-PAD (UNSIGNED-BYTE 8))
-                  (:FORMAT (MEMBER :Z-PIXMAP :XY-PIXMAP :BITMAP)))
+                  (:FORMAT (MEMBER :BITMAP :XY-PIXMAP :Z-PIXMAP)))
                  *)
   Source file: /home/ellis/src/shed/xlib/graphics.lisp
 
@@ -27904,12 +27904,12 @@ CURSOR-ID names a compiled function:
   - XLIB::RENDER-CREATE-ANIM-CURSOR
   - XLIB::SET-RGB-COLORMAPS
   - (WINDOW-CURSOR)
-  - [[id:SK-USER::RECOLOR-CURSOR][RECOLOR-CURSOR]]
-  - [[id:SK-USER::FREE-CURSOR][FREE-CURSOR]]
-  - [[id:SK-USER::CHANGE-ACTIVE-POINTER-GRAB][CHANGE-ACTIVE-POINTER-GRAB]]
   - [[id:CLI/TERM:CREATE-WINDOW][CREATE-WINDOW]]
+  - [[id:SK-USER::CHANGE-ACTIVE-POINTER-GRAB][CHANGE-ACTIVE-POINTER-GRAB]]
+  - [[id:SK-USER::FREE-CURSOR][FREE-CURSOR]]
   - [[id:SK-USER::CURSOR-EQUAL][CURSOR-EQUAL]]
   - XLIB::PRINT-CURSOR
+  - [[id:SK-USER::RECOLOR-CURSOR][RECOLOR-CURSOR]]
   - [[id:SK-USER::GRAB-BUTTON][GRAB-BUTTON]]
   - [[id:SK-USER::GRAB-POINTER][GRAB-POINTER]]
 
@@ -28121,9 +28121,9 @@ GCONTEXT-DISPLAY names a compiled function:
   - [[id:SK-USER::GCONTEXT-BACKGROUND][GCONTEXT-BACKGROUND]]
   - [[id:SK-USER::GCONTEXT-FOREGROUND][GCONTEXT-FOREGROUND]]
   - [[id:SK-USER::GCONTEXT-PLANE-MASK][GCONTEXT-PLANE-MASK]]
+  - [[id:SK-USER::GCONTEXT-FUNCTION][GCONTEXT-FUNCTION]]
   - [[id:SK-USER::GCONTEXT-EQUAL][GCONTEXT-EQUAL]]
   - XLIB::PRINT-GCONTEXT
-  - [[id:SK-USER::GCONTEXT-FUNCTION][GCONTEXT-FUNCTION]]
 
 :definitions:
 - [[vc:shed/xlib:xlib.lisp#l513][xlib.lisp:513]]
@@ -29175,8 +29175,8 @@ DISPLAY-REPORT-ASYNCHRONOUS-ERRORS names a compiled function:
 #+end_example
 
 - Called by
-  - XLIB::WAIT-FOR-EVENT
   - XLIB::REPORT-ASYNCHRONOUS-ERRORS
+  - XLIB::WAIT-FOR-EVENT
   - XLIB::READ-ERROR-INPUT
 
 :definitions:
@@ -29775,7 +29775,7 @@ CREATE-WINDOW names a compiled function:
                   (:WIDTH (UNSIGNED-BYTE 16)) (:HEIGHT (UNSIGNED-BYTE 16))
                   (:DEPTH (UNSIGNED-BYTE 16))
                   (:BORDER-WIDTH (UNSIGNED-BYTE 16))
-                  (:CLASS (MEMBER :COPY :INPUT-OUTPUT :INPUT-ONLY))
+                  (:CLASS (MEMBER :INPUT-ONLY :INPUT-OUTPUT :COPY))
                   (:VISUAL
                    (OR (MEMBER :COPY) XLIB:VISUAL-INFO (UNSIGNED-BYTE 29)))
                   (:BACKGROUND
@@ -29784,15 +29784,14 @@ CREATE-WINDOW names a compiled function:
                   (:BORDER
                    (OR (MEMBER NIL :COPY) (UNSIGNED-BYTE 32) XLIB:PIXMAP))
                   (:BIT-GRAVITY
-                   (MEMBER NIL :STATIC :SOUTH-EAST :SOUTH :SOUTH-WEST :EAST
-                           :CENTER :WEST :NORTH-EAST :NORTH :NORTH-WEST
-                           :FORGET))
+                   (MEMBER :FORGET :NORTH-WEST :NORTH :NORTH-EAST :WEST :CENTER
+                           :EAST :SOUTH-WEST :SOUTH :SOUTH-EAST :STATIC NIL))
                   (:GRAVITY
                    (MEMBER NIL :STATIC :SOUTH-EAST :SOUTH :SOUTH-WEST :EAST
                            :CENTER :WEST :NORTH-EAST :NORTH :NORTH-WEST
                            :UNMAP))
                   (:BACKING-STORE
-                   (MEMBER NIL :ALWAYS :WHEN-MAPPED :NOT-USEFUL))
+                   (MEMBER :NOT-USEFUL :WHEN-MAPPED :ALWAYS NIL))
                   (:BACKING-PLANES (OR (UNSIGNED-BYTE 32) NULL))
                   (:BACKING-PIXEL (OR (UNSIGNED-BYTE 32) NULL))
                   (:SAVE-UNDER (MEMBER NIL :ON :OFF)) (:EVENT-MASK T)
@@ -30037,10 +30036,10 @@ FONT-MIN-CHAR names a compiled function:
   - [[id:SK-USER::TRANSLATE-DEFAULT][TRANSLATE-DEFAULT]]
   - [[id:SK-USER::CHAR-LEFT-BEARING][CHAR-LEFT-BEARING]]
   - [[id:SK-USER::CHAR-RIGHT-BEARING][CHAR-RIGHT-BEARING]]
-  - [[id:SK-USER::CHAR-WIDTH][CHAR-WIDTH]]
-  - [[id:SK-USER::CHAR-ASCENT][CHAR-ASCENT]]
-  - [[id:SK-USER::CHAR-DESCENT][CHAR-DESCENT]]
   - [[id:SK-USER::CHAR-ATTRIBUTES][CHAR-ATTRIBUTES]]
+  - [[id:SK-USER::CHAR-DESCENT][CHAR-DESCENT]]
+  - [[id:SK-USER::CHAR-ASCENT][CHAR-ASCENT]]
+  - [[id:SK-USER::CHAR-WIDTH][CHAR-WIDTH]]
 
 :definitions:
 - [[vc:shed/xlib:xlib.lisp#l753][xlib.lisp:753]]
@@ -30477,19 +30476,19 @@ FONT-NAME names a compiled function:
   - [[id:SK-USER::MAX-CHAR-LEFT-BEARING][MAX-CHAR-LEFT-BEARING]]
   - [[id:SK-USER::CHAR-RIGHT-BEARING][CHAR-RIGHT-BEARING]]
   - [[id:SK-USER::MIN-CHAR-RIGHT-BEARING][MIN-CHAR-RIGHT-BEARING]]
-  - [[id:SK-USER::CHAR-WIDTH][CHAR-WIDTH]]
-  - [[id:SK-USER::CHAR-ASCENT][CHAR-ASCENT]]
-  - [[id:SK-USER::CHAR-DESCENT][CHAR-DESCENT]]
   - [[id:SK-USER::MAX-CHAR-ATTRIBUTES][MAX-CHAR-ATTRIBUTES]]
+  - [[id:SK-USER::MAX-CHAR-DESCENT][MAX-CHAR-DESCENT]]
   - [[id:SK-USER::MIN-CHAR-ATTRIBUTES][MIN-CHAR-ATTRIBUTES]]
   - XLIB::PRINT-FONT
-  - [[id:SK-USER::MAX-CHAR-DESCENT][MAX-CHAR-DESCENT]]
+  - [[id:SK-USER::CHAR-ATTRIBUTES][CHAR-ATTRIBUTES]]
+  - [[id:SK-USER::CHAR-DESCENT][CHAR-DESCENT]]
+  - [[id:SK-USER::CHAR-ASCENT][CHAR-ASCENT]]
+  - [[id:SK-USER::MIN-CHAR-DESCENT][MIN-CHAR-DESCENT]]
   - [[id:SK-USER::MAX-CHAR-ASCENT][MAX-CHAR-ASCENT]]
   - [[id:SK-USER::MIN-CHAR-ASCENT][MIN-CHAR-ASCENT]]
   - [[id:SK-USER::MAX-CHAR-WIDTH][MAX-CHAR-WIDTH]]
-  - [[id:SK-USER::MIN-CHAR-DESCENT][MIN-CHAR-DESCENT]]
   - [[id:SK-USER::MIN-CHAR-WIDTH][MIN-CHAR-WIDTH]]
-  - [[id:SK-USER::CHAR-ATTRIBUTES][CHAR-ATTRIBUTES]]
+  - [[id:SK-USER::CHAR-WIDTH][CHAR-WIDTH]]
   - [[id:SK-USER::MAX-CHAR-RIGHT-BEARING][MAX-CHAR-RIGHT-BEARING]]
 
 :definitions:
@@ -30558,8 +30557,15 @@ EXTENSION-OPCODE names a macro:
   - XLIB/GL:END-LIST
   - XLIB/GL:GEN-LISTS
   - XLIB/GL:NEW-LIST
+  - [[id:CLI/ED:GET-STRING][GET-STRING]]
+  - XLIB/GLX:WAIT-X
+  - XLIB/GLX:WAIT-GL
   - XLIB/GLX:SWAP-BUFFERS
   - XLIB/GLX:RENDER
+  - XLIB/GLX::GET-VISUAL-CONFIGS
+  - XLIB/GLX:MAKE-CURRENT
+  - XLIB/GLX:GET-DRAWABLE-ATTRIBUTES
+  - XLIB/GLX:QUERY-CONTEXT
   - XLIB::RENDER-CREATE-ANIM-CURSOR
   - XLIB::RENDER-CREATE-CURSOR
   - XLIB:RENDER-FREE-GLYPHS
@@ -30586,12 +30592,19 @@ EXTENSION-OPCODE names a macro:
   - XLIB:RENDER-CREATE-PICTURE
   - XLIB::SYNCHRONISE-PICTURE-STATE
   - XLIB::%RENDER-CHANGE-PICTURE-CLIP-RECTANGLES
+  - XLIB:SHAPE-QUERY-VERSION
+  - XLIB:SHAPE-SELECT-INPUT
+  - XLIB/GLX:IS-DIRECT
+  - XLIB/GLX:DESTROY-CONTEXT
+  - XLIB/GLX:CREATE-CONTEXT
+  - XLIB/GLX::CLIENT-INFO
+  - XLIB/GLX:QUERY-SERVER-STRING
+  - XLIB/GLX:QUERY-VERSION
   - XLIB:XFREE86-VIDMODE-GET-DOTCLOCKS
   - XLIB:XFREE86-VIDMODE-SET-VIEWPORT
   - XLIB:XFREE86-VIDMODE-GET-VIEWPORT
   - XLIB:XFREE86-VIDMODE-GET-MONITOR
   - XLIB:XFREE86-VIDMODE-SELECT-PREV-MODE
-  - XLIB:XFREE86-VIDMODE-SELECT-NEXT-MODE
   - XLIB:XFREE86-VIDMODE-SWITCH-MODE
   - XLIB:XFREE86-VIDMODE-SWITCH-TO-MODE
   - XLIB:XFREE86-VIDMODE-LOCK-MODE-SWITCH
@@ -30602,6 +30615,7 @@ EXTENSION-OPCODE names a macro:
   - XLIB:XFREE86-VIDMODE-GET-GAMMA
   - XLIB:XFREE86-VIDMODE-VALIDATE-MODE-LINE
   - XLIB:XFREE86-VIDMODE-DELETE-MODE-LINE
+  - XLIB:XFREE86-VIDMODE-SELECT-NEXT-MODE
   - XLIB:XFREE86-VIDMODE-ADD-MODE-LINE
   - XLIB:XFREE86-VIDMODE-GET-ALL-MODE-LINES
   - XLIB:XFREE86-VIDMODE-GET-MODE-LINE
@@ -30609,30 +30623,15 @@ EXTENSION-OPCODE names a macro:
   - XLIB:XFREE86-VIDMODE-GET-PERMISSIONS
   - XLIB:XFREE86-VIDMODE-SET-CLIENT-VERSION
   - XLIB:XFREE86-VIDMODE-QUERY-VERSION
-  - XLIB::ENABLE-BIG-REQUESTS
   - XLIB:SHAPE-GET-RECTANGLES
   - XLIB:SHAPE-INPUT-SELECTED-P
-  - XLIB:SHAPE-SELECT-INPUT
+  - XLIB::ENABLE-BIG-REQUESTS
+  - XLIB:SHAPE-RECTANGLES
   - XLIB:SHAPE-QUERY-EXTENTS
+  - XLIB::RANDR-OPCODE
   - XLIB:SHAPE-OFFSET
   - XLIB:SHAPE-COMBINE
   - XLIB:SHAPE-MASK
-  - XLIB:SHAPE-RECTANGLES
-  - XLIB:SHAPE-QUERY-VERSION
-  - XLIB::RANDR-OPCODE
-  - XLIB/GLX:MAKE-CURRENT
-  - XLIB/GLX:GET-DRAWABLE-ATTRIBUTES
-  - XLIB/GLX::CLIENT-INFO
-  - XLIB/GLX:CREATE-CONTEXT
-  - XLIB/GLX:QUERY-SERVER-STRING
-  - XLIB/GLX:QUERY-CONTEXT
-  - XLIB/GLX:QUERY-VERSION
-  - XLIB/GLX:DESTROY-CONTEXT
-  - XLIB/GLX::GET-VISUAL-CONFIGS
-  - [[id:CLI/ED:GET-STRING][GET-STRING]]
-  - XLIB/GLX:WAIT-X
-  - XLIB/GLX:WAIT-GL
-  - XLIB/GLX:IS-DIRECT
 
 :definitions:
 - [[vc:shed/xlib:input.lisp#l203][input.lisp:203]]
@@ -31193,11 +31192,11 @@ COLOR-RED names a compiled function:
 - Called by
   - [[id:SK-USER::SET-STANDARD-COLORMAP][SET-STANDARD-COLORMAP]]
   - XLIB::SET-RGB-COLORMAPS
-  - [[id:SK-USER::RECOLOR-CURSOR][RECOLOR-CURSOR]]
   - [[id:SK-USER::STORE-COLOR][STORE-COLOR]]
   - [[id:SK-USER::ALLOC-COLOR][ALLOC-COLOR]]
   - [[id:OBJ/COLOR:COLOR-RGB][COLOR-RGB]]
   - XLIB::PRINT-COLOR
+  - [[id:SK-USER::RECOLOR-CURSOR][RECOLOR-CURSOR]]
   - [[id:SK-USER::CREATE-GLYPH-CURSOR][CREATE-GLYPH-CURSOR]]
   - [[id:SK-USER::CREATE-CURSOR][CREATE-CURSOR]]
 
@@ -31533,11 +31532,11 @@ COLOR-BLUE names a compiled function:
 - Called by
   - [[id:SK-USER::SET-STANDARD-COLORMAP][SET-STANDARD-COLORMAP]]
   - XLIB::SET-RGB-COLORMAPS
-  - [[id:SK-USER::RECOLOR-CURSOR][RECOLOR-CURSOR]]
   - [[id:SK-USER::STORE-COLOR][STORE-COLOR]]
   - [[id:SK-USER::ALLOC-COLOR][ALLOC-COLOR]]
   - [[id:OBJ/COLOR:COLOR-RGB][COLOR-RGB]]
   - XLIB::PRINT-COLOR
+  - [[id:SK-USER::RECOLOR-CURSOR][RECOLOR-CURSOR]]
   - [[id:SK-USER::CREATE-GLYPH-CURSOR][CREATE-GLYPH-CURSOR]]
   - [[id:SK-USER::CREATE-CURSOR][CREATE-CURSOR]]
 
@@ -32765,11 +32764,11 @@ CREATE-GCONTEXT names a compiled function:
                   (:FOREGROUND (OR (UNSIGNED-BYTE 32) NULL))
                   (:BACKGROUND (OR (UNSIGNED-BYTE 32) NULL))
                   (:LINE-WIDTH (OR NULL (UNSIGNED-BYTE 16)))
-                  (:LINE-STYLE (MEMBER :SOLID :DASH :DOUBLE-DASH NIL))
+                  (:LINE-STYLE (MEMBER NIL :DOUBLE-DASH :DASH :SOLID))
                   (:CAP-STYLE (MEMBER NIL :PROJECTING :ROUND :BUTT :NOT-LAST))
                   (:JOIN-STYLE (MEMBER NIL :BEVEL :ROUND :MITER))
                   (:FILL-STYLE
-                   (MEMBER NIL :OPAQUE-STIPPLED :STIPPLED :TILED :SOLID))
+                   (MEMBER :SOLID :TILED :STIPPLED :OPAQUE-STIPPLED NIL))
                   (:FILL-RULE (MEMBER NIL :WINDING :EVEN-ODD))
                   (:ARC-MODE (MEMBER NIL :PIE-SLICE :CHORD))
                   (:TILE (OR NULL XLIB:PIXMAP))
@@ -32835,9 +32834,9 @@ DISPLAY-XID names a compiled function:
   - XLIB::OPEN-FONT-INTERNAL
   - [[id:SK-USER::OPEN-FONT][OPEN-FONT]]
   - [[id:SK-USER::COPY-COLORMAP-AND-FREE][COPY-COLORMAP-AND-FREE]]
-  - [[id:SK-USER::CREATE-PIXMAP][CREATE-PIXMAP]]
-  - [[id:SK-USER::CREATE-GCONTEXT][CREATE-GCONTEXT]]
   - [[id:CLI/TERM:CREATE-WINDOW][CREATE-WINDOW]]
+  - [[id:SK-USER::CREATE-GCONTEXT][CREATE-GCONTEXT]]
+  - [[id:SK-USER::CREATE-PIXMAP][CREATE-PIXMAP]]
   - XLIB::COPY-GCONTEXT-LOCAL-STATE
   - [[id:SK-USER::CREATE-COLORMAP][CREATE-COLORMAP]]
   - XLIB/GLX::MAKE-CONTEXT
@@ -33422,17 +33421,17 @@ PIXMAP-ID names a compiled function:
 - Called by
   - XLIB:RENDER-CREATE-PICTURE
   - XLIB::SYNCHRONISE-PICTURE-STATE
-  - XLIB:SHAPE-MASK
   - XLIB::ENCODE-WM-HINTS
   - XLIB::SET-WINDOW-BORDER
   - XLIB::SET-WINDOW-BACKGROUND
-  - [[id:SK-USER::FREE-PIXMAP][FREE-PIXMAP]]
   - [[id:CLI/TERM:CREATE-WINDOW][CREATE-WINDOW]]
+  - [[id:SK-USER::FREE-PIXMAP][FREE-PIXMAP]]
   - XLIB::SET-GCONTEXT-CLIP-MASK
   - XLIB::SET-GCONTEXT-STIPPLE
   - XLIB::SET-GCONTEXT-TILE
   - [[id:SK-USER::PIXMAP-EQUAL][PIXMAP-EQUAL]]
   - [[id:SK-USER::CREATE-CURSOR][CREATE-CURSOR]]
+  - XLIB:SHAPE-MASK
 
 :definitions:
 - [[vc:shed/xlib:xlib.lisp#l364][xlib.lisp:364]]
@@ -34155,17 +34154,17 @@ COLORMAP-DISPLAY names a compiled function:
 #+end_example
 
 - Called by
-  - [[id:SK-USER::FREE-COLORMAP][FREE-COLORMAP]]
   - [[id:SK-USER::COPY-COLORMAP-AND-FREE][COPY-COLORMAP-AND-FREE]]
+  - [[id:SK-USER::FREE-COLORMAP][FREE-COLORMAP]]
   - [[id:SK-USER::LOOKUP-COLOR][LOOKUP-COLOR]]
   - [[id:SK-USER::QUERY-COLORS][QUERY-COLORS]]
   - [[id:SK-USER::STORE-COLOR][STORE-COLOR]]
-  - [[id:SK-USER::ALLOC-COLOR-PLANES][ALLOC-COLOR-PLANES]]
-  - [[id:SK-USER::ALLOC-COLOR-CELLS][ALLOC-COLOR-CELLS]]
   - [[id:SK-USER::FREE-COLORS][FREE-COLORS]]
+  - [[id:SK-USER::ALLOC-COLOR-PLANES][ALLOC-COLOR-PLANES]]
   - [[id:SK-USER::ALLOC-COLOR][ALLOC-COLOR]]
   - [[id:SK-USER::UNINSTALL-COLORMAP][UNINSTALL-COLORMAP]]
   - [[id:SK-USER::INSTALL-COLORMAP][INSTALL-COLORMAP]]
+  - [[id:SK-USER::ALLOC-COLOR-CELLS][ALLOC-COLOR-CELLS]]
   - [[id:SK-USER::COLORMAP-EQUAL][COLORMAP-EQUAL]]
   - XLIB::PRINT-COLORMAP
 
@@ -34440,21 +34439,21 @@ DISPLAY-ROOTS names a compiled function:
 #+end_example
 
 - Called by
-  - XLIB::SCREEN-POSITION
+  - XLIB/GLX::GET-VISUAL-CONFIGS
   - XLIB::INITIALIZE-RESOURCE-DATABASE
   - [[id:SK-USER::ROTATE-CUT-BUFFERS][ROTATE-CUT-BUFFERS]]
   - (CUT-BUFFER)
   - [[id:SK-USER::CUT-BUFFER][CUT-BUFFER]]
-  - XLIB/GLX:CREATE-CONTEXT
   - [[id:SK-USER::GLOBAL-POINTER-POSITION][GLOBAL-POINTER-POSITION]]
   - [[id:SK-USER::DISPLAY-NSCREENS][DISPLAY-NSCREENS]]
   - XLIB::DISPLAY-CONNECT
   - [[id:SK-USER::OPEN-DEFAULT-DISPLAY][OPEN-DEFAULT-DISPLAY]]
   - [[id:SK-USER::VISUAL-INFO][VISUAL-INFO]]
   - [[id:CLI/TERM:PRINT-SCREEN][PRINT-SCREEN]]
+  - XLIB/GLX:CREATE-CONTEXT
   - XLIB/GLX:QUERY-SERVER-STRING
-  - XLIB/GLX::GET-VISUAL-CONFIGS
   - XLIB/TRUETYPE:DRAWABLE-SCREEN
+  - XLIB::SCREEN-POSITION
 
 :definitions:
 - [[vc:shed/xlib:xlib.lisp#l236][xlib.lisp:236]]
@@ -35021,7 +35020,7 @@ REMOVE-ACCESS-HOST names a compiled function:
   Lambda-list: (DISPLAY HOST &OPTIONAL (FAMILY INTERNET))
   Derived type: (FUNCTION
                  (XLIB:DISPLAY (OR STRING SYMBOL CONS) &OPTIONAL
-                  (OR (MEMBER :INTERNET :DECNET :CHAOS NIL) (UNSIGNED-BYTE 8)))
+                  (OR (MEMBER NIL :CHAOS :DECNET :INTERNET) (UNSIGNED-BYTE 8)))
                  *)
   Source file: /home/ellis/src/shed/xlib/requests.lisp
 
@@ -35156,7 +35155,7 @@ CHANGE-PROPERTY names a compiled function:
   Derived type: (FUNCTION
                  (XLIB:WINDOW (OR STRING SYMBOL) SEQUENCE (OR STRING SYMBOL)
                   (OR (INTEGER 8 8) (INTEGER 16 16) (INTEGER 32 32)) &KEY
-                  (:MODE (MEMBER :APPEND :PREPEND :REPLACE))
+                  (:MODE (MEMBER :REPLACE :PREPEND :APPEND))
                   (:START (MOD 17592186044417)) (:END T)
                   (:TRANSFORM
                    (OR NULL (FUNCTION (T) (VALUES INTEGER &REST T)))))
@@ -35774,10 +35773,10 @@ FONT-MAX-CHAR names a compiled function:
   - [[id:SK-USER::TRANSLATE-DEFAULT][TRANSLATE-DEFAULT]]
   - [[id:SK-USER::CHAR-LEFT-BEARING][CHAR-LEFT-BEARING]]
   - [[id:SK-USER::CHAR-RIGHT-BEARING][CHAR-RIGHT-BEARING]]
-  - [[id:SK-USER::CHAR-WIDTH][CHAR-WIDTH]]
-  - [[id:SK-USER::CHAR-ASCENT][CHAR-ASCENT]]
-  - [[id:SK-USER::CHAR-DESCENT][CHAR-DESCENT]]
   - [[id:SK-USER::CHAR-ATTRIBUTES][CHAR-ATTRIBUTES]]
+  - [[id:SK-USER::CHAR-DESCENT][CHAR-DESCENT]]
+  - [[id:SK-USER::CHAR-ASCENT][CHAR-ASCENT]]
+  - [[id:SK-USER::CHAR-WIDTH][CHAR-WIDTH]]
 
 :definitions:
 - [[vc:shed/xlib:xlib.lisp#l753][xlib.lisp:753]]
@@ -36970,7 +36969,7 @@ DEVICE-STATE-P names a compiled function:
 #+begin_example
 
 +XKB-TABLE+ names a special variable:
-  Value: #<HASH-TABLE :TEST EQL :COUNT 1905 {12062C4763}>
+  Value: #<HASH-TABLE :TEST EQL :COUNT 1905 {12062E4B43}>
 
 #+end_example
 
@@ -37125,9 +37124,9 @@ progress. Bug reports should be addressed to bug-clx@expo.lcs.mit.edu.
 
 :tasks:
 - TODO 2025-12-31 :: OBJ/COLOR (as-rgb, etc)
-- Types 2026-07-19 :: display, window, pixmap, cursor, font, gcontext, colormap,
-- Note 2026-07-19 :: if you have read the Version 11 protocol document or C Xlib manual,
-- Note 2026-07-19 :: all of the following is in the package XLIB.
+- Types 2026-07-21 :: display, window, pixmap, cursor, font, gcontext, colormap,
+- Note 2026-07-21 :: if you have read the Version 11 protocol document or C Xlib manual,
+- Note 2026-07-21 :: all of the following is in the package XLIB.
 :end:
 
 **** dependent :lisp:
@@ -37258,7 +37257,7 @@ windows version 11
 :end:
 
 :tasks:
-- X11 2026-07-19 :: to prevent malicious users from snooping on a
+- X11 2026-07-21 :: to prevent malicious users from snooping on a
 :end:
 
 **** gcontext :lisp:
@@ -37341,10 +37340,10 @@ Date	Author	Description
 :end:
 
 :tasks:
-- ERRORS 2026-07-19 :: Use DEFINE-ERROR to define new error decodings.
-- EVENTS 2026-07-19 :: Use DECLARE-EVENT to define events. This calls ALLOCATE-EXTENSION-EVENT-CODE
-- CODE 2026-07-19 :: Use EXTENSION-CODE to get the X11 opcode for an extension.
-- DEFINITION 2026-07-19 :: Use DEFINE-EXTENSION
+- ERRORS 2026-07-21 :: Use DEFINE-ERROR to define new error decodings.
+- EVENTS 2026-07-21 :: Use DECLARE-EVENT to define events. This calls ALLOCATE-EXTENSION-EVENT-CODE
+- CODE 2026-07-21 :: Use EXTENSION-CODE to get the X11 opcode for an extension.
+- DEFINITION 2026-07-21 :: Use DEFINE-EXTENSION
 :end:
 
 **** requests :lisp:
@@ -37368,7 +37367,7 @@ express or implied warranty.
 :LOCATION: [[vc:shed/xlib:fonts.lisp][fonts.lisp]]
 :END:
 :tasks:
-- Note 2026-07-19 :: char16-<metric> accessors could be defined to accept two-byte indexes.
+- Note 2026-07-21 :: char16-<metric> accessors could be defined to accept two-byte indexes.
 :end:
 
 **** graphics :lisp:
@@ -37381,7 +37380,7 @@ express or implied warranty.
 :LOCATION: [[vc:shed/xlib:text.lisp][text.lisp]]
 :END:
 :tasks:
-- NOTE 2026-07-19 :: After the first font change by the TRANSLATE function, characters are no-longer
+- NOTE 2026-07-21 :: After the first font change by the TRANSLATE function, characters are no-longer
 :end:
 
 **** attributes :lisp:
@@ -37498,7 +37497,7 @@ express or implied warranty.
 :end:
 
 :tasks:
-- Note 2026-07-19 :: The only difference between a format of :bitmap and :xy-pixmap
+- Note 2026-07-21 :: The only difference between a format of :bitmap and :xy-pixmap
 :end:
 
 **** resource :lisp:
@@ -37519,7 +37518,7 @@ RESOURCE - Lisp version of XLIB's Xrm resource manager
 :PROPERTIES:
 :LOCATION: [[vc:shed/xlib:extensions/][extensions/]]
 :END:
-**** shape :lisp:
+***** shape :lisp:
 :PROPERTIES:
 :LOCATION: [[vc:shed/xlib:extensions/shape.lisp][extensions/shape.lisp]]
 :END:
@@ -37532,7 +37531,7 @@ Author: Gilbert Baumann <unk6@rz.uni-karlsruhe.de>
 Use xc/doc/hardcopy/Xext/shape.PS.gz obtainable from e.g.
 ftp://ftp.xfree86.org/pub/XFree86/current/untarred/xc/hardcopy/Xext/shape.PS.gz
 
-**** big-requests :lisp:
+***** big-requests :lisp:
 :PROPERTIES:
 :LOCATION: [[vc:shed/xlib:extensions/big-requests.lisp][extensions/big-requests.lisp]]
 :END:
@@ -37542,7 +37541,7 @@ Requests Extension, section 3)
 The name of this extension is "BIG-REQUESTS" (Big Requests
 Extension, section 4)
 
-**** xvidmode :lisp:
+***** xvidmode :lisp:
 :PROPERTIES:
 :SUMMARY: XFree86 Video Mode Extension
 :LOCATION: [[vc:shed/xlib:extensions/xvidmode.lisp][extensions/xvidmode.lisp]]
@@ -37575,7 +37574,7 @@ functions I made.
 - public XFree86-VidMode Extension routines
 :end:
 
-**** xrender :lisp:
+***** xrender :lisp:
 :PROPERTIES:
 :SUMMARY: X Render Extension
 :LOCATION: [[vc:shed/xlib:extensions/xrender.lisp][extensions/xrender.lisp]]
@@ -37638,13 +37637,13 @@ Example:
 :end:
 
 :tasks:
-- server 2026-07-19 :: 0.11
-- server 2026-07-19 :: 0.1
-- server 2026-07-19 :: 0.11
-- server 2026-07-19 :: 0.10
+- server 2026-07-21 :: 0.11
+- server 2026-07-21 :: 0.1
+- server 2026-07-21 :: 0.11
+- server 2026-07-21 :: 0.10
 :end:
 
-**** glx :lisp:
+***** glx :lisp:
 :PROPERTIES:
 :LOCATION: [[vc:shed/xlib:extensions/glx.lisp][extensions/glx.lisp]]
 :END:
@@ -37685,11 +37684,11 @@ Example:
 :end:
 
 :tasks:
-- FIXME 2026-07-19 :: These two are more complicated than sending messages. As I
-- FIXME 2026-07-19 :: How to define these two?
+- FIXME 2026-07-21 :: These two are more complicated than sending messages. As I
+- FIXME 2026-07-21 :: How to define these two?
 :end:
 
-**** gl :lisp:
+***** gl :lisp:
 :PROPERTIES:
 :LOCATION: [[vc:shed/xlib:extensions/gl.lisp][extensions/gl.lisp]]
 :END:
@@ -37710,7 +37709,7 @@ Example:
 - Opcodes.
 :end:
 
-**** dpms :lisp:
+***** dpms :lisp:
 :PROPERTIES:
 :LOCATION: [[vc:shed/xlib:extensions/dpms.lisp][extensions/dpms.lisp]]
 :END:
@@ -37728,7 +37727,7 @@ Equipment Corporation makes no representations about the suitability for
 any purpose of the information in this document. This documentation is
 provided ``as is'' without express or implied warranty.
 
-**** xtest :lisp:
+***** xtest :lisp:
 :PROPERTIES:
 :SUMMARY: X Test Extension
 :LOCATION: [[vc:shed/xlib:extensions/xtest.lisp][extensions/xtest.lisp]]
@@ -37751,7 +37750,7 @@ TODO:
 - The version we implement
 :end:
 
-**** screensaver :lisp:
+***** screensaver :lisp:
 :PROPERTIES:
 :LOCATION: [[vc:shed/xlib:extensions/screensaver.lisp][extensions/screensaver.lisp]]
 :END:
@@ -37770,7 +37769,7 @@ find out how long has it been since the last keyboard or mouse activity.
 A description of this extension can be found at
 doc/hardcopy/saver/saver.PS.gz in the X11 distribution.
 
-**** randr :lisp:
+***** randr :lisp:
 :PROPERTIES:
 :LOCATION: [[vc:shed/xlib:extensions/randr.lisp][extensions/randr.lisp]]
 :END:
@@ -37788,7 +37787,7 @@ Author: Johannes Martinez <johannes.martinez@gmail.com>
 - status returns
 :end:
 
-**** xinerama :lisp:
+***** xinerama :lisp:
 :PROPERTIES:
 :LOCATION: [[vc:shed/xlib:extensions/xinerama.lisp][extensions/xinerama.lisp]]
 :END:
@@ -37804,7 +37803,7 @@ Description:
 This is an implementation of the XINERAMA extension. It does not
 include the obsolete PanoramiX calls.
 
-**** dbe :lisp:
+***** dbe :lisp:
 :PROPERTIES:
 :SUMMARY: Double Buffer Extension
 :LOCATION: [[vc:shed/xlib:extensions/dbe.lisp][extensions/dbe.lisp]]
@@ -37815,7 +37814,7 @@ Author: Johannes Martinez <johannes.martinez@gmail.com>
 
 (c) copyright 2014 by Johannes Martinez
 
-**** xc-misc :lisp:
+***** xc-misc :lisp:
 :PROPERTIES:
 :SUMMARY: XC Misc Extension
 :LOCATION: [[vc:shed/xlib:extensions/xc-misc.lisp][extensions/xc-misc.lisp]]
@@ -37826,7 +37825,7 @@ Author: Johannes Martinez <johannes.martinez@gmail.com>
 
 (c) copyright 2014 by Johannes Martinez
 
-**** dri2 :lisp:
+***** dri2 :lisp:
 :PROPERTIES:
 :SUMMARY: DRI2 Extensions
 :LOCATION: [[vc:shed/xlib:extensions/dri2.lisp][extensions/dri2.lisp]]
@@ -37837,12 +37836,12 @@ Author: Johannes Martinez <johannes.martinez@gmail.com>
 
 (c) copyright 2014 by Johannes Martinez
 
-**** dri3 :lisp:
+***** dri3 :lisp:
 :PROPERTIES:
 :SUMMARY: DRI3 Extension
 :LOCATION: [[vc:shed/xlib:extensions/dri3.lisp][extensions/dri3.lisp]]
 :END:
-**** composite :lisp:
+***** composite :lisp:
 :PROPERTIES:
 :SUMMARY: X Composite Extension
 :LOCATION: [[vc:shed/xlib:extensions/composite.lisp][extensions/composite.lisp]]
@@ -37853,7 +37852,7 @@ Author: Johannes Martinez <johannes.martinez@gmail.com>
 
 (c) copyright 2014 by Johannes Martinez
 
-**** xkeyboard :lisp:
+***** xkeyboard :lisp:
 :PROPERTIES:
 :SUMMARY: X11 XKeyboard Extension
 :LOCATION: [[vc:shed/xlib:extensions/xkeyboard.lisp][extensions/xkeyboard.lisp]]
@@ -37871,7 +37870,7 @@ TODO 2026-01-27: refactor to wrap io/kbd
 - XKeyboard
 :end:
 
-**** xembed :lisp:
+***** xembed :lisp:
 :PROPERTIES:
 :SUMMARY: XEmbed Protocol
 :LOCATION: [[vc:shed/xlib:extensions/xembed.lisp][extensions/xembed.lisp]]
@@ -37927,22 +37926,25 @@ of an earlier version of the protocol.
 :end:
 
 :tasks:
-- FIXME 2026-07-19 :: change current time to something more meaningful
-- FIXME 2026-07-19 :: setters for properties should check if the property exist
-- Flags 2026-07-19 :: XEMBED_MAPPED
-- data2 2026-07-19 :: client window-id 
-- data1 2026-07-19 :: socket window-id 
-- Returns 2026-07-19 :: a copy of FLAGS with the value for KEY changed to VALUE
-- value 2026-07-19 :: value associated to the keyword
-- key 2026-07-19 :: keyword
-- flags 2026-07-19 :: flags in integer form
-- key 2026-07-19 :: binary flag alist of the form
+- FIXME 2026-07-21 :: change current time to something more meaningful
+- FIXME 2026-07-21 :: setters for properties should check if the property exist
+- Flags 2026-07-21 :: XEMBED_MAPPED
+- data2 2026-07-21 :: client window-id 
+- data1 2026-07-21 :: socket window-id 
+- Returns 2026-07-21 :: a copy of FLAGS with the value for KEY changed to VALUE
+- value 2026-07-21 :: value associated to the keyword
+- key 2026-07-21 :: keyword
+- flags 2026-07-21 :: flags in integer form
+- key 2026-07-21 :: binary flag alist of the form
 :end:
 
 
 
 *** Modules
 **** XLIB/TRUETYPE :SYS:
+:PROPERTIES:
+:ID: XLIB:SYS:XLIB/TRUETYPE
+:END:
 - REQUIRE
   #+begin_src lisp-data :eval no
   (#:XLIB #:OBJ #:DAT #:VEC)
@@ -37953,4 +37955,7 @@ of an earlier version of the protocol.
   #+end_src
 
 **** XLIB/TESTS :TESTS:
+:PROPERTIES:
+:ID: XLIB:TESTS:NIL
+:END:
 

@@ -112,7 +112,7 @@ ls -Ah
 :CREATED:  <2025-06-02 Mon 20:35>
 :END:
 *Images* refer to the binary file resulting from a call to
- =SAVE-LISP-AND-DIE=. According to SBCL this file contains:
+ [[id:SB-EXT:SAVE-LISP-AND-DIE][SAVE-LISP-AND-DIE]]. According to SBCL this file contains:
 
 #+begin_quote
 enough information to restart a Lisp process later in the same state,
@@ -303,7 +303,7 @@ The current apps that read a configuration file on startup are:
 By default they are located under =XDG_CONFIG_HOME=.
 
 These apps all use the same /configuration object protocol/ from the
-=OBJ/CONFIG= package and are printed to various S-Expression. Most
+[[id:OBJ/CONFIG][OBJ/CONFIG]] package and are printed to various S-Expression. Most
 commonly the 'pretty' format is used which is simply a plist with
 implied outer parentheses:
 
@@ -364,10 +364,8 @@ Core demo applications, examples, and tutorials can be found in the
 :ID:       2634e0bd-29b2-4191-9892-766abfa7435e
 :CREATED:  <2025-09-30 Tue 21:48>
 :END:
-AO [2026-04-18 Sat] full-auto API docs are planned but not
-available. They will be located under the [[comp:core/docs/api][api]] directory.
-
-[2026-05-26 Tue] lib docs will be move here
+[[comp:docs/core/api][API documentation]] for every exported symbol in the core is generated
+as a single org file and we publish a single HTML file from that.
 
 ** Testing
 :PROPERTIES:
@@ -387,8 +385,7 @@ testing the =IO= module system.
 Testing the core can be done from the CLI using =skel=:
 
 #+begin_src shell :eval no
-  # skel compile tests
-  skel run tests
+  skel make run-tests
 #+end_src
 
 or from lisp:
@@ -549,7 +546,6 @@ packages.
  ╰─ :CLASSES
      ╰─ (KERNEL-CLASS KERNEL-OBJECT)
 #+end_example
-
 Protocols are designated by a key with an associated plist (the cdr of
 ~(find-module ... :proto ...)~). The list of available /plist/ keys in
 a protocol are identified by a variable:
@@ -586,7 +582,7 @@ skel help
 #+end_src
 
 #+RESULTS:
-: skel v0.1.1:4da8a49ea455+ --- A universal project development tool.
+: skel v0.1.1:866f52c1d99b+ --- A universal project development tool.
 : usage: skel [opts] <command> [<arg>]
 
 The =skel= tool is an extensible program designed around the idea of
@@ -597,13 +593,13 @@ The =skel= tool is an extensible program designed around the idea of
 :ID:       35a5aa3b-1ff1-46ea-9ec7-1d6c9a2386f2
 :CREATED:  <2026-01-03 Sat 20:09>
 :END:
-The ~skel/core~ module contains all internal components of the ~skel~
-system. Despite the name, much of this code is ~glue code~ which
-stitches together multiple library protocols.
+The [[id:SKEL/CORE][SKEL/CORE]] package contains internal components of the ~skel~
+system. Much of this code is /glue code/ which stitches together
+multiple library protocols.
 
 Most important data structures are represented with classes, slots,
-and methods such as the =SK-PROJECT= class which is based on the
-=OBJ:PROJECT= class (a generic project type).
+and methods such as the [[id:SKEL/CORE:SKEL-PROJECT][SKEL-PROJECT]] class which is based on the
+[[id:OBJ/PROJECT:PROJECT][PROJECT]] class (a generic project type).
 
 #+begin_src lisp :results list
 (mapcar 'name (components (find-component :core (find-system :skel))))
@@ -611,16 +607,13 @@ and methods such as the =SK-PROJECT= class which is based on the
 
 #+RESULTS:
 - condition
-- header
 - var
-- obj
-- component
+- cfg
 - project
-- print
-- schema
 - db
 - log
 - util
+- srv
 
 ** Configuration
 :PROPERTIES:
@@ -648,7 +641,7 @@ cat ~/.config/skelrc
 : :version "0.1.0"
 : :vc :hg
 : :logger (:level :info)
-: :stash ".stash"
+: :stash "/opt/stash"
 : :store "/opt/store"
 : :scripts ("~/.stash/scripts")
 
@@ -711,7 +704,7 @@ Another example:
 :stash "~/.stash"
 #+end_src
 
-The currently accessible ~sk-project~ can be easily inferred via the
+The currently accessible ~project~ can be easily inferred via the
 ~init~ protocol:
 #+begin_src lisp :results output replace
 (init :skel) ;; find the top-level skel project
@@ -737,25 +730,24 @@ Slots with :INSTANCE allocation:
   LICENSE                        = "MPL"
   AST                            = NIL
   ID                             = 1784914079056115652
-  VC                             = #<HG-REPO {1203CA8FE3}>
+  VC                             = #<HG-REPO {1204EF9243}>
   SRC                            = #P"/home/ellis/src/org/"
   STASH                          = #P"/home/ellis/src/org/.stash/"
   STORE                          = #P"/home/ellis/src/org/.stash/store/"
   CACHE                          = #P"/home/ellis/src/org/.stash/cache/"
-  COMPONENTS                     = #(#<EMACS-LISP-FILE :ID 1091-ba75-0b6c-698b>)
-  BIND                           = ((SUBMODS (LIST "graph" "meta" "plan" "docs" "notes" "archive")))
-  RULES                          = #(#<SIMPLE-RULE default build publish deploy dist-html dist-source dis..
+  COMPONENTS                     = #(#<EMACS-LISP-FILE :ID 1091-ba75-6688-85f3>)
+  BIND                           = ((WWW-HOME :ENV "/opt/stash/data/web/www")..
+  RULES                          = #(#<SIMPLE-RULE default init build publish deploy dist-html dist-sourc..
 #+end_example
-
 ** Components
 :PROPERTIES:
 :ID:       c86d03b4-dc7d-4836-8bdb-58498bd84e46
 :CREATED:  <2026-01-03 Sat 20:09>
 :END:
-In addition to the core objects we provide a set of =COMPONENT=
+In addition to the core objects we provide a set of [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
 definitions which convert core objects to a corresponding external
-representation. For example the =MAKEFILE= class defined in
-=comp/makefile.lisp= can be built from or consumed by a project.
+representation. For example the [[id:SKEL/COMP/MAKE:MAKEFILE][MAKEFILE]] class defined in
+=comp/make.lisp= can be built from or consumed by a project.
 
 #+begin_src lisp :results list
 (mapcar 'name (components (find-component :comp (find-system :skel))))
@@ -787,11 +779,11 @@ skel show rules
 
 #+RESULTS:
 #+begin_example
-#<SIMPLE-RULE default build publish deploy dist-html dist-source dist-repos>
-#<SIMPLE-RULE build build-css update-docs build-graph build-docs build-agenda>
+#<SIMPLE-RULE default init build publish deploy dist-html dist-source dist-repos>
+#<SIMPLE-RULE build build-css build-docs build-agenda build-graph>
+#<SIMPLE-RULE init>
 #<SIMPLE-RULE build-graph>
 #<SIMPLE-RULE build-agenda>
-#<SIMPLE-RULE update-docs>
 #<SIMPLE-RULE build-docs>
 #<SIMPLE-RULE clean>
 #<SIMPLE-RULE build-css>
@@ -807,21 +799,27 @@ skel show rules
 #<SIMPLE-RULE push>
 #<SIMPLE-RULE dist-html>
 #+end_example
-
 Unlike makefile rules we don't need to specify a ~target~ (although
 one may be provided for build caching).
 
-Each rule is associated with a function, or more precisely a ~closure~
-with bindings determined by the ~bind~ slot of a project:
+Each rule is associated with a function, or more precisely a [[id:SB-KERNEL:CLOSURE][CLOSURE]]
+with bindings determined by the [[id:STD/META:BIND][BIND]] slot of a project:
 
-#+begin_src shell
+#+begin_src shell :results output replace
 skel show bind
 #+end_src
 
 #+RESULTS:
+: (WWW-HOME ENV /opt/stash/data/web/www)
+: (CDN-HOME ENV /opt/stash/data/web/cdn)
+: (PACKY-HOME ENV /opt/store/packy)
+: (ORG-DEPLOY-SSH-KEY ENV ~/.ssh/ellis_aws.pem)
+: (ORG-DEPLOY-USER ENV fedora)
+: (ORG-DEPLOY-HOST ENV compiler.company)
+: (ORG-DEPLOY-PATH ENV ssh://rurik:/srv/www)
 : (SUBMODS (LIST graph meta plan docs notes archive))
 
-The ~RULE~ class is defined in the ~PROJECT~ protocol:
+The [[id:OBJ/PROJECT:RULE][RULE]] class is defined in the [[id:OBJ/PROJECT][PROJECT]] package.
 
 #+begin_src lisp
 (let ((class (find-class 'project:rule)))
@@ -865,9 +863,9 @@ The ~RULE~ class is defined in the ~PROJECT~ protocol:
 : #<INTERACTIVE-RULE 0>
 : (ID AST INTERACTIVE OBJ/PROJECT::ARGS)
 
-Interactive rules implement the ~COMMAND~ protocol and accept a
-lambda-list and ~INTERACTIVE~ declaration in the body. They are
-commonly used as project-specific subcommands.
+Interactive rules implement the [[id:OBJ/CMD:COMMAND][COMMAND]] protocol and accept a
+lambda-list and [[id:OBJ/CMD:INTERACTIVE][INTERACTIVE]] declaration in the body. They are commonly
+used as project-specific sub-commands.
 
 ** Apps
 :PROPERTIES:
@@ -879,10 +877,10 @@ specialize on skel objects in project domains of particular interest.
 
 There are currently 4 app entry points in addition to skel itself:
 
-- krypt :: Secrets Management
-- packy :: Package Management
-- mpk :: Media Management
-- homer :: Home Management
+- [[id:SKEL/KRYPT][krypt]] :: Secrets Management
+- [[id:SKEL/PACKY][packy]] :: Package Management
+- [[id:SKEL/MPK][mpk]] :: Media Management
+- [[id:SKEL/HOMER][homer]] :: Home Management
 
 **** TODO Krypt
 :PROPERTIES:
@@ -898,7 +896,7 @@ There are currently 4 app entry points in addition to skel itself:
 :ID:       0d6aa855-037d-49a6-9191-ad9d14f9362b
 :CREATED:  <2026-06-05 Fri 18:56>
 :END:
-~packy~ is a package management tool which is based on the ~pkgfile~
+~packy~ is a package management tool which is based on the [[id:SKEL/PACKY:PKGFILE][PKGFILE]]
 class. Our pkgfiles are read from special lisp files similar to
 ~skelfiles~.
 
@@ -955,6 +953,5 @@ catastrophic if attempts are made to use or modify
 internals. Especially when dealing with ~alien~ objects it's just as
 easy to corrupt your Lisp image as it is to modify it.
 
-When hacking on the source refer to the [[comp:docs/core/mod][module]] docs and take note of
-the inline file comments. For work-in-progress modules take note of
-the core [[comp:plan/tasks/core][project tasks]].
+When hacking on the source take note of the inline file comments and
+[[comp:plan/tasks/core][project tasks]].

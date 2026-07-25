@@ -179,7 +179,7 @@ SIMPLE-FUN-ENTRY-SAP names a compiled function:
 
 *CONTROL-STACK-END* names a special variable:
   Declared always-bound.
-  Value: 70208976273408
+  Value: 70119653457920
 
 #+end_example
 
@@ -1616,7 +1616,7 @@ FUN-END-BREAKPOINT-TRAP names a constant variable:
 #+begin_example
 
 PAGE-TABLE names an alien variable:
-  Value: #<ALIEN-VALUE :SAP #X7FB59A5FF018 :TYPE (*
+  Value: #<ALIEN-VALUE :SAP #X7F8C023FF018 :TYPE (*
                                                   (SB-ALIEN:STRUCT SB-VM::PAGE
                                                    (SB-VM::START
                                                     (SB-ALIEN:UNSIGNED 32)
@@ -1635,7 +1635,7 @@ PAGE-TABLE names an alien variable:
           (SB-VM::WORDS-USED* (UNSIGNED 16) :OFFSET 32)
           (SB-VM::FLAGS (UNSIGNED 8) :OFFSET 48)
           (SB-VM::GEN (SIGNED 8) :OFFSET 56)))
-  Address: #x55BF279E1EB8
+  Address: #x55B7DE407EB8
 
 #+end_example
 
@@ -1720,9 +1720,9 @@ FLOAT-TRAPS-BYTE names a constant variable:
 #+begin_example
 
 *READ-ONLY-SPACE-FREE-POINTER* names an alien variable:
-  Value: #.(INT-SAP #X11FFFFE390)
+  Value: #.(INT-SAP #X11FFFFDB70)
   Type: SYSTEM-AREA-POINTER
-  Address: #x55BF279DEBF8
+  Address: #x55B7DE404BF8
 
 #+end_example
 
@@ -1863,6 +1863,10 @@ N-WORD-BITS names a constant variable:
 #+end_example
 
 - Referenced by
+  - (INSPECTED-DESCRIPTION (BIGNUM))
+  - SB-ACLREPL::N-WORD-BITS-HEX-FORMAT
+  - SB-ACLREPL::LABEL-AT
+  - SB-ACLREPL::DISPLAY-INSPECT
   - SB-ROTATE-BYTE::%ROTATE-BYTE-DERIVE-TYPE-OPTIMIZER
   - SB-COVER::GEN-MONIKER
   - IRONCLAD::MD5-REGS-DIGEST
@@ -2087,7 +2091,7 @@ CHARACTER-STACK-SC-NUMBER names a constant variable:
 FIXEDOBJ-SPACE-START names an alien variable:
   Value: 1342177280
   Type: (UNSIGNED 64)
-  Address: #x55BF279DEC58
+  Address: #x55B7DE404C58
 
 #+end_example
 
@@ -2626,7 +2630,7 @@ INSTANCE-LENGTH-MASK names a constant variable:
 
 *BINDING-STACK-START* names a special variable:
   Declared always-bound.
-  Value: 70208976273408
+  Value: 70119653457920
 
 #+end_example
 
@@ -2876,9 +2880,9 @@ COMPLEX-DOUBLE-FLOAT-REAL-SLOT names a constant variable:
 #+begin_example
 
 *FIXEDOBJ-SPACE-FREE-POINTER* names an alien variable:
-  Value: #.(INT-SAP #X502AC800)
+  Value: #.(INT-SAP #X502B2800)
   Type: SYSTEM-AREA-POINTER
-  Address: #x55BF279DEC18
+  Address: #x55B7DE404C18
 
 #+end_example
 
@@ -3117,6 +3121,9 @@ N-WIDETAG-BITS names a constant variable:
 
 #+end_example
 
+- Referenced by
+  - (INSPECTED-DESCRIPTION (CHARACTER))
+
 :definitions:
 - SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP
 :end:
@@ -3299,7 +3306,7 @@ CODE-BOXED-SIZE-SLOT names a constant variable:
 STATIC-SPACE-START names an alien variable:
   Value: 90159953477632
   Type: (UNSIGNED 64)
-  Address: #x55BF279E1BF0
+  Address: #x55B7DE407BF0
 
 #+end_example
 
@@ -3748,7 +3755,7 @@ N-MACHINE-WORD-BYTES names a constant variable:
 *STATIC-SPACE-FREE-POINTER* names an alien variable:
   Value: #.(INT-SAP #X5200000017D0)
   Type: SYSTEM-AREA-POINTER
-  Address: #x55BF279DEC00
+  Address: #x55B7DE404C00
 
 #+end_example
 
@@ -4120,7 +4127,7 @@ DO-REFERENCED-OBJECT names a macro:
 
 *CONTROL-STACK-START* names a special variable:
   Declared always-bound.
-  Value: 70208975224832
+  Value: 70119652409344
 
 #+end_example
 
@@ -4342,9 +4349,9 @@ PRIMITIVE-OBJECT names the structure-class #<STRUCTURE-CLASS SB-VM:PRIMITIVE-OBJ
 #+begin_example
 
 NEXT-FREE-PAGE names an alien variable:
-  Value: 27710
+  Value: 15937
   Type: (SIGNED 32)
-  Address: #x55BF279E20A8
+  Address: #x55B7DE4080A8
 
 #+end_example
 
@@ -4561,9 +4568,9 @@ SIMD-PACK-512-P1-SLOT names a constant variable:
 #+begin_example
 
 *TEXT-SPACE-FREE-POINTER* names an alien variable:
-  Value: #.(INT-SAP #XB801EAC1A0)
+  Value: #.(INT-SAP #XB801F3D9A0)
   Type: SYSTEM-AREA-POINTER
-  Address: #x55BF279DEC68
+  Address: #x55B7DE404C68
 
 #+end_example
 
@@ -5048,6 +5055,7 @@ LOWTAG-MASK names a constant variable:
 #+end_example
 
 - Referenced by
+  - SB-ACLREPL::DISPLAY-INSPECT
   - SB-SPROF::EXTRACT-TRACES
   - IO/STATIC::STATIC-VECTOR-ADDRESS
 
@@ -5704,6 +5712,9 @@ CHARACTER-WIDETAG names a constant variable:
 
 #+end_example
 
+- Referenced by
+  - (INSPECTED-DESCRIPTION (CHARACTER))
+
 :definitions:
 - SYS:SRC;COMPILER;GENERIC;EARLY-OBJDEF.LISP
 :end:
@@ -5959,9 +5970,9 @@ FDEFN-NAME-SLOT names a constant variable:
 #+begin_example
 
 READ-ONLY-SPACE-START names an alien variable:
-  Value: 77289947136
+  Value: 77289914368
   Type: (UNSIGNED 64)
-  Address: #x55BF279E1BE0
+  Address: #x55B7DE407BE0
 
 #+end_example
 
@@ -6558,7 +6569,7 @@ ANY-REG-SC-NUMBER names a constant variable:
 DYNAMIC-SPACE-START names an alien variable:
   Value: 77309411328
   Type: (UNSIGNED 64)
-  Address: #x55BF279E1BD8
+  Address: #x55B7DE407BD8
 
 #+end_example
 
@@ -7107,7 +7118,7 @@ CODE-FROM-SERIALNO names a compiled function:
 TEXT-SPACE-START names an alien variable:
   Value: 790273982464
   Type: (UNSIGNED 64)
-  Address: #x55BF279DEC60
+  Address: #x55B7DE404C60
 
 #+end_example
 
@@ -7145,7 +7156,7 @@ TEXT-SPACE-START names an alien variable:
 TEXT-SPACE-SIZE names an alien variable:
   Value: 167772160
   Type: (UNSIGNED 32)
-  Address: #x55BF279B78B8
+  Address: #x55B7DE3DD8B8
 
 #+end_example
 
@@ -7337,7 +7348,7 @@ SIMPLE-FUN-NAME-SLOT names a constant variable:
 
 *CURRENT-CATCH-BLOCK* names a special variable:
   Declared always-bound.
-  Value: 70208976271676
+  Value: 70119653456188
 
 #+end_example
 

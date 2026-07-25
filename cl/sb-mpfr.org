@@ -1,0 +1,2791 @@
+#+TITLE: SB-MPFR
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* SB-MPFR
+:PROPERTIES:
+:ID: SB-MPFR
+:END:
+- shadowed symbols
+  - COERCE
+  - TRUNCATE
+  - ROUND
+  - FLOOR
+  - CEILING
+  - /=
+  - =
+  - <=
+  - <
+  - >=
+  - >
+  - ZEROP
+  - INTEGERP
+  - NUMBERP
+  - ATANH
+  - ASINH
+  - ACOSH
+  - TANH
+  - SINH
+  - COSH
+  - ATAN
+  - ASIN
+  - ACOS
+  - TAN
+  - SIN
+  - COS
+  - EXP
+  - LOG
+  - ABS
+  - SQRT
+
+- dependencies
+  - [[id:COMMON-LISP][COMMON-LISP]]
+  - [[id:SB-ALIEN][SB-ALIEN]]
+
+** SET-DIV-BY-ZERO-FLAG :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SET-DIV-BY-ZERO-FLAG
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SET-DIV-BY-ZERO-FLAG names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** LNGAMMA :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:LNGAMMA
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LNGAMMA names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** EXP2 :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:EXP2
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EXP2 names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** MPFR-FLOAT-TO-STRING :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:MPFR-FLOAT-TO-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPFR-FLOAT-TO-STRING names a compiled function:
+  Lambda-list: (X &OPTIONAL (RND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES (OR SIMPLE-STRING NULL) (SIGNED-BYTE 64)
+                         (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PRINT-OBJECT (MPFR-FLOAT T))
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** URANDOMB :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:URANDOMB
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+URANDOMB names a compiled function:
+  Lambda-list: (STATE)
+  Derived type: (FUNCTION (T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ZEROP :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ZEROP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ZEROP names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** INEXFLAG-P :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:INEXFLAG-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+INEXFLAG-P names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** K-ROOT :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:K-ROOT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+K-ROOT names a compiled function:
+  Lambda-list: (X K &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CSC :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CSC
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CSC names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** REMAINDER :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:REMAINDER
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REMAINDER names a compiled function:
+  Lambda-list: (X Y &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** MUL-2-RAISED :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:MUL-2-RAISED
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MUL-2-RAISED names a compiled function:
+  Lambda-list: (X Y &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Documentation:
+    Compute X*(2^Y).
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** FAC :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:FAC
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FAC names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** YN :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:YN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+YN names a compiled function:
+  Lambda-list: (N X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** FMOD :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:FMOD
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FMOD names a compiled function:
+  Lambda-list: (X Y &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** COS :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:COS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COS names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ATANH :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ATANH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ATANH names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SECH :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SECH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SECH names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** LOG2 :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:LOG2
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOG2 names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** FMS :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:FMS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FMS names a compiled function:
+  Lambda-list: (X Y Z &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Documentation:
+    fma X Y Z = (X * Y) - Z
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** FLOOR :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:FLOOR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FLOOR names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** DIM :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:DIM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIM names a compiled function:
+  Lambda-list: (X Y &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** REGULARP :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:REGULARP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REGULARP names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CONST-LOG2 :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CONST-LOG2
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CONST-LOG2 names a compiled function:
+  Lambda-list: (&OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (&OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** *MPFR-FEATURES​* :var:
+:PROPERTIES:
+:ID: SB-MPFR:*MPFR-FEATURES*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*MPFR-FEATURES* names a special variable:
+  Value: (:SB-MPFR)
+
+#+end_example
+
+- Set by
+  - SB-MPFR::LOAD-MPFR
+
+- Referenced by
+  - SB-MPFR::LOAD-MPFR
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** MODF :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:MODF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MODF names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32)
+                         &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** JN :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:JN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+JN names a compiled function:
+  Lambda-list: (N X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** LOG :compiled:package:function:system:
+:PROPERTIES:
+:ID: SB-MPFR:LOG
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOG names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SIN-COS :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SIN-COS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SIN-COS names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32)
+                         &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** COMPARE-2EXP :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:COMPARE-2EXP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPARE-2EXP names a compiled function:
+  Lambda-list: (X Y EXP)
+  Derived type: (FUNCTION (T T T) *)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MPFR:COMPARE-2EXP
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** FMA :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:FMA
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FMA names a compiled function:
+  Lambda-list: (X Y Z &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Documentation:
+    fma X Y Z = (X * Y) + Z
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** GAMMA :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:GAMMA
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GAMMA names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CONST-EULER :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CONST-EULER
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CONST-EULER names a compiled function:
+  Lambda-list: (&OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (&OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ACOS :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ACOS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ACOS names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** DIV :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:DIV
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIV names a compiled function:
+  Lambda-list: (X Y &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CLEAR-INEX-FLAG :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CLEAR-INEX-FLAG
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEAR-INEX-FLAG names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SQUARE :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SQUARE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SQUARE names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** MAKE-MPFR-FLOAT :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:MAKE-MPFR-FLOAT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-MPFR-FLOAT names a compiled function:
+  Lambda-list: (&OPTIONAL (PRECISION +MPFR-PRECISION+))
+  Derived type: (FUNCTION (&OPTIONAL T) (VALUES SB-MPFR:MPFR-FLOAT &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:COMMON-LISP:COERCE][COERCE]]
+  - SB-MPFR:REMAINDER-QUOT
+  - SB-MPFR:REMAINDER
+  - SB-MPFR:FMOD
+  - SB-MPFR:MODF
+  - [[id:COMMON-LISP:TRUNCATE][TRUNCATE]]
+  - [[id:COMMON-LISP:ROUND][ROUND]]
+  - [[id:COMMON-LISP:FLOOR][FLOOR]]
+  - [[id:COMMON-LISP:CEILING][CEILING]]
+  - SB-MPFR:FRACTIONAL
+  - SB-MPFR:ROUNDED-INT-TRUNCATE
+  - SB-MPFR:ROUNDED-INT-ROUND
+  - SB-MPFR:ROUNDED-INT-FLOOR
+  - SB-MPFR:ROUNDED-INT-CEILING
+  - SB-MPFR:ROUNDED-INT
+  - SB-MPFR:URANDOM
+  - SB-MPFR:URANDOMB
+  - SB-MPFR:CONST-CATALAN
+  - SB-MPFR:CONST-EULER
+  - SB-MPFR:CONST-PI
+  - SB-MPFR:CONST-LOG2
+  - SB-MPFR:SUM
+  - SB-MPFR:FMS
+  - SB-MPFR:FMA
+  - SB-MPFR:YN
+  - SB-MPFR:JN
+  - SB-MPFR:ZETA
+  - SB-MPFR:FAC
+  - SB-MPFR:HYPOT
+  - SB-MPFR:ARITHMETIC-GEOMETRIC-MEAN
+  - SB-MPFR:SINH-COSH
+  - SB-MPFR:SIN-COS
+  - [[id:COMMON-LISP:ATAN][ATAN]]
+  - SB-MPFR:AI
+  - SB-MPFR:Y1
+  - SB-MPFR:Y0
+  - SB-MPFR:J1
+  - SB-MPFR:J0
+  - SB-MPFR:ERFC
+  - SB-MPFR:ERF
+  - SB-MPFR:DIGAMMA
+  - SB-MPFR:LNGAMMA
+  - SB-MPFR:GAMMA
+  - SB-MPFR:LI2
+  - SB-MPFR:EINT
+  - SB-MPFR:EXPM1
+  - SB-MPFR:LOG1P
+  - [[id:COMMON-LISP:ATANH][ATANH]]
+  - [[id:COMMON-LISP:ASINH][ASINH]]
+  - [[id:COMMON-LISP:ACOSH][ACOSH]]
+  - SB-MPFR:COTH
+  - SB-MPFR:CSCH
+  - SB-MPFR:SECH
+  - [[id:COMMON-LISP:TANH][TANH]]
+  - [[id:COMMON-LISP:SINH][SINH]]
+  - [[id:COMMON-LISP:COSH][COSH]]
+  - [[id:COMMON-LISP:ASIN][ASIN]]
+  - [[id:COMMON-LISP:ACOS][ACOS]]
+  - SB-MPFR:COT
+  - SB-MPFR:CSC
+  - SB-MPFR:SEC
+  - [[id:COMMON-LISP:TAN][TAN]]
+  - [[id:COMMON-LISP:SIN][SIN]]
+  - [[id:COMMON-LISP:COS][COS]]
+  - SB-MPFR:EXP10
+  - SB-MPFR:EXP2
+  - [[id:COMMON-LISP:EXP][EXP]]
+  - SB-MPFR:LOG10
+  - SB-MPFR:LOG2
+  - [[id:COMMON-LISP:LOG][LOG]]
+  - SB-MPFR:DIV-2-RAISED
+  - SB-MPFR:MUL-2-RAISED
+  - SB-MPFR:DIM
+  - [[id:COMMON-LISP:ABS][ABS]]
+  - SB-MPFR:NEGATE
+  - SB-MPFR:POWER
+  - SB-MPFR:K-ROOT
+  - SB-MPFR:CUBIC-ROOT
+  - SB-MPFR:RECIPROCAL-SQRT
+  - [[id:COMMON-LISP:SQRT][SQRT]]
+  - [[id:OBJ/TENSOR:DIV][DIV]]
+  - SB-MPFR:SQUARE
+  - SB-MPFR:MUL
+  - SB-MPFR:SUB
+  - SB-MPFR:ADD
+  - SB-MPFR::MPFR-READER
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CONST-CATALAN :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CONST-CATALAN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CONST-CATALAN names a compiled function:
+  Lambda-list: (&OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (&OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** DIGAMMA :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:DIGAMMA
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIGAMMA names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** EXPM1 :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:EXPM1
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EXPM1 names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** NEGATE :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:NEGATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NEGATE names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** > :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:>
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+> names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SINH :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SINH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SINH names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ZETA :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ZETA
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ZETA names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ROUNDED-INT-ROUND :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ROUNDED-INT-ROUND
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ROUNDED-INT-ROUND names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ERANGEFLAG-P :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ERANGEFLAG-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ERANGEFLAG-P names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ERFC :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ERFC
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ERFC names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** EXP10 :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:EXP10
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EXP10 names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** RECIPROCAL-SQRT :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:RECIPROCAL-SQRT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RECIPROCAL-SQRT names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CLEAR-NAN-FLAG :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CLEAR-NAN-FLAG
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEAR-NAN-FLAG names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CLEAR-DIV-BY-ZERO :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CLEAR-DIV-BY-ZERO
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEAR-DIV-BY-ZERO names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SUM :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SUM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SUM names a compiled function:
+  Lambda-list: (SEQ &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SET-ERANGE-FLAG :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SET-ERANGE-FLAG
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SET-ERANGE-FLAG names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** *MPFR-RND​* :var:
+:PROPERTIES:
+:ID: SB-MPFR:*MPFR-RND*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*MPFR-RND* names a special variable:
+  Value: :MPFR_RNDN
+
+#+end_example
+
+- Referenced by
+  - [[id:COMMON-LISP:COERCE][COERCE]]
+  - SB-MPFR:REMAINDER-QUOT
+  - SB-MPFR:REMAINDER
+  - SB-MPFR:FMOD
+  - SB-MPFR:MODF
+  - SB-MPFR:FRACTIONAL
+  - SB-MPFR:ROUNDED-INT-TRUNCATE
+  - SB-MPFR:ROUNDED-INT-ROUND
+  - SB-MPFR:ROUNDED-INT-FLOOR
+  - SB-MPFR:ROUNDED-INT-CEILING
+  - SB-MPFR:ROUNDED-INT
+  - SB-MPFR:URANDOM
+  - SB-MPFR:CONST-CATALAN
+  - SB-MPFR:CONST-EULER
+  - SB-MPFR:CONST-PI
+  - SB-MPFR:CONST-LOG2
+  - SB-MPFR:SUM
+  - SB-MPFR:FMS
+  - SB-MPFR:FMA
+  - SB-MPFR:YN
+  - SB-MPFR:JN
+  - SB-MPFR:ZETA
+  - SB-MPFR:FAC
+  - SB-MPFR:HYPOT
+  - SB-MPFR:ARITHMETIC-GEOMETRIC-MEAN
+  - SB-MPFR:SINH-COSH
+  - SB-MPFR:SIN-COS
+  - [[id:COMMON-LISP:ATAN][ATAN]]
+  - SB-MPFR:AI
+  - SB-MPFR:Y1
+  - SB-MPFR:Y0
+  - SB-MPFR:J1
+  - SB-MPFR:J0
+  - SB-MPFR:ERFC
+  - SB-MPFR:ERF
+  - SB-MPFR:DIGAMMA
+  - SB-MPFR:LNGAMMA
+  - SB-MPFR:GAMMA
+  - SB-MPFR:LI2
+  - SB-MPFR:EINT
+  - SB-MPFR:EXPM1
+  - SB-MPFR:LOG1P
+  - [[id:COMMON-LISP:ATANH][ATANH]]
+  - [[id:COMMON-LISP:ASINH][ASINH]]
+  - [[id:COMMON-LISP:ACOSH][ACOSH]]
+  - SB-MPFR:COTH
+  - SB-MPFR:CSCH
+  - SB-MPFR:SECH
+  - [[id:COMMON-LISP:TANH][TANH]]
+  - [[id:COMMON-LISP:SINH][SINH]]
+  - [[id:COMMON-LISP:COSH][COSH]]
+  - [[id:COMMON-LISP:ASIN][ASIN]]
+  - [[id:COMMON-LISP:ACOS][ACOS]]
+  - SB-MPFR:COT
+  - SB-MPFR:CSC
+  - SB-MPFR:SEC
+  - [[id:COMMON-LISP:TAN][TAN]]
+  - [[id:COMMON-LISP:SIN][SIN]]
+  - [[id:COMMON-LISP:COS][COS]]
+  - SB-MPFR:EXP10
+  - SB-MPFR:EXP2
+  - [[id:COMMON-LISP:EXP][EXP]]
+  - SB-MPFR:LOG10
+  - SB-MPFR:LOG2
+  - [[id:COMMON-LISP:LOG][LOG]]
+  - SB-MPFR:DIV-2-RAISED
+  - SB-MPFR:MUL-2-RAISED
+  - SB-MPFR:DIM
+  - [[id:COMMON-LISP:ABS][ABS]]
+  - SB-MPFR:NEGATE
+  - SB-MPFR:POWER
+  - SB-MPFR:K-ROOT
+  - SB-MPFR:CUBIC-ROOT
+  - SB-MPFR:RECIPROCAL-SQRT
+  - [[id:COMMON-LISP:SQRT][SQRT]]
+  - [[id:OBJ/TENSOR:DIV][DIV]]
+  - SB-MPFR:SQUARE
+  - SB-MPFR:MUL
+  - SB-MPFR:SUB
+  - SB-MPFR:ADD
+  - SB-MPFR::MPFR-READER
+  - SB-MPFR:MPFR-FLOAT-TO-STRING
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** <= :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:<=
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+<= names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ACOSH :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ACOSH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ACOSH names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** REMAINDER-QUOT :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:REMAINDER-QUOT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REMAINDER-QUOT names a compiled function:
+  Lambda-list: (X Y &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 64) (SIGNED-BYTE 32)
+                         &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** MPFR-FLOAT :class:
+:PROPERTIES:
+:ID: SB-MPFR:MPFR-FLOAT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPFR-FLOAT names the structure-class #<STRUCTURE-CLASS SB-MPFR:MPFR-FLOAT>:
+  Class precedence-list: SB-MPFR:MPFR-FLOAT, STRUCTURE-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STRUCTURE-OBJECT
+  No subclasses.
+  Slots:
+    SB-MPFR::REF
+      Type: (SB-ALIEN:ALIEN (* (SB-ALIEN:STRUCT SB-MPFR::MPFRFLOAT)))
+      Initform: (MAKE-ALIEN (SB-ALIEN:STRUCT SB-MPFR::MPFRFLOAT))
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** NAN-P :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:NAN-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NAN-P names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** DIV-2-RAISED :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:DIV-2-RAISED
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIV-2-RAISED names a compiled function:
+  Lambda-list: (X Y &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Documentation:
+    Compute X/(2^Y).
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ROUNDED-INT-CEILING :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ROUNDED-INT-CEILING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ROUNDED-INT-CEILING names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** UNDERFLOWP :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:UNDERFLOWP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNDERFLOWP names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** LI2 :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:LI2
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LI2 names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** TAN :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:TAN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TAN names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** = :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:=
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+= names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SET-UNDERFLOW-FLAG :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SET-UNDERFLOW-FLAG
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SET-UNDERFLOW-FLAG names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** MUL :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:MUL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MUL names a compiled function:
+  Lambda-list: (X Y &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T) *)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MPFR:MUL
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** TRUNCATE :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:TRUNCATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TRUNCATE names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ROUNDED-INT :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ROUNDED-INT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ROUNDED-INT names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ROUNDED-INT-TRUNCATE :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ROUNDED-INT-TRUNCATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ROUNDED-INT-TRUNCATE names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** J1 :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:J1
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+J1 names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SET-OVERFLOW-FLAG :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SET-OVERFLOW-FLAG
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SET-OVERFLOW-FLAG names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CLEAR-ERANGE-FLAG :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CLEAR-ERANGE-FLAG
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEAR-ERANGE-FLAG names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ERF :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ERF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ERF names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** LOG1P :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:LOG1P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOG1P names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CLEAR-FLAGS :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CLEAR-FLAGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEAR-FLAGS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SINH-COSH :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SINH-COSH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SINH-COSH names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32)
+                         &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CONST-PI :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CONST-PI
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CONST-PI names a compiled function:
+  Lambda-list: (&OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (&OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** COSH :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:COSH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COSH names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SIN :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SIN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SIN names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** NANFLAG-P :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:NANFLAG-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NANFLAG-P names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** LOG10 :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:LOG10
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOG10 names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** UNORDEREDP :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:UNORDEREDP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNORDEREDP names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ASIN :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ASIN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ASIN names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** HYPOT :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:HYPOT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+HYPOT names a compiled function:
+  Lambda-list: (X Y &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SET-PRECISION :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SET-PRECISION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SET-PRECISION names a compiled function:
+  Lambda-list: (VALUE)
+  Derived type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 63) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** *MPFR-BASE​* :var:
+:PROPERTIES:
+:ID: SB-MPFR:*MPFR-BASE*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*MPFR-BASE* names a special variable:
+  Value: 10
+
+#+end_example
+
+- Referenced by
+  - SB-MPFR::MPFR-READER
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** NUMBERP :compiled:vop:function:
+:PROPERTIES:
+:ID: SB-MPFR:NUMBERP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NUMBERP names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:COMMON-LISP:COERCE][COERCE]]
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SET-NAN-FLAG :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SET-NAN-FLAG
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SET-NAN-FLAG names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ASINH :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ASINH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ASINH names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** Y0 :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:Y0
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+Y0 names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CUBIC-ROOT :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CUBIC-ROOT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CUBIC-ROOT names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** >= :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:>=
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+>= names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** COMPARE-ABS :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:COMPARE-ABS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPARE-ABS names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** /= :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:/=
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+/= names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** EXP :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:EXP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EXP names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** OVERFLOWP :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:OVERFLOWP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OVERFLOWP names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** DIV-BY-ZERO-P :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:DIV-BY-ZERO-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIV-BY-ZERO-P names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** J0 :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:J0
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+J0 names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** FRACTIONAL :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:FRACTIONAL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FRACTIONAL names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CLEAR-OVERFLOW :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CLEAR-OVERFLOW
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEAR-OVERFLOW names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** INFINITYP :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:INFINITYP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+INFINITYP names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** COTH :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:COTH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COTH names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** WITH-PRECISION :compiled:macro:function:
+:PROPERTIES:
+:ID: SB-MPFR:WITH-PRECISION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-PRECISION names a macro:
+  Lambda-list: (VALUE &BODY BODY)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** < :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:<
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+< names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ADD :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ADD
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ADD names a compiled function:
+  Lambda-list: (X Y &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T) *)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MPFR:ADD
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** *MPFR-VERSION​* :var:
+:PROPERTIES:
+:ID: SB-MPFR:*MPFR-VERSION*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*MPFR-VERSION* names a special variable:
+  Value: "4.2.2"
+
+#+end_example
+
+- Set by
+  - SB-MPFR::LOAD-MPFR
+
+- Referenced by
+  - SB-MPFR::LOAD-MPFR
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ROUND :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ROUND
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ROUND names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** COERCE :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:COERCE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COERCE names a compiled function:
+  Lambda-list: (X TYPE &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES (OR REAL NULL SB-MPFR:MPFR-FLOAT) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CEILING :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CEILING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CEILING names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ATAN :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ATAN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ATAN names a compiled function:
+  Lambda-list: (Y &OPTIONAL X (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SUB :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SUB
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SUB names a compiled function:
+  Lambda-list: (X Y &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** POWER :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:POWER
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+POWER names a compiled function:
+  Lambda-list: (X Y &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ROUNDED-INT-FLOOR :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ROUNDED-INT-FLOOR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ROUNDED-INT-FLOOR names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** COT :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:COT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COT names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** Y1 :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:Y1
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+Y1 names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CLEAR-UNDERFLOW :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CLEAR-UNDERFLOW
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEAR-UNDERFLOW names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** TANH :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:TANH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TANH names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** CSCH :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:CSCH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CSCH names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SET-INEX-FLAG :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SET-INEX-FLAG
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SET-INEX-FLAG names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ARITHMETIC-GEOMETRIC-MEAN :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:ARITHMETIC-GEOMETRIC-MEAN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ARITHMETIC-GEOMETRIC-MEAN names a compiled function:
+  Lambda-list: (U V &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** COMPARE :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:COMPARE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPARE names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) *)
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-MPFR:COMPARE
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** INTEGERP :compiled:vop:function:
+:PROPERTIES:
+:ID: SB-MPFR:INTEGERP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+INTEGERP names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** URANDOM :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:URANDOM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+URANDOM names a compiled function:
+  Lambda-list: (STATE &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** ABS :compiled:vop:function:
+:PROPERTIES:
+:ID: SB-MPFR:ABS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ABS names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** AI :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:AI
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+AI names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** +MPFR-PRECISION​+ :var:
+:PROPERTIES:
+:ID: SB-MPFR:+MPFR-PRECISION+
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
++MPFR-PRECISION+ names a special variable:
+  Value: 53
+
+#+end_example
+
+- Set by
+  - SB-MPFR:SET-PRECISION
+  - SB-MPFR::LOAD-MPFR
+
+- Referenced by
+  - [[id:COMMON-LISP:COERCE][COERCE]]
+  - SB-MPFR:REMAINDER-QUOT
+  - SB-MPFR:REMAINDER
+  - SB-MPFR:FMOD
+  - SB-MPFR:MODF
+  - [[id:COMMON-LISP:TRUNCATE][TRUNCATE]]
+  - [[id:COMMON-LISP:ROUND][ROUND]]
+  - [[id:COMMON-LISP:FLOOR][FLOOR]]
+  - [[id:COMMON-LISP:CEILING][CEILING]]
+  - SB-MPFR:FRACTIONAL
+  - SB-MPFR:ROUNDED-INT-TRUNCATE
+  - SB-MPFR:ROUNDED-INT-ROUND
+  - SB-MPFR:ROUNDED-INT-FLOOR
+  - SB-MPFR:ROUNDED-INT-CEILING
+  - SB-MPFR:ROUNDED-INT
+  - SB-MPFR:URANDOM
+  - SB-MPFR:URANDOMB
+  - SB-MPFR:CONST-CATALAN
+  - SB-MPFR:CONST-EULER
+  - SB-MPFR:CONST-PI
+  - SB-MPFR:CONST-LOG2
+  - SB-MPFR:SUM
+  - SB-MPFR:FMS
+  - SB-MPFR:FMA
+  - SB-MPFR:YN
+  - SB-MPFR:JN
+  - SB-MPFR:ZETA
+  - SB-MPFR:FAC
+  - SB-MPFR:HYPOT
+  - SB-MPFR:ARITHMETIC-GEOMETRIC-MEAN
+  - SB-MPFR:SINH-COSH
+  - SB-MPFR:SIN-COS
+  - [[id:COMMON-LISP:ATAN][ATAN]]
+  - SB-MPFR:AI
+  - SB-MPFR:Y1
+  - SB-MPFR:Y0
+  - SB-MPFR:J1
+  - SB-MPFR:J0
+  - SB-MPFR:ERFC
+  - SB-MPFR:ERF
+  - SB-MPFR:DIGAMMA
+  - SB-MPFR:LNGAMMA
+  - SB-MPFR:GAMMA
+  - SB-MPFR:LI2
+  - SB-MPFR:EINT
+  - SB-MPFR:EXPM1
+  - SB-MPFR:LOG1P
+  - [[id:COMMON-LISP:ATANH][ATANH]]
+  - [[id:COMMON-LISP:ASINH][ASINH]]
+  - [[id:COMMON-LISP:ACOSH][ACOSH]]
+  - SB-MPFR:COTH
+  - SB-MPFR:CSCH
+  - SB-MPFR:SECH
+  - [[id:COMMON-LISP:TANH][TANH]]
+  - [[id:COMMON-LISP:SINH][SINH]]
+  - [[id:COMMON-LISP:COSH][COSH]]
+  - [[id:COMMON-LISP:ASIN][ASIN]]
+  - [[id:COMMON-LISP:ACOS][ACOS]]
+  - SB-MPFR:COT
+  - SB-MPFR:CSC
+  - SB-MPFR:SEC
+  - [[id:COMMON-LISP:TAN][TAN]]
+  - [[id:COMMON-LISP:SIN][SIN]]
+  - [[id:COMMON-LISP:COS][COS]]
+  - SB-MPFR:EXP10
+  - SB-MPFR:EXP2
+  - [[id:COMMON-LISP:EXP][EXP]]
+  - SB-MPFR:LOG10
+  - SB-MPFR:LOG2
+  - [[id:COMMON-LISP:LOG][LOG]]
+  - SB-MPFR:DIV-2-RAISED
+  - SB-MPFR:MUL-2-RAISED
+  - SB-MPFR:DIM
+  - [[id:COMMON-LISP:ABS][ABS]]
+  - SB-MPFR:NEGATE
+  - SB-MPFR:POWER
+  - SB-MPFR:K-ROOT
+  - SB-MPFR:CUBIC-ROOT
+  - SB-MPFR:RECIPROCAL-SQRT
+  - [[id:COMMON-LISP:SQRT][SQRT]]
+  - [[id:OBJ/TENSOR:DIV][DIV]]
+  - SB-MPFR:SQUARE
+  - SB-MPFR:MUL
+  - SB-MPFR:SUB
+  - SB-MPFR:ADD
+  - SB-MPFR::MPFR-READER
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SQRT :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SQRT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SQRT names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** EINT :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:EINT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EINT names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:
+** SEC :compiled:function:
+:PROPERTIES:
+:ID: SB-MPFR:SEC
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SEC names a compiled function:
+  Lambda-list: (X &OPTIONAL (ROUND *MPFR-RND*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES SB-MPFR:MPFR-FLOAT (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-MPFR;MPFR.LISP.NEWEST
+:end:

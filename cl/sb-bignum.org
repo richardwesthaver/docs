@@ -17,6 +17,7 @@ private: bignum implementation
   - [[id:SB-KERNEL][SB-KERNEL]]
   - [[id:SB-ROTATE-BYTE][SB-ROTATE-BYTE]]
   - [[id:SB-C][SB-C]]
+  - [[id:SB-GMP][SB-GMP]]
   - [[id:SB-IMPL][SB-IMPL]]
 
 ** BIGNUM-TRUNCATE-SINGLE-DIGIT :compiled:function:
@@ -172,6 +173,11 @@ BIGNUM-LOGBITP names a compiled function:
 
 #+end_example
 
+- Called by
+  - [[id:COMMON-LISP:COERCE][COERCE]]
+  - SB-GMP::MPZ->BIGNUM
+  - SB-GMP::ALLOCATE-BIGNUM
+
 :definitions:
 - SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
   - [[id:SB-C:DEFKNOWN][DEFKNOWN]]
@@ -189,6 +195,16 @@ BIGNUM-LOGBITP names a compiled function:
                   (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
 
 #+end_example
+
+- Called by
+  - [[id:COMMON-LISP:COERCE][COERCE]]
+  - SB-MPFR:COMPARE
+  - SB-MPFR:POWER
+  - [[id:OBJ/TENSOR:DIV][DIV]]
+  - SB-MPFR:MUL
+  - SB-MPFR:SUB
+  - SB-MPFR:ADD
+  - SB-ACLREPL::COMPONENT-AT
 
 :definitions:
 - SYS:SRC;COMPILER;GENERIC;VM-TRAN.LISP
@@ -242,15 +258,14 @@ SXHASH-BIGNUM names a compiled function:
 #+begin_example
 
 BIGNUM-TRUNCATE names a compiled function:
-  Lambda-list: (X Y)
-  Derived type: (FUNCTION (BIGNUM BIGNUM)
-                 (VALUES (OR NULL INTEGER) (OR NULL INTEGER) &OPTIONAL))
-  Source file: SYS:SRC;CODE;BIGNUM.LISP
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (BIGNUM BIGNUM) *)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
 
 #+end_example
 
 :definitions:
-- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
 :end:
 ** BIGNUM-INTEGER-LENGTH :compiled:function:
 :PROPERTIES:
@@ -325,6 +340,9 @@ BIGNUM-PLUS-P names a compiled function:
 
 #+end_example
 
+- Called by
+  - SB-GMP::ALLOCATE-BIGNUM
+
 :definitions:
 - SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
   - [[id:SB-C:DEFKNOWN][DEFKNOWN]]
@@ -378,14 +396,14 @@ BIGNUM-COMPARE names a compiled function:
 #+begin_example
 
 BIGNUM-GCD names a compiled function:
-  Lambda-list: (U0 V0)
-  Derived type: (FUNCTION (BIGNUM BIGNUM) (VALUES (OR NULL INTEGER) &OPTIONAL))
-  Source file: SYS:SRC;CODE;BIGNUM.LISP
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (INTEGER INTEGER) (VALUES INTEGER &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
 
 #+end_example
 
 :definitions:
-- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
 :end:
 ** %MULTIPLY
 :PROPERTIES:
@@ -615,6 +633,16 @@ UNARY-TRUNCATE-DOUBLE-FLOAT-TO-BIGNUM-DIV names a compiled function:
 
 #+end_example
 
+- Called by
+  - [[id:COMMON-LISP:COERCE][COERCE]]
+  - SB-MPFR:COMPARE
+  - SB-MPFR:POWER
+  - [[id:OBJ/TENSOR:DIV][DIV]]
+  - SB-MPFR:MUL
+  - SB-MPFR:SUB
+  - SB-MPFR:ADD
+  - SB-ACLREPL::COMPONENT-AT
+
 :definitions:
 - SYS:SRC;COMPILER;GENERIC;VM-TRAN.LISP
 - SYS:SRC;COMPILER;GENERIC;VM-FNDB.LISP
@@ -635,6 +663,17 @@ UNARY-TRUNCATE-DOUBLE-FLOAT-TO-BIGNUM-DIV names a compiled function:
   Source file: SYS:SRC;CODE;STUBS.LISP
 
 #+end_example
+
+- Called by
+  - [[id:COMMON-LISP:COERCE][COERCE]]
+  - SB-MPFR:COMPARE
+  - SB-MPFR:POWER
+  - [[id:OBJ/TENSOR:DIV][DIV]]
+  - SB-MPFR:MUL
+  - SB-MPFR:SUB
+  - SB-MPFR:ADD
+  - (INSPECTED-PARTS (BIGNUM))
+  - (INSPECTED-DESCRIPTION (BIGNUM))
 
 :definitions:
 - SYS:SRC;CODE;STUBS.LISP
@@ -905,13 +944,13 @@ UNARY-TRUNCATE-DOUBLE-FLOAT-TO-BIGNUM names a compiled function:
 
 MULTIPLY-BIGNUMS names a compiled function:
   Lambda-list: (A B)
-  Derived type: (FUNCTION (BIGNUM BIGNUM) (VALUES (OR NULL INTEGER) &OPTIONAL))
-  Source file: SYS:SRC;CODE;BIGNUM.LISP
+  Derived type: (FUNCTION (BIGNUM BIGNUM) *)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
 
 #+end_example
 
 :definitions:
-- SYS:SRC;CODE;BIGNUM.LISP
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
 :end:
 ** BIGNUM-LOGICAL-XOR :compiled:function:
 :PROPERTIES:
@@ -1038,6 +1077,9 @@ MAXIMUM-BIGNUM-LENGTH names a constant variable:
   Value: 4294967295
 
 #+end_example
+
+- Referenced by
+  - [[id:COMMON-LISP:COERCE][COERCE]]
 
 :definitions:
 - SYS:SRC;COMPILER;GENERIC;EARLY-VM.LISP

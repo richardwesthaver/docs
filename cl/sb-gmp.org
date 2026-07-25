@@ -1,0 +1,777 @@
+#+TITLE: SB-GMP
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* SB-GMP
+:PROPERTIES:
+:ID: SB-GMP
+:END:
+- dependencies
+  - [[id:COMMON-LISP][COMMON-LISP]]
+  - [[id:SB-ALIEN][SB-ALIEN]]
+  - [[id:SB-BIGNUM][SB-BIGNUM]]
+
+** MAKE-GMP-RSTATE-LC :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MAKE-GMP-RSTATE-LC
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-GMP-RSTATE-LC names a compiled function:
+  Lambda-list: (A C M2EXP)
+  Derived type: (FUNCTION (T T T) (VALUES SB-GMP::GMP-RSTATE &OPTIONAL))
+  Documentation:
+    Instantiate a state for the GMP linear congruential random numbergenerator.
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-2FAC :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-2FAC
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-2FAC names a compiled function:
+  Lambda-list: (N)
+  Derived type: (FUNCTION (T) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** RAND-SEED :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:RAND-SEED
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RAND-SEED names a compiled function:
+  Lambda-list: (STATE SEED)
+  Derived type: (FUNCTION (T T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Initialize a random STATE with SEED.
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-DIVISIBLE-P :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-DIVISIBLE-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-DIVISIBLE-P names a compiled function:
+  Lambda-list: (N D)
+  Derived type: (FUNCTION (INTEGER INTEGER) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Returns T if (ZEROP (MOD N D)).
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** RANDOM-INT :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:RANDOM-INT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RANDOM-INT names a compiled function:
+  Lambda-list: (STATE BOUNDARY)
+  Derived type: (FUNCTION (T T) (VALUES INTEGER &OPTIONAL))
+  Documentation:
+    Return a random integer in the range 0..(boundary - 1).
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-FAC :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-FAC
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-FAC names a compiled function:
+  Lambda-list: (N)
+  Derived type: (FUNCTION (T) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-PROBABLY-PRIME-P :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-PROBABLY-PRIME-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-PROBABLY-PRIME-P names a compiled function:
+  Lambda-list: (N &OPTIONAL (REPS 25))
+  Derived type: (FUNCTION (INTEGER &OPTIONAL T)
+                 (VALUES (SIGNED-BYTE 32) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPQ-MUL :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPQ-MUL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPQ-MUL names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (T T) (VALUES RATIONAL &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** LOAD-GMP :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:LOAD-GMP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD-GMP names a compiled function:
+  Lambda-list: (&KEY (PERSISTENTLY T))
+  Derived type: (FUNCTION (&KEY (:PERSISTENTLY T))
+                 (VALUES (OR PATHNAME NULL) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPQ-SUB :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPQ-SUB
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPQ-SUB names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (T T) (VALUES RATIONAL &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-ADD :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-ADD
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-ADD names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (INTEGER INTEGER) (VALUES INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** INSTALL-GMP-FUNS :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:INSTALL-GMP-FUNS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+INSTALL-GMP-FUNS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-GMP:LOAD-GMP
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-FDIV-2EXP :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-FDIV-2EXP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-FDIV-2EXP names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (INTEGER T) (VALUES INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-MUL :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-MUL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-MUL names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (INTEGER INTEGER) (VALUES INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPQ-ADD :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPQ-ADD
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPQ-ADD names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (T T) (VALUES RATIONAL &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-SUB :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-SUB
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-SUB names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (INTEGER INTEGER) (VALUES INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-BIN :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-BIN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-BIN names a compiled function:
+  Lambda-list: (N K)
+  Derived type: (FUNCTION (INTEGER T) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-LCM :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-LCM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-LCM names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (INTEGER INTEGER) (VALUES INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-SQRT :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-SQRT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-SQRT names a compiled function:
+  Lambda-list: (A)
+  Derived type: (FUNCTION (INTEGER) (VALUES INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-MOD :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-MOD
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-MOD names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (INTEGER INTEGER) (VALUES INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** UNLOAD-GMP :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:UNLOAD-GMP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNLOAD-GMP names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MAKE-GMP-RSTATE :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MAKE-GMP-RSTATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-GMP-RSTATE names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES SB-GMP::GMP-RSTATE &OPTIONAL))
+  Documentation:
+    Instantiate a state for the GMP Mersenne-Twister random number generator.
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-POWM :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-POWM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-POWM names a compiled function:
+  Lambda-list: (BASE EXP MOD)
+  Derived type: (FUNCTION (INTEGER INTEGER INTEGER) (VALUES INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-REMOVE :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-REMOVE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-REMOVE names a compiled function:
+  Lambda-list: (N F)
+  Derived type: (FUNCTION (INTEGER INTEGER)
+                 (VALUES (OR NULL INTEGER) (UNSIGNED-BYTE 64) &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-NEXTPRIME :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-NEXTPRIME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-NEXTPRIME names a compiled function:
+  Lambda-list: (A)
+  Derived type: (FUNCTION (INTEGER) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** UNINSTALL-GMP-FUNS :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:UNINSTALL-GMP-FUNS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNINSTALL-GMP-FUNS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-GMP:UNLOAD-GMP
+  - SB-GMP:LOAD-GMP
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-PRIMORIAL :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-PRIMORIAL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-PRIMORIAL names a compiled function:
+  Lambda-list: (N)
+  Derived type: (FUNCTION (T) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** RANDOM-BITCOUNT :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:RANDOM-BITCOUNT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RANDOM-BITCOUNT names a compiled function:
+  Lambda-list: (STATE BITCOUNT)
+  Derived type: (FUNCTION (T T) (VALUES INTEGER &OPTIONAL))
+  Documentation:
+    Return a random integer in the range 0..(2^bitcount - 1).
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-CDIV :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-CDIV
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-CDIV names a compiled function:
+  Lambda-list: (N D)
+  Derived type: (FUNCTION (INTEGER INTEGER) (VALUES INTEGER INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** *GMP-VERSION​* :var:
+:PROPERTIES:
+:ID: SB-GMP:*GMP-VERSION*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*GMP-VERSION* names a special variable:
+  Value: "6.3.0"
+
+#+end_example
+
+- Set by
+  - SB-GMP:LOAD-GMP
+
+- Referenced by
+  - SB-GMP:LOAD-GMP
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-MFAC :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-MFAC
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-MFAC names a compiled function:
+  Lambda-list: (N M)
+  Derived type: (FUNCTION (T T) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-MUL-2EXP :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-MUL-2EXP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-MUL-2EXP names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (INTEGER T) (VALUES INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-GMP::GMP-INTEXP
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-GCD :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-GCD
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-GCD names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (INTEGER INTEGER) (VALUES INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-TDIV :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-TDIV
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-TDIV names a compiled function:
+  Lambda-list: (N D)
+  Derived type: (FUNCTION (INTEGER INTEGER) (VALUES INTEGER INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-POW :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-POW
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-POW names a compiled function:
+  Lambda-list: (BASE EXP)
+  Derived type: (FUNCTION (INTEGER T) (VALUES (OR NULL INTEGER) &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SB-GMP::GMP-INTEXP
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** *GMP-DISABLED​* :var:
+:PROPERTIES:
+:ID: SB-GMP:*GMP-DISABLED*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*GMP-DISABLED* names a special variable:
+  Value: NIL
+
+#+end_example
+
+- Referenced by
+  - SB-GMP::GMP-INTEXP
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPQ-DIV :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPQ-DIV
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPQ-DIV names a compiled function:
+  Lambda-list: (A B)
+  Derived type: (FUNCTION (T T) (VALUES RATIONAL &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-FIB2 :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-FIB2
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-FIB2 names a compiled function:
+  Lambda-list: (N)
+  Derived type: (FUNCTION (T)
+                 (VALUES (OR NULL INTEGER) (OR NULL INTEGER) &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:
+** MPZ-FDIV :compiled:function:
+:PROPERTIES:
+:ID: SB-GMP:MPZ-FDIV
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MPZ-FDIV names a compiled function:
+  Lambda-list: (N D)
+  Derived type: (FUNCTION (INTEGER INTEGER) (VALUES INTEGER INTEGER &OPTIONAL))
+  Inline proclamation: MAYBE-INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;SB-GMP;GMP.LISP.NEWEST
+:end:

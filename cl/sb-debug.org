@@ -44,11 +44,13 @@ stuff like SB-DEBUG::*TRACED-FUNS*.
 #+end_example
 
 - Bound by
+  - SB-ACLREPL::DEBUG-LOOP
   - (CALL-WITH-DEBUGGER-HOOK IN /home/ellis/src/core/lib/swank/sbcl.lisp)
   - (CALL-WITH-DEBUGGING-ENVIRONMENT IN
                                      /home/ellis/src/core/lib/swank/sbcl.lisp)
 
 - Referenced by
+  - SB-ACLREPL::DEBUG-LOOP
   - (CALL-WITH-DEBUGGING-ENVIRONMENT IN
                                      /home/ellis/src/core/lib/swank/sbcl.lisp)
 
@@ -149,7 +151,7 @@ ARG names a compiled function:
             3445) The debug prompt is square brackets, with number(s)indicating the current
   control stack level and, if you've entered the debugger recursively, how
   deeply recursed you are.
-Any command -- includin... {11FF3CFB0F}>
+Any command -- includin... {11FF3C972F}>
 
 #+end_example
 
@@ -224,6 +226,7 @@ PRINT-BACKTRACE names a compiled function:
 #+end_example
 
 - Called by
+  - SB-ACLREPL::BT-CMD
   - UIOP/IMAGE:RAW-PRINT-BACKTRACE
   - [[id:LOG:FATAL!][FATAL!]]
   - [[id:LOG:ERROR!][ERROR!]]
@@ -422,6 +425,9 @@ BACKTRACE-AS-LIST names a compiled function:
 
 #+end_example
 
+- Referenced by
+  - SB-ACLREPL::DEBUG-LOOP
+
 :definitions:
 - SYS:SRC;CODE;DEBUG.LISP
 :end:
@@ -548,7 +554,7 @@ UNWIND-TO-FRAME-AND-CALL names a compiled function:
 #+begin_example
 
 *DEBUG-READTABLE* names a special variable:
-  Value: #<READTABLE {12000560C3}>
+  Value: #<READTABLE {1200055FA3}>
   Documentation:
     *READTABLE* for the debugger
 

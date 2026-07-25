@@ -12,6 +12,7 @@ public: miscellaneous supported extensions to the ANSI Lisp spec
   - [[id:COMMON-LISP][COMMON-LISP]]
 
 - dependents
+  - [[id:SB-ACLREPL][SB-ACLREPL]]
   - [[id:SB-SPROF][SB-SPROF]]
   - [[id:SB-EVAL][SB-EVAL]]
   - [[id:SB-DEBUG][SB-DEBUG]]
@@ -1172,6 +1173,7 @@ WEAK-POINTER-VALUE names a compiled function:
   - SB-INTROSPECT::COLLECT-XREF
   - OBJ/CACHE::MAP-CACHE
   - [[id:OBJ/CACHE:GET-CACHE][GET-CACHE]]
+  - (UPGRADE-ALL-MEMORY-INSTANCES (STORE))
   - (EMACS-INSPECT (WEAK-POINTER))
   - [[id:STD/COMP:DEEP-SIZE][DEEP-SIZE]]
 
@@ -1196,6 +1198,8 @@ WITHOUT-PACKAGE-LOCKS names a macro:
 #+end_example
 
 - Macroexpanded by
+  - SB-GMP:UNINSTALL-GMP-FUNS
+  - SB-GMP:INSTALL-GMP-FUNS
   - SB-SPROF::ENABLE-CALL-COUNTING-FOR-FUNCTION
   - SB-SPROF::DISABLE-CALL-COUNTING
   - SWANK::MONKEY-PATCH-STREAM-PRINTING
@@ -2347,8 +2351,8 @@ HEAP-ALLOCATED-P names a compiled function:
 *SAVE-HOOKS* names a global variable:
   Declared type: LIST
   Declared always-bound.
-  Value: (SWANK/BACKEND:DEINIT-LOG-OUTPUT EXIT-THREAD-POOLS
-                                          STD/THREAD::EXIT-WORKERS)
+  Value: (SB-GMP:UNINSTALL-GMP-FUNS SWANK/BACKEND:DEINIT-LOG-OUTPUT
+                                    EXIT-THREAD-POOLS STD/THREAD::EXIT-WORKERS)
   Documentation:
     A list of function designators which are called in an unspecified
     order before creating a saved core image.
@@ -2356,6 +2360,14 @@ HEAP-ALLOCATED-P names a compiled function:
     Unused by SBCL itself: reserved for user and applications.
 
 #+end_example
+
+- Set by
+  - SB-GMP:UNLOAD-GMP
+  - SB-GMP:LOAD-GMP
+
+- Referenced by
+  - SB-GMP:UNLOAD-GMP
+  - SB-GMP:LOAD-GMP
 
 :definitions:
 - SYS:SRC;CODE;TARGET-EXTENSIONS.LISP
@@ -3021,6 +3033,7 @@ NATIVE-NAMESTRING names a compiled function:
 - Referenced by
   - SWANK::%%CONDITION-MESSAGE
   - SWANK:EVAL-FOR-EMACS
+  - [[id:STD/PRINT:PRINTER-STATUS][PRINTER-STATUS]]
 
 :definitions:
 - SYS:SRC;CODE;PRINT.LISP
@@ -3699,6 +3712,8 @@ EXIT names the structure-class #<STRUCTURE-CLASS SB-EXT:EXIT>:
 #+end_example
 
 - Called by
+  - SB-ACLREPL::PROCESS-CMD
+  - SB-ACLREPL::EXIT-CMD
   - [[id:SB-EXT:QUIT][QUIT]]
   - SKEL/CLI::START-SKEL
   - SKEL/MPK/CLI::START-MPK
@@ -5005,7 +5020,7 @@ GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
 
 *GC-REAL-TIME* names a special variable:
   Declared type: (UNSIGNED-BYTE 44)
-  Value: 8429999
+  Value: 10350998
   Documentation:
     Total real time spent doing garbage collection (as reported by
     GET-INTERNAL-REAL-TIME.) Initialized to zero on startup.
@@ -5026,7 +5041,8 @@ GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
 *INIT-HOOKS* names a global variable:
   Declared type: LIST
   Declared always-bound.
-  Value: (SB-SIMD-INTERNALS::UPDATE-IDISPATCH-INDICES)
+  Value: (SB-MPFR::LOAD-MPFR SB-GMP:LOAD-GMP
+                             SB-SIMD-INTERNALS::UPDATE-IDISPATCH-INDICES)
   Documentation:
     A list of function designators which are called in an unspecified
     order when a saved core image starts up, after the system itself has
@@ -5036,6 +5052,16 @@ GENERATION-MINIMUM-AGE-BEFORE-GC names a compiled function:
     Unused by SBCL itself: reserved for user and applications.
 
 #+end_example
+
+- Set by
+  - SB-MPFR::LOAD-MPFR
+  - SB-GMP:UNLOAD-GMP
+  - SB-GMP:LOAD-GMP
+
+- Referenced by
+  - SB-MPFR::LOAD-MPFR
+  - SB-GMP:UNLOAD-GMP
+  - SB-GMP:LOAD-GMP
 
 :definitions:
 - SYS:SRC;CODE;TARGET-EXTENSIONS.LISP
@@ -5369,7 +5395,7 @@ SIMD-PACK-P names a compiled function:
 
 *GC-RUN-TIME* names a special variable:
   Declared type: (UNSIGNED-BYTE 44)
-  Value: 8398086
+  Value: 10314502
   Documentation:
     Total CPU time spent doing garbage collection (as reported by
     GET-INTERNAL-RUN-TIME.) Initialized to zero on startup. It is safe to bind
@@ -5642,6 +5668,7 @@ RUN-PROGRAM names a compiled function:
 #+end_example
 
 - Called by
+  - SB-ACLREPL::SHELL-CMD
   - (PERFORM (COMPILE-OP GROVEL-CONSTANTS-FILE))
   - SB-GROVEL::RUN-C-COMPILER
   - UIOP/LAUNCH-PROGRAM:LAUNCH-PROGRAM
@@ -6486,6 +6513,9 @@ INTERACTIVE-EVAL names a compiled function:
   Source file: SYS:SRC;CODE;TOPLEVEL.LISP
 
 #+end_example
+
+- Called by
+  - SB-ACLREPL::REP-ONE
 
 :definitions:
 - SYS:SRC;CODE;TOPLEVEL.LISP

@@ -79,6 +79,7 @@ TOP-FRAME names a compiled function:
 #+end_example
 
 - Called by
+  - SB-ACLREPL::DEBUG-LOOP
   - RT/FLAMEGRAPH::PRINT-GRAPH
   - (CALL-WITH-DEBUGGING-ENVIRONMENT IN
                                      /home/ellis/src/core/lib/swank/sbcl.lisp)
@@ -108,6 +109,9 @@ FRAME-NUMBER names a compiled function:
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
 
 #+end_example
+
+- Called by
+  - SB-ACLREPL::REPL-PROMPT-FUN
 
 :definitions:
 - SYS:SRC;CODE;DEBUG-INT.LISP
@@ -253,6 +257,7 @@ FRAME-DOWN names a compiled function:
 #+end_example
 
 - Called by
+  - SB-ACLREPL::DN-CMD
   - (COMPUTE-BACKTRACE IN /home/ellis/src/core/lib/swank/sbcl.lisp)
   - SWANK/SBCL::NTH-FRAME
 
@@ -1212,6 +1217,9 @@ FRAME-UP names a compiled function:
   Source file: SYS:SRC;CODE;DEBUG-INT.LISP
 
 #+end_example
+
+- Called by
+  - SB-ACLREPL::UP-CMD
 
 :definitions:
 - SYS:SRC;CODE;DEBUG-INT.LISP

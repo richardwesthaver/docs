@@ -609,6 +609,9 @@ GET-FOREGROUND names a compiled function:
 
 #+end_example
 
+- Called by
+  - SB-ACLREPL::REPL-PROMPT-FUN
+
 :definitions:
 - SYS:SRC;CODE;TARGET-THREAD.LISP
 :end:
@@ -1303,6 +1306,7 @@ THREAD-NAME names a compiled function:
 #+end_example
 
 - Called by
+  - SB-ACLREPL::KILL-CMD
   - RT/TRACING::JSON-FROM-THREAD
   - (NAME (MULTI-THREADED-ENGINE))
   - (THREAD-NAME IN /home/ellis/src/core/lib/swank/sbcl.lisp)
@@ -1435,13 +1439,15 @@ FOREIGN-THREAD names the structure-class #<STRUCTURE-CLASS SB-THREAD:FOREIGN-THR
 *CURRENT-THREAD* names a special variable:
   Declared type: SB-THREAD:THREAD
   Declared always-bound.
-  Value: #<THREAD tid=105639 "main thread" RUNNING {1200048003}>
+  Value: #<THREAD tid=337521 "main thread" RUNNING {1200048003}>
   Documentation:
     Bound in each thread to the thread itself.
 
 #+end_example
 
 - Referenced by
+  - SB-ACLREPL::PROCESSES-CMD
+  - SB-ACLREPL::OTHER-THREADS
   - SB-INTROSPECT:MAP-ROOT
   - SB-SPROF:STOP-SAMPLING
   - SB-SPROF:START-SAMPLING
@@ -1562,6 +1568,9 @@ RELEASE-FOREGROUND names a compiled function:
   Source file: SYS:SRC;CODE;TARGET-THREAD.LISP
 
 #+end_example
+
+- Called by
+  - SB-ACLREPL::FOCUS-CMD
 
 :definitions:
 - SYS:SRC;CODE;TARGET-THREAD.LISP
@@ -1874,6 +1883,8 @@ TERMINATE-THREAD names a compiled function:
 #+end_example
 
 - Called by
+  - SB-ACLREPL::KILL-CMD
+  - SB-ACLREPL::EXIT-CMD
   - (STOP (LOGGER))
   - (KILL-THREAD IN /home/ellis/src/core/lib/swank/sbcl.lisp)
   - STD/THREAD::FILL-WORKERS
@@ -2428,6 +2439,7 @@ LIST-ALL-THREADS names a compiled function:
 #+end_example
 
 - Called by
+  - SB-ACLREPL::ALL-THREADS
   - SB-INTROSPECT:MAP-ROOT
   - (ALL-THREADS IN /home/ellis/src/core/lib/swank/sbcl.lisp)
   - (FIND-THREAD IN /home/ellis/src/core/lib/swank/sbcl.lisp)
