@@ -1,0 +1,389 @@
+#+TITLE: UIOP/RUN-PROGRAM
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/RUN-PROGRAM
+:PROPERTIES:
+:ID: UIOP/RUN-PROGRAM
+:AKA: ASDF/RUN-PROGRAM
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/PACKAGE][UIOP/PACKAGE]]
+  - [[id:UIOP/UTILITY][UIOP/UTILITY]]
+  - [[id:UIOP/VERSION][UIOP/VERSION]]
+  - [[id:UIOP/PATHNAME][UIOP/PATHNAME]]
+  - [[id:UIOP/OS][UIOP/OS]]
+  - [[id:UIOP/FILESYSTEM][UIOP/FILESYSTEM]]
+  - [[id:UIOP/STREAM][UIOP/STREAM]]
+  - [[id:UIOP/LAUNCH-PROGRAM][UIOP/LAUNCH-PROGRAM]]
+
+- dependents
+  - [[id:UIOP/BACKWARD-DRIVER][UIOP/BACKWARD-DRIVER]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** SUBPROCESS-ERROR :condition:class:
+:PROPERTIES:
+:ID: UIOP/RUN-PROGRAM:SUBPROCESS-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SUBPROCESS-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/RUN-PROGRAM:SUBPROCESS-ERROR>:
+  Class precedence-list: UIOP/RUN-PROGRAM:SUBPROCESS-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ERROR
+  No subclasses.
+  Direct slots:
+    UIOP/RUN-PROGRAM::CODE
+      Initargs: :CODE
+      Initform: 'NIL
+      Readers: UIOP/RUN-PROGRAM:SUBPROCESS-ERROR-CODE
+    UIOP/RUN-PROGRAM::COMMAND
+      Initargs: :COMMAND
+      Initform: 'NIL
+      Readers: UIOP/RUN-PROGRAM:SUBPROCESS-ERROR-COMMAND
+    UIOP/RUN-PROGRAM::PROCESS
+      Initargs: :PROCESS
+      Initform: 'NIL
+      Readers: UIOP/RUN-PROGRAM:SUBPROCESS-ERROR-PROCESS
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SUBPROCESS-ERROR-COMMAND :generic:function:
+:PROPERTIES:
+:ID: UIOP/RUN-PROGRAM:SUBPROCESS-ERROR-COMMAND
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SUBPROCESS-ERROR-COMMAND names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SUBPROCESS-ERROR-COMMAND (SUBPROCESS-ERROR))
+
+#+end_example
+
+- Called by
+  - (SUBPROCESS-ERROR)
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - UIOP/RUN-PROGRAM:SUBPROCESS-ERROR
+:end:
+** VOMIT-OUTPUT-STREAM :generic:function:
+:PROPERTIES:
+:ID: UIOP/RUN-PROGRAM:VOMIT-OUTPUT-STREAM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VOMIT-OUTPUT-STREAM names a generic function:
+  Lambda-list: (PROCESSOR OUTPUT-STREAM &KEY)
+  Argument precedence order: (PROCESSOR OUTPUT-STREAM)
+  Derived type: (FUNCTION
+                 (T T &KEY (:LINEWISE T) (:PREFIX T) (:ELEMENT-TYPE T)
+                  (:BUFFER-SIZE T) (:EXTERNAL-FORMAT T) (:IF-EXISTS T)
+                  (:IF-DOES-NOT-EXIST T) (:FRESH-LINE T) (:TERPRI T)
+                  &ALLOW-OTHER-KEYS)
+                 *)
+  Documentation:
+    VOMIT-OUTPUT-STREAM is a generic function with two positional arguments
+    PROCESSOR and OUTPUT-STREAM and additional keyword arguments, that produces(vomits)
+    some content onto the OUTPUT-STREAM, according to a method specified byPROCESSOR.
+    
+    Built-in methods include the following:
+    * if PROCESSOR is a function, it is called with the OUTPUT-STREAM as itsargument
+    * if PROCESSOR is a list, its first element should be a function.
+      It will be applied to a cons of the OUTPUT-STREAM and the rest of thelist.
+      That is (x . y) will be treated as (APPLY x <stream> y)
+    * if PROCESSOR is an input-stream, its contents will be copied the OUTPUT-STREAM,
+      per copy-stream-to-stream, with appropriate keyword arguments.
+    * if PROCESSOR is a string, its contents will be printed to the OUTPUT-STREAM.
+    * if PROCESSOR is T, it is treated the same as *standard-input*. If it isNIL, nothing is done.
+    
+    Programmers are encouraged to define their own methods for this genericfunction.
+  Method-combination: STANDARD
+  Methods:
+    (VOMIT-OUTPUT-STREAM (T T))
+    (VOMIT-OUTPUT-STREAM (PATHNAME T))
+    (VOMIT-OUTPUT-STREAM (NULL T))
+    (VOMIT-OUTPUT-STREAM ((EQL T) T))
+    (VOMIT-OUTPUT-STREAM (STRING T))
+    (VOMIT-OUTPUT-STREAM (STREAM T))
+    (VOMIT-OUTPUT-STREAM (CONS T))
+    (VOMIT-OUTPUT-STREAM (FUNCTION T))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (VOMIT-OUTPUT-STREAM ((EQL T) T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - (EQL T)
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - NULL
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - [[id:COMMON-LISP:CONS][CONS]]
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - [[id:COMMON-LISP:STREAM][STREAM]]
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - [[id:COMMON-LISP:PATHNAME][PATHNAME]]
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - [[id:COMMON-LISP:FUNCTION][FUNCTION]]
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - (PROCESSOR OUTPUT-STREAM &KEY)
+:end:
+** SLURP-INPUT-STREAM :generic:function:
+:PROPERTIES:
+:ID: UIOP/RUN-PROGRAM:SLURP-INPUT-STREAM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SLURP-INPUT-STREAM names a generic function:
+  Lambda-list: (PROCESSOR INPUT-STREAM &KEY)
+  Argument precedence order: (PROCESSOR INPUT-STREAM)
+  Derived type: (FUNCTION
+                 (T T &KEY (:LINEWISE T) (:PREFIX T) (:ELEMENT-TYPE T)
+                  (:BUFFER-SIZE T) (:EXTERNAL-FORMAT T) (:IF-EXISTS T)
+                  (:IF-DOES-NOT-EXIST T) (:AT T) (:COUNT T) (:STRIPPED T)
+                  &ALLOW-OTHER-KEYS)
+                 *)
+  Documentation:
+    SLURP-INPUT-STREAM is a generic function with two positional arguments
+    PROCESSOR and INPUT-STREAM and additional keyword arguments, that consumes(slurps)
+    the contents of the INPUT-STREAM and processes them according to a method
+    specified by PROCESSOR.
+    
+    Built-in methods include the following:
+    * if PROCESSOR is a function, it is called with the INPUT-STREAM as itsargument
+    * if PROCESSOR is a list, its first element should be a function.  It willbe applied to a cons of the
+      INPUT-STREAM and the rest of the list.  That is (x . y) will be treatedas
+        (APPLY x <stream> y)
+    * if PROCESSOR is an output-stream, the contents of INPUT-STREAM is copiedto the output-stream,
+      per copy-stream-to-stream, with appropriate keyword arguments.
+    * if PROCESSOR is the symbol CL:STRING or the keyword :STRING, then thecontents of INPUT-STREAM
+      are returned as a string, as per SLURP-STREAM-STRING.
+    * if PROCESSOR is the keyword :LINES then the INPUT-STREAM will be handledby SLURP-STREAM-LINES.
+    * if PROCESSOR is the keyword :LINE then the INPUT-STREAM will be handledby SLURP-STREAM-LINE.
+    * if PROCESSOR is the keyword :FORMS then the INPUT-STREAM will be handledby SLURP-STREAM-FORMS.
+    * if PROCESSOR is the keyword :FORM then the INPUT-STREAM will be handledby SLURP-STREAM-FORM.
+    * if PROCESSOR is T, it is treated the same as *standard-output*. If it isNIL, NIL is returned.
+    
+    Programmers are encouraged to define their own methods for this genericfunction.
+  Method-combination: STANDARD
+  Methods:
+    (SLURP-INPUT-STREAM (T T))
+    (SLURP-INPUT-STREAM (PATHNAME T))
+    (SLURP-INPUT-STREAM (NULL T))
+    (SLURP-INPUT-STREAM ((EQL T) T))
+    (SLURP-INPUT-STREAM ((EQL FORM) T))
+    (SLURP-INPUT-STREAM ((EQL FORMS) T))
+    (SLURP-INPUT-STREAM ((EQL LINE) T))
+    (SLURP-INPUT-STREAM ((EQL LINES) T))
+    (SLURP-INPUT-STREAM ((EQL STRING) T))
+    (SLURP-INPUT-STREAM ((EQL STRING) T))
+    (SLURP-INPUT-STREAM (STREAM T))
+    (SLURP-INPUT-STREAM (CONS T))
+    (SLURP-INPUT-STREAM (FUNCTION T))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (SLURP-INPUT-STREAM ((EQL T) T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - (EQL T)
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - (EQL FORM)
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - (EQL FORMS)
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - (EQL LINE)
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - (EQL LINES)
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - (EQL STRING)
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - (EQL STRING)
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - NULL
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - [[id:COMMON-LISP:CONS][CONS]]
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - [[id:COMMON-LISP:STREAM][STREAM]]
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - [[id:COMMON-LISP:PATHNAME][PATHNAME]]
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - [[id:COMMON-LISP:FUNCTION][FUNCTION]]
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - (PROCESSOR INPUT-STREAM &KEY)
+:end:
+** RUN-PROGRAM :compiled:function:
+:PROPERTIES:
+:ID: UIOP/RUN-PROGRAM:RUN-PROGRAM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RUN-PROGRAM names a compiled function:
+  Lambda-list: (COMMAND &REST KEYS &KEY IGNORE-ERROR-STATUS
+                (FORCE-SHELL NIL FORCE-SHELL-SUPPLIEDP) INPUT
+                (IF-INPUT-DOES-NOT-EXIST ERROR) OUTPUT
+                (IF-OUTPUT-EXISTS SUPERSEDE) ERROR-OUTPUT
+                (IF-ERROR-OUTPUT-EXISTS SUPERSEDE)
+                (ELEMENT-TYPE *DEFAULT-STREAM-ELEMENT-TYPE*)
+                (EXTERNAL-FORMAT *UTF-8-EXTERNAL-FORMAT*) &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION
+                 (T &REST T &KEY (:IGNORE-ERROR-STATUS T) (:FORCE-SHELL T)
+                  (:INPUT T) (:IF-INPUT-DOES-NOT-EXIST T) (:OUTPUT T)
+                  (:IF-OUTPUT-EXISTS T) (:ERROR-OUTPUT T)
+                  (:IF-ERROR-OUTPUT-EXISTS T) (:ELEMENT-TYPE T)
+                  (:EXTERNAL-FORMAT T) &ALLOW-OTHER-KEYS)
+                 *)
+  Documentation:
+    Run program specified by COMMAND,
+    either a list of strings specifying a program and list of arguments,
+    or a string specifying a shell command (/bin/sh on Unix, CMD.EXE onWindows);
+    _synchronously_ process its output as specified and return the processingresults
+    when the program and its output processing are complete.
+    
+    Always call a shell (rather than directly execute the command whenpossible)
+    if FORCE-SHELL is specified.  Similarly, never call a shell if FORCE-SHELLis
+    specified to be NIL.
+    
+    Signal a continuable SUBPROCESS-ERROR if the process wasn't successful(exit-code 0),
+    unless IGNORE-ERROR-STATUS is specified.
+    
+    If OUTPUT is a pathname, a string designating a pathname, or NIL (thedefault)
+    designating the null device, the file at that path is used as output.
+    If it's :INTERACTIVE, output is inherited from the current process;
+    beware that this may be different from your *STANDARD-OUTPUT*,
+    and under SLIME will be on your *inferior-lisp* buffer.
+    If it's T, output goes to your current *STANDARD-OUTPUT* stream.
+    Otherwise, OUTPUT should be a value that is a suitable first argument to
+    SLURP-INPUT-STREAM (qv.), or a list of such a value and keyword arguments.
+    In this case, RUN-PROGRAM will create a temporary stream for the programoutput;
+    the program output, in that stream, will be processed by a call to SLURP-INPUT-STREAM,
+    using OUTPUT as the first argument (or the first element of OUTPUT, and therest as keywords).
+    The primary value resulting from that call (or NIL if no call was needed)
+    will be the first value returned by RUN-PROGRAM.
+    E.g., using :OUTPUT :STRING will have it return the entire output stream asa string.
+    And using :OUTPUT '(:STRING :STRIPPED T) will have it return the samestring
+    stripped of any ending newline.
+    
+    IF-OUTPUT-EXISTS, which is only meaningful if OUTPUT is a string or a
+    pathname, can take the values :ERROR, :APPEND, and :SUPERSEDE (the
+    default). The meaning of these values and their effect on the case
+    where OUTPUT does not exist, is analogous to the IF-EXISTS parameter
+    to OPEN with :DIRECTION :OUTPUT.
+    
+    ERROR-OUTPUT is similar to OUTPUT, except that the resulting value isreturned
+    as the second value of RUN-PROGRAM. T designates the *ERROR-OUTPUT*.
+    Also :OUTPUT means redirecting the error output to the output stream,
+    in which case NIL is returned.
+    
+    IF-ERROR-OUTPUT-EXISTS is similar to IF-OUTPUT-EXIST, except that it
+    affects ERROR-OUTPUT rather than OUTPUT.
+    
+    INPUT is similar to OUTPUT, except that VOMIT-OUTPUT-STREAM is used,
+    no value is returned, and T designates the *STANDARD-INPUT*.
+    
+    IF-INPUT-DOES-NOT-EXIST, which is only meaningful if INPUT is a string
+    or a pathname, can take the values :CREATE and :ERROR (the
+    default). The meaning of these values is analogous to the
+    IF-DOES-NOT-EXIST parameter to OPEN with :DIRECTION :INPUT.
+    
+    ELEMENT-TYPE and EXTERNAL-FORMAT are passed on
+    to your Lisp implementation, when applicable, for creation of the outputstream.
+    
+    One and only one of the stream slurping or vomiting may or may not happen
+    in parallel in parallel with the subprocess,
+    depending on options and implementation,
+    and with priority being given to output processing.
+    Other streams are completely produced or consumed
+    before or after the subprocess is spawned, using temporary files.
+    
+    RUN-PROGRAM returns 3 values:
+    0- the result of the OUTPUT slurping if any, or NIL
+    1- the result of the ERROR-OUTPUT slurping if any, or NIL
+    2- either 0 if the subprocess exited with success status,
+    or an indication of failure via the EXIT-CODE of the process
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/BACKWARD-INTERFACE:RUN-SHELL-COMMAND
+  - DAT/MIME::MIME-PROBE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SUBPROCESS-ERROR-CODE :generic:function:
+:PROPERTIES:
+:ID: UIOP/RUN-PROGRAM:SUBPROCESS-ERROR-CODE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SUBPROCESS-ERROR-CODE names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SUBPROCESS-ERROR-CODE (SUBPROCESS-ERROR))
+
+#+end_example
+
+- Called by
+  - (SUBPROCESS-ERROR)
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - UIOP/RUN-PROGRAM:SUBPROCESS-ERROR
+:end:
+** SUBPROCESS-ERROR-PROCESS :generic:function:
+:PROPERTIES:
+:ID: UIOP/RUN-PROGRAM:SUBPROCESS-ERROR-PROCESS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SUBPROCESS-ERROR-PROCESS names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SUBPROCESS-ERROR-PROCESS (SUBPROCESS-ERROR))
+
+#+end_example
+
+- Called by
+  - (SUBPROCESS-ERROR)
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - UIOP/RUN-PROGRAM:SUBPROCESS-ERROR
+:end:

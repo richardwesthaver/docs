@@ -1,0 +1,1784 @@
+#+TITLE: UIOP/STREAM
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/STREAM
+:PROPERTIES:
+:ID: UIOP/STREAM
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/PACKAGE][UIOP/PACKAGE]]
+  - [[id:UIOP/UTILITY][UIOP/UTILITY]]
+  - [[id:UIOP/OS][UIOP/OS]]
+  - [[id:UIOP/PATHNAME][UIOP/PATHNAME]]
+  - [[id:UIOP/FILESYSTEM][UIOP/FILESYSTEM]]
+
+- dependents
+  - [[id:UIOP/IMAGE][UIOP/IMAGE]]
+  - [[id:UIOP/LAUNCH-PROGRAM][UIOP/LAUNCH-PROGRAM]]
+  - [[id:UIOP/CONFIGURATION][UIOP/CONFIGURATION]]
+  - [[id:UIOP/BACKWARD-DRIVER][UIOP/BACKWARD-DRIVER]]
+  - [[id:UIOP/RUN-PROGRAM][UIOP/RUN-PROGRAM]]
+  - [[id:UIOP/LISP-BUILD][UIOP/LISP-BUILD]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** READ-FILE-STRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:READ-FILE-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+READ-FILE-STRING names a compiled function:
+  Lambda-list: (FILE &REST KEYS)
+  Derived type: (FUNCTION (T &REST T) *)
+  Documentation:
+    Open FILE with option KEYS, read its contents as a string
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FORMAT! :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:FORMAT!
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FORMAT! names a compiled function:
+  Lambda-list: (STREAM FORMAT &REST ARGS)
+  Derived type: (FUNCTION (T T &REST T) *)
+  Documentation:
+    Just like format, but call finish-outputs before and after the output.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:DIE
+  - UIOP/STREAM:SAFE-FORMAT!
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *STDOUT​* :var:
+:PROPERTIES:
+:ID: UIOP/STREAM:*STDOUT*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*STDOUT* names a special variable:
+  Value: #<SB-SYS:FD-STREAM for "standard output" {1200C33573}>
+  Documentation:
+    the original standard output stream at startup
+
+#+end_example
+
+- Set by
+  - UIOP/STREAM:SETUP-STDOUT
+
+- Referenced by
+  - UIOP/STREAM:FINISH-OUTPUTS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COPY-FILE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:COPY-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COPY-FILE names a compiled function:
+  Lambda-list: (INPUT OUTPUT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Copy contents of the INPUT file to the OUTPUT file
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-SAFE-IO-SYNTAX :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:CALL-WITH-SAFE-IO-SYNTAX
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-SAFE-IO-SYNTAX names a compiled function:
+  Lambda-list: (THUNK &KEY (PACKAGE CL))
+  Derived type: (FUNCTION (T &KEY (:PACKAGE T)) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/COMP:CHECK-DEFERRED-WARNINGS][CHECK-DEFERRED-WARNINGS]]
+  - [[id:STD/COMP:SAVE-DEFERRED-WARNINGS][SAVE-DEFERRED-WARNINGS]]
+  - [[id:SB-DEBUG:PRINT-BACKTRACE][PRINT-BACKTRACE]]
+  - UIOP/IMAGE:DIE
+  - UIOP/STREAM:STANDARD-EVAL-THUNK
+  - UIOP/STREAM:SAFE-READ-FILE-FORM
+  - UIOP/STREAM:SAFE-READ-FILE-LINE
+  - UIOP/STREAM:SAFE-FORMAT!
+  - [[id:STD/PRIM:SAFE-READ-FROM-STRING][SAFE-READ-FROM-STRING]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-OUTPUT-FILE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:CALL-WITH-OUTPUT-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-OUTPUT-FILE names a compiled function:
+  Lambda-list: (PATHNAME THUNK &KEY
+                         (ELEMENT-TYPE *DEFAULT-STREAM-ELEMENT-TYPE*)
+                         (EXTERNAL-FORMAT *UTF-8-EXTERNAL-FORMAT*)
+                         (IF-EXISTS ERROR) (IF-DOES-NOT-EXIST CREATE))
+  Derived type: (FUNCTION
+                 (T T &KEY (:ELEMENT-TYPE T) (:EXTERNAL-FORMAT T)
+                  (:IF-EXISTS T) (:IF-DOES-NOT-EXIST T))
+                 *)
+  Documentation:
+    Open FILE for input with given recognizes options, call THUNK with theresulting stream.
+    Other keys are accepted but discarded.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/RUN-PROGRAM::%CALL-WITH-PROGRAM-IO
+  - (VOMIT-OUTPUT-STREAM (PATHNAME T))
+  - (SLURP-INPUT-STREAM (PATHNAME T))
+  - UIOP/STREAM:CALL-WITH-NULL-OUTPUT
+  - UIOP/STREAM::CALL-WITH-OUTPUT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-INPUT :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:WITH-INPUT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-INPUT names a macro:
+  Lambda-list: ((INPUT-VAR &OPTIONAL (VALUE INPUT-VAR)) &BODY BODY)
+  Documentation:
+    Bind INPUT-VAR to an input stream, coercing VALUE (default: previousbinding of INPUT-VAR)
+    as per CALL-WITH-INPUT, and evaluate BODY within the scope of this binding.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - UIOP/STREAM:EVAL-INPUT
+  - UIOP/STREAM:INPUT-STRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** NULL-DEVICE-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:NULL-DEVICE-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NULL-DEVICE-PATHNAME names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES PATHNAME &OPTIONAL))
+  Documentation:
+    Pathname to a bit bucket device that discards any information written to it
+    and always returns EOF when read from
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/RUN-PROGRAM::%REDIRECTED-SYSTEM-COMMAND
+  - UIOP/STREAM:CALL-WITH-NULL-OUTPUT
+  - UIOP/STREAM:CALL-WITH-NULL-INPUT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-TEMPORARY-FILE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:CALL-WITH-TEMPORARY-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-TEMPORARY-FILE names a compiled function:
+  Lambda-list: (THUNK &KEY (WANT-STREAM-P T) (WANT-PATHNAME-P T) (DIRECTION IO)
+                KEEP AFTER DIRECTORY (TYPE tmp TYPEP) PREFIX
+                (SUFFIX (WHEN TYPEP -tmp))
+                (ELEMENT-TYPE *DEFAULT-STREAM-ELEMENT-TYPE*)
+                (EXTERNAL-FORMAT *UTF-8-EXTERNAL-FORMAT*))
+  Derived type: (FUNCTION
+                 (T &KEY (:WANT-STREAM-P T) (:WANT-PATHNAME-P T) (:DIRECTION T)
+                  (:KEEP T) (:AFTER T) (:DIRECTORY T) (:TYPE T) (:PREFIX T)
+                  (:SUFFIX T) (:ELEMENT-TYPE T) (:EXTERNAL-FORMAT T))
+                 *)
+  Documentation:
+    Call a THUNK with stream and/or pathname arguments identifying a temporaryfile.
+    
+    The temporary file's pathname will be based on concatenating
+    PREFIX (or "tmp" if it's NIL), a random alphanumeric string,
+    and optional SUFFIX (defaults to "-tmp" if a type was provided)
+    and TYPE (defaults to "tmp", using a dot as separator if not NIL),
+    within DIRECTORY (defaulting to the TEMPORARY-DIRECTORY) if the PREFIXisn't absolute.
+    
+    The file will be open with specified DIRECTION (defaults to :IO),
+    ELEMENT-TYPE (defaults to *DEFAULT-STREAM-ELEMENT-TYPE*) and
+    EXTERNAL-FORMAT (defaults to *UTF-8-EXTERNAL-FORMAT*).
+    If WANT-STREAM-P is true (the defaults to T), then THUNK will then be CALL-FUNCTION'ed
+    with the stream and the pathname (if WANT-PATHNAME-P is true, defaults toT),
+    and stream will be closed after the THUNK exits (either normally orabnormally).
+    If WANT-STREAM-P is false, then WANT-PATHAME-P must be true, and then
+    THUNK is only CALL-FUNCTION'ed after the stream is closed, with thepathname as argument.
+    Upon exit of THUNK, the AFTER thunk if defined is CALL-FUNCTION'ed with thepathname as argument.
+    If AFTER is defined, its results are returned, otherwise, the results ofTHUNK are returned.
+    Finally, the file will be deleted, unless the KEEP argument when CALL-FUNCTION'ed returns true.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/RUN-PROGRAM::%CALL-WITH-PROGRAM-IO
+  - UIOP/STREAM::GET-TEMPORARY-FILE
+  - IO/SMART-BUFFER::CHECK-LIMIT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-NULL-INPUT :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:WITH-NULL-INPUT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-NULL-INPUT names a macro:
+  Lambda-list: ((VAR &REST KEYS &KEY ELEMENT-TYPE EXTERNAL-FORMAT
+                 IF-DOES-NOT-EXIST)
+                &BODY BODY)
+  Documentation:
+    Evaluate BODY in a context when VAR is bound to an input stream accessingthe null device.
+    Pass keyword arguments to OPEN.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-NULL-OUTPUT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:CALL-WITH-NULL-OUTPUT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-NULL-OUTPUT names a compiled function:
+  Lambda-list: (FUN &KEY (ELEMENT-TYPE *DEFAULT-STREAM-ELEMENT-TYPE*)
+                (EXTERNAL-FORMAT *UTF-8-EXTERNAL-FORMAT*) (IF-EXISTS OVERWRITE)
+                (IF-DOES-NOT-EXIST ERROR))
+  Derived type: (FUNCTION
+                 (T &KEY (:ELEMENT-TYPE T) (:EXTERNAL-FORMAT T) (:IF-EXISTS T)
+                  (:IF-DOES-NOT-EXIST T))
+                 *)
+  Documentation:
+    Call FUN with an output stream to the null device; pass keyword argumentsto OPEN.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *STDIN​* :var:
+:PROPERTIES:
+:ID: UIOP/STREAM:*STDIN*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*STDIN* names a special variable:
+  Value: #<SB-SYS:FD-STREAM for "standard input" {1200C33403}>
+  Documentation:
+    the original standard input stream at startup
+
+#+end_example
+
+- Set by
+  - UIOP/STREAM:SETUP-STDIN
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *STDERR​* :var:
+:PROPERTIES:
+:ID: UIOP/STREAM:*STDERR*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*STDERR* names a special variable:
+  Value: #<SB-SYS:FD-STREAM for "standard error" {1200C336E3}>
+  Documentation:
+    the original error output stream at startup
+
+#+end_example
+
+- Set by
+  - UIOP/STREAM:SETUP-STDERR
+
+- Referenced by
+  - UIOP/IMAGE:HANDLE-FATAL-CONDITION
+  - UIOP/IMAGE:PRINT-CONDITION-BACKTRACE
+  - UIOP/IMAGE:DIE
+  - UIOP/STREAM:FINISH-OUTPUTS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-INPUT-FILE :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:WITH-INPUT-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-INPUT-FILE names a macro:
+  Lambda-list: ((VAR PATHNAME &REST KEYS &KEY ELEMENT-TYPE EXTERNAL-FORMAT
+                 IF-DOES-NOT-EXIST)
+                &BODY BODY)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - ASDF/PACKAGE-INFERRED-SYSTEM::FILE-DEFPACKAGE-FORM
+  - UIOP/RUN-PROGRAM::%CALL-WITH-PROGRAM-IO
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SETUP-TEMPORARY-DIRECTORY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SETUP-TEMPORARY-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SETUP-TEMPORARY-DIRECTORY names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
+  Documentation:
+    Configure a default temporary directory to use.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** READ-FILE-LINES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:READ-FILE-LINES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+READ-FILE-LINES names a compiled function:
+  Lambda-list: (FILE &REST KEYS)
+  Derived type: (FUNCTION (T &REST T) *)
+  Documentation:
+    Open FILE with option KEYS, read its contents as a list of lines
+    BEWARE: be sure to use WITH-SAFE-IO-SYNTAX, or some variant thereof
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - CLI/TOOLS/NET::LOAD-YTDL-CONFIG
+  - (DESERIALIZE (PATHNAME (EQL AUTHINFO)))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SAFE-READ-FILE-FORM :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SAFE-READ-FILE-FORM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SAFE-READ-FILE-FORM names a compiled function:
+  Lambda-list: (PATHNAME &REST KEYS &KEY (PACKAGE CL) &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY (:PACKAGE T) &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    Reads the specified form from the top of a file using a safe standardizedsyntax.
+    Extracts the form using READ-FILE-FORM,
+    within an WITH-SAFE-IO-SYNTAX using the specified PACKAGE.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY::PROCESS-SOURCE-REGISTRY-CACHE
+  - ASDF/PARSE-DEFSYSTEM::NORMALIZE-VERSION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DEFAULT-ENCODING-EXTERNAL-FORMAT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:DEFAULT-ENCODING-EXTERNAL-FORMAT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEFAULT-ENCODING-EXTERNAL-FORMAT names a compiled function:
+  Lambda-list: (ENCODING)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Default, ignorant, function to transform a character ENCODING as a
+    portable keyword to an implementation-dependent EXTERNAL-FORMATspecification.
+    Load system ASDF-ENCODINGS to hook in a better one.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-OUTPUT :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:WITH-OUTPUT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-OUTPUT names a macro:
+  Lambda-list: ((OUTPUT-VAR &OPTIONAL (VALUE OUTPUT-VAR)) &BODY BODY)
+  Documentation:
+    Bind OUTPUT-VAR to an output stream, coercing VALUE (default: previousbinding of OUTPUT-VAR)
+    as per FORMAT, and evaluate BODY within the scope of this binding.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - UIOP/LAUNCH-PROGRAM:ESCAPE-COMMAND
+  - UIOP/LAUNCH-PROGRAM:ESCAPE-TOKEN
+  - UIOP/STREAM:OUTPUT-STRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** READ-FILE-FORM :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:READ-FILE-FORM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+READ-FILE-FORM names a compiled function:
+  Lambda-list: (FILE &REST KEYS &KEY (AT 0) &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY (:AT T) &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    Open input FILE with option KEYS (except AT),
+    and read its contents as per SLURP-STREAM-FORM with given AT specifier.
+    BEWARE: be sure to use WITH-SAFE-IO-SYNTAX, or some variant thereof
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM::CHECK-NOT-OLD-ASDF-SYSTEM
+  - [[id:STD/COMP:CHECK-DEFERRED-WARNINGS][CHECK-DEFERRED-WARNINGS]]
+  - UIOP/STREAM:SAFE-READ-FILE-FORM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** READ-FILE-FORMS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:READ-FILE-FORMS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+READ-FILE-FORMS names a compiled function:
+  Lambda-list: (FILE &REST KEYS &KEY COUNT &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY (:COUNT T) &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    Open input FILE with option KEYS (except COUNT),
+    and read its contents as per SLURP-STREAM-FORMS with given COUNT.
+    BEWARE: be sure to use WITH-SAFE-IO-SYNTAX, or some variant thereof
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-DIRECTORY
+  - UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-FILE
+  - [[id:STD/FILE:FILE-READ-FORMS][FILE-READ-FORMS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SAFE-READ-FILE-LINE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SAFE-READ-FILE-LINE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SAFE-READ-FILE-LINE names a compiled function:
+  Lambda-list: (PATHNAME &REST KEYS &KEY (PACKAGE CL) &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY (:PACKAGE T) &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    Reads the specified line from the top of a file using a safe standardizedsyntax.
+    Extracts the line using READ-FILE-LINE,
+    within an WITH-SAFE-IO-SYNTAX using the specified PACKAGE.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM::NORMALIZE-VERSION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SAFE-READ-FROM-STRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SAFE-READ-FROM-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SAFE-READ-FROM-STRING names a compiled function:
+  Lambda-list: (STRING &KEY (PACKAGE CL) (EOF-ERROR-P T) EOF-VALUE (START 0)
+                       END PRESERVE-WHITESPACE)
+  Derived type: (FUNCTION
+                 (T &KEY (:PACKAGE T) (:EOF-ERROR-P T) (:EOF-VALUE T)
+                  (:START T) (:END T) (:PRESERVE-WHITESPACE T))
+                 *)
+  Documentation:
+    Read from STRING using a safe syntax, as per WITH-SAFE-IO-SYNTAX
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (EXPLAIN (STRING T))
+  - (TRAVERSE (STRING T))
+  - (OPERATE (STRING T))
+  - (MARK-AS-DONE (T STRING T))
+  - (MAKE-PLAN (T STRING T))
+  - (COLLECT-DEPENDENCIES (STRING T))
+  - (PERFORM (STRING T))
+  - (COMPONENT-OPERATION-TIME (STRING T))
+  - (ADDITIONAL-INPUT-FILES (STRING T))
+  - (OPERATION-DONE-P (STRING T))
+  - (INPUT-FILES (STRING T))
+  - (OUTPUT-FILES (STRING T))
+  - (COMPONENT-DEPENDS-ON (STRING T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-TEMPORARY-FILE :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:WITH-TEMPORARY-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-TEMPORARY-FILE names a macro:
+  Lambda-list: ((&KEY (STREAM (GENSYM STREAM)) (PATHNAME (GENSYM PATHNAME))
+                 DIRECTORY PREFIX SUFFIX TYPE KEEP DIRECTION ELEMENT-TYPE
+                 EXTERNAL-FORMAT)
+                &BODY BODY)
+  Documentation:
+    Evaluate BODY where the symbols specified by keyword arguments
+    STREAM and PATHNAME (if respectively specified) are bound corresponding
+    to a newly created temporary file ready for I/O, as per CALL-WITH-TEMPORARY-FILE.
+    At least one of STREAM or PATHNAME must be specified.
+    If the STREAM is not specified, it will be closed before the BODY isevaluated.
+    If STREAM is specified, then the :CLOSE-STREAM label if it appears in theBODY,
+    separates forms run before and after the stream is closed.
+    The values of the last form of the BODY (not counting the separating :CLOSE-STREAM) are returned.
+    Upon success, the KEEP form is evaluated and the file is is deleted unlessit evaluates to TRUE.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - UIOP/RUN-PROGRAM::%CALL-WITH-PROGRAM-IO
+  - UIOP/STREAM::GET-TEMPORARY-FILE
+  - IO/SMART-BUFFER::CHECK-LIMIT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-INPUT-FILE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:CALL-WITH-INPUT-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-INPUT-FILE names a compiled function:
+  Lambda-list: (PATHNAME THUNK &KEY
+                         (ELEMENT-TYPE *DEFAULT-STREAM-ELEMENT-TYPE*)
+                         (EXTERNAL-FORMAT *UTF-8-EXTERNAL-FORMAT*)
+                         (IF-DOES-NOT-EXIST ERROR))
+  Derived type: (FUNCTION
+                 (T T &KEY (:ELEMENT-TYPE T) (:EXTERNAL-FORMAT T)
+                  (:IF-DOES-NOT-EXIST T))
+                 *)
+  Documentation:
+    Open FILE for input with given recognizes options, call THUNK with theresulting stream.
+    Other keys are accepted but discarded.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PACKAGE-INFERRED-SYSTEM::FILE-DEFPACKAGE-FORM
+  - UIOP/RUN-PROGRAM::%CALL-WITH-PROGRAM-IO
+  - UIOP/STREAM:READ-FILE-FORM
+  - UIOP/STREAM:READ-FILE-FORMS
+  - UIOP/STREAM:READ-FILE-LINE
+  - UIOP/STREAM:READ-FILE-LINES
+  - UIOP/STREAM:READ-FILE-STRING
+  - UIOP/STREAM:CALL-WITH-NULL-INPUT
+  - UIOP/STREAM::CALL-WITH-INPUT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SLURP-STREAM-FORM :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SLURP-STREAM-FORM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SLURP-STREAM-FORM names a compiled function:
+  Lambda-list: (INPUT &KEY (AT 0))
+  Derived type: (FUNCTION (T &KEY (:AT T)) *)
+  Documentation:
+    Read the contents of the INPUT stream as a list of forms,
+    then return the ACCESS-AT of these forms following the AT.
+    AT defaults to 0, i.e. return the first form.
+    AT is typically a list of integers.
+    If AT is NIL, it will return all the forms in the file.
+    
+    The stream will not be read beyond the Nth form,
+    where N is the index specified by path,
+    if path is either an integer or a list that starts with an integer.
+    
+    BEWARE: be sure to use WITH-SAFE-IO-SYNTAX, or some variant thereof
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (SLURP-INPUT-STREAM ((EQL FORM) T))
+  - UIOP/STREAM:READ-FILE-FORM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FILE-OR-SYNONYM-STREAM-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:FILE-OR-SYNONYM-STREAM-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FILE-OR-SYNONYM-STREAM-P names a compiled function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/STREAM:FILE-OR-SYNONYM-STREAM-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SLURP-STREAM-STRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SLURP-STREAM-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SLURP-STREAM-STRING names a compiled function:
+  Lambda-list: (INPUT &KEY (ELEMENT-TYPE (QUOTE CHARACTER)) STRIPPED)
+  Derived type: (FUNCTION (T &KEY (:ELEMENT-TYPE T) (:STRIPPED T)) *)
+  Documentation:
+    Read the contents of the INPUT stream as a string
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (SLURP-INPUT-STREAM ((EQL STRING) T))
+  - (SLURP-INPUT-STREAM ((EQL STRING) T))
+  - UIOP/STREAM:INPUT-STRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CONCATENATE-FILES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:CONCATENATE-FILES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CONCATENATE-FILES names a compiled function:
+  Lambda-list: (INPUTS OUTPUT)
+  Derived type: (FUNCTION (T T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    create a new OUTPUT file the contents of which a the concatenate of theINPUTS files.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+  - UIOP/LISP-BUILD:COMBINE-FASLS
+  - [[id:STD/FILE:COPY-FILE][COPY-FILE]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SLURP-STREAM-FORMS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SLURP-STREAM-FORMS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SLURP-STREAM-FORMS names a compiled function:
+  Lambda-list: (INPUT &KEY COUNT)
+  Derived type: (FUNCTION (T &KEY (:COUNT T)) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Read the contents of the INPUT stream as a list of forms,
+    and return those forms.
+    
+    If COUNT is null, read to the end of the stream;
+    if COUNT is an integer, stop after COUNT forms were read.
+    
+    BEWARE: be sure to use WITH-SAFE-IO-SYNTAX, or some variant thereof
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (SLURP-INPUT-STREAM ((EQL FORMS) T))
+  - UIOP/STREAM:READ-FILE-FORMS
+  - UIOP/STREAM:SLURP-STREAM-FORM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SETUP-STDERR :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SETUP-STDERR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SETUP-STDERR names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DEFAULT-TEMPORARY-DIRECTORY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:DEFAULT-TEMPORARY-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEFAULT-TEMPORARY-DIRECTORY names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Return a default directory to use for temporary files
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/STREAM:SETUP-TEMPORARY-DIRECTORY
+  - UIOP/STREAM:TEMPORARY-DIRECTORY
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ENCODING-EXTERNAL-FORMAT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:ENCODING-EXTERNAL-FORMAT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENCODING-EXTERNAL-FORMAT names a compiled function:
+  Lambda-list: (ENCODING)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Transform a portable ENCODING keyword to an implementation-dependentEXTERNAL-FORMAT,
+    going through all the proper hooks.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (DEFINE-OP SYSTEM))
+  - (COMPONENT-EXTERNAL-FORMAT (COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** READ-FILE-LINE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:READ-FILE-LINE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+READ-FILE-LINE names a compiled function:
+  Lambda-list: (FILE &REST KEYS &KEY (AT 0) &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY (:AT T) &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    Open input FILE with option KEYS (except AT),
+    and read its contents as per SLURP-STREAM-LINE with given AT specifier.
+    BEWARE: be sure to use WITH-SAFE-IO-SYNTAX, or some variant thereof
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/STREAM:SAFE-READ-FILE-LINE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PRINTLN :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:PRINTLN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PRINTLN names a compiled function:
+  Lambda-list: (X &OPTIONAL (STREAM *STANDARD-OUTPUT*))
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES &OPTIONAL))
+  Documentation:
+    Variant of PRINC that also calls TERPRI afterwards
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - SKEL/HOMER/CORE:HOMER-MAYBE-INSTALL
+  - SKEL/HOMER/CORE:HOMER-MAYBE-PULL
+  - SKEL/HOMER/CORE:HOMER-MAYBE-PUSH
+  - SKEL/HOMER/CORE:HOMER-STATUS
+  - (SERIALIZE (CONTAINERFILE (EQL STRING)))
+  - (PRINT-STATS (RDB))
+  - (START (NET-SERVICE))
+  - (PRINT-VERSION (CLI))
+  - DAT/MIME:LOAD-MIME-INFO
+  - IO/KBD:DEVICE-READ-EVENT
+  - (PRINT-HELP (COMMAND))
+  - STD/PRINT::%DESCRIBE-OBJECT
+  - [[id:STD/PRINT:IPRINTLN][IPRINTLN]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SETUP-STDIN :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SETUP-STDIN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SETUP-STDIN names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SLURP-STREAM-LINE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SLURP-STREAM-LINE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SLURP-STREAM-LINE names a compiled function:
+  Lambda-list: (INPUT &KEY (AT 0))
+  Derived type: (FUNCTION (T &KEY (:AT T)) *)
+  Documentation:
+    Read the contents of the INPUT stream as a list of lines,
+    then return the ACCESS-AT of that list of lines using the AT specifier.
+    PATH defaults to 0, i.e. return the first line.
+    PATH is typically an integer, or a list of an integer and a function.
+    If PATH is NIL, it will return all the lines in the file.
+    
+    The stream will not be read beyond the Nth lines,
+    where N is the index specified by path
+    if path is either an integer or a list that starts with an integer.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (SLURP-INPUT-STREAM ((EQL LINE) T))
+  - UIOP/STREAM:READ-FILE-LINE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DETECT-ENCODING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:DETECT-ENCODING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DETECT-ENCODING names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Detects the encoding of a specified file, going through user-configurablehooks
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (DEFINE-OP SYSTEM))
+  - (COMPONENT-ENCODING (COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-NULL-OUTPUT :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:WITH-NULL-OUTPUT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-NULL-OUTPUT names a macro:
+  Lambda-list: ((VAR &REST KEYS &KEY ELEMENT-TYPE EXTERNAL-FORMAT
+                 IF-DOES-NOT-EXIST IF-EXISTS)
+                &BODY BODY)
+  Documentation:
+    Evaluate BODY in a context when VAR is bound to an output stream accessingthe null device.
+    Pass keyword arguments to OPEN.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *TEMPORARY-DIRECTORY​* :var:
+:PROPERTIES:
+:ID: UIOP/STREAM:*TEMPORARY-DIRECTORY*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*TEMPORARY-DIRECTORY* names a special variable:
+  Value: #P"/tmp/"
+  Documentation:
+    User-configurable location for temporary files
+
+#+end_example
+
+- Set by
+  - UIOP/STREAM:SETUP-TEMPORARY-DIRECTORY
+
+- Referenced by
+  - UIOP/STREAM:TEMPORARY-DIRECTORY
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-NULL-INPUT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:CALL-WITH-NULL-INPUT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-NULL-INPUT names a compiled function:
+  Lambda-list: (FUN &REST KEYS &KEY ELEMENT-TYPE EXTERNAL-FORMAT
+                IF-DOES-NOT-EXIST)
+  Derived type: (FUNCTION
+                 (T &REST T &KEY (:ELEMENT-TYPE T) (:EXTERNAL-FORMAT T)
+                  (:IF-DOES-NOT-EXIST T))
+                 *)
+  Documentation:
+    Call FUN with an input stream from the null device; pass keyword argumentsto OPEN.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *ENCODING-EXTERNAL-FORMAT-HOOK​* :var:
+:PROPERTIES:
+:ID: UIOP/STREAM:*ENCODING-EXTERNAL-FORMAT-HOOK*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*ENCODING-EXTERNAL-FORMAT-HOOK* names a special variable:
+  Value: #<FUNCTION UIOP/STREAM:DEFAULT-ENCODING-EXTERNAL-FORMAT>
+  Documentation:
+    Hook for an extension (e.g. ASDF-ENCODINGS) to define a better mapping
+    from non-default encodings to and implementation-defined external-format's
+
+#+end_example
+
+- Referenced by
+  - UIOP/STREAM:ENCODING-EXTERNAL-FORMAT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-STAGING-PATHNAME :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:WITH-STAGING-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-STAGING-PATHNAME names a macro:
+  Lambda-list: ((PATHNAME-VAR &OPTIONAL (PATHNAME-VALUE PATHNAME-VAR)) &BODY
+                BODY)
+  Documentation:
+    Trivial syntax wrapper for CALL-WITH-STAGING-PATHNAME
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - (PERFORM (BASIC-COMPILE-BUNDLE-OP SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** EVAL-INPUT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:EVAL-INPUT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EVAL-INPUT names a compiled function:
+  Lambda-list: (INPUT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Portably read and evaluate forms from INPUT, return the last values.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/STREAM:EVAL-THUNK
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-STAGING-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:CALL-WITH-STAGING-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-STAGING-PATHNAME names a compiled function:
+  Lambda-list: (PATHNAME FUN)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Calls FUN with a staging pathname, and atomically
+    renames the staging pathname to the PATHNAME in the end.
+    NB: this protects only against failure of the program, not againstconcurrent attempts.
+    For the latter case, we ought pick a random suffix and atomically open it.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-COMPILE-BUNDLE-OP SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ALWAYS-DEFAULT-ENCODING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:ALWAYS-DEFAULT-ENCODING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ALWAYS-DEFAULT-ENCODING names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Trivial function to use as *encoding-detection-hook*,
+    always 'detects' the *default-encoding*
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *UTF-8-EXTERNAL-FORMAT​* :var:
+:PROPERTIES:
+:ID: UIOP/STREAM:*UTF-8-EXTERNAL-FORMAT*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*UTF-8-EXTERNAL-FORMAT* names a special variable:
+  Value: :UTF-8
+  Documentation:
+    Default :external-format argument to pass to CL:OPEN and also
+    CL:LOAD or CL:COMPILE-FILE to best process a UTF-8 encoded file.
+    On modern implementations, this will decode UTF-8 code points as CLcharacters.
+    On legacy implementations, it may fall back on some 8-bit encoding,
+    with non-ASCII code points being read as several CL characters;
+    hopefully, if done consistently, that won't affect program behavior toomuch.
+
+#+end_example
+
+- Referenced by
+  - [[id:SB-EXT:RUN-PROGRAM][RUN-PROGRAM]]
+  - UIOP/RUN-PROGRAM::%CALL-WITH-PROGRAM-IO
+  - (VOMIT-OUTPUT-STREAM (PATHNAME T))
+  - (SLURP-INPUT-STREAM (PATHNAME T))
+  - UIOP/LAUNCH-PROGRAM:LAUNCH-PROGRAM
+  - [[id:STD/COMP:SAVE-DEFERRED-WARNINGS][SAVE-DEFERRED-WARNINGS]]
+  - UIOP/STREAM:CALL-WITH-TEMPORARY-FILE
+  - UIOP/STREAM:CALL-WITH-NULL-OUTPUT
+  - UIOP/STREAM:CALL-WITH-INPUT-FILE
+  - UIOP/STREAM:CALL-WITH-OUTPUT-FILE
+  - UIOP/STREAM:DEFAULT-ENCODING-EXTERNAL-FORMAT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** TMPIZE-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:TMPIZE-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TMPIZE-PATHNAME names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Return a new pathname modified from X by adding a trivial random suffix.
+    A new empty file with said temporary pathname is created, to ensure thereis no
+    clash with any concurrent process attempting the same thing.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+  - UIOP/STREAM:CALL-WITH-STAGING-PATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WRITELN :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:WRITELN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WRITELN names a compiled function:
+  Lambda-list: (X &REST KEYS &KEY (STREAM *STANDARD-OUTPUT*) &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY (:STREAM T) &ALLOW-OTHER-KEYS)
+                 (VALUES &OPTIONAL))
+  Documentation:
+    Variant of WRITE that also calls TERPRI afterwards
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *DEFAULT-ENCODING​* :var:
+:PROPERTIES:
+:ID: UIOP/STREAM:*DEFAULT-ENCODING*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*DEFAULT-ENCODING* names a special variable:
+  Value: :UTF-8
+  Documentation:
+    Default encoding for source files.
+    The default value :utf-8 is the portable thing.
+    The legacy behavior was :default.
+    If you (asdf:load-system :asdf-encodings) then
+    you will have autodetection via *encoding-detection-hook* below,
+    reading emacs-style -*- coding: utf-8 -*- specifications,
+    and falling back to utf-8 or latin1 if nothing is specified.
+
+#+end_example
+
+- Referenced by
+  - (INPUT-FILES (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+  - UIOP/STREAM:ENCODING-EXTERNAL-FORMAT
+  - UIOP/STREAM:DETECT-ENCODING
+  - UIOP/STREAM:ALWAYS-DEFAULT-ENCODING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FINISH-OUTPUTS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:FINISH-OUTPUTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FINISH-OUTPUTS names a compiled function:
+  Lambda-list: (&REST STREAMS)
+  Derived type: (FUNCTION * (VALUES &OPTIONAL))
+  Documentation:
+    Finish output on the main output streams as well as any specified one.
+    Useful for portably flushing I/O before user input or program exit.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:SB-EXT:QUIT][QUIT]]
+  - UIOP/STREAM:SAFE-FORMAT!
+  - UIOP/STREAM:FORMAT!
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FILE-STREAM-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:FILE-STREAM-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FILE-STREAM-P names a compiled function:
+  Lambda-list: (STREAM)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/STREAM:FILE-OR-SYNONYM-STREAM-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *DEFAULT-STREAM-ELEMENT-TYPE​* :var:
+:PROPERTIES:
+:ID: UIOP/STREAM:*DEFAULT-STREAM-ELEMENT-TYPE*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*DEFAULT-STREAM-ELEMENT-TYPE* names a special variable:
+  Value: :DEFAULT
+  Documentation:
+    default element-type for open (depends on the current CL implementation)
+
+#+end_example
+
+- Referenced by
+  - [[id:SB-EXT:RUN-PROGRAM][RUN-PROGRAM]]
+  - UIOP/RUN-PROGRAM::%CALL-WITH-PROGRAM-IO
+  - (VOMIT-OUTPUT-STREAM (PATHNAME T))
+  - (SLURP-INPUT-STREAM (PATHNAME T))
+  - UIOP/LAUNCH-PROGRAM:LAUNCH-PROGRAM
+  - [[id:STD/COMP:SAVE-DEFERRED-WARNINGS][SAVE-DEFERRED-WARNINGS]]
+  - UIOP/STREAM:CALL-WITH-TEMPORARY-FILE
+  - UIOP/STREAM:CALL-WITH-NULL-OUTPUT
+  - UIOP/STREAM:CALL-WITH-INPUT-FILE
+  - UIOP/STREAM:CALL-WITH-OUTPUT-FILE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *ENCODING-DETECTION-HOOK​* :var:
+:PROPERTIES:
+:ID: UIOP/STREAM:*ENCODING-DETECTION-HOOK*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*ENCODING-DETECTION-HOOK* names a special variable:
+  Value: #<FUNCTION UIOP/STREAM:ALWAYS-DEFAULT-ENCODING>
+  Documentation:
+    Hook for an extension to define a function to automatically detect a file'sencoding
+
+#+end_example
+
+- Referenced by
+  - UIOP/STREAM:DETECT-ENCODING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ADD-PATHNAME-SUFFIX :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:ADD-PATHNAME-SUFFIX
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ADD-PATHNAME-SUFFIX names a compiled function:
+  Lambda-list: (PATHNAME SUFFIX &REST KEYS)
+  Derived type: (FUNCTION (T T &REST T) (VALUES PATHNAME &OPTIONAL))
+  Documentation:
+    Add a SUFFIX to the name of a PATHNAME, return a new pathname.
+    Further KEYS can be passed to MAKE-PATHNAME.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** STANDARD-EVAL-THUNK :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:STANDARD-EVAL-THUNK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+STANDARD-EVAL-THUNK names a compiled function:
+  Lambda-list: (THUNK &KEY (PACKAGE CL))
+  Derived type: (FUNCTION (T &KEY (:PACKAGE T)) *)
+  Documentation:
+    Like EVAL-THUNK, but in a more standardized evaluation context.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:DUMP-IMAGE
+  - UIOP/IMAGE:RESTORE-IMAGE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SAFE-FORMAT! :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SAFE-FORMAT!
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SAFE-FORMAT! names a compiled function:
+  Lambda-list: (STREAM FORMAT &REST ARGS)
+  Derived type: (FUNCTION (T T &REST T) *)
+  Documentation:
+    Variant of FORMAT that is safe against both
+    dangerous syntax configuration and errors while printing.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:HANDLE-FATAL-CONDITION
+  - UIOP/IMAGE:PRINT-CONDITION-BACKTRACE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-SAFE-IO-SYNTAX :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:WITH-SAFE-IO-SYNTAX
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-SAFE-IO-SYNTAX names a macro:
+  Lambda-list: ((&KEY (PACKAGE CL)) &BODY BODY)
+  Documentation:
+    Establish safe CL reader options around the evaluation of BODY
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - [[id:STD/COMP:CHECK-DEFERRED-WARNINGS][CHECK-DEFERRED-WARNINGS]]
+  - [[id:STD/COMP:SAVE-DEFERRED-WARNINGS][SAVE-DEFERRED-WARNINGS]]
+  - [[id:SB-DEBUG:PRINT-BACKTRACE][PRINT-BACKTRACE]]
+  - UIOP/IMAGE:DIE
+  - UIOP/STREAM:STANDARD-EVAL-THUNK
+  - UIOP/STREAM:SAFE-READ-FILE-FORM
+  - UIOP/STREAM:SAFE-READ-FILE-LINE
+  - UIOP/STREAM:SAFE-FORMAT!
+  - [[id:STD/PRIM:SAFE-READ-FROM-STRING][SAFE-READ-FROM-STRING]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** INPUT-STRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:INPUT-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+INPUT-STRING names a compiled function:
+  Lambda-list: (&OPTIONAL INPUT)
+  Derived type: (FUNCTION (&OPTIONAL T) *)
+  Documentation:
+    If the desired INPUT is a string, return that string; otherwise slurp theINPUT into a string
+    and return that
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COPY-STREAM-TO-STREAM :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:COPY-STREAM-TO-STREAM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COPY-STREAM-TO-STREAM names a compiled function:
+  Lambda-list: (INPUT OUTPUT &KEY ELEMENT-TYPE BUFFER-SIZE LINEWISE PREFIX)
+  Derived type: (FUNCTION
+                 (T T &KEY (:ELEMENT-TYPE T) (:BUFFER-SIZE T) (:LINEWISE T)
+                  (:PREFIX T))
+                 (VALUES NULL &OPTIONAL))
+  Documentation:
+    Copy the contents of the INPUT stream into the OUTPUT stream.
+    If LINEWISE is true, then read and copy the stream line by line, with anoptional PREFIX.
+    Otherwise, using WRITE-SEQUENCE using a buffer of size BUFFER-SIZE.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (VOMIT-OUTPUT-STREAM (PATHNAME T))
+  - (VOMIT-OUTPUT-STREAM (STREAM T))
+  - (SLURP-INPUT-STREAM (PATHNAME T))
+  - (SLURP-INPUT-STREAM (STREAM T))
+  - UIOP/STREAM:SLURP-STREAM-STRING
+  - UIOP/STREAM:CONCATENATE-FILES
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** OUTPUT-STRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:OUTPUT-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OUTPUT-STRING names a compiled function:
+  Lambda-list: (STRING &OPTIONAL OUTPUT)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    If the desired OUTPUT is not NIL, print the string to the output; otherwisereturn the string
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LAUNCH-PROGRAM:ESCAPE-COMMAND
+  - UIOP/LAUNCH-PROGRAM:ESCAPE-TOKEN
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SETUP-STDOUT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SETUP-STDOUT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SETUP-STDOUT names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** TEMPORARY-DIRECTORY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:TEMPORARY-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TEMPORARY-DIRECTORY names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Return a directory to use for temporary files
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/STREAM:CALL-WITH-TEMPORARY-FILE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** EVAL-THUNK :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:EVAL-THUNK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EVAL-THUNK names a compiled function:
+  Lambda-list: (THUNK)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Evaluate a THUNK of code:
+    If a function, FUNCALL it without arguments.
+    If a constant literal and not a sequence, return it.
+    If a cons or a symbol, EVAL it.
+    If a string, repeatedly read and evaluate from it, returning the lastvalues.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/STREAM:STANDARD-EVAL-THUNK
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SLURP-STREAM-LINES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:SLURP-STREAM-LINES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SLURP-STREAM-LINES names a compiled function:
+  Lambda-list: (INPUT &KEY COUNT)
+  Derived type: (FUNCTION (T &KEY (:COUNT T)) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Read the contents of the INPUT stream as a list of lines, return thoselines.
+    
+    Note: relies on the Lisp's READ-LINE, but additionally removes anyremaining CR
+    from the line-ending if the file or stream had CR+LF but Lisp only removedLF.
+    
+    Read no more than COUNT lines.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (SLURP-INPUT-STREAM ((EQL LINES) T))
+  - UIOP/STREAM:SLURP-STREAM-LINE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-OUTPUT-FILE :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/STREAM:WITH-OUTPUT-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-OUTPUT-FILE names a macro:
+  Lambda-list: ((VAR PATHNAME &REST KEYS &KEY ELEMENT-TYPE EXTERNAL-FORMAT
+                 IF-EXISTS IF-DOES-NOT-EXIST)
+                &BODY BODY)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - UIOP/RUN-PROGRAM::%CALL-WITH-PROGRAM-IO
+  - (VOMIT-OUTPUT-STREAM (PATHNAME T))
+  - (SLURP-INPUT-STREAM (PATHNAME T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:

@@ -21,7 +21,7 @@ A fork of StumpWM by Shawn Betts <sabetts@vcn.bc.ca>
 * Systems
 ** WM
 :PROPERTIES:
-:ID: 2268882930868458601
+:ID: 28861240303430753
 :VERSION: 0.1.1
 :EXPORT_FILE_NAME: api/wm
 :LOCATION: [[vc:shed/wm:wm.sys][wm.sys]]
@@ -689,8 +689,8 @@ GAP-MAXIMIZE-WINDOW names a compiled function:
   - WM/GAPS::TOGGLE-GAPS-ON
 
 - Referenced by
-  - WM/GAPS::TOGGLE-GAPS
   - WM/GAPS::APPLY-GAPS-P
+  - WM/GAPS::TOGGLE-GAPS
 
 :definitions:
 - [[vc:shed/wm:util/gaps.lisp][util/gaps.lisp]]
@@ -888,12 +888,12 @@ STOP-CLIPBOARD-MANAGER names a compiled function:
 #+end_example
 
 - Set by
-  - WM/GOLDEN-RATIO::TOGGLE-GOLDEN-RATIO
   - WM/GOLDEN-RATIO::RESIZE-TO-GOLDEN-RATIO
+  - WM/GOLDEN-RATIO::TOGGLE-GOLDEN-RATIO
 
 - Referenced by
-  - WM/GOLDEN-RATIO::TOGGLE-GOLDEN-RATIO
   - WM/GOLDEN-RATIO::RESIZE-TO-GOLDEN-RATIO
+  - WM/GOLDEN-RATIO::TOGGLE-GOLDEN-RATIO
 
 :definitions:
 - [[vc:shed/wm:util/golden-ratio.lisp][util/golden-ratio.lisp]]
@@ -1189,9 +1189,9 @@ WINDOW-FULLSCREEN names a generic function:
 #+end_example
 
 - Called by
-  - WM::UPDATE-FULLSCREEN
   - WM/GAPS::APPLY-GAPS-P
   - (GEOMETRY-HINTS (T))
+  - WM::UPDATE-FULLSCREEN
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -1303,9 +1303,9 @@ DEFINE-FRAME-PREFERENCE names a macro:
   - WM/TRAY:ADD-MODE-LINE-HOOKS
 
 - Referenced by
+  - WM::DESTROY-MODE-LINE
   - WM/TRAY:REMOVE-MODE-LINE-HOOKS
   - WM/TRAY:ADD-MODE-LINE-HOOKS
-  - WM::DESTROY-MODE-LINE
 ***** RUN-HOOK :compiled:function:
 :PROPERTIES:
 :ID: WM:RUN-HOOK
@@ -1324,11 +1324,11 @@ RUN-HOOK names a compiled function:
 #+end_example
 
 - Called by
+  - WM::START-WM
+  - WM::WM-INTERNAL
   - (IO-CHANNEL-HANDLE (DISPLAY-CHANNEL (EQL LOOP)))
   - WM::KEYBOARD-QUIT
   - WM::COMMAND-MODE
-  - WM::START-WM
-  - WM::WM-INTERNAL
 
 :definitions:
 - [[vc:shed/wm:prim.lisp#l656][prim.lisp:656]]
@@ -1402,10 +1402,6 @@ CURRENT-HEAD names a compiled function:
 #+end_example
 
 - Called by
-  - WM/GOLDEN-RATIO::RESIZE-TO-GOLDEN-RATIO
-  - WM::BANISH-POINTER
-  - [[id:WM:ONLY-ONE-FRAME-P][ONLY-ONE-FRAME-P]]
-  - WM::ONLY
   - [[id:WM:FIND-MINOR-MODE][FIND-MINOR-MODE]]
   - [[id:WM:LIST-CURRENT-MODE-OBJECTS][LIST-CURRENT-MODE-OBJECTS]]
   - WM::FPREV-IN-HEAD
@@ -1418,15 +1414,19 @@ CURRENT-HEAD names a compiled function:
   - WM::CHANGE-LAYOUT
   - WM::ROTATE-STACK
   - WM::ROTATE-WINDOWS
+  - WM/GOLDEN-RATIO::RESIZE-TO-GOLDEN-RATIO
   - WM::MODE-LINE
-  - [[id:OBJ/CMD:LIST-COMMANDS][LIST-COMMANDS]]
-  - WM::DISPLAY-BINDINGS-FOR-KEYMAPS
   - WM::RESIZE-UNHIDE
   - [[id:WM:SETUP-IRESIZE][SETUP-IRESIZE]]
+  - [[id:OBJ/CMD:LIST-COMMANDS][LIST-COMMANDS]]
+  - WM::BANISH-POINTER
+  - WM::DISPLAY-BINDINGS-FOR-KEYMAPS
   - WM::SETUP-WIN-GRAVITY
   - WM::FLATTEN-FLOATS
   - WM::BALANCE-FRAMES
   - WM::RESIZE
+  - WM::ONLY
+  - [[id:WM:ONLY-ONE-FRAME-P][ONLY-ONE-FRAME-P]]
 
 :definitions:
 - [[vc:shed/wm:head.lisp#l107][head.lisp:107]]
@@ -1515,10 +1515,10 @@ ADD-WM-HOOK names a macro:
 #+end_example
 
 - Macroexpanded by
-  - WM/TRAY:ADD-MODE-LINE-HOOKS
-  - WM/TRAY::NEW-MODE-LINE-HOOK
   - [[id:WM:DEFINE-REMAPPED-KEYS][DEFINE-REMAPPED-KEYS]]
   - WM::WHICH-KEY-MODE
+  - WM/TRAY:ADD-MODE-LINE-HOOKS
+  - WM/TRAY::NEW-MODE-LINE-HOOK
 
 :definitions:
 - [[vc:shed/wm:prim.lisp#l660][prim.lisp:660]]
@@ -1638,13 +1638,13 @@ WINDOW-X names a generic function:
 #+end_example
 
 - Called by
-  - ((SETF WINDOW-X) BEFORE (T FLOAT-WINDOW))
-  - WM::DRAW-WINDOW-NUMBERS
   - (INVOKE-EXPOSE (FLOAT-GROUP))
-  - ((SETF WINDOW-FULLSCREEN) AFTER (T FLOAT-WINDOW))
-  - (WINDOW-HEAD (FLOAT-WINDOW))
+  - WM::DRAW-WINDOW-NUMBERS
+  - ((SETF WINDOW-X) BEFORE (T FLOAT-WINDOW))
   - WM::PICK-PREFERRED-FRAME
   - WM::WINDOW-CENTROID
+  - ((SETF WINDOW-FULLSCREEN) AFTER (T FLOAT-WINDOW))
+  - (WINDOW-HEAD (FLOAT-WINDOW))
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -1696,10 +1696,10 @@ LIST-MINOR-MODES names a compiled function:
 #+end_example
 
 - Called by
-  - (PRINT-OBJECT (WM-CLASS T))
   - (REPLACE-CLASS-IN-MIXIN (MIXIN-OBJECT SYMBOL SYMBOL))
   - [[id:WM:ENABLED-MINOR-MODES][ENABLED-MINOR-MODES]]
   - [[id:WM:CURRENT-MINOR-MODES][CURRENT-MINOR-MODES]]
+  - (PRINT-OBJECT (WM-CLASS T))
 
 :definitions:
 - [[vc:shed/wm:minor-modes.lisp#l306][minor-modes.lisp:306]]
@@ -1762,13 +1762,13 @@ WINDOW-PARENT names a generic function:
 #+end_example
 
 - Called by
-  - WM::UPDATE-COLORS-FOR-SCREEN
-  - WM::SWITCH-TO-GROUP
-  - WM::BANISH-POINTER
-  - WM::FIND-WINDOW-BY-PARENT
   - WM/GAPS:GAP-MAXIMIZE-WINDOW
-  - WM::FLOAT-WINDOW-MOVE-RESIZE
-  - (GROUP-MOVE-REQUEST (TILE-GROUP TILE-WINDOW T T T))
+  - WM::BANISH-POINTER
+  - WM::FLOAT-WINDOW-ALIGN
+  - (UPDATE-DECORATION (FLOAT-WINDOW))
+  - ((SETF WINDOW-FULLSCREEN) AFTER (T TILE-WINDOW))
+  - (UPDATE-DECORATION (TILE-WINDOW))
+  - WM::PULL-WINDOW
   - [[id:WM-USER::DESTROY-WINDOW][DESTROY-WINDOW]]
   - [[id:WM-USER::WITHDRAW-WINDOW][WITHDRAW-WINDOW]]
   - WM::XWIN-HIDE
@@ -1776,14 +1776,14 @@ WINDOW-PARENT names a generic function:
   - WM::RAISE-TOP-WINDOWS
   - (RAISE-WINDOW (T))
   - [[id:WM:UPDATE-CONFIGURATION][UPDATE-CONFIGURATION]]
+  - (GROUP-MOVE-REQUEST (TILE-GROUP TILE-WINDOW T T T))
   - (GROUP-ADD-WINDOW (TILE-GROUP T))
-  - WM::PULL-WINDOW
   - WM::MAXIMIZE-WINDOW
-  - ((SETF WINDOW-FULLSCREEN) AFTER (T TILE-WINDOW))
-  - (UPDATE-DECORATION (TILE-WINDOW))
+  - WM::SWITCH-TO-GROUP
   - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
-  - WM::FLOAT-WINDOW-ALIGN
-  - (UPDATE-DECORATION (FLOAT-WINDOW))
+  - WM::UPDATE-COLORS-FOR-SCREEN
+  - WM::FIND-WINDOW-BY-PARENT
+  - WM::FLOAT-WINDOW-MOVE-RESIZE
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -1840,8 +1840,8 @@ DEFINE-REMAPPED-KEYS names a compiled function:
 #+end_example
 
 - Bound by
-  - WM::HANDLE-WM-COMMANDS
   - WM::ECHO
+  - WM::HANDLE-WM-COMMANDS
 
 - Referenced by
   - WM::ECHO-STRING-LIST
@@ -1895,12 +1895,12 @@ FOCUS-WINDOW names a generic function:
 #+end_example
 
 - Called by
+  - WM::RESIZE-UNHIDE
   - (GROUP-FOCUS-WINDOW (TILE-GROUP FLOAT-WINDOW))
   - WM::ACTIVATE-FULLSCREEN
-  - WM::RESIZE-UNHIDE
-  - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
   - (GROUP-FOCUS-WINDOW (FLOAT-GROUP T))
   - WM::FOCUS-FRAME
+  - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -1943,9 +1943,9 @@ MINOR-MODE-GLOBAL-P names a generic function:
 #+end_example
 
 - Called by
-  - [[id:WM:MINOR-MODE-ENABLED-P][MINOR-MODE-ENABLED-P]]
   - [[id:WM:ENABLE-MINOR-MODE][ENABLE-MINOR-MODE]]
   - [[id:WM:DISABLE-MINOR-MODE][DISABLE-MINOR-MODE]]
+  - [[id:WM:MINOR-MODE-ENABLED-P][MINOR-MODE-ENABLED-P]]
   - WM::RELEVANT-OBJECTS-FOR-MINOR-MODE
 
 :definitions:
@@ -2037,20 +2037,20 @@ SCREEN-HEADS names a generic function:
 #+end_example
 
 - Called by
+  - [[id:WM:LIST-MODE-OBJECTS][LIST-MODE-OBJECTS]]
   - WM/TRAY::SCREEN-MODE-LINE
+  - WM/GAPS::ADD-HEAD-GAPS
+  - WM::UPDATE-MODE-LINE-POSITION
   - WM::SCALE-SCREEN
   - WM::REPLACE-HEAD
   - WM::REMOVE-HEAD
   - WM::ADD-HEAD
   - WM::RESIZE-HEAD
   - WM::GROUP-HEADS
-  - WM/GAPS::ADD-HEAD-GAPS
-  - WM::UPDATE-MODE-LINE-POSITION
-  - [[id:WM:LIST-MODE-OBJECTS][LIST-MODE-OBJECTS]]
-  - (WINDOW-HEAD (FLOAT-WINDOW))
   - WM::FIND-HEAD-BY-POSITION
   - WM::COPY-HEADS
   - WM::HEAD-BY-NUMBER
+  - (WINDOW-HEAD (FLOAT-WINDOW))
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -2087,11 +2087,11 @@ WINDOW-ROLE names a generic function:
 
 - Called by
   - WM/WINDOWS::ALL-TAGS
-  - WM::SHOW-WINDOW-PROPERTIES
-  - WM::MAKE-RULE-FOR-WINDOW
-  - WM::WINDOW-MATCHES-PROPERTIES-P
-  - WM::ROLED-P
   - WM::ROLE-RE-P
+  - WM::ROLED-P
+  - WM::SHOW-WINDOW-PROPERTIES
+  - WM::WINDOW-MATCHES-PROPERTIES-P
+  - WM::MAKE-RULE-FOR-WINDOW
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -2288,9 +2288,9 @@ IRESIZE names a compiled function:
 
 - Referenced by
   - WM/GAPS:GAP-MAXIMIZE-WINDOW
-  - WM::MAXIMIZE-WINDOW
   - (GEOMETRY-HINTS (T))
   - (UPDATE-DECORATION (TILE-WINDOW))
+  - WM::MAXIMIZE-WINDOW
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -2316,9 +2316,9 @@ IRESIZE names a compiled function:
   - WM/TRAY:ADD-MODE-LINE-HOOKS
 
 - Referenced by
+  - WM::MAKE-MODE-LINE
   - WM/TRAY:REMOVE-MODE-LINE-HOOKS
   - WM/TRAY:ADD-MODE-LINE-HOOKS
-  - WM::MAKE-MODE-LINE
 ***** GROUP-REMOVE-HEAD :generic:function:
 :PROPERTIES:
 :ID: WM:GROUP-REMOVE-HEAD
@@ -2392,8 +2392,8 @@ BIND-KEY names a compiled function:
 #+end_example
 
 - Referenced by
-  - WM::SPLIT-FRAME-H
   - WM::SPLIT-FRAME-V
+  - WM::SPLIT-FRAME-H
 ***** *HOOKS-ENABLED-P​* :var:
 :PROPERTIES:
 :ID: WM:*HOOKS-ENABLED-P*
@@ -2517,8 +2517,8 @@ MENU-DOWN names a generic function:
 #+end_example
 
 - Referenced by
-  - WM::HANDLE-KEYMAP
   - WM::HELP-KEY-P
+  - WM::HANDLE-KEYMAP
 
 :definitions:
 - [[vc:shed/wm:bindings.lisp][bindings.lisp]]
@@ -2582,8 +2582,8 @@ SET-BORDER-COLOR names a compiled function:
 #+end_example
 
 - Referenced by
-  - WM::ECHO-GROUPS
   - WM::FMT-GROUP-LIST
+  - WM::ECHO-GROUPS
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -2674,14 +2674,14 @@ WINDOW-NORMAL-HINTS names a generic function:
 #+end_example
 
 - Called by
-  - WM::UPDATE-WINDOW-PROPERTIES
+  - (GEOMETRY-HINTS (T))
+  - (WINDOW-VISIBLE-P (TILE-WINDOW))
   - WM::WINDOW-HEIGHT-INC
   - WM::WINDOW-WIDTH-INC
   - WM::WINDOW-MAXSIZE-P
-  - WM::UNMAXIMIZE
-  - (GEOMETRY-HINTS (T))
-  - (WINDOW-VISIBLE-P (TILE-WINDOW))
+  - WM::UPDATE-WINDOW-PROPERTIES
   - WM::PICK-PREFERRED-FRAME
+  - WM::UNMAXIMIZE
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -2730,9 +2730,9 @@ SCREEN-CURRENT-WINDOW names a compiled function:
 #+end_example
 
 - Called by
+  - WM::SEND-RAW-KEY
   - WM::SEND-META-KEY
   - WM::REGISTER-URGENT-WINDOW
-  - WM::SEND-RAW-KEY
   - [[id:WM:CURRENT-WINDOW][CURRENT-WINDOW]]
 
 :definitions:
@@ -2778,15 +2778,15 @@ SCREEN-CURRENT-WINDOW names a compiled function:
 #+end_example
 
 - Referenced by
-  - WM::ECHO-GROUPS
   - WM::FMT-HEAD-WINDOW-LIST-HIDDEN-WINDOWS
   - WM::FMT-HEAD-WINDOW-LIST
+  - WM::FMT-WINDOW-LIST
+  - WM::FMT-URGENT-WINDOW-LIST
   - WM::WINDOW-INFO
   - WM::ECHO-WINDOWS
   - WM::MARK
   - WM::SELECT-WINDOW-FROM-MENU
-  - WM::FMT-URGENT-WINDOW-LIST
-  - WM::FMT-WINDOW-LIST
+  - WM::ECHO-GROUPS
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -2844,23 +2844,25 @@ WINDOW-GROUP names a generic function:
 #+end_example
 
 - Called by
+  - (EXCHANGE-WINDOWS (DYNAMIC-WINDOW DYNAMIC-WINDOW))
+  - WM::DYNAMIC-GROUP-ADD-WINDOW
+  - WM::GROUPED-P
   - WM/WINDOWS::RAISE-URGENT-WINDOW
   - WM/WINDOWS:GLOBAL-PULL-WINDOWLIST
-  - [[id:CLI/TERM:GOTO-WINDOW][GOTO-WINDOW]]
-  - WM::NETWM-SET-GROUP
-  - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
-  - WM::FOCUS-ALL
-  - WM::MAYBE-RAISE-WINDOW
-  - WM::MAYBE-MAP-WINDOW
-  - WM::CONFIGURE-MANAGED-WINDOW
-  - WM::FIND-MATCHING-WINDOWS
-  - WM::SCREEN-SET-FOCUS
-  - WM/GAPS:GAP-MAXIMIZE-WINDOW
   - WM/GAPS::WINDOW-EDGING-P
+  - [[id:CLI/TERM:GOTO-WINDOW][GOTO-WINDOW]]
+  - WM/GAPS:GAP-MAXIMIZE-WINDOW
+  - WM::FIND-MATCHING-WINDOWS
+  - (GEOMETRY-HINTS (T))
+  - (UPDATE-DECORATION (FLOAT-WINDOW))
+  - (UPDATE-DECORATION (TILE-WINDOW))
+  - (WINDOW-VISIBLE-P (TILE-WINDOW))
+  - WM::PULL-WINDOW
   - (FOCUS-WINDOW (T))
   - [[id:WM-USER::WITHDRAW-WINDOW][WITHDRAW-WINDOW]]
   - WM::RESTORE-WINDOW
   - WM::PROCESS-MAPPED-WINDOW
+  - (EXCHANGE-WINDOWS (TILE-WINDOW TILE-WINDOW))
   - WM::SYNC-KEYS
   - WM::GRAB-KEYS-ON-WINDOW
   - WM::HIDE-WINDOW
@@ -2868,25 +2870,23 @@ WINDOW-GROUP names a generic function:
   - WM::FMT-WINDOW-STATUS
   - [[id:WM:WINDOW-SCREEN][WINDOW-SCREEN]]
   - WM::WINDOW-IN-CURRENT-GROUP-P
-  - (EXCHANGE-WINDOWS (DYNAMIC-WINDOW DYNAMIC-WINDOW))
-  - WM::DYNAMIC-GROUP-ADD-WINDOW
   - (GROUP-ADD-WINDOW (TILE-GROUP T))
-  - WM::MAKE-RULE-FOR-WINDOW
-  - WM::EXCHANGE-DIRECTION
-  - (EXCHANGE-WINDOWS (TILE-WINDOW TILE-WINDOW))
-  - WM::PULL-WINDOW
-  - WM::MAXIMIZE-WINDOW
-  - (GEOMETRY-HINTS (T))
-  - (REALLY-RAISE-WINDOW (TILE-WINDOW))
+  - WM::FOCUS-ALL
+  - WM::MAYBE-RAISE-WINDOW
+  - WM::MAYBE-MAP-WINDOW
   - (WINDOW-HEAD (TILE-WINDOW))
-  - (WINDOW-VISIBLE-P (TILE-WINDOW))
-  - (UPDATE-DECORATION (TILE-WINDOW))
-  - (WINDOW-HEAD (FLOAT-WINDOW))
-  - (UPDATE-DECORATION (FLOAT-WINDOW))
+  - (REALLY-RAISE-WINDOW (TILE-WINDOW))
+  - WM::CONFIGURE-MANAGED-WINDOW
   - WM::PICK-PREFERRED-FRAME
   - WM::SYNC-SINGLE-WINDOW-PLACEMENT
   - WM::WINDOW-MATCHES-RULE-P
-  - WM::GROUPED-P
+  - WM::MAKE-RULE-FOR-WINDOW
+  - WM::EXCHANGE-DIRECTION
+  - WM::MAXIMIZE-WINDOW
+  - WM::NETWM-SET-GROUP
+  - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
+  - WM::SCREEN-SET-FOCUS
+  - (WINDOW-HEAD (FLOAT-WINDOW))
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -3017,9 +3017,9 @@ WITH-RESTARTS-MENU names a macro:
 #+end_example
 
 - Macroexpanded by
-  - [[id:WM:RUN-HOOK-WITH-ARGS][RUN-HOOK-WITH-ARGS]]
   - WM::RELOAD
   - WM::LOADRC
+  - [[id:WM:RUN-HOOK-WITH-ARGS][RUN-HOOK-WITH-ARGS]]
 
 :definitions:
 - [[vc:shed/wm:prim.lisp#l627][prim.lisp:627]]
@@ -3247,8 +3247,8 @@ FORMAT-WITH-ON-CLICK-ID names a compiled function:
   - WM::FMT-HEAD-WINDOW-LIST-HIDDEN-WINDOWS
   - WM::FMT-HEAD-WINDOW-LIST
   - WM::FMT-GROUP-LIST
-  - WM::FMT-URGENT-WINDOW-LIST
   - WM::FMT-WINDOW-LIST
+  - WM::FMT-URGENT-WINDOW-LIST
 
 :definitions:
 - [[vc:shed/wm:mode-line-formatters.lisp#l17][mode-line-formatters.lisp:17]]
@@ -3276,8 +3276,8 @@ FORMAT-WITH-ON-CLICK-ID names a compiled function:
 #+end_example
 
 - Referenced by
-  - (GROUP-BUTTON-PRESS (TILE-GROUP T T T (EQL ROOT)))
   - (GROUP-BUTTON-PRESS (TILE-GROUP T T T WINDOW))
+  - (GROUP-BUTTON-PRESS (TILE-GROUP T T T (EQL ROOT)))
   - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
 
 :definitions:
@@ -3300,13 +3300,13 @@ FORMAT-WITH-ON-CLICK-ID names a compiled function:
 #+end_example
 
 - Set by
-  - WM/TRAY::NEW-MODE-LINE-HOOK
   - WM/TRAY::DESTROY-TRAY
+  - WM/TRAY::NEW-MODE-LINE-HOOK
 
 - Referenced by
-  - WM/TRAY::NEW-MODE-LINE-HOOK
-  - WM/TRAY::DESTROY-TRAY
   - (IO-CHANNEL-HANDLE (DISPLAY-CHANNEL (EQL LOOP)))
+  - WM/TRAY::DESTROY-TRAY
+  - WM/TRAY::NEW-MODE-LINE-HOOK
 ***** TIME-FORMAT :compiled:function:
 :PROPERTIES:
 :ID: WM:TIME-FORMAT
@@ -3324,13 +3324,13 @@ TIME-FORMAT names a compiled function:
 
 - Called by
   - WM::FMT-MODELINE-TIME
-  - WM::TIME-24HR-TIME
-  - WM::TIME-24HR-AND-MINUTE
+  - [[id:WM:ECHO-DATE][ECHO-DATE]]
+  - WM::TIME-DATE-AND-TIME
   - WM::TIME-12HR-TIME
   - WM::TIME-DATE-FULL
   - WM::TIME-DATE
-  - WM::TIME-DATE-AND-TIME
-  - [[id:WM:ECHO-DATE][ECHO-DATE]]
+  - WM::TIME-24HR-TIME
+  - WM::TIME-24HR-AND-MINUTE
 
 :definitions:
 - [[vc:shed/wm:time.lisp#l208][time.lisp:208]]
@@ -3366,8 +3366,8 @@ TIME-FORMAT names a compiled function:
   - [[id:WM:ADD-SCREEN-MODE-LINE-FORMATTER][ADD-SCREEN-MODE-LINE-FORMATTER]]
 
 - Referenced by
-  - [[id:WM:ADD-SCREEN-MODE-LINE-FORMATTER][ADD-SCREEN-MODE-LINE-FORMATTER]]
   - WM::REDRAW-MODE-LINE
+  - [[id:WM:ADD-SCREEN-MODE-LINE-FORMATTER][ADD-SCREEN-MODE-LINE-FORMATTER]]
 
 :definitions:
 - [[vc:shed/wm:mode-line.lisp][mode-line.lisp]]
@@ -3554,30 +3554,30 @@ FRAME-X names a generic function:
 
 - Called by
   - WM/WINDOWS:BECKON
+  - WM::DUMP-GROUP
+  - (GEOMETRY-HINTS (T))
+  - WM::FRAME-INTERSECT
+  - (FRAME-DISPLAY-WIDTH (T T))
+  - (FRAME-DISPLAY-X (T T))
+  - (FRAME-R (T))
+  - (FRAME-SET-R (T T))
+  - (FRAME-SET-X (T T))
+  - WM::FIND-FRAME
+  - WM::FRAME-CENTROID
+  - WM::GET-EDGE
+  - WM::CHOOSE-FRAME-BY-NUMBER
+  - WM::OFFSET-FRAMES
+  - WM::EXPAND-TREE
+  - WM::OFFSET-TREE
+  - WM::SPLIT-FRAME-V
+  - WM::SPLIT-FRAME-H
   - WM::COPY-HEAD
   - (HEAD-X (HEAD))
   - WM::COPY-FRAME
   - (PRINT-WM-OBJECT (FRAME T))
   - (FRAME-HEAD (T T))
-  - (FRAME-SET-R (T T))
-  - (FRAME-SET-X (T T))
-  - WM::SPLIT-FRAME-H
-  - (FRAME-R (T))
-  - (FRAME-DISPLAY-X (T T))
-  - WM::FRAME-INTERSECT
-  - WM::CHOOSE-FRAME-BY-NUMBER
-  - WM::DUMP-GROUP
-  - WM::FIND-FRAME
-  - (FRAME-DISPLAY-WIDTH (T T))
-  - WM::OFFSET-TREE
-  - WM::OFFSET-FRAMES
-  - (GEOMETRY-HINTS (T))
-  - WM::EXPAND-TREE
-  - WM::SPLIT-FRAME-V
   - ((SETF WINDOW-FULLSCREEN) AFTER (T FLOAT-WINDOW))
   - (WINDOW-HEAD (FLOAT-WINDOW))
-  - WM::FRAME-CENTROID
-  - WM::GET-EDGE
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -3599,9 +3599,9 @@ FRAME-X names a generic function:
 #+end_example
 
 - Referenced by
-  - WM::RESIZE-FRAME
   - WM::RESIZE-UNHIDE
   - [[id:WM:SETUP-IRESIZE][SETUP-IRESIZE]]
+  - WM::RESIZE-FRAME
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -3808,9 +3808,9 @@ DUMP-SCREEN-TO-FILE names a compiled function:
 #+end_example
 
 - Referenced by
+  - WM::REFRESH-COLORS-FOR-MODELINE
   - WM::UPDATE-MODE-LINE-COLOR-CONTEXT
   - WM::MAKE-MODE-LINE-GC
-  - WM::REFRESH-COLORS-FOR-MODELINE
 
 :definitions:
 - [[vc:shed/wm:mode-line.lisp][mode-line.lisp]]
@@ -3835,11 +3835,11 @@ INPUT-INSERT-STRING names a compiled function:
 #+end_example
 
 - Called by
+  - WM::INPUT-YANK-CLIPBOARD
+  - WM::INPUT-YANK-SELECTION
   - [[id:WM:READ-ONE-LINE][READ-ONE-LINE]]
   - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-UNAMBIGUOUS T T))
   - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-CYCLIC T T))
-  - WM::INPUT-YANK-CLIPBOARD
-  - WM::INPUT-YANK-SELECTION
 
 :definitions:
 - [[vc:shed/wm:input.lisp#l540][input.lisp:540]]
@@ -3899,8 +3899,8 @@ WINDOW-MARKED names a generic function:
 #+end_example
 
 - Referenced by
-  - WM::SPLIT-FRAME-H
   - WM::SPLIT-FRAME-V
+  - WM::SPLIT-FRAME-H
 ***** GRAB-POINTER :compiled:function:
 :PROPERTIES:
 :ID: WM:GRAB-POINTER
@@ -3958,10 +3958,10 @@ SCREEN-WIDTH names a compiled function:
 #+end_example
 
 - Called by
-  - WM::BANISH-POINTER
   - WM/SCREENSHOT::SCREENSHOT-AREA
-  - WM::XWIN-STRUT
+  - WM::BANISH-POINTER
   - WM::FLOAT-WINDOW-ALIGN
+  - WM::XWIN-STRUT
 
 :definitions:
 - [[vc:shed/wm:screen.lisp#l45][screen.lisp:45]]
@@ -4061,10 +4061,10 @@ INPUT-DELETE-REGION names a compiled function:
 #+end_example
 
 - Called by
-  - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-UNAMBIGUOUS T T))
-  - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-CYCLIC T T))
   - WM::INPUT-BACKWARD-KILL-WORD
   - WM::INPUT-FORWARD-KILL-WORD
+  - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-UNAMBIGUOUS T T))
+  - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-CYCLIC T T))
 
 :definitions:
 - [[vc:shed/wm:input.lisp#l560][input.lisp:560]]
@@ -4144,8 +4144,8 @@ COMPLETING-READ-SCREEN names a compiled function:
 
 - Called by
   - WM::COLON
-  - [[id:WM:READ-WM-ARGS][READ-WM-ARGS]]
   - [[id:WM:READ-WM-ARG][READ-WM-ARG]]
+  - [[id:WM:READ-WM-ARGS][READ-WM-ARGS]]
 
 :definitions:
 - [[vc:shed/wm:input.lisp#l306][input.lisp:306]]
@@ -4174,7 +4174,8 @@ GROUP-FOCUS-WINDOW names a generic function:
 #+end_example
 
 - Called by
-  - WM::FOCUS-ALL
+  - WM::SELECT-FLOATING-WINDOW
+  - (GROUP-ADD-WINDOW (DYNAMIC-GROUP T))
   - WM::WINDOWLIST
   - (FOCUS-PREV-WINDOW (T))
   - (FOCUS-NEXT-WINDOW (T))
@@ -4182,13 +4183,12 @@ GROUP-FOCUS-WINDOW names a generic function:
   - WM::SELECT-WINDOW-BY-NUMBER
   - WM::SELECT-WINDOW-BY-NAME
   - WM::SELECT-WINDOW
-  - WM::SELECT-FLOATING-WINDOW
-  - (GROUP-ADD-WINDOW (DYNAMIC-GROUP T))
   - (GROUP-ADD-WINDOW (TILE-GROUP T))
-  - WM::FRAME-WINDOWLIST
   - (GROUP-DELETE-WINDOW (TILE-GROUP FLOAT-WINDOW))
-  - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
+  - WM::FOCUS-ALL
   - (GROUP-RAISE-REQUEST (FLOAT-GROUP T T))
+  - WM::FRAME-WINDOWLIST
+  - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
   - WM::%FLOAT-FOCUS-NEXT
   - (GROUP-ADD-WINDOW (T FLOAT-WINDOW))
 
@@ -4218,10 +4218,10 @@ SCREEN-HEIGHT names a compiled function:
 #+end_example
 
 - Called by
-  - WM::BANISH-POINTER
   - WM/SCREENSHOT::SCREENSHOT-AREA
-  - WM::XWIN-STRUT
+  - WM::BANISH-POINTER
   - WM::FLOAT-WINDOW-ALIGN
+  - WM::XWIN-STRUT
 
 :definitions:
 - [[vc:shed/wm:screen.lisp#l41][screen.lisp:41]]
@@ -4336,8 +4336,8 @@ BAR names a compiled function:
 #+end_example
 
 - Called by
-  - WM/MODELINE::FMT-MEM-USAGE-BAR
   - WM/CPU::FMT-CPU-USAGE-BAR
+  - WM/MODELINE::FMT-MEM-USAGE-BAR
 
 :definitions:
 - [[vc:shed/wm:mode-line-formatters.lisp#l177][mode-line-formatters.lisp:177]]
@@ -4418,11 +4418,11 @@ WINDOW-STATE names a generic function:
 #+end_example
 
 - Called by
-  - WM::SWITCH-TO-GROUP
   - [[id:WM-USER::DESTROY-WINDOW][DESTROY-WINDOW]]
   - WM::HIDE-WINDOW
   - WM::WINDOW-HIDDEN-P
   - (WINDOW-VISIBLE-P (FLOAT-WINDOW))
+  - WM::SWITCH-TO-GROUP
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -4567,8 +4567,8 @@ FDUMP-NUMBER names a compiled function:
   - WM::WHICH-KEY-MODE
 
 - Referenced by
-  - WM::HANDLE-KEYMAP
   - WM::WHICH-KEY-MODE
+  - WM::HANDLE-KEYMAP
 ***** WINDOW-HEIGHT :generic:function:
 :PROPERTIES:
 :ID: WM:WINDOW-HEIGHT
@@ -4600,19 +4600,19 @@ WINDOW-HEIGHT names a generic function:
 #+end_example
 
 - Called by
+  - (INVOKE-EXPOSE (FLOAT-GROUP))
   - WM/GAPS:GAP-MAXIMIZE-WINDOW
-  - ((SETF WINDOW-HEIGHT) BEFORE (T FLOAT-WINDOW))
+  - (GEOMETRY-HINTS (T))
+  - WM::FLOAT-WINDOW-ALIGN
   - WM::REFRESH
   - [[id:WM-USER::REPARENT-WINDOW][REPARENT-WINDOW]]
   - [[id:WM:UPDATE-CONFIGURATION][UPDATE-CONFIGURATION]]
-  - (INVOKE-EXPOSE (FLOAT-GROUP))
+  - ((SETF WINDOW-HEIGHT) BEFORE (T FLOAT-WINDOW))
+  - WM::WINDOW-CENTROID
   - WM::MAXIMIZE-WINDOW
-  - (GEOMETRY-HINTS (T))
   - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
-  - WM::FLOAT-WINDOW-ALIGN
   - ((SETF WINDOW-FULLSCREEN) AFTER (T FLOAT-WINDOW))
   - (WINDOW-HEAD (FLOAT-WINDOW))
-  - WM::WINDOW-CENTROID
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -4634,9 +4634,9 @@ WINDOW-HEIGHT names a generic function:
 #+end_example
 
 - Referenced by
-  - WM::RESIZE-FRAME
   - WM::WHICH-KEY-MODE-KEY-PRESS-HOOK
   - WM::SHOW-FRAME-OUTLINE
+  - WM::RESIZE-FRAME
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -4876,9 +4876,9 @@ DATA-DIR-FILE names a compiled function:
 #+end_example
 
 - Called by
+  - WM::GET-WINDOW-PLACEMENT
   - (BUILD (WM-CONFIG))
   - [[id:WM:DEFAULT-WM-LOGGER-CONFIG][DEFAULT-WM-LOGGER-CONFIG]]
-  - WM::GET-WINDOW-PLACEMENT
 
 :definitions:
 - [[vc:shed/wm:prim.lisp#l1263][prim.lisp:1263]]
@@ -4995,39 +4995,39 @@ FRAME-WIDTH names a generic function:
 #+end_example
 
 - Called by
-  - WM/WINDOWS:BECKON
+  - WM::DYN-SPLIT-FRAME
+  - WM::DYNAMIC-GROUP-HEAD-FULL-P
+  - WM::RECURSIVE-TILE
+  - WM::FRAME-AREA
   - WM/GOLDEN-RATIO::RESIZE-TO-GOLDEN-RATIO
+  - WM/WINDOWS:BECKON
+  - WM/GAPS:GAP-MAXIMIZE-WINDOW
+  - WM::RESIZE-MODE-LINE
+  - WM::DUMP-GROUP
+  - (GEOMETRY-HINTS (T))
+  - WM::FRAMES-OVERLAP-P
+  - WM::FRAME-INTERSECT
+  - (FRAME-DISPLAY-WIDTH (T T))
+  - (FRAME-R (T))
+  - (FRAME-SET-X (T T))
+  - WM::FIND-FRAME
+  - WM::REDRAW-FRAME-INDICATOR
+  - WM::SHOW-FRAME-INDICATOR
+  - WM::FRAME-CENTROID
+  - WM::GET-EDGE
+  - WM::SPLIT-FRAME
+  - WM::EXPAND-TREE
+  - WM::TREE-WIDTH
+  - WM::SPLIT-FRAME-V
+  - WM::SPLIT-FRAME-H
+  - WM::REDISPLAY
   - WM::COPY-HEAD
   - (HEAD-WIDTH (HEAD))
   - WM::COPY-FRAME
   - (PRINT-WM-OBJECT (FRAME T))
   - (FRAME-HEAD (T T))
-  - (FRAME-SET-X (T T))
-  - WM::SPLIT-FRAME-H
-  - (FRAME-R (T))
-  - WM::REDRAW-FRAME-INDICATOR
-  - WM/GAPS:GAP-MAXIMIZE-WINDOW
-  - WM::SPLIT-FRAME
-  - WM::FRAMES-OVERLAP-P
-  - WM::FRAME-INTERSECT
-  - WM::TREE-WIDTH
-  - WM::DYN-SPLIT-FRAME
-  - WM::DYNAMIC-GROUP-HEAD-FULL-P
-  - WM::RECURSIVE-TILE
-  - WM::DUMP-GROUP
-  - WM::REDISPLAY
-  - WM::FIND-FRAME
-  - (FRAME-DISPLAY-WIDTH (T T))
-  - (GEOMETRY-HINTS (T))
-  - WM::EXPAND-TREE
-  - WM::SPLIT-FRAME-V
   - ((SETF WINDOW-FULLSCREEN) AFTER (T FLOAT-WINDOW))
   - (WINDOW-HEAD (FLOAT-WINDOW))
-  - WM::SHOW-FRAME-INDICATOR
-  - WM::FRAME-CENTROID
-  - WM::FRAME-AREA
-  - WM::GET-EDGE
-  - WM::RESIZE-MODE-LINE
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -5246,8 +5246,8 @@ DEFINE-INTERACTIVE-KEYMAP names a macro:
   - WM::WM-INTERNAL
 
 - Referenced by
-  - WM::TOP-MAPS
   - WM::WM-INTERNAL
+  - WM::TOP-MAPS
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -5282,10 +5282,11 @@ WINDOW-NUMBER names a generic function:
 #+end_example
 
 - Called by
+  - (INVOKE-EXPOSE (FLOAT-GROUP))
   - WM/WINDOWS::NUMBER-BY-TAGS
-  - WM::FIND-MATCHING-WINDOWS
   - WM::FMT-HEAD-WINDOW-LIST-HIDDEN-WINDOWS
   - WM::FMT-HEAD-WINDOW-LIST
+  - WM::FIND-MATCHING-WINDOWS
   - WM::REPACK-WINDOW-NUMBERS
   - WM::RENUMBER
   - WM::SELECT-WINDOW-BY-NUMBER
@@ -5293,7 +5294,6 @@ WINDOW-NUMBER names a generic function:
   - WM::FIND-FREE-WINDOW-NUMBER
   - (SORT-WINDOWS-BY-CLASS (LIST))
   - WM::WINDOW-MAP-NUMBER
-  - (INVOKE-EXPOSE (FLOAT-GROUP))
   - WM::PULL-WINDOW-BY-NUMBER
 
 :definitions:
@@ -5482,9 +5482,9 @@ GROUP-SYNC-HEAD names a generic function:
 #+end_example
 
 - Called by
-  - WM::RESIZE-HEAD
-  - WM::SYNC-MODE-LINE
   - [[id:WM:TOGGLE-MODE-LINE][TOGGLE-MODE-LINE]]
+  - WM::SYNC-MODE-LINE
+  - WM::RESIZE-HEAD
 
 :definitions:
 - [[vc:shed/wm:group.lisp][group.lisp]]
@@ -5595,9 +5595,9 @@ RESTARTS-MENU names a compiled function:
 #+end_example
 
 - Called by
-  - [[id:WM:RUN-HOOK-WITH-ARGS][RUN-HOOK-WITH-ARGS]]
   - WM::RELOAD
   - WM::LOADRC
+  - [[id:WM:RUN-HOOK-WITH-ARGS][RUN-HOOK-WITH-ARGS]]
 
 :definitions:
 - [[vc:shed/wm:user.lisp#l12][user.lisp:12]]
@@ -5640,11 +5640,9 @@ WINDOW-SCREEN names a compiled function:
 #+end_example
 
 - Called by
-  - WM::NETWM-GROUP
-  - WM::FOCUS-ALL
-  - WM::MAYBE-RAISE-WINDOW
-  - WM::MAYBE-MAP-WINDOW
-  - WM::MAYBE-SET-URGENCY
+  - WM::FLOAT-WINDOW-ALIGN
+  - (UPDATE-DECORATION (FLOAT-WINDOW))
+  - WM::PULL-WINDOW
   - (FOCUS-WINDOW (T))
   - [[id:WM-USER::DESTROY-WINDOW][DESTROY-WINDOW]]
   - [[id:WM-USER::WITHDRAW-WINDOW][WITHDRAW-WINDOW]]
@@ -5655,9 +5653,11 @@ WINDOW-SCREEN names a compiled function:
   - WM::WINDOW-GANG
   - WM::UNREGISTER-URGENT-WINDOW
   - WM::REGISTER-URGENT-WINDOW
-  - WM::PULL-WINDOW
-  - WM::FLOAT-WINDOW-ALIGN
-  - (UPDATE-DECORATION (FLOAT-WINDOW))
+  - WM::FOCUS-ALL
+  - WM::MAYBE-RAISE-WINDOW
+  - WM::MAYBE-MAP-WINDOW
+  - WM::MAYBE-SET-URGENCY
+  - WM::NETWM-GROUP
   - WM::SEND-FAKE-CLICK
   - WM::SEND-FAKE-KEY
 
@@ -5756,9 +5756,9 @@ GROUP-WAKE-UP names a generic function:
 
 - Called by
   - WM::SWITCH-TO-GROUP
+  - WM::SOTHER
   - WM::SPREV
   - WM::SNEXT
-  - WM::SOTHER
 
 :definitions:
 - [[vc:shed/wm:group.lisp][group.lisp]]
@@ -5785,9 +5785,9 @@ REMOVE-WM-HOOK names a macro:
 #+end_example
 
 - Macroexpanded by
-  - WM/TRAY:REMOVE-MODE-LINE-HOOKS
-  - WM/TRAY::DESTROY-TRAY
   - WM::WHICH-KEY-MODE
+  - WM/TRAY::DESTROY-TRAY
+  - WM/TRAY:REMOVE-MODE-LINE-HOOKS
 
 :definitions:
 - [[vc:shed/wm:prim.lisp#l672][prim.lisp:672]]
@@ -5843,8 +5843,8 @@ GROUP-CURRENT-HEAD names a generic function:
 #+end_example
 
 - Called by
-  - [[id:WM:CURRENT-HEAD][CURRENT-HEAD]]
   - (INVOKE-EXPOSE (FLOAT-GROUP))
+  - [[id:WM:CURRENT-HEAD][CURRENT-HEAD]]
 
 :definitions:
 - [[vc:shed/wm:group.lisp][group.lisp]]
@@ -5877,15 +5877,15 @@ ADD-GROUP names a compiled function:
 #+end_example
 
 - Called by
-  - WM::GNEWBG
-  - WM::GNEW
   - WM::GNEWBG-DYNAMIC
   - WM::GNEW-DYNAMIC
-  - WM::RESTORE-SCREEN
   - [[id:WM:MOVE-WINDOWS-TO-GROUP][MOVE-WINDOWS-TO-GROUP]]
-  - WM::GNEWBG-FLOAT
   - WM::GNEW-FLOAT
+  - WM::GNEWBG-FLOAT
   - WM::GET-WINDOW-PLACEMENT
+  - WM::RESTORE-SCREEN
+  - WM::GNEWBG
+  - WM::GNEW
 
 :definitions:
 - [[vc:shed/wm:group.lisp#l353][group.lisp:353]]
@@ -6035,13 +6035,13 @@ WINDOW-Y names a generic function:
 #+end_example
 
 - Called by
-  - ((SETF WINDOW-Y) BEFORE (T FLOAT-WINDOW))
-  - WM::DRAW-WINDOW-NUMBERS
   - (INVOKE-EXPOSE (FLOAT-GROUP))
-  - ((SETF WINDOW-FULLSCREEN) AFTER (T FLOAT-WINDOW))
-  - (WINDOW-HEAD (FLOAT-WINDOW))
+  - WM::DRAW-WINDOW-NUMBERS
+  - ((SETF WINDOW-Y) BEFORE (T FLOAT-WINDOW))
   - WM::PICK-PREFERRED-FRAME
   - WM::WINDOW-CENTROID
+  - ((SETF WINDOW-FULLSCREEN) AFTER (T FLOAT-WINDOW))
+  - (WINDOW-HEAD (FLOAT-WINDOW))
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -6066,13 +6066,13 @@ SET-WINDOW-GEOMETRY names a compiled function:
 #+end_example
 
 - Called by
-  - (GROUP-RESIZE-REQUEST (TILE-GROUP TILE-WINDOW T T))
   - WM/GAPS:GAP-MAXIMIZE-WINDOW
+  - WM::FLOAT-WINDOW-ALIGN
   - WM::REFRESH
   - WM::PROCESS-MAPPED-WINDOW
   - WM::REDISPLAY
   - WM::MAXIMIZE-WINDOW
-  - WM::FLOAT-WINDOW-ALIGN
+  - (GROUP-RESIZE-REQUEST (TILE-GROUP TILE-WINDOW T T))
   - ((SETF WINDOW-FULLSCREEN) AFTER (T FLOAT-WINDOW))
 
 :definitions:
@@ -6200,9 +6200,9 @@ UNGRAB-POINTER names a compiled function:
 #+end_example
 
 - Called by
+  - (INVOKE-EXPOSE (FLOAT-GROUP))
   - WM::HANDLE-KEYMAP
   - WM::CHOOSE-FRAME-BY-NUMBER
-  - (INVOKE-EXPOSE (FLOAT-GROUP))
   - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
 
 :definitions:
@@ -6293,21 +6293,21 @@ UPDATE-DECORATION names a generic function:
 #+end_example
 
 - Called by
-  - WM::RESIZE-TREE
-  - WM::DEACTIVATE-FULLSCREEN
-  - (FOCUS-WINDOW (T))
-  - [[id:WM:NO-FOCUS][NO-FOCUS]]
-  - WM::ONLY
-  - WM::REMOVE-SPLIT
-  - WM::SPLIT-FRAME-EQL-PARTS
   - (SYNCHRONIZE-FRAMES-AND-WINDOWS (DYNAMIC-GROUP T))
   - WM::DYN-SPLIT-FRAME-IN-DIR-WITH-FRAME
   - WM::DYNAMIC-GROUP-RETILE-HEAD
   - WM::DYNAMIC-GROUP-PLACE-WINDOW
-  - WM::MAXIMIZE-WINDOW
-  - WM::SPLIT-FRAME-IN-DIR
+  - (FOCUS-WINDOW (T))
+  - [[id:WM:NO-FOCUS][NO-FOCUS]]
+  - WM::DEACTIVATE-FULLSCREEN
   - WM::TILE-GROUP-FLOAT-WINDOW
   - WM::TILE-GROUP-UNFLOAT-WINDOW
+  - WM::ONLY
+  - WM::REMOVE-SPLIT
+  - WM::SPLIT-FRAME-EQL-PARTS
+  - WM::SPLIT-FRAME-IN-DIR
+  - WM::RESIZE-TREE
+  - WM::MAXIMIZE-WINDOW
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -6383,7 +6383,7 @@ WINDOW-USER-TITLE names a generic function:
 #+begin_example
 
 *INPUT-COMPLETION-STYLE* names a special variable:
-  Value: #<WM::INPUT-COMPLETION-STYLE-CYCLIC {120BC00BC3}>
+  Value: #<WM::INPUT-COMPLETION-STYLE-CYCLIC {120AC2ED03}>
   Documentation:
     The completion style to use.
     A completion style has to implement input-completion-reset
@@ -6416,9 +6416,9 @@ WINDOW-USER-TITLE names a generic function:
 #+end_example
 
 - Referenced by
-  - WM::DEFAULT-BORDER-WIDTH-FOR-TYPE
-  - WM::MAXIMIZE-FLOAT
   - WM::WINDOW-DISPLAY-HEIGHT
+  - WM::MAXIMIZE-FLOAT
+  - WM::DEFAULT-BORDER-WIDTH-FOR-TYPE
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -6454,21 +6454,21 @@ WINDOW-USER-TITLE names a generic function:
 #+end_example
 
 - Referenced by
+  - WM::SELECT-FLOATING-WINDOW
   - WM/WINDOWS:GLOBAL-PULL-WINDOWLIST
   - WM/WINDOWS:GLOBAL-WINDOWLIST
-  - WM::VGROUPS
-  - WM::ECHO-GROUPS
   - WM::FMT-HEAD-WINDOW-LIST-HIDDEN-WINDOWS
   - WM::FMT-HEAD-WINDOW-LIST
+  - WM::FMT-WINDOW-LIST
+  - WM::FMT-URGENT-WINDOW-LIST
   - WM::ECHO-WINDOWS
   - WM::MARK
   - WM::WINDOWLIST
-  - WM::SELECT-FLOATING-WINDOW
-  - WM::FMT-URGENT-WINDOW-LIST
-  - WM::FMT-WINDOW-LIST
   - WM::FRAME-WINDOWLIST
   - WM::ECHO-FRAME-WINDOWS
   - WM::PULL-FROM-WINDOWLIST
+  - WM::VGROUPS
+  - WM::ECHO-GROUPS
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -6510,9 +6510,9 @@ WINDOW-USER-TITLE names a generic function:
 #+end_example
 
 - Referenced by
-  - WM::DRAW-INPUT-BUCKET
   - WM::ECHO-STRING-LIST
   - WM::SETUP-MESSAGE-WINDOW
+  - WM::DRAW-INPUT-BUCKET
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -6718,8 +6718,8 @@ ADD-WM-STATE names a compiled function:
 #+end_example
 
 - Called by
-  - WM::ACTIVATE-FULLSCREEN
   - WM::HIDE-WINDOW
+  - WM::ACTIVATE-FULLSCREEN
 
 :definitions:
 - [[vc:shed/wm:window.lisp#l451][window.lisp:451]]
@@ -6843,10 +6843,10 @@ SCREEN-FOCUS names a generic function:
 #+end_example
 
 - Called by
-  - WM::SWITCH-TO-SCREEN
-  - (FOCUS-WINDOW (T))
   - WM::PULL-WINDOW
+  - (FOCUS-WINDOW (T))
   - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
+  - WM::SWITCH-TO-SCREEN
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -6934,21 +6934,21 @@ MOVE-WINDOW-TO-GROUP names a compiled function:
 #+end_example
 
 - Called by
+  - WM::HANDLE-GROUP-OVERFLOW
+  - (GROUP-REMOVE-HEAD (DYNAMIC-GROUP T))
   - WM/WINDOWS::PULL-BY-TITLE-REGEXP
   - WM/WINDOWS::SELECT-BY-TITLE-REGEXP
   - WM/WINDOWS::SEARCH-TAG-PULL
   - WM/WINDOWS::SEARCH-TAG
   - WM/WINDOWS:GLOBAL-PULL-WINDOWLIST
+  - [[id:WM:MOVE-WINDOWS-TO-GROUP][MOVE-WINDOWS-TO-GROUP]]
+  - [[id:WM:RUN-OR-PULL][RUN-OR-PULL]]
+  - WM::SYNC-SINGLE-WINDOW-PLACEMENT
+  - WM::GMOVE-MARKED
   - WM::GMOVE
   - WM::GROUP-FORWARD-WITH-WINDOW
   - WM::MERGE-GROUPS
   - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
-  - [[id:WM:RUN-OR-PULL][RUN-OR-PULL]]
-  - WM::HANDLE-GROUP-OVERFLOW
-  - (GROUP-REMOVE-HEAD (DYNAMIC-GROUP T))
-  - [[id:WM:MOVE-WINDOWS-TO-GROUP][MOVE-WINDOWS-TO-GROUP]]
-  - WM::SYNC-SINGLE-WINDOW-PLACEMENT
-  - WM::GMOVE-MARKED
 
 :definitions:
 - [[vc:shed/wm:group.lisp#l219][group.lisp:219]]
@@ -6969,38 +6969,33 @@ MOVE-WINDOW-TO-GROUP names a compiled function:
 #+end_example
 
 - Set by
-  - WM::MOVE-SCREEN-TO-HEAD
   - WM::WM-INTERNAL
+  - WM::MOVE-SCREEN-TO-HEAD
 
 - Bound by
   - WM::SYNC-SINGLE-WINDOW-PLACEMENT
 
 - Referenced by
-  - [[id:WM:CURRENT-SCREEN][CURRENT-SCREEN]]
-  - WM::UPDATE-BORDER-ALL-SCREENS
-  - WM::UPDATE-COLORS-ALL-SCREENS
-  - WM::SORT-SCREENS
-  - WM::FIND-SCREEN
-  - WM::FIND-MESSAGE-WINDOW-SCREEN
+  - WM::WM-INTERNAL
   - WM::FIND-MATCHING-WINDOWS
-  - WM::REDRAW-FRAME-INDICATOR
-  - WM::MOVE-SCREEN-TO-HEAD
+  - WM::DUMP-DESKTOP
   - WM::FIND-WITHDRAWN-WINDOW
   - WM::SYNC-KEYS
   - WM::UPDATE-WINDOW-GRAVITY
   - WM::TOP-WINDOWS
   - WM::VISIBLE-WINDOWS
   - WM::ALL-WINDOWS
-  - WM::RESTORE-DESKTOP
-  - WM::DUMP-DESKTOP
-  - WM::WM-INTERNAL
-  - [[id:WM:SET-FONT][SET-FONT]]
-  - WM::SOTHER
+  - WM::FIND-MESSAGE-WINDOW-SCREEN
+  - WM::REDRAW-FRAME-INDICATOR
   - WM::SHOW-FRAME-INDICATOR
   - WM::SHOW-FRAME-OUTLINE
   - WM::UNMAP-ALL-FRAME-INDICATOR-WINDOWS
   - WM::UNMAP-ALL-MESSAGE-WINDOWS
   - WM::SYNC-WINDOW-PLACEMENT
+  - WM::RESTORE-DESKTOP
+  - WM::SOTHER
+  - [[id:WM:CURRENT-SCREEN][CURRENT-SCREEN]]
+  - [[id:WM:SET-FONT][SET-FONT]]
   - [[id:WM:SET-FRAME-OUTLINE-WIDTH][SET-FRAME-OUTLINE-WIDTH]]
   - [[id:WM:SET-MSG-BORDER-WIDTH][SET-MSG-BORDER-WIDTH]]
   - [[id:WM:SET-FLOAT-UNFOCUS-COLOR][SET-FLOAT-UNFOCUS-COLOR]]
@@ -7011,6 +7006,11 @@ MOVE-WINDOW-TO-GROUP names a compiled function:
   - [[id:WM:SET-BORDER-COLOR][SET-BORDER-COLOR]]
   - [[id:WM:SET-BG-COLOR][SET-BG-COLOR]]
   - [[id:WM:SET-FG-COLOR][SET-FG-COLOR]]
+  - WM::UPDATE-BORDER-ALL-SCREENS
+  - WM::UPDATE-COLORS-ALL-SCREENS
+  - WM::MOVE-SCREEN-TO-HEAD
+  - WM::SORT-SCREENS
+  - WM::FIND-SCREEN
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -7170,38 +7170,38 @@ FRAME-HEIGHT names a generic function:
 #+end_example
 
 - Called by
-  - WM/WINDOWS:BECKON
+  - WM::DYN-SPLIT-FRAME
+  - WM::DYNAMIC-GROUP-HEAD-FULL-P
+  - WM::RECURSIVE-TILE
+  - WM::FRAME-AREA
   - WM/GOLDEN-RATIO::RESIZE-TO-GOLDEN-RATIO
+  - WM/WINDOWS:BECKON
+  - WM::DUMP-GROUP
+  - (GEOMETRY-HINTS (T))
+  - WM::FRAMES-OVERLAP-P
+  - WM::FRAME-INTERSECT
+  - (FRAME-DISPLAY-HEIGHT (T T))
+  - (FRAME-DISPLAY-Y (T T))
+  - (FRAME-B (T))
+  - (FRAME-SET-Y (T T))
+  - WM::FIND-FRAME
+  - WM::REDRAW-FRAME-INDICATOR
+  - WM::SHOW-FRAME-INDICATOR
+  - WM::FRAME-CENTROID
+  - WM::GET-EDGE
+  - WM::SPLIT-FRAME
+  - WM::EXPAND-TREE
+  - WM::TREE-HEIGHT
+  - WM::SPLIT-FRAME-V
+  - WM::SPLIT-FRAME-H
+  - WM::REDISPLAY
   - WM::COPY-HEAD
   - (HEAD-HEIGHT (HEAD))
   - WM::COPY-FRAME
   - (PRINT-WM-OBJECT (FRAME T))
   - (FRAME-HEAD (T T))
-  - (FRAME-SET-Y (T T))
-  - WM::SPLIT-FRAME-H
-  - (FRAME-B (T))
-  - WM::REDRAW-FRAME-INDICATOR
-  - WM::SPLIT-FRAME
-  - (FRAME-DISPLAY-Y (T T))
-  - WM::FRAMES-OVERLAP-P
-  - WM::FRAME-INTERSECT
-  - WM::TREE-HEIGHT
-  - WM::DYN-SPLIT-FRAME
-  - WM::DYNAMIC-GROUP-HEAD-FULL-P
-  - WM::RECURSIVE-TILE
-  - WM::DUMP-GROUP
-  - WM::REDISPLAY
-  - WM::FIND-FRAME
-  - (FRAME-DISPLAY-HEIGHT (T T))
-  - (GEOMETRY-HINTS (T))
-  - WM::EXPAND-TREE
-  - WM::SPLIT-FRAME-V
   - ((SETF WINDOW-FULLSCREEN) AFTER (T FLOAT-WINDOW))
   - (WINDOW-HEAD (FLOAT-WINDOW))
-  - WM::SHOW-FRAME-INDICATOR
-  - WM::FRAME-CENTROID
-  - WM::FRAME-AREA
-  - WM::GET-EDGE
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -7349,18 +7349,6 @@ GROUP-CURRENT-WINDOW names a generic function:
 #+end_example
 
 - Called by
-  - WM::UPDATE-COLORS-FOR-SCREEN
-  - WM::GROUP-FORWARD-WITH-WINDOW
-  - (GROUP-CURRENT-HEAD (TILE-GROUP))
-  - WM::ECHO-WINDOWS
-  - WM::RENUMBER
-  - WM::PREV-WINDOW
-  - WM::NEXT-WINDOW
-  - (FOCUS-PREV-WINDOW (T))
-  - (FOCUS-NEXT-WINDOW (T))
-  - (FOCUS-OTHER-WINDOW (T))
-  - WM::FMT-WINDOW-STATUS
-  - WM::ONLY
   - [[id:WM:FIND-MINOR-MODE][FIND-MINOR-MODE]]
   - [[id:WM:LIST-CURRENT-MODE-OBJECTS][LIST-CURRENT-MODE-OBJECTS]]
   - (ROTATE-STACK-BACKWARD (DYNAMIC-GROUP T))
@@ -7368,12 +7356,24 @@ GROUP-CURRENT-WINDOW names a generic function:
   - (ROTATE-WINDOWS-BACKWARD (DYNAMIC-GROUP T))
   - (ROTATE-WINDOWS-FORWARD (DYNAMIC-GROUP T))
   - (INVOKE-EXPOSE (FLOAT-GROUP))
-  - WM::FOCUS-FORWARD
-  - (UPDATE-DECORATION (TILE-WINDOW))
   - (GROUP-CURRENT-HEAD (FLOAT-GROUP))
+  - WM::FOCUS-FORWARD
   - (UPDATE-DECORATION (FLOAT-WINDOW))
+  - WM::ECHO-WINDOWS
+  - WM::RENUMBER
+  - WM::PREV-WINDOW
+  - WM::NEXT-WINDOW
+  - (FOCUS-PREV-WINDOW (T))
+  - (FOCUS-NEXT-WINDOW (T))
+  - (FOCUS-OTHER-WINDOW (T))
+  - (UPDATE-DECORATION (TILE-WINDOW))
+  - WM::FMT-WINDOW-STATUS
   - WM::PREV-IN-FRAME
   - WM::NEXT-IN-FRAME
+  - WM::ONLY
+  - WM::GROUP-FORWARD-WITH-WINDOW
+  - (GROUP-CURRENT-HEAD (TILE-GROUP))
+  - WM::UPDATE-COLORS-FOR-SCREEN
   - [[id:WM:SCREEN-CURRENT-WINDOW][SCREEN-CURRENT-WINDOW]]
 
 :definitions:
@@ -7486,9 +7486,9 @@ ADJUST-COLOR names a compiled function:
 #+end_example
 
 - Called by
-  - WM::UPDATE-MODE-LINE-COLOR-CONTEXT
   - [[id:WM:UPDATE-SCREEN-COLOR-CONTEXT][UPDATE-SCREEN-COLOR-CONTEXT]]
   - [[id:WM:UPDATE-COLOR-MAP][UPDATE-COLOR-MAP]]
+  - WM::UPDATE-MODE-LINE-COLOR-CONTEXT
 
 :definitions:
 - [[vc:shed/wm:color.lisp#l57][color.lisp:57]]
@@ -7615,7 +7615,7 @@ ENTRIES-FROM-NESTED-LIST names a compiled function:
 #+begin_example
 
 *XWIN-TO-WINDOW* names a special variable:
-  Value: #<HASH-TABLE :TEST EQL :COUNT 0 {120BB3AC23}>
+  Value: #<HASH-TABLE :TEST EQL :COUNT 0 {120AB745D3}>
   Documentation:
     Hash table for looking up windows quickly.
 
@@ -7658,8 +7658,8 @@ ENTRIES-FROM-NESTED-LIST names a compiled function:
 #+end_example
 
 - Referenced by
-  - WM::TOP-MAPS
   - WM::FIND-BINDING
+  - WM::TOP-MAPS
 
 :definitions:
 - [[vc:shed/wm:bindings.lisp][bindings.lisp]]
@@ -7686,10 +7686,10 @@ ENTRIES-FROM-NESTED-LIST names a compiled function:
 #+end_example
 
 - Referenced by
+  - WM::FMT-GROUP-LIST
   - WM::GROUPLIST
   - WM::VGROUPS
   - WM::GROUPS
-  - WM::FMT-GROUP-LIST
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -7802,12 +7802,12 @@ SCREEN-WINDOWS names a compiled function:
   - WM/WINDOWS::SELECT-BY-TAGS
   - WM/WINDOWS::ALL-TAGS
   - WM/WINDOWS::CLEAR-ALL-TAGS
-  - WM::FIND-MATCHING-WINDOWS
   - WM/GAPS::RESET-ALL-WINDOWS
+  - (LIST-WINDOWS (SCREEN))
+  - WM::FIND-MATCHING-WINDOWS
   - WM::PROCESS-EXISTING-WINDOWS
   - WM::ALL-WINDOWS
   - WM::WINDOW-GANG
-  - (LIST-WINDOWS (SCREEN))
   - WM::SYNC-WINDOW-PLACEMENT
 
 :definitions:
@@ -7857,18 +7857,30 @@ WM-MESSAGE names a compiled function:
 #+end_example
 
 - Called by
+  - [[id:WM:ENABLED-MINOR-MODES][ENABLED-MINOR-MODES]]
+  - [[id:WM:CURRENT-MINOR-MODES][CURRENT-MINOR-MODES]]
+  - WM::SEND-RAW-KEY
+  - WM::SELECT-FLOATING-WINDOW
+  - WM::SWAP-WINDOWS
+  - (INVOKE-EXPOSE (DYNAMIC-GROUP))
+  - WM::DYNAMIC-GROUP-UNFLOAT-WINDOW
+  - WM::DYNAMIC-GROUP-FLOAT-WINDOW
+  - WM::DYNAMIC-GROUP-ADD-WINDOW
+  - WM::DYNAMIC-GROUP-RETILE-HEAD
+  - WM/CLIPBOARD::SHOW-CLIPBOARD-HISTORY
   - WM/WINDOWS::ALL-TAGS
   - WM/WINDOWS:WINDOW-TAGS
   - WM/WINDOWS:GLOBAL-PULL-WINDOWLIST
   - WM/WINDOWS:GLOBAL-WINDOWLIST
-  - WM/CLIPBOARD::SHOW-CLIPBOARD-HISTORY
-  - [[id:WM:COMMAND-MODE-END-MESSAGE][COMMAND-MODE-END-MESSAGE]]
-  - [[id:WM:COMMAND-MODE-START-MESSAGE][COMMAND-MODE-START-MESSAGE]]
-  - [[id:WM:RUN-HOOK-WITH-ARGS][RUN-HOOK-WITH-ARGS]]
-  - WM::GRENAME
-  - WM::GOTHER
-  - WM::GROUP-FORWARD
-  - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
+  - [[id:WM:ECHO-DATE][ECHO-DATE]]
+  - WM::RESTORE-FROM-FILE
+  - WM::ABORT-RESIZE-P
+  - WM::EXIT-INTERACTIVE-KEYMAP
+  - WM::ENTER-INTERACTIVE-KEYMAP
+  - [[id:WM:DUMP-DESKTOP-TO-FILE][DUMP-DESKTOP-TO-FILE]]
+  - [[id:WM:DUMP-SCREEN-TO-FILE][DUMP-SCREEN-TO-FILE]]
+  - [[id:WM:DUMP-GROUP-TO-FILE][DUMP-GROUP-TO-FILE]]
+  - WM::WM-INTERNAL
   - (HANDLE-TOP-LEVEL-CONDITION (SERIOUS-CONDITION))
   - WM::ERROR-HANDLER
   - WM::SHOW-WINDOW-PROPERTIES
@@ -7880,54 +7892,42 @@ WM-MESSAGE names a compiled function:
   - WM::EVAL-LINE
   - WM::LASTMSG
   - WM::MESSAGE-NO-TIMEOUT
+  - WM::FOCUS-FORWARD
   - WM::WINDOW-INFO
   - WM::MARK
   - WM::WINDOWLIST
+  - WM::MODIFIERS
   - (FOCUS-PREV-WINDOW (T))
   - (FOCUS-NEXT-WINDOW (T))
   - [[id:ORGAN:TITLE][TITLE]]
   - WM::PROCESS-MAPPED-WINDOW
+  - WM::DESCRIBE-KEY
+  - WM::PICK-PREFERRED-FRAME
+  - WM::GET-WINDOW-PLACEMENT
+  - WM::BALANCE-FRAMES
+  - WM::RESIZE
   - WM::FOCUS-FRAME-AFTER
   - WM::ONLY
   - WM::REMOVE-SPLIT
   - WM::SPLIT-FRAME-EQL-PARTS
-  - [[id:WM:ENABLED-MINOR-MODES][ENABLED-MINOR-MODES]]
-  - [[id:WM:CURRENT-MINOR-MODES][CURRENT-MINOR-MODES]]
-  - WM::SEND-RAW-KEY
-  - WM::SELECT-FLOATING-WINDOW
-  - WM::SWAP-WINDOWS
-  - WM::DYNAMIC-GROUP-UNFLOAT-WINDOW
-  - WM::DYNAMIC-GROUP-FLOAT-WINDOW
-  - WM::DYNAMIC-GROUP-ADD-WINDOW
-  - WM::DYNAMIC-GROUP-RETILE-HEAD
-  - [[id:WM:ECHO-DATE][ECHO-DATE]]
-  - WM::RESTORE-FROM-FILE
-  - [[id:WM:DUMP-DESKTOP-TO-FILE][DUMP-DESKTOP-TO-FILE]]
-  - [[id:WM:DUMP-SCREEN-TO-FILE][DUMP-SCREEN-TO-FILE]]
-  - [[id:WM:DUMP-GROUP-TO-FILE][DUMP-GROUP-TO-FILE]]
-  - WM::MODIFIERS
-  - WM::DESCRIBE-KEY
-  - WM::ABORT-RESIZE-P
-  - WM::EXIT-INTERACTIVE-KEYMAP
-  - WM::ENTER-INTERACTIVE-KEYMAP
-  - WM::WM-INTERNAL
+  - WM::SPLIT-FRAME-IN-DIR
   - WM::FRAME-WINDOWLIST
   - WM::UNMAXIMIZE
   - WM::FORGET
   - WM::EXCHANGE-DIRECTION
-  - WM::FOCUS-FORWARD
-  - WM::SPLIT-FRAME-IN-DIR
-  - WM::PICK-PREFERRED-FRAME
-  - WM::GET-WINDOW-PLACEMENT
-  - WM::BALANCE-FRAMES
-  - (INVOKE-EXPOSE (DYNAMIC-GROUP))
-  - WM::RESIZE
   - WM::GMERGE
   - WM::GKILL-OTHER
   - WM::GKILL
-  - WM::WM-COMMAND-EVAL-RESULT
+  - WM::GRENAME
+  - WM::GOTHER
+  - WM::GROUP-FORWARD
+  - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
   - [[id:COMMON-LISP:YES-OR-NO-P][YES-OR-NO-P]]
   - [[id:COMMON-LISP:Y-OR-N-P][Y-OR-N-P]]
+  - WM::WM-COMMAND-EVAL-RESULT
+  - [[id:WM:COMMAND-MODE-END-MESSAGE][COMMAND-MODE-END-MESSAGE]]
+  - [[id:WM:COMMAND-MODE-START-MESSAGE][COMMAND-MODE-START-MESSAGE]]
+  - [[id:WM:RUN-HOOK-WITH-ARGS][RUN-HOOK-WITH-ARGS]]
 
 :definitions:
 - [[vc:shed/wm:message-window.lisp#l308][message-window.lisp:308]]
@@ -8000,12 +8000,12 @@ WINDOW-RES names a generic function:
 
 - Called by
   - WM/WINDOWS::ALL-TAGS
+  - WM::RES-RE-P
+  - WM::RESED-P
   - WM::SHOW-WINDOW-PROPERTIES
   - WM::WINDOW-NAME
-  - WM::MAKE-RULE-FOR-WINDOW
   - WM::WINDOW-MATCHES-PROPERTIES-P
-  - WM::RESED-P
-  - WM::RES-RE-P
+  - WM::MAKE-RULE-FOR-WINDOW
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -8092,7 +8092,7 @@ WINDOW-RES names a generic function:
               :KEY #S(KEY :SYM 117 :MOD 0)
               :CMD #<FUNCTION (LAMBDA (MENU)
                                 :IN
-                                "/home/ellis/src/shed/wm/menu-definitions.lisp") {B8028ADD5B}>)
+                                "/home/ellis/src/shed/wm/menu-definitions.lisp") {B8028E4FFB}>)
            #S(KEYBIND :KEY #S(KEY :SYM 120 :MOD 0) :CMD MENU-FINISH))
   Documentation:
     The keymap used by batch-menu menus in addition to *menu-map*
@@ -8271,11 +8271,11 @@ LOOKUP-COLOR names a compiled function:
 #+end_example
 
 - Called by
-  - WM/TRAY::CREATE-TRAY
-  - WM::UPDATE-MODE-LINE-COLOR-CONTEXT
   - [[id:WM:UPDATE-SCREEN-COLOR-CONTEXT][UPDATE-SCREEN-COLOR-CONTEXT]]
-  - [[id:WM-USER::ALLOC-COLOR][ALLOC-COLOR]]
   - [[id:WM:UPDATE-COLOR-MAP][UPDATE-COLOR-MAP]]
+  - [[id:WM-USER::ALLOC-COLOR][ALLOC-COLOR]]
+  - WM::UPDATE-MODE-LINE-COLOR-CONTEXT
+  - WM/TRAY::CREATE-TRAY
 
 :definitions:
 - [[vc:shed/wm:color.lisp#l79][color.lisp:79]]
@@ -8310,14 +8310,14 @@ SPLIT-STRING names a compiled function:
 #+end_example
 
 - Called by
-  - WM::MATCH-ALL-REGEXPS
+  - WM::REDRAW-MODE-LINE
+  - WM::RESIZE-MODE-LINE
   - WM::REHASH
   - [[id:WM:PROGRAMS-IN-PATH][PROGRAMS-IN-PATH]]
   - [[id:WM:ECHO-STRING][ECHO-STRING]]
   - WM::DESCRIBE-VARIABLE-TO-STREAM
-  - WM::REDRAW-MODE-LINE
-  - WM::RESIZE-MODE-LINE
   - WM::LOOKUP-SYMBOL
+  - WM::MATCH-ALL-REGEXPS
 
 :definitions:
 - [[vc:shed/wm:prim.lisp#l725][prim.lisp:725]]
@@ -8375,18 +8375,18 @@ SCREEN-NUMBER names a generic function:
 #+end_example
 
 - Called by
-  - WM/SCREENSHOT::COLORNAME-TO-COLOR
-  - WM::WM-SCREEN-ROOT
-  - (PRINT-WM-OBJECT (SCREEN T))
   - (TEXT-LINE-WIDTH (FONT T))
   - (FONT-DESCENT (FONT))
+  - WM/SCREENSHOT::COLORNAME-TO-COLOR
   - (FONT-ASCENT (FONT))
   - WM/SCREENSHOT::SCREENSHOT
   - WM/SCREENSHOT::SCREENSHOT-AREA
   - [[id:WM-USER::ALLOC-COLOR][ALLOC-COLOR]]
   - [[id:WM:LOOKUP-COLOR][LOOKUP-COLOR]]
   - WM::FLOAT-WINDOW-ALIGN
+  - (PRINT-WM-OBJECT (SCREEN T))
   - WM::NETWM-SET-PROPERTIES
+  - WM::WM-SCREEN-ROOT
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -8418,8 +8418,8 @@ GROUP-RAISE-REQUEST names a generic function:
 #+end_example
 
 - Called by
-  - WM::CONFIGURE-MANAGED-WINDOW
   - WM::RESTORE-WINDOW
+  - WM::CONFIGURE-MANAGED-WINDOW
 
 :definitions:
 - [[vc:shed/wm:group.lisp][group.lisp]]
@@ -8447,11 +8447,11 @@ INPUT-POINT names a compiled function:
 #+end_example
 
 - Called by
-  - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-UNAMBIGUOUS T T))
-  - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-CYCLIC T T))
   - WM::INPUT-BACKWARD-KILL-WORD
   - WM::INPUT-FORWARD-KILL-WORD
   - WM::INPUT-COMPLETE
+  - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-UNAMBIGUOUS T T))
+  - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-CYCLIC T T))
 
 :definitions:
 - [[vc:shed/wm:input.lisp#l548][input.lisp:548]]
@@ -8518,11 +8518,11 @@ READ-ONE-LINE names a compiled function:
 #+end_example
 
 - Called by
-  - [[id:WM:COMPLETING-READ-SCREEN][COMPLETING-READ-SCREEN]]
   - (ML-ON-CLICK-MINOR-MODE IN /home/ellis/src/shed/wm/minor-modes.lisp)
-  - [[id:WM:READ-WM-ARGS][READ-WM-ARGS]]
-  - [[id:WM:READ-WM-ARG][READ-WM-ARG]]
   - [[id:COMMON-LISP:YES-OR-NO-P][YES-OR-NO-P]]
+  - [[id:WM:COMPLETING-READ-SCREEN][COMPLETING-READ-SCREEN]]
+  - [[id:WM:READ-WM-ARG][READ-WM-ARG]]
+  - [[id:WM:READ-WM-ARGS][READ-WM-ARGS]]
 
 :definitions:
 - [[vc:shed/wm:input.lisp#l321][input.lisp:321]]
@@ -8543,9 +8543,9 @@ UPDATE-CONFIGURATION names a compiled function:
 #+end_example
 
 - Called by
-  - WM::CONFIGURE-MANAGED-WINDOW
   - WM/GAPS:GAP-MAXIMIZE-WINDOW
   - (RAISE-WINDOW (T))
+  - WM::CONFIGURE-MANAGED-WINDOW
   - WM::MAXIMIZE-WINDOW
   - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
 
@@ -8916,8 +8916,8 @@ PUSH-EVENT names a compiled function:
   - [[id:WM:DEFINE-REMAPPED-KEYS][DEFINE-REMAPPED-KEYS]]
 
 - Referenced by
-  - (FOCUS-WINDOW (T))
   - [[id:WM:DEFINE-REMAPPED-KEYS][DEFINE-REMAPPED-KEYS]]
+  - (FOCUS-WINDOW (T))
 ***** WINDOW-SEND-STRING :compiled:function:
 :PROPERTIES:
 :ID: WM:WINDOW-SEND-STRING
@@ -9062,26 +9062,26 @@ RUN-HOOK-WITH-ARGS names a compiled function:
 #+end_example
 
 - Called by
-  - [[id:WM:READ-ONE-LINE][READ-ONE-LINE]]
-  - [[id:WM:RUN-HOOK][RUN-HOOK]]
-  - WM::HEAD-FORCE-REFRESH
-  - WM::SWITCH-TO-GROUP
-  - WM::SPLIT-FRAME-H
-  - WM::MAYBE-SET-URGENCY
-  - WM::HANDLE-KEYMAP
+  - [[id:WM:ENABLE-MINOR-MODE][ENABLE-MINOR-MODE]]
+  - [[id:WM:DISABLE-MINOR-MODE][DISABLE-MINOR-MODE]]
+  - WM::RUN-HOOK-FOR-MINOR-MODE
   - WM::DESTROY-MODE-LINE
-  - WM::ECHO-STRING-LIST
+  - WM::MAKE-MODE-LINE
   - (FOCUS-WINDOW (T))
   - [[id:WM-USER::WITHDRAW-WINDOW][WITHDRAW-WINDOW]]
   - WM::RESTORE-WINDOW
   - WM::PROCESS-MAPPED-WINDOW
-  - WM::MAKE-MODE-LINE
+  - WM::MAYBE-SET-URGENCY
+  - WM::HANDLE-KEYMAP
+  - WM::ECHO-STRING-LIST
   - WM::REMOVE-SPLIT
-  - [[id:WM:ENABLE-MINOR-MODE][ENABLE-MINOR-MODE]]
-  - [[id:WM:DISABLE-MINOR-MODE][DISABLE-MINOR-MODE]]
-  - WM::RUN-HOOK-FOR-MINOR-MODE
   - WM::SPLIT-FRAME-V
+  - WM::SPLIT-FRAME-H
   - WM::FOCUS-FRAME
+  - WM::SWITCH-TO-GROUP
+  - WM::HEAD-FORCE-REFRESH
+  - [[id:WM:READ-ONE-LINE][READ-ONE-LINE]]
+  - [[id:WM:RUN-HOOK][RUN-HOOK]]
   - WM::RUN-MENU
 
 :definitions:
@@ -9155,8 +9155,8 @@ DYNAMIC-GROUP-OVERFLOW-POLICY names a generic function:
   - WM::WM-INTERNAL
 
 - Referenced by
-  - WM::NETWM-UPDATE-CLIENT-LIST-STACKING
   - WM::NETWM-SET-GROUP-PROPERTIES
+  - WM::NETWM-UPDATE-CLIENT-LIST-STACKING
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -9177,9 +9177,9 @@ REMOVE-WM-STATE names a compiled function:
 #+end_example
 
 - Called by
-  - WM::DEACTIVATE-FULLSCREEN
   - WM::UNHIDE-WINDOW
   - WM::WINDOW-CLEAR-URGENCY
+  - WM::DEACTIVATE-FULLSCREEN
 
 :definitions:
 - [[vc:shed/wm:window.lisp#l457][window.lisp:457]]
@@ -9236,13 +9236,13 @@ RAISE-WINDOW names a generic function:
 #+end_example
 
 - Called by
-  - WM/WINDOWS::RAISE-TAG
-  - WM::MAYBE-MAP-WINDOW
-  - (FOCUS-WINDOW (T))
   - WM::DYNAMIC-GROUP-PLACE-WINDOW
+  - WM/WINDOWS::RAISE-TAG
   - WM::RESIZE-UNHIDE
-  - WM::FRAME-RAISE-WINDOW
+  - (FOCUS-WINDOW (T))
+  - WM::MAYBE-MAP-WINDOW
   - (REALLY-RAISE-WINDOW (FLOAT-WINDOW))
+  - WM::FRAME-RAISE-WINDOW
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -9431,9 +9431,9 @@ BAR-ZONE-COLOR names a compiled function:
 #+end_example
 
 - Called by
-  - WM/MODELINE::FMT-MEM-PERCENT
-  - WM/CPU::FMT-CPU-TEMP
   - WM/CPU::FMT-CPU-USAGE
+  - WM/CPU::FMT-CPU-TEMP
+  - WM/MODELINE::FMT-MEM-PERCENT
   - WM/BATTERY::BATTERY-INFO-STRING
   - [[id:WM:BAR][BAR]]
 
@@ -9538,8 +9538,8 @@ WINDOW-VISIBLE-P names a generic function:
 #+end_example
 
 - Called by
-  - WM::MAYBE-RAISE-WINDOW
   - WM::TOP-WINDOWS
+  - WM::MAYBE-RAISE-WINDOW
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -9642,13 +9642,13 @@ GROUP-NUMBER names a generic function:
 #+end_example
 
 - Called by
+  - WM::FIND-MATCHING-WINDOWS
+  - WM::DUMP-SCREEN
+  - WM::DUMP-GROUP
   - WM::NON-HIDDEN-GROUPS
   - WM::FIND-FREE-HIDDEN-GROUP-NUMBER
   - WM::FIND-FREE-GROUP-NUMBER
   - WM::GROUP-MAP-NUMBER
-  - WM::FIND-MATCHING-WINDOWS
-  - WM::DUMP-SCREEN
-  - WM::DUMP-GROUP
 
 :definitions:
 - [[vc:shed/wm:group.lisp][group.lisp]]
@@ -9743,9 +9743,9 @@ LIST-MODE-OBJECTS names a compiled function:
 #+end_example
 
 - Called by
-  - WM::FMT-ALL-MINOR-MODES
   - WM::SCOPE-ALL-OBJECTS-FUNCTION
   - [[id:WM:ENABLED-MINOR-MODES][ENABLED-MINOR-MODES]]
+  - WM::FMT-ALL-MINOR-MODES
 
 :definitions:
 - [[vc:shed/wm:minor-modes.lisp#l310][minor-modes.lisp:310]]
@@ -9800,9 +9800,9 @@ INPUT-INSERT-CHAR names a compiled function:
 #+end_example
 
 - Called by
+  - WM::INPUT-SELF-INSERT
   - [[id:WM:INPUT-INSERT-STRING][INPUT-INSERT-STRING]]
   - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-CYCLIC T T))
-  - WM::INPUT-SELF-INSERT
 
 :definitions:
 - [[vc:shed/wm:input.lisp#l576][input.lisp:576]]
@@ -9858,38 +9858,38 @@ GROUP-SCREEN names a generic function:
 #+end_example
 
 - Called by
-  - WM::READ-ONE-CHAR-OR-CLICK
-  - WM::GROUP-HEADS
-  - (FRAME-HEAD (T T))
+  - WM::MINOR-MODE-TOP-MAPS
+  - WM::HANDLE-GROUP-OVERFLOW
+  - (GROUP-REMOVE-HEAD (DYNAMIC-GROUP T))
+  - ((SETF DYNAMIC-GROUP-DEFAULT-SPLIT-RATIO) (T DYNAMIC-GROUP))
+  - ((SETF DYNAMIC-GROUP-MASTER-LAYOUT) (T DYNAMIC-GROUP))
+  - WM::MINOR-MODE-COMMAND-ACTIVE-P
+  - (GROUP-CURRENT-HEAD (FLOAT-GROUP))
+  - WM::FMT-GROUP-LIST
+  - WM::BANISH-POINTER
+  - WM::ECHO-WINDOWS
+  - WM::PULL-OTHER-HIDDEN-WINDOW
+  - (FOCUS-OTHER-WINDOW (T))
+  - WM::OTHER-WINDOW-IN-FRAME
+  - (UPDATE-DECORATION (TILE-WINDOW))
+  - (FOCUS-WINDOW (T))
+  - [[id:WM:NO-FOCUS][NO-FOCUS]]
+  - WM::MOVE-WINDOW-TO-HEAD
+  - WM::DRAW-WINDOW-NUMBERS
+  - [[id:WM:WINDOW-SCREEN][WINDOW-SCREEN]]
+  - WM::DRAW-FRAME-NUMBERS
+  - WM::CLEAR-FRAME-OUTLINES
+  - WM::DRAW-FRAME-OUTLINE
   - (INITIALIZE-INSTANCE AFTER (TILE-GROUP))
   - WM::KILL-GROUP
   - WM::NEXT-GROUP
   - WM::SWITCH-TO-GROUP
   - WM::NETWM-GROUP-ID
   - WM::FMT-GROUP-STATUS
-  - WM::BANISH-POINTER
-  - WM::FMT-GROUP-LIST
-  - WM::DRAW-FRAME-NUMBERS
-  - WM::DRAW-FRAME-OUTLINE
-  - WM::ECHO-WINDOWS
-  - (FOCUS-OTHER-WINDOW (T))
-  - (FOCUS-WINDOW (T))
-  - [[id:WM:NO-FOCUS][NO-FOCUS]]
-  - WM::MOVE-WINDOW-TO-HEAD
-  - WM::DRAW-WINDOW-NUMBERS
-  - [[id:WM:WINDOW-SCREEN][WINDOW-SCREEN]]
-  - WM::MINOR-MODE-TOP-MAPS
-  - WM::MINOR-MODE-COMMAND-ACTIVE-P
-  - WM::HANDLE-GROUP-OVERFLOW
-  - (GROUP-REMOVE-HEAD (DYNAMIC-GROUP T))
-  - ((SETF DYNAMIC-GROUP-DEFAULT-SPLIT-RATIO) (T DYNAMIC-GROUP))
-  - ((SETF DYNAMIC-GROUP-MASTER-LAYOUT) (T DYNAMIC-GROUP))
-  - WM::CLEAR-FRAME-OUTLINES
-  - WM::OTHER-WINDOW-IN-FRAME
-  - WM::PULL-OTHER-HIDDEN-WINDOW
-  - (UPDATE-DECORATION (TILE-WINDOW))
   - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
-  - (GROUP-CURRENT-HEAD (FLOAT-GROUP))
+  - WM::READ-ONE-CHAR-OR-CLICK
+  - WM::GROUP-HEADS
+  - (FRAME-HEAD (T T))
   - (WINDOW-HEAD (FLOAT-WINDOW))
 
 :definitions:
@@ -9927,18 +9927,18 @@ WINDOW-WIDTH names a generic function:
 #+end_example
 
 - Called by
+  - (INVOKE-EXPOSE (FLOAT-GROUP))
   - WM/GAPS:GAP-MAXIMIZE-WINDOW
-  - ((SETF WINDOW-WIDTH) BEFORE (T FLOAT-WINDOW))
+  - (GEOMETRY-HINTS (T))
+  - WM::FLOAT-WINDOW-ALIGN
   - WM::REFRESH
   - [[id:WM-USER::REPARENT-WINDOW][REPARENT-WINDOW]]
   - [[id:WM:UPDATE-CONFIGURATION][UPDATE-CONFIGURATION]]
-  - (INVOKE-EXPOSE (FLOAT-GROUP))
+  - ((SETF WINDOW-WIDTH) BEFORE (T FLOAT-WINDOW))
+  - WM::WINDOW-CENTROID
   - WM::MAXIMIZE-WINDOW
-  - (GEOMETRY-HINTS (T))
-  - WM::FLOAT-WINDOW-ALIGN
   - ((SETF WINDOW-FULLSCREEN) AFTER (T FLOAT-WINDOW))
   - (WINDOW-HEAD (FLOAT-WINDOW))
-  - WM::WINDOW-CENTROID
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -10059,11 +10059,11 @@ GROUP-ADD-WINDOW names a generic function:
 #+end_example
 
 - Called by
-  - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
-  - WM::COPY-WINDOW-TO-GROUP
+  - (GROUP-ADOPT-ORPHANED-WINDOWS (FLOAT-GROUP))
   - WM::RESTORE-WINDOW
   - WM::PROCESS-MAPPED-WINDOW
-  - (GROUP-ADOPT-ORPHANED-WINDOWS (FLOAT-GROUP))
+  - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
+  - WM::COPY-WINDOW-TO-GROUP
 
 :definitions:
 - [[vc:shed/wm:floating-group.lisp][floating-group.lisp]]
@@ -10107,15 +10107,18 @@ SCREEN-GROUPS names a generic function:
 #+end_example
 
 - Called by
-  - WM::UPDATE-COLORS-FOR-SCREEN
-  - WM::ORPHANED-FRAMES
-  - WM::HEAD-FORCE-REFRESH
-  - WM::SCALE-HEAD
-  - WM::REPLACE-HEAD
-  - WM::REMOVE-HEAD
-  - WM::ADD-HEAD
-  - WM::RESIZE-HEAD
+  - [[id:WM:LIST-MODE-OBJECTS][LIST-MODE-OBJECTS]]
+  - ((SETF DYNAMIC-GROUP-DEFAULT-SPLIT-RATIO) (T DYNAMIC-GROUP))
+  - ((SETF DYNAMIC-GROUP-MASTER-LAYOUT) (T DYNAMIC-GROUP))
+  - WM::SELECT-GROUP
+  - [[id:WM:TOGGLE-MODE-LINE][TOGGLE-MODE-LINE]]
+  - WM::WM-INTERNAL
+  - WM::RESTORE-WINDOW
+  - WM::UPDATE-WINDOW-GRAVITY
+  - WM::GKILL-OTHER
+  - WM::GKILL
   - WM::GROUPLIST
+  - WM::SYNC-MODE-LINE
   - WM::GOTHER
   - WM::FIND-GROUP
   - WM::%ENSURE-GROUP
@@ -10130,18 +10133,15 @@ SCREEN-GROUPS names a generic function:
   - WM::FMT-GROUP-STATUS
   - WM::SORT-GROUPS
   - WM::MOVE-GROUP-TO-HEAD
-  - WM::SYNC-MODE-LINE
-  - [[id:WM:TOGGLE-MODE-LINE][TOGGLE-MODE-LINE]]
-  - WM::RESTORE-WINDOW
-  - WM::UPDATE-WINDOW-GRAVITY
-  - [[id:WM:LIST-MODE-OBJECTS][LIST-MODE-OBJECTS]]
-  - ((SETF DYNAMIC-GROUP-DEFAULT-SPLIT-RATIO) (T DYNAMIC-GROUP))
-  - ((SETF DYNAMIC-GROUP-MASTER-LAYOUT) (T DYNAMIC-GROUP))
-  - WM::WM-INTERNAL
+  - WM::ORPHANED-FRAMES
+  - WM::HEAD-FORCE-REFRESH
+  - WM::SCALE-HEAD
+  - WM::REPLACE-HEAD
+  - WM::REMOVE-HEAD
+  - WM::ADD-HEAD
+  - WM::RESIZE-HEAD
+  - WM::UPDATE-COLORS-FOR-SCREEN
   - [[id:WM:SCREEN-WINDOWS][SCREEN-WINDOWS]]
-  - WM::GKILL-OTHER
-  - WM::GKILL
-  - WM::SELECT-GROUP
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -10200,9 +10200,9 @@ AUTOENABLE-MINOR-MODE names a generic function:
 #+end_example
 
 - Called by
-  - WM::MAKE-WM-CLASS-INSTANCE
-  - WM::SYNC-MINOR-MODES
   - [[id:WM:ENABLE-MINOR-MODE][ENABLE-MINOR-MODE]]
+  - WM::SYNC-MINOR-MODES
+  - WM::MAKE-WM-CLASS-INSTANCE
 
 :definitions:
 - [[vc:shed/wm:minor-modes.lisp][minor-modes.lisp]]
@@ -10383,9 +10383,9 @@ SELECT-FROM-MENU names a compiled function:
 
 - Called by
   - WM/CLIPBOARD::SHOW-CLIPBOARD-HISTORY
-  - WM::GROUPLIST
   - [[id:WM:RESTARTS-MENU][RESTARTS-MENU]]
   - WM::SELECT-WINDOW-FROM-MENU
+  - WM::GROUPLIST
 
 :definitions:
 - [[vc:shed/wm:menu-definitions.lisp#l303][menu-definitions.lisp:303]]
@@ -10406,23 +10406,23 @@ FORMAT-EXPAND names a compiled function:
 #+end_example
 
 - Called by
-  - WM/DISK::DISK-MODE-LINE
   - WM/MODELINE::MAILDIR-MODELINE
-  - WM/NET::NET-MODELINE
   - WM/MODELINE::MEM-MODELINE
   - WM/CPU::CPU-MODELINE
-  - WM::GROUPLIST
-  - WM::ECHO-GROUPS
+  - WM/DISK::DISK-MODE-LINE
+  - WM/NET::NET-MODELINE
   - WM::FMT-HEAD-WINDOW-LIST-HIDDEN-WINDOWS
   - WM::FMT-HEAD-WINDOW-LIST
   - WM::FMT-GROUP-LIST
+  - WM::FMT-WINDOW-LIST
+  - WM::FMT-URGENT-WINDOW-LIST
   - WM::WINDOW-INFO
   - WM::ECHO-WINDOWS
   - WM::MARK
   - WM::SELECT-WINDOW-FROM-MENU
   - [[id:WM:TIME-FORMAT][TIME-FORMAT]]
-  - WM::FMT-URGENT-WINDOW-LIST
-  - WM::FMT-WINDOW-LIST
+  - WM::GROUPLIST
+  - WM::ECHO-GROUPS
   - (MODE-LINE-FORMAT-ELT (STRING))
 
 :definitions:
@@ -10458,17 +10458,17 @@ WINDOW-TYPE names a generic function:
 #+end_example
 
 - Called by
+  - WM::TYPE-RE-P
+  - WM::TYPED-P
   - WM::SHOW-WINDOW-PROPERTIES
+  - (GEOMETRY-HINTS (T))
+  - (UPDATE-DECORATION (TILE-WINDOW))
   - [[id:WM-USER::REPARENT-WINDOW][REPARENT-WINDOW]]
   - WM::GRAVITY-FOR-WINDOW
   - WM::DEFAULT-BORDER-WIDTH-FOR-TYPE
   - WM::WINDOW-TRANSIENT-P
-  - (GEOMETRY-HINTS (T))
-  - (UPDATE-DECORATION (TILE-WINDOW))
   - WM::PICK-PREFERRED-FRAME
   - WM::WINDOW-MATCHES-PROPERTIES-P
-  - WM::TYPED-P
-  - WM::TYPE-RE-P
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -10483,7 +10483,7 @@ WINDOW-TYPE names a generic function:
 #+begin_example
 
 *INPUT-REFINE-CANDIDATES-FN* names a special variable:
-  Value: #<FUNCTION INPUT-REFINE-PREFIX {B8028C5B3B}>
+  Value: #<FUNCTION INPUT-REFINE-PREFIX {B80287B4BB}>
   Documentation:
     A function used to filter completions based on input. The function receives
     two arguments: the input string and a list of completions. The functionshould
@@ -10548,31 +10548,31 @@ FRAME-Y names a generic function:
 
 - Called by
   - WM/WINDOWS:BECKON
+  - WM::DUMP-GROUP
+  - (GEOMETRY-HINTS (T))
+  - WM::FRAME-INTERSECT
+  - (FRAME-DISPLAY-HEIGHT (T T))
+  - (FRAME-DISPLAY-Y (T T))
+  - WM::PROJECT-Y
+  - (FRAME-B (T))
+  - (FRAME-SET-B (T T))
+  - (FRAME-SET-Y (T T))
+  - WM::FIND-FRAME
+  - WM::FRAME-CENTROID
+  - WM::GET-EDGE
+  - WM::CHOOSE-FRAME-BY-NUMBER
+  - WM::OFFSET-FRAMES
+  - WM::EXPAND-TREE
+  - WM::OFFSET-TREE
+  - WM::SPLIT-FRAME-V
+  - WM::SPLIT-FRAME-H
   - WM::COPY-HEAD
   - (HEAD-Y (HEAD))
   - WM::COPY-FRAME
   - (PRINT-WM-OBJECT (FRAME T))
   - (FRAME-HEAD (T T))
-  - (FRAME-SET-Y (T T))
-  - WM::PROJECT-Y
-  - WM::SPLIT-FRAME-H
-  - (FRAME-SET-B (T T))
-  - (FRAME-B (T))
-  - (FRAME-DISPLAY-Y (T T))
-  - WM::FRAME-INTERSECT
-  - WM::CHOOSE-FRAME-BY-NUMBER
-  - WM::DUMP-GROUP
-  - WM::FIND-FRAME
-  - (FRAME-DISPLAY-HEIGHT (T T))
-  - WM::OFFSET-TREE
-  - WM::OFFSET-FRAMES
-  - (GEOMETRY-HINTS (T))
-  - WM::EXPAND-TREE
-  - WM::SPLIT-FRAME-V
   - ((SETF WINDOW-FULLSCREEN) AFTER (T FLOAT-WINDOW))
   - (WINDOW-HEAD (FLOAT-WINDOW))
-  - WM::FRAME-CENTROID
-  - WM::GET-EDGE
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -10847,12 +10847,12 @@ SET-FLOAT-UNFOCUS-COLOR names a compiled function:
   - WM::PUSH-TOP-MAP
 
 - Referenced by
-  - WM::PUSH-TOP-MAP
-  - WM::%SYNC-TOP-MAP
-  - WM::RESIZE-FRAME
   - WM::KEYBOARD-QUIT
   - WM::WHICH-KEY-MODE-KEY-PRESS-HOOK
   - WM::SHOW-FRAME-OUTLINE
+  - WM::RESIZE-FRAME
+  - WM::PUSH-TOP-MAP
+  - WM::%SYNC-TOP-MAP
 
 :definitions:
 - [[vc:shed/wm:bindings.lisp][bindings.lisp]]
@@ -10875,10 +10875,10 @@ SET-FLOAT-UNFOCUS-COLOR names a compiled function:
 #+end_example
 
 - Referenced by
-  - WM::SPLIT-FRAME
-  - WM::TREE-MIN-WIDTH
   - WM::DYN-SPLIT-FRAME
   - WM::DYNAMIC-GROUP-HEAD-FULL-P
+  - WM::SPLIT-FRAME
+  - WM::TREE-MIN-WIDTH
   - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
 
 :definitions:
@@ -10902,6 +10902,8 @@ CURRENT-WINDOW names a compiled function:
 #+end_example
 
 - Called by
+  - WM::REMAP-KEYS-EVENT-HANDLER
+  - WM::EXCHANGE-WITH-MASTER
   - WM/WINDOWS:BECKON
   - WM/WINDOWS::PUSH-WINDOW
   - WM/WINDOWS::TAGS-FROM
@@ -10909,25 +10911,24 @@ CURRENT-WINDOW names a compiled function:
   - WM/WINDOWS::CLEAR-TAGS-IF
   - (WINDOW-TAGS)
   - WM/WINDOWS:WINDOW-TAGS
+  - WM/SCREENSHOT::SCREENSHOT-WINDOW
   - WM/WINDOWS::GLOBAL-WINDOWS
-  - WM::GMOVE
-  - WM::TOGGLE-ALWAYS-SHOW
-  - WM::CURRENT-FRAME
+  - WM::FMT-HEAD-WINDOW-LIST-HIDDEN-WINDOWS
+  - WM::FMT-HEAD-WINDOW-LIST
+  - WM::FMT-URGENT-WINDOW-LIST
+  - WM::PLACE-CURRENT-WINDOW
+  - WM::RESIZE-UNHIDE
   - WM::LIST-WINDOW-PROPERTIES
   - WM::SHOW-WINDOW-PROPERTIES
   - [[id:WM:RUN-OR-PULL][RUN-OR-PULL]]
   - [[id:WM:RUN-OR-RAISE][RUN-OR-RAISE]]
   - WM::RATCLICK
-  - WM::FMT-HEAD-WINDOW-LIST-HIDDEN-WINDOWS
-  - WM::FMT-HEAD-WINDOW-LIST
-  - WM/SCREENSHOT::SCREENSHOT-WINDOW
   - WM::FULLSCREEN
   - WM::TOGGLE-ALWAYS-ON-TOP
   - WM::REFRESH
   - WM::WINDOW-INFO
   - WM::MARK
   - [[id:WM:WINDOW-SEND-STRING][WINDOW-SEND-STRING]]
-  - (GROUP-BUTTON-PRESS (TILE-GROUP T T T WINDOW))
   - [[id:ORGAN:TITLE][TITLE]]
   - WM::KILL-WINDOWS-OTHER
   - WM::KILL-WINDOW
@@ -10935,21 +10936,20 @@ CURRENT-WINDOW names a compiled function:
   - WM::SELECT-WINDOW-FROM-MENU
   - WM::SYNC-KEYS
   - WM::HIDE-WINDOW
-  - WM::REMAP-KEYS-EVENT-HANDLER
-  - WM::EXCHANGE-WITH-MASTER
-  - WM::PLACE-CURRENT-WINDOW
-  - WM::FMT-URGENT-WINDOW-LIST
-  - WM::RESIZE-UNHIDE
+  - WM::CURRENT-FRAME
+  - (GROUP-BUTTON-PRESS (TILE-GROUP T T T WINDOW))
+  - WM::UNFLOAT-THIS
+  - WM::FLOAT-THIS
+  - WM::MOVE-FOCUS-AND-OR-WINDOW
   - WM::UNMAXIMIZE
   - WM::REDISPLAY
   - WM::FORGET
   - WM::REMEMBER
   - WM::GRAVITY
   - WM::EXCHANGE-DIRECTION
-  - WM::UNFLOAT-THIS
-  - WM::FLOAT-THIS
-  - WM::MOVE-FOCUS-AND-OR-WINDOW
   - WM::GMOVE-AND-FOLLOW
+  - WM::GMOVE
+  - WM::TOGGLE-ALWAYS-SHOW
 
 :definitions:
 - [[vc:shed/wm:screen.lisp#l139][screen.lisp:139]]
@@ -10984,18 +10984,16 @@ GROUP-WINDOWS names a generic function:
 #+end_example
 
 - Called by
+  - [[id:WM:LIST-MODE-OBJECTS][LIST-MODE-OBJECTS]]
+  - WM::SELECT-FLOATING-WINDOW
+  - (INVOKE-EXPOSE (FLOAT-GROUP))
+  - WM::EXPOSE-TILE
   - WM/WINDOWS::TAG-VISIBLE
   - WM/WINDOWS::NUMBER-BY-TAGS
   - WM/WINDOWS::GLOBAL-WINDOWS
-  - WM::UPDATE-COLORS-FOR-SCREEN
-  - WM::HEAD-WINDOWS
-  - WM::NETWM-UPDATE-GROUP
-  - WM::MERGE-GROUPS
-  - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
-  - WM::DISABLE-ALWAYS-SHOW-WINDOW
-  - WM::COPY-WINDOW-TO-GROUP
-  - WM::SWITCH-TO-GROUP
-  - WM::GROUP-TILE-WINDOWS
+  - (LIST-WINDOWS (GROUP))
+  - WM::RESTORE-GROUP
+  - WM::WM-INTERNAL
   - WM::FIND-MATCHING-WINDOWS
   - WM::ECHO-WINDOWS
   - WM::CLEAR-WINDOW-MARKS
@@ -11004,6 +11002,7 @@ GROUP-WINDOWS names a generic function:
   - WM::RENUMBER
   - (GROUP-WINDOWS-FOR-CYCLING (T))
   - WM::SELECT-WINDOW-BY-NUMBER
+  - WM::OTHER-HIDDEN-WINDOW
   - WM::SELECT-WINDOW-BY-NAME
   - WM::SELECT-WINDOW
   - WM::KILL-WINDOWS-OTHER
@@ -11019,21 +11018,22 @@ GROUP-WINDOWS names a generic function:
   - WM::FMT-WINDOW-STATUS
   - WM::TOP-WINDOWS
   - WM::VISIBLE-WINDOWS
-  - [[id:WM:LIST-MODE-OBJECTS][LIST-MODE-OBJECTS]]
-  - WM::SELECT-FLOATING-WINDOW
-  - (INVOKE-EXPOSE (FLOAT-GROUP))
-  - WM::RESTORE-GROUP
-  - WM::WM-INTERNAL
-  - WM::PULL-FROM-WINDOWLIST
-  - WM::OTHER-HIDDEN-WINDOW
-  - WM::PULL-WINDOW-BY-NUMBER
+  - WM::GROUP-TILE-WINDOWS
   - (GROUP-DELETE-WINDOW (TILE-GROUP FLOAT-WINDOW))
-  - WM::%FLOAT-FOCUS-NEXT
-  - [[id:WM:SCREEN-WINDOWS][SCREEN-WINDOWS]]
   - WM::ASSIGN-WINDOW
-  - (LIST-WINDOWS (GROUP))
-  - WM::EXPOSE-TILE
+  - WM::PULL-FROM-WINDOWLIST
   - WM::GKILL
+  - WM::NETWM-UPDATE-GROUP
+  - WM::MERGE-GROUPS
+  - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
+  - WM::DISABLE-ALWAYS-SHOW-WINDOW
+  - WM::COPY-WINDOW-TO-GROUP
+  - WM::SWITCH-TO-GROUP
+  - WM::PULL-WINDOW-BY-NUMBER
+  - WM::HEAD-WINDOWS
+  - WM::%FLOAT-FOCUS-NEXT
+  - WM::UPDATE-COLORS-FOR-SCREEN
+  - [[id:WM:SCREEN-WINDOWS][SCREEN-WINDOWS]]
 
 :definitions:
 - [[vc:shed/wm:group.lisp][group.lisp]]
@@ -11161,11 +11161,11 @@ ENABLE-MODE-LINE names a compiled function:
 #+end_example
 
 - Referenced by
-  - WM::SWITCH-TO-GROUP
   - WM::PROCESS-EXISTING-WINDOWS
   - WM::UNHIDE-WINDOW
   - WM::XWIN-UNHIDE
   - (WINDOW-VISIBLE-P (FLOAT-WINDOW))
+  - WM::SWITCH-TO-GROUP
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -11301,14 +11301,14 @@ WINDOW-HEAD names a generic function:
 #+end_example
 
 - Called by
-  - WM::HEAD-WINDOWS
-  - (GROUP-CURRENT-HEAD (TILE-GROUP))
   - WM::DYNAMIC-GROUP-UNFLOAT-WINDOW
   - (EXCHANGE-WINDOWS (DYNAMIC-WINDOW DYNAMIC-WINDOW))
   - (GROUP-DELETE-WINDOW (DYNAMIC-GROUP DYNAMIC-WINDOW))
-  - WM::MAXIMIZE-FLOAT
-  - WM::WINDOW-DISPLAY-HEIGHT
   - (GROUP-CURRENT-HEAD (FLOAT-GROUP))
+  - WM::WINDOW-DISPLAY-HEIGHT
+  - WM::MAXIMIZE-FLOAT
+  - (GROUP-CURRENT-HEAD (TILE-GROUP))
+  - WM::HEAD-WINDOWS
   - ((SETF WINDOW-FULLSCREEN) AFTER (T FLOAT-WINDOW))
 
 :definitions:
@@ -11443,9 +11443,9 @@ MOVE-TO-HEAD names a macro:
 #+end_example
 
 - Macroexpanded by
+  - WM::MOVE-WINDOW-TO-HEAD
   - WM::MOVE-GROUP-TO-HEAD
   - WM::MOVE-SCREEN-TO-HEAD
-  - WM::MOVE-WINDOW-TO-HEAD
 
 :definitions:
 - [[vc:shed/wm:prim.lisp#l1279][prim.lisp:1279]]
@@ -11492,38 +11492,20 @@ ECHO-DATE names a compiled function:
   - WM::PROCESS-EXISTING-WINDOWS
 
 - Referenced by
-  - WM/TRAY::NEW-MODE-LINE-HOOK
-  - WM::KEY-FROM-CODE-STATE
-  - WM::READ-KEY-OR-SELECTION
-  - WM::READ-KEY-OR-CLICK
-  - WM::READ-KEY
-  - WM::INPUT-HANDLE-KEY-PRESS-EVENT
-  - [[id:WM-USER::CHARACTER-FROM-KEYCODE][CHARACTER-FROM-KEYCODE]]
-  - [[id:WM:REGISTER-ALTGR-AS-MODIFIER][REGISTER-ALTGR-AS-MODIFIER]]
-  - WM::IS-MODIFIER
-  - WM::KEYSYM-REQUIRES-ALTGR
-  - WM::INIT-SCREEN
-  - WM::NETWM-SET-ALLOWED-ACTIONS
-  - WM::HANDLE-EVENT
-  - WM::MAKE-XLIB-WINDOW
-  - WM::SAFE-ATOM-NAME
-  - WM::HANDLE-WM-COMMANDS
+  - WM::SEND-RAW-KEY
+  - (INVOKE-EXPOSE (FLOAT-GROUP))
+  - WM/SCREENSHOT::SCREENSHOT-AREA
+  - (GROUP-CURRENT-HEAD (FLOAT-GROUP))
+  - WM::FORCE-WM-RESTART
+  - WM::WM-INTERNAL
   - WM::WM-INTERNAL-LOOP
   - WM::LIST-WINDOW-PROPERTIES
   - [[id:WM:IDLE-TIME][IDLE-TIME]]
   - [[id:WM:GET-X-SELECTION][GET-X-SELECTION]]
   - WM::SEND-SELECTION
   - WM::EXPORT-SELECTION
-  - WM::ECHO-STRING-LIST
-  - WM::ECHO-IN-WINDOW
-  - WM::SCREEN-SET-FOCUS
-  - WM::SWITCH-TO-SCREEN
-  - (FONT-EXISTS-P (STRING))
-  - WM/SCREENSHOT::SCREENSHOT-AREA
-  - WM::DRAW-FRAME-NUMBERS
   - WM::REFRESH
   - [[id:WM:WINDOW-SEND-STRING][WINDOW-SEND-STRING]]
-  - (GROUP-MOVE-REQUEST (TILE-GROUP TILE-WINDOW T T T))
   - WM::DELETE-WINDOW
   - WM::XWIN-KILL
   - (FOCUS-WINDOW (T))
@@ -11536,19 +11518,18 @@ ECHO-DATE names a compiled function:
   - [[id:WM:FIND-WM-STATE][FIND-WM-STATE]]
   - [[id:WM:REMOVE-WM-STATE][REMOVE-WM-STATE]]
   - [[id:WM:ADD-WM-STATE][ADD-WM-STATE]]
-  - WM::SEND-RAW-KEY
-  - (INVOKE-EXPOSE (FLOAT-GROUP))
-  - WM::FORCE-WM-RESTART
-  - WM::WM-INTERNAL
-  - WM::REDISPLAY
-  - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
-  - (GROUP-CURRENT-HEAD (FLOAT-GROUP))
-  - WM::NETWM-SET-PROPERTIES
-  - [[id:WM:SET-FONT][SET-FONT]]
-  - WM::MAKE-SCREEN-HEADS
-  - WM::HEAD-FROM-OUTPUT
+  - (GROUP-MOVE-REQUEST (TILE-GROUP TILE-WINDOW T T T))
+  - WM::HANDLE-EVENT
+  - WM::MAKE-XLIB-WINDOW
+  - WM::SAFE-ATOM-NAME
+  - WM::HANDLE-WM-COMMANDS
+  - WM::ECHO-STRING-LIST
+  - WM::ECHO-IN-WINDOW
   - WM::SETUP-MESSAGE-WINDOW
-  - WM::GET-INPUT-CHAR
+  - WM::DRAW-FRAME-NUMBERS
+  - WM::REDISPLAY
+  - WM::NETWM-SET-ALLOWED-ACTIONS
+  - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
   - [[id:WM-USER::WARP-POINTER-RELATIVE][WARP-POINTER-RELATIVE]]
   - [[id:WM-USER::UNGRAB-KEYBOARD][UNGRAB-KEYBOARD]]
   - [[id:WM:UNGRAB-POINTER][UNGRAB-POINTER]]
@@ -11562,6 +11543,25 @@ ECHO-DATE names a compiled function:
   - WM::INPUT-SELF-INSERT
   - WM::MAKE-COMBINED-CHARACTER
   - WM::DEAD-KEY-CHARACTER
+  - WM::KEY-FROM-CODE-STATE
+  - WM::READ-KEY-OR-SELECTION
+  - WM::READ-KEY-OR-CLICK
+  - WM::READ-KEY
+  - WM::INPUT-HANDLE-KEY-PRESS-EVENT
+  - [[id:WM-USER::CHARACTER-FROM-KEYCODE][CHARACTER-FROM-KEYCODE]]
+  - [[id:WM:REGISTER-ALTGR-AS-MODIFIER][REGISTER-ALTGR-AS-MODIFIER]]
+  - WM::IS-MODIFIER
+  - WM::KEYSYM-REQUIRES-ALTGR
+  - (FONT-EXISTS-P (STRING))
+  - WM::MAKE-SCREEN-HEADS
+  - WM::HEAD-FROM-OUTPUT
+  - WM::INIT-SCREEN
+  - WM::NETWM-SET-PROPERTIES
+  - [[id:WM:SET-FONT][SET-FONT]]
+  - WM::SCREEN-SET-FOCUS
+  - WM::SWITCH-TO-SCREEN
+  - WM::GET-INPUT-CHAR
+  - WM/TRAY::NEW-MODE-LINE-HOOK
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -11678,24 +11678,24 @@ GROUP-NAME names a generic function:
 #+end_example
 
 - Called by
+  - (DYNAMIC-GROUP-TOO-MANY-WINDOWS)
+  - WM::GROUPED-P
   - WM/WINDOWS::RAISE-URGENT-WINDOW
+  - WM::SELECT-GROUP
+  - WM::FMT-GROUP
+  - WM::FMT-GROUP-LIST
+  - WM::DUMP-GROUP
+  - WM::PROCESS-MAPPED-WINDOW
+  - WM::MAYBE-RAISE-WINDOW
+  - WM::MAYBE-MAP-WINDOW
+  - WM::WINDOW-MATCHES-RULE-P
+  - WM::MAKE-RULE-FOR-WINDOW
+  - WM::GKILL
   - WM::%GRENAME
   - WM::FIND-GROUP
   - WM::NETWM-SET-GROUP-PROPERTIES
   - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
   - (PRINT-WM-OBJECT (GROUP T))
-  - WM::MAYBE-RAISE-WINDOW
-  - WM::MAYBE-MAP-WINDOW
-  - WM::FMT-GROUP-LIST
-  - WM::PROCESS-MAPPED-WINDOW
-  - (DYNAMIC-GROUP-TOO-MANY-WINDOWS)
-  - WM::FMT-GROUP
-  - WM::DUMP-GROUP
-  - WM::MAKE-RULE-FOR-WINDOW
-  - WM::WINDOW-MATCHES-RULE-P
-  - WM::GROUPED-P
-  - WM::GKILL
-  - WM::SELECT-GROUP
 
 :definitions:
 - [[vc:shed/wm:group.lisp][group.lisp]]
@@ -11762,30 +11762,16 @@ WINDOW-XWIN names a generic function:
 #+end_example
 
 - Called by
+  - WM::SEND-RAW-KEY
+  - WM::REMAP-KEYS-GRAB-KEYS
   - (WINDOW-TAGS)
   - WM/WINDOWS:WINDOW-TAGS
-  - WM::NETWM-UPDATE-CLIENT-LIST-STACKING
-  - WM::NETWM-UPDATE-GROUP
-  - WM::NETWM-SET-ALLOWED-ACTIONS
-  - WM::NETWM-SET-GROUP
-  - WM::NETWM-GROUP
-  - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
-  - WM::DISABLE-ALWAYS-SHOW-WINDOW
-  - WM::ALWAYS-SHOW-WINDOW
-  - WM::SWITCH-TO-GROUP
-  - WM::DEACTIVATE-FULLSCREEN
-  - WM::ACTIVATE-FULLSCREEN
-  - WM::UPDATE-WINDOW-PROPERTIES
-  - WM::LIST-WINDOW-PROPERTIES
-  - WM::REGISTER-WINDOW
-  - WM::SCREEN-SET-FOCUS
-  - WM::SWITCH-TO-SCREEN
-  - WM/GAPS:GAP-MAXIMIZE-WINDOW
   - WM/SCREENSHOT::SCREENSHOT-WINDOW
-  - WM::FLOAT-WINDOW-MOVE-RESIZE
-  - WM::DRAW-FRAME-OUTLINE
+  - WM/GAPS:GAP-MAXIMIZE-WINDOW
+  - WM::LIST-WINDOW-PROPERTIES
   - WM::KILL-WINDOWS
   - WM::KILL-WINDOW
+  - WM::PULL-WINDOW
   - (FOCUS-WINDOW (T))
   - [[id:WM-USER::WITHDRAW-WINDOW][WITHDRAW-WINDOW]]
   - WM::RESTORE-WINDOW
@@ -11807,14 +11793,28 @@ WINDOW-XWIN names a generic function:
   - WM::WINDOW-MODAL-P
   - WM::WINDOW-URGENT-P
   - WM::WINDOW-CLEAR-URGENCY
-  - WM::SEND-RAW-KEY
-  - WM::REMAP-KEYS-GRAB-KEYS
-  - WM::PULL-WINDOW
-  - WM::MAXIMIZE-WINDOW
-  - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
+  - WM::DEACTIVATE-FULLSCREEN
+  - WM::ACTIVATE-FULLSCREEN
+  - WM::UPDATE-WINDOW-PROPERTIES
   - WM::ASSIGN-WINDOW
+  - WM::DRAW-FRAME-OUTLINE
+  - WM::MAXIMIZE-WINDOW
+  - WM::NETWM-UPDATE-GROUP
+  - WM::NETWM-SET-ALLOWED-ACTIONS
+  - WM::NETWM-SET-GROUP
+  - WM::NETWM-GROUP
+  - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
+  - WM::DISABLE-ALWAYS-SHOW-WINDOW
+  - WM::ALWAYS-SHOW-WINDOW
+  - WM::SWITCH-TO-GROUP
+  - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
   - WM::SEND-FAKE-CLICK
   - WM::SEND-FAKE-KEY
+  - WM::REGISTER-WINDOW
+  - WM::SCREEN-SET-FOCUS
+  - WM::SWITCH-TO-SCREEN
+  - WM::NETWM-UPDATE-CLIENT-LIST-STACKING
+  - WM::FLOAT-WINDOW-MOVE-RESIZE
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -12054,8 +12054,8 @@ DEFPROGRAM-SHORTCUT names a macro:
   - (BUILD (WM-CONFIG))
 
 - Referenced by
-  - (BUILD (WM-CONFIG))
   - WM::WM-INTERNAL
+  - (BUILD (WM-CONFIG))
 ***** *MODE-LINE-BACKGROUND-COLOR​* :var:
 :PROPERTIES:
 :ID: WM:*MODE-LINE-BACKGROUND-COLOR*
@@ -12072,9 +12072,9 @@ DEFPROGRAM-SHORTCUT names a macro:
 #+end_example
 
 - Referenced by
-  - WM::MAKE-MODE-LINE-GC
-  - WM::MAKE-MODE-LINE-WINDOW
   - WM::REFRESH-COLORS-FOR-MODELINE
+  - WM::MAKE-MODE-LINE-WINDOW
+  - WM::MAKE-MODE-LINE-GC
 
 :definitions:
 - [[vc:shed/wm:mode-line.lisp][mode-line.lisp]]
@@ -12168,12 +12168,12 @@ MINOR-MODE-SCOPE names a generic function:
 #+end_example
 
 - Called by
-  - WM::MAKE-WM-CLASS-INSTANCE
   - (REPLACE-CLASS-IN-MIXIN (MIXIN-OBJECT SYMBOL SYMBOL))
   - [[id:WM:VALIDATE-SCOPE][VALIDATE-SCOPE]]
-  - WM::FIND-ACTIVE-GLOBAL-MINOR-MODES-FOR-SCOPE
   - WM::SYNC-MINOR-MODES
   - WM::RELEVANT-OBJECTS-FOR-MINOR-MODE
+  - WM::FIND-ACTIVE-GLOBAL-MINOR-MODES-FOR-SCOPE
+  - WM::MAKE-WM-CLASS-INSTANCE
 
 :definitions:
 - [[vc:shed/wm:minor-modes.lisp][minor-modes.lisp]]
@@ -12201,9 +12201,9 @@ GROUP-SYNC-ALL-HEADS names a generic function:
 #+end_example
 
 - Called by
-  - WM::HEAD-FORCE-REFRESH
-  - (GROUP-REMOVE-HEAD (TILE-GROUP T))
   - (GROUP-REMOVE-HEAD (DYNAMIC-GROUP T))
+  - (GROUP-REMOVE-HEAD (TILE-GROUP T))
+  - WM::HEAD-FORCE-REFRESH
 
 :definitions:
 - [[vc:shed/wm:group.lisp][group.lisp]]
@@ -12231,14 +12231,14 @@ ECHO-STRING names a compiled function:
 #+end_example
 
 - Called by
-  - WM::MAYBE-RAISE-WINDOW
-  - WM::MAYBE-MAP-WINDOW
   - [[id:WM:WM-ERR][WM-ERR]]
-  - [[id:WM:WM-MESSAGE][WM-MESSAGE]]
   - WM::ECHO-WINDOWS
+  - WM::PULL-OTHER-HIDDEN-WINDOW
   - (FOCUS-OTHER-WINDOW (T))
   - WM::OTHER-WINDOW-IN-FRAME
-  - WM::PULL-OTHER-HIDDEN-WINDOW
+  - WM::MAYBE-RAISE-WINDOW
+  - WM::MAYBE-MAP-WINDOW
+  - [[id:WM:WM-MESSAGE][WM-MESSAGE]]
 
 :definitions:
 - [[vc:shed/wm:message-window.lisp#l304][message-window.lisp:304]]
@@ -12362,7 +12362,7 @@ INPUT-REFINE-PREFIX names a compiled function:
 #+begin_example
 
 *UNSCOPED-MINOR-MODES* names a special variable:
-  Value: #<WM::UNSCOPED-MODES {120BC014D3}>
+  Value: #<WM::UNSCOPED-MODES {120AC2F613}>
   Documentation:
     A dynamic variable holding all unscoped minor modes as mixed into the same
     object.
@@ -12467,10 +12467,10 @@ COMMAND-MODE-START-MESSAGE names a compiled function:
 #+end_example
 
 - Referenced by
-  - WM::DRAW-INPUT-BUCKET
-  - WM::SETUP-INPUT-WINDOW
   - WM::ECHO-STRING-LIST
   - WM::SETUP-MESSAGE-WINDOW
+  - WM::DRAW-INPUT-BUCKET
+  - WM::SETUP-INPUT-WINDOW
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -12541,59 +12541,6 @@ CURRENT-GROUP names a compiled function:
 
 - Called by
   - WM/MODELINE::HIDDEN-MODELINE
-  - WM/WINDOWS::PULL-BY-TITLE-REGEXP
-  - WM/WINDOWS::SELECT-BY-TITLE-REGEXP
-  - WM/WINDOWS::SEARCH-TAG-PULL
-  - WM/WINDOWS::SEARCH-TAG
-  - WM/WINDOWS::TAG-VISIBLE
-  - WM/WINDOWS::NUMBER-BY-TAGS
-  - WM/WINDOWS:GLOBAL-PULL-WINDOWLIST
-  - WM::SCALE-SCREEN
-  - [[id:WM:CURRENT-HEAD][CURRENT-HEAD]]
-  - WM::GRENAME
-  - WM::GPREV-WITH-WINDOW
-  - WM::GNEXT-WITH-WINDOW
-  - WM::GPREV
-  - WM::GNEXT
-  - WM::DISABLE-ALWAYS-SHOW-WINDOW
-  - WM::ALWAYS-SHOW-WINDOW
-  - WM::MAYBE-RAISE-WINDOW
-  - WM::MAYBE-MAP-WINDOW
-  - WM::TOP-MAPS
-  - [[id:WM:RUN-OR-PULL][RUN-OR-PULL]]
-  - WM::FIND-MATCHING-WINDOWS
-  - WM::BANISH-POINTER
-  - WM::FMT-GROUP-LIST
-  - WM::HSPLIT
-  - WM::TOGGLE-ALWAYS-ON-TOP
-  - WM::ECHO-WINDOWS
-  - WM::CLEAR-WINDOW-MARKS
-  - WM::WINDOWLIST-BY-CLASS
-  - WM::WINDOWLIST
-  - WM::REPACK-WINDOW-NUMBERS
-  - WM::RENUMBER
-  - WM::PREV-WINDOW
-  - WM::NEXT-WINDOW
-  - WM::OTHER-WINDOW
-  - WM::SELECT-WINDOW-BY-NUMBER
-  - WM::SELECT-WINDOW-BY-NAME
-  - WM::SELECT-WINDOW
-  - WM::KILL-WINDOWS-OTHER
-  - WM::KILL-WINDOWS-CURRENT-GROUP
-  - WM::RAISE-TOP-WINDOWS
-  - (WINDOW-GROUP AROUND (WINDOW))
-  - WM::FSELECT
-  - WM::FOTHER
-  - WM::SIBLING
-  - WM::FPREV
-  - WM::FNEXT
-  - WM::CURFRAME
-  - WM::REMOVE-SPLIT
-  - WM::HSPLIT-UNIFORMLY
-  - WM::VSPLIT-EQUALLY
-  - WM::VSPLIT-UNIFORMLY
-  - WM::HSPLIT-EQUALLY
-  - WM::VSPLIT
   - [[id:WM:FIND-MINOR-MODE][FIND-MINOR-MODE]]
   - [[id:WM:LIST-CURRENT-MODE-OBJECTS][LIST-CURRENT-MODE-OBJECTS]]
   - WM::FPREV-IN-HEAD
@@ -12610,50 +12557,103 @@ CURRENT-GROUP names a compiled function:
   - WM::SWAP-WINDOWS
   - WM::ROTATE-STACK
   - WM::ROTATE-WINDOWS
+  - (INVOKE-EXPOSE (TILE-GROUP))
+  - WM::EXPOSE-TILE
+  - WM::IN-FRAME-P
+  - WM::GROUPED-P
+  - WM/WINDOWS::PULL-BY-TITLE-REGEXP
+  - WM/WINDOWS::SELECT-BY-TITLE-REGEXP
+  - WM/WINDOWS::SEARCH-TAG-PULL
+  - WM/WINDOWS::SEARCH-TAG
+  - WM/WINDOWS::TAG-VISIBLE
+  - WM/WINDOWS::NUMBER-BY-TAGS
+  - WM/WINDOWS:GLOBAL-PULL-WINDOWLIST
   - WM::EXPOSE
+  - WM::PULL-W
+  - (LIST-WINDOWS (FRAME))
+  - (LIST-WINDOWS ((EQL FRAME)))
+  - (LIST-WINDOWS ((EQL GROUP)))
+  - [[id:WM:MOVE-WINDOWS-TO-GROUP][MOVE-WINDOWS-TO-GROUP]]
+  - WM::FMT-GROUP-LIST
   - WM::RESTORE-FROM-FILE
-  - [[id:WM:DUMP-GROUP-TO-FILE][DUMP-GROUP-TO-FILE]]
   - WM::RESIZE-UNHIDE
   - [[id:WM:SETUP-IRESIZE][SETUP-IRESIZE]]
   - WM::SINGLE-FRAME-P
-  - [[id:WM:MOVE-WINDOWS-TO-GROUP][MOVE-WINDOWS-TO-GROUP]]
-  - WM::FRAME-WINDOWLIST
-  - WM::PULL-MARKED
-  - WM::ECHO-FRAME-WINDOWS
-  - WM::PULL-FROM-WINDOWLIST
-  - WM::PULL-HIDDEN-OTHER
-  - WM::PULL-HIDDEN-PREVIOUS
-  - WM::PULL-HIDDEN-NEXT
-  - WM::PULL-WINDOW-BY-NUMBER
+  - [[id:WM:DUMP-GROUP-TO-FILE][DUMP-GROUP-TO-FILE]]
+  - [[id:WM:RUN-OR-PULL][RUN-OR-PULL]]
+  - WM::FIND-MATCHING-WINDOWS
+  - WM::BANISH-POINTER
+  - WM::TOGGLE-ALWAYS-ON-TOP
+  - WM::ECHO-WINDOWS
+  - WM::CLEAR-WINDOW-MARKS
+  - WM::WINDOWLIST-BY-CLASS
+  - WM::WINDOWLIST
+  - WM::REPACK-WINDOW-NUMBERS
+  - WM::RENUMBER
+  - WM::PREV-WINDOW
+  - WM::NEXT-WINDOW
+  - WM::OTHER-WINDOW
+  - WM::SELECT-WINDOW-BY-NUMBER
+  - WM::SELECT-WINDOW-BY-NAME
+  - WM::SELECT-WINDOW
+  - WM::KILL-WINDOWS-OTHER
+  - WM::KILL-WINDOWS-CURRENT-GROUP
   - WM::PULL-WINDOW
-  - WM::SPREV
-  - (LIST-WINDOWS ((EQL GROUP)))
-  - WM::SNEXT
-  - WM::SOTHER
+  - WM::RAISE-TOP-WINDOWS
+  - (WINDOW-GROUP AROUND (WINDOW))
+  - WM::MAYBE-RAISE-WINDOW
+  - WM::MAYBE-MAP-WINDOW
+  - WM::TOP-MAPS
   - WM::GET-WINDOW-PLACEMENT
   - WM::WINDOW-MATCHES-RULE-P
-  - (LIST-WINDOWS (FRAME))
-  - (LIST-WINDOWS ((EQL FRAME)))
   - WM::FLATTEN-FLOATS
-  - WM::PULL-W
   - WM::UNFLOAT-THIS
   - WM::FLOAT-THIS
   - WM::BALANCE-FRAMES
   - WM::OTHER-IN-FRAME
   - WM::PREV-IN-FRAME
-  - WM::GROUPED-P
   - WM::NEXT-IN-FRAME
-  - WM::IN-FRAME-P
   - WM::MOVE-FOCUS-AND-OR-WINDOW
   - WM::FCLEAR
   - WM::RESIZE
+  - WM::FSELECT
+  - WM::FOTHER
+  - WM::SIBLING
+  - WM::FPREV
+  - WM::FNEXT
+  - WM::CURFRAME
+  - WM::REMOVE-SPLIT
+  - WM::HSPLIT-UNIFORMLY
+  - WM::VSPLIT-EQUALLY
+  - WM::VSPLIT-UNIFORMLY
+  - WM::HSPLIT-EQUALLY
+  - WM::VSPLIT
+  - WM::HSPLIT
+  - WM::FRAME-WINDOWLIST
+  - WM::PULL-MARKED
+  - WM::ECHO-FRAME-WINDOWS
+  - WM::PULL-FROM-WINDOWLIST
+  - WM::PULL-HIDDEN-PREVIOUS
+  - WM::PULL-HIDDEN-NEXT
   - WM::GMERGE
-  - WM::EXPOSE-TILE
   - WM::GKILL-OTHER
-  - (INVOKE-EXPOSE (TILE-GROUP))
   - WM::GKILL
   - WM::GMOVE-MARKED
+  - WM::GRENAME
+  - WM::GPREV-WITH-WINDOW
+  - WM::GNEXT-WITH-WINDOW
+  - WM::GPREV
+  - WM::GNEXT
+  - WM::DISABLE-ALWAYS-SHOW-WINDOW
+  - WM::ALWAYS-SHOW-WINDOW
+  - WM::PULL-HIDDEN-OTHER
+  - WM::PULL-WINDOW-BY-NUMBER
+  - WM::SCALE-SCREEN
   - WM::COMMAND-ACTIVE-P
+  - [[id:WM:CURRENT-HEAD][CURRENT-HEAD]]
+  - WM::SOTHER
+  - WM::SPREV
+  - WM::SNEXT
 
 :definitions:
 - [[vc:shed/wm:group.lisp#l104][group.lisp:104]]
@@ -12677,8 +12677,8 @@ NO-FOCUS names a compiled function:
 
 - Called by
   - (GROUP-DELETE-WINDOW (TILE-GROUP FLOAT-WINDOW))
-  - WM::%FLOAT-FOCUS-NEXT
   - WM::FOCUS-FRAME
+  - WM::%FLOAT-FOCUS-NEXT
 
 :definitions:
 - [[vc:shed/wm:window.lisp#l946][window.lisp:946]]
@@ -12771,15 +12771,15 @@ WINDOW-CLASS names a generic function:
 #+end_example
 
 - Called by
+  - WM::FIND-REMAP-KEYS-BY-WINDOW
   - WM/WINDOWS::ALL-TAGS
+  - WM::CLASS-RE-P
+  - WM::CLASSED-P
   - WM::SHOW-WINDOW-PROPERTIES
   - (SORT-WINDOWS-BY-CLASS (LIST))
   - WM::WINDOW-NAME
-  - WM::FIND-REMAP-KEYS-BY-WINDOW
-  - WM::MAKE-RULE-FOR-WINDOW
   - WM::WINDOW-MATCHES-PROPERTIES-P
-  - WM::CLASSED-P
-  - WM::CLASS-RE-P
+  - WM::MAKE-RULE-FOR-WINDOW
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -12822,16 +12822,16 @@ WINDOW-CLASS names a generic function:
 #+end_example
 
 - Set by
-  - [[id:WM:CLEAR-WINDOW-PLACEMENT-RULES][CLEAR-WINDOW-PLACEMENT-RULES]]
   - WM::RESTORE-WINDOW-PLACEMENT-RULES
   - WM::FORGET
   - WM::MAKE-RULE-FOR-WINDOW
+  - [[id:WM:CLEAR-WINDOW-PLACEMENT-RULES][CLEAR-WINDOW-PLACEMENT-RULES]]
 
 - Referenced by
+  - WM::RULE-MATCHING-WINDOW
   - WM::DUMP-WINDOW-PLACEMENT-RULES
   - WM::FORGET
   - WM::MAKE-RULE-FOR-WINDOW
-  - WM::RULE-MATCHING-WINDOW
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -12857,9 +12857,9 @@ WINDOW-CLASS names a generic function:
 #+end_example
 
 - Referenced by
+  - WM::FMT-GROUP-LIST
   - WM::GROUPLIST
   - WM::ECHO-GROUPS
-  - WM::FMT-GROUP-LIST
 
 :definitions:
 - [[vc:shed/wm:prim.lisp][prim.lisp]]
@@ -12908,9 +12908,9 @@ LIST-CURRENT-MODE-OBJECTS names a compiled function:
 #+end_example
 
 - Called by
-  - WM::FMT-MINOR-MODES
-  - WM::MINOR-MODE-TOP-MAPS
   - [[id:WM:CURRENT-MINOR-MODES][CURRENT-MINOR-MODES]]
+  - WM::MINOR-MODE-TOP-MAPS
+  - WM::FMT-MINOR-MODES
 
 :definitions:
 - [[vc:shed/wm:minor-modes.lisp#l325][minor-modes.lisp:325]]
@@ -13014,12 +13014,12 @@ WINDOW-TITLE names a generic function:
   - WM/WINDOWS::SELECT-BY-TITLE-REGEXP
   - WM/WINDOWS::ALL-TAGS
   - WM/WINDOWS::ECHO-URGENT-WINDOW
+  - WM::TITLE-RE-P
+  - WM::TITLED-P
   - WM::SHOW-WINDOW-PROPERTIES
   - WM::DEFAULT-WINDOW-MENU-FILTER
   - WM::WINDOW-NAME
   - WM::WINDOW-MATCHES-PROPERTIES-P
-  - WM::TITLED-P
-  - WM::TITLE-RE-P
 
 :definitions:
 - [[vc:shed/wm:window.lisp][window.lisp]]
@@ -13044,11 +13044,11 @@ ONLY-ONE-FRAME-P names a compiled function:
 #+end_example
 
 - Called by
+  - WM::DYNAMIC-GROUP-RETILE-HEAD
+  - (INVOKE-EXPOSE (TILE-GROUP))
+  - WM::EXPOSE-TILE
   - WM::ONLY
   - WM::REMOVE-SPLIT
-  - WM::DYNAMIC-GROUP-RETILE-HEAD
-  - WM::EXPOSE-TILE
-  - (INVOKE-EXPOSE (TILE-GROUP))
 
 :definitions:
 - [[vc:shed/wm:tile-group.lisp#l1232][tile-group.lisp:1232]]
@@ -13094,9 +13094,9 @@ ONLY-ONE-FRAME-P names a compiled function:
 #+end_example
 
 - Referenced by
-  - WM::SPLIT-FRAME
   - WM::DYN-SPLIT-FRAME
   - WM::DYNAMIC-GROUP-HEAD-FULL-P
+  - WM::SPLIT-FRAME
   - WM::TREE-MIN-HEIGHT
   - (GROUP-BUTTON-PRESS (T T T T FLOAT-WINDOW))
 
@@ -13167,10 +13167,10 @@ GROUP-DELETE-WINDOW names a generic function:
 #+end_example
 
 - Called by
-  - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
-  - [[id:WM-USER::WITHDRAW-WINDOW][WITHDRAW-WINDOW]]
   - WM::DYNAMIC-GROUP-FLOAT-WINDOW
   - WM::HANDLE-HEAD-OVERFLOW
+  - [[id:WM-USER::WITHDRAW-WINDOW][WITHDRAW-WINDOW]]
+  - [[id:WM:MOVE-WINDOW-TO-GROUP][MOVE-WINDOW-TO-GROUP]]
 
 :definitions:
 - [[vc:shed/wm:group.lisp][group.lisp]]
@@ -13311,8 +13311,21 @@ CURRENT-SCREEN names a compiled function:
 #+end_example
 
 - Called by
-  - WM/TRAY::CREATE-TRAY
+  - [[id:WM:FIND-MINOR-MODE][FIND-MINOR-MODE]]
+  - [[id:WM:CURRENT-MINOR-MODES][CURRENT-MINOR-MODES]]
+  - [[id:WM:LIST-CURRENT-MODE-OBJECTS][LIST-CURRENT-MODE-OBJECTS]]
   - WM/TRAY::CURRENT-TRAY
+  - WM::SEND-RAW-KEY
+  - [[id:WM:SYNC-ALL-MINOR-MODES][SYNC-ALL-MINOR-MODES]]
+  - [[id:WM:MINOR-MODE-ENABLED-P][MINOR-MODE-ENABLED-P]]
+  - (ML-ON-CLICK-MINOR-MODE IN /home/ellis/src/shed/wm/minor-modes.lisp)
+  - WM::GNEWBG-DYNAMIC
+  - WM::GNEW-DYNAMIC
+  - (INVOKE-EXPOSE (TILE-GROUP))
+  - WM::IN-FRAME-P
+  - (TEXT-LINE-WIDTH (FONT T))
+  - WM/CLIPBOARD::SHOW-CLIPBOARD-HISTORY
+  - (FONT-DESCENT (FONT))
   - WM/WINDOWS::PULL-BY-TITLE-REGEXP
   - WM/WINDOWS::SELECT-BY-TITLE-REGEXP
   - WM/WINDOWS::SEARCH-TAG-PULL
@@ -13321,15 +13334,57 @@ CURRENT-SCREEN names a compiled function:
   - WM/WINDOWS::SELECT-BY-TAGS
   - WM/WINDOWS::ALL-TAGS
   - WM/WINDOWS::CLEAR-ALL-TAGS
-  - WM/WINDOWS::GLOBAL-WINDOWS
   - WM/SCREENSHOT::COLORNAME-TO-COLOR
-  - WM/CLIPBOARD::SHOW-CLIPBOARD-HISTORY
+  - (FONT-ASCENT (FONT))
   - WM/CLIPBOARD::POLL-SELECTION
-  - WM::NEXT-SCREEN
-  - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-UNAMBIGUOUS T T))
-  - [[id:WM:CURRENT-GROUP][CURRENT-GROUP]]
-  - WM::REFRESH-HEADS
-  - WM::RESIZE-HEAD
+  - WM/SCREENSHOT::SCREENSHOT
+  - WM/GAPS::RESET-ALL-WINDOWS
+  - WM/GAPS::ADD-HEAD-GAPS
+  - WM/WINDOWS::GLOBAL-WINDOWS
+  - WM/SCREENSHOT::SCREENSHOT-AREA
+  - WM::EXPOSE
+  - WM::COLON
+  - (LIST-WINDOWS ((EQL SCREEN)))
+  - [[id:WM:MOVE-WINDOWS-TO-GROUP][MOVE-WINDOWS-TO-GROUP]]
+  - WM::MODE-LINE
+  - (ML-ON-CLICK-SWITCH-TO-GROUP IN /home/ellis/src/shed/wm/mode-line.lisp)
+  - WM::PLACE-CURRENT-WINDOW
+  - WM::RESTORE-FROM-FILE
+  - [[id:WM:DUMP-SCREEN-TO-FILE][DUMP-SCREEN-TO-FILE]]
+  - WM::WM-INTERNAL
+  - WM::LIST-WINDOW-PROPERTIES
+  - WM::FIND-MATCHING-WINDOWS
+  - WM::QUIT-CONFIRM
+  - [[id:OBJ/CMD:LIST-COMMANDS][LIST-COMMANDS]]
+  - WM::META
+  - WM::RATWARP
+  - WM::BANISH-POINTER
+  - [[id:WM:RESTARTS-MENU][RESTARTS-MENU]]
+  - WM::COPY-LAST-MESSAGE
+  - [[id:WM:GET-X-SELECTION][GET-X-SELECTION]]
+  - WM::EXPORT-SELECTION
+  - WM::DISPLAY-BINDINGS-FOR-KEYMAPS
+  - WM::LASTMSG
+  - [[id:WM:WM-ERR][WM-ERR]]
+  - (GROUP-ADOPT-ORPHANED-WINDOWS (FLOAT-GROUP))
+  - WM::GNEW-FLOAT
+  - WM::GNEWBG-FLOAT
+  - WM::DUMP-DESKTOP
+  - WM::DELETE-WINDOW
+  - WM::SELECT-WINDOW-FROM-MENU
+  - WM::SEND-ESCAPE
+  - WM::NEXT-URGENT
+  - WM::DEACTIVATE-FULLSCREEN
+  - WM::HANDLE-KEYMAP
+  - [[id:WM:WM-MESSAGE][WM-MESSAGE]]
+  - WM::REDRAW-FRAME-INDICATOR
+  - WM::SHOW-FRAME-INDICATOR
+  - WM::GET-WINDOW-PLACEMENT
+  - WM::ONLY
+  - [[id:WM:ONLY-ONE-FRAME-P][ONLY-ONE-FRAME-P]]
+  - (GROUP-ADOPT-ORPHANED-WINDOWS (TILE-GROUP))
+  - WM::GKILL-OTHER
+  - WM::GKILL
   - WM::GROUPLIST
   - WM::GSELECT
   - WM::VGROUPS
@@ -13344,76 +13399,21 @@ CURRENT-SCREEN names a compiled function:
   - WM::GNEWBG
   - WM::GNEW
   - WM::TOGGLE-ALWAYS-SHOW
+  - [[id:WM:CURRENT-GROUP][CURRENT-GROUP]]
   - (GROUP-DELETE-WINDOW (T T))
-  - WM::DEACTIVATE-FULLSCREEN
-  - WM::HANDLE-KEYMAP
-  - WM::LIST-WINDOW-PROPERTIES
-  - WM::FIND-MATCHING-WINDOWS
-  - WM::QUIT-CONFIRM
-  - (ML-ON-CLICK-SWITCH-TO-GROUP IN /home/ellis/src/shed/wm/mode-line.lisp)
-  - WM::META
-  - WM::RATWARP
-  - WM::BANISH-POINTER
-  - [[id:WM:RESTARTS-MENU][RESTARTS-MENU]]
-  - WM::COPY-LAST-MESSAGE
-  - [[id:WM:GET-X-SELECTION][GET-X-SELECTION]]
-  - WM::EXPORT-SELECTION
-  - WM::LASTMSG
-  - [[id:WM:WM-ERR][WM-ERR]]
-  - [[id:WM:WM-MESSAGE][WM-MESSAGE]]
-  - WM::REDRAW-FRAME-INDICATOR
-  - WM::SWITCH-TO-SCREEN
-  - (TEXT-LINE-WIDTH (FONT T))
-  - (FONT-DESCENT (FONT))
-  - (FONT-ASCENT (FONT))
-  - WM/GAPS::ADD-HEAD-GAPS
-  - WM/GAPS::RESET-ALL-WINDOWS
-  - WM/SCREENSHOT::SCREENSHOT
-  - WM/SCREENSHOT::SCREENSHOT-AREA
-  - [[id:WM:ONLY-ONE-FRAME-P][ONLY-ONE-FRAME-P]]
-  - WM::DELETE-WINDOW
-  - (GROUP-ADOPT-ORPHANED-WINDOWS (TILE-GROUP))
-  - WM::SELECT-WINDOW-FROM-MENU
-  - WM::SEND-ESCAPE
-  - WM::NEXT-URGENT
-  - WM::ONLY
-  - (ML-ON-CLICK-MINOR-MODE IN /home/ellis/src/shed/wm/minor-modes.lisp)
-  - [[id:WM:FIND-MINOR-MODE][FIND-MINOR-MODE]]
-  - [[id:WM:MINOR-MODE-ENABLED-P][MINOR-MODE-ENABLED-P]]
-  - [[id:WM:CURRENT-MINOR-MODES][CURRENT-MINOR-MODES]]
-  - [[id:WM:LIST-CURRENT-MODE-OBJECTS][LIST-CURRENT-MODE-OBJECTS]]
-  - [[id:WM:SYNC-ALL-MINOR-MODES][SYNC-ALL-MINOR-MODES]]
-  - WM::SEND-RAW-KEY
-  - WM::GNEWBG-DYNAMIC
-  - WM::GNEW-DYNAMIC
-  - WM::EXPOSE
-  - WM::PLACE-CURRENT-WINDOW
-  - WM::RESTORE-FROM-FILE
-  - [[id:WM:DUMP-SCREEN-TO-FILE][DUMP-SCREEN-TO-FILE]]
-  - WM::MODE-LINE
-  - WM::DUMP-DESKTOP
-  - (LIST-WINDOWS ((EQL SCREEN)))
-  - [[id:OBJ/CMD:LIST-COMMANDS][LIST-COMMANDS]]
-  - WM::DISPLAY-BINDINGS-FOR-KEYMAPS
-  - [[id:WM:MOVE-WINDOWS-TO-GROUP][MOVE-WINDOWS-TO-GROUP]]
-  - WM::WM-INTERNAL
-  - WM::GNEWBG-FLOAT
-  - WM::GNEW-FLOAT
-  - (GROUP-ADOPT-ORPHANED-WINDOWS (FLOAT-GROUP))
-  - [[id:WM:CURRENT-WINDOW][CURRENT-WINDOW]]
-  - WM::SHOW-FRAME-INDICATOR
-  - WM::GET-WINDOW-PLACEMENT
-  - WM::IN-FRAME-P
-  - WM::GKILL-OTHER
-  - (INVOKE-EXPOSE (TILE-GROUP))
-  - WM::GKILL
-  - WM::COLON
-  - [[id:WM:READ-WM-ARGS][READ-WM-ARGS]]
-  - [[id:WM:READ-WM-ARG][READ-WM-ARG]]
+  - WM::REFRESH-HEADS
   - [[id:COMMON-LISP:YES-OR-NO-P][YES-OR-NO-P]]
   - [[id:COMMON-LISP:Y-OR-N-P][Y-OR-N-P]]
   - WM::INPUT-YANK-CLIPBOARD
   - WM::INPUT-YANK-SELECTION
+  - (INPUT-COMPLETION-COMPLETE (INPUT-COMPLETION-STYLE-UNAMBIGUOUS T T))
+  - [[id:WM:READ-WM-ARG][READ-WM-ARG]]
+  - [[id:WM:READ-WM-ARGS][READ-WM-ARGS]]
+  - WM::RESIZE-HEAD
+  - [[id:WM:CURRENT-WINDOW][CURRENT-WINDOW]]
+  - WM::SWITCH-TO-SCREEN
+  - WM::NEXT-SCREEN
+  - WM/TRAY::CREATE-TRAY
 
 :definitions:
 - [[vc:shed/wm:screen.lisp#l291][screen.lisp:291]]
@@ -13540,7 +13540,7 @@ This file handles input stuff
 :end:
 
 :tasks:
-- TODO 2026-07-21 :: WM-EDITOR?
+- TODO 2026-07-25 :: WM-EDITOR?
 :end:
 
 **** core :lisp:
@@ -13559,7 +13559,7 @@ windows, screens, and events.
 :end:
 
 :tasks:
-- TODO 2026-07-21 :: bump-queue?
+- TODO 2026-07-25 :: bump-queue?
 :end:
 
 **** command :lisp:
@@ -13611,7 +13611,7 @@ Screen functionality
 :end:
 
 :tasks:
-- FIXME 2026-07-21 :: I don't like any of this. Isn't there a way to define
+- FIXME 2026-07-25 :: I don't like any of this. Isn't there a way to define
 :end:
 
 **** head :lisp:
@@ -13638,7 +13638,7 @@ All group-related code resides here
 :end:
 
 :tasks:
-- FIXME 2026-07-21 :: groups are to screens exactly as windows are to
+- FIXME 2026-07-25 :: groups are to screens exactly as windows are to
 :end:
 
 **** bindings :lisp:
@@ -13651,7 +13651,7 @@ Copyright (C) 2003-2008 Shawn Betts
 define standard key bindings
 
 :tasks:
-- TODO 2026-07-21 :: define-smart-keymap (shadow mod keys)
+- TODO 2026-07-25 :: define-smart-keymap (shadow mod keys)
 :end:
 
 **** events :lisp:
@@ -13685,8 +13685,8 @@ Window functionality.
 :end:
 
 :tasks:
-- FIXME 2026-07-21 :: should we raise the window or its parent?
-- FIXME 2026-07-21 :: use WM_HINTS.group_leader
+- FIXME 2026-07-25 :: should we raise the window or its parent?
+- FIXME 2026-07-25 :: use WM_HINTS.group_leader
 :end:
 
 **** floating-group :lisp:
@@ -13731,7 +13731,7 @@ Frame functions
 :end:
 
 :tasks:
-- TODO 2026-07-21 :: This method has not been updated for floating windows
+- TODO 2026-07-25 :: This method has not been updated for floating windows
 :end:
 
 **** window-placement :lisp:

@@ -1,0 +1,489 @@
+#+TITLE: ASDF/OPERATE
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/OPERATE
+:PROPERTIES:
+:ID: ASDF/OPERATE
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+  - [[id:ASDF/UPGRADE][ASDF/UPGRADE]]
+  - [[id:ASDF/SESSION][ASDF/SESSION]]
+  - [[id:ASDF/COMPONENT][ASDF/COMPONENT]]
+  - [[id:ASDF/SYSTEM][ASDF/SYSTEM]]
+  - [[id:ASDF/SYSTEM-REGISTRY][ASDF/SYSTEM-REGISTRY]]
+  - [[id:ASDF/FIND-COMPONENT][ASDF/FIND-COMPONENT]]
+  - [[id:ASDF/OPERATION][ASDF/OPERATION]]
+  - [[id:ASDF/ACTION][ASDF/ACTION]]
+  - [[id:ASDF/LISP-ACTION][ASDF/LISP-ACTION]]
+  - [[id:ASDF/FORCING][ASDF/FORCING]]
+  - [[id:ASDF/PLAN][ASDF/PLAN]]
+
+- dependents
+  - [[id:ASDF/PARSE-DEFSYSTEM][ASDF/PARSE-DEFSYSTEM]]
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+  - [[id:ASDF/BUNDLE][ASDF/BUNDLE]]
+  - [[id:ASDF/BACKWARD-INTERFACE][ASDF/BACKWARD-INTERFACE]]
+  - [[id:ASDF/FOOTER][ASDF/FOOTER]]
+  - [[id:ASDF/FIND-SYSTEM][ASDF/FIND-SYSTEM]]
+
+** OOS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OPERATE:OOS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OOS names a compiled function:
+  Lambda-list: (OPERATION COMPONENT &REST ARGS &KEY &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T T &REST T &KEY &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    Short for _operate on system_ and an alias for the OPERATE function.
+    
+    Operate does mainly four things for the user:
+    
+    1. Resolves the OPERATION designator into an operation object.
+       OPERATION is typically a symbol denoting an operation class,instantiated with MAKE-OPERATION.
+    2. Resolves the COMPONENT designator into a component object.
+       COMPONENT is typically a string or symbol naming a system, loaded fromdisk using FIND-SYSTEM.
+    3. It then calls MAKE-PLAN with the operation and system as arguments.
+    4. Finally calls PERFORM-PLAN on the resulting plan to actually build thesystem.
+    
+    The entire computation is wrapped in WITH-COMPILATION-UNIT and errorhandling code.
+    If a VERSION argument is supplied, then operate also ensures that thesystem found satisfies it
+    using the VERSION-SATISFIES method.
+    If a PLAN-CLASS argument is supplied, that class is used for the plan.
+    If a PLAN-OPTIONS argument is supplied, the options are passed to the plan.
+    
+    The :FORCE or :FORCE-NOT argument to OPERATE can be:
+      T to force the inside of the specified system to be rebuilt (resp. not),
+        without recursively forcing the other systems we depend on.
+      :ALL to force all systems including other systems we depend on to berebuilt (resp. not).
+      (SYSTEM1 SYSTEM2 ... SYSTEMN) to force systems named in a given list
+    :FORCE-NOT has precedence over :FORCE; builtin systems cannot be forced.
+    
+    For backward compatibility, all keyword arguments are passed to MAKE-OPERATION
+    when instantiating a new operation, that will in turn be inherited by newoperations.
+    But do NOT depend on it, for this is deprecated behavior.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** RECURSIVE-OPERATE :condition:class:
+:PROPERTIES:
+:ID: ASDF/OPERATE:RECURSIVE-OPERATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RECURSIVE-OPERATE names the condition-class #<SB-PCL::CONDITION-CLASS ASDF/OPERATE:RECURSIVE-OPERATE>:
+  Class precedence-list: ASDF/OPERATE:RECURSIVE-OPERATE, WARNING, CONDITION,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: WARNING
+  No subclasses.
+  Direct slots:
+    ASDF/OPERATION:OPERATION
+      Initargs: :OPERATION
+      Readers: ASDF/OPERATE::CONDITION-OPERATION
+    ASDF/COMPONENT:COMPONENT
+      Initargs: :COMPONENT
+      Readers: ASDF/OPERATE::CONDITION-COMPONENT
+    ASDF/ACTION:ACTION
+      Initargs: :ACTION
+      Readers: ASDF/OPERATE::CONDITION-ACTION
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** LOAD-SYSTEM :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OPERATE:LOAD-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD-SYSTEM names a compiled function:
+  Lambda-list: (SYSTEM &REST KEYS &KEY FORCE FORCE-NOT VERBOSE VERSION
+                &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION
+                 (T &REST T &KEY (:FORCE T) (:FORCE-NOT T) (:VERBOSE T)
+                  (:VERSION T) &ALLOW-OTHER-KEYS)
+                 (VALUES (MEMBER T) &OPTIONAL))
+  Documentation:
+    Shorthand for `(operate 'asdf:load-op system)`. See OPERATE for details.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OPERATE:REQUIRE-SYSTEM
+  - ASDF/OPERATE:MODULE-PROVIDE-ASDF
+  - ASDF/OPERATE:LOAD-SYSTEMS*
+  - (PROJECT-LOAD (ASDF-SYSTEM))
+  - (LOAD-SYSTEM (SYSTEM))
+  - (LOAD-SYSTEM (SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** OPERATE :generic:function:
+:PROPERTIES:
+:ID: ASDF/OPERATE:OPERATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OPERATE names a generic function:
+  Lambda-list: (OPERATION COMPONENT &KEY)
+  Argument precedence order: (OPERATION COMPONENT)
+  Derived type: (FUNCTION
+                 (T T &KEY (:PLAN-CLASS T) (:PLAN-OPTIONS T) (:VERSION T)
+                  (:VERBOSE T) (:ON-WARNINGS T) (:ON-FAILURE T)
+                  &ALLOW-OTHER-KEYS)
+                 *)
+  Documentation:
+    Operate does mainly four things for the user:
+    
+    1. Resolves the OPERATION designator into an operation object.
+       OPERATION is typically a symbol denoting an operation class,instantiated with MAKE-OPERATION.
+    2. Resolves the COMPONENT designator into a component object.
+       COMPONENT is typically a string or symbol naming a system, loaded fromdisk using FIND-SYSTEM.
+    3. It then calls MAKE-PLAN with the operation and system as arguments.
+    4. Finally calls PERFORM-PLAN on the resulting plan to actually build thesystem.
+    
+    The entire computation is wrapped in WITH-COMPILATION-UNIT and errorhandling code.
+    If a VERSION argument is supplied, then operate also ensures that thesystem found satisfies it
+    using the VERSION-SATISFIES method.
+    If a PLAN-CLASS argument is supplied, that class is used for the plan.
+    If a PLAN-OPTIONS argument is supplied, the options are passed to the plan.
+    
+    The :FORCE or :FORCE-NOT argument to OPERATE can be:
+      T to force the inside of the specified system to be rebuilt (resp. not),
+        without recursively forcing the other systems we depend on.
+      :ALL to force all systems including other systems we depend on to berebuilt (resp. not).
+      (SYSTEM1 SYSTEM2 ... SYSTEMN) to force systems named in a given list
+    :FORCE-NOT has precedence over :FORCE; builtin systems cannot be forced.
+    
+    For backward compatibility, all keyword arguments are passed to MAKE-OPERATION
+    when instantiating a new operation, that will in turn be inherited by newoperations.
+    But do NOT depend on it, for this is deprecated behavior.
+  Method-combination: STANDARD
+  Methods:
+    (OPERATE :BEFORE (T T))
+    (OPERATE (OPERATION COMPONENT))
+    (OPERATE :BEFORE (OPERATION COMPONENT))
+    (OPERATE :AROUND (T T))
+    (OPERATE (OPERATION T))
+    (OPERATE (SYMBOL T))
+    (OPERATE (STRING T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM:LOAD-ASD
+  - [[id:STD/DEFSYS:TEST-SYSTEM][TEST-SYSTEM]]
+  - [[id:STD/DEFSYS:COMPILE-SYSTEM][COMPILE-SYSTEM]]
+  - [[id:STD/DEFSYS:LOAD-SYSTEM][LOAD-SYSTEM]]
+  - [[id:STD/META:MAKE][MAKE]]
+  - ASDF/OPERATE:OOS
+  - (OPERATE AROUND (T T))
+  - (OPERATE (OPERATION T))
+  - (OPERATE (SYMBOL T))
+  - (OPERATE (STRING T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - KEYWORD:BEFORE
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BEFORE OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - KEYWORD:AROUND
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT &KEY)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+:end:
+** TEST-SYSTEM :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OPERATE:TEST-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TEST-SYSTEM names a compiled function:
+  Lambda-list: (SYSTEM &REST ARGS &KEY FORCE FORCE-NOT VERBOSE VERSION
+                &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION
+                 (T &REST T &KEY (:FORCE T) (:FORCE-NOT T) (:VERBOSE T)
+                  (:VERSION T) &ALLOW-OTHER-KEYS)
+                 (VALUES (MEMBER T) &OPTIONAL))
+  Documentation:
+    Shorthand for `(asdf:operate 'asdf:test-op system)`. See OPERATE fordetails.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (TEST-SYSTEM (SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** LOAD-SYSTEMS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OPERATE:LOAD-SYSTEMS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD-SYSTEMS names a compiled function:
+  Lambda-list: (&REST SYSTEMS)
+  Derived type: FUNCTION
+  Documentation:
+    Loading multiple systems at once.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPILE-SYSTEM :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OPERATE:COMPILE-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-SYSTEM names a compiled function:
+  Lambda-list: (SYSTEM &REST ARGS &KEY FORCE FORCE-NOT VERBOSE VERSION
+                &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION
+                 (T &REST T &KEY (:FORCE T) (:FORCE-NOT T) (:VERBOSE T)
+                  (:VERSION T) &ALLOW-OTHER-KEYS)
+                 (VALUES (MEMBER T) &OPTIONAL))
+  Documentation:
+    Shorthand for `(asdf:operate 'asdf:compile-op system)`. See OPERATE fordetails.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PROJECT-COMPILE (ASDF-SYSTEM))
+  - (COMPILE-SYSTEM (SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** REQUIRE-SYSTEM :compiled:cmacro:function:class:
+:PROPERTIES:
+:ID: ASDF/OPERATE:REQUIRE-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REQUIRE-SYSTEM names a compiled function:
+  Lambda-list: (SYSTEM &REST KEYS &KEY &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    Ensure the specified SYSTEM is loaded, passing the KEYS to OPERATE, but donot update the
+    system or its dependencies if it has already been loaded.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+REQUIRE-SYSTEM has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+REQUIRE-SYSTEM names the standard-class #<STANDARD-CLASS ASDF/OPERATE:REQUIRE-SYSTEM>:
+  Documentation:
+    A SYSTEM subclass whose processing is handled by
+    the implementation's REQUIRE rather than by internal ASDF mechanisms.
+  Class precedence-list: ASDF/OPERATE:REQUIRE-SYSTEM, ASDF/SYSTEM:SYSTEM,
+                         ASDF/COMPONENT:MODULE, ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:PARENT-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, ASDF/SYSTEM:PROTO-SYSTEM,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/SYSTEM:SYSTEM
+  No subclasses.
+  Direct slots:
+    ASDF/COMPONENT:MODULE
+      Initargs: :MODULE
+      Readers: ASDF/OPERATE::REQUIRED-MODULE
+      Writers: (SETF ASDF/OPERATE::REQUIRED-MODULE)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** BUILD-OP :class:
+:PROPERTIES:
+:ID: ASDF/OPERATE:BUILD-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+BUILD-OP names the standard-class #<STANDARD-CLASS ASDF/OPERATE:BUILD-OP>:
+  Documentation:
+    Since ASDF3, BUILD-OP is the recommended 'master' operation,
+    to operate by default on a system or component, via the function BUILD.
+    Its meaning is configurable via the :BUILD-OPERATION option of a component.
+    which typically specifies the name of a specific operation to which todelegate the build,
+    as a symbol or as a string later read as a symbol (after loading thedefsystem-depends-on);
+    if NIL is specified (the default), BUILD-OP falls back to LOAD-OP,
+    that will load the system in the current image.
+  Class precedence-list: ASDF/OPERATE:BUILD-OP,
+                         ASDF/ACTION:NON-PROPAGATING-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/ACTION:NON-PROPAGATING-OPERATION
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ALREADY-LOADED-SYSTEMS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OPERATE:ALREADY-LOADED-SYSTEMS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ALREADY-LOADED-SYSTEMS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES LIST &OPTIONAL))
+  Documentation:
+    return a list of the names of the systems that have been successfullyloaded so far
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** MAKE :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OPERATE:MAKE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE names a compiled function:
+  Lambda-list: (SYSTEM &REST KEYS)
+  Derived type: (FUNCTION (T &REST T) (VALUES (MEMBER T) &OPTIONAL))
+  Documentation:
+    The recommended way to interact with ASDF3.1 is via (ASDF:MAKE :FOO).
+    It will build system FOO using the operation BUILD-OP,
+    the meaning of which is configurable by the system, and
+    defaults to LOAD-OP, to load it in current image.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** LOAD-SYSTEMS* :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OPERATE:LOAD-SYSTEMS*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD-SYSTEMS* names a compiled function:
+  Lambda-list: (SYSTEMS &REST KEYS)
+  Derived type: (FUNCTION (T &REST T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Loading multiple systems at once.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - ASDF/OPERATE:LOAD-SYSTEMS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPONENT-LOADED-P :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OPERATE:COMPONENT-LOADED-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-LOADED-P names a compiled function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Has the given COMPONENT been successfully loaded in the current image(yet)?
+    Note that this returns true even if the component is not up to date.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OPERATE:REQUIRE-SYSTEM
+  - ASDF/OPERATE:ALREADY-LOADED-SYSTEMS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** MODULE-PROVIDE-ASDF :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OPERATE:MODULE-PROVIDE-ASDF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MODULE-PROVIDE-ASDF names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:

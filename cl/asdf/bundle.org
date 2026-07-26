@@ -1,0 +1,963 @@
+#+TITLE: ASDF/BUNDLE
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/BUNDLE
+:PROPERTIES:
+:ID: ASDF/BUNDLE
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+  - [[id:ASDF/UPGRADE][ASDF/UPGRADE]]
+  - [[id:ASDF/COMPONENT][ASDF/COMPONENT]]
+  - [[id:ASDF/SYSTEM][ASDF/SYSTEM]]
+  - [[id:ASDF/OPERATION][ASDF/OPERATION]]
+  - [[id:ASDF/FIND-COMPONENT][ASDF/FIND-COMPONENT]]
+  - [[id:ASDF/ACTION][ASDF/ACTION]]
+  - [[id:ASDF/LISP-ACTION][ASDF/LISP-ACTION]]
+  - [[id:ASDF/PLAN][ASDF/PLAN]]
+  - [[id:ASDF/OPERATE][ASDF/OPERATE]]
+  - [[id:ASDF/PARSE-DEFSYSTEM][ASDF/PARSE-DEFSYSTEM]]
+
+- dependents
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+  - [[id:ASDF/CONCATENATE-SOURCE][ASDF/CONCATENATE-SOURCE]]
+  - [[id:ASDF/BACKWARD-INTERFACE][ASDF/BACKWARD-INTERFACE]]
+  - [[id:ASDF/FOOTER][ASDF/FOOTER]]
+
+** PROGRAM-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:PROGRAM-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROGRAM-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:PROGRAM-OP>:
+  Documentation:
+    create an executable file from the system and its dependencies
+  Class precedence-list: ASDF/BUNDLE:PROGRAM-OP, ASDF/BUNDLE:IMAGE-OP,
+                         ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP,
+                         ASDF/BUNDLE:BUNDLE-OP, ASDF/BUNDLE:MONOLITHIC-OP,
+                         ASDF/ACTION:SELFWARD-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BUNDLE:IMAGE-OP
+  No subclasses.
+  Direct slots:
+    ASDF/BUNDLE:BUNDLE-TYPE
+      Allocation: :CLASS
+      Initform: :PROGRAM
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** BUNDLE-TYPE :generic:function:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:BUNDLE-TYPE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+BUNDLE-TYPE names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (BUNDLE-TYPE (BUNDLE-OP))
+      Documentation:
+        automatically generated reader method
+
+#+end_example
+
+- Called by
+  - (INPUT-FILES (GATHER-OPERATION SYSTEM))
+  - ASDF/BUNDLE::BUNDLE-OUTPUT-FILES
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/BUNDLE:BUNDLE-OP
+:end:
+** MONOLITHIC-LOAD-BUNDLE-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:MONOLITHIC-LOAD-BUNDLE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MONOLITHIC-LOAD-BUNDLE-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:MONOLITHIC-LOAD-BUNDLE-OP>:
+  Documentation:
+    Load a single fasl for the system and its dependencies.
+  Class precedence-list: ASDF/BUNDLE:MONOLITHIC-LOAD-BUNDLE-OP,
+                         ASDF/BUNDLE:LOAD-BUNDLE-OP,
+                         ASDF/LISP-ACTION:BASIC-LOAD-OP,
+                         ASDF/ACTION:SELFWARD-OPERATION,
+                         ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP,
+                         ASDF/BUNDLE:BUNDLE-OP, ASDF/BUNDLE:MONOLITHIC-OP,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BUNDLE:LOAD-BUNDLE-OP,
+                       ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP
+  No subclasses.
+  Direct slots:
+    ASDF/ACTION:SELFWARD-OPERATION
+      Allocation: :CLASS
+      Initform: 'ASDF/BUNDLE:MONOLITHIC-COMPILE-BUNDLE-OP
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** USER-SYSTEM-P :compiled:function:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:USER-SYSTEM-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+USER-SYSTEM-P names a compiled function:
+  Lambda-list: (S)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (INPUT-FILES (LOAD-BUNDLE-OP SYSTEM))
+  - (COMPONENT-DEPENDS-ON (LOAD-BUNDLE-OP SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** BUNDLE-SYSTEM
+:PROPERTIES:
+:ID: ASDF/BUNDLE:BUNDLE-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+** PROLOGUE-CODE :generic:function:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:PROLOGUE-CODE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROLOGUE-CODE names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (PROLOGUE-CODE (SYSTEM))
+    (PROLOGUE-CODE (PROGRAM-SYSTEM))
+      Documentation:
+        automatically generated reader method
+    (PROLOGUE-CODE (MONOLITHIC-BUNDLE-OP))
+      Documentation:
+        automatically generated reader method
+
+(SETF PROLOGUE-CODE) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF PROLOGUE-CODE) (T MONOLITHIC-BUNDLE-OP))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-COMPILE-BUNDLE-OP SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/BUNDLE:PROGRAM-SYSTEM
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP
+:end:
+** PREPARE-BUNDLE-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:PREPARE-BUNDLE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PREPARE-BUNDLE-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:PREPARE-BUNDLE-OP>:
+  Documentation:
+    Operation class for loading the bundles of a system's dependencies
+  Class precedence-list: ASDF/BUNDLE:PREPARE-BUNDLE-OP,
+                         ASDF/ACTION:SIDEWAY-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/ACTION:SIDEWAY-OPERATION
+  No subclasses.
+  Direct slots:
+    ASDF/ACTION:SIDEWAY-OPERATION
+      Allocation: :CLASS
+      Initform: 'ASDF/LISP-ACTION:LOAD-OP
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** MONOLITHIC-BUNDLE-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MONOLITHIC-BUNDLE-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP>:
+  Documentation:
+    operations that are both monolithic-op and bundle-op
+  Direct superclasses: ASDF/BUNDLE:BUNDLE-OP, ASDF/BUNDLE:MONOLITHIC-OP
+  Direct subclasses: ASDF/CONCATENATE-SOURCE:MONOLITHIC-CONCATENATE-SOURCE-OP,
+                     ASDF/BUNDLE:IMAGE-OP, ASDF/BUNDLE:MONOLITHIC-DLL-OP,
+                     ASDF/BUNDLE:MONOLITHIC-LIB-OP,
+                     ASDF/BUNDLE:MONOLITHIC-LOAD-BUNDLE-OP,
+                     ASDF/BUNDLE:MONOLITHIC-COMPILE-BUNDLE-OP,
+                     ASDF/BUNDLE:MONOLITHIC-DELIVER-ASD-OP
+  Not yet finalized.
+  Direct slots:
+    ASDF/BUNDLE:PROLOGUE-CODE
+      Readers: ASDF/BUNDLE:PROLOGUE-CODE
+      Writers: (SETF ASDF/BUNDLE:PROLOGUE-CODE)
+    ASDF/BUNDLE:EPILOGUE-CODE
+      Readers: ASDF/BUNDLE:EPILOGUE-CODE
+      Writers: (SETF ASDF/BUNDLE:EPILOGUE-CODE)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** MONOLITHIC-COMPILE-BUNDLE-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:MONOLITHIC-COMPILE-BUNDLE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MONOLITHIC-COMPILE-BUNDLE-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:MONOLITHIC-COMPILE-BUNDLE-OP>:
+  Documentation:
+    Create a single fasl for the system and its dependencies.
+  Class precedence-list: ASDF/BUNDLE:MONOLITHIC-COMPILE-BUNDLE-OP,
+                         ASDF/BUNDLE:BASIC-COMPILE-BUNDLE-OP,
+                         ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP,
+                         ASDF/BUNDLE::GATHER-OPERATION, ASDF/BUNDLE:BUNDLE-OP,
+                         ASDF/BUNDLE:MONOLITHIC-OP,
+                         ASDF/LISP-ACTION:BASIC-COMPILE-OP,
+                         ASDF/ACTION:NON-PROPAGATING-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BUNDLE:BASIC-COMPILE-BUNDLE-OP,
+                       ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP,
+                       ASDF/BUNDLE::GATHER-OPERATION,
+                       ASDF/ACTION:NON-PROPAGATING-OPERATION
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** BASIC-COMPILE-BUNDLE-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:BASIC-COMPILE-BUNDLE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+BASIC-COMPILE-BUNDLE-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:BASIC-COMPILE-BUNDLE-OP>:
+  Documentation:
+    Base class for compiling into a bundle
+  Class precedence-list: ASDF/BUNDLE:BASIC-COMPILE-BUNDLE-OP,
+                         ASDF/BUNDLE:BUNDLE-OP,
+                         ASDF/LISP-ACTION:BASIC-COMPILE-OP,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BUNDLE:BUNDLE-OP, ASDF/LISP-ACTION:BASIC-COMPILE-OP
+  Direct subclasses: ASDF/BUNDLE:MONOLITHIC-COMPILE-BUNDLE-OP,
+                     ASDF/BUNDLE:COMPILE-BUNDLE-OP
+  Direct slots:
+    ASDF/BUNDLE::GATHER-TYPE
+      Allocation: :CLASS
+      Initform: :FASL
+    ASDF/BUNDLE:BUNDLE-TYPE
+      Allocation: :CLASS
+      Initform: :FASB
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PROGRAM-SYSTEM :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:PROGRAM-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROGRAM-SYSTEM names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:PROGRAM-SYSTEM>:
+  Class precedence-list: ASDF/BUNDLE:PROGRAM-SYSTEM, ASDF/SYSTEM:SYSTEM,
+                         ASDF/COMPONENT:MODULE, ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:PARENT-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, ASDF/SYSTEM:PROTO-SYSTEM,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/SYSTEM:SYSTEM
+  No subclasses.
+  Direct slots:
+    ASDF/BUNDLE:PROLOGUE-CODE
+      Initargs: :PROLOGUE-CODE
+      Readers: ASDF/BUNDLE:PROLOGUE-CODE
+    ASDF/BUNDLE:EPILOGUE-CODE
+      Initargs: :EPILOGUE-CODE
+      Readers: ASDF/BUNDLE:EPILOGUE-CODE
+    ASDF/BUNDLE::NO-UIOP
+      Initargs: :NO-UIOP
+      Readers: ASDF/BUNDLE::NO-UIOP
+    ASDF/BUNDLE::PREFIX-LISP-OBJECT-FILES
+      Initargs: :PREFIX-LISP-OBJECT-FILES
+      Readers: ASDF/BUNDLE::PREFIX-LISP-OBJECT-FILES
+      Writers: (SETF ASDF/BUNDLE::PREFIX-LISP-OBJECT-FILES)
+    ASDF/BUNDLE::POSTFIX-LISP-OBJECT-FILES
+      Initargs: :POSTFIX-LISP-OBJECT-FILES
+      Readers: ASDF/BUNDLE::POSTFIX-LISP-OBJECT-FILES
+      Writers: (SETF ASDF/BUNDLE::POSTFIX-LISP-OBJECT-FILES)
+    ASDF/BUNDLE::EXTRA-OBJECT-FILES
+      Initargs: :EXTRA-OBJECT-FILES
+      Readers: ASDF/BUNDLE::EXTRA-OBJECT-FILES
+      Writers: (SETF ASDF/BUNDLE::EXTRA-OBJECT-FILES)
+    ASDF/BUNDLE::EXTRA-BUILD-ARGS
+      Initargs: :EXTRA-BUILD-ARGS
+      Readers: ASDF/BUNDLE::EXTRA-BUILD-ARGS
+      Writers: (SETF ASDF/BUNDLE::EXTRA-BUILD-ARGS)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** DIRECT-DEPENDENCY-FILES :compiled:function:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:DIRECT-DEPENDENCY-FILES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIRECT-DEPENDENCY-FILES names a compiled function:
+  Lambda-list: (O C &KEY (TEST (QUOTE IDENTITY)) (KEY (QUOTE OUTPUT-FILES))
+                &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T T &KEY (:TEST T) (:KEY T) &ALLOW-OTHER-KEYS)
+                 (VALUES LIST &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (INPUT-FILES (GATHER-OPERATION SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PRECOMPILED-SYSTEM :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:PRECOMPILED-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PRECOMPILED-SYSTEM names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:PRECOMPILED-SYSTEM>:
+  Documentation:
+    Class For a system that is delivered as a precompiled fasl
+  Class precedence-list: ASDF/BUNDLE:PRECOMPILED-SYSTEM, ASDF/SYSTEM:SYSTEM,
+                         ASDF/COMPONENT:MODULE, ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:PARENT-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, ASDF/SYSTEM:PROTO-SYSTEM,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/SYSTEM:SYSTEM
+  No subclasses.
+  Direct slots:
+    ASDF/SYSTEM:BUILD-PATHNAME
+      Initargs: :FASL, :FASB
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** TRIVIAL-SYSTEM-P :generic:function:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:TRIVIAL-SYSTEM-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TRIVIAL-SYSTEM-P names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (TRIVIAL-SYSTEM-P (PREBUILT-SYSTEM))
+    (TRIVIAL-SYSTEM-P (SYSTEM))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/BUNDLE:USER-SYSTEM-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/BUNDLE:PREBUILT-SYSTEM
+:end:
+** PREBUILT-SYSTEM :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:PREBUILT-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PREBUILT-SYSTEM names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:PREBUILT-SYSTEM>:
+  Documentation:
+    Class for a system delivered with a linkable static library (.a/.lib)
+  Class precedence-list: ASDF/BUNDLE:PREBUILT-SYSTEM, ASDF/SYSTEM:SYSTEM,
+                         ASDF/COMPONENT:MODULE, ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:PARENT-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, ASDF/SYSTEM:PROTO-SYSTEM,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/SYSTEM:SYSTEM
+  No subclasses.
+  Direct slots:
+    ASDF/SYSTEM:BUILD-PATHNAME
+      Initargs: :LIB, :STATIC-LIBRARY
+      Readers: ASDF/BUNDLE::PREBUILT-SYSTEM-STATIC-LIBRARY
+      Writers: (SETF ASDF/BUNDLE::PREBUILT-SYSTEM-STATIC-LIBRARY)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** MONOLITHIC-DLL-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:MONOLITHIC-DLL-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MONOLITHIC-DLL-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:MONOLITHIC-DLL-OP>:
+  Documentation:
+    Compile the system and produce a dynamic loadable library (.so/.dll)
+    for all the linkable object files associated with the system or itsdependencies. See LIB-OP
+  Class precedence-list: ASDF/BUNDLE:MONOLITHIC-DLL-OP, ASDF/BUNDLE:DLL-OP,
+                         ASDF/BUNDLE::LINK-OP, ASDF/BUNDLE::GATHER-OPERATION,
+                         ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP,
+                         ASDF/BUNDLE:BUNDLE-OP, ASDF/BUNDLE:MONOLITHIC-OP,
+                         ASDF/ACTION:NON-PROPAGATING-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BUNDLE:DLL-OP, ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP,
+                       ASDF/ACTION:NON-PROPAGATING-OPERATION
+  No subclasses.
+  Direct slots:
+    ASDF/BUNDLE::GATHER-TYPE
+      Allocation: :CLASS
+      Initform: :OBJECT
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** OPERATION-MONOLITHIC-P :compiled:function:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:OPERATION-MONOLITHIC-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OPERATION-MONOLITHIC-P names a compiled function:
+  Lambda-list: (OP)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (INPUT-FILES (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+  - (PERFORM (DELIVER-ASD-OP SYSTEM))
+  - ASDF/BUNDLE::BUNDLE-OUTPUT-FILES
+  - (COMPONENT-DEPENDS-ON (GATHER-OPERATION SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** EPILOGUE-CODE :generic:function:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:EPILOGUE-CODE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EPILOGUE-CODE names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (EPILOGUE-CODE (SYSTEM))
+    (EPILOGUE-CODE (PROGRAM-SYSTEM))
+      Documentation:
+        automatically generated reader method
+    (EPILOGUE-CODE (MONOLITHIC-BUNDLE-OP))
+      Documentation:
+        automatically generated reader method
+
+(SETF EPILOGUE-CODE) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF EPILOGUE-CODE) (T MONOLITHIC-BUNDLE-OP))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-COMPILE-BUNDLE-OP SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/BUNDLE:PROGRAM-SYSTEM
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP
+:end:
+** DLL-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:DLL-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DLL-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:DLL-OP>:
+  Documentation:
+    Compile the system and produce a dynamic loadable library (.so/.dll)
+    for all the linkable object files associated with the system. Compare withLIB-OP.
+  Class precedence-list: ASDF/BUNDLE:DLL-OP, ASDF/BUNDLE::LINK-OP,
+                         ASDF/BUNDLE::GATHER-OPERATION, ASDF/BUNDLE:BUNDLE-OP,
+                         ASDF/ACTION:NON-PROPAGATING-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BUNDLE::LINK-OP, ASDF/BUNDLE::GATHER-OPERATION,
+                       ASDF/ACTION:NON-PROPAGATING-OPERATION
+  Direct subclasses: ASDF/BUNDLE:MONOLITHIC-DLL-OP
+  Direct slots:
+    ASDF/BUNDLE::GATHER-TYPE
+      Allocation: :CLASS
+      Initform: :OBJECT
+    ASDF/BUNDLE:BUNDLE-TYPE
+      Allocation: :CLASS
+      Initform: :DLL
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** IMAGE-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:IMAGE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+IMAGE-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:IMAGE-OP>:
+  Documentation:
+    create an image file from the system and its dependencies
+  Class precedence-list: ASDF/BUNDLE:IMAGE-OP, ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP,
+                         ASDF/BUNDLE:BUNDLE-OP, ASDF/BUNDLE:MONOLITHIC-OP,
+                         ASDF/ACTION:SELFWARD-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP,
+                       ASDF/ACTION:SELFWARD-OPERATION
+  Direct subclasses: ASDF/BUNDLE:PROGRAM-OP
+  Direct slots:
+    ASDF/BUNDLE:BUNDLE-TYPE
+      Allocation: :CLASS
+      Initform: :IMAGE
+    ASDF/BUNDLE::GATHER-OPERATION
+      Allocation: :CLASS
+      Initform: 'ASDF/BUNDLE:LIB-OP
+    ASDF/ACTION:SELFWARD-OPERATION
+      Allocation: :CLASS
+      Initform: '(ASDF/LISP-ACTION:LOAD-OP)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** LOAD-BUNDLE-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:LOAD-BUNDLE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD-BUNDLE-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:LOAD-BUNDLE-OP>:
+  Documentation:
+    This operator is an alternative to LOAD-OP. Build a system
+    and all of its dependencies, using COMPILE-BUNDLE-OP. The difference with
+    respect to LOAD-OP is that it builds only a single FASL, which may be
+    faster and more resource efficient.
+  Class precedence-list: ASDF/BUNDLE:LOAD-BUNDLE-OP,
+                         ASDF/LISP-ACTION:BASIC-LOAD-OP,
+                         ASDF/ACTION:SELFWARD-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/LISP-ACTION:BASIC-LOAD-OP,
+                       ASDF/ACTION:SELFWARD-OPERATION
+  Direct subclasses: ASDF/BUNDLE:MONOLITHIC-LOAD-BUNDLE-OP
+  Direct slots:
+    ASDF/ACTION:SELFWARD-OPERATION
+      Allocation: :CLASS
+      Initform: '(ASDF/BUNDLE:PREPARE-BUNDLE-OP ASDF/BUNDLE:COMPILE-BUNDLE-OP)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPILE-BUNDLE-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:COMPILE-BUNDLE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-BUNDLE-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:COMPILE-BUNDLE-OP>:
+  Documentation:
+    This operator is an alternative to COMPILE-OP. Build a system
+    and all of its dependencies, but build only a single ("monolithic") FASL,instead
+    of one per source file, which may be more resource efficient.  Thatmonolithic
+    FASL should be loaded with LOAD-BUNDLE-OP, rather than LOAD-OP.
+  Class precedence-list: ASDF/BUNDLE:COMPILE-BUNDLE-OP,
+                         ASDF/BUNDLE:BASIC-COMPILE-BUNDLE-OP,
+                         ASDF/ACTION:SELFWARD-OPERATION,
+                         ASDF/BUNDLE::GATHER-OPERATION, ASDF/BUNDLE:BUNDLE-OP,
+                         ASDF/LISP-ACTION:BASIC-COMPILE-OP,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BUNDLE:BASIC-COMPILE-BUNDLE-OP,
+                       ASDF/ACTION:SELFWARD-OPERATION,
+                       ASDF/BUNDLE::GATHER-OPERATION
+  No subclasses.
+  Direct slots:
+    ASDF/ACTION:SELFWARD-OPERATION
+      Allocation: :CLASS
+      Initform: '(ASDF/BUNDLE:PREPARE-BUNDLE-OP)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** BUNDLE-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:BUNDLE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+BUNDLE-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:BUNDLE-OP>:
+  Documentation:
+    base class for operations that bundle outputs from multiple components
+  Direct superclasses: ASDF/OPERATION:OPERATION
+  Direct subclasses: ASDF/CONCATENATE-SOURCE::BASIC-CONCATENATE-SOURCE-OP,
+                     ASDF/BUNDLE:BASIC-COMPILE-BUNDLE-OP,
+                     ASDF/BUNDLE::GATHER-OPERATION, ASDF/BUNDLE::LINK-OP,
+                     ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP
+  Not yet finalized.
+  Direct slots:
+    ASDF/BUNDLE:BUNDLE-TYPE
+      Allocation: :CLASS
+      Initform: :NO-OUTPUT-FILE
+      Readers: ASDF/BUNDLE:BUNDLE-TYPE
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPILED-FILE :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:COMPILED-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILED-FILE names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:COMPILED-FILE>:
+  Documentation:
+    Class for a file that is already compiled,
+    e.g. as part of the implementation, of an outer build system that callsinto ASDF,
+    or of opaque libraries shipped along the source code.
+  Class precedence-list: ASDF/BUNDLE:COMPILED-FILE,
+                         ASDF/COMPONENT:FILE-COMPONENT,
+                         ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:FILE-COMPONENT
+  No subclasses.
+  Direct slots:
+    TYPE
+      Initform: (UIOP/LISP-BUILD:COMPILE-FILE-TYPE)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** BUNDLE-PATHNAME-TYPE :compiled:function:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:BUNDLE-PATHNAME-TYPE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+BUNDLE-PATHNAME-TYPE names a compiled function:
+  Lambda-list: (BUNDLE-TYPE)
+  Derived type: (FUNCTION (T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (INPUT-FILES (GATHER-OPERATION SYSTEM))
+  - ASDF/BUNDLE::BUNDLE-OUTPUT-FILES
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** MONOLITHIC-LIB-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:MONOLITHIC-LIB-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MONOLITHIC-LIB-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:MONOLITHIC-LIB-OP>:
+  Documentation:
+    Compile the system and produce a linkable static library (.a/.lib)
+    for all the linkable object files associated with the system or itsdependencies. See LIB-OP.
+  Class precedence-list: ASDF/BUNDLE:MONOLITHIC-LIB-OP, ASDF/BUNDLE:LIB-OP,
+                         ASDF/BUNDLE::LINK-OP, ASDF/BUNDLE::GATHER-OPERATION,
+                         ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP,
+                         ASDF/BUNDLE:BUNDLE-OP, ASDF/BUNDLE:MONOLITHIC-OP,
+                         ASDF/ACTION:NON-PROPAGATING-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BUNDLE:LIB-OP, ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP,
+                       ASDF/ACTION:NON-PROPAGATING-OPERATION
+  No subclasses.
+  Direct slots:
+    ASDF/BUNDLE::GATHER-TYPE
+      Allocation: :CLASS
+      Initform: :OBJECT
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** USER-SYSTEM
+:PROPERTIES:
+:ID: ASDF/BUNDLE:USER-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+USER-SYSTEM names a type-specifier:
+  Lambda-list: ()
+  Expansion: (AND ASDF/SYSTEM:SYSTEM (SATISFIES ASDF/BUNDLE:USER-SYSTEM-P))
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** DELIVER-ASD-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:DELIVER-ASD-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DELIVER-ASD-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:DELIVER-ASD-OP>:
+  Documentation:
+    produce an asd file for delivering the system as a single fasl
+  Class precedence-list: ASDF/BUNDLE:DELIVER-ASD-OP,
+                         ASDF/LISP-ACTION:BASIC-COMPILE-OP,
+                         ASDF/ACTION:SELFWARD-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/LISP-ACTION:BASIC-COMPILE-OP,
+                       ASDF/ACTION:SELFWARD-OPERATION
+  Direct subclasses: ASDF/BUNDLE:MONOLITHIC-DELIVER-ASD-OP
+  Direct slots:
+    ASDF/ACTION:SELFWARD-OPERATION
+      Allocation: :CLASS
+      Initform: '(ASDF/BUNDLE:COMPILE-BUNDLE-OP)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** STATIC-LIBRARY
+:PROPERTIES:
+:ID: ASDF/BUNDLE:STATIC-LIBRARY
+:ALLOC: HEAP DYNAMIC
+:END:
+** MONOLITHIC-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:MONOLITHIC-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MONOLITHIC-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:MONOLITHIC-OP>:
+  Documentation:
+    A MONOLITHIC operation operates on a system *and all of its
+    dependencies*.  So, for example, a monolithic concatenate operation will
+    concatenate together a system's components and all of its dependencies, buta
+    simple concatenate operation will concatenate only the components of thesystem
+    itself.
+  Direct superclasses: ASDF/OPERATION:OPERATION
+  Direct subclasses: ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP
+  Not yet finalized.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** MONOLITHIC-DELIVER-ASD-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:MONOLITHIC-DELIVER-ASD-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MONOLITHIC-DELIVER-ASD-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:MONOLITHIC-DELIVER-ASD-OP>:
+  Documentation:
+    produce fasl and asd files for combined system and dependencies.
+  Class precedence-list: ASDF/BUNDLE:MONOLITHIC-DELIVER-ASD-OP,
+                         ASDF/BUNDLE:DELIVER-ASD-OP,
+                         ASDF/LISP-ACTION:BASIC-COMPILE-OP,
+                         ASDF/ACTION:SELFWARD-OPERATION,
+                         ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP,
+                         ASDF/BUNDLE:BUNDLE-OP, ASDF/BUNDLE:MONOLITHIC-OP,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BUNDLE:DELIVER-ASD-OP,
+                       ASDF/BUNDLE:MONOLITHIC-BUNDLE-OP
+  No subclasses.
+  Direct slots:
+    ASDF/ACTION:SELFWARD-OPERATION
+      Allocation: :CLASS
+      Initform: '(ASDF/BUNDLE:MONOLITHIC-COMPILE-BUNDLE-OP)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** LIB-OP :class:
+:PROPERTIES:
+:ID: ASDF/BUNDLE:LIB-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LIB-OP names the standard-class #<STANDARD-CLASS ASDF/BUNDLE:LIB-OP>:
+  Documentation:
+    Compile the system and produce a linkable static library (.a/.lib)
+    for all the linkable object files associated with the system. Compare withDLL-OP.
+    
+    On most implementations, these object files only include extensions to theruntime
+    written in C or another language with a compiler producing linkable objectfiles.
+    On CLASP, ECL, MKCL, these object files _also_ include the contents of Lispfiles
+    themselves. In any case, this operation will produce what you need tofurther build
+    a static runtime for your system, or a dynamic library to load in anexisting runtime.
+  Class precedence-list: ASDF/BUNDLE:LIB-OP, ASDF/BUNDLE::LINK-OP,
+                         ASDF/BUNDLE::GATHER-OPERATION, ASDF/BUNDLE:BUNDLE-OP,
+                         ASDF/ACTION:NON-PROPAGATING-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BUNDLE::LINK-OP, ASDF/BUNDLE::GATHER-OPERATION,
+                       ASDF/ACTION:NON-PROPAGATING-OPERATION
+  Direct subclasses: ASDF/BUNDLE:MONOLITHIC-LIB-OP
+  Direct slots:
+    ASDF/BUNDLE::GATHER-TYPE
+      Allocation: :CLASS
+      Initform: :OBJECT
+    ASDF/BUNDLE:BUNDLE-TYPE
+      Allocation: :CLASS
+      Initform: :LIB
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:

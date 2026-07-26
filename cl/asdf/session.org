@@ -1,0 +1,988 @@
+#+TITLE: ASDF/SESSION
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/SESSION
+:PROPERTIES:
+:ID: ASDF/SESSION
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+  - [[id:ASDF/UPGRADE][ASDF/UPGRADE]]
+
+- dependents
+  - [[id:ASDF/PACKAGE-INFERRED-SYSTEM][ASDF/PACKAGE-INFERRED-SYSTEM]]
+  - [[id:ASDF/SYSTEM-REGISTRY][ASDF/SYSTEM-REGISTRY]]
+  - [[id:ASDF/ACTION][ASDF/ACTION]]
+  - [[id:ASDF/FIND-COMPONENT][ASDF/FIND-COMPONENT]]
+  - [[id:ASDF/COMPONENT][ASDF/COMPONENT]]
+  - [[id:ASDF/PARSE-DEFSYSTEM][ASDF/PARSE-DEFSYSTEM]]
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+  - [[id:ASDF/SYSTEM][ASDF/SYSTEM]]
+  - [[id:ASDF/LISP-ACTION][ASDF/LISP-ACTION]]
+  - [[id:ASDF/OPERATION][ASDF/OPERATION]]
+  - [[id:ASDF/BACKWARD-INTERFACE][ASDF/BACKWARD-INTERFACE]]
+  - [[id:ASDF/OPERATE][ASDF/OPERATE]]
+  - [[id:ASDF/PLAN][ASDF/PLAN]]
+  - [[id:ASDF/FORCING][ASDF/FORCING]]
+  - [[id:ASDF/FIND-SYSTEM][ASDF/FIND-SYSTEM]]
+
+** SYSTEM-DEFINITION-ERROR :condition:class:
+:PROPERTIES:
+:ID: ASDF/SESSION:SYSTEM-DEFINITION-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-DEFINITION-ERROR names the condition-class #<SB-PCL::CONDITION-CLASSASDF/SESSION:SYSTEM-DEFINITION-ERROR>:
+  Class precedence-list: ASDF/SESSION:SYSTEM-DEFINITION-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ERROR
+  Direct subclasses: ASDF/PACKAGE-INFERRED-SYSTEM:PACKAGE-INFERRED-SYSTEM-MISSING-PACKAGE-ERROR,
+                     ASDF/PARSE-DEFSYSTEM:NON-TOPLEVEL-SYSTEM,
+                     ASDF/PARSE-DEFSYSTEM:NON-SYSTEM-SYSTEM,
+                     ASDF/FIND-SYSTEM:LOAD-SYSTEM-DEFINITION-ERROR,
+                     ASDF/FIND-COMPONENT:MISSING-COMPONENT,
+                     ASDF/ACTION:CIRCULAR-DEPENDENCY,
+                     ASDF/COMPONENT:DUPLICATE-NAMES,
+                     ASDF/SESSION:FORMATTED-SYSTEM-DEFINITION-ERROR
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** *ASDF-SESSION-CLASS​* :var:
+:PROPERTIES:
+:ID: ASDF/SESSION:*ASDF-SESSION-CLASS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*ASDF-SESSION-CLASS* names a special variable:
+  Value: ASDF/SESSION:SESSION
+  Documentation:
+    The default class for sessions
+
+#+end_example
+
+- Referenced by
+  - ASDF/SESSION:CALL-WITH-ASDF-SESSION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** VISITED-ACTIONS :generic:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:VISITED-ACTIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VISITED-ACTIONS names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (VISITED-ACTIONS (SESSION))
+      Documentation:
+        automatically generated reader method
+
+(SETF VISITED-ACTIONS) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF VISITED-ACTIONS) (T SESSION))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/PLAN::COLLECT-ACTION-DEPENDENCIES
+  - ((SETF ACTION-STATUS) (T PLAN OPERATION COMPONENT))
+  - (ACTION-STATUS (PLAN OPERATION COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:OBJ/SRV:SESSION][SESSION]]
+:end:
+** SESSION-CACHE :generic:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:SESSION-CACHE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SESSION-CACHE names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SESSION-CACHE (SESSION))
+      Documentation:
+        Memoize expensive computations
+
+#+end_example
+
+- Called by
+  - ASDF/SESSION:CALL-WITH-ASDF-SESSION
+  - ASDF/SESSION:CONSULT-ASDF-CACHE
+  - ASDF/SESSION:UNSET-ASDF-CACHE-ENTRY
+  - ASDF/SESSION:ASDF-CACHE
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:OBJ/SRV:SESSION][SESSION]]
+:end:
+** CLEAR-CONFIGURATION-AND-RETRY
+:PROPERTIES:
+:ID: ASDF/SESSION:CLEAR-CONFIGURATION-AND-RETRY
+:ALLOC: HEAP DYNAMIC
+:END:
+** SET-ASDF-CACHE-ENTRY :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:SET-ASDF-CACHE-ENTRY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SET-ASDF-CACHE-ENTRY names a compiled function:
+  Lambda-list: (KEY VALUE-LIST)
+  Derived type: (FUNCTION (T T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - ASDF/SESSION:REGISTER-FILE-STAMP
+  - ASDF/SESSION:CONSULT-ASDF-CACHE
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** NORMALIZE-NAMESTRING :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:NORMALIZE-NAMESTRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NORMALIZE-NAMESTRING names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES (OR SIMPLE-STRING NULL) &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SESSION:GET-FILE-STAMP
+  - ASDF/SESSION:REGISTER-FILE-STAMP
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** OPERATE-LEVEL :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:OPERATE-LEVEL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OPERATE-LEVEL names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+(SETF OPERATE-LEVEL) names a compiled function:
+  Lambda-list: (NEW-LEVEL)
+  Derived type: (FUNCTION (T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (OPERATE AROUND (T T))
+  - ASDF/PLAN:TRAVERSE-ACTION
+  - ASDF/PLAN::COMPUTE-ACTION-STATUS
+  - ASDF/PLAN::MARK-STATUS-NEEDED
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** GET-FILE-STAMP :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:GET-FILE-STAMP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GET-FILE-STAMP names a compiled function:
+  Lambda-list: (FILE)
+  Derived type: (FUNCTION (T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (FIND-SYSTEM (STRING))
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - ASDF/LISP-ACTION::PERFORM-LISP-WARNINGS-CHECK
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ASDF-CACHE :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:ASDF-CACHE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ASDF-CACHE names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SYSTEM-REGISTRY:FIND-SYSTEM-IF-BEING-DEFINED
+  - ASDF/OPERATE::RESTART-UPGRADED-ASDF
+  - ASDF/SESSION:SET-ASDF-CACHE-ENTRY
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** FORCING :generic:function:class:
+:PROPERTIES:
+:ID: ASDF/SESSION:FORCING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FORCING names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (FORCING (PLAN-TRAVERSAL))
+      Documentation:
+        automatically generated reader method
+    (FORCING (CONS))
+    (FORCING (NULL))
+    (FORCING (SESSION))
+      Documentation:
+        Forcing parameters for the session
+
+(SETF FORCING) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF FORCING) (T SESSION))
+      Documentation:
+        Forcing parameters for the session
+
+FORCING names the standard-class #<STANDARD-CLASS ASDF/SESSION:FORCING>:
+  Class precedence-list: ASDF/SESSION:FORCING, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STANDARD-OBJECT
+  No subclasses.
+  Direct slots:
+    ASDF/FORCING:PERFORMABLE-P
+      Initargs: :PERFORMABLE-P
+      Readers: ASDF/FORCING:PERFORMABLE-P
+    ASDF/FORCING::PARAMETERS
+      Initargs: :PARAMETERS
+      Readers: ASDF/FORCING::PARAMETERS
+    ASDF/FORCING:FORCED
+      Initargs: :FORCED
+      Readers: ASDF/FORCING:FORCED
+    ASDF/FORCING:FORCED-NOT
+      Initargs: :FORCED-NOT
+      Readers: ASDF/FORCING:FORCED-NOT
+
+#+end_example
+
+- Called by
+  - (OPERATE (OPERATION COMPONENT))
+  - (PERFORM-PLAN AROUND (T))
+  - ASDF/PLAN::COLLECT-ACTION-DEPENDENCIES
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - (ACTION-STATUS (PLAN OPERATION COMPONENT))
+  - (FORCING (CONS))
+  - (FORCING (NULL))
+  - ASDF/FORCING:MAKE-FORCING
+  - ASDF/SESSION:CALL-WITH-ASDF-SESSION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:CONS][CONS]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - NULL
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:OBJ/SRV:SESSION][SESSION]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/TASK:PLAN-TRAVERSAL][PLAN-TRAVERSAL]]
+:end:
+** UNSET-ASDF-CACHE-ENTRY :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:UNSET-ASDF-CACHE-ENTRY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNSET-ASDF-CACHE-ENTRY names a compiled function:
+  Lambda-list: (KEY)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (DEFINE-OP SYSTEM))
+  - ASDF/FIND-COMPONENT:RESOLVE-DEPENDENCY-NAME
+  - ASDF/SYSTEM-REGISTRY:CLEAR-SYSTEM
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** FORMAT-CONTROL :generic:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:FORMAT-CONTROL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FORMAT-CONTROL names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (FORMAT-CONTROL (FORMATTED-SYSTEM-DEFINITION-ERROR))
+
+#+end_example
+
+- Called by
+  - (FORMATTED-SYSTEM-DEFINITION-ERROR)
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/SESSION:FORMATTED-SYSTEM-DEFINITION-ERROR
+:end:
+** CALL-WITH-ASDF-SESSION :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:CALL-WITH-ASDF-SESSION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-ASDF-SESSION names a compiled function:
+  Lambda-list: (THUNK &KEY OVERRIDE KEY OVERRIDE-CACHE OVERRIDE-FORCING)
+  Derived type: (FUNCTION
+                 (T &KEY (:OVERRIDE T) (:KEY T) (:OVERRIDE-CACHE T)
+                  (:OVERRIDE-FORCING T))
+                 *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - (FIND-SYSTEM (STRING))
+  - ASDF/FIND-SYSTEM:LOCATE-SYSTEM
+  - ASDF/FIND-SYSTEM:LOAD-ASD
+  - (OPERATE AROUND (T T))
+  - (MAKE-PLAN (T OPERATION COMPONENT))
+  - ASDF/PLAN:REQUIRED-COMPONENTS
+  - ASDF/ACTION:CALL-WHILE-VISITING-ACTION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** FORMAT-ARGUMENTS :generic:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:FORMAT-ARGUMENTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FORMAT-ARGUMENTS names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (FORMAT-ARGUMENTS (FORMATTED-SYSTEM-DEFINITION-ERROR))
+
+#+end_example
+
+- Called by
+  - (FORMATTED-SYSTEM-DEFINITION-ERROR)
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/SESSION:FORMATTED-SYSTEM-DEFINITION-ERROR
+:end:
+** *ASDF-SESSION​* :var:
+:PROPERTIES:
+:ID: ASDF/SESSION:*ASDF-SESSION*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*ASDF-SESSION* names a special variable:
+  Value: NIL
+
+#+end_example
+
+- Bound by
+  - ASDF/SESSION:CALL-WITH-ASDF-SESSION
+
+- Referenced by
+  - (RECORD-DEPENDENCY (NULL T T))
+  - ASDF/OPERATE::RESTART-UPGRADED-ASDF
+  - (OPERATE (OPERATION COMPONENT))
+  - ASDF/PLAN::COLLECT-ACTION-DEPENDENCIES
+  - ASDF/PLAN:TRAVERSE-ACTION
+  - ASDF/PLAN::COMPUTE-ACTION-STATUS
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - ((SETF ACTION-STATUS) (T PLAN OPERATION COMPONENT))
+  - (ACTION-STATUS (PLAN OPERATION COMPONENT))
+  - ASDF/FORCING:MAKE-FORCING
+  - ASDF/ACTION:CALL-WHILE-VISITING-ACTION
+  - ASDF/SESSION:CALL-WITH-ASDF-SESSION
+  - ASDF/SESSION:CONSULT-ASDF-CACHE
+  - ASDF/SESSION:UNSET-ASDF-CACHE-ENTRY
+  - ASDF/SESSION:SET-ASDF-CACHE-ENTRY
+  - ASDF/SESSION:ASDF-CACHE
+  - ASDF/SESSION:TOPLEVEL-ASDF-SESSION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** VISITING-ACTION-LIST :generic:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:VISITING-ACTION-LIST
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VISITING-ACTION-LIST names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (VISITING-ACTION-LIST (SESSION))
+      Documentation:
+        automatically generated reader method
+
+(SETF VISITING-ACTION-LIST) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF VISITING-ACTION-LIST) (T SESSION))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (RECORD-DEPENDENCY (NULL T T))
+  - ASDF/ACTION:CALL-WHILE-VISITING-ACTION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:OBJ/SRV:SESSION][SESSION]]
+:end:
+** VISITING-ACTION-SET :generic:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:VISITING-ACTION-SET
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VISITING-ACTION-SET names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (VISITING-ACTION-SET (SESSION))
+      Documentation:
+        automatically generated reader method
+
+(SETF VISITING-ACTION-SET) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF VISITING-ACTION-SET) (T SESSION))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/ACTION:CALL-WHILE-VISITING-ACTION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:OBJ/SRV:SESSION][SESSION]]
+:end:
+** ASDF-UPGRADED-P :generic:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:ASDF-UPGRADED-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ASDF-UPGRADED-P names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (ASDF-UPGRADED-P (SESSION))
+      Documentation:
+        Was ASDF already upgraded in this session - only valid for toplevel-asdf-session.
+
+(SETF ASDF-UPGRADED-P) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF ASDF-UPGRADED-P) (T SESSION))
+      Documentation:
+        Was ASDF already upgraded in this session - only valid for toplevel-asdf-session.
+
+#+end_example
+
+- Called by
+  - (OPERATE AROUND (T T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:OBJ/SRV:SESSION][SESSION]]
+:end:
+** SESSION :class:
+:PROPERTIES:
+:ID: ASDF/SESSION:SESSION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SESSION names the standard-class #<STANDARD-CLASS ASDF/SESSION:SESSION>:
+  Documentation:
+    An ASDF session with a cache to memoize some computations
+  Class precedence-list: ASDF/SESSION:SESSION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STANDARD-OBJECT
+  No subclasses.
+  Direct slots:
+    ASDF/SESSION::ANCESTOR
+      Initargs: :ANCESTOR
+      Readers: ASDF/SESSION::SESSION-ANCESTOR
+      Documentation:
+       Top level session that this is part of
+    ASDF/SESSION:SESSION-CACHE
+      Initargs: :SESSION-CACHE
+      Initform: (MAKE-HASH-TABLE :TEST 'EQUAL)
+      Readers: ASDF/SESSION:SESSION-CACHE
+      Documentation:
+       Memoize expensive computations
+    ASDF/SESSION:OPERATE-LEVEL
+      Initargs: :OPERATE-LEVEL
+      Initform: 0
+      Readers: ASDF/SESSION::SESSION-OPERATE-LEVEL
+      Writers: (SETF ASDF/SESSION::SESSION-OPERATE-LEVEL)
+      Documentation:
+       Number of nested calls to operate we're under (for toplevel sessiononly)
+    ASDF/SESSION:ASDF-UPGRADED-P
+      Initargs: :ASDF-UPGRADED-P
+      Readers: ASDF/SESSION:ASDF-UPGRADED-P
+      Writers: (SETF ASDF/SESSION:ASDF-UPGRADED-P)
+      Documentation:
+       Was ASDF already upgraded in this session - only valid for toplevel-asdf-session.
+    ASDF/SESSION:FORCING
+      Initargs: :FORCING
+      Readers: ASDF/SESSION:FORCING
+      Writers: (SETF ASDF/SESSION:FORCING)
+      Documentation:
+       Forcing parameters for the session
+    ASDF/SESSION:VISITED-ACTIONS
+      Initform: (MAKE-HASH-TABLE :TEST 'EQUAL)
+      Readers: ASDF/SESSION:VISITED-ACTIONS
+      Writers: (SETF ASDF/SESSION:VISITED-ACTIONS)
+    ASDF/SESSION:VISITING-ACTION-SET
+      Initform: (MAKE-HASH-TABLE :TEST 'EQUAL)
+      Readers: ASDF/SESSION:VISITING-ACTION-SET
+      Writers: (SETF ASDF/SESSION:VISITING-ACTION-SET)
+    ASDF/SESSION:VISITING-ACTION-LIST
+      Readers: ASDF/SESSION:VISITING-ACTION-LIST
+      Writers: (SETF ASDF/SESSION:VISITING-ACTION-LIST)
+    ASDF/SESSION:TOTAL-ACTION-COUNT
+      Initform: 0
+      Readers: ASDF/SESSION:TOTAL-ACTION-COUNT
+      Writers: (SETF ASDF/SESSION:TOTAL-ACTION-COUNT)
+    ASDF/SESSION:PLANNED-ACTION-COUNT
+      Initform: 0
+      Readers: ASDF/SESSION:PLANNED-ACTION-COUNT
+      Writers: (SETF ASDF/SESSION:PLANNED-ACTION-COUNT)
+    ASDF/SESSION:PLANNED-OUTPUT-ACTION-COUNT
+      Initform: 0
+      Readers: ASDF/SESSION:PLANNED-OUTPUT-ACTION-COUNT
+      Writers: (SETF ASDF/SESSION:PLANNED-OUTPUT-ACTION-COUNT)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** REGISTER-FILE-STAMP :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:REGISTER-FILE-STAMP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REGISTER-FILE-STAMP names a compiled function:
+  Lambda-list: (FILE &OPTIONAL (STAMP NIL STAMPP))
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PLANNED-ACTION-COUNT :generic:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:PLANNED-ACTION-COUNT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PLANNED-ACTION-COUNT names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (PLANNED-ACTION-COUNT (SESSION))
+      Documentation:
+        automatically generated reader method
+
+(SETF PLANNED-ACTION-COUNT) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF PLANNED-ACTION-COUNT) (T SESSION))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/PLAN:TRAVERSE-ACTION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:OBJ/SRV:SESSION][SESSION]]
+:end:
+** WITH-ASDF-SESSION :compiled:macro:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:WITH-ASDF-SESSION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-ASDF-SESSION names a macro:
+  Lambda-list: ((&KEY KEY OVERRIDE OVERRIDE-CACHE OVERRIDE-FORCING) &BODY BODY)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - (FIND-SYSTEM (STRING))
+  - ASDF/FIND-SYSTEM:LOCATE-SYSTEM
+  - ASDF/FIND-SYSTEM:LOAD-ASD
+  - (OPERATE AROUND (T T))
+  - (MAKE-PLAN (T OPERATION COMPONENT))
+  - ASDF/PLAN:REQUIRED-COMPONENTS
+  - ASDF/ACTION:CALL-WHILE-VISITING-ACTION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** TOPLEVEL-ASDF-SESSION :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:TOPLEVEL-ASDF-SESSION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TOPLEVEL-ASDF-SESSION names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (OPERATE AROUND (T T))
+  - (FORCING (CONS))
+  - (FORCING (NULL))
+  - ASDF/SESSION:CALL-WITH-ASDF-SESSION
+  - (OPERATE-LEVEL)
+  - ASDF/SESSION:OPERATE-LEVEL
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** RETRY
+:PROPERTIES:
+:ID: ASDF/SESSION:RETRY
+:ALLOC: HEAP DYNAMIC
+:END:
+** PLANNED-OUTPUT-ACTION-COUNT :generic:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:PLANNED-OUTPUT-ACTION-COUNT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PLANNED-OUTPUT-ACTION-COUNT names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (PLANNED-OUTPUT-ACTION-COUNT (SESSION))
+      Documentation:
+        automatically generated reader method
+
+(SETF PLANNED-OUTPUT-ACTION-COUNT) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF PLANNED-OUTPUT-ACTION-COUNT) (T SESSION))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/PLAN:TRAVERSE-ACTION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:OBJ/SRV:SESSION][SESSION]]
+:end:
+** FORMATTED-SYSTEM-DEFINITION-ERROR :condition:class:
+:PROPERTIES:
+:ID: ASDF/SESSION:FORMATTED-SYSTEM-DEFINITION-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FORMATTED-SYSTEM-DEFINITION-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS ASDF/SESSION:FORMATTED-SYSTEM-DEFINITION-ERROR>:
+  Class precedence-list: ASDF/SESSION:FORMATTED-SYSTEM-DEFINITION-ERROR,
+                         ASDF/SESSION:SYSTEM-DEFINITION-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/SESSION:SYSTEM-DEFINITION-ERROR
+  No subclasses.
+  Direct slots:
+    ASDF/SESSION:FORMAT-CONTROL
+      Initargs: :FORMAT-CONTROL
+      Readers: ASDF/SESSION:FORMAT-CONTROL
+    ASDF/SESSION:FORMAT-ARGUMENTS
+      Initargs: :FORMAT-ARGUMENTS
+      Readers: ASDF/SESSION:FORMAT-ARGUMENTS
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** CONSULT-ASDF-CACHE :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:CONSULT-ASDF-CACHE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CONSULT-ASDF-CACHE names a compiled function:
+  Lambda-list: (KEY &OPTIONAL THUNK)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (INPUT-FILES AROUND (T T))
+  - (OUTPUT-FILES AROUND (T T))
+  - (COMPONENT-DEPENDS-ON AROUND (OPERATION COMPONENT))
+  - ASDF/SESSION:GET-FILE-STAMP
+  - ASDF/SESSION:CALL-WITH-ASDF-SESSION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** DO-ASDF-CACHE :compiled:macro:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:DO-ASDF-CACHE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DO-ASDF-CACHE names a macro:
+  Lambda-list: (KEY &BODY BODY)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - ASDF/SESSION:GET-FILE-STAMP
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SYSDEF-ERROR :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:SYSDEF-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSDEF-ERROR names a compiled function:
+  Lambda-list: (FORMAT &REST ARGUMENTS)
+  Derived type: (FUNCTION (T &REST T) NIL)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM::PARSE-DEPENDENCY-DEF
+  - ASDF/PARSE-DEFSYSTEM:SYSDEF-ERROR-COMPONENT
+  - ASDF/PARSE-DEFSYSTEM:CLASS-FOR-TYPE
+  - (PERFORM (OPERATION UNDEFINED-SYSTEM))
+  - (FIND-SYSTEM (NULL))
+  - (PERFORM (OPERATION SOURCE-FILE))
+  - ASDF/SYSTEM:COERCE-NAME
+  - ASDF/OPERATION::CHECK-OPERATION-CONSTRUCTOR
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** TOTAL-ACTION-COUNT :generic:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:TOTAL-ACTION-COUNT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TOTAL-ACTION-COUNT names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (TOTAL-ACTION-COUNT (SESSION))
+      Documentation:
+        automatically generated reader method
+
+(SETF TOTAL-ACTION-COUNT) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF TOTAL-ACTION-COUNT) (T SESSION))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/PLAN::COMPUTE-ACTION-STATUS
+  - (ACTION-STATUS (PLAN OPERATION COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:OBJ/SRV:SESSION][SESSION]]
+:end:
+** COMPUTE-FILE-STAMP :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SESSION:COMPUTE-FILE-STAMP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPUTE-FILE-STAMP names a compiled function:
+  Lambda-list: (NORMALIZED-NAMESTRING)
+  Derived type: (FUNCTION (T) (VALUES (NOT NULL) &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SESSION:GET-FILE-STAMP
+  - ASDF/SESSION:REGISTER-FILE-STAMP
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:

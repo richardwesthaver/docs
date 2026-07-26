@@ -1,0 +1,901 @@
+#+TITLE: UIOP/FILESYSTEM
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/FILESYSTEM
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/PACKAGE][UIOP/PACKAGE]]
+  - [[id:UIOP/UTILITY][UIOP/UTILITY]]
+  - [[id:UIOP/OS][UIOP/OS]]
+  - [[id:UIOP/PATHNAME][UIOP/PATHNAME]]
+
+- dependents
+  - [[id:UIOP/STREAM][UIOP/STREAM]]
+  - [[id:UIOP/LAUNCH-PROGRAM][UIOP/LAUNCH-PROGRAM]]
+  - [[id:UIOP/CONFIGURATION][UIOP/CONFIGURATION]]
+  - [[id:UIOP/RUN-PROGRAM][UIOP/RUN-PROGRAM]]
+  - [[id:UIOP/LISP-BUILD][UIOP/LISP-BUILD]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** COLLECT-SUB*DIRECTORIES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:COLLECT-SUB*DIRECTORIES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COLLECT-SUB*DIRECTORIES names a compiled function:
+  Lambda-list: (DIRECTORY COLLECTP RECURSEP COLLECTOR)
+  Derived type: (FUNCTION (T T T T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Given a DIRECTORY, when COLLECTP returns true when CALL-FUNCTION'ed withthe directory,
+    call-function the COLLECTOR function designator on the directory,
+    and recurse each of its subdirectories on which the RECURSEP returns truewhen CALL-FUNCTION'ed with them.
+    This function will thus let you traverse a filesystem hierarchy,
+    superseding the functionality of CL-FAD:WALK-DIRECTORY.
+    The behavior in presence of symlinks is not portable. Use IOlib to handlesuch situations.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:COLLECT-SUB*DIRECTORIES-ASD-FILES
+  - UIOP/FILESYSTEM:COLLECT-SUB*DIRECTORIES
+  - [[id:OBJ/TIME:REREAD-TIMEZONE-REPOSITORY][REREAD-TIMEZONE-REPOSITORY]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** TRUENAME* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:TRUENAME*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TRUENAME* names a compiled function:
+  Lambda-list: (P)
+  Derived type: (FUNCTION (T) (VALUES (OR PATHNAME NULL) &OPTIONAL))
+  Documentation:
+    Nicer variant of TRUENAME that plays well with NIL, avoids logical pathnamecontexts, and tries both files and directories
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:COLLECT-SUB*DIRECTORIES-ASD-FILES
+  - UIOP/FILESYSTEM:LISP-IMPLEMENTATION-PATHNAME-P
+  - UIOP/FILESYSTEM:LISP-IMPLEMENTATION-DIRECTORY
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/FILESYSTEM:FILTER-LOGICAL-DIRECTORY-RESULTS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DELETE-EMPTY-DIRECTORY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:DELETE-EMPTY-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DELETE-EMPTY-DIRECTORY names a compiled function:
+  Lambda-list: (DIRECTORY-PATHNAME)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Delete an empty directory
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** GETENV-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:GETENV-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GETENV-PATHNAME names a compiled function:
+  Lambda-list: (X &REST CONSTRAINTS &KEY ENSURE-DIRECTORY WANT-DIRECTORY
+                ON-ERROR &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION
+                 (T &REST T &KEY (:ENSURE-DIRECTORY T) (:WANT-DIRECTORY T)
+                  (:ON-ERROR T) &ALLOW-OTHER-KEYS)
+                 *)
+  Documentation:
+    Extract a pathname from a user-configured environment variable, as pernative OS,
+    check constraints and normalize as per ENSURE-PATHNAME.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/STREAM:DEFAULT-TEMPORARY-DIRECTORY
+  - UIOP/FILESYSTEM:LISP-IMPLEMENTATION-DIRECTORY
+  - UIOP/FILESYSTEM:GETENV-ABSOLUTE-DIRECTORY
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RENAME-FILE-OVERWRITING-TARGET :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:RENAME-FILE-OVERWRITING-TARGET
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RENAME-FILE-OVERWRITING-TARGET names a compiled function:
+  Lambda-list: (SOURCE TARGET)
+  Derived type: (FUNCTION (T T) (VALUES PATHNAME PATHNAME PATHNAME &OPTIONAL))
+  Documentation:
+    Rename a file, overwriting any previous file with the TARGET name,
+    in an atomic way if the implementation allows.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+  - UIOP/STREAM:CALL-WITH-STAGING-PATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PROBE-FILE* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:PROBE-FILE*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROBE-FILE* names a compiled function:
+  Lambda-list: (P &KEY TRUENAME)
+  Derived type: (FUNCTION (T &KEY (:TRUENAME T)) (VALUES T &OPTIONAL))
+  Documentation:
+    when given a pathname P (designated by a string as per PARSE-NAMESTRING),
+    probes the filesystem for a file or directory with given pathname.
+    If it exists, return its truename if TRUENAME is true,
+    or the original (parsed) pathname if it is false (the default).
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PROCESS-SOURCE-REGISTRY (PATHNAME))
+  - (PROCESS-OUTPUT-TRANSLATIONS (PATHNAME))
+  - ASDF/PACKAGE-INFERRED-SYSTEM:SYSDEF-PACKAGE-INFERRED-SYSTEM-SEARCH
+  - ASDF/FIND-SYSTEM::CHECK-NOT-OLD-ASDF-SYSTEM
+  - ASDF/SYSTEM-REGISTRY:PROBE-ASD
+  - UIOP/STREAM:DETECT-ENCODING
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/FILESYSTEM:TRUENAMIZE
+  - UIOP/FILESYSTEM:FILE-EXISTS-P
+  - UIOP/FILESYSTEM:DIRECTORY-EXISTS-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RESOLVE-SYMLINKS* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:RESOLVE-SYMLINKS*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RESOLVE-SYMLINKS* names a compiled function:
+  Lambda-list: (PATH)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    RESOLVE-SYMLINKS in PATH iff *RESOLVE-SYMLINKS* is T (the default).
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PROCESS-SOURCE-REGISTRY (PATHNAME))
+  - ASDF/SOURCE-REGISTRY:WRAPPING-SOURCE-REGISTRY
+  - ASDF/OUTPUT-TRANSLATIONS:APPLY-OUTPUT-TRANSLATIONS
+  - ASDF/OUTPUT-TRANSLATIONS::PROCESS-OUTPUT-TRANSLATIONS-DIRECTIVE
+  - ASDF/OUTPUT-TRANSLATIONS:WRAPPING-OUTPUT-TRANSLATIONS
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - ASDF/PARSE-DEFSYSTEM:DETERMINE-SYSTEM-DIRECTORY
+  - ASDF/SESSION:NORMALIZE-NAMESTRING
+  - UIOP/CONFIGURATION:RESOLVE-LOCATION
+  - UIOP/FILESYSTEM:CALL-WITH-CURRENT-DIRECTORY
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-CURRENT-DIRECTORY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:CALL-WITH-CURRENT-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-CURRENT-DIRECTORY names a compiled function:
+  Lambda-list: (DIR THUNK)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    call the THUNK in a context where the current directory was changed to DIR,if not NIL.
+    Note that this operation is usually NOT thread-safe.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ENSURE-ALL-DIRECTORIES-EXIST :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:ENSURE-ALL-DIRECTORIES-EXIST
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENSURE-ALL-DIRECTORIES-EXIST names a compiled function:
+  Lambda-list: (PATHNAMES)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Ensure that for every pathname in PATHNAMES, we ensure its directoriesexist
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM BEFORE (OPERATION COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** GETENV-PATHNAMES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:GETENV-PATHNAMES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GETENV-PATHNAMES names a compiled function:
+  Lambda-list: (X &REST CONSTRAINTS &KEY ON-ERROR &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY (:ON-ERROR T) &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    Extract a list of pathname from a user-configured environment variable, asper native OS,
+    check constraints and normalize each one as per ENSURE-PATHNAME.
+           Any empty entries in the environment variable X will be returned asNILs.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/FILESYSTEM:GETENV-ABSOLUTE-DIRECTORIES
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *RESOLVE-SYMLINKS​* :var:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:*RESOLVE-SYMLINKS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*RESOLVE-SYMLINKS* names a special variable:
+  Value: T
+  Documentation:
+    Determine whether or not ASDF resolves symlinks when defining systems.
+    Defaults to T.
+
+#+end_example
+
+- Referenced by
+  - (PROCESS-SOURCE-REGISTRY (PATHNAME))
+  - (PROCESS-OUTPUT-TRANSLATIONS (PATHNAME))
+  - ASDF/PACKAGE-INFERRED-SYSTEM:SYSDEF-PACKAGE-INFERRED-SYSTEM-SEARCH
+  - ASDF/FIND-SYSTEM:LOCATE-SYSTEM
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-CENTRAL-REGISTRY-SEARCH
+  - UIOP/CONFIGURATION:RESOLVE-ABSOLUTE-LOCATION
+  - UIOP/FILESYSTEM:LISP-IMPLEMENTATION-PATHNAME-P
+  - UIOP/FILESYSTEM:RESOLVE-SYMLINKS*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** GETENV-ABSOLUTE-DIRECTORIES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:GETENV-ABSOLUTE-DIRECTORIES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GETENV-ABSOLUTE-DIRECTORIES names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Extract a list of absolute directories from a user-configured environmentvariable,
+    as per native OS.  Any empty entries in the environment variable X will bereturned as
+    NILs.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:XDG-CONFIG-DIRS
+  - UIOP/CONFIGURATION:XDG-DATA-DIRS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SPLIT-NATIVE-PATHNAMES-STRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:SPLIT-NATIVE-PATHNAMES-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SPLIT-NATIVE-PATHNAMES-STRING names a compiled function:
+  Lambda-list: (STRING &REST CONSTRAINTS &KEY &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY &ALLOW-OTHER-KEYS)
+                 (VALUES LIST &OPTIONAL))
+  Documentation:
+    Given a string of pathnames specified in native OS syntax, separate them ina list,
+    check constraints and normalize each one as per ENSURE-PATHNAME,
+    where an empty string denotes NIL.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/FILESYSTEM:GETENV-PATHNAMES
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SUBDIRECTORIES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:SUBDIRECTORIES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SUBDIRECTORIES names a compiled function:
+  Lambda-list: (DIRECTORY)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Given a DIRECTORY pathname designator, return a list of the subdirectoriesunder it.
+    The behavior in presence of symlinks is not portable. Use IOlib to handlesuch situations.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/FILESYSTEM:COLLECT-SUB*DIRECTORIES
+  - [[id:STD/PATH:WALK-DIRECTORY][WALK-DIRECTORY]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** NATIVE-NAMESTRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:NATIVE-NAMESTRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NATIVE-NAMESTRING names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    From a non-wildcard CL pathname, a return namestring suitable for passingto the operating system
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/RUN-PROGRAM::%REDIRECTED-SYSTEM-COMMAND
+  - UIOP/STREAM:CALL-WITH-TEMPORARY-FILE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LISP-IMPLEMENTATION-PATHNAME-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:LISP-IMPLEMENTATION-PATHNAME-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LISP-IMPLEMENTATION-PATHNAME-P names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Is the PATHNAME under the current installation of the CL implementation?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:PARSE-COMPONENT-FORM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FILTER-LOGICAL-DIRECTORY-RESULTS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:FILTER-LOGICAL-DIRECTORY-RESULTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FILTER-LOGICAL-DIRECTORY-RESULTS names a compiled function:
+  Lambda-list: (DIRECTORY ENTRIES MERGER)
+  Derived type: (FUNCTION (T T T) (VALUES T &OPTIONAL))
+  Documentation:
+    If DIRECTORY isn't a logical pathname, return ENTRIES. If it is,
+    given ENTRIES in the DIRECTORY, remove the entries which are physical yet
+    when transformed by MERGER have a different TRUENAME.
+    Also remove duplicates as may appear with some translation rules.
+    This function is used as a helper to DIRECTORY-FILES to avoid invalidentries
+    when using logical-pathnames.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:UIOP/FILESYSTEM:SUBDIRECTORIES][SUBDIRECTORIES]]
+  - [[id:UIOP/FILESYSTEM:DIRECTORY-FILES][DIRECTORY-FILES]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DELETE-DIRECTORY-TREE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:DELETE-DIRECTORY-TREE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DELETE-DIRECTORY-TREE names a compiled function:
+  Lambda-list: (DIRECTORY-PATHNAME &KEY (VALIDATE NIL VALIDATEP)
+                (IF-DOES-NOT-EXIST ERROR))
+  Derived type: (FUNCTION (T &KEY (:VALIDATE T) (:IF-DOES-NOT-EXIST T)) *)
+  Documentation:
+    Delete a directory including all its recursive contents, aka rm -rf.
+    
+    To reduce the risk of infortunate mistakes, DIRECTORY-PATHNAME must be
+    a physical non-wildcard directory pathname (not namestring).
+    
+    If the directory does not exist, the IF-DOES-NOT-EXIST argument specifieswhat happens:
+    if it is :ERROR (the default), an error is signaled, whereas if itis :IGNORE, nothing is done.
+    
+    Furthermore, before any deletion is attempted, the DIRECTORY-PATHNAME mustpass
+    the validation function designated (as per ENSURE-FUNCTION) by the VALIDATEkeyword argument
+    which in practice is thus compulsory, and validates by returning a non-NILresult.
+    If you're suicidal or extremely confident, just use :VALIDATE T.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DIRECTORY-EXISTS-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:DIRECTORY-EXISTS-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIRECTORY-EXISTS-P names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Is X the name of a directory that exists on the filesystem?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/FILESYSTEM:DELETE-DIRECTORY-TREE
+  - NET/SRV/HTTP::HANDLE-STATIC-FILE
+  - [[id:CLI/ENV:EXEC-PATH-LIST][EXEC-PATH-LIST]]
+  - [[id:OBJ/TIME:REREAD-TIMEZONE-REPOSITORY][REREAD-TIMEZONE-REPOSITORY]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-CURRENT-DIRECTORY :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:WITH-CURRENT-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-CURRENT-DIRECTORY names a macro:
+  Lambda-list: ((&OPTIONAL DIR) &BODY BODY)
+  Documentation:
+    Call BODY while the POSIX current working directory is set to DIR
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LISP-IMPLEMENTATION-DIRECTORY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:LISP-IMPLEMENTATION-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LISP-IMPLEMENTATION-DIRECTORY names a compiled function:
+  Lambda-list: (&KEY TRUENAME)
+  Derived type: (FUNCTION (&KEY (:TRUENAME T)) *)
+  Documentation:
+    Where are the system files of the current installation of the CLimplementation?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:WRAPPING-SOURCE-REGISTRY
+  - ASDF/OUTPUT-TRANSLATIONS:WRAPPING-OUTPUT-TRANSLATIONS
+  - UIOP/FILESYSTEM:LISP-IMPLEMENTATION-PATHNAME-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SAFE-FILE-WRITE-DATE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:SAFE-FILE-WRITE-DATE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SAFE-FILE-WRITE-DATE names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES (OR UNSIGNED-BYTE NULL) &OPTIONAL))
+  Documentation:
+    Safe variant of FILE-WRITE-DATE that may return NIL rather than raise anerror.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SESSION:COMPUTE-FILE-STAMP
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** INTER-DIRECTORY-SEPARATOR :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:INTER-DIRECTORY-SEPARATOR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+INTER-DIRECTORY-SEPARATOR names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES (MEMBER #\:) &OPTIONAL))
+  Documentation:
+    What character does the current OS conventionally uses to separatedirectories?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:PARSE-SOURCE-REGISTRY-STRING
+  - ASDF/OUTPUT-TRANSLATIONS:PARSE-OUTPUT-TRANSLATIONS-STRING
+  - UIOP/FILESYSTEM:SPLIT-NATIVE-PATHNAMES-STRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DIRECTORY-FILES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:DIRECTORY-FILES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIRECTORY-FILES names a compiled function:
+  Lambda-list: (DIRECTORY &OPTIONAL (PATTERN *WILD-FILE-FOR-DIRECTORY*))
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES
+                  (OR LIST (SIMPLE-ARRAY * (*)) SB-KERNEL:EXTENDED-SEQUENCE)
+                  &OPTIONAL))
+  Documentation:
+    Return a list of the files in a directory according to the PATTERN.
+    Subdirectories should NOT be returned.
+      PATTERN defaults to a pattern carefully chosen based on theimplementation;
+    override the default at your own risk.
+      DIRECTORY-FILES tries NOT to resolve symlinks if the implementationpermits this,
+    but the behavior in presence of symlinks is not portable. Use IOlib tohandle such situations.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:DIRECTORY-ASD-FILES
+  - SKEL/MPK::MPK-MUSIC-METADATA-SCAN-PARALLEL
+  - SKEL/MPK:METADATA-SCAN-DIRECTORY
+  - [[id:CLI/ENV:PROGRAM-LIST][PROGRAM-LIST]]
+  - DAT/TTF:CACHE-FONTS
+  - IO/KBD:GET-KEYBOARDS
+  - [[id:IO/SMART-BUFFER:DELETE-TEMPORARY-FILES][DELETE-TEMPORARY-FILES]]
+  - [[id:OBJ/TIME:REREAD-TIMEZONE-REPOSITORY][REREAD-TIMEZONE-REPOSITORY]]
+  - STD/DEFSYS::%MOD-COMPONENT-WALK
+  - [[id:STD/DEFSYS:SYSDEFS][SYSDEFS]]
+  - [[id:STD/OS:XDG-CONFIG-FILE][XDG-CONFIG-FILE]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PARSE-NATIVE-NAMESTRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:PARSE-NATIVE-NAMESTRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PARSE-NATIVE-NAMESTRING names a compiled function:
+  Lambda-list: (STRING &REST CONSTRAINTS &KEY ENSURE-DIRECTORY
+                       &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION
+                 (T &REST T &KEY (:ENSURE-DIRECTORY T) &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    From a native namestring suitable for use by the operating system, return
+    a CL pathname satisfying all the specified constraints as per ENSURE-PATHNAME
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/RUN-PROGRAM::%REDIRECTED-SYSTEM-COMMAND
+  - UIOP/LAUNCH-PROGRAM::%NORMALIZE-IO-SPECIFIER
+  - UIOP/STREAM:CALL-WITH-TEMPORARY-FILE
+  - UIOP/STREAM:DEFAULT-TEMPORARY-DIRECTORY
+  - UIOP/FILESYSTEM:GETENV-PATHNAME
+  - UIOP/FILESYSTEM:SPLIT-NATIVE-PATHNAMES-STRING
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DELETE-FILE-IF-EXISTS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:DELETE-FILE-IF-EXISTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DELETE-FILE-IF-EXISTS names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Delete a file X if it already exists
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+  - UIOP/STREAM:CALL-WITH-STAGING-PATHNAME
+  - UIOP/STREAM:CALL-WITH-TEMPORARY-FILE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** GET-PATHNAME-DEFAULTS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:GET-PATHNAME-DEFAULTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GET-PATHNAME-DEFAULTS names a compiled function:
+  Lambda-list: (&OPTIONAL (DEFAULTS *DEFAULT-PATHNAME-DEFAULTS*))
+  Derived type: (FUNCTION (&OPTIONAL T) *)
+  Documentation:
+    Find the actual DEFAULTS to use for pathnames, including
+    resolving them with respect to GETCWD if the DEFAULTS were relative
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/FILESYSTEM:CALL-WITH-CURRENT-DIRECTORY
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DIRECTORY* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:DIRECTORY*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIRECTORY* names a compiled function:
+  Lambda-list: (PATHNAME-SPEC &REST KEYS &KEY &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY &ALLOW-OTHER-KEYS)
+                 (VALUES LIST &OPTIONAL))
+  Documentation:
+    Return a list of the entries in a directory by calling DIRECTORY.
+    Try to override the defaults to not resolving symlinks, if implementationallows.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-DIRECTORY
+  - [[id:UIOP/FILESYSTEM:SUBDIRECTORIES][SUBDIRECTORIES]]
+  - [[id:UIOP/FILESYSTEM:DIRECTORY-FILES][DIRECTORY-FILES]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RESOLVE-SYMLINKS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:RESOLVE-SYMLINKS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RESOLVE-SYMLINKS names a compiled function:
+  Lambda-list: (PATH)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Do a best effort at resolving symlinks in PATH, returning a partially ortotally resolved PATH.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/FILESYSTEM:RESOLVE-SYMLINKS*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** GETENV-ABSOLUTE-DIRECTORY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:GETENV-ABSOLUTE-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GETENV-ABSOLUTE-DIRECTORY names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Extract an absolute directory pathname from a user-configured environmentvariable,
+    as per native OS
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/OS:XDG-RUNTIME-DIR][XDG-RUNTIME-DIR]]
+  - UIOP/CONFIGURATION:XDG-CACHE-HOME
+  - UIOP/CONFIGURATION:XDG-CONFIG-HOME
+  - UIOP/CONFIGURATION:XDG-DATA-HOME
+  - UIOP/CONFIGURATION:GET-FOLDER-PATH
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FILE-EXISTS-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:FILE-EXISTS-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FILE-EXISTS-P names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Is X the name of a file that exists on the filesystem?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - NET/SRV/HTTP::HANDLE-STATIC-FILE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** TRUENAMIZE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/FILESYSTEM:TRUENAMIZE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TRUENAMIZE names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Resolve as much of a pathname as possible
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/FILESYSTEM:RESOLVE-SYMLINKS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:

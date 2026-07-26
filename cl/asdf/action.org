@@ -1,0 +1,1418 @@
+#+TITLE: ASDF/ACTION
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/ACTION
+:PROPERTIES:
+:ID: ASDF/ACTION
+:AKA: ASDF-ACTION
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+  - [[id:ASDF/UPGRADE][ASDF/UPGRADE]]
+  - [[id:ASDF/SESSION][ASDF/SESSION]]
+  - [[id:ASDF/COMPONENT][ASDF/COMPONENT]]
+  - [[id:ASDF/OPERATION][ASDF/OPERATION]]
+
+- dependents
+  - [[id:ASDF/PARSE-DEFSYSTEM][ASDF/PARSE-DEFSYSTEM]]
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+  - [[id:ASDF/CONCATENATE-SOURCE][ASDF/CONCATENATE-SOURCE]]
+  - [[id:ASDF/LISP-ACTION][ASDF/LISP-ACTION]]
+  - [[id:ASDF/BUNDLE][ASDF/BUNDLE]]
+  - [[id:ASDF/BACKWARD-INTERFACE][ASDF/BACKWARD-INTERFACE]]
+  - [[id:ASDF/OPERATE][ASDF/OPERATE]]
+  - [[id:ASDF/PLAN][ASDF/PLAN]]
+  - [[id:ASDF/FIND-SYSTEM][ASDF/FIND-SYSTEM]]
+
+** ACTION-PATH :compiled:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:ACTION-PATH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ACTION-PATH names a compiled function:
+  Lambda-list: (ACTION)
+  Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
+  Documentation:
+    A readable data structure that identifies the action.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (RECURSIVE-OPERATE)
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ACTION-COMPONENT :compiled:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:ACTION-COMPONENT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ACTION-COMPONENT names a compiled function:
+  Lambda-list: (ACTION)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM::DEFINITION-DEPENDENCIES-UP-TO-DATE-P
+  - (RECORD-DEPENDENCY (NULL T T))
+  - (PERFORM-PLAN (T))
+  - ASDF/PLAN:REQUIRED-COMPONENTS
+  - (COLLECT-DEPENDENCIES (OPERATION COMPONENT))
+  - (PLAN-ACTIONS (FILTERED-SEQUENTIAL-PLAN))
+  - ASDF/ACTION:ACTION-PATH
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** OUTPUT-FILES :generic:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:OUTPUT-FILES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OUTPUT-FILES names a generic function:
+  Lambda-list: (OPERATION COMPONENT)
+  Argument precedence order: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Methods for this function return two values: a list of output files
+    corresponding to this action, and a boolean indicating if they have alreadybeen subjected
+    to relevant output translations and should not be further translated.
+    
+    Methods on PERFORM *must* call this function to determine where theiroutputs are to be located.
+    They may rely on the order of the files to discriminate between outputs.
+
+  Method-combination: STANDARD
+  Methods:
+    (OUTPUT-FILES (BASIC-COMPILE-CONCATENATED-SOURCE-OP SYSTEM))
+    (OUTPUT-FILES (DELIVER-ASD-OP SYSTEM))
+    (OUTPUT-FILES (LIB-OP PREBUILT-SYSTEM))
+    (OUTPUT-FILES (BUNDLE-OP SYSTEM))
+    (OUTPUT-FILES (COMPILE-OP SYSTEM))
+    (OUTPUT-FILES (COMPILE-OP CL-SOURCE-FILE))
+    (OUTPUT-FILES (OPERATION COMPONENT))
+    (OUTPUT-FILES :AROUND (T T))
+    (OUTPUT-FILES (OPERATION T))
+    (OUTPUT-FILES (SYMBOL T))
+    (OUTPUT-FILES (STRING T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (COMPILE-OP GROVEL-CONSTANTS-FILE))
+  - (PERFORM (BASIC-COMPILE-BUNDLE-OP SYSTEM))
+  - (PERFORM (DELIVER-ASD-OP SYSTEM))
+  - (INPUT-FILES (LOAD-BUNDLE-OP SYSTEM))
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - (NEEDED-IN-IMAGE-P (OPERATION COMPONENT))
+  - (INPUT-FILES (COMPILE-OP SYSTEM))
+  - ASDF/LISP-ACTION::PERFORM-LISP-WARNINGS-CHECK
+  - ASDF/LISP-ACTION:PERFORM-LISP-COMPILATION
+  - (PERFORM BEFORE (OPERATION COMPONENT))
+  - (INPUT-FILES (SELFWARD-OPERATION COMPONENT))
+  - ASDF/ACTION:OUTPUT-FILE
+  - (OUTPUT-FILES (OPERATION T))
+  - (OUTPUT-FILES (SYMBOL T))
+  - (OUTPUT-FILES (STRING T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LIB-OP PREBUILT-SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - KEYWORD:AROUND
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BUNDLE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPILE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPILE-OP CL-SOURCE-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (DELIVER-ASD-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BASIC-COMPILE-CONCATENATED-SOURCE-OP SYSTEM)
+:end:
+** COMPONENT-OPERATION-TIME :generic:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:COMPONENT-OPERATION-TIME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-OPERATION-TIME names a generic function:
+  Lambda-list: (OPERATION COMPONENT)
+  Argument precedence order: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Return the timestamp for when an action was last performed
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-OPERATION-TIME (OPERATION COMPONENT))
+    (COMPONENT-OPERATION-TIME (OPERATION T))
+    (COMPONENT-OPERATION-TIME (SYMBOL T))
+    (COMPONENT-OPERATION-TIME (STRING T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+(SETF COMPONENT-OPERATION-TIME) names a generic function:
+  Lambda-list: (TIME OPERATION COMPONENT)
+  Argument precedence order: (TIME OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T T) *)
+  Documentation:
+    Update the timestamp for when an action was last performed
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-OPERATION-TIME) (T OPERATION COMPONENT))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/BACKWARD-INTERFACE:SYSTEM-REGISTERED-P
+  - ASDF/FIND-SYSTEM::DEFINITION-DEPENDENCIES-UP-TO-DATE-P
+  - ASDF/FIND-SYSTEM:LOCATE-SYSTEM
+  - ASDF/OPERATE:COMPONENT-LOADED-P
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - (ACTION-STATUS (NULL OPERATION COMPONENT))
+  - (COMPONENT-OPERATION-TIME (OPERATION T))
+  - (COMPONENT-OPERATION-TIME (SYMBOL T))
+  - (COMPONENT-OPERATION-TIME (STRING T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+:end:
+** CIRCULAR-DEPENDENCY :condition:class:
+:PROPERTIES:
+:ID: ASDF/ACTION:CIRCULAR-DEPENDENCY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CIRCULAR-DEPENDENCY names the condition-class #<SB-PCL::CONDITION-CLASS ASDF/ACTION:CIRCULAR-DEPENDENCY>:
+  Class precedence-list: ASDF/ACTION:CIRCULAR-DEPENDENCY,
+                         ASDF/SESSION:SYSTEM-DEFINITION-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/SESSION:SYSTEM-DEFINITION-ERROR
+  No subclasses.
+  Direct slots:
+    ASDF/ACTION::ACTIONS
+      Initargs: :ACTIONS
+      Readers: ASDF/ACTION:CIRCULAR-DEPENDENCY-ACTIONS
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPUTE-ACTION-STAMP :generic:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:COMPUTE-ACTION-STAMP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPUTE-ACTION-STAMP names a generic function:
+  Lambda-list: (PLAN- OPERATION COMPONENT &KEY JUST-DONE)
+  Argument precedence order: (PLAN- OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T T &KEY (:JUST-DONE T)) *)
+  Documentation:
+    Has this action been successfully done already,
+    and at what known timestamp has it been done at or will it be done at?
+    * PLAN is a plan object modelling future effects of actions,
+      or NIL to denote what actually happened.
+    * OPERATION and COMPONENT denote the action.
+    Takes keyword JUST-DONE:
+    * JUST-DONE is a boolean that is true if the action was just successfullyperformed,
+      at which point we want compute the actual stamp and warn if files aremissing;
+      otherwise we are making plans, anticipating the effects of the action.
+    Returns two values:
+    * a STAMP saying when it was done or will be done,
+      or T if the action involves files that need to be recomputed.
+    * a boolean DONE-P that indicates whether the action has actually beendone,
+      and both its output-files and its in-image side-effects are up to date.
+  Method-combination: STANDARD
+  Methods:
+    (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM::DEFINITION-DEPENDENCIES-UP-TO-DATE-P
+  - ASDF/PLAN::COMPUTE-ACTION-STATUS
+  - (MARK-OPERATION-DONE (OPERATION COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (PLAN- OPERATION COMPONENT &KEY JUST-DONE)
+:end:
+** OUTPUT-FILE :compiled:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:OUTPUT-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OUTPUT-FILE names a compiled function:
+  Lambda-list: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Documentation:
+    The unique output file of performing OPERATION on COMPONENT
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+  - (PERFORM (IMAGE-OP SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** DEFINE-CONVENIENCE-ACTION-METHODS :compiled:macro:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:DEFINE-CONVENIENCE-ACTION-METHODS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEFINE-CONVENIENCE-ACTION-METHODS names a macro:
+  Lambda-list: (FUNCTION FORMALS &KEY IF-NO-OPERATION IF-NO-COMPONENT)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** NON-PROPAGATING-OPERATION :class:
+:PROPERTIES:
+:ID: ASDF/ACTION:NON-PROPAGATING-OPERATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NON-PROPAGATING-OPERATION names the standard-class #<STANDARD-CLASS ASDF/ACTION:NON-PROPAGATING-OPERATION>:
+  Documentation:
+    A NON-PROPAGATING-OPERATION is an operation that propagates
+    no dependencies whatsoever.  It is supplied in order that the programmer beable
+    to specify that s/he is intentionally specifying an operation which invokesno
+    dependencies.
+  Direct superclasses: ASDF/OPERATION:OPERATION
+  Direct subclasses: ASDF/CONCATENATE-SOURCE:MONOLITHIC-CONCATENATE-SOURCE-OP,
+                     ASDF/CONCATENATE-SOURCE:CONCATENATE-SOURCE-OP,
+                     ASDF/BUNDLE:MONOLITHIC-DLL-OP,
+                     ASDF/BUNDLE:MONOLITHIC-LIB-OP,
+                     ASDF/BUNDLE:MONOLITHIC-COMPILE-BUNDLE-OP,
+                     ASDF/BUNDLE:DLL-OP, ASDF/BUNDLE:LIB-OP,
+                     ASDF/FIND-SYSTEM:DEFINE-OP, ASDF/OPERATE:BUILD-OP
+  Not yet finalized.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPONENT-DEPENDS-ON :generic:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:COMPONENT-DEPENDS-ON
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-DEPENDS-ON names a generic function:
+  Lambda-list: (OPERATION COMPONENT)
+  Argument precedence order: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Returns a list of dependencies needed by the component to perform
+        the operation.  A dependency has one of the following forms:
+    
+          (<operation> <component>*), where <operation> is an operationdesignator
+            with respect to FIND-OPERATION in the context of the OPERATIONargument,
+            and each <component> is a component designator with respect to
+            FIND-COMPONENT in the context of the COMPONENT argument,
+            and means that the component depends on
+            <operation> having been performed on each <component>;
+    
+            [Note: an <operation> is an operation designator -- it can beeither an
+            operation name or an operation object.  Similarly, a <component>may be
+            a component name or a component object.  Also note that, thedegenerate
+            case of (<operation>) is a no-op.]
+    
+        Methods specialized on subclasses of existing component types
+        should usually append the results of CALL-NEXT-METHOD to the list.
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-DEPENDS-ON (LOAD-BUNDLE-OP PRECOMPILED-SYSTEM))
+    (COMPONENT-DEPENDS-ON (GATHER-OPERATION PREBUILT-SYSTEM))
+    (COMPONENT-DEPENDS-ON (LOAD-BUNDLE-OP SYSTEM))
+    (COMPONENT-DEPENDS-ON (GATHER-OPERATION SYSTEM))
+    (COMPONENT-DEPENDS-ON (OPERATION SYSTEM))
+    (COMPONENT-DEPENDS-ON (DEFINE-OP SYSTEM))
+    (COMPONENT-DEPENDS-ON (BUILD-OP COMPONENT))
+    (COMPONENT-DEPENDS-ON (OPERATION COMPONENT))
+    (COMPONENT-DEPENDS-ON (SELFWARD-OPERATION COMPONENT))
+    (COMPONENT-DEPENDS-ON (SIDEWAY-OPERATION COMPONENT))
+    (COMPONENT-DEPENDS-ON (UPWARD-OPERATION CHILD-COMPONENT))
+    (COMPONENT-DEPENDS-ON (DOWNWARD-OPERATION PARENT-COMPONENT))
+    (COMPONENT-DEPENDS-ON :AROUND (OPERATION COMPONENT))
+    (COMPONENT-DEPENDS-ON (OPERATION T))
+    (COMPONENT-DEPENDS-ON (SYMBOL T))
+    (COMPONENT-DEPENDS-ON (STRING T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PLAN:MAP-DIRECT-DEPENDENCIES
+  - (COMPONENT-DEPENDS-ON (OPERATION T))
+  - (COMPONENT-DEPENDS-ON (SYMBOL T))
+  - (COMPONENT-DEPENDS-ON (STRING T))
+  - [[id:SKEL/COMP/LISP:WRITE-ASD-COMPONENTS][WRITE-ASD-COMPONENTS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (AROUND OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BUILD-OP COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (DEFINE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-BUNDLE-OP PRECOMPILED-SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-BUNDLE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (GATHER-OPERATION PREBUILT-SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (GATHER-OPERATION SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (UPWARD-OPERATION CHILD-COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (SIDEWAY-OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (SELFWARD-OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (DOWNWARD-OPERATION PARENT-COMPONENT)
+:end:
+** ACTION-OPERATION :compiled:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:ACTION-OPERATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ACTION-OPERATION names a compiled function:
+  Lambda-list: (ACTION)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM::DEFINITION-DEPENDENCIES-UP-TO-DATE-P
+  - (RECORD-DEPENDENCY (NULL T T))
+  - (PERFORM-PLAN (T))
+  - (COLLECT-DEPENDENCIES (OPERATION COMPONENT))
+  - (PLAN-ACTIONS (FILTERED-SEQUENTIAL-PLAN))
+  - ASDF/ACTION:ACTION-PATH
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** WHILE-VISITING-ACTION :compiled:macro:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:WHILE-VISITING-ACTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WHILE-VISITING-ACTION names a macro:
+  Lambda-list: ((O C) &BODY BODY)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - ASDF/PLAN::COLLECT-ACTION-DEPENDENCIES
+  - ASDF/PLAN:ACTION-UP-TO-DATE-P
+  - ASDF/PLAN:TRAVERSE-ACTION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SELFWARD-OPERATION :generic:function:class:
+:PROPERTIES:
+:ID: ASDF/ACTION:SELFWARD-OPERATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SELFWARD-OPERATION names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SELFWARD-OPERATION (SELFWARD-OPERATION))
+      Documentation:
+        automatically generated reader method
+
+SELFWARD-OPERATION names the standard-class #<STANDARD-CLASS ASDF/ACTION:SELFWARD-OPERATION>:
+  Documentation:
+    A SELFWARD-OPERATION depends on another operation on the same component.
+    I.e., if O is a SELFWARD-OPERATION, and its SELFWARD-OPERATION designates alist of operations L,
+    then the action (O . C) of O on component C depends on each (S . C) for Sin L.
+    E.g. before a component may be loaded by LOAD-OP, it must have beencompiled by COMPILE-OP.
+    A operation-designator designates a singleton list of the designatedoperation;
+    a list of operation-designators designates the list of designatedoperations;
+    NIL is not a valid operation designator in that context.  Note that anydependency
+    ordering between the operations in a list of SELFWARD-OPERATION should bespecified separately
+    in the respective operation's COMPONENT-DEPENDS-ON methods so that they bescheduled properly.
+  Class precedence-list: ASDF/ACTION:SELFWARD-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/OPERATION:OPERATION
+  Direct subclasses: ASDF/CONCATENATE-SOURCE::BASIC-LOAD-COMPILED-CONCATENATED-SOURCE-OP,
+                     ASDF/CONCATENATE-SOURCE::BASIC-COMPILE-CONCATENATED-SOURCE-OP,
+                     ASDF/CONCATENATE-SOURCE::BASIC-LOAD-CONCATENATED-SOURCE-OP,
+                     ASDF/BUNDLE:IMAGE-OP, ASDF/BUNDLE:DELIVER-ASD-OP,
+                     ASDF/BUNDLE:LOAD-BUNDLE-OP, ASDF/BUNDLE:COMPILE-BUNDLE-OP,
+                     ASDF/LISP-ACTION:TEST-OP, ASDF/LISP-ACTION:LOAD-SOURCE-OP,
+                     ASDF/LISP-ACTION:COMPILE-OP, ASDF/LISP-ACTION:LOAD-OP
+  Direct slots:
+    ASDF/ACTION:SELFWARD-OPERATION
+      Type: (OR ASDF/ACTION::OPERATION-DESIGNATOR LIST)
+      Allocation: :CLASS
+      Readers: ASDF/ACTION:SELFWARD-OPERATION
+
+#+end_example
+
+- Called by
+  - (INPUT-FILES (SELFWARD-OPERATION COMPONENT))
+  - ASDF/ACTION::SELFWARD-OPERATION-DEPENDS-ON
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/ACTION:SELFWARD-OPERATION
+:end:
+** INPUT-FILES :generic:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:INPUT-FILES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+INPUT-FILES names a generic function:
+  Lambda-list: (OPERATION COMPONENT)
+  Argument precedence order: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    A list of input files corresponding to this action.
+    
+    Methods on PERFORM *must* call this function to determine where theirinputs are located.
+    They may rely on the order of the files to discriminate between inputs.
+
+  Method-combination: STANDARD
+  Methods:
+    (INPUT-FILES (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+    (INPUT-FILES (LOAD-OP PRECOMPILED-SYSTEM))
+    (INPUT-FILES (OPERATION COMPILED-FILE))
+    (INPUT-FILES (LOAD-BUNDLE-OP SYSTEM))
+    (INPUT-FILES (GATHER-OPERATION SYSTEM))
+    (INPUT-FILES (DEFINE-OP SYSTEM))
+    (INPUT-FILES (PREPARE-SOURCE-OP SYSTEM))
+    (INPUT-FILES (COMPILE-OP SYSTEM))
+    (INPUT-FILES (PREPARE-OP SYSTEM))
+    (INPUT-FILES (SELFWARD-OPERATION COMPONENT))
+    (INPUT-FILES (OPERATION COMPONENT))
+    (INPUT-FILES :AROUND (T T))
+    (INPUT-FILES (OPERATION T))
+    (INPUT-FILES (SYMBOL T))
+    (INPUT-FILES (STRING T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+  - (INPUT-FILES (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+  - (PERFORM (BASIC-COMPILE-BUNDLE-OP SYSTEM))
+  - (PERFORM (DELIVER-ASD-OP SYSTEM))
+  - (PERFORM (LOAD-BUNDLE-OP SYSTEM))
+  - ASDF/BUNDLE::BUNDLE-OUTPUT-FILES
+  - (PERFORM (DEFINE-OP SYSTEM))
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - ASDF/LISP-ACTION:PERFORM-LISP-LOAD-SOURCE
+  - ASDF/LISP-ACTION:PERFORM-LISP-LOAD-FASL
+  - ASDF/LISP-ACTION:LISP-COMPILATION-OUTPUT-FILES
+  - ASDF/LISP-ACTION::PERFORM-LISP-WARNINGS-CHECK
+  - ASDF/LISP-ACTION:PERFORM-LISP-COMPILATION
+  - (INPUT-FILES (SELFWARD-OPERATION COMPONENT))
+  - (INPUT-FILES (OPERATION T))
+  - (INPUT-FILES (SYMBOL T))
+  - (INPUT-FILES (STRING T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - KEYWORD:AROUND
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-OP PRECOMPILED-SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPILED-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (DEFINE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPILE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (PREPARE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-BUNDLE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (GATHER-OPERATION SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (PREPARE-SOURCE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (SELFWARD-OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BASIC-CONCATENATE-SOURCE-OP SYSTEM)
+:end:
+** ACTION :type:
+:PROPERTIES:
+:ID: ASDF/ACTION:ACTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ACTION names a type-specifier:
+  Documentation:
+    A pair of operation and component uniquely identifies a node in thedependency graph
+    of steps to be performed while building a system.
+  Lambda-list: ()
+  Expansion: (CONS ASDF/OPERATION:OPERATION ASDF/COMPONENT:COMPONENT)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** FIND-ACTION :compiled:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:FIND-ACTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FIND-ACTION names a compiled function:
+  Lambda-list: (PATH)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Reconstitute an action from its action-path
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** OPERATION-DEFINITION-WARNING :condition:class:
+:PROPERTIES:
+:ID: ASDF/ACTION:OPERATION-DEFINITION-WARNING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OPERATION-DEFINITION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASS ASDF/ACTION:OPERATION-DEFINITION-WARNING>:
+  Documentation:
+    Warning condition related to definition of obsolete OPERATION objects.
+  Class precedence-list: ASDF/ACTION:OPERATION-DEFINITION-WARNING,
+                         SIMPLE-WARNING, SIMPLE-CONDITION, WARNING, CONDITION,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SIMPLE-WARNING
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ADDITIONAL-INPUT-FILES :generic:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:ADDITIONAL-INPUT-FILES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ADDITIONAL-INPUT-FILES names a generic function:
+  Lambda-list: (OPERATION COMPONENT)
+  Argument precedence order: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Additional input files for the operation on this
+        component.  These are files that are inferred, rather than
+        explicitly specified, and these are typically NOT files that
+        undergo operations directly.  Instead, they are files that it is
+        important for ASDF to know about in order to compute operationtimes,etc.
+  Method-combination: STANDARD
+  Methods:
+    (ADDITIONAL-INPUT-FILES (OPERATION COMPONENT))
+    (ADDITIONAL-INPUT-FILES (OPERATION T))
+    (ADDITIONAL-INPUT-FILES (SYMBOL T))
+    (ADDITIONAL-INPUT-FILES (STRING T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (INPUT-FILES AROUND (T T))
+  - (ADDITIONAL-INPUT-FILES (OPERATION T))
+  - (ADDITIONAL-INPUT-FILES (SYMBOL T))
+  - (ADDITIONAL-INPUT-FILES (STRING T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+:end:
+** MAKE-ACTION :compiled:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:MAKE-ACTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-ACTION names a compiled function:
+  Lambda-list: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) (VALUES CONS &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (EXPLAIN (OPERATION T))
+  - (TRAVERSE (OPERATION T))
+  - (OPERATE (OPERATION T))
+  - (MARK-AS-DONE (T OPERATION T))
+  - (MAKE-PLAN (T OPERATION T))
+  - (COLLECT-DEPENDENCIES (OPERATION T))
+  - ASDF/PLAN::COLLECT-ACTION-DEPENDENCIES
+  - (PLAN-ACTIONS (FILTERED-SEQUENTIAL-PLAN))
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - ((SETF ACTION-STATUS) AFTER (T SEQUENTIAL-PLAN OPERATION COMPONENT))
+  - ((SETF ACTION-STATUS) (T PLAN OPERATION COMPONENT))
+  - (ACTION-STATUS (PLAN OPERATION COMPONENT))
+  - (PERFORM (OPERATION SOURCE-FILE))
+  - (PERFORM (OPERATION T))
+  - (COMPONENT-OPERATION-TIME (OPERATION T))
+  - (ADDITIONAL-INPUT-FILES (OPERATION T))
+  - (OPERATION-DONE-P (OPERATION T))
+  - (INPUT-FILES (OPERATION T))
+  - (OUTPUT-FILES (OPERATION T))
+  - (COMPONENT-DEPENDS-ON (OPERATION T))
+  - ASDF/ACTION:FIND-ACTION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** DOWNWARD-OPERATION :generic:function:class:
+:PROPERTIES:
+:ID: ASDF/ACTION:DOWNWARD-OPERATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DOWNWARD-OPERATION names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (DOWNWARD-OPERATION (OPERATION))
+    (DOWNWARD-OPERATION (DOWNWARD-OPERATION))
+      Documentation:
+        automatically generated reader method
+
+DOWNWARD-OPERATION names the standard-class #<STANDARD-CLASS ASDF/ACTION:DOWNWARD-OPERATION>:
+  Documentation:
+    A DOWNWARD-OPERATION's dependencies propagate down the component hierarchy.
+    I.e., if O is a DOWNWARD-OPERATION and its DOWNWARD-OPERATION slotdesignates operation D, then
+    the action (O . M) of O on module M will depends on each of (D . C) foreach child C of module M.
+    The default value for slot DOWNWARD-OPERATION is NIL, which designates theoperation O itself.
+    E.g. in order for a MODULE to be loaded with LOAD-OP (resp. compiled withCOMPILE-OP), all the
+    children of the MODULE must have been loaded with LOAD-OP (resp. compiledwith COMPILE-OP.
+  Class precedence-list: ASDF/ACTION:DOWNWARD-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/OPERATION:OPERATION
+  Direct subclasses: ASDF/LISP-ACTION:LOAD-SOURCE-OP,
+                     ASDF/LISP-ACTION:COMPILE-OP, ASDF/LISP-ACTION:LOAD-OP
+  Direct slots:
+    ASDF/ACTION:DOWNWARD-OPERATION
+      Type: ASDF/ACTION::OPERATION-DESIGNATOR
+      Allocation: :CLASS
+      Readers: ASDF/ACTION:DOWNWARD-OPERATION
+
+#+end_example
+
+- Called by
+  - ASDF/ACTION::DOWNWARD-OPERATION-DEPENDS-ON
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/ACTION:DOWNWARD-OPERATION
+:end:
+** FORMAT-ACTION :compiled:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:FORMAT-ACTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FORMAT-ACTION names a compiled function:
+  Lambda-list: (STREAM ACTION &OPTIONAL COLON-P AT-SIGN-P)
+  Derived type: (FUNCTION (T T &OPTIONAL T T) (VALUES T &OPTIONAL))
+  Documentation:
+    FORMAT helper to display an action's action-description.
+    Use it in FORMAT control strings as ~/asdf-action:format-action/
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** OPERATION-DONE-P :generic:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:OPERATION-DONE-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OPERATION-DONE-P names a generic function:
+  Lambda-list: (OPERATION COMPONENT)
+  Argument precedence order: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Returns a boolean which is NIL if the action must be performed (again).
+  Method-combination: STANDARD
+  Methods:
+    (OPERATION-DONE-P (TEST-OP SYSTEM))
+      Documentation:
+        Testing a system is _never_ done.
+    (OPERATION-DONE-P (OPERATION COMPONENT))
+    (OPERATION-DONE-P (OPERATION T))
+    (OPERATION-DONE-P (SYMBOL T))
+    (OPERATION-DONE-P (STRING T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - (OPERATION-DONE-P (OPERATION T))
+  - (OPERATION-DONE-P (SYMBOL T))
+  - (OPERATION-DONE-P (STRING T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (TEST-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+:end:
+** PERFORM :generic:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:PERFORM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PERFORM names a generic function:
+  Lambda-list: (OPERATION COMPONENT)
+  Argument precedence order: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    PERFORM an action, consuming its input-files and building its output-files
+  Method-combination: STANDARD
+  Methods:
+    (PERFORM (TEST-OP (EQL #<SYSTEM "std/tests">)))
+    (PERFORM (COMPILE-OP GROVEL-CONSTANTS-FILE))
+    (PERFORM (BASIC-LOAD-COMPILED-CONCATENATED-SOURCE-OP SYSTEM))
+    (PERFORM (BASIC-COMPILE-CONCATENATED-SOURCE-OP SYSTEM))
+    (PERFORM (BASIC-LOAD-CONCATENATED-SOURCE-OP SYSTEM))
+    (PERFORM (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+    (PERFORM (LOAD-OP PRECOMPILED-SYSTEM))
+    (PERFORM (BASIC-COMPILE-BUNDLE-OP SYSTEM))
+    (PERFORM (DELIVER-ASD-OP SYSTEM))
+    (PERFORM (DLL-OP PREBUILT-SYSTEM))
+    (PERFORM (LIB-OP PREBUILT-SYSTEM))
+    (PERFORM (BASIC-COMPILE-BUNDLE-OP PREBUILT-SYSTEM))
+    (PERFORM (LINK-OP PREBUILT-SYSTEM))
+    (PERFORM (OPERATION COMPILED-FILE))
+    (PERFORM (LOAD-SOURCE-OP COMPILED-FILE))
+    (PERFORM (LOAD-OP COMPILED-FILE))
+    (PERFORM (LOAD-BUNDLE-OP SYSTEM))
+    (PERFORM :BEFORE (PROGRAM-OP SYSTEM))
+    (PERFORM (IMAGE-OP SYSTEM))
+    (PERFORM (DEFINE-OP SYSTEM))
+    (PERFORM (OPERATION UNDEFINED-SYSTEM))
+    (PERFORM (LOAD-OP REQUIRE-SYSTEM))
+    (PERFORM (COMPILE-OP REQUIRE-SYSTEM))
+    (PERFORM (TEST-OP COMPONENT))
+    (PERFORM (LOAD-SOURCE-OP STATIC-FILE))
+    (PERFORM (LOAD-SOURCE-OP CL-SOURCE-FILE))
+    (PERFORM (PREPARE-SOURCE-OP COMPONENT))
+    (PERFORM (LOAD-OP STATIC-FILE))
+    (PERFORM (LOAD-OP CL-SOURCE-FILE))
+    (PERFORM (COMPILE-OP SYSTEM))
+    (PERFORM (COMPILE-OP STATIC-FILE))
+    (PERFORM (COMPILE-OP CL-SOURCE-FILE))
+    (PERFORM (PREPARE-OP COMPONENT))
+    (PERFORM (OPERATION SOURCE-FILE))
+    (PERFORM (OPERATION PARENT-COMPONENT))
+    (PERFORM :AFTER (OPERATION COMPONENT))
+    (PERFORM :BEFORE (OPERATION COMPONENT))
+    (PERFORM :AROUND (OPERATION COMPONENT))
+    (PERFORM (OPERATION T))
+    (PERFORM (SYMBOL T))
+    (PERFORM (STRING T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (LOAD-SOURCE-OP COMPILED-FILE))
+  - (PERFORM-WITH-RESTARTS (LOAD-OP CL-SOURCE-FILE))
+  - (PERFORM-WITH-RESTARTS (T T))
+  - (PERFORM (OPERATION T))
+  - (PERFORM (SYMBOL T))
+  - (PERFORM (STRING T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (AFTER OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (DLL-OP PREBUILT-SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LIB-OP PREBUILT-SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BEFORE PROGRAM-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BEFORE OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (AROUND OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- /home/ellis/src/core/std/std.asd
+  - (TEST-OP (EQL #<SYSTEM "std/tests">))
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-OP PRECOMPILED-SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LINK-OP PREBUILT-SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-OP COMPILED-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-OP REQUIRE-SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (TEST-OP COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-OP STATIC-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-OP CL-SOURCE-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (IMAGE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPILED-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (DEFINE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION UNDEFINED-SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION SOURCE-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION PARENT-COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+- SYS:CONTRIB;SB-GROVEL;DEF-TO-LISP.LISP.NEWEST
+  - (COMPILE-OP GROVEL-CONSTANTS-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPILE-OP REQUIRE-SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPILE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPILE-OP STATIC-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPILE-OP CL-SOURCE-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (PREPARE-OP COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (DELIVER-ASD-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-SOURCE-OP COMPILED-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-BUNDLE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-SOURCE-OP STATIC-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-SOURCE-OP CL-SOURCE-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (PREPARE-SOURCE-OP COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BASIC-COMPILE-BUNDLE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BASIC-COMPILE-BUNDLE-OP PREBUILT-SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BASIC-CONCATENATE-SOURCE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BASIC-LOAD-CONCATENATED-SOURCE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BASIC-COMPILE-CONCATENATED-SOURCE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BASIC-LOAD-COMPILED-CONCATENATED-SOURCE-OP SYSTEM)
+:end:
+** ACCEPT
+:PROPERTIES:
+:ID: ASDF/ACTION:ACCEPT
+:ALLOC: HEAP DYNAMIC
+:END:
+** UPWARD-OPERATION :generic:function:class:
+:PROPERTIES:
+:ID: ASDF/ACTION:UPWARD-OPERATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UPWARD-OPERATION names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (UPWARD-OPERATION (UPWARD-OPERATION))
+      Documentation:
+        automatically generated reader method
+
+UPWARD-OPERATION names the standard-class #<STANDARD-CLASS ASDF/ACTION:UPWARD-OPERATION>:
+  Documentation:
+    An UPWARD-OPERATION has dependencies that propagate up the componenthierarchy.
+    I.e., if O is an instance of UPWARD-OPERATION, and its UPWARD-OPERATIONslot designates operation U,
+    then the action (O . C) of O on a component C that has the parent P willdepends on (U . P).
+    The default value for slot UPWARD-OPERATION is NIL, which designates theoperation O itself.
+    E.g. in order for a COMPONENT to be prepared for loading or compiling withPREPARE-OP, its PARENT
+    must first be prepared for loading or compiling with PREPARE-OP.
+  Class precedence-list: ASDF/ACTION:UPWARD-OPERATION, ASDF/OPERATION:OPERATION,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/OPERATION:OPERATION
+  Direct subclasses: ASDF/LISP-ACTION:PREPARE-SOURCE-OP,
+                     ASDF/LISP-ACTION:PREPARE-OP
+  Direct slots:
+    ASDF/ACTION:UPWARD-OPERATION
+      Type: ASDF/ACTION::OPERATION-DESIGNATOR
+      Allocation: :CLASS
+      Readers: ASDF/ACTION:UPWARD-OPERATION
+
+#+end_example
+
+- Called by
+  - ASDF/ACTION::UPWARD-OPERATION-DEPENDS-ON
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/ACTION:UPWARD-OPERATION
+:end:
+** PERFORM-WITH-RESTARTS :generic:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:PERFORM-WITH-RESTARTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PERFORM-WITH-RESTARTS names a generic function:
+  Lambda-list: (OPERATION COMPONENT)
+  Argument precedence order: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    PERFORM an action in a context where suitable restarts are in place.
+  Method-combination: STANDARD
+  Methods:
+    (PERFORM-WITH-RESTARTS (LOAD-OP CL-SOURCE-FILE))
+    (PERFORM-WITH-RESTARTS :AROUND (T T))
+    (PERFORM-WITH-RESTARTS (T T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM-PLAN (T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - KEYWORD:AROUND
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-OP CL-SOURCE-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+:end:
+** CALL-WHILE-VISITING-ACTION :compiled:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:CALL-WHILE-VISITING-ACTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WHILE-VISITING-ACTION names a compiled function:
+  Lambda-list: (OPERATION COMPONENT FUN)
+  Derived type: (FUNCTION (T T T) *)
+  Documentation:
+    Detect circular dependencies
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PLAN::COLLECT-ACTION-DEPENDENCIES
+  - ASDF/PLAN:ACTION-UP-TO-DATE-P
+  - ASDF/PLAN:TRAVERSE-ACTION
+  - (PERFORM AROUND (OPERATION COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SIDEWAY-OPERATION :generic:function:class:
+:PROPERTIES:
+:ID: ASDF/ACTION:SIDEWAY-OPERATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SIDEWAY-OPERATION names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SIDEWAY-OPERATION (OPERATION))
+    (SIDEWAY-OPERATION (SIDEWAY-OPERATION))
+      Documentation:
+        automatically generated reader method
+
+SIDEWAY-OPERATION names the standard-class #<STANDARD-CLASS ASDF/ACTION:SIDEWAY-OPERATION>:
+  Documentation:
+    A SIDEWAY-OPERATION has dependencies that propagate "sideway" to siblings
+    that a component depends on. I.e. if O is a SIDEWAY-OPERATION, and itsSIDEWAY-OPERATION slot
+    designates operation S (where NIL designates O itself), then the action(O . C) of O on component C
+    depends on each of (S . D) where D is a declared dependency of C.
+    E.g. in order for a COMPONENT to be prepared for loading or compiling withPREPARE-OP,
+    each of its declared dependencies must first be loaded as by LOAD-OP.
+  Class precedence-list: ASDF/ACTION:SIDEWAY-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/OPERATION:OPERATION
+  Direct subclasses: ASDF/BUNDLE:PREPARE-BUNDLE-OP,
+                     ASDF/LISP-ACTION:PREPARE-SOURCE-OP,
+                     ASDF/LISP-ACTION:PREPARE-OP
+  Direct slots:
+    ASDF/ACTION:SIDEWAY-OPERATION
+      Type: ASDF/ACTION::OPERATION-DESIGNATOR
+      Allocation: :CLASS
+      Readers: ASDF/ACTION:SIDEWAY-OPERATION
+
+#+end_example
+
+- Called by
+  - ASDF/ACTION::SIDEWAY-OPERATION-DEPENDS-ON
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/ACTION:SIDEWAY-OPERATION
+:end:
+** ACTION-DESCRIPTION :generic:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:ACTION-DESCRIPTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ACTION-DESCRIPTION names a generic function:
+  Lambda-list: (OPERATION COMPONENT)
+  Argument precedence order: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    returns a phrase that describes performing this operation
+    on this component, e.g. "loading /a/b/c".
+    You can put together sentences using this phrase.
+  Method-combination: STANDARD
+  Methods:
+    (ACTION-DESCRIPTION (LOAD-SOURCE-OP PARENT-COMPONENT))
+    (ACTION-DESCRIPTION (LOAD-SOURCE-OP COMPONENT))
+    (ACTION-DESCRIPTION (PREPARE-SOURCE-OP COMPONENT))
+    (ACTION-DESCRIPTION (LOAD-OP COMPONENT))
+    (ACTION-DESCRIPTION (LOAD-OP PARENT-COMPONENT))
+    (ACTION-DESCRIPTION (LOAD-OP CL-SOURCE-FILE))
+    (ACTION-DESCRIPTION (COMPILE-OP PARENT-COMPONENT))
+    (ACTION-DESCRIPTION (COMPILE-OP COMPONENT))
+    (ACTION-DESCRIPTION (PREPARE-OP COMPONENT))
+    (ACTION-DESCRIPTION (T T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (EXPLAIN (OPERATION COMPONENT))
+  - (MARK-AS-DONE (PLAN OPERATION COMPONENT))
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - ASDF/LISP-ACTION::PERFORM-LISP-WARNINGS-CHECK
+  - (PERFORM-WITH-RESTARTS AROUND (T T))
+  - (MARK-OPERATION-DONE (OPERATION COMPONENT))
+  - ((SETF COMPONENT-OPERATION-TIME) (T OPERATION COMPONENT))
+  - ASDF/ACTION:FORMAT-ACTION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-OP COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-OP PARENT-COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-OP CL-SOURCE-FILE)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPILE-OP PARENT-COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPILE-OP COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (PREPARE-OP COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-SOURCE-OP PARENT-COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (LOAD-SOURCE-OP COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (PREPARE-SOURCE-OP COMPONENT)
+:end:
+** MARK-OPERATION-DONE :generic:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:MARK-OPERATION-DONE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MARK-OPERATION-DONE names a generic function:
+  Lambda-list: (OPERATION COMPONENT)
+  Argument precedence order: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Mark a action as having been just done.
+    
+    Updates the action's COMPONENT-OPERATION-TIME to match the COMPUTE-ACTION-STAMP
+    using the JUST-DONE flag.
+  Method-combination: STANDARD
+  Methods:
+    (MARK-OPERATION-DONE :AFTER (LOAD-BUNDLE-OP SYSTEM))
+    (MARK-OPERATION-DONE (OPERATION COMPONENT))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (MARK-OPERATION-DONE AFTER (LOAD-BUNDLE-OP SYSTEM))
+  - (PERFORM-WITH-RESTARTS AROUND (T T))
+  - (PERFORM AFTER (OPERATION COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (AFTER LOAD-BUNDLE-OP SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+:end:
+** OPERATION-DEFINITION-ERROR :condition:class:
+:PROPERTIES:
+:ID: ASDF/ACTION:OPERATION-DEFINITION-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OPERATION-DEFINITION-ERROR names the condition-class #<SB-PCL::CONDITION-CLASSASDF/ACTION:OPERATION-DEFINITION-ERROR>:
+  Documentation:
+    Error condition related to definition of incorrect OPERATION objects.
+  Class precedence-list: ASDF/ACTION:OPERATION-DEFINITION-ERROR, SIMPLE-ERROR,
+                         SIMPLE-CONDITION, ERROR, SERIOUS-CONDITION, CONDITION,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SIMPLE-ERROR
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ACTION-VALID-P :compiled:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:ACTION-VALID-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ACTION-VALID-P names a compiled function:
+  Lambda-list: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Is this action valid to include amongst dependencies?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PLAN::COLLECT-ACTION-DEPENDENCIES
+  - ASDF/PLAN:ACTION-UP-TO-DATE-P
+  - ASDF/PLAN:TRAVERSE-ACTION
+  - ASDF/PLAN:MAP-DIRECT-DEPENDENCIES
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** CIRCULAR-DEPENDENCY-ACTIONS :generic:function:
+:PROPERTIES:
+:ID: ASDF/ACTION:CIRCULAR-DEPENDENCY-ACTIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CIRCULAR-DEPENDENCY-ACTIONS names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (CIRCULAR-DEPENDENCY-ACTIONS (CIRCULAR-DEPENDENCY))
+
+#+end_example
+
+- Called by
+  - (CIRCULAR-DEPENDENCY)
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/ACTION:CIRCULAR-DEPENDENCY
+:end:

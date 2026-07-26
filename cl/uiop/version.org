@@ -1,0 +1,368 @@
+#+TITLE: UIOP/VERSION
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/VERSION
+:PROPERTIES:
+:ID: UIOP/VERSION
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/PACKAGE][UIOP/PACKAGE]]
+  - [[id:UIOP/UTILITY][UIOP/UTILITY]]
+
+- dependents
+  - [[id:UIOP/BACKWARD-DRIVER][UIOP/BACKWARD-DRIVER]]
+  - [[id:UIOP/RUN-PROGRAM][UIOP/RUN-PROGRAM]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** DEPRECATED-FUNCTION-ERROR :condition:class:
+:PROPERTIES:
+:ID: UIOP/VERSION:DEPRECATED-FUNCTION-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEPRECATED-FUNCTION-ERROR names the condition-class #<SB-PCL::CONDITION-CLASSUIOP/VERSION:DEPRECATED-FUNCTION-ERROR>:
+  Class precedence-list: UIOP/VERSION:DEPRECATED-FUNCTION-ERROR,
+                         UIOP/VERSION:DEPRECATED-FUNCTION-CONDITION, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: UIOP/VERSION:DEPRECATED-FUNCTION-CONDITION, ERROR
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** UNPARSE-VERSION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/VERSION:UNPARSE-VERSION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNPARSE-VERSION names a compiled function:
+  Lambda-list: (VERSION-LIST)
+  Derived type: (FUNCTION (T) (VALUES SIMPLE-STRING &OPTIONAL))
+  Documentation:
+    From a parsed version (a list of natural numbers), compute the versionstring
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM::NORMALIZE-VERSION
+  - UIOP/VERSION:NEXT-VERSION
+  - UIOP/VERSION:PARSE-VERSION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** VERSION<= :compiled:function:
+:PROPERTIES:
+:ID: UIOP/VERSION:VERSION<=
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VERSION<= names a compiled function:
+  Lambda-list: (VERSION1 VERSION2)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Given two version strings, return T if the second is newer or the same
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM::CHECK-NOT-OLD-ASDF-SYSTEM
+  - (VERSION-SATISFIES (STRING T))
+  - ASDF/UPGRADE:CLEANUP-UPGRADED-ASDF
+  - UIOP/VERSION:VERSION-DEPRECATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DEPRECATED-FUNCTION-NAME :generic:function:
+:PROPERTIES:
+:ID: UIOP/VERSION:DEPRECATED-FUNCTION-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEPRECATED-FUNCTION-NAME names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (DEPRECATED-FUNCTION-NAME (DEPRECATED-FUNCTION-CONDITION))
+
+#+end_example
+
+- Called by
+  - (PRINT-OBJECT (DEPRECATED-FUNCTION-CONDITION T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - UIOP/VERSION:DEPRECATED-FUNCTION-CONDITION
+:end:
+** PARSE-VERSION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/VERSION:PARSE-VERSION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PARSE-VERSION names a compiled function:
+  Lambda-list: (VERSION-STRING &OPTIONAL ON-ERROR)
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Parse a VERSION-STRING as a series of natural numbers separated by dots.
+    Return a (non-null) list of integers if the string is valid;
+    otherwise return NIL.
+    
+    When invalid, ON-ERROR is called as per CALL-FUNCTION before to return NIL,
+    with format arguments explaining why the version is invalid.
+    ON-ERROR is also called if the version is not canonical
+    in that it doesn't print back to itself, but the list is returned anyway.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM::NORMALIZE-VERSION
+  - UIOP/BACKWARD-DRIVER:VERSION-COMPATIBLE-P
+  - UIOP/VERSION:VERSION<
+  - UIOP/VERSION:NEXT-VERSION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** NEXT-VERSION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/VERSION:NEXT-VERSION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NEXT-VERSION names a compiled function:
+  Lambda-list: (VERSION)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    When VERSION is not nil, it is a string, then parse it as a version,compute the next version
+    and return it as a string.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/VERSION:VERSION-DEPRECATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DEPRECATED-FUNCTION-STYLE-WARNING :condition:class:
+:PROPERTIES:
+:ID: UIOP/VERSION:DEPRECATED-FUNCTION-STYLE-WARNING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEPRECATED-FUNCTION-STYLE-WARNING names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/VERSION:DEPRECATED-FUNCTION-STYLE-WARNING>:
+  Class precedence-list: UIOP/VERSION:DEPRECATED-FUNCTION-STYLE-WARNING,
+                         UIOP/VERSION:DEPRECATED-FUNCTION-CONDITION,
+                         STYLE-WARNING, WARNING, CONDITION, SB-PCL::SLOT-OBJECT,
+                         T
+  Direct superclasses: UIOP/VERSION:DEPRECATED-FUNCTION-CONDITION, STYLE-WARNING
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** VERSION-DEPRECATION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/VERSION:VERSION-DEPRECATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VERSION-DEPRECATION names a compiled function:
+  Lambda-list: (VERSION &KEY (STYLE-WARNING NIL)
+                (WARNING (NEXT-VERSION STYLE-WARNING))
+                (ERROR (NEXT-VERSION WARNING)) (DELETE (NEXT-VERSION ERROR)))
+  Derived type: (FUNCTION
+                 (T &KEY (:STYLE-WARNING T) (:WARNING T) (:ERROR T)
+                  (:DELETE T))
+                 (VALUES (MEMBER :ERROR :DELETE :WARNING :STYLE-WARNING NIL)
+                         &OPTIONAL))
+  Documentation:
+    Given a VERSION string, and the starting versions for notifying theprogrammer of
+    various levels of deprecation, return the current level of deprecation asper WITH-DEPRECATION
+    that is the highest level that has a declared version older than thespecified version.
+    Each start version for a level of deprecation can be specified by a keywordargument, or
+    if left unspecified, will be the NEXT-VERSION of the immediate lower levelof deprecation.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/ACTION::BACKWARD-COMPATIBLE-DEPENDS-ON
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DEPRECATED-FUNCTION-SHOULD-BE-DELETED :condition:class:
+:PROPERTIES:
+:ID: UIOP/VERSION:DEPRECATED-FUNCTION-SHOULD-BE-DELETED
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEPRECATED-FUNCTION-SHOULD-BE-DELETED names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/VERSION:DEPRECATED-FUNCTION-SHOULD-BE-DELETED>:
+  Class precedence-list: UIOP/VERSION:DEPRECATED-FUNCTION-SHOULD-BE-DELETED,
+                         UIOP/VERSION:DEPRECATED-FUNCTION-CONDITION, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: UIOP/VERSION:DEPRECATED-FUNCTION-CONDITION, ERROR
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DEPRECATED-FUNCTION-WARNING :condition:class:
+:PROPERTIES:
+:ID: UIOP/VERSION:DEPRECATED-FUNCTION-WARNING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEPRECATED-FUNCTION-WARNING names the condition-class #<SB-PCL::CONDITION-CLASSUIOP/VERSION:DEPRECATED-FUNCTION-WARNING>:
+  Class precedence-list: UIOP/VERSION:DEPRECATED-FUNCTION-WARNING,
+                         UIOP/VERSION:DEPRECATED-FUNCTION-CONDITION, WARNING,
+                         CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: UIOP/VERSION:DEPRECATED-FUNCTION-CONDITION, WARNING
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *UIOP-VERSION​* :var:
+:PROPERTIES:
+:ID: UIOP/VERSION:*UIOP-VERSION*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*UIOP-VERSION* names a special variable:
+  Value: "3.3.1"
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-DEPRECATION :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/VERSION:WITH-DEPRECATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-DEPRECATION names a macro:
+  Lambda-list: ((LEVEL) &BODY DEFINITIONS)
+  Documentation:
+    Given a deprecation LEVEL (a form to be EVAL'ed at macro-expansion time),instrument the
+    DEFUN and DEFMETHOD forms in DEFINITIONS to notify the programmer of thedeprecation of the function
+    when it is compiled or called.
+    
+    Increasing levels (as result from evaluating LEVEL) are: NIL (notdeprecated yet),
+    :STYLE-WARNING (a style warning is issued when used), :WARNING (a fullwarning is issued when used),
+    :ERROR (a continuable error instead), and :DELETE (it's an error if thecode is still there while
+    at that level).
+    
+    Forms other than DEFUN and DEFMETHOD are not instrumented, and you canprotect a DEFUN or DEFMETHOD
+    from instrumentation by enclosing it in a PROGN.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** VERSION< :compiled:function:
+:PROPERTIES:
+:ID: UIOP/VERSION:VERSION<
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VERSION< names a compiled function:
+  Lambda-list: (VERSION1 VERSION2)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Given two version strings, return T if the second is strictly newer
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/UPGRADE:UPGRADING-P
+  - UIOP/VERSION:VERSION<=
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DEPRECATED-FUNCTION-CONDITION :condition:class:
+:PROPERTIES:
+:ID: UIOP/VERSION:DEPRECATED-FUNCTION-CONDITION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEPRECATED-FUNCTION-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/VERSION:DEPRECATED-FUNCTION-CONDITION>:
+  Class precedence-list: UIOP/VERSION:DEPRECATED-FUNCTION-CONDITION, CONDITION,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: CONDITION
+  Direct subclasses: UIOP/VERSION:DEPRECATED-FUNCTION-SHOULD-BE-DELETED,
+                     UIOP/VERSION:DEPRECATED-FUNCTION-ERROR,
+                     UIOP/VERSION:DEPRECATED-FUNCTION-WARNING,
+                     UIOP/VERSION:DEPRECATED-FUNCTION-STYLE-WARNING
+  Direct slots:
+    UIOP/VERSION::NAME
+      Initargs: :NAME
+      Readers: UIOP/VERSION:DEPRECATED-FUNCTION-NAME
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:

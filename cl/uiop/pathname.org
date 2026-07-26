@@ -1,0 +1,1568 @@
+#+TITLE: UIOP/PATHNAME
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/PATHNAME
+:PROPERTIES:
+:ID: UIOP/PATHNAME
+:AKA: ASDF/PATHNAME
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/PACKAGE][UIOP/PACKAGE]]
+  - [[id:UIOP/UTILITY][UIOP/UTILITY]]
+  - [[id:UIOP/OS][UIOP/OS]]
+
+- dependents
+  - [[id:UIOP/FILESYSTEM][UIOP/FILESYSTEM]]
+  - [[id:UIOP/STREAM][UIOP/STREAM]]
+  - [[id:UIOP/IMAGE][UIOP/IMAGE]]
+  - [[id:UIOP/LAUNCH-PROGRAM][UIOP/LAUNCH-PROGRAM]]
+  - [[id:UIOP/CONFIGURATION][UIOP/CONFIGURATION]]
+  - [[id:UIOP/BACKWARD-DRIVER][UIOP/BACKWARD-DRIVER]]
+  - [[id:UIOP/RUN-PROGRAM][UIOP/RUN-PROGRAM]]
+  - [[id:UIOP/LISP-BUILD][UIOP/LISP-BUILD]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** *UNSPECIFIC-PATHNAME-TYPE​* :var:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:*UNSPECIFIC-PATHNAME-TYPE*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*UNSPECIFIC-PATHNAME-TYPE* names a special variable:
+  Value: :UNSPECIFIC
+  Documentation:
+    Unspecific type component to use with the underlying implementation's MAKE-PATHNAME
+
+#+end_example
+
+- Referenced by
+  - UIOP/PATHNAME:SPLIT-NAME-TYPE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DIRECTORIZE-PATHNAME-HOST-DEVICE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:DIRECTORIZE-PATHNAME-HOST-DEVICE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIRECTORIZE-PATHNAME-HOST-DEVICE names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Given a PATHNAME, return a pathname that has representations of its HOSTand DEVICE components
+    added to its DIRECTORY component. This is useful for output translations.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/PATHNAME:TRANSLATE-PATHNAME*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PARSE-UNIX-NAMESTRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:PARSE-UNIX-NAMESTRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PARSE-UNIX-NAMESTRING names a compiled function:
+  Lambda-list: (NAME &REST KEYS &KEY TYPE DEFAULTS DOT-DOT ENSURE-DIRECTORY
+                &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION
+                 (T &REST T &KEY (:TYPE T) (:DEFAULTS T) (:DOT-DOT T)
+                  (:ENSURE-DIRECTORY T) &ALLOW-OTHER-KEYS)
+                 *)
+  Documentation:
+    Coerce NAME into a PATHNAME using standard Unix syntax.
+    
+    Unix syntax is used whether or not the underlying system is Unix;
+    on such non-Unix systems it is reliably usable only for relative pathnames.
+    This function is especially useful to manipulate relative pathnamesportably,
+    where it is of crucial to possess a portable pathname syntax independent ofthe underlying OS.
+    This is what PARSE-UNIX-NAMESTRING provides, and why we use it in ASDF.
+    
+    When given a PATHNAME object, just return it untouched.
+    When given NIL, just return NIL.
+    When given a non-null SYMBOL, first downcase its name and treat it as astring.
+    When given a STRING, portably decompose it into a pathname as below.
+    
+    #\/ separates directory components.
+    
+    The last #\/-separated substring is interpreted as follows:
+    1- If TYPE is :DIRECTORY or ENSURE-DIRECTORY is true,
+     the string is made the last directory component, and NAME and TYPE areNIL.
+     if the string is empty, it's the empty pathname with all slots NIL.
+    2- If TYPE is NIL, the substring is a file-namestring, and its NAME andTYPE
+     are separated by SPLIT-NAME-TYPE.
+    3- If TYPE is a string, it is the given TYPE, and the whole string is theNAME.
+    
+    Directory components with an empty name or the name "." are removed.
+    Any directory named ".." is read as DOT-DOT,
+    which must be one of :BACK or :UP and defaults to :BACK.
+    
+    HOST, DEVICE and VERSION components are taken from DEFAULTS,
+    which itself defaults to *NIL-PATHNAME*, also used if DEFAULTS is NIL.
+    No host or device can be specified in the string itself,
+    which makes it unsuitable for absolute pathnames outside Unix.
+    
+    For relative pathnames, these components (and hence the defaults) won'tmatter
+    if you use MERGE-PATHNAMES* but will matter if you use MERGE-PATHNAMES,
+    which is an important reason to always use MERGE-PATHNAMES*.
+    
+    Arbitrary keys are accepted, and the parse result is passed to ENSURE-PATHNAME
+    with those keys, removing TYPE DEFAULTS and DOT-DOT.
+    When you're manipulating pathnames that are supposed to make sense portably
+    even though the OS may not be Unixish, we recommend you use :WANT-RELATIVET
+    to throw an error if the pathname is absolute
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:DETERMINE-SYSTEM-DIRECTORY
+  - ASDF/SYSTEM-REGISTRY:PROBE-ASD
+  - (COMPONENT-RELATIVE-PATHNAME (SYSTEM))
+  - (COMPONENT-RELATIVE-PATHNAME (COMPONENT))
+  - UIOP/BACKWARD-DRIVER:COERCE-PATHNAME
+  - UIOP/CONFIGURATION:SYSTEM-CONFIG-PATHNAMES
+  - UIOP/CONFIGURATION:XDG-CONFIG-DIRS
+  - UIOP/CONFIGURATION:XDG-DATA-DIRS
+  - UIOP/CONFIGURATION:RESOLVE-RELATIVE-LOCATION
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/PATHNAME:SUBPATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-ENOUGH-PATHNAME :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:WITH-ENOUGH-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-ENOUGH-PATHNAME names a macro:
+  Lambda-list: ((PATHNAME-VAR &KEY (PATHNAME PATHNAME-VAR)
+                 (DEFAULTS *DEFAULT-PATHNAME-DEFAULTS*))
+                &BODY BODY)
+  Documentation:
+    Shorthand syntax for CALL-WITH-ENOUGH-PATHNAME
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SUBPATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:SUBPATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SUBPATHNAME names a compiled function:
+  Lambda-list: (PATHNAME SUBPATH &KEY TYPE)
+  Derived type: (FUNCTION (T T &KEY (:TYPE T)) *)
+  Documentation:
+    This function takes a PATHNAME and a SUBPATH and a TYPE.
+    If SUBPATH is already a PATHNAME object (not namestring),
+    and is an absolute pathname at that, it is returned unchanged;
+    otherwise, SUBPATH is turned into a relative pathname with given TYPE
+    as per PARSE-UNIX-NAMESTRING with :WANT-RELATIVE T :TYPE TYPE,
+    then it is merged with the PATHNAME-DIRECTORY-PATHNAME of PATHNAME.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/BACKWARD-INTERFACE:ENABLE-ASDF-BINARY-LOCATIONS-COMPATIBILITY
+  - ASDF/SOURCE-REGISTRY::PROCESS-SOURCE-REGISTRY-CACHE
+  - ASDF/PACKAGE-INFERRED-SYSTEM:SYSDEF-PACKAGE-INFERRED-SYSTEM-SEARCH
+  - ASDF/BUNDLE::BUNDLE-OUTPUT-FILES
+  - ASDF/PARSE-DEFSYSTEM::NORMALIZE-VERSION
+  - ASDF/FIND-SYSTEM::CHECK-NOT-OLD-ASDF-SYSTEM
+  - (OUTPUT-FILES (COMPILE-OP SYSTEM))
+  - [[id:STD/DEFSYS:SYSTEM-RELATIVE-PATHNAME][SYSTEM-RELATIVE-PATHNAME]]
+  - UIOP/CONFIGURATION:IN-FIRST-DIRECTORY
+  - UIOP/CONFIGURATION:XDG-CONFIG-HOME
+  - UIOP/CONFIGURATION:XDG-DATA-HOME
+  - UIOP/PATHNAME:SUBPATHNAME*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *WILD-DIRECTORY​* :var:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:*WILD-DIRECTORY*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*WILD-DIRECTORY* names a special variable:
+  Value: #P"*/"
+  Documentation:
+    A pathname object with wildcards for matching any subdirectory
+
+#+end_example
+
+- Referenced by
+  - UIOP/CONFIGURATION:RESOLVE-RELATIVE-LOCATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PATHNAME-HOST-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:PATHNAME-HOST-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PATHNAME-HOST-PATHNAME names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES PATHNAME &OPTIONAL))
+  Documentation:
+    return a pathname with the same host as given PATHNAME, and all otherfields NIL
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ABSOLUTE-PATHNAME-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:ABSOLUTE-PATHNAME-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ABSOLUTE-PATHNAME-P names a compiled function:
+  Lambda-list: (PATHSPEC)
+  Derived type: (FUNCTION (T) (VALUES (OR PATHNAME NULL) &OPTIONAL))
+  Documentation:
+    If PATHSPEC is a pathname or namestring object that parses as a pathname
+    possessing an :ABSOLUTE directory component, return the (parsed) pathname.
+    Otherwise return NIL
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:PARSE-SOURCE-REGISTRY-STRING
+  - ASDF/OUTPUT-TRANSLATIONS:APPLY-OUTPUT-TRANSLATIONS
+  - ASDF/OUTPUT-TRANSLATIONS::PROCESS-OUTPUT-TRANSLATIONS-DIRECTIVE
+  - (COMPONENT-PATHNAME (COMPONENT))
+  - UIOP/CONFIGURATION:FILTER-PATHNAME-SET
+  - UIOP/CONFIGURATION:RESOLVE-LOCATION
+  - UIOP/LISP-BUILD:COMPILE-FILE-PATHNAME*
+  - UIOP/FILESYSTEM:GET-PATHNAME-DEFAULTS
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/FILESYSTEM:TRUENAMIZE
+  - UIOP/PATHNAME:TRANSLATE-PATHNAME*
+  - UIOP/PATHNAME:SUBPATHP
+  - [[id:STD/PATH:ENSURE-ABSOLUTE-PATHNAME][ENSURE-ABSOLUTE-PATHNAME]]
+  - UIOP/PATHNAME:SUBPATHNAME
+  - [[id:OBJ/URI:PATHNAME-TO-URI][PATHNAME-TO-URI]]
+  - [[id:STD/PATH:ENSURE-ABSOLUTE-PATHNAME][ENSURE-ABSOLUTE-PATHNAME]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *OUTPUT-TRANSLATION-FUNCTION​* :var:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:*OUTPUT-TRANSLATION-FUNCTION*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*OUTPUT-TRANSLATION-FUNCTION* names a special variable:
+  Value: ASDF/OUTPUT-TRANSLATIONS:APPLY-OUTPUT-TRANSLATIONS
+  Documentation:
+    Hook for output translations.
+    
+    This function needs to be idempotent, so that actions can work
+    whether their inputs were translated or not,
+    which they will be if we are composing operations. e.g. if some
+    create-lisp-op creates a lisp file from some higher-level input,
+    you need to still be able to use compile-op on that lisp file.
+
+#+end_example
+
+- Referenced by
+  - (OUTPUT-FILES AROUND (T T))
+  - UIOP/LISP-BUILD:COMPILE-FILE-PATHNAME*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SUBPATHNAME* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:SUBPATHNAME*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SUBPATHNAME* names a compiled function:
+  Lambda-list: (PATHNAME SUBPATH &KEY TYPE)
+  Derived type: (FUNCTION (T T &KEY (:TYPE T)) *)
+  Documentation:
+    returns NIL if the base pathname is NIL, otherwise like SUBPATHNAME.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:XDG-CACHE-HOME
+  - UIOP/CONFIGURATION:GET-FOLDER-PATH
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PHYSICAL-PATHNAME-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:PHYSICAL-PATHNAME-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PHYSICAL-PATHNAME-P names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    is X a pathname that is not a logical-pathname?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/FILESYSTEM:DELETE-DIRECTORY-TREE
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/PATHNAME:DIRECTORIZE-PATHNAME-HOST-DEVICE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** NORMALIZE-PATHNAME-DIRECTORY-COMPONENT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:NORMALIZE-PATHNAME-DIRECTORY-COMPONENT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NORMALIZE-PATHNAME-DIRECTORY-COMPONENT names a compiled function:
+  Lambda-list: (DIRECTORY)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Convert the DIRECTORY component from a format usable by the underlying
+    implementation's MAKE-PATHNAME and other primitives to a CLHS-standardformat
+    that is a list and not a string.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY::PATHNAME-DIRECTORY-DEPTH
+  - ASDF/OUTPUT-TRANSLATIONS::SET-OUTPUT-TRANSLATIONS
+  - UIOP/FILESYSTEM:TRUENAMIZE
+  - [[id:UIOP/FILESYSTEM:SUBDIRECTORIES][SUBDIRECTORIES]]
+  - UIOP/PATHNAME:RELATIVIZE-DIRECTORY-COMPONENT
+  - UIOP/PATHNAME:UNIX-NAMESTRING
+  - UIOP/PATHNAME:ENSURE-DIRECTORY-PATHNAME
+  - [[id:STD/OS:RELATIVE-PATHNAME-P][RELATIVE-PATHNAME-P]]
+  - [[id:STD/OS:ABSOLUTE-PATHNAME-P][ABSOLUTE-PATHNAME-P]]
+  - [[id:UIOP/PATHNAME:PATHNAME-EQUAL][PATHNAME-EQUAL]]
+  - UIOP/PATHNAME:MERGE-PATHNAMES*
+  - UIOP/PATHNAME:MERGE-PATHNAME-DIRECTORY-COMPONENTS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DIRECTORY-SEPARATOR-FOR-HOST :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:DIRECTORY-SEPARATOR-FOR-HOST
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIRECTORY-SEPARATOR-FOR-HOST names a compiled function:
+  Lambda-list: (&OPTIONAL (PATHNAME *DEFAULT-PATHNAME-DEFAULTS*))
+  Derived type: (FUNCTION (&OPTIONAL T) *)
+  Documentation:
+    Given a PATHNAME, return the character used to delimit directory names onthis host and device.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/PATHNAME:DIRECTORIZE-PATHNAME-HOST-DEVICE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** UNIX-NAMESTRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:UNIX-NAMESTRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNIX-NAMESTRING names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES (OR STRING NULL) &OPTIONAL))
+  Documentation:
+    Given a non-wild PATHNAME, return a Unix-style namestring for it.
+    If the PATHNAME is NIL or a STRING, return it unchanged.
+    
+    This only considers the DIRECTORY, NAME and TYPE components of thepathname.
+    This is a portable solution for representing relative pathnames,
+    But unless you are running on a Unix system, it is not a general solution
+    to representing native pathnames.
+    
+    An error is signaled if the argument is not NULL, a STRING or a PATHNAME,
+    or if it is a PATHNAME but some of its components are not recognized.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PATHNAME-EQUAL :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:PATHNAME-EQUAL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PATHNAME-EQUAL names a compiled function:
+  Lambda-list: (P1 P2)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Are the two pathnames P1 and P2 reasonably equal in the paths they denote?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PACKAGE-INFERRED-SYSTEM::SAME-PACKAGE-INFERRED-SYSTEM-P
+  - (PERFORM (DELIVER-ASD-OP SYSTEM))
+  - (FIND-SYSTEM (STRING))
+  - UIOP/FILESYSTEM:FILTER-LOGICAL-DIRECTORY-RESULTS
+  - UIOP/PATHNAME:SUBPATHP
+  - [[id:SKEL/CORE:FIND-SKELFILE][FIND-SKELFILE]]
+  - SKEL/CORE::FIND-SKEL-PROJECT-ROOT
+  - (PUBLISH (SYMBOL-DOCUMENTATION))
+  - [[id:STD/DEFSYS:DIRECTORY-SYSDEF-FILES][DIRECTORY-SYSDEF-FILES]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *NIL-PATHNAME​* :var:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:*NIL-PATHNAME*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*NIL-PATHNAME* names a special variable:
+  Value: #P""
+  Documentation:
+    A pathname that is as neutral as possible for use as defaults
+    when merging, making or parsing pathnames
+
+#+end_example
+
+- Referenced by
+  - ASDF/SOURCE-REGISTRY:FLATTEN-SOURCE-REGISTRY
+  - ASDF/SESSION:COMPUTE-FILE-STAMP
+  - ASDF/SESSION:NORMALIZE-NAMESTRING
+  - UIOP/FILESYSTEM:TRUENAME*
+  - [[id:SB-EXT:PARSE-NATIVE-NAMESTRING][PARSE-NATIVE-NAMESTRING]]
+  - UIOP/PATHNAME:SUBPATHP
+  - UIOP/PATHNAME:PARSE-UNIX-NAMESTRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** NIL-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:NIL-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NIL-PATHNAME names a compiled function:
+  Lambda-list: (&OPTIONAL (DEFAULTS *DEFAULT-PATHNAME-DEFAULTS*))
+  Derived type: (FUNCTION (&OPTIONAL T) (VALUES PATHNAME &OPTIONAL))
+  Documentation:
+    A pathname that is as neutral as possible for use as defaults
+    when merging, making or parsing pathnames
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** MERGE-PATHNAME-DIRECTORY-COMPONENTS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:MERGE-PATHNAME-DIRECTORY-COMPONENTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MERGE-PATHNAME-DIRECTORY-COMPONENTS names a compiled function:
+  Lambda-list: (SPECIFIED DEFAULTS)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Documentation:
+    Helper for MERGE-PATHNAMES* that handles directory components
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:UIOP/PATHNAME:PATHNAME-PARENT-DIRECTORY-PATHNAME][PATHNAME-PARENT-DIRECTORY-PATHNAME]]
+  - UIOP/PATHNAME:MERGE-PATHNAMES*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WILDEN :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:WILDEN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WILDEN names a compiled function:
+  Lambda-list: (PATH)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    From a pathname, return a wildcard pathname matching any file in anysubdirectory of given pathname's directory
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OUTPUT-TRANSLATIONS:APPLY-OUTPUT-TRANSLATIONS
+  - UIOP/CONFIGURATION:RESOLVE-ABSOLUTE-LOCATION
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/PATHNAME:DIRECTORIZE-PATHNAME-HOST-DEVICE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SUBPATHP :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:SUBPATHP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SUBPATHP names a compiled function:
+  Lambda-list: (MAYBE-SUBPATH BASE-PATHNAME)
+  Derived type: (FUNCTION (T T) (VALUES (OR PATHNAME NULL) &OPTIONAL))
+  Documentation:
+    if MAYBE-SUBPATH is a pathname that is under BASE-PATHNAME, return apathname object that
+    when used with MERGE-PATHNAMES* with defaults BASE-PATHNAME, returns MAYBE-SUBPATH.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/FILESYSTEM:LISP-IMPLEMENTATION-PATHNAME-P
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/PATHNAME:ENOUGH-PATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PATHNAME-DIRECTORY-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:PATHNAME-DIRECTORY-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PATHNAME-DIRECTORY-PATHNAME names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES (OR PATHNAME NULL) &OPTIONAL))
+  Documentation:
+    Returns a new pathname with same HOST, DEVICE, DIRECTORY as PATHNAME,
+    and NIL NAME, TYPE and VERSION components
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PROCESS-SOURCE-REGISTRY (PATHNAME))
+  - ASDF/PARSE-DEFSYSTEM:DETERMINE-SYSTEM-DIRECTORY
+  - (PERFORM (DEFINE-OP SYSTEM))
+  - (OUTPUT-FILES AROUND (T T))
+  - ASDF/SYSTEM:SYSTEM-SOURCE-DIRECTORY
+  - (COMPONENT-PATHNAME (COMPONENT))
+  - UIOP/CONFIGURATION:RESOLVE-ABSOLUTE-LOCATION
+  - [[id:STD/PATH:TMPIZE-PATHNAME][TMPIZE-PATHNAME]]
+  - UIOP/FILESYSTEM:CALL-WITH-CURRENT-DIRECTORY
+  - UIOP/PATHNAME:SUBPATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** HIDDEN-PATHNAME-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:HIDDEN-PATHNAME-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+HIDDEN-PATHNAME-P names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Return a boolean that is true if the pathname is hidden as per Unix style,
+    i.e. its name starts with a dot.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-DIRECTORY
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RELATIVIZE-PATHNAME-DIRECTORY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:RELATIVIZE-PATHNAME-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RELATIVIZE-PATHNAME-DIRECTORY names a compiled function:
+  Lambda-list: (PATHSPEC)
+  Derived type: (FUNCTION (T) (VALUES PATHNAME &OPTIONAL))
+  Documentation:
+    Given a PATHNAME, return a relative pathname with otherwise the samecomponents
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *WILD​* :var:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:*WILD*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*WILD* names a special variable:
+  Value: :WILD
+  Documentation:
+    Wild component for use with MAKE-PATHNAME
+
+#+end_example
+
+- Referenced by
+  - UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-DIRECTORY
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** MAKE-PATHNAME-COMPONENT-LOGICAL :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:MAKE-PATHNAME-COMPONENT-LOGICAL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-PATHNAME-COMPONENT-LOGICAL names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Make a pathname component suitable for use in a logical-pathname
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:UIOP/FILESYSTEM:SUBDIRECTORIES][SUBDIRECTORIES]]
+  - [[id:UIOP/FILESYSTEM:DIRECTORY-FILES][DIRECTORY-FILES]]
+  - UIOP/PATHNAME:MERGE-PATHNAMES*
+  - UIOP/PATHNAME:MAKE-PATHNAME-LOGICAL
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FILE-PATHNAME-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:FILE-PATHNAME-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FILE-PATHNAME-P names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES (OR PATHNAME NULL) &OPTIONAL))
+  Documentation:
+    Does PATHNAME represent a file, i.e. has a non-null NAME component?
+    
+    Accepts NIL, a string (converted through PARSE-NAMESTRING) or a PATHNAME.
+    
+    Note that this does _not_ check to see that PATHNAME points to an
+    actually-existing file.
+    
+    Returns the (parsed) PATHNAME when true
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PACKAGE-INFERRED-SYSTEM:SYSDEF-PACKAGE-INFERRED-SYSTEM-SEARCH
+  - (INPUT-FILES (SELFWARD-OPERATION COMPONENT))
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/FILESYSTEM:FILE-EXISTS-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *WILD-FILE​* :var:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:*WILD-FILE*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*WILD-FILE* names a special variable:
+  Value: #P"*.*"
+  Documentation:
+    A pathname object with wildcards for matching any file with TRANSLATE-PATHNAME
+
+#+end_example
+
+- Referenced by
+  - ASDF/BACKWARD-INTERFACE:ENABLE-ASDF-BINARY-LOCATIONS-COMPATIBILITY
+  - UIOP/CONFIGURATION:RESOLVE-RELATIVE-LOCATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** MAKE-PATHNAME-LOGICAL :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:MAKE-PATHNAME-LOGICAL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-PATHNAME-LOGICAL names a compiled function:
+  Lambda-list: (PATHNAME HOST)
+  Derived type: (FUNCTION (T T) (VALUES PATHNAME &OPTIONAL))
+  Documentation:
+    Take a PATHNAME's directory, name, type and version components,
+    and make a new pathname with corresponding components and specified logicalHOST
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:UIOP/FILESYSTEM:DIRECTORY-FILES][DIRECTORY-FILES]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RELATIVE-PATHNAME-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:RELATIVE-PATHNAME-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RELATIVE-PATHNAME-P names a compiled function:
+  Lambda-list: (PATHSPEC)
+  Derived type: (FUNCTION (T) (VALUES (OR PATHNAME NULL) &OPTIONAL))
+  Documentation:
+    If PATHSPEC is a pathname or namestring object that parses as a pathname
+    possessing a :RELATIVE or NIL directory component, return the (parsed)pathname.
+    Otherwise return NIL
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/PATHNAME:SUBPATHP
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-ENOUGH-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:CALL-WITH-ENOUGH-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-ENOUGH-PATHNAME names a compiled function:
+  Lambda-list: (MAYBE-SUBPATH DEFAULTS-PATHNAME THUNK)
+  Derived type: (FUNCTION (T T T) *)
+  Documentation:
+    In a context where *DEFAULT-PATHNAME-DEFAULTS* is bound to DEFAULTS-PATHNAME (if not null,
+    or else to its current value), call THUNK with ENOUGH-PATHNAME for MAYBE-SUBPATH
+    given DEFAULTS-PATHNAME as a base pathname.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SPLIT-UNIX-NAMESTRING-DIRECTORY-COMPONENTS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:SPLIT-UNIX-NAMESTRING-DIRECTORY-COMPONENTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SPLIT-UNIX-NAMESTRING-DIRECTORY-COMPONENTS names a compiled function:
+  Lambda-list: (UNIX-NAMESTRING &KEY ENSURE-DIRECTORY DOT-DOT)
+  Derived type: (FUNCTION (T &KEY (:ENSURE-DIRECTORY T) (:DOT-DOT T))
+                 (VALUES (MEMBER :RELATIVE :ABSOLUTE)
+                         (OR LIST (SIMPLE-ARRAY * (*))
+                             SB-KERNEL:EXTENDED-SEQUENCE)
+                         T BOOLEAN &OPTIONAL))
+  Documentation:
+    Splits the path string UNIX-NAMESTRING, returning four values:
+    A flag that is either :absolute or :relative, indicating
+       how the rest of the values are to be interpreted.
+    A directory path --- a list of strings and keywords, suitable for
+       use with MAKE-PATHNAME when prepended with the flag value.
+       Directory components with an empty name or the name . are removed.
+       Any directory named .. is read as DOT-DOT, or :BACK if it's NIL(not :UP).
+    A last-component, either a file-namestring including type extension,
+       or NIL in the case of a directory pathname.
+    A flag that is true iff the unix-style-pathname was just
+       a file-namestring without / path specification.
+    ENSURE-DIRECTORY forces the namestring to be interpreted as a directorypathname:
+    the third return value will be NIL, and final component of the namestring
+    will be treated as part of the directory path.
+    
+    An empty string is thus read as meaning a pathname object with all fieldsnil.
+    
+    Note that colon characters #: will NOT be interpreted as hostspecification.
+    Absolute pathnames are only appropriate on Unix-style systems.
+    
+    The intention of this function is to support structured component names,
+    e.g., (:file "foo/bar"), which will be unpacked to relative pathnames.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/PATHNAME:DIRECTORIZE-PATHNAME-HOST-DEVICE
+  - UIOP/PATHNAME:PARSE-UNIX-NAMESTRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ENOUGH-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:ENOUGH-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENOUGH-PATHNAME names a compiled function:
+  Lambda-list: (MAYBE-SUBPATH BASE-PATHNAME)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Documentation:
+    if MAYBE-SUBPATH is a pathname that is under BASE-PATHNAME, return apathname object that
+    when used with MERGE-PATHNAMES* with defaults BASE-PATHNAME, returns MAYBE-SUBPATH.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/PATHNAME:CALL-WITH-ENOUGH-PATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LOGICAL-PATHNAME-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:LOGICAL-PATHNAME-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOGICAL-PATHNAME-P names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    is X a logical-pathname?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/FILESYSTEM:TRUENAMIZE
+  - [[id:UIOP/FILESYSTEM:DIRECTORY-FILES][DIRECTORY-FILES]]
+  - UIOP/FILESYSTEM:FILTER-LOGICAL-DIRECTORY-RESULTS
+  - UIOP/PATHNAME:PHYSICALIZE-PATHNAME
+  - UIOP/PATHNAME:PHYSICAL-PATHNAME-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *WILD-INFERIORS​* :var:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:*WILD-INFERIORS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*WILD-INFERIORS* names a special variable:
+  Value: #P"**/"
+  Documentation:
+    A pathname object with wildcards for matching any recursive subdirectory
+
+#+end_example
+
+- Referenced by
+  - ASDF/BACKWARD-INTERFACE:ENABLE-ASDF-BINARY-LOCATIONS-COMPATIBILITY
+  - UIOP/CONFIGURATION:RESOLVE-RELATIVE-LOCATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PATHNAME-ROOT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:PATHNAME-ROOT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PATHNAME-ROOT names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES PATHNAME &OPTIONAL))
+  Documentation:
+    return the root directory for the host and device of given PATHNAME
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OUTPUT-TRANSLATIONS:APPLY-OUTPUT-TRANSLATIONS
+  - UIOP/PATHNAME:DIRECTORIZE-PATHNAME-HOST-DEVICE
+  - UIOP/PATHNAME:SUBPATHP
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ENSURE-DIRECTORY-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:ENSURE-DIRECTORY-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENSURE-DIRECTORY-PATHNAME names a compiled function:
+  Lambda-list: (PATHSPEC &OPTIONAL (ON-ERROR (QUOTE ERROR)))
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Converts the non-wild pathname designator PATHSPEC to directory form.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-CENTRAL-REGISTRY-SEARCH
+  - UIOP/CONFIGURATION:IN-FIRST-DIRECTORY
+  - UIOP/CONFIGURATION:RESOLVE-ABSOLUTE-LOCATION
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/FILESYSTEM:TRUENAMIZE
+  - [[id:UIOP/FILESYSTEM:SUBDIRECTORIES][SUBDIRECTORIES]]
+  - [[id:SB-EXT:PARSE-NATIVE-NAMESTRING][PARSE-NATIVE-NAMESTRING]]
+  - UIOP/PATHNAME:SUBPATHNAME*
+  - UIOP/PATHNAME:ENSURE-DIRECTORY-PATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** MAKE-PATHNAME* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:MAKE-PATHNAME*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-PATHNAME* names a compiled function:
+  Lambda-list: (&REST KEYS &KEY DIRECTORY HOST DEVICE NAME TYPE VERSION
+                DEFAULTS)
+  Derived type: (FUNCTION
+                 (&REST T &KEY (:DIRECTORY T) (:HOST T) (:DEVICE T) (:NAME T)
+                  (:TYPE T) (:VERSION T) (:DEFAULTS T))
+                 (VALUES PATHNAME &OPTIONAL))
+  Documentation:
+    Takes arguments like CL:MAKE-PATHNAME in the CLHS, and
+       tries hard to make a pathname that will actually behave as documented,
+       despite the peculiarities of each implementation. DEPRECATED: just useMAKE-PATHNAME.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *WILD-FILE-FOR-DIRECTORY​* :var:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:*WILD-FILE-FOR-DIRECTORY*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*WILD-FILE-FOR-DIRECTORY* names a special variable:
+  Value: #P"*.*"
+  Documentation:
+    A pathname object with wildcards for matching any file with DIRECTORY
+
+#+end_example
+
+- Referenced by
+  - [[id:UIOP/FILESYSTEM:DIRECTORY-FILES][DIRECTORY-FILES]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** MERGE-PATHNAMES* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:MERGE-PATHNAMES*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MERGE-PATHNAMES* names a compiled function:
+  Lambda-list: (SPECIFIED &OPTIONAL (DEFAULTS *DEFAULT-PATHNAME-DEFAULTS*))
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES T &OPTIONAL))
+  Documentation:
+    MERGE-PATHNAMES* is like MERGE-PATHNAMES except that
+    if the SPECIFIED pathname does not have an absolute directory,
+    then the HOST and DEVICE both come from the DEFAULTS, whereas
+    if the SPECIFIED pathname does have an absolute directory,
+    then the HOST and DEVICE both come from the SPECIFIED pathname.
+    This is what users want on a modern Unix or Windows operating system,
+    unlike the MERGE-PATHNAMES behavior.
+    Also, if either argument is NIL, then the other argument is returnedunmodified;
+    this is unlike MERGE-PATHNAMES which always merges with a pathname,
+    by default *DEFAULT-PATHNAME-DEFAULTS*, which cannot be NIL.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OUTPUT-TRANSLATIONS:APPLY-OUTPUT-TRANSLATIONS
+  - (COMPONENT-PATHNAME (COMPONENT))
+  - UIOP/CONFIGURATION:RESOLVE-LOCATION
+  - UIOP/CONFIGURATION:RESOLVE-ABSOLUTE-LOCATION
+  - UIOP/CONFIGURATION:RESOLVE-RELATIVE-LOCATION
+  - UIOP/LISP-BUILD:COMPILE-FILE-PATHNAME*
+  - UIOP/FILESYSTEM:GET-PATHNAME-DEFAULTS
+  - UIOP/FILESYSTEM:TRUENAMIZE
+  - [[id:UIOP/FILESYSTEM:SUBDIRECTORIES][SUBDIRECTORIES]]
+  - [[id:UIOP/FILESYSTEM:DIRECTORY-FILES][DIRECTORY-FILES]]
+  - UIOP/PATHNAME:TRANSLATE-PATHNAME*
+  - UIOP/PATHNAME:DIRECTORIZE-PATHNAME-HOST-DEVICE
+  - UIOP/PATHNAME:WILDEN
+  - [[id:STD/PATH:ENSURE-ABSOLUTE-PATHNAME][ENSURE-ABSOLUTE-PATHNAME]]
+  - UIOP/PATHNAME:SUBPATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ENSURE-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:ENSURE-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENSURE-PATHNAME names a compiled function:
+  Lambda-list: (PATHNAME &KEY ON-ERROR DEFAULTS TYPE DOT-DOT NAMESTRING
+                         EMPTY-IS-NIL WANT-PATHNAME WANT-LOGICAL WANT-PHYSICAL
+                         ENSURE-PHYSICAL WANT-RELATIVE WANT-ABSOLUTE
+                         ENSURE-ABSOLUTE ENSURE-SUBPATH WANT-NON-WILD WANT-WILD
+                         WILDEN WANT-FILE WANT-DIRECTORY ENSURE-DIRECTORY
+                         WANT-EXISTING ENSURE-DIRECTORIES-EXIST TRUENAME
+                         RESOLVE-SYMLINKS TRUENAMIZE &AUX (P PATHNAME))
+  Declared type: FUNCTION
+  Derived type: (FUNCTION
+                 (T &KEY (:ON-ERROR T) (:DEFAULTS T) (:TYPE T) (:DOT-DOT T)
+                  (:NAMESTRING T) (:EMPTY-IS-NIL T) (:WANT-PATHNAME T)
+                  (:WANT-LOGICAL T) (:WANT-PHYSICAL T) (:ENSURE-PHYSICAL T)
+                  (:WANT-RELATIVE T) (:WANT-ABSOLUTE T) (:ENSURE-ABSOLUTE T)
+                  (:ENSURE-SUBPATH T) (:WANT-NON-WILD T) (:WANT-WILD T)
+                  (:WILDEN T) (:WANT-FILE T) (:WANT-DIRECTORY T)
+                  (:ENSURE-DIRECTORY T) (:WANT-EXISTING T)
+                  (:ENSURE-DIRECTORIES-EXIST T) (:TRUENAME T)
+                  (:RESOLVE-SYMLINKS T) (:TRUENAMIZE T))
+                 (VALUES T &OPTIONAL))
+  Documentation:
+    Coerces its argument into a PATHNAME,
+    optionally doing some transformations and checking specified constraints.
+    
+    If the argument is NIL, then NIL is returned unless the WANT-PATHNAMEconstraint is specified.
+    
+    If the argument is a STRING, it is first converted to a pathname via
+    PARSE-UNIX-NAMESTRING, PARSE-NAMESTRING or PARSE-NATIVE-NAMESTRINGrespectively
+    depending on the NAMESTRING argument being :UNIX, :LISP or :NATIVErespectively,
+    or else by using CALL-FUNCTION on the NAMESTRING argument;
+    if :UNIX is specified (or NIL, the default, which specifies the samething),
+    then PARSE-UNIX-NAMESTRING it is called with the keywords
+    DEFAULTS TYPE DOT-DOT ENSURE-DIRECTORY WANT-RELATIVE, and
+    the result is optionally merged into the DEFAULTS if ENSURE-ABSOLUTE istrue.
+    
+    The pathname passed or resulting from parsing the string
+    is then subjected to all the checks and transformations below are run.
+    
+    Each non-nil constraint argument can be one of the symbols T, ERROR, CERRORor IGNORE.
+    The boolean T is an alias for ERROR.
+    ERROR means that an error will be raised if the constraint is notsatisfied.
+    CERROR means that an continuable error will be raised if the constraint isnot satisfied.
+    IGNORE means just return NIL instead of the pathname.
+    
+    The ON-ERROR argument, if not NIL, is a function designator (as per CALL-FUNCTION)
+    that will be called with the the following arguments:
+    a generic format string for ensure pathname, the pathname,
+    the keyword argument corresponding to the failed check or transformation,
+    a format string for the reason ENSURE-PATHNAME failed,
+    and a list with arguments to that format string.
+    If ON-ERROR is NIL, ERROR is used instead, which does the right thing.
+    You could also pass (CERROR "CONTINUE DESPITE FAILED CHECK").
+    
+    The transformations and constraint checks are done in this order,
+    which is also the order in the lambda-list:
+    
+    EMPTY-IS-NIL returns NIL if the argument is an empty string.
+    WANT-PATHNAME checks that pathname (after parsing if needed) is not null.
+    Otherwise, if the pathname is NIL, ensure-pathname returns NIL.
+    WANT-LOGICAL checks that pathname is a LOGICAL-PATHNAME
+    WANT-PHYSICAL checks that pathname is not a LOGICAL-PATHNAME
+    ENSURE-PHYSICAL ensures that pathname is physical via TRANSLATE-LOGICAL-PATHNAME
+    WANT-RELATIVE checks that pathname has a relative directory component
+    WANT-ABSOLUTE checks that pathname does have an absolute directorycomponent
+    ENSURE-ABSOLUTE merges with the DEFAULTS, then checks again
+    that the result absolute is an absolute pathname indeed.
+    ENSURE-SUBPATH checks that the pathname is a subpath of the DEFAULTS.
+    WANT-FILE checks that pathname has a non-nil FILE component
+    WANT-DIRECTORY checks that pathname has nil FILE and TYPE components
+    ENSURE-DIRECTORY uses ENSURE-DIRECTORY-PATHNAME to interpret
+    any file and type components as being actually a last directory component.
+    WANT-NON-WILD checks that pathname is not a wild pathname
+    WANT-WILD checks that pathname is a wild pathname
+    WILDEN merges the pathname with **/*.*.* if it is not wild
+    WANT-EXISTING checks that a file (or directory) exists with that pathname.
+    ENSURE-DIRECTORIES-EXIST creates any parent directory with ENSURE-DIRECTORIES-EXIST.
+    TRUENAME replaces the pathname by its truename, or errors if not possible.
+    RESOLVE-SYMLINKS replaces the pathname by a variant with symlinks resolvedby RESOLVE-SYMLINKS.
+    TRUENAMIZE uses TRUENAMIZE to resolve as many symlinks as possible.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM:LOCATE-SYSTEM
+  - UIOP/CONFIGURATION:RESOLVE-ABSOLUTE-LOCATION
+  - UIOP/CONFIGURATION:RESOLVE-RELATIVE-LOCATION
+  - [[id:STD/PATH:TMPIZE-PATHNAME][TMPIZE-PATHNAME]]
+  - UIOP/STREAM:CALL-WITH-TEMPORARY-FILE
+  - UIOP/FILESYSTEM:RENAME-FILE-OVERWRITING-TARGET
+  - UIOP/FILESYSTEM:PROBE-FILE*
+  - [[id:SB-EXT:PARSE-NATIVE-NAMESTRING][PARSE-NATIVE-NAMESTRING]]
+  - UIOP/PATHNAME:PARSE-UNIX-NAMESTRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - [[id:COMMON-LISP:FTYPE][FTYPE]]
+:end:
+** DENORMALIZE-PATHNAME-DIRECTORY-COMPONENT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:DENORMALIZE-PATHNAME-DIRECTORY-COMPONENT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DENORMALIZE-PATHNAME-DIRECTORY-COMPONENT names a compiled function:
+  Lambda-list: (DIRECTORY-COMPONENT)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Convert the DIRECTORY-COMPONENT from a CLHS-standard format to a formatusable
+    by the underlying implementation's MAKE-PATHNAME and other primitives
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *WILD-PATH​* :var:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:*WILD-PATH*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*WILD-PATH* names a special variable:
+  Value: #P"**/*.*"
+  Documentation:
+    A pathname object with wildcards for matching any file in any recursivesubdirectory
+
+#+end_example
+
+- Referenced by
+  - ASDF/OUTPUT-TRANSLATIONS:WRAPPING-OUTPUT-TRANSLATIONS
+  - UIOP/PATHNAME:WILDEN
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SPLIT-NAME-TYPE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:SPLIT-NAME-TYPE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SPLIT-NAME-TYPE names a compiled function:
+  Lambda-list: (FILENAME)
+  Derived type: (FUNCTION (T) (VALUES T T &OPTIONAL))
+  Documentation:
+    Split a filename into two values NAME and TYPE that are returned.
+    We assume filename has no directory component.
+    The last . if any separates name and type from from type,
+    except that if there is only one . and it is in first position,
+    the whole filename is the NAME with an empty type.
+    NAME is always a string.
+    For an empty type, *UNSPECIFIC-PATHNAME-TYPE* is returned.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/PATHNAME:PARSE-UNIX-NAMESTRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PHYSICALIZE-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:PHYSICALIZE-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PHYSICALIZE-PATHNAME names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES (OR PATHNAME NULL) &OPTIONAL))
+  Documentation:
+    if X is a logical pathname, use translate-logical-pathname on it.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (FIND-SYSTEM (STRING))
+  - (PERFORM (DEFINE-OP SYSTEM))
+  - ASDF/SESSION:NORMALIZE-NAMESTRING
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+  - UIOP/FILESYSTEM:ENSURE-ALL-DIRECTORIES-EXIST
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/FILESYSTEM:SAFE-FILE-WRITE-DATE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DIRECTORY-PATHNAME-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:DIRECTORY-PATHNAME-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIRECTORY-PATHNAME-P names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Does PATHNAME represent a directory?
+    
+    A directory-pathname is a pathname _without_ a filename. The three
+    ways that the filename components can be missing are for it to be NIL,
+    :UNSPECIFIC or the empty string.
+    
+    Note that this does _not_ check to see that PATHNAME points to an
+    actually-existing directory.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PROCESS-SOURCE-REGISTRY (PATHNAME))
+  - (PROCESS-OUTPUT-TRANSLATIONS (PATHNAME))
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-CENTRAL-REGISTRY-SEARCH
+  - ASDF/SYSTEM-REGISTRY:PROBE-ASD
+  - UIOP/STREAM:DETECT-ENCODING
+  - UIOP/FILESYSTEM:DELETE-DIRECTORY-TREE
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - [[id:UIOP/FILESYSTEM:SUBDIRECTORIES][SUBDIRECTORIES]]
+  - [[id:UIOP/FILESYSTEM:DIRECTORY-FILES][DIRECTORY-FILES]]
+  - UIOP/FILESYSTEM:DIRECTORY-EXISTS-P
+  - UIOP/PATHNAME:SUBPATHP
+  - UIOP/PATHNAME:ENSURE-DIRECTORY-PATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RELATIVIZE-DIRECTORY-COMPONENT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:RELATIVIZE-DIRECTORY-COMPONENT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RELATIVIZE-DIRECTORY-COMPONENT names a compiled function:
+  Lambda-list: (DIRECTORY-COMPONENT)
+  Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Given the DIRECTORY-COMPONENT of a pathname, return an otherwise similarrelative directory component
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/PATHNAME:RELATIVIZE-PATHNAME-DIRECTORY
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PATHNAME-PARENT-DIRECTORY-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:PATHNAME-PARENT-DIRECTORY-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PATHNAME-PARENT-DIRECTORY-PATHNAME names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) (VALUES (OR PATHNAME NULL) &OPTIONAL))
+  Documentation:
+    Returns a new pathname that corresponds to the parent of the currentpathname's directory,
+    i.e. removing one level of depth in the DIRECTORY component. e.g. ifpathname is
+    Unix pathname /foo/bar/baz/file.type then return /foo/bar/
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:SKEL/CORE:FIND-SKELFILE][FIND-SKELFILE]]
+  - SKEL/CORE::FIND-SKEL-FILE
+  - SKEL/CORE::FIND-SKEL-PROJECT-ROOT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ENSURE-ABSOLUTE-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:ENSURE-ABSOLUTE-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENSURE-ABSOLUTE-PATHNAME names a compiled function:
+  Lambda-list: (PATH &OPTIONAL DEFAULTS (ON-ERROR (QUOTE ERROR)))
+  Derived type: (FUNCTION (T &OPTIONAL T T) *)
+  Documentation:
+    Given a pathname designator PATH, return an absolute pathname as specifiedby PATH
+    considering the DEFAULTS, or, if not possible, use CALL-FUNCTION on thespecified ON-ERROR behavior,
+    with a format control-string and other arguments as arguments
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:DETERMINE-SYSTEM-DIRECTORY
+  - (OUTPUT-FILES AROUND (T T))
+  - ASDF/SYSTEM-REGISTRY:PROBE-ASD
+  - ASDF/SESSION:NORMALIZE-NAMESTRING
+  - UIOP/STREAM:CALL-WITH-TEMPORARY-FILE
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/FILESYSTEM:TRUENAMIZE
+  - UIOP/PATHNAME:ENOUGH-PATHNAME
+  - [[id:STD/PATH:ENSURE-ABSOLUTE-PATHNAME][ENSURE-ABSOLUTE-PATHNAME]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-PATHNAME-DEFAULTS :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:WITH-PATHNAME-DEFAULTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-PATHNAME-DEFAULTS names a macro:
+  Lambda-list: ((&OPTIONAL DEFAULTS) &BODY BODY)
+  Documentation:
+    Execute BODY in a context where the *DEFAULT-PATHNAME-DEFAULTS* is asspecified,
+    where leaving the defaults NIL or unspecified means a (NIL-PATHNAME),except
+    on ABCL, Genera and XCL, where it remains unchanged for it doubles ascurrent-directory.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - ASDF/SOURCE-REGISTRY:FLATTEN-SOURCE-REGISTRY
+  - ASDF/SESSION:COMPUTE-FILE-STAMP
+  - ASDF/SESSION:NORMALIZE-NAMESTRING
+  - UIOP/FILESYSTEM:TRUENAME*
+  - [[id:SB-EXT:PARSE-NATIVE-NAMESTRING][PARSE-NATIVE-NAMESTRING]]
+  - UIOP/PATHNAME:SUBPATHP
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** TRANSLATE-PATHNAME* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PATHNAME:TRANSLATE-PATHNAME*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TRANSLATE-PATHNAME* names a compiled function:
+  Lambda-list: (PATH ABSOLUTE-SOURCE DESTINATION &OPTIONAL ROOT SOURCE)
+  Derived type: (FUNCTION (T T T &OPTIONAL T T) *)
+  Documentation:
+    A wrapper around TRANSLATE-PATHNAME to be used by the ASDF output-translations facility.
+    PATH is the pathname to be translated.
+    ABSOLUTE-SOURCE is an absolute pathname to use as source for translate-pathname,
+    DESTINATION is either a function, to be called with PATH and ABSOLUTE-SOURCE,
+    or a relative pathname, to be merged with ROOT and used as destination fortranslate-pathname
+    or an absolute pathname, to be used as destination for translate-pathname.
+    In that last case, if ROOT is non-NIL, PATH is first transformated byDIRECTORIZE-PATHNAME-HOST-DEVICE.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OUTPUT-TRANSLATIONS:APPLY-OUTPUT-TRANSLATIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:

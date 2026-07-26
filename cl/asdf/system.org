@@ -1,0 +1,1231 @@
+#+TITLE: ASDF/SYSTEM
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/SYSTEM
+:PROPERTIES:
+:ID: ASDF/SYSTEM
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+  - [[id:ASDF/UPGRADE][ASDF/UPGRADE]]
+  - [[id:ASDF/SESSION][ASDF/SESSION]]
+  - [[id:ASDF/COMPONENT][ASDF/COMPONENT]]
+
+- dependents
+  - [[id:ASDF/PACKAGE-INFERRED-SYSTEM][ASDF/PACKAGE-INFERRED-SYSTEM]]
+  - [[id:ASDF/SYSTEM-REGISTRY][ASDF/SYSTEM-REGISTRY]]
+  - [[id:ASDF/FIND-COMPONENT][ASDF/FIND-COMPONENT]]
+  - [[id:ASDF/PARSE-DEFSYSTEM][ASDF/PARSE-DEFSYSTEM]]
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+  - [[id:ASDF/CONCATENATE-SOURCE][ASDF/CONCATENATE-SOURCE]]
+  - [[id:ASDF/LISP-ACTION][ASDF/LISP-ACTION]]
+  - [[id:ASDF/BUNDLE][ASDF/BUNDLE]]
+  - [[id:ASDF/BACKWARD-INTERFACE][ASDF/BACKWARD-INTERFACE]]
+  - [[id:ASDF/OPERATE][ASDF/OPERATE]]
+  - [[id:ASDF/PLAN][ASDF/PLAN]]
+  - [[id:ASDF/FORCING][ASDF/FORCING]]
+  - [[id:ASDF/FOOTER][ASDF/FOOTER]]
+  - [[id:ASDF/FIND-SYSTEM][ASDF/FIND-SYSTEM]]
+  - [[id:ASDF/SOURCE-REGISTRY][ASDF/SOURCE-REGISTRY]]
+
+** COERCE-FILENAME :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:COERCE-FILENAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COERCE-FILENAME names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Coerce a system designator NAME into a string suitable as a filenamecomponent.
+    The (current) transformation is to replace characters /:\ each by --,
+    the former being forbidden in a filename component.
+    NB: The onus is unhappily on the user to avoid clashes.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (OUTPUT-FILES (COMPILE-OP SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** DEFINITION-DEPENDENCY-SET :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:DEFINITION-DEPENDENCY-SET
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEFINITION-DEPENDENCY-SET names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (DEFINITION-DEPENDENCY-SET (PROTO-SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF DEFINITION-DEPENDENCY-SET) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF DEFINITION-DEPENDENCY-SET) (T PROTO-SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (RECORD-DEPENDENCY (NULL T T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/SYSTEM:PROTO-SYSTEM
+:end:
+** SYSTEM-HOMEPAGE :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-HOMEPAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-HOMEPAGE names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-HOMEPAGE (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF SYSTEM-HOMEPAGE) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SYSTEM-HOMEPAGE) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** SYSTEM-LICENSE :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-LICENSE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-LICENSE names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-LICENSE (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF SYSTEM-LICENSE) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SYSTEM-LICENSE) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** RESET-SYSTEM-CLASS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:RESET-SYSTEM-CLASS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RESET-SYSTEM-CLASS names a compiled function:
+  Lambda-list: (SYSTEM NEW-CLASS &REST KEYS &KEY &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T T &REST T &KEY &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    Erase any data from a SYSTEM except its basic identity, then reinitializeit
+    based on supplied KEYS.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** FIND-SYSTEM :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:FIND-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FIND-SYSTEM names a generic function:
+  Lambda-list: (SYSTEM &OPTIONAL ERROR-P)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Given a system designator, find the actual corresponding system object.
+    If no system is found, then signal an error if ERROR-P is true (thedefault), or else return NIL.
+    A system designator is usually a string (conventionally all lowercase) or asymbol, designating
+    the same system as its downcased name; it can also be a system object(designating itself).
+  Method-combination: STANDARD
+  Methods:
+    (FIND-SYSTEM (STRING))
+    (FIND-SYSTEM (T))
+    (FIND-SYSTEM (NULL))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PACKAGE-INFERRED-SYSTEM:SYSDEF-PACKAGE-INFERRED-SYSTEM-SEARCH
+  - ASDF/PARSE-DEFSYSTEM:PARSE-COMPONENT-FORM
+  - (FIND-SYSTEM (STRING))
+  - (FIND-SYSTEM (T))
+  - ASDF/OPERATE::RESTART-UPGRADED-ASDF
+  - ASDF/OPERATE:MODULE-PROVIDE-ASDF
+  - (RESOLVE-DEPENDENCY-COMBINATION (T (EQL REQUIRE) T))
+  - (FIND-COMPONENT (STRING T))
+  - (SYSTEM-SOURCE-FILE (SYMBOL))
+  - (SYSTEM-SOURCE-FILE (STRING))
+  - SKEL/COMP/LISP::FIND-ASDF-SYSTEM
+  - (FIND-SYSTEM (T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - NULL
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (SYSTEM &OPTIONAL ERROR-P)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+:end:
+** HOMEPAGE
+:PROPERTIES:
+:ID: ASDF/SYSTEM:HOMEPAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+** ENTRY-POINT
+:PROPERTIES:
+:ID: ASDF/SYSTEM:ENTRY-POINT
+:ALLOC: HEAP DYNAMIC
+:END:
+** SYSTEM-LICENCE :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-LICENCE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-LICENCE names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-LICENCE (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF SYSTEM-LICENCE) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SYSTEM-LICENCE) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** SYSTEM-DEPENDS-ON :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-DEPENDS-ON
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-DEPENDS-ON names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-DEPENDS-ON (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+#+end_example
+
+- Called by
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** SYSTEM-DESCRIPTION :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-DESCRIPTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-DESCRIPTION names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-DESCRIPTION (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF SYSTEM-DESCRIPTION) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SYSTEM-DESCRIPTION) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** SYSTEM-RELATIVE-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-RELATIVE-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-RELATIVE-PATHNAME names a compiled function:
+  Lambda-list: (SYSTEM NAME &KEY TYPE)
+  Derived type: (FUNCTION (T T &KEY (:TYPE T)) *)
+  Documentation:
+    Given a SYSTEM, and a (Unix-style relative path) NAME of a file (ordirectory) of given TYPE,
+    return the absolute pathname of a corresponding file under that system'ssource code pathname.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SYSTEM-SOURCE-FILE :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-SOURCE-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-SOURCE-FILE names a generic function:
+  Lambda-list: (SYSTEM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Return the source file in which system is defined.
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-SOURCE-FILE (BAD-SYSTEM-NAME))
+    (SYSTEM-SOURCE-FILE (SYMBOL))
+    (SYSTEM-SOURCE-FILE (STRING))
+    (SYSTEM-SOURCE-FILE (SYSTEM))
+      Documentation:
+        automatically generated reader method
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+(SETF SYSTEM-SOURCE-FILE) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SYSTEM-SOURCE-FILE) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/BACKWARD-INTERFACE:SYSTEM-DEFINITION-PATHNAME
+  - (PERFORM (DELIVER-ASD-OP SYSTEM))
+  - ASDF/PARSE-DEFSYSTEM:PARSE-COMPONENT-FORM
+  - (BAD-SYSTEM-NAME)
+  - (FIND-SYSTEM (STRING))
+  - ASDF/FIND-SYSTEM:LOCATE-SYSTEM
+  - ASDF/FIND-SYSTEM::CHECK-NOT-OLD-ASDF-SYSTEM
+  - (INPUT-FILES (DEFINE-OP SYSTEM))
+  - (COMPONENT-DEPENDS-ON (OPERATION SYSTEM))
+  - (INPUT-FILES (PREPARE-SOURCE-OP SYSTEM))
+  - (INPUT-FILES (PREPARE-OP SYSTEM))
+  - ASDF/SYSTEM:SYSTEM-SOURCE-DIRECTORY
+  - (SYSTEM-SOURCE-FILE (SYMBOL))
+  - (SYSTEM-SOURCE-FILE (STRING))
+  - [[id:SKEL/COMP/LISP:READ-SYSTEM-DEFINITIONS][READ-SYSTEM-DEFINITIONS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/PARSE-DEFSYSTEM:BAD-SYSTEM-NAME
+:end:
+** SYSTEM-MAINTAINER :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-MAINTAINER
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-MAINTAINER names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-MAINTAINER (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF SYSTEM-MAINTAINER) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SYSTEM-MAINTAINER) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** COMPONENT-BUILD-PATHNAME :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:COMPONENT-BUILD-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-BUILD-PATHNAME names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    The COMPONENT-BUILD-PATHNAME, when defined and not null, specifies the
+    output pathname for the action using the COMPONENT-BUILD-OPERATION.
+    
+    NB: This interface is subject to change. Please contact ASDF maintainers ifyou use it.
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-BUILD-PATHNAME (COMPONENT))
+    (COMPONENT-BUILD-PATHNAME (SYSTEM))
+      Documentation:
+        automatically generated reader method
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+(SETF COMPONENT-BUILD-PATHNAME) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-BUILD-PATHNAME) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/BUNDLE::BUNDLE-OUTPUT-FILES
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** PROTO-SYSTEM :class:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:PROTO-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROTO-SYSTEM names the standard-class #<STANDARD-CLASS ASDF/SYSTEM:PROTO-SYSTEM>:
+  Documentation:
+    PROTO-SYSTEM defines the elements of identity that are preserved when
+    a SYSTEM is redefined and its class is modified.
+  Class precedence-list: ASDF/SYSTEM:PROTO-SYSTEM, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STANDARD-OBJECT
+  Direct subclasses: ASDF/SYSTEM:SYSTEM
+  Direct slots:
+    ASDF/COMPONENT:NAME
+    ASDF/COMPONENT:SOURCE-FILE
+    ASDF/SYSTEM:DEFINITION-DEPENDENCY-LIST
+      Readers: ASDF/SYSTEM:DEFINITION-DEPENDENCY-LIST
+      Writers: (SETF ASDF/SYSTEM:DEFINITION-DEPENDENCY-LIST)
+    ASDF/SYSTEM:DEFINITION-DEPENDENCY-SET
+      Initform: (UIOP/UTILITY:LIST-TO-HASH-SET NIL)
+      Readers: ASDF/SYSTEM:DEFINITION-DEPENDENCY-SET
+      Writers: (SETF ASDF/SYSTEM:DEFINITION-DEPENDENCY-SET)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PRIMARY-SYSTEM-P :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:PRIMARY-SYSTEM-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PRIMARY-SYSTEM-P names a compiled function:
+  Lambda-list: (SYSTEM)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Given a system designator SYSTEM, return T if it designates a primarysystem, or else NIL.
+    Also return NIL if system is neither a SYSTEM nor a string designating one.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SYSTEM-REGISTRY:MARK-COMPONENT-PRELOADED
+  - (FIND-SYSTEM (STRING))
+  - ASDF/FIND-SYSTEM::DEFINITION-DEPENDENCIES-UP-TO-DATE-P
+  - ASDF/SYSTEM:PRIMARY-SYSTEM-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** UNDEFINED-SYSTEM :class:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:UNDEFINED-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNDEFINED-SYSTEM names the standard-class #<STANDARD-CLASS ASDF/SYSTEM:UNDEFINED-SYSTEM>:
+  Documentation:
+    System that was not defined yet.
+  Class precedence-list: ASDF/SYSTEM:UNDEFINED-SYSTEM, ASDF/SYSTEM:SYSTEM,
+                         ASDF/COMPONENT:MODULE, ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:PARENT-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, ASDF/SYSTEM:PROTO-SYSTEM,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/SYSTEM:SYSTEM
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SYSTEM :class:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM names the standard-class #<STANDARD-CLASS ASDF/SYSTEM:SYSTEM>:
+  Documentation:
+    SYSTEM is the base class for top-level components that users may request
+    ASDF to build.
+  Class precedence-list: ASDF/SYSTEM:SYSTEM, ASDF/COMPONENT:MODULE,
+                         ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:PARENT-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, ASDF/SYSTEM:PROTO-SYSTEM,
+                         STANDARD-OBJECT, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:MODULE, ASDF/SYSTEM:PROTO-SYSTEM
+  Direct subclasses: SKEL/COMP/LISP::ASDF-SYSTEM,
+                     ASDF/PACKAGE-INFERRED-SYSTEM:PACKAGE-INFERRED-SYSTEM,
+                     ASDF/BUNDLE:PREBUILT-SYSTEM,
+                     ASDF/BUNDLE:PRECOMPILED-SYSTEM, ASDF/BUNDLE:PROGRAM-SYSTEM,
+                     ASDF/OPERATE:REQUIRE-SYSTEM, ASDF/SYSTEM:UNDEFINED-SYSTEM
+  Direct slots:
+    ASDF/COMPONENT:DESCRIPTION
+      Readers: ASDF/SYSTEM:SYSTEM-DESCRIPTION
+      Writers: (SETF ASDF/SYSTEM:SYSTEM-DESCRIPTION)
+    ASDF/COMPONENT:LONG-DESCRIPTION
+      Readers: ASDF/SYSTEM:SYSTEM-LONG-DESCRIPTION
+      Writers: (SETF ASDF/SYSTEM:SYSTEM-LONG-DESCRIPTION)
+    ASDF/COMPONENT:AUTHOR
+      Initargs: :AUTHOR
+      Readers: ASDF/SYSTEM:SYSTEM-AUTHOR
+      Writers: (SETF ASDF/SYSTEM:SYSTEM-AUTHOR)
+    ASDF/COMPONENT:MAINTAINER
+      Initargs: :MAINTAINER
+      Readers: ASDF/SYSTEM:SYSTEM-MAINTAINER
+      Writers: (SETF ASDF/SYSTEM:SYSTEM-MAINTAINER)
+    ASDF/COMPONENT:LICENCE
+      Initargs: :LICENSE, :LICENCE
+      Readers: ASDF/SYSTEM:SYSTEM-LICENSE, ASDF/SYSTEM:SYSTEM-LICENCE
+      Writers: (SETF ASDF/SYSTEM:SYSTEM-LICENSE), (SETF ASDF/SYSTEM:SYSTEM-LICENCE)
+    ASDF/SYSTEM:HOMEPAGE
+      Initargs: :HOMEPAGE
+      Readers: ASDF/SYSTEM:SYSTEM-HOMEPAGE
+      Writers: (SETF ASDF/SYSTEM:SYSTEM-HOMEPAGE)
+    ASDF/SYSTEM:BUG-TRACKER
+      Initargs: :BUG-TRACKER
+      Readers: ASDF/SYSTEM:SYSTEM-BUG-TRACKER
+      Writers: (SETF ASDF/SYSTEM:SYSTEM-BUG-TRACKER)
+    ASDF/SYSTEM:MAILTO
+      Initargs: :MAILTO
+      Readers: ASDF/SYSTEM:SYSTEM-MAILTO
+      Writers: (SETF ASDF/SYSTEM:SYSTEM-MAILTO)
+    ASDF/SYSTEM:LONG-NAME
+      Initargs: :LONG-NAME
+      Readers: ASDF/SYSTEM:SYSTEM-LONG-NAME
+      Writers: (SETF ASDF/SYSTEM:SYSTEM-LONG-NAME)
+    ASDF/SYSTEM:SOURCE-CONTROL
+      Initargs: :SOURCE-CONTROL
+      Readers: ASDF/SYSTEM:SYSTEM-SOURCE-CONTROL
+      Writers: (SETF ASDF/SYSTEM:SYSTEM-SOURCE-CONTROL)
+    ASDF/SYSTEM:BUILTIN-SYSTEM-P
+      Initargs: :BUILTIN-SYSTEM-P
+      Readers: ASDF/SYSTEM:BUILTIN-SYSTEM-P
+      Writers: (SETF ASDF/SYSTEM:BUILTIN-SYSTEM-P)
+    ASDF/SYSTEM:BUILD-PATHNAME
+      Initargs: :BUILD-PATHNAME
+      Readers: ASDF/SYSTEM:COMPONENT-BUILD-PATHNAME
+      Writers: (SETF ASDF/SYSTEM:COMPONENT-BUILD-PATHNAME)
+    ASDF/SYSTEM:ENTRY-POINT
+      Initargs: :ENTRY-POINT
+      Readers: ASDF/SYSTEM:COMPONENT-ENTRY-POINT
+      Writers: (SETF ASDF/SYSTEM:COMPONENT-ENTRY-POINT)
+    ASDF/COMPONENT:SOURCE-FILE
+      Initargs: :SOURCE-FILE
+      Readers: ASDF/SYSTEM:SYSTEM-SOURCE-FILE
+      Writers: (SETF ASDF/SYSTEM:SYSTEM-SOURCE-FILE)
+    ASDF/COMPONENT:DEFSYSTEM-DEPENDS-ON
+      Initargs: :DEFSYSTEM-DEPENDS-ON
+      Readers: ASDF/SYSTEM:SYSTEM-DEFSYSTEM-DEPENDS-ON
+    ASDF/SYSTEM::DEPENDS-ON
+      Readers: ASDF/SYSTEM:SYSTEM-DEPENDS-ON
+    ASDF/SYSTEM::WEAKLY-DEPENDS-ON
+      Readers: ASDF/SYSTEM:SYSTEM-WEAKLY-DEPENDS-ON
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SYSTEM-DEFSYSTEM-DEPENDS-ON :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-DEFSYSTEM-DEPENDS-ON
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-DEFSYSTEM-DEPENDS-ON names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-DEFSYSTEM-DEPENDS-ON (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** COMPONENT-ENTRY-POINT :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:COMPONENT-ENTRY-POINT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-ENTRY-POINT names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    The COMPONENT-ENTRY-POINT, when defined, specifies what function to call
+    (with no argument) when running an image dumped from the COMPONENT.
+    
+    NB: This interface is subject to change. Please contact ASDF maintainers ifyou use it.
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-ENTRY-POINT (SYSTEM))
+      Documentation:
+        automatically generated reader method
+    (COMPONENT-ENTRY-POINT (COMPONENT))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+(SETF COMPONENT-ENTRY-POINT) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-ENTRY-POINT) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (PERFORM BEFORE (PROGRAM-OP SYSTEM))
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** SYSTEM-BUG-TRACKER :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-BUG-TRACKER
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-BUG-TRACKER names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-BUG-TRACKER (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF SYSTEM-BUG-TRACKER) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SYSTEM-BUG-TRACKER) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** BUILD-PATHNAME
+:PROPERTIES:
+:ID: ASDF/SYSTEM:BUILD-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+** SYSTEM-LONG-NAME :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-LONG-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-LONG-NAME names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-LONG-NAME (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF SYSTEM-LONG-NAME) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SYSTEM-LONG-NAME) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** SOURCE-CONTROL
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SOURCE-CONTROL
+:ALLOC: HEAP DYNAMIC
+:END:
+** SYSTEM-SOURCE-DIRECTORY :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-SOURCE-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-SOURCE-DIRECTORY names a compiled function:
+  Lambda-list: (SYSTEM-DESIGNATOR)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Return a pathname object corresponding to the directory
+    in which the system specification (.asd file) is located.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (COMPONENT-PARENT-PATHNAME (SYSTEM))
+  - (COMPONENT-RELATIVE-PATHNAME (SYSTEM))
+  - (COMPONENT-PATHNAME (SYSTEM))
+  - [[id:STD/DEFSYS:SYSTEM-RELATIVE-PATHNAME][SYSTEM-RELATIVE-PATHNAME]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** BUG-TRACKER
+:PROPERTIES:
+:ID: ASDF/SYSTEM:BUG-TRACKER
+:ALLOC: HEAP DYNAMIC
+:END:
+** SYSTEM-AUTHOR :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-AUTHOR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-AUTHOR names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-AUTHOR (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF SYSTEM-AUTHOR) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SYSTEM-AUTHOR) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** SYSTEM-SOURCE-CONTROL :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-SOURCE-CONTROL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-SOURCE-CONTROL names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-SOURCE-CONTROL (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF SYSTEM-SOURCE-CONTROL) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SYSTEM-SOURCE-CONTROL) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** DEFINITION-DEPENDENCY-LIST :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:DEFINITION-DEPENDENCY-LIST
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEFINITION-DEPENDENCY-LIST names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (DEFINITION-DEPENDENCY-LIST (PROTO-SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF DEFINITION-DEPENDENCY-LIST) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF DEFINITION-DEPENDENCY-LIST) (T PROTO-SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM::DEFINITION-DEPENDENCIES-UP-TO-DATE-P
+  - (COMPONENT-DEPENDS-ON (OPERATION SYSTEM))
+  - (COMPONENT-DEPENDS-ON (DEFINE-OP SYSTEM))
+  - (RECORD-DEPENDENCY (NULL T T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/SYSTEM:PROTO-SYSTEM
+:end:
+** COERCE-NAME :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:COERCE-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COERCE-NAME names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Given a designator for a component NAME, return the name as a string.
+    The designator can be a COMPONENT (designing its name; note that a SYSTEMis a component),
+    a SYMBOL (designing its name, downcased), or a STRING (designing itself).
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PACKAGE-INFERRED-SYSTEM:REGISTER-SYSTEM-PACKAGES
+  - (PERFORM (DELIVER-ASD-OP SYSTEM))
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - ASDF/PARSE-DEFSYSTEM:PARSE-COMPONENT-FORM
+  - ASDF/PARSE-DEFSYSTEM::PARSE-DEPENDENCY-DEF
+  - ASDF/FIND-SYSTEM:LOCATE-SYSTEM
+  - (PERFORM (DEFINE-OP SYSTEM))
+  - (INPUT-FILES (DEFINE-OP SYSTEM))
+  - (PERFORM (OPERATION UNDEFINED-SYSTEM))
+  - (RECORD-DEPENDENCY (NULL T T))
+  - ASDF/SYSTEM-REGISTRY:FIND-SYSTEM-IF-BEING-DEFINED
+  - (FIND-SYSTEM (T))
+  - (PERFORM (LOAD-OP REQUIRE-SYSTEM))
+  - ASDF/OPERATE:ALREADY-LOADED-SYSTEMS
+  - (OPERATE AROUND (T T))
+  - ASDF/FORCING:MAKE-FORCING
+  - ASDF/FORCING::ACTION-OVERRIDE-P
+  - ASDF/FORCING:NORMALIZE-FORCED-NOT-SYSTEMS
+  - ASDF/FORCING:NORMALIZE-FORCED-SYSTEMS
+  - ASDF/FIND-COMPONENT:RESOLVE-DEPENDENCY-NAME
+  - (FIND-COMPONENT (T SYMBOL))
+  - (FIND-COMPONENT (SYMBOL T))
+  - (PRINT-OBJECT (MISSING-COMPONENT-OF-VERSION T))
+  - (PRINT-OBJECT (MISSING-COMPONENT T))
+  - ASDF/SYSTEM-REGISTRY:SEARCH-FOR-SYSTEM-DEFINITION
+  - ASDF/SYSTEM-REGISTRY:CLEAR-SYSTEM
+  - ASDF/SYSTEM-REGISTRY:REGISTER-IMMUTABLE-SYSTEM
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-IMMUTABLE-SYSTEM-SEARCH
+  - ASDF/SYSTEM-REGISTRY:REGISTER-PRELOADED-SYSTEM
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-PRELOADED-SYSTEM-SEARCH
+  - ASDF/SYSTEM-REGISTRY:REGISTERED-SYSTEMS
+  - ASDF/SYSTEM-REGISTRY:REGISTERED-SYSTEM
+  - ASDF/SYSTEM:COERCE-FILENAME
+  - ASDF/SYSTEM:PRIMARY-SYSTEM-P
+  - ASDF/SYSTEM:PRIMARY-SYSTEM-NAME
+  - (NAME (ASDF-SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PRIMARY-SYSTEM-NAME :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:PRIMARY-SYSTEM-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PRIMARY-SYSTEM-NAME names a compiled function:
+  Lambda-list: (SYSTEM-DESIGNATOR)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Given a system designator NAME, return the name of the correspondingprimary system,
+    after which the .asd file is named. That's the first component whendividing the name
+    as a string by / slashes. A component designates its system.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/BACKWARD-INTERFACE:SYSTEM-REGISTERED-P
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-SOURCE-REGISTRY-SEARCH
+  - ASDF/PACKAGE-INFERRED-SYSTEM:SYSDEF-PACKAGE-INFERRED-SYSTEM-SEARCH
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - (FIND-SYSTEM (STRING))
+  - ASDF/FIND-SYSTEM:LOCATE-SYSTEM
+  - ASDF/FIND-SYSTEM:LOAD-ASD
+  - (PERFORM (DEFINE-OP SYSTEM))
+  - (INPUT-FILES (DEFINE-OP SYSTEM))
+  - (COMPONENT-DEPENDS-ON (OPERATION SYSTEM))
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-CENTRAL-REGISTRY-SEARCH
+  - ASDF/SYSTEM:PRIMARY-SYSTEM-NAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** MAILTO
+:PROPERTIES:
+:ID: ASDF/SYSTEM:MAILTO
+:ALLOC: HEAP DYNAMIC
+:END:
+** SYSTEM-MAILTO :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-MAILTO
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-MAILTO names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-MAILTO (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF SYSTEM-MAILTO) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SYSTEM-MAILTO) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** BUILTIN-SYSTEM-P :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:BUILTIN-SYSTEM-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+BUILTIN-SYSTEM-P names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (BUILTIN-SYSTEM-P (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF BUILTIN-SYSTEM-P) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF BUILTIN-SYSTEM-P) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (PERFORM (DELIVER-ASD-OP SYSTEM))
+  - ASDF/BUNDLE:USER-SYSTEM-P
+  - ASDF/PARSE-DEFSYSTEM::NORMALIZE-VERSION
+  - (ACTION-FORCED-P (T T T))
+  - (OUTPUT-FILES (COMPILE-OP SYSTEM))
+  - (INPUT-FILES (COMPILE-OP SYSTEM))
+  - (PERFORM (COMPILE-OP SYSTEM))
+  - ASDF/LISP-ACTION:LISP-COMPILATION-OUTPUT-FILES
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** SYSTEM-WEAKLY-DEPENDS-ON :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-WEAKLY-DEPENDS-ON
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-WEAKLY-DEPENDS-ON names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-WEAKLY-DEPENDS-ON (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:
+** LONG-NAME
+:PROPERTIES:
+:ID: ASDF/SYSTEM:LONG-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+** SYSTEM-LONG-DESCRIPTION :generic:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM:SYSTEM-LONG-DESCRIPTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-LONG-DESCRIPTION names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SYSTEM-LONG-DESCRIPTION (SYSTEM))
+      Documentation:
+        automatically generated reader method
+
+(SETF SYSTEM-LONG-DESCRIPTION) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SYSTEM-LONG-DESCRIPTION) (T SYSTEM))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+:end:

@@ -1,0 +1,487 @@
+#+TITLE: ASDF/LISP-ACTION
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/LISP-ACTION
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+  - [[id:ASDF/UPGRADE][ASDF/UPGRADE]]
+  - [[id:ASDF/SESSION][ASDF/SESSION]]
+  - [[id:ASDF/COMPONENT][ASDF/COMPONENT]]
+  - [[id:ASDF/SYSTEM][ASDF/SYSTEM]]
+  - [[id:ASDF/OPERATION][ASDF/OPERATION]]
+  - [[id:ASDF/ACTION][ASDF/ACTION]]
+
+- dependents
+  - [[id:ASDF/PACKAGE-INFERRED-SYSTEM][ASDF/PACKAGE-INFERRED-SYSTEM]]
+  - [[id:ASDF/PARSE-DEFSYSTEM][ASDF/PARSE-DEFSYSTEM]]
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+  - [[id:ASDF/CONCATENATE-SOURCE][ASDF/CONCATENATE-SOURCE]]
+  - [[id:ASDF/BUNDLE][ASDF/BUNDLE]]
+  - [[id:ASDF/BACKWARD-INTERFACE][ASDF/BACKWARD-INTERFACE]]
+  - [[id:ASDF/OPERATE][ASDF/OPERATE]]
+  - [[id:ASDF/PLAN][ASDF/PLAN]]
+  - [[id:ASDF/FIND-SYSTEM][ASDF/FIND-SYSTEM]]
+
+** COMPILE-OP :class:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:COMPILE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-OP names the standard-class #<STANDARD-CLASS ASDF/LISP-ACTION:COMPILE-OP>:
+  Documentation:
+    Operation for compiling a Lisp file to a FASL
+  Class precedence-list: ASDF/LISP-ACTION:COMPILE-OP,
+                         ASDF/LISP-ACTION:BASIC-COMPILE-OP,
+                         ASDF/ACTION:DOWNWARD-OPERATION,
+                         ASDF/ACTION:SELFWARD-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/LISP-ACTION:BASIC-COMPILE-OP,
+                       ASDF/ACTION:DOWNWARD-OPERATION,
+                       ASDF/ACTION:SELFWARD-OPERATION
+  No subclasses.
+  Direct slots:
+    ASDF/ACTION:SELFWARD-OPERATION
+      Allocation: :CLASS
+      Initform: 'ASDF/LISP-ACTION:PREPARE-OP
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PREPARE-SOURCE-OP :class:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:PREPARE-SOURCE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PREPARE-SOURCE-OP names the standard-class #<STANDARD-CLASS ASDF/LISP-ACTION:PREPARE-SOURCE-OP>:
+  Documentation:
+    Operation for loading the dependencies of a Lisp file as source.
+  Class precedence-list: ASDF/LISP-ACTION:PREPARE-SOURCE-OP,
+                         ASDF/ACTION:UPWARD-OPERATION,
+                         ASDF/ACTION:SIDEWAY-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/ACTION:UPWARD-OPERATION,
+                       ASDF/ACTION:SIDEWAY-OPERATION
+  No subclasses.
+  Direct slots:
+    ASDF/ACTION:SIDEWAY-OPERATION
+      Allocation: :CLASS
+      Initform: 'ASDF/LISP-ACTION:LOAD-SOURCE-OP
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** LISP-COMPILATION-OUTPUT-FILES :compiled:function:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:LISP-COMPILATION-OUTPUT-FILES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LISP-COMPILATION-OUTPUT-FILES names a compiled function:
+  Lambda-list: (O C)
+  Derived type: (FUNCTION (T T) (VALUES CONS &OPTIONAL))
+  Documentation:
+    Compute the output-files for compiling the Lisp file for the specifiedaction (O . C),
+    an OPERATION and a COMPONENT.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (OUTPUT-FILES (BASIC-COMPILE-CONCATENATED-SOURCE-OP SYSTEM))
+  - (OUTPUT-FILES (COMPILE-OP CL-SOURCE-FILE))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** TRY-RECOMPILING
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:TRY-RECOMPILING
+:ALLOC: HEAP DYNAMIC
+:END:
+** BASIC-COMPILE-OP :class:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:BASIC-COMPILE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+BASIC-COMPILE-OP names the standard-class #<STANDARD-CLASS ASDF/LISP-ACTION:BASIC-COMPILE-OP>:
+  Documentation:
+    Base class for operations that apply the compile-time effects of a file
+  Direct superclasses: ASDF/OPERATION:OPERATION
+  Direct subclasses: ASDF/CONCATENATE-SOURCE::BASIC-COMPILE-CONCATENATED-SOURCE-OP,
+                     ASDF/BUNDLE:DELIVER-ASD-OP,
+                     ASDF/BUNDLE:BASIC-COMPILE-BUNDLE-OP,
+                     ASDF/LISP-ACTION:COMPILE-OP
+  Not yet finalized.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PERFORM-LISP-LOAD-SOURCE :compiled:function:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:PERFORM-LISP-LOAD-SOURCE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PERFORM-LISP-LOAD-SOURCE names a compiled function:
+  Lambda-list: (O C)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Perform the loading of a Lisp file as associated to specified action (O .C)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-LOAD-CONCATENATED-SOURCE-OP SYSTEM))
+  - (PERFORM (LOAD-SOURCE-OP CL-SOURCE-FILE))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PERFORM-LISP-LOAD-FASL :compiled:function:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:PERFORM-LISP-LOAD-FASL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PERFORM-LISP-LOAD-FASL names a compiled function:
+  Lambda-list: (O C)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Perform the loading of a FASL associated to specified action (O . C),
+    an OPERATION and a COMPONENT.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-LOAD-COMPILED-CONCATENATED-SOURCE-OP SYSTEM))
+  - (PERFORM (LOAD-OP PRECOMPILED-SYSTEM))
+  - (PERFORM (LOAD-OP COMPILED-FILE))
+  - (PERFORM (LOAD-BUNDLE-OP SYSTEM))
+  - (PERFORM (LOAD-OP CL-SOURCE-FILE))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** LOAD-OP :class:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:LOAD-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD-OP names the standard-class #<STANDARD-CLASS ASDF/LISP-ACTION:LOAD-OP>:
+  Documentation:
+    Operation for loading the compiled FASL for a Lisp file
+  Class precedence-list: ASDF/LISP-ACTION:LOAD-OP,
+                         ASDF/LISP-ACTION:BASIC-LOAD-OP,
+                         ASDF/ACTION:DOWNWARD-OPERATION,
+                         ASDF/ACTION:SELFWARD-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/LISP-ACTION:BASIC-LOAD-OP,
+                       ASDF/ACTION:DOWNWARD-OPERATION,
+                       ASDF/ACTION:SELFWARD-OPERATION
+  No subclasses.
+  Direct slots:
+    ASDF/ACTION:SELFWARD-OPERATION
+      Allocation: :CLASS
+      Initform: '(ASDF/LISP-ACTION:PREPARE-OP ASDF/LISP-ACTION:COMPILE-OP)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** CALL-WITH-AROUND-COMPILE-HOOK :generic:function:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:CALL-WITH-AROUND-COMPILE-HOOK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-AROUND-COMPILE-HOOK names a generic function:
+  Lambda-list: (COMPONENT THUNK)
+  Argument precedence order: (COMPONENT THUNK)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    A method to be called around the PERFORM'ing of actions that apply the
+    compile-time side-effects of file (i.e., COMPILE-OP or LOAD-SOURCE-OP).This method can be used
+    to setup readtables and other variables that control reading,macroexpanding, and compiling, etc.
+    Note that it will NOT be called around the performing of LOAD-OP.
+  Method-combination: STANDARD
+  Methods:
+    (CALL-WITH-AROUND-COMPILE-HOOK (COMPONENT T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/LISP-ACTION:PERFORM-LISP-LOAD-SOURCE
+  - ASDF/LISP-ACTION:PERFORM-LISP-COMPILATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT THUNK)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** CL-SOURCE-FILE :class:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:CL-SOURCE-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CL-SOURCE-FILE names the standard-class #<STANDARD-CLASS ASDF/LISP-ACTION:CL-SOURCE-FILE>:
+  Documentation:
+    Component class for a Common Lisp source file (using type "lisp")
+  Class precedence-list: ASDF/LISP-ACTION:CL-SOURCE-FILE,
+                         ASDF/COMPONENT:SOURCE-FILE,
+                         ASDF/COMPONENT:FILE-COMPONENT,
+                         ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:SOURCE-FILE
+  Direct subclasses: SB-GROVEL:GROVEL-CONSTANTS-FILE,
+                     ASDF/LISP-ACTION:CL-SOURCE-FILE.LSP,
+                     ASDF/LISP-ACTION:CL-SOURCE-FILE.CL
+  Direct slots:
+    TYPE
+      Initform: "lisp"
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PERFORM-LISP-COMPILATION :compiled:function:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:PERFORM-LISP-COMPILATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PERFORM-LISP-COMPILATION names a compiled function:
+  Lambda-list: (O C)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Perform the compilation of the Lisp file associated to the specified action(O . C).
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-COMPILE-CONCATENATED-SOURCE-OP SYSTEM))
+  - (PERFORM (COMPILE-OP CL-SOURCE-FILE))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PREPARE-OP :class:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:PREPARE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PREPARE-OP names the standard-class #<STANDARD-CLASS ASDF/LISP-ACTION:PREPARE-OP>:
+  Documentation:
+    Load the dependencies for the COMPILE-OP or LOAD-OP of a given COMPONENT.
+  Class precedence-list: ASDF/LISP-ACTION:PREPARE-OP,
+                         ASDF/ACTION:UPWARD-OPERATION,
+                         ASDF/ACTION:SIDEWAY-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/ACTION:UPWARD-OPERATION,
+                       ASDF/ACTION:SIDEWAY-OPERATION
+  No subclasses.
+  Direct slots:
+    ASDF/ACTION:SIDEWAY-OPERATION
+      Allocation: :CLASS
+      Initform: 'ASDF/LISP-ACTION:LOAD-OP
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** CL-SOURCE-FILE.LSP :class:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:CL-SOURCE-FILE.LSP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CL-SOURCE-FILE.LSP names the standard-class #<STANDARD-CLASS ASDF/LISP-ACTION:CL-SOURCE-FILE.LSP>:
+  Documentation:
+    Component class for a Common Lisp source file using type "lsp"
+  Class precedence-list: ASDF/LISP-ACTION:CL-SOURCE-FILE.LSP,
+                         ASDF/LISP-ACTION:CL-SOURCE-FILE,
+                         ASDF/COMPONENT:SOURCE-FILE,
+                         ASDF/COMPONENT:FILE-COMPONENT,
+                         ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/LISP-ACTION:CL-SOURCE-FILE
+  No subclasses.
+  Direct slots:
+    TYPE
+      Initform: "lsp"
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** BASIC-LOAD-OP :class:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:BASIC-LOAD-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+BASIC-LOAD-OP names the standard-class #<STANDARD-CLASS ASDF/LISP-ACTION:BASIC-LOAD-OP>:
+  Documentation:
+    Base class for operations that apply the load-time effects of a file
+  Direct superclasses: ASDF/OPERATION:OPERATION
+  Direct subclasses: ASDF/CONCATENATE-SOURCE::BASIC-LOAD-COMPILED-CONCATENATED-SOURCE-OP,
+                     ASDF/CONCATENATE-SOURCE::BASIC-LOAD-CONCATENATED-SOURCE-OP,
+                     ASDF/BUNDLE:LOAD-BUNDLE-OP,
+                     ASDF/LISP-ACTION:LOAD-SOURCE-OP, ASDF/LISP-ACTION:LOAD-OP
+  Not yet finalized.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** LOAD-SOURCE-OP :class:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:LOAD-SOURCE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD-SOURCE-OP names the standard-class #<STANDARD-CLASS ASDF/LISP-ACTION:LOAD-SOURCE-OP>:
+  Documentation:
+    Operation for loading a Lisp file as source.
+  Class precedence-list: ASDF/LISP-ACTION:LOAD-SOURCE-OP,
+                         ASDF/LISP-ACTION:BASIC-LOAD-OP,
+                         ASDF/ACTION:DOWNWARD-OPERATION,
+                         ASDF/ACTION:SELFWARD-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/LISP-ACTION:BASIC-LOAD-OP,
+                       ASDF/ACTION:DOWNWARD-OPERATION,
+                       ASDF/ACTION:SELFWARD-OPERATION
+  No subclasses.
+  Direct slots:
+    ASDF/ACTION:SELFWARD-OPERATION
+      Allocation: :CLASS
+      Initform: 'ASDF/LISP-ACTION:PREPARE-SOURCE-OP
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** TEST-OP :class:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:TEST-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TEST-OP names the standard-class #<STANDARD-CLASS ASDF/LISP-ACTION:TEST-OP>:
+  Documentation:
+    Operation for running the tests for system.
+    If the tests fail, an error will be signaled.
+  Class precedence-list: ASDF/LISP-ACTION:TEST-OP,
+                         ASDF/ACTION:SELFWARD-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/ACTION:SELFWARD-OPERATION
+  No subclasses.
+  Direct slots:
+    ASDF/ACTION:SELFWARD-OPERATION
+      Allocation: :CLASS
+      Initform: 'ASDF/LISP-ACTION:LOAD-OP
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** CL-SOURCE-FILE.CL :class:
+:PROPERTIES:
+:ID: ASDF/LISP-ACTION:CL-SOURCE-FILE.CL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CL-SOURCE-FILE.CL names the standard-class #<STANDARD-CLASS ASDF/LISP-ACTION:CL-SOURCE-FILE.CL>:
+  Documentation:
+    Component class for a Common Lisp source file using type "cl"
+  Class precedence-list: ASDF/LISP-ACTION:CL-SOURCE-FILE.CL,
+                         ASDF/LISP-ACTION:CL-SOURCE-FILE,
+                         ASDF/COMPONENT:SOURCE-FILE,
+                         ASDF/COMPONENT:FILE-COMPONENT,
+                         ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/LISP-ACTION:CL-SOURCE-FILE
+  No subclasses.
+  Direct slots:
+    TYPE
+      Initform: "cl"
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:

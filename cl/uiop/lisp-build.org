@@ -1,0 +1,1232 @@
+#+TITLE: UIOP/LISP-BUILD
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/LISP-BUILD
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD
+:AKA: ASDF/LISP-BUILD
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/PACKAGE][UIOP/PACKAGE]]
+  - [[id:UIOP/UTILITY][UIOP/UTILITY]]
+  - [[id:UIOP/OS][UIOP/OS]]
+  - [[id:UIOP/PATHNAME][UIOP/PATHNAME]]
+  - [[id:UIOP/FILESYSTEM][UIOP/FILESYSTEM]]
+  - [[id:UIOP/STREAM][UIOP/STREAM]]
+  - [[id:UIOP/IMAGE][UIOP/IMAGE]]
+
+- dependents
+  - [[id:UIOP/CONFIGURATION][UIOP/CONFIGURATION]]
+  - [[id:UIOP/BACKWARD-DRIVER][UIOP/BACKWARD-DRIVER]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** *COMPILE-FILE-FAILURE-BEHAVIOUR​* :var:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:*COMPILE-FILE-FAILURE-BEHAVIOUR*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*COMPILE-FILE-FAILURE-BEHAVIOUR* names a special variable:
+  Value: :ERROR
+  Documentation:
+    How should ASDF react if it encounters a failure (per the ANSI spec ofCOMPILE-FILE)
+    when compiling a file, which includes any non-style-warning warning.
+    Valid values are :error, :warn, and :ignore.
+    Note that ASDF ALWAYS raises an error if it fails to create an output filewhen compiling.
+
+#+end_example
+
+- Set by
+  - ((SETF OPERATION-ON-FAILURE) (T OPERATION))
+
+- Bound by
+  - (OPERATE AROUND (T T))
+
+- Referenced by
+  - (OPERATION-ON-FAILURE (OPERATION))
+  - (OPERATE AROUND (T T))
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+  - [[id:STD/COMP:CHECK-LISP-COMPILE-WARNINGS][CHECK-LISP-COMPILE-WARNINGS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *COMPILE-CHECK​* :var:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:*COMPILE-CHECK*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*COMPILE-CHECK* names a special variable:
+  Value: NIL
+  Documentation:
+    A hook for user-defined compile-time invariants
+
+#+end_example
+
+- Referenced by
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CHECK-LISP-COMPILE-WARNINGS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:CHECK-LISP-COMPILE-WARNINGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CHECK-LISP-COMPILE-WARNINGS names a compiled function:
+  Lambda-list: (WARNINGS-P FAILURE-P &OPTIONAL CONTEXT-FORMAT CONTEXT-ARGUMENTS)
+  Derived type: (FUNCTION (T T &OPTIONAL T T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Given the warnings or failures as resulted from COMPILE-FILE or checkingdeferred warnings,
+    raise an error or warning as appropriate
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/COMP:CHECK-DEFERRED-WARNINGS][CHECK-DEFERRED-WARNINGS]]
+  - [[id:STD/COMP:CHECK-LISP-COMPILE-RESULTS][CHECK-LISP-COMPILE-RESULTS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CHECK-DEFERRED-WARNINGS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:CHECK-DEFERRED-WARNINGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CHECK-DEFERRED-WARNINGS names a compiled function:
+  Lambda-list: (FILES &OPTIONAL CONTEXT-FORMAT CONTEXT-ARGUMENTS)
+  Derived type: (FUNCTION (T &OPTIONAL T T) *)
+  Documentation:
+    Given a list of FILES containing deferred warnings saved by CALL-WITH-SAVED-DEFERRED-WARNINGS,
+    re-intern and raise any warnings that are still meaningful.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/LISP-ACTION::PERFORM-LISP-WARNINGS-CHECK
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PROCLAIM-OPTIMIZATION-SETTINGS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:PROCLAIM-OPTIMIZATION-SETTINGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROCLAIM-OPTIMIZATION-SETTINGS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
+  Documentation:
+    Proclaim the optimization settings in *OPTIMIZATION-SETTINGS*
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RESET-DEFERRED-WARNINGS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:RESET-DEFERRED-WARNINGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RESET-DEFERRED-WARNINGS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES (OR NULL (INTEGER 0 0)) &OPTIONAL))
+  Documentation:
+    Reset the set of deferred warnings to be handled at the end of the currentWITH-COMPILATION-UNIT.
+    One of three functions required for deferred-warnings support in ASDF.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/COMP:CALL-WITH-SAVED-DEFERRED-WARNINGS][CALL-WITH-SAVED-DEFERRED-WARNINGS]]
+  - [[id:STD/COMP:CHECK-DEFERRED-WARNINGS][CHECK-DEFERRED-WARNINGS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COMPILE-FILE-TYPE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:COMPILE-FILE-TYPE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-FILE-TYPE names a compiled function:
+  Lambda-list: (&REST KEYS)
+  Derived type: (FUNCTION *
+                 (VALUES
+                  (OR SIMPLE-STRING SB-IMPL::PATTERN
+                      (MEMBER :WILD :UNSPECIFIC NIL))
+                  &OPTIONAL))
+  Documentation:
+    pathname TYPE for lisp FASt Loading files
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/BACKWARD-INTERFACE:ENABLE-ASDF-BINARY-LOCATIONS-COMPATIBILITY
+  - (PERFORM (BASIC-COMPILE-BUNDLE-OP SYSTEM))
+  - ASDF/BUNDLE:BUNDLE-PATHNAME-TYPE
+  - UIOP/LISP-BUILD:COMPILE-FILE-PATHNAME*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COMPILE-CONDITION :condition:class:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:COMPILE-CONDITION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-CONDITION names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/LISP-BUILD:COMPILE-CONDITION>:
+  Class precedence-list: UIOP/LISP-BUILD:COMPILE-CONDITION, CONDITION,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: CONDITION
+  Direct subclasses: UIOP/LISP-BUILD:COMPILE-FAILED-ERROR,
+                     UIOP/LISP-BUILD:COMPILE-FAILED-WARNING,
+                     UIOP/LISP-BUILD:COMPILE-WARNED-ERROR,
+                     UIOP/LISP-BUILD:COMPILE-WARNED-WARNING,
+                     UIOP/LISP-BUILD:COMPILE-FILE-ERROR
+  Direct slots:
+    UIOP/LISP-BUILD::CONTEXT-FORMAT
+      Initargs: :CONTEXT-FORMAT
+      Initform: 'NIL
+      Readers: UIOP/LISP-BUILD::COMPILE-CONDITION-CONTEXT-FORMAT
+    UIOP/LISP-BUILD::CONTEXT-ARGUMENTS
+      Initargs: :CONTEXT-ARGUMENTS
+      Initform: 'NIL
+      Readers: UIOP/LISP-BUILD::COMPILE-CONDITION-CONTEXT-ARGUMENTS
+    UIOP/LISP-BUILD::DESCRIPTION
+      Initargs: :DESCRIPTION
+      Initform: 'NIL
+      Readers: UIOP/LISP-BUILD::COMPILE-CONDITION-DESCRIPTION
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *WARNINGS-FILE-TYPE​* :var:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:*WARNINGS-FILE-TYPE*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*WARNINGS-FILE-TYPE* names a special variable:
+  Value: NIL
+  Documentation:
+    Pathname type for warnings files, or NIL if disabled
+
+#+end_example
+
+- Set by
+  - UIOP/LISP-BUILD:DISABLE-DEFERRED-WARNINGS-CHECK
+  - UIOP/LISP-BUILD:ENABLE-DEFERRED-WARNINGS-CHECK
+
+- Referenced by
+  - (OUTPUT-FILES (COMPILE-OP SYSTEM))
+  - (INPUT-FILES (COMPILE-OP SYSTEM))
+  - (PERFORM (COMPILE-OP SYSTEM))
+  - ASDF/LISP-ACTION:LISP-COMPILATION-OUTPUT-FILES
+  - UIOP/LISP-BUILD:WARNINGS-FILE-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** UNREIFY-DEFERRED-WARNINGS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:UNREIFY-DEFERRED-WARNINGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNREIFY-DEFERRED-WARNINGS names a compiled function:
+  Lambda-list: (REIFIED-DEFERRED-WARNINGS)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    given a S-expression created by REIFY-DEFERRED-WARNINGS, reinstantiate thecorresponding
+    deferred warnings as to be handled at the end of the current WITH-COMPILATION-UNIT.
+    Handle any warning that has been resolved already,
+    such as an undefined function that has been defined since.
+    One of three functions required for deferred-warnings support in ASDF.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/COMP:CHECK-DEFERRED-WARNINGS][CHECK-DEFERRED-WARNINGS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** GET-OPTIMIZATION-SETTINGS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:GET-OPTIMIZATION-SETTINGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GET-OPTIMIZATION-SETTINGS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES LIST &OPTIONAL))
+  Documentation:
+    Get current compiler optimization settings, ready to PROCLAIM again
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LISP-BUILD:PROCLAIM-OPTIMIZATION-SETTINGS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** REIFY-DEFERRED-WARNINGS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:REIFY-DEFERRED-WARNINGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REIFY-DEFERRED-WARNINGS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES LIST &OPTIONAL))
+  Documentation:
+    return a portable S-expression, portably readable and writeable in anyCommon Lisp implementation
+    using READ within a WITH-SAFE-IO-SYNTAX, that represents the warningscurrently deferred by
+    WITH-COMPILATION-UNIT. One of three functions required for deferred-warnings support in ASDF.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/COMP:SAVE-DEFERRED-WARNINGS][SAVE-DEFERRED-WARNINGS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-OPTIMIZATION-SETTINGS :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:WITH-OPTIMIZATION-SETTINGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-OPTIMIZATION-SETTINGS names a macro:
+  Lambda-list: ((&OPTIONAL (SETTINGS *OPTIMIZATION-SETTINGS*)) &BODY BODY)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WARNINGS-FILE-TYPE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:WARNINGS-FILE-TYPE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WARNINGS-FILE-TYPE names a compiled function:
+  Lambda-list: (&OPTIONAL IMPLEMENTATION-TYPE)
+  Derived type: (FUNCTION (&OPTIONAL T)
+                 (VALUES
+                  (OR NULL (SIMPLE-BASE-STRING 12) (SIMPLE-BASE-STRING 13)
+                      (SIMPLE-BASE-STRING 14) (SIMPLE-BASE-STRING 16))
+                  &OPTIONAL))
+  Documentation:
+    The pathname type for warnings files on given IMPLEMENTATION-TYPE,
+    where NIL designates the current one
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/LISP-ACTION:PERFORM-LISP-COMPILATION
+  - UIOP/LISP-BUILD:WARNINGS-FILE-P
+  - UIOP/LISP-BUILD:ENABLE-DEFERRED-WARNINGS-CHECK
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LOAD* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:LOAD*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD* names a compiled function:
+  Lambda-list: (X &REST KEYS &KEY &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    Portable wrapper around LOAD that properly handles loading from a stream.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (DEFINE-OP SYSTEM))
+  - ASDF/LISP-ACTION:PERFORM-LISP-LOAD-SOURCE
+  - ASDF/LISP-ACTION:PERFORM-LISP-LOAD-FASL
+  - UIOP/LISP-BUILD:LOAD-FROM-STRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COMPILE-WARNED-WARNING :condition:class:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:COMPILE-WARNED-WARNING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-WARNED-WARNING names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/LISP-BUILD:COMPILE-WARNED-WARNING>:
+  Class precedence-list: UIOP/LISP-BUILD:COMPILE-WARNED-WARNING,
+                         UIOP/LISP-BUILD:COMPILE-CONDITION, WARNING, CONDITION,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: UIOP/LISP-BUILD:COMPILE-CONDITION, WARNING
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WARNINGS-FILE-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:WARNINGS-FILE-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WARNINGS-FILE-P names a compiled function:
+  Lambda-list: (FILE &OPTIONAL IMPLEMENTATION-TYPE)
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Is FILE a saved warnings file for the given IMPLEMENTATION-TYPE?
+    If that given type is NIL, use the currently configured *WARNINGS-FILE-TYPE* instead.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (INPUT-FILES (COMPILE-OP SYSTEM))
+  - ASDF/LISP-ACTION::PERFORM-LISP-WARNINGS-CHECK
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-SAVED-DEFERRED-WARNINGS :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:WITH-SAVED-DEFERRED-WARNINGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-SAVED-DEFERRED-WARNINGS names a macro:
+  Lambda-list: ((WARNINGS-FILE &KEY SOURCE-NAMESTRING) &BODY BODY)
+  Documentation:
+    Trivial syntax for CALL-WITH-SAVED-DEFERRED-WARNINGS
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COMPILE-FILE* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:COMPILE-FILE*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-FILE* names a compiled function:
+  Lambda-list: (INPUT-FILE &REST KEYS &KEY (COMPILE-CHECK *COMPILE-CHECK*)
+                OUTPUT-FILE WARNINGS-FILE EMIT-CFASL &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION
+                 (T &REST T &KEY (:COMPILE-CHECK T) (:OUTPUT-FILE T)
+                  (:WARNINGS-FILE T) (:EMIT-CFASL T) &ALLOW-OTHER-KEYS)
+                 (VALUES (OR PATHNAME NULL) T T &OPTIONAL))
+  Documentation:
+    This function provides a portable wrapper around COMPILE-FILE.
+    It ensures that the OUTPUT-FILE value is only returned and
+    the file only actually created if the compilation was successful,
+    even though your implementation may not do that. It also checks an optional
+    user-provided consistency function COMPILE-CHECK to determine success;
+    it will call this function if not NIL at the end of the compilation
+    with the arguments sent to COMPILE-FILE*, except with :OUTPUT-FILE TMP-FILE
+    where TMP-FILE is the name of a temporary output-file.
+    It also checks two flags (with legacy british spelling from ASDF1),
+    *COMPILE-FILE-FAILURE-BEHAVIOUR* and *COMPILE-FILE-WARNINGS-BEHAVIOUR*
+    with appropriate implementation-dependent defaults,
+    and if a failure (respectively warnings) are reported by COMPILE-FILE,
+    it will consider that an error unless the respective behaviour flag
+    is one of :SUCCESS :WARN :IGNORE.
+    If WARNINGS-FILE is defined, deferred warnings are saved to that file.
+    On ECL or MKCL, it creates both the linkable object and loadable faslfiles.
+    On implementations that erroneously do not recognize standard keywordarguments,
+    it will filter them appropriately.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (COMPILE-OP GROVEL-CONSTANTS-FILE))
+  - ASDF/LISP-ACTION:PERFORM-LISP-COMPILATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-MUFFLED-COMPILER-CONDITIONS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:CALL-WITH-MUFFLED-COMPILER-CONDITIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-MUFFLED-COMPILER-CONDITIONS names a compiled function:
+  Lambda-list: (THUNK)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Call given THUNK in a context where uninteresting conditions and compilerconditions are muffled
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *OPTIMIZATION-SETTINGS​* :var:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:*OPTIMIZATION-SETTINGS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*OPTIMIZATION-SETTINGS* names a special variable:
+  Value: NIL
+  Documentation:
+    Optimization settings to be used by PROCLAIM-OPTIMIZATION-SETTINGS
+
+#+end_example
+
+- Referenced by
+  - (WITH-OPTIMIZATION-SETTINGS)
+  - UIOP/LISP-BUILD:PROCLAIM-OPTIMIZATION-SETTINGS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-MUFFLED-LOADER-CONDITIONS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:CALL-WITH-MUFFLED-LOADER-CONDITIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-MUFFLED-LOADER-CONDITIONS names a compiled function:
+  Lambda-list: (THUNK)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Call given THUNK in a context where uninteresting conditions and loaderconditions are muffled
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LISP-BUILD:LOAD*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DISABLE-DEFERRED-WARNINGS-CHECK :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:DISABLE-DEFERRED-WARNINGS-CHECK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DISABLE-DEFERRED-WARNINGS-CHECK names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES NULL &OPTIONAL))
+  Documentation:
+    Disable the saving of deferred warnings
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *UNINTERESTING-CONDITIONS​* :var:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:*UNINTERESTING-CONDITIONS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*UNINTERESTING-CONDITIONS* names a special variable:
+  Value: NIL
+  Documentation:
+    Conditions that may be skipped while compiling or loading Lisp code.
+
+#+end_example
+
+- Referenced by
+  - UIOP/LISP-BUILD:CALL-WITH-MUFFLED-LOADER-CONDITIONS
+  - UIOP/LISP-BUILD:CALL-WITH-MUFFLED-COMPILER-CONDITIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COMPILE-FILE-PATHNAME* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:COMPILE-FILE-PATHNAME*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-FILE-PATHNAME* names a compiled function:
+  Lambda-list: (INPUT-FILE &REST KEYS &KEY OUTPUT-FILE &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY (:OUTPUT-FILE T) &ALLOW-OTHER-KEYS)*)
+  Documentation:
+    Variant of COMPILE-FILE-PATHNAME that works well with COMPILE-FILE*
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *PREVIOUS-OPTIMIZATION-SETTINGS​* :var:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:*PREVIOUS-OPTIMIZATION-SETTINGS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*PREVIOUS-OPTIMIZATION-SETTINGS* names a special variable:
+  Value: NIL
+  Documentation:
+    Optimization settings saved by PROCLAIM-OPTIMIZATION-SETTINGS
+
+#+end_example
+
+- Set by
+  - UIOP/LISP-BUILD:PROCLAIM-OPTIMIZATION-SETTINGS
+
+- Referenced by
+  - UIOP/LISP-BUILD:PROCLAIM-OPTIMIZATION-SETTINGS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LISPIZE-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:LISPIZE-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LISPIZE-PATHNAME names a compiled function:
+  Lambda-list: (INPUT-FILE)
+  Derived type: (FUNCTION (T) (VALUES PATHNAME &OPTIONAL))
+  Documentation:
+    From a INPUT-FILE pathname, return a corresponding .lisp source pathname
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *UNINTERESTING-LOADER-CONDITIONS​* :var:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:*UNINTERESTING-LOADER-CONDITIONS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*UNINTERESTING-LOADER-CONDITIONS* names a special variable:
+  Value: ("Overwriting already existing readtable ~S."
+          #(#:FINALIZERS-OFF-WARNING :ASDF-FINALIZERS))
+  Documentation:
+    Additional conditions that may be skipped while loading Lisp code.
+
+#+end_example
+
+- Referenced by
+  - UIOP/LISP-BUILD:CALL-WITH-MUFFLED-LOADER-CONDITIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SAVE-DEFERRED-WARNINGS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:SAVE-DEFERRED-WARNINGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SAVE-DEFERRED-WARNINGS names a compiled function:
+  Lambda-list: (WARNINGS-FILE)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Save forward reference conditions so they may be issued at a latter time,
+    possibly in a different process.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/COMP:CALL-WITH-SAVED-DEFERRED-WARNINGS][CALL-WITH-SAVED-DEFERRED-WARNINGS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *COMPILE-FILE-WARNINGS-BEHAVIOUR​* :var:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:*COMPILE-FILE-WARNINGS-BEHAVIOUR*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*COMPILE-FILE-WARNINGS-BEHAVIOUR* names a special variable:
+  Value: :WARN
+  Documentation:
+    How should ASDF react if it encounters a warning when compiling a file?
+    Valid values are :error, :warn, and :ignore.
+
+#+end_example
+
+- Set by
+  - ((SETF OPERATION-ON-WARNINGS) (T OPERATION))
+
+- Bound by
+  - (OPERATE AROUND (T T))
+
+- Referenced by
+  - (OPERATION-ON-WARNINGS (OPERATION))
+  - (OPERATE AROUND (T T))
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+  - [[id:STD/COMP:CHECK-LISP-COMPILE-WARNINGS][CHECK-LISP-COMPILE-WARNINGS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COMPILE-FILE-ERROR :condition:class:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:COMPILE-FILE-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-FILE-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/LISP-BUILD:COMPILE-FILE-ERROR>:
+  Class precedence-list: UIOP/LISP-BUILD:COMPILE-FILE-ERROR,
+                         UIOP/LISP-BUILD:COMPILE-CONDITION, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: UIOP/LISP-BUILD:COMPILE-CONDITION, ERROR
+  Direct subclasses: SB-GROVEL::A-DOT-OUT-FAILED, SB-GROVEL::C-COMPILE-FAILED
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COMPILE-FAILED-ERROR :condition:class:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:COMPILE-FAILED-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-FAILED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/LISP-BUILD:COMPILE-FAILED-ERROR>:
+  Class precedence-list: UIOP/LISP-BUILD:COMPILE-FAILED-ERROR,
+                         UIOP/LISP-BUILD:COMPILE-CONDITION, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: UIOP/LISP-BUILD:COMPILE-CONDITION, ERROR
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COMBINE-FASLS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:COMBINE-FASLS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMBINE-FASLS names a compiled function:
+  Lambda-list: (INPUTS OUTPUT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Combine a list of FASLs INPUTS into a single FASL OUTPUT
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-COMPILE-BUNDLE-OP SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LOAD-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:LOAD-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD-PATHNAME names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES (OR PATHNAME NULL) &OPTIONAL))
+  Documentation:
+    Portably return the LOAD-PATHNAME of the current source file or fasl
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - ASDF/PARSE-DEFSYSTEM:DETERMINE-SYSTEM-DIRECTORY
+  - UIOP/CONFIGURATION:RESOLVE-ABSOLUTE-LOCATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LOAD-FROM-STRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:LOAD-FROM-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD-FROM-STRING names a compiled function:
+  Lambda-list: (STRING)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Portably read and evaluate forms from a STRING.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *BASE-BUILD-DIRECTORY​* :var:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:*BASE-BUILD-DIRECTORY*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*BASE-BUILD-DIRECTORY* names a special variable:
+  Value: NIL
+  Documentation:
+    When set to a non-null value, it should be an absolute directory pathname,
+    which will serve as the *DEFAULT-PATHNAME-DEFAULTS* around a COMPILE-FILE,
+    what more while the input-file is shortened if possible to ENOUGH-PATHNAMErelative to it.
+    This can help you produce more deterministic output for FASLs.
+
+#+end_example
+
+- Referenced by
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CURRENT-LISP-FILE-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:CURRENT-LISP-FILE-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CURRENT-LISP-FILE-PATHNAME names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES (OR PATHNAME NULL) &OPTIONAL))
+  Documentation:
+    Portably return the PATHNAME of the current Lisp source file being compiledor loaded
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-AROUND-HOOK :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:CALL-AROUND-HOOK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-AROUND-HOOK names a compiled function:
+  Lambda-list: (HOOK FUNCTION)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Call a HOOK around the execution of FUNCTION
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (CALL-WITH-AROUND-COMPILE-HOOK (COMPONENT T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *USUAL-UNINTERESTING-CONDITIONS​* :var:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:*USUAL-UNINTERESTING-CONDITIONS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*USUAL-UNINTERESTING-CONDITIONS* names a special variable:
+  Value: (SB-INT:SIMPLE-COMPILER-NOTE
+          "&OPTIONAL and &KEY found in the same lambda list: ~S"
+          SB-KERNEL:LEXICAL-ENVIRONMENT-TOO-COMPLEX
+          SB-KERNEL:UNDEFINED-ALIEN-STYLE-WARNING
+          UIOP/LISP-BUILD:SB-GROVEL-UNKNOWN-CONSTANT-CONDITION
+          IMPLICIT-GENERIC-FUNCTION-WARNING SB-INT:PACKAGE-AT-VARIANCE
+          SB-KERNEL:UNINTERESTING-REDEFINITION
+          SB-KERNEL:REDEFINITION-WITH-DEFUN
+          SB-KERNEL:REDEFINITION-WITH-DEFGENERIC
+          SB-KERNEL:REDEFINITION-WITH-DEFMETHOD
+          SB-KERNEL:REDEFINITION-WITH-DEFMACRO
+          "No generic function ~S present when encountering macroexpansion ofdefmethod. Assuming it will be an instance of standard-generic-function.")
+  Documentation:
+    A suggested value to which to set or bind *uninteresting-conditions*.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SB-GROVEL-UNKNOWN-CONSTANT-CONDITION :condition:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:SB-GROVEL-UNKNOWN-CONSTANT-CONDITION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SB-GROVEL-UNKNOWN-CONSTANT-CONDITION names a type-specifier:
+  Lambda-list: ()
+  Expansion: (AND STYLE-WARNING
+                  (SATISFIES
+                   UIOP/LISP-BUILD::SB-GROVEL-UNKNOWN-CONSTANT-CONDITION-P))
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-MUFFLED-COMPILER-CONDITIONS :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:WITH-MUFFLED-COMPILER-CONDITIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-MUFFLED-COMPILER-CONDITIONS names a macro:
+  Lambda-list: ((&OPTIONAL) &BODY BODY)
+  Documentation:
+    Trivial syntax for CALL-WITH-MUFFLED-COMPILER-CONDITIONS
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ENABLE-DEFERRED-WARNINGS-CHECK :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:ENABLE-DEFERRED-WARNINGS-CHECK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENABLE-DEFERRED-WARNINGS-CHECK names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
+  Documentation:
+    Enable the saving of deferred warnings
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** UNREIFY-SIMPLE-SEXP :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:UNREIFY-SIMPLE-SEXP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNREIFY-SIMPLE-SEXP names a compiled function:
+  Lambda-list: (SEXP)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Given the portable output of REIFY-SIMPLE-SEXP, return the simple SEXP itrepresents
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LISP-BUILD:UNREIFY-SIMPLE-SEXP
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** REIFY-SIMPLE-SEXP :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:REIFY-SIMPLE-SEXP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REIFY-SIMPLE-SEXP names a compiled function:
+  Lambda-list: (SEXP)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Given a simple SEXP, return a representation of it as a portable SEXP.
+    Simple means made of symbols, numbers, characters, simple-strings,pathnames, cons cells.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LISP-BUILD:REIFY-SIMPLE-SEXP
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-MUFFLED-LOADER-CONDITIONS :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:WITH-MUFFLED-LOADER-CONDITIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-MUFFLED-LOADER-CONDITIONS names a macro:
+  Lambda-list: ((&OPTIONAL) &BODY BODY)
+  Documentation:
+    Trivial syntax for CALL-WITH-MUFFLED-LOADER-CONDITIONS
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - UIOP/LISP-BUILD:LOAD*
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CHECK-LISP-COMPILE-RESULTS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:CHECK-LISP-COMPILE-RESULTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CHECK-LISP-COMPILE-RESULTS names a compiled function:
+  Lambda-list: (OUTPUT WARNINGS-P FAILURE-P &OPTIONAL CONTEXT-FORMAT
+                CONTEXT-ARGUMENTS)
+  Derived type: (FUNCTION (T T T &OPTIONAL T T) *)
+  Documentation:
+    Given the results of COMPILE-FILE, raise an error or warning as appropriate
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (COMPILE-OP GROVEL-CONSTANTS-FILE))
+  - ASDF/LISP-ACTION:PERFORM-LISP-COMPILATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COMPILE-FAILED-WARNING :condition:class:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:COMPILE-FAILED-WARNING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-FAILED-WARNING names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/LISP-BUILD:COMPILE-FAILED-WARNING>:
+  Class precedence-list: UIOP/LISP-BUILD:COMPILE-FAILED-WARNING,
+                         UIOP/LISP-BUILD:COMPILE-CONDITION, WARNING, CONDITION,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: UIOP/LISP-BUILD:COMPILE-CONDITION, WARNING
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COMPILE-WARNED-ERROR :condition:class:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:COMPILE-WARNED-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-WARNED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/LISP-BUILD:COMPILE-WARNED-ERROR>:
+  Class precedence-list: UIOP/LISP-BUILD:COMPILE-WARNED-ERROR,
+                         UIOP/LISP-BUILD:COMPILE-CONDITION, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: UIOP/LISP-BUILD:COMPILE-CONDITION, ERROR
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *UNINTERESTING-COMPILER-CONDITIONS​* :var:
+:PROPERTIES:
+:ID: UIOP/LISP-BUILD:*UNINTERESTING-COMPILER-CONDITIONS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*UNINTERESTING-COMPILER-CONDITIONS* names a special variable:
+  Value: NIL
+  Documentation:
+    Additional conditions that may be skipped while compiling Lisp code.
+
+#+end_example
+
+- Referenced by
+  - UIOP/LISP-BUILD:CALL-WITH-MUFFLED-COMPILER-CONDITIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:

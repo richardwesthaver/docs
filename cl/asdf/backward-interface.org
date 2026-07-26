@@ -1,0 +1,502 @@
+#+TITLE: ASDF/BACKWARD-INTERFACE
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/BACKWARD-INTERFACE
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+  - [[id:ASDF/UPGRADE][ASDF/UPGRADE]]
+  - [[id:ASDF/SESSION][ASDF/SESSION]]
+  - [[id:ASDF/COMPONENT][ASDF/COMPONENT]]
+  - [[id:ASDF/SYSTEM][ASDF/SYSTEM]]
+  - [[id:ASDF/SYSTEM-REGISTRY][ASDF/SYSTEM-REGISTRY]]
+  - [[id:ASDF/OPERATION][ASDF/OPERATION]]
+  - [[id:ASDF/ACTION][ASDF/ACTION]]
+  - [[id:ASDF/LISP-ACTION][ASDF/LISP-ACTION]]
+  - [[id:ASDF/PLAN][ASDF/PLAN]]
+  - [[id:ASDF/OPERATE][ASDF/OPERATE]]
+  - [[id:ASDF/FIND-SYSTEM][ASDF/FIND-SYSTEM]]
+  - [[id:ASDF/PARSE-DEFSYSTEM][ASDF/PARSE-DEFSYSTEM]]
+  - [[id:ASDF/OUTPUT-TRANSLATIONS][ASDF/OUTPUT-TRANSLATIONS]]
+  - [[id:ASDF/BUNDLE][ASDF/BUNDLE]]
+
+- dependents
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+
+** RUN-SHELL-COMMAND :compiled:cmacro:function:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:RUN-SHELL-COMMAND
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RUN-SHELL-COMMAND names a compiled function:
+  Lambda-list: (CONTROL-STRING &REST ARGS)
+  Derived type: (FUNCTION (T &REST T) (VALUES (UNSIGNED-BYTE 8) &OPTIONAL))
+  Documentation:
+    PLEASE DO NOT USE. This function is not just DEPRECATED, but alsodysfunctional.
+    Please use UIOP:RUN-PROGRAM instead.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+RUN-SHELL-COMMAND has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPILE-WARNED :condition:class:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:COMPILE-WARNED
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-WARNED names the condition-class #<SB-PCL::CONDITION-CLASS ASDF/BACKWARD-INTERFACE:COMPILE-WARNED>:
+  Class precedence-list: ASDF/BACKWARD-INTERFACE:COMPILE-WARNED,
+                         ASDF/BACKWARD-INTERFACE:COMPILE-ERROR,
+                         ASDF/BACKWARD-INTERFACE:OPERATION-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BACKWARD-INTERFACE:COMPILE-ERROR
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** OPERATION-ON-FAILURE :generic:function:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:OPERATION-ON-FAILURE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OPERATION-ON-FAILURE names a generic function:
+  Lambda-list: (OPERATION)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    DEPRECATED. Please use UIOP:*COMPILE-FILE-FAILURE-BEHAVIOUR* instead.
+  Method-combination: STANDARD
+  Methods:
+    (OPERATION-ON-FAILURE (OPERATION))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+(SETF OPERATION-ON-FAILURE) names a generic function:
+  Lambda-list: (X OPERATION)
+  Argument precedence order: (X OPERATION)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    DEPRECATED. Please SETF UIOP:*COMPILE-FILE-FAILURE-BEHAVIOUR* instead.
+  Method-combination: STANDARD
+  Methods:
+    ((SETF OPERATION-ON-FAILURE) (T OPERATION))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+:end:
+** OPERATION-ON-WARNINGS :generic:function:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:OPERATION-ON-WARNINGS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OPERATION-ON-WARNINGS names a generic function:
+  Lambda-list: (OPERATION)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    DEPRECATED. Please use UIOP:*COMPILE-FILE-WARNINGS-BEHAVIOUR* instead.
+  Method-combination: STANDARD
+  Methods:
+    (OPERATION-ON-WARNINGS (OPERATION))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+(SETF OPERATION-ON-WARNINGS) names a generic function:
+  Lambda-list: (X OPERATION)
+  Argument precedence order: (X OPERATION)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    DEPRECATED. Please SETF UIOP:*COMPILE-FILE-WARNINGS-BEHAVIOUR* instead.
+  Method-combination: STANDARD
+  Methods:
+    ((SETF OPERATION-ON-WARNINGS) (T OPERATION))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+:end:
+** ENABLE-ASDF-BINARY-LOCATIONS-COMPATIBILITY :compiled:cmacro:function:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:ENABLE-ASDF-BINARY-LOCATIONS-COMPATIBILITY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENABLE-ASDF-BINARY-LOCATIONS-COMPATIBILITY names a compiled function:
+  Lambda-list: (&KEY (CENTRALIZE-LISP-BINARIES NIL)
+                (DEFAULT-TOPLEVEL-DIRECTORY
+                 (SUBPATHNAME (USER-HOMEDIR-PATHNAME) .fasls/))
+                (INCLUDE-PER-USER-INFORMATION NIL)
+                (MAP-ALL-SOURCE-FILES (OR NIL)) (SOURCE-TO-TARGET-MAPPINGS NIL)
+                (FILE-TYPES
+                 `(,(COMPILE-FILE-TYPE) build-report cfasl sbcl-warnings)))
+  Derived type: (FUNCTION
+                 (&KEY (:CENTRALIZE-LISP-BINARIES T)
+                  (:DEFAULT-TOPLEVEL-DIRECTORY T)
+                  (:INCLUDE-PER-USER-INFORMATION T) (:MAP-ALL-SOURCE-FILES T)
+                  (:SOURCE-TO-TARGET-MAPPINGS T) (:FILE-TYPES T))
+                 *)
+  Documentation:
+    DEPRECATED. Use asdf-output-translations instead.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+ENABLE-ASDF-BINARY-LOCATIONS-COMPATIBILITY has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPILE-ERROR :condition:class:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:COMPILE-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS ASDF/BACKWARD-INTERFACE:COMPILE-ERROR>:
+  Class precedence-list: ASDF/BACKWARD-INTERFACE:COMPILE-ERROR,
+                         ASDF/BACKWARD-INTERFACE:OPERATION-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BACKWARD-INTERFACE:OPERATION-ERROR
+  Direct subclasses: ASDF/BACKWARD-INTERFACE:COMPILE-WARNED,
+                     ASDF/BACKWARD-INTERFACE:COMPILE-FAILED
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ON-FAILURE
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:ON-FAILURE
+:ALLOC: HEAP DYNAMIC
+:END:
+** SYSTEM-REGISTERED-P :compiled:cmacro:function:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:SYSTEM-REGISTERED-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-REGISTERED-P names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
+  Documentation:
+    DEPRECATED. Return a generalized boolean that is true if a system of givenNAME was registered already.
+    NAME is a system designator, to be normalized by COERCE-NAME.
+    The value returned if true is a pair of a timestamp and a system object.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+SYSTEM-REGISTERED-P has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SYSTEM-DEFINITION-PATHNAME :compiled:cmacro:function:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:SYSTEM-DEFINITION-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-DEFINITION-PATHNAME names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    DEPRECATED. This function used to expose ASDF internals with subtle
+    differences with respect to user expectations, that have been refactored
+    away since. We recommend you use ASDF:SYSTEM-SOURCE-FILE instead for a
+    mostly compatible replacement that we're supporting, or even
+    ASDF:SYSTEM-SOURCE-DIRECTORY or ASDF:SYSTEM-RELATIVE-PATHNAME
+    if that's whay you mean.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+SYSTEM-DEFINITION-PATHNAME has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPILE-FAILED :condition:class:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:COMPILE-FAILED
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPILE-FAILED names the condition-class #<SB-PCL::CONDITION-CLASS ASDF/BACKWARD-INTERFACE:COMPILE-FAILED>:
+  Class precedence-list: ASDF/BACKWARD-INTERFACE:COMPILE-FAILED,
+                         ASDF/BACKWARD-INTERFACE:COMPILE-ERROR,
+                         ASDF/BACKWARD-INTERFACE:OPERATION-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/BACKWARD-INTERFACE:COMPILE-ERROR
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ERROR-COMPONENT :generic:function:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:ERROR-COMPONENT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ERROR-COMPONENT names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (ERROR-COMPONENT (OPERATION-ERROR))
+
+#+end_example
+
+- Called by
+  - (OPERATION-ERROR)
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/BACKWARD-INTERFACE:OPERATION-ERROR
+:end:
+** *ASDF-VERBOSE​* :var:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:*ASDF-VERBOSE*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*ASDF-VERBOSE* names a special variable:
+  Value: NIL
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPONENT-LOAD-DEPENDENCIES :compiled:cmacro:function:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:COMPONENT-LOAD-DEPENDENCIES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-LOAD-DEPENDENCIES names a compiled function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    DEPRECATED. Please use COMPONENT-SIDEWAY-DEPENDENCIES instead; or better,
+    define your operations with proper use of SIDEWAY-OPERATION, SELFWARD-OPERATION,
+    or define methods on PREPARE-OP, etc.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+COMPONENT-LOAD-DEPENDENCIES has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ON-WARNINGS
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:ON-WARNINGS
+:ALLOC: HEAP DYNAMIC
+:END:
+** OPERATION-ERROR :condition:class:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:OPERATION-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OPERATION-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS ASDF/BACKWARD-INTERFACE:OPERATION-ERROR>:
+  Class precedence-list: ASDF/BACKWARD-INTERFACE:OPERATION-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ERROR
+  Direct subclasses: ASDF/BACKWARD-INTERFACE:COMPILE-ERROR
+  Direct slots:
+    ASDF/COMPONENT:COMPONENT
+      Initargs: :COMPONENT
+      Readers: ASDF/BACKWARD-INTERFACE:ERROR-COMPONENT
+    ASDF/OPERATION:OPERATION
+      Initargs: :OPERATION
+      Readers: ASDF/BACKWARD-INTERFACE:ERROR-OPERATION
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** TRAVERSE :generic:cmacro:function:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:TRAVERSE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TRAVERSE names a generic function:
+  Lambda-list: (OPERATION COMPONENT &KEY &ALLOW-OTHER-KEYS)
+  Argument precedence order: (OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T &KEY (:PLAN-CLASS T) &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    DEPRECATED. Use MAKE-PLAN and PLAN-ACTIONS, or REQUIRED-COMPONENTS,
+    or some other supported interface instead.
+    
+    Generate and return a plan for performing OPERATION on COMPONENT.
+    
+    The plan returned is a list of dotted-pairs. Each pair is the CONS
+    of ASDF operation object and a COMPONENT object. The pairs will be
+    processed in order by OPERATE.
+  Method-combination: STANDARD
+  Methods:
+    (TRAVERSE (OPERATION COMPONENT))
+    (TRAVERSE (OPERATION T))
+    (TRAVERSE (SYMBOL T))
+    (TRAVERSE (STRING T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+TRAVERSE has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (TRAVERSE (OPERATION T))
+  - (TRAVERSE (SYMBOL T))
+  - (TRAVERSE (STRING T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT &KEY &ALLOW-OTHER-KEYS)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/OPERATION:OPERATION
+:end:
+** ERROR-OPERATION :generic:function:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:ERROR-OPERATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ERROR-OPERATION names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (ERROR-OPERATION (OPERATION-ERROR))
+
+#+end_example
+
+- Called by
+  - (OPERATION-ERROR)
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/BACKWARD-INTERFACE:OPERATION-ERROR
+:end:
+** COMPONENT-PROPERTY :generic:cmacro:function:
+:PROPERTIES:
+:ID: ASDF/BACKWARD-INTERFACE:COMPONENT-PROPERTY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-PROPERTY names a generic function:
+  Lambda-list: (COMPONENT PROPERTY)
+  Argument precedence order: (COMPONENT PROPERTY)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-PROPERTY (COMPONENT T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+COMPONENT-PROPERTY has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+(SETF COMPONENT-PROPERTY) names a generic function:
+  Lambda-list: (NEW-VALUE COMPONENT PROPERTY)
+  Argument precedence order: (NEW-VALUE COMPONENT PROPERTY)
+  Derived type: (FUNCTION (T T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-PROPERTY) (T COMPONENT T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+(SETF COMPONENT-PROPERTY) has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT PROPERTY)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:

@@ -1,0 +1,504 @@
+#+TITLE: UIOP/LAUNCH-PROGRAM
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/LAUNCH-PROGRAM
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/PACKAGE][UIOP/PACKAGE]]
+  - [[id:UIOP/UTILITY][UIOP/UTILITY]]
+  - [[id:UIOP/PATHNAME][UIOP/PATHNAME]]
+  - [[id:UIOP/OS][UIOP/OS]]
+  - [[id:UIOP/FILESYSTEM][UIOP/FILESYSTEM]]
+  - [[id:UIOP/STREAM][UIOP/STREAM]]
+
+- dependents
+  - [[id:UIOP/RUN-PROGRAM][UIOP/RUN-PROGRAM]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** ESCAPE-SHELL-COMMAND :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:ESCAPE-SHELL-COMMAND
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ESCAPE-SHELL-COMMAND names a compiled function:
+  Lambda-list: (COMMAND &OPTIONAL STREAM)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Escape a command for the current operating system's shell
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/RUN-PROGRAM::%NORMALIZE-SYSTEM-COMMAND
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** TERMINATE-PROCESS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:TERMINATE-PROCESS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TERMINATE-PROCESS names a compiled function:
+  Lambda-list: (PROCESS-INFO &KEY URGENT)
+  Derived type: (FUNCTION (T &KEY (:URGENT T)) *)
+  Documentation:
+    Cause the process to exit. To that end, the process may or may
+    not be sent a signal, which it will find harder (or even impossible)
+    to ignore if URGENT is T. On some platforms, it may also be subject to
+    race conditions.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ESCAPE-SHELL-TOKEN :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:ESCAPE-SHELL-TOKEN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ESCAPE-SHELL-TOKEN names a compiled function:
+  Lambda-list: (TOKEN &OPTIONAL S)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Escape a token for the current operating system shell
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/RUN-PROGRAM::%REDIRECTED-SYSTEM-COMMAND
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PROCESS-INFO-ERROR-OUTPUT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:PROCESS-INFO-ERROR-OUTPUT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROCESS-INFO-ERROR-OUTPUT names a compiled function:
+  Lambda-list: (PROCESS-INFO)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ESCAPE-TOKEN :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:ESCAPE-TOKEN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ESCAPE-TOKEN names a compiled function:
+  Lambda-list: (TOKEN &KEY STREAM QUOTE GOOD-CHARS BAD-CHARS ESCAPER)
+  Derived type: (FUNCTION
+                 (T &KEY (:STREAM T) (:QUOTE T) (:GOOD-CHARS T) (:BAD-CHARS T)
+                  (:ESCAPER T))
+                 *)
+  Documentation:
+    Call the ESCAPER function on TOKEN string if it needs escaping as per
+    REQUIRES-ESCAPING-P using GOOD-CHARS and BAD-CHARS, otherwise output TOKEN,
+    using STREAM as output (or returning result as a string if NIL)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LAUNCH-PROGRAM:ESCAPE-SH-TOKEN
+  - UIOP/LAUNCH-PROGRAM:ESCAPE-WINDOWS-TOKEN
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ESCAPE-WINDOWS-TOKEN :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:ESCAPE-WINDOWS-TOKEN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ESCAPE-WINDOWS-TOKEN names a compiled function:
+  Lambda-list: (TOKEN &OPTIONAL S)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Escape a string TOKEN within double-quotes if needed
+    for use within a MS Windows command-line, outputing to S.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PROCESS-ALIVE-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:PROCESS-ALIVE-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROCESS-ALIVE-P names a compiled function:
+  Lambda-list: (PROCESS-INFO)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Check if a process has yet to exit.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LAUNCH-PROGRAM :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:LAUNCH-PROGRAM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LAUNCH-PROGRAM names a compiled function:
+  Lambda-list: (COMMAND &REST KEYS &KEY INPUT (IF-INPUT-DOES-NOT-EXIST ERROR)
+                OUTPUT (IF-OUTPUT-EXISTS SUPERSEDE) ERROR-OUTPUT
+                (IF-ERROR-OUTPUT-EXISTS SUPERSEDE)
+                (ELEMENT-TYPE *DEFAULT-STREAM-ELEMENT-TYPE*)
+                (EXTERNAL-FORMAT *UTF-8-EXTERNAL-FORMAT*) DIRECTORY
+                &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION
+                 (T &REST T &KEY (:INPUT T) (:IF-INPUT-DOES-NOT-EXIST T)
+                  (:OUTPUT T) (:IF-OUTPUT-EXISTS T) (:ERROR-OUTPUT T)
+                  (:IF-ERROR-OUTPUT-EXISTS T) (:ELEMENT-TYPE T)
+                  (:EXTERNAL-FORMAT T) (:DIRECTORY T) &ALLOW-OTHER-KEYS)
+                 (VALUES T &OPTIONAL))
+  Documentation:
+    Launch program specified by COMMAND,
+    either a list of strings specifying a program and list of arguments,
+    or a string specifying a shell command (/bin/sh on Unix, CMD.EXE on
+    Windows) _asynchronously_.
+    
+    If OUTPUT is a pathname, a string designating a pathname, or NIL (the
+    default) designating the null device, the file at that path is used as
+    output.
+    If it's :INTERACTIVE, output is inherited from the current process;
+    beware that this may be different from your *STANDARD-OUTPUT*, and
+    under SLIME will be on your *inferior-lisp* buffer.  If it's T, output
+    goes to your current *STANDARD-OUTPUT* stream.  If it's :STREAM, a new
+    stream will be made available that can be accessed via
+    PROCESS-INFO-OUTPUT and read from. Otherwise, OUTPUT should be a value
+    that the underlying lisp implementation knows how to handle.
+    
+    IF-OUTPUT-EXISTS, which is only meaningful if OUTPUT is a string or a
+    pathname, can take the values :ERROR, :APPEND, and :SUPERSEDE (the
+    default). The meaning of these values and their effect on the case
+    where OUTPUT does not exist, is analogous to the IF-EXISTS parameter
+    to OPEN with :DIRECTION :OUTPUT.
+    
+    ERROR-OUTPUT is similar to OUTPUT. T designates the *ERROR-OUTPUT*,
+    :OUTPUT means redirecting the error output to the output stream,
+    and :STREAM causes a stream to be made available via
+    PROCESS-INFO-ERROR-OUTPUT.
+    
+    IF-ERROR-OUTPUT-EXISTS is similar to IF-OUTPUT-EXIST, except that it
+    affects ERROR-OUTPUT rather than OUTPUT.
+    
+    INPUT is similar to OUTPUT, except that T designates the
+    *STANDARD-INPUT* and a stream requested through the :STREAM keyword
+    would be available through PROCESS-INFO-INPUT.
+    
+    IF-INPUT-DOES-NOT-EXIST, which is only meaningful if INPUT is a string
+    or a pathname, can take the values :CREATE and :ERROR (the
+    default). The meaning of these values is analogous to the
+    IF-DOES-NOT-EXIST parameter to OPEN with :DIRECTION :INPUT.
+    
+    ELEMENT-TYPE and EXTERNAL-FORMAT are passed on to your Lisp
+    implementation, when applicable, for creation of the output stream.
+    
+    LAUNCH-PROGRAM returns a PROCESS-INFO object.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/RUN-PROGRAM::%SYSTEM
+  - UIOP/RUN-PROGRAM::%USE-LAUNCH-PROGRAM
+  - UIOP/RUN-PROGRAM::%RUN-PROGRAM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ESCAPE-WINDOWS-COMMAND :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:ESCAPE-WINDOWS-COMMAND
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ESCAPE-WINDOWS-COMMAND names a compiled function:
+  Lambda-list: (COMMAND &OPTIONAL S)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Escape a list of command-line arguments into a string suitable for parsing
+    by CommandLineToArgv in MS Windows
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ESCAPE-COMMAND :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:ESCAPE-COMMAND
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ESCAPE-COMMAND names a compiled function:
+  Lambda-list: (COMMAND &OPTIONAL S (ESCAPER (QUOTE ESCAPE-SHELL-TOKEN)))
+  Derived type: (FUNCTION (T &OPTIONAL T T) *)
+  Documentation:
+    Given a COMMAND as a list of tokens, return a string of the
+    spaced, escaped tokens, using ESCAPER to escape.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LAUNCH-PROGRAM:ESCAPE-SHELL-COMMAND
+  - UIOP/LAUNCH-PROGRAM:ESCAPE-SH-COMMAND
+  - UIOP/LAUNCH-PROGRAM:ESCAPE-WINDOWS-COMMAND
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PROCESS-INFO-PID :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:PROCESS-INFO-PID
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROCESS-INFO-PID names a compiled function:
+  Lambda-list: (PROCESS-INFO)
+  Derived type: (FUNCTION (T) (VALUES (UNSIGNED-BYTE 64) &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ESCAPE-SH-TOKEN :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:ESCAPE-SH-TOKEN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ESCAPE-SH-TOKEN names a compiled function:
+  Lambda-list: (TOKEN &OPTIONAL S)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Escape a string TOKEN within double-quotes if needed
+    for use within a POSIX Bourne shell, outputing to S.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LAUNCH-PROGRAM:ESCAPE-SHELL-TOKEN
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CLOSE-STREAMS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:CLOSE-STREAMS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLOSE-STREAMS names a compiled function:
+  Lambda-list: (PROCESS-INFO)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Close any stream that the process might own. Needs to be run
+    whenever streams were requested by passing :stream to :input, :output,
+    or :error-output.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/RUN-PROGRAM::%USE-LAUNCH-PROGRAM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ESCAPE-SH-COMMAND :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:ESCAPE-SH-COMMAND
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ESCAPE-SH-COMMAND names a compiled function:
+  Lambda-list: (COMMAND &OPTIONAL S)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Escape a list of command-line arguments into a string suitable for parsing
+    by /bin/sh in POSIX
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PROCESS-INFO-OUTPUT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:PROCESS-INFO-OUTPUT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROCESS-INFO-OUTPUT names a compiled function:
+  Lambda-list: (PROCESS-INFO)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** EASY-SH-CHARACTER-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:EASY-SH-CHARACTER-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EASY-SH-CHARACTER-P names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (OR BOOLEAN
+                      (SB-KERNEL:CHARACTER-SET
+                       ((37 . 37) (43 . 47) (58 . 58) (61 . 61) (64 . 64)
+                        (95 . 95))))
+                  &OPTIONAL))
+  Documentation:
+    Is X an "easy" character that does not require quoting by the shell?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LAUNCH-PROGRAM:ESCAPE-SH-TOKEN
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PROCESS-INFO-INPUT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:PROCESS-INFO-INPUT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROCESS-INFO-INPUT names a compiled function:
+  Lambda-list: (PROCESS-INFO)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WAIT-PROCESS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/LAUNCH-PROGRAM:WAIT-PROCESS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WAIT-PROCESS names a compiled function:
+  Lambda-list: (PROCESS-INFO)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL (NOT NULL)))
+  Documentation:
+    Wait for the process to terminate, if it is still running.
+    Otherwise, return immediately. An exit code (a number) will be
+    returned, with 0 indicating success, and anything else indicating
+    failure. If the process exits after receiving a signal, the exit code
+    will be the sum of 128 and the (positive) numeric signal code. A second
+    value may be returned in this case: the numeric signal code itself.
+    Any asynchronously spawned process requires this function to be run
+    before it is garbage-collected in order to free up resources that
+    might otherwise be irrevocably lost.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/RUN-PROGRAM::%SYSTEM
+  - UIOP/RUN-PROGRAM::%USE-LAUNCH-PROGRAM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:

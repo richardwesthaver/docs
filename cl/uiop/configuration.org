@@ -1,0 +1,1020 @@
+#+TITLE: UIOP/CONFIGURATION
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/CONFIGURATION
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/UTILITY][UIOP/UTILITY]]
+  - [[id:UIOP/OS][UIOP/OS]]
+  - [[id:UIOP/PATHNAME][UIOP/PATHNAME]]
+  - [[id:UIOP/FILESYSTEM][UIOP/FILESYSTEM]]
+  - [[id:UIOP/STREAM][UIOP/STREAM]]
+  - [[id:UIOP/IMAGE][UIOP/IMAGE]]
+  - [[id:UIOP/LISP-BUILD][UIOP/LISP-BUILD]]
+
+- dependents
+  - [[id:UIOP/BACKWARD-DRIVER][UIOP/BACKWARD-DRIVER]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** RESOLVE-RELATIVE-LOCATION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:RESOLVE-RELATIVE-LOCATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RESOLVE-RELATIVE-LOCATION names a compiled function:
+  Lambda-list: (X &KEY ENSURE-DIRECTORY WILDEN)
+  Derived type: (FUNCTION (T &KEY (:ENSURE-DIRECTORY T) (:WILDEN T)) *)
+  Documentation:
+    Given a designator X for an relative location, resolve it to a pathname.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:RESOLVE-LOCATION
+  - UIOP/CONFIGURATION:RESOLVE-ABSOLUTE-LOCATION
+  - UIOP/CONFIGURATION:RESOLVE-RELATIVE-LOCATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** UPGRADE-CONFIGURATION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:UPGRADE-CONFIGURATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UPGRADE-CONFIGURATION names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES NULL &OPTIONAL))
+  Documentation:
+    If a previous version of ASDF failed to read some configuration, try againnow.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OPERATE::RESTART-UPGRADED-ASDF
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** XDG-CACHE-HOME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:XDG-CACHE-HOME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+XDG-CACHE-HOME names a compiled function:
+  Lambda-list: (&REST MORE)
+  Derived type: FUNCTION
+  Documentation:
+    The base directory relative to which user specific non-essential data filesshould be stored.
+    Returns an absolute directory pathname.
+    MORE may contain specifications for a subpath relative to this directory: a
+    subpathname specification and keyword arguments as per RESOLVE-LOCATION(see
+    also "Configuration DSL") in the ASDF manual.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION::COMPUTE-USER-CACHE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** XDG-DATA-HOME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:XDG-DATA-HOME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+XDG-DATA-HOME names a compiled function:
+  Lambda-list: (&REST MORE)
+  Derived type: FUNCTION
+  Documentation:
+    Returns an absolute pathname for the directory containing user-specificdata files.
+    MORE may contain specifications for a subpath relative to this directory: a
+    subpathname specification and keyword arguments as per RESOLVE-LOCATION(see
+    also "Configuration DSL") in the ASDF manual.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:DEFAULT-USER-SOURCE-REGISTRY
+  - UIOP/CONFIGURATION:XDG-DATA-PATHNAMES
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** USER-CONFIGURATION-DIRECTORIES :compiled:cmacro:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:USER-CONFIGURATION-DIRECTORIES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+USER-CONFIGURATION-DIRECTORIES names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Return the current user's list of user configuration directories
+    for configuring common-lisp.
+    DEPRECATED. Use UIOP:XDG-CONFIG-PATHNAMES instead.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+USER-CONFIGURATION-DIRECTORIES has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** XDG-RUNTIME-DIR :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:XDG-RUNTIME-DIR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+XDG-RUNTIME-DIR names a compiled function:
+  Lambda-list: (&REST MORE)
+  Derived type: FUNCTION
+  Documentation:
+    Pathname for user-specific non-essential runtime files and other fileobjects,
+    such as sockets, named pipes, etc.
+    Returns an absolute directory pathname.
+    MORE may contain specifications for a subpath relative to this directory: a
+    subpathname specification and keyword arguments as per RESOLVE-LOCATION(see
+    also "Configuration DSL") in the ASDF manual.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CONFIGURATION-INHERITANCE-DIRECTIVE-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:CONFIGURATION-INHERITANCE-DIRECTIVE-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CONFIGURATION-INHERITANCE-DIRECTIVE-P names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (OR NULL (CONS (MEMBER :IGNORE-INHERITED-CONFIGURATION) NULL)
+                      (CONS (MEMBER :INHERIT-CONFIGURATION) CONS))
+                  &OPTIONAL))
+  Documentation:
+    Is X a configuration inheritance directive?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-FORM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** XDG-DATA-DIRS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:XDG-DATA-DIRS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+XDG-DATA-DIRS names a compiled function:
+  Lambda-list: (&REST MORE)
+  Derived type: (FUNCTION * (VALUES LIST &OPTIONAL))
+  Documentation:
+    The preference-ordered set of additional paths to search for data files.
+    Returns a list of absolute directory pathnames.
+    MORE may contain specifications for a subpath relative to thesedirectories: a
+    subpathname specification and keyword arguments as per RESOLVE-LOCATION(see
+    also "Configuration DSL") in the ASDF manual.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:DEFAULT-SYSTEM-SOURCE-REGISTRY
+  - UIOP/CONFIGURATION:XDG-DATA-PATHNAMES
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** XDG-DATA-PATHNAMES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:XDG-DATA-PATHNAMES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+XDG-DATA-PATHNAMES names a compiled function:
+  Lambda-list: (&REST MORE)
+  Derived type: FUNCTION
+  Documentation:
+    Return a list of absolute pathnames for application data directories.  WithAPP,
+    returns directory for data for that application, without APP, returns theset of directories
+    for storing all application configurations.
+    MORE may contain specifications for a subpath relative to thesedirectories: a
+    subpathname specification and keyword arguments as per RESOLVE-LOCATION(see
+    also "Configuration DSL") in the ASDF manual.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:XDG-DATA-PATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** REPORT-INVALID-FORM :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:REPORT-INVALID-FORM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REPORT-INVALID-FORM names a compiled function:
+  Lambda-list: (REPORTER &REST ARGS)
+  Derived type: (FUNCTION (T &REST T) *)
+  Documentation:
+    Report an invalid form according to REPORTER and various ARGS
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-DIRECTORY
+  - UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-FORM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** VALIDATE-CONFIGURATION-DIRECTORY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VALIDATE-CONFIGURATION-DIRECTORY names a compiled function:
+  Lambda-list: (DIRECTORY TAG VALIDATOR &KEY INVALID-FORM-REPORTER)
+  Derived type: (FUNCTION (T T T &KEY (:INVALID-FORM-REPORTER T))
+                 (VALUES CONS &OPTIONAL))
+  Documentation:
+    Map the VALIDATOR across the .conf files in DIRECTORY, the TAG will
+    be applied to the results to yield a configuration form.  Current
+    values of TAG include :source-registry and :output-translations.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:VALIDATE-SOURCE-REGISTRY-DIRECTORY
+  - ASDF/OUTPUT-TRANSLATIONS:VALIDATE-OUTPUT-TRANSLATIONS-DIRECTORY
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *IGNORED-CONFIGURATION-FORM​* :var:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:*IGNORED-CONFIGURATION-FORM*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*IGNORED-CONFIGURATION-FORM* names a special variable:
+  Value: NIL
+  Documentation:
+    Have configuration forms been ignored while parsing the configuration?
+
+#+end_example
+
+- Set by
+  - UIOP/CONFIGURATION:UPGRADE-CONFIGURATION
+  - UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-DIRECTORY
+  - UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-FORM
+
+- Referenced by
+  - UIOP/CONFIGURATION:UPGRADE-CONFIGURATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** XDG-CONFIG-DIRS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:XDG-CONFIG-DIRS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+XDG-CONFIG-DIRS names a compiled function:
+  Lambda-list: (&REST MORE)
+  Derived type: (FUNCTION * (VALUES LIST &OPTIONAL))
+  Documentation:
+    The preference-ordered set of additional base paths to search forconfiguration files.
+    Returns a list of absolute directory pathnames.
+    MORE may contain specifications for a subpath relative to thesedirectories:
+    subpathname specification and keyword arguments as per RESOLVE-LOCATION(see
+    also "Configuration DSL") in the ASDF manual.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:XDG-CONFIG-PATHNAMES
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** REGISTER-CLEAR-CONFIGURATION-HOOK :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:REGISTER-CLEAR-CONFIGURATION-HOOK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REGISTER-CLEAR-CONFIGURATION-HOOK names a compiled function:
+  Lambda-list: (HOOK-FUNCTION &OPTIONAL CALL-NOW-P)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Register a function to be called when clearing configuration
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RESOLVE-ABSOLUTE-LOCATION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:RESOLVE-ABSOLUTE-LOCATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RESOLVE-ABSOLUTE-LOCATION names a compiled function:
+  Lambda-list: (X &KEY ENSURE-DIRECTORY WILDEN)
+  Derived type: (FUNCTION (T &KEY (:ENSURE-DIRECTORY T) (:WILDEN T)) *)
+  Documentation:
+    Given a designator X for an absolute location, resolve it to a pathname
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:SYSTEM-CONFIG-PATHNAMES
+  - [[id:STD/OS:XDG-RUNTIME-DIR][XDG-RUNTIME-DIR]]
+  - UIOP/CONFIGURATION:XDG-CACHE-HOME
+  - UIOP/CONFIGURATION:XDG-CONFIG-HOME
+  - UIOP/CONFIGURATION:XDG-DATA-HOME
+  - UIOP/CONFIGURATION:RESOLVE-LOCATION
+  - UIOP/CONFIGURATION:RESOLVE-ABSOLUTE-LOCATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** VALIDATE-CONFIGURATION-FILE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VALIDATE-CONFIGURATION-FILE names a compiled function:
+  Lambda-list: (FILE VALIDATOR &KEY DESCRIPTION)
+  Derived type: (FUNCTION (T T &KEY (:DESCRIPTION T)) *)
+  Documentation:
+    Validate a configuration FILE.  The configuration file should have only ones-expression
+    in it, which will be checked with the VALIDATOR FORM.  DESCRIPTION argumentused for error
+    reporting.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:VALIDATE-SOURCE-REGISTRY-FILE
+  - ASDF/OUTPUT-TRANSLATIONS:VALIDATE-OUTPUT-TRANSLATIONS-FILE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SYSTEM-CONFIG-PATHNAMES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:SYSTEM-CONFIG-PATHNAMES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-CONFIG-PATHNAMES names a compiled function:
+  Lambda-list: (&REST MORE)
+  Derived type: (FUNCTION * (VALUES CONS &OPTIONAL))
+  Documentation:
+    Return a list of directories where are stored the system's default userconfiguration information.
+    MORE may contain specifications for a subpath relative to thesedirectories: a
+    subpathname specification and keyword arguments as per RESOLVE-LOCATION(see
+    also "Configuration DSL") in the ASDF manual.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:SYSTEM-SOURCE-REGISTRY-DIRECTORY
+  - ASDF/SOURCE-REGISTRY:SYSTEM-SOURCE-REGISTRY
+  - ASDF/OUTPUT-TRANSLATIONS:SYSTEM-OUTPUT-TRANSLATIONS-DIRECTORY-PATHNAME
+  - ASDF/OUTPUT-TRANSLATIONS:SYSTEM-OUTPUT-TRANSLATIONS-PATHNAME
+  - UIOP/CONFIGURATION:IN-SYSTEM-CONFIGURATION-DIRECTORY
+  - UIOP/CONFIGURATION:SYSTEM-CONFIGURATION-DIRECTORIES
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** XDG-CONFIG-PATHNAMES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:XDG-CONFIG-PATHNAMES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+XDG-CONFIG-PATHNAMES names a compiled function:
+  Lambda-list: (&REST MORE)
+  Derived type: FUNCTION
+  Documentation:
+    Return a list of pathnames for application configuration.
+    MORE may contain specifications for a subpath relative to thesedirectories: a
+    subpathname specification and keyword arguments as per RESOLVE-LOCATION(see
+    also "Configuration DSL") in the ASDF manual.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:USER-CONFIGURATION-DIRECTORIES
+  - UIOP/CONFIGURATION:XDG-CONFIG-PATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** XDG-CONFIG-HOME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:XDG-CONFIG-HOME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+XDG-CONFIG-HOME names a compiled function:
+  Lambda-list: (&REST MORE)
+  Derived type: FUNCTION
+  Documentation:
+    Returns a pathname for the directory containing user-specific configurationfiles.
+    MORE may contain specifications for a subpath relative to this directory: a
+    subpathname specification and keyword arguments as per RESOLVE-LOCATION(see
+    also "Configuration DSL") in the ASDF manual.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:XDG-CONFIG-PATHNAMES
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** GET-FOLDER-PATH :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:GET-FOLDER-PATH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GET-FOLDER-PATH names a compiled function:
+  Lambda-list: (FOLDER)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Semi-portable implementation of a subset of LispWorks' sys:get-folder-path,
+    this function tries to locate the Windows FOLDER for one of
+    :LOCAL-APPDATA, :APPDATA or :COMMON-APPDATA.
+         Returns NIL when the folder is not defined (e.g., not on Windows).
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:GET-FOLDER-PATH
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SYSTEM-CONFIGURATION-DIRECTORIES :compiled:cmacro:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:SYSTEM-CONFIGURATION-DIRECTORIES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-CONFIGURATION-DIRECTORIES names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Return the list of system configuration directories for common-lisp.
+    DEPRECATED. Use UIOP:CONFIG-SYSTEM-PATHNAMES instead.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+SYSTEM-CONFIGURATION-DIRECTORIES has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** INVALID-CONFIGURATION :condition:class:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:INVALID-CONFIGURATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+INVALID-CONFIGURATION names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/CONFIGURATION:INVALID-CONFIGURATION>:
+  Class precedence-list: UIOP/CONFIGURATION:INVALID-CONFIGURATION, CONDITION,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: CONDITION
+  Direct subclasses: ASDF/SOURCE-REGISTRY:INVALID-SOURCE-REGISTRY,
+                     ASDF/OUTPUT-TRANSLATIONS:INVALID-OUTPUT-TRANSLATION
+  Direct slots:
+    UIOP/CONFIGURATION::FORM
+      Initargs: :FORM
+      Readers: UIOP/CONFIGURATION::CONDITION-FORM
+    UIOP/CONFIGURATION::LOCATION
+      Initargs: :LOCATION
+      Readers: UIOP/CONFIGURATION::CONDITION-LOCATION
+    FORMAT
+      Initargs: :FORMAT
+      Readers: UIOP/CONFIGURATION::CONDITION-FORMAT
+    UIOP/CONFIGURATION::ARGUMENTS
+      Initargs: :ARGUMENTS
+      Initform: 'NIL
+      Readers: UIOP/CONFIGURATION::CONDITION-ARGUMENTS
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RESOLVE-LOCATION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:RESOLVE-LOCATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RESOLVE-LOCATION names a compiled function:
+  Lambda-list: (X &KEY ENSURE-DIRECTORY WILDEN DIRECTORY)
+  Derived type: (FUNCTION
+                 (T &KEY (:ENSURE-DIRECTORY T) (:WILDEN T) (:DIRECTORY T))
+                 (VALUES T &OPTIONAL))
+  Documentation:
+    Resolve location designator X into a PATHNAME
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY::PROCESS-SOURCE-REGISTRY-DIRECTIVE
+  - ASDF/OUTPUT-TRANSLATIONS::PROCESS-OUTPUT-TRANSLATIONS-DIRECTIVE
+  - UIOP/CONFIGURATION:XDG-CONFIG-DIRS
+  - UIOP/CONFIGURATION:XDG-DATA-DIRS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+  - [[id:COMMON-LISP:FTYPE][FTYPE]]
+:end:
+** LOCATION-FUNCTION-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:LOCATION-FUNCTION-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOCATION-FUNCTION-P names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Is X the specification of a location function?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OUTPUT-TRANSLATIONS::PROCESS-OUTPUT-TRANSLATIONS-DIRECTIVE
+  - ASDF/OUTPUT-TRANSLATIONS:VALIDATE-OUTPUT-TRANSLATIONS-DIRECTIVE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FILTER-PATHNAME-SET :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:FILTER-PATHNAME-SET
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FILTER-PATHNAME-SET names a compiled function:
+  Lambda-list: (DIRS)
+  Derived type: (FUNCTION (T)
+                 (VALUES
+                  (OR LIST (SIMPLE-ARRAY * (*)) SB-KERNEL:EXTENDED-SEQUENCE)
+                  &OPTIONAL))
+  Documentation:
+    Parse strings as unix namestrings and remove duplicates and non absolute-pathnames in a list.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:XDG-CONFIG-PATHNAMES
+  - UIOP/CONFIGURATION:XDG-DATA-PATHNAMES
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *CLEAR-CONFIGURATION-HOOK​* :var:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:*CLEAR-CONFIGURATION-HOOK*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*CLEAR-CONFIGURATION-HOOK* names a special variable:
+  Value: (ASDF/SOURCE-REGISTRY:CLEAR-SOURCE-REGISTRY
+          ASDF/OUTPUT-TRANSLATIONS:CLEAR-OUTPUT-TRANSLATIONS)
+
+#+end_example
+
+- Referenced by
+  - UIOP/CONFIGURATION:CLEAR-CONFIGURATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** XDG-DATA-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:XDG-DATA-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+XDG-DATA-PATHNAME names a compiled function:
+  Lambda-list: (&OPTIONAL MORE (DIRECTION INPUT))
+  Derived type: (FUNCTION (&OPTIONAL T T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** IN-FIRST-DIRECTORY :compiled:cmacro:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:IN-FIRST-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+IN-FIRST-DIRECTORY names a compiled function:
+  Lambda-list: (DIRS X &KEY (DIRECTION INPUT))
+  Derived type: (FUNCTION (T T &KEY (:DIRECTION T)) *)
+  Documentation:
+    Finds the first appropriate file named X in the list of DIRS for I/O
+    in DIRECTION (which may be :INPUT, :OUTPUT, :IO, or :PROBE).
+    If direction is :INPUT or :PROBE, will return the first extant file named
+    X in one of the DIRS.
+    If direction is :OUTPUT or :IO, will simply return the file named X in the
+    first element of DIRS that exists. DEPRECATED.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+IN-FIRST-DIRECTORY has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** IN-SYSTEM-CONFIGURATION-DIRECTORY :compiled:cmacro:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:IN-SYSTEM-CONFIGURATION-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+IN-SYSTEM-CONFIGURATION-DIRECTORY names a compiled function:
+  Lambda-list: (X &KEY (DIRECTION INPUT))
+  Derived type: (FUNCTION (T &KEY (:DIRECTION T)) *)
+  Documentation:
+    Return the pathname for the file named X under the system configurationdirectory
+    for common-lisp. DEPRECATED.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+IN-SYSTEM-CONFIGURATION-DIRECTORY has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** VALIDATE-CONFIGURATION-FORM :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-FORM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VALIDATE-CONFIGURATION-FORM names a compiled function:
+  Lambda-list: (FORM TAG DIRECTIVE-VALIDATOR &KEY LOCATION
+                INVALID-FORM-REPORTER)
+  Derived type: (FUNCTION (T T T &KEY (:LOCATION T) (:INVALID-FORM-REPORTER T))
+                 (VALUES LIST &OPTIONAL))
+  Documentation:
+    Validate a configuration FORM. By default it will raise an error if the
+    FORM is not valid.  Otherwise it will return the validated form.
+         Arguments control the behavior:
+         The configuration FORM should be of the form (TAG . <rest>)
+         Each element of <rest> will be checked by first seeing if it's aconfiguration inheritance
+    directive (see CONFIGURATION-INHERITANCE-DIRECTIVE-P) then invokingDIRECTIVE-VALIDATOR
+    on it.
+         In the event of an invalid form, INVALID-FORM-REPORTER will be used tocontrol
+    reporting (see REPORT-INVALID-FORM) with LOCATION providing informationabout where
+    the configuration form appeared.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:VALIDATE-SOURCE-REGISTRY-FORM
+  - ASDF/OUTPUT-TRANSLATIONS:VALIDATE-OUTPUT-TRANSLATIONS-FORM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CLEAR-CONFIGURATION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:CLEAR-CONFIGURATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEAR-CONFIGURATION names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Call the functions in *CLEAR-CONFIGURATION-HOOK*
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SESSION:CALL-WITH-ASDF-SESSION
+  - UIOP/CONFIGURATION:UPGRADE-CONFIGURATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *HERE-DIRECTORY​* :var:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:*HERE-DIRECTORY*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*HERE-DIRECTORY* names a special variable:
+  Value: NIL
+  Documentation:
+    This special variable is bound to the currect directory during calls to
+    PROCESS-SOURCE-REGISTRY in order that we be able to interpret the :here
+    directive.
+
+#+end_example
+
+- Bound by
+  - (PROCESS-SOURCE-REGISTRY (PATHNAME))
+
+- Referenced by
+  - UIOP/CONFIGURATION:RESOLVE-ABSOLUTE-LOCATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** IN-USER-CONFIGURATION-DIRECTORY :compiled:cmacro:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:IN-USER-CONFIGURATION-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+IN-USER-CONFIGURATION-DIRECTORY names a compiled function:
+  Lambda-list: (X &KEY (DIRECTION INPUT))
+  Derived type: (FUNCTION (T &KEY (:DIRECTION T)) *)
+  Documentation:
+    Return the file named X in the user configuration directory for common-lisp.
+    DEPRECATED.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+IN-USER-CONFIGURATION-DIRECTORY has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *USER-CACHE​* :var:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:*USER-CACHE*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*USER-CACHE* names a special variable:
+  Value: #P"/home/ellis/.cache/common-lisp/sbcl-2.6.6.164-e45c5c70b-linux-x64/"
+  Documentation:
+    A specification as per RESOLVE-LOCATION of where the user keeps his FASLcache
+
+#+end_example
+
+- Set by
+  - UIOP/CONFIGURATION::COMPUTE-USER-CACHE
+
+- Referenced by
+  - UIOP/CONFIGURATION:RESOLVE-ABSOLUTE-LOCATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** XDG-CONFIG-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:XDG-CONFIG-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+XDG-CONFIG-PATHNAME names a compiled function:
+  Lambda-list: (&OPTIONAL MORE (DIRECTION INPUT))
+  Derived type: (FUNCTION (&OPTIONAL T T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:USER-SOURCE-REGISTRY-DIRECTORY
+  - ASDF/SOURCE-REGISTRY:USER-SOURCE-REGISTRY
+  - ASDF/OUTPUT-TRANSLATIONS:USER-OUTPUT-TRANSLATIONS-DIRECTORY-PATHNAME
+  - ASDF/OUTPUT-TRANSLATIONS:USER-OUTPUT-TRANSLATIONS-PATHNAME
+  - UIOP/CONFIGURATION:IN-USER-CONFIGURATION-DIRECTORY
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LOCATION-DESIGNATOR-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:LOCATION-DESIGNATOR-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOCATION-DESIGNATOR-P names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Is X a designator for a location?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:VALIDATE-SOURCE-REGISTRY-DIRECTIVE
+  - ASDF/OUTPUT-TRANSLATIONS:VALIDATE-OUTPUT-TRANSLATIONS-DIRECTIVE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FIND-PREFERRED-FILE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/CONFIGURATION:FIND-PREFERRED-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FIND-PREFERRED-FILE names a compiled function:
+  Lambda-list: (FILES &KEY (DIRECTION INPUT))
+  Derived type: (FUNCTION (T &KEY (:DIRECTION T)) (VALUES T &OPTIONAL))
+  Documentation:
+    Find first file in the list of FILES that exists (for direction :inputor :probe)
+    or just the first one (for direction :output or :io).
+        Note that when we say "file" here, the files in question may bedirectories.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:SYSTEM-SOURCE-REGISTRY-DIRECTORY
+  - ASDF/SOURCE-REGISTRY:SYSTEM-SOURCE-REGISTRY
+  - ASDF/OUTPUT-TRANSLATIONS:SYSTEM-OUTPUT-TRANSLATIONS-DIRECTORY-PATHNAME
+  - ASDF/OUTPUT-TRANSLATIONS:SYSTEM-OUTPUT-TRANSLATIONS-PATHNAME
+  - UIOP/CONFIGURATION:IN-SYSTEM-CONFIGURATION-DIRECTORY
+  - UIOP/CONFIGURATION:IN-FIRST-DIRECTORY
+  - UIOP/CONFIGURATION:XDG-CONFIG-PATHNAME
+  - UIOP/CONFIGURATION:XDG-DATA-PATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:

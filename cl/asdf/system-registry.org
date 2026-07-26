@@ -1,0 +1,616 @@
+#+TITLE: ASDF/SYSTEM-REGISTRY
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/SYSTEM-REGISTRY
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+  - [[id:ASDF/UPGRADE][ASDF/UPGRADE]]
+  - [[id:ASDF/SESSION][ASDF/SESSION]]
+  - [[id:ASDF/COMPONENT][ASDF/COMPONENT]]
+  - [[id:ASDF/SYSTEM][ASDF/SYSTEM]]
+
+- dependents
+  - [[id:ASDF/PACKAGE-INFERRED-SYSTEM][ASDF/PACKAGE-INFERRED-SYSTEM]]
+  - [[id:ASDF/FIND-COMPONENT][ASDF/FIND-COMPONENT]]
+  - [[id:ASDF/PARSE-DEFSYSTEM][ASDF/PARSE-DEFSYSTEM]]
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+  - [[id:ASDF/BACKWARD-INTERFACE][ASDF/BACKWARD-INTERFACE]]
+  - [[id:ASDF/OPERATE][ASDF/OPERATE]]
+  - [[id:ASDF/PLAN][ASDF/PLAN]]
+  - [[id:ASDF/FORCING][ASDF/FORCING]]
+  - [[id:ASDF/FOOTER][ASDF/FOOTER]]
+  - [[id:ASDF/FIND-SYSTEM][ASDF/FIND-SYSTEM]]
+  - [[id:ASDF/SOURCE-REGISTRY][ASDF/SOURCE-REGISTRY]]
+
+** SYSDEF-FIND-ASDF
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:SYSDEF-FIND-ASDF
+:ALLOC: HEAP DYNAMIC
+:END:
+** REGISTERED-SYSTEM :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:REGISTERED-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REGISTERED-SYSTEM names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (T) (VALUES T BOOLEAN &OPTIONAL))
+  Documentation:
+    Return a system of given NAME that was registered already,
+    if such a system exists.  NAME is a system designator, to be
+    normalized by COERCE-NAME. The value returned is a system object,
+    or NIL if not found.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/BACKWARD-INTERFACE:SYSTEM-REGISTERED-P
+  - ASDF/PACKAGE-INFERRED-SYSTEM:SYSDEF-PACKAGE-INFERRED-SYSTEM-SEARCH
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - (FIND-SYSTEM (STRING))
+  - ASDF/FIND-SYSTEM:LOCATE-SYSTEM
+  - ASDF/FIND-SYSTEM::CHECK-NOT-OLD-ASDF-SYSTEM
+  - ASDF/FIND-SYSTEM:LOAD-ASD
+  - (FIND-COMPONENT (STRING T))
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-IMMUTABLE-SYSTEM-SEARCH
+  - ASDF/SYSTEM-REGISTRY:REGISTER-PRELOADED-SYSTEM
+  - ASDF/SYSTEM-REGISTRY::ENSURE-PRELOADED-SYSTEM-REGISTERED
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SYSDEF-PRELOADED-SYSTEM-SEARCH :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:SYSDEF-PRELOADED-SYSTEM-SEARCH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSDEF-PRELOADED-SYSTEM-SEARCH names a compiled function:
+  Lambda-list: (REQUESTED)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    If REQUESTED names a system registered as preloaded, return a new system
+    with its registration information.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SYSTEM-REGISTRY::ENSURE-PRELOADED-SYSTEM-REGISTERED
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** *REGISTERED-SYSTEMS​* :var:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:*REGISTERED-SYSTEMS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*REGISTERED-SYSTEMS* names a special variable:
+  Value: #<HASH-TABLE :TEST EQUAL :COUNT 16 {12010E7883}>
+  Documentation:
+    This is a hash table whose keys are strings -- the names of systems --
+    and whose values are systems.
+    A system is referred to as "registered" if it is present in this table.
+
+#+end_example
+
+- Referenced by
+  - ASDF/SYSTEM-REGISTRY:CLEAR-SYSTEM
+  - ASDF/SYSTEM-REGISTRY:MAP-SYSTEMS
+  - ASDF/SYSTEM-REGISTRY:REGISTER-SYSTEM
+  - ASDF/SYSTEM-REGISTRY:REGISTERED-SYSTEMS*
+  - ASDF/SYSTEM-REGISTRY:REGISTERED-SYSTEM
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** CLEAR-REGISTERED-SYSTEMS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:CLEAR-REGISTERED-SYSTEMS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEAR-REGISTERED-SYSTEMS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES NULL &OPTIONAL))
+  Documentation:
+    Clear all currently registered defined systems.
+    Preloaded systems (including immutable ones) will be reset, other systemswill be de-registered.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OPERATE::RESTART-UPGRADED-ASDF
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COERCE-ENTRY-TO-DIRECTORY
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:COERCE-ENTRY-TO-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+** *CENTRAL-REGISTRY​* :var:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:*CENTRAL-REGISTRY*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*CENTRAL-REGISTRY* names a special variable:
+  Value: NIL
+  Documentation:
+    A list of 'system directory designators' ASDF uses to find systems.
+    
+    A 'system directory designator' is a pathname or an expression
+    which evaluates to a pathname. For example:
+    
+        (setf asdf:*central-registry*
+              (list '*default-pathname-defaults*
+                    #p"/home/me/cl/systems/"
+                    #p"/usr/share/common-lisp/systems/"))
+    
+    This variable is for backward compatibility.
+    Going forward, we recommend new users should be using the source-registry.
+
+#+end_example
+
+- Set by
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-CENTRAL-REGISTRY-SEARCH
+
+- Referenced by
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-CENTRAL-REGISTRY-SEARCH
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PROBE-ASD :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:PROBE-ASD
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROBE-ASD names a compiled function:
+  Lambda-list: (NAME DEFAULTS &KEY TRUENAME)
+  Derived type: (FUNCTION (T T &KEY (:TRUENAME T)) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-CENTRAL-REGISTRY-SEARCH
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** REGISTER-PRELOADED-SYSTEM :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:REGISTER-PRELOADED-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REGISTER-PRELOADED-SYSTEM names a compiled function:
+  Lambda-list: (SYSTEM-NAME &REST KEYS &KEY (VERSION T) &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY (:VERSION T) &ALLOW-OTHER-KEYS) *)
+  Documentation:
+    Register a system as being preloaded. If the system has not been loadedfrom the filesystem
+    yet, or if its build information is later cleared with CLEAR-SYSTEM, adummy system will be
+    registered without backing filesystem information, based on KEYS (e.g. toprovide a VERSION).
+    If VERSION is the default T, and a system was already loaded, then itsversion will be preserved.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SYSTEM-REGISTRY:REGISTER-IMMUTABLE-SYSTEM
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** *PRELOADED-SYSTEMS​* :var:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:*PRELOADED-SYSTEMS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*PRELOADED-SYSTEMS* names a special variable:
+  Value: #<HASH-TABLE :TEST EQUAL :COUNT 3 {12010E7803}>
+  Documentation:
+    Registration table for preloaded systems.
+
+#+end_example
+
+- Referenced by
+  - ASDF/SYSTEM-REGISTRY:REGISTER-PRELOADED-SYSTEM
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-PRELOADED-SYSTEM-SEARCH
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** MAP-SYSTEMS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:MAP-SYSTEMS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAP-SYSTEMS names a compiled function:
+  Lambda-list: (FN)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Apply FN to each defined system.
+    
+    FN should be a function of one argument. It will be
+    called with an object of type asdf:system.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** *SYSTEM-DEFINITION-SEARCH-FUNCTIONS​* :var:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:*SYSTEM-DEFINITION-SEARCH-FUNCTIONS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*SYSTEM-DEFINITION-SEARCH-FUNCTIONS* names a special variable:
+  Value: (ASDF/PACKAGE-INFERRED-SYSTEM:SYSDEF-PACKAGE-INFERRED-SYSTEM-SEARCH
+          ASDF/SYSTEM-REGISTRY:SYSDEF-CENTRAL-REGISTRY-SEARCH
+          ASDF/SYSTEM-REGISTRY:SYSDEF-SOURCE-REGISTRY-SEARCH)
+  Documentation:
+    A list that controls the ways that ASDF looks for system definitions.
+    It contains symbols to be funcalled in order, with a requested system nameas argument,
+    until one returns a non-NIL result (if any), which must then be a fullyinitialized system object
+    with that name.
+
+#+end_example
+
+- Set by
+  - ASDF/SYSTEM-REGISTRY::CLEANUP-SYSTEM-DEFINITION-SEARCH-FUNCTIONS
+
+- Referenced by
+  - ASDF/SYSTEM-REGISTRY:SEARCH-FOR-SYSTEM-DEFINITION
+  - ASDF/SYSTEM-REGISTRY::CLEANUP-SYSTEM-DEFINITION-SEARCH-FUNCTIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SYSDEF-CENTRAL-REGISTRY-SEARCH :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:SYSDEF-CENTRAL-REGISTRY-SEARCH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSDEF-CENTRAL-REGISTRY-SEARCH names a compiled function:
+  Lambda-list: (SYSTEM)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** *IMMUTABLE-SYSTEMS​* :var:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:*IMMUTABLE-SYSTEMS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*IMMUTABLE-SYSTEMS* names a special variable:
+  Value: NIL
+  Documentation:
+    A hash-set (equal hash-table mapping keys to T) of systems that areimmutable,
+    i.e. already loaded in memory and not to be refreshed from the filesystem.
+    They will be treated specially by find-system, and passed as :force-notargument to make-plan.
+    
+    For instance, to can deliver an image with many systems precompiled, that*will not* check the
+    filesystem for them every time a user loads an extension, what more risk aproblematic upgrade
+     or catastrophic downgrade, before you dump an image, you may use:
+       (map () 'asdf:register-immutable-system (asdf:already-loaded-systems))
+    
+    Note that direct access to this variable from outside ASDF is notsupported.
+    Please call REGISTER-IMMUTABLE-SYSTEM to add new immutable systems, and
+    contact maintainers if you need a stable API to do more than that.
+
+#+end_example
+
+- Set by
+  - ASDF/SYSTEM-REGISTRY:REGISTER-IMMUTABLE-SYSTEM
+
+- Referenced by
+  - (FIND-SYSTEM (STRING))
+  - ASDF/FORCING:NORMALIZE-FORCED-NOT-SYSTEMS
+  - ASDF/SYSTEM-REGISTRY:REGISTER-IMMUTABLE-SYSTEM
+  - ASDF/SYSTEM-REGISTRY:SYSDEF-IMMUTABLE-SYSTEM-SEARCH
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** MARK-COMPONENT-PRELOADED :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:MARK-COMPONENT-PRELOADED
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MARK-COMPONENT-PRELOADED names a compiled function:
+  Lambda-list: (COMPONENT)
+  Declared type: (FUNCTION (T) *)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    Mark a component as preloaded.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SYSTEM-REGISTRY::MAKE-PRELOADED-SYSTEM
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:FTYPE][FTYPE]]
+:end:
+** REGISTERED-SYSTEMS* :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:REGISTERED-SYSTEMS*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REGISTERED-SYSTEMS* names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES LIST &OPTIONAL))
+  Documentation:
+    Return a list containing every registered system (as a system object).
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OPERATE:ALREADY-LOADED-SYSTEMS
+  - ASDF/SYSTEM-REGISTRY:REGISTERED-SYSTEMS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** CLEAR-SYSTEM :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:CLEAR-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEAR-SYSTEM names a compiled function:
+  Lambda-list: (SYSTEM)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Clear the entry for a SYSTEM in the database of systems previously defined.
+    However if the system was registered as PRELOADED (which it is if it isIMMUTABLE),
+    then a new system with the same name will be defined and registered in itsplace
+    from which build details will have been cleared.
+    Note that this does NOT in any way cause any of the code of the system tobe unloaded.
+    Returns T if system was or is now undefined, NIL if a new preloaded systemwas redefined.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM:LOAD-ASD
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** REGISTER-IMMUTABLE-SYSTEM :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:REGISTER-IMMUTABLE-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REGISTER-IMMUTABLE-SYSTEM names a compiled function:
+  Lambda-list: (SYSTEM-NAME &REST KEYS)
+  Derived type: (FUNCTION (T &REST T) (VALUES T &OPTIONAL))
+  Documentation:
+    Register SYSTEM-NAME as preloaded and immutable.
+    It will automatically be considered as passed to FORCE-NOT in a plan.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** REGISTER-SYSTEM :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:REGISTER-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REGISTER-SYSTEM names a compiled function:
+  Lambda-list: (SYSTEM)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Given a SYSTEM object, register it.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - (FIND-SYSTEM (STRING))
+  - ASDF/FIND-SYSTEM:LOAD-ASD
+  - (RESOLVE-DEPENDENCY-COMBINATION (T (EQL REQUIRE) T))
+  - ASDF/SYSTEM-REGISTRY::ENSURE-PRELOADED-SYSTEM-REGISTERED
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** REMOVE-ENTRY-FROM-REGISTRY
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:REMOVE-ENTRY-FROM-REGISTRY
+:ALLOC: HEAP DYNAMIC
+:END:
+** FIND-SYSTEM-IF-BEING-DEFINED :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:FIND-SYSTEM-IF-BEING-DEFINED
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FIND-SYSTEM-IF-BEING-DEFINED names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** CONTRIB-SYSDEF-SEARCH
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:CONTRIB-SYSDEF-SEARCH
+:ALLOC: HEAP DYNAMIC
+:END:
+** SYSDEF-IMMUTABLE-SYSTEM-SEARCH :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:SYSDEF-IMMUTABLE-SYSTEM-SEARCH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSDEF-IMMUTABLE-SYSTEM-SEARCH names a compiled function:
+  Lambda-list: (REQUESTED)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** REGISTERED-SYSTEMS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:REGISTERED-SYSTEMS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REGISTERED-SYSTEMS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES LIST &OPTIONAL))
+  Documentation:
+    Return a list of the names of every registered system.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SYSTEM-REGISTRY:CLEAR-REGISTERED-SYSTEMS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SEARCH-FOR-SYSTEM-DEFINITION :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:SEARCH-FOR-SYSTEM-DEFINITION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SEARCH-FOR-SYSTEM-DEFINITION names a compiled function:
+  Lambda-list: (SYSTEM)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM:LOCATE-SYSTEM
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SYSDEF-SOURCE-REGISTRY-SEARCH :compiled:function:
+:PROPERTIES:
+:ID: ASDF/SYSTEM-REGISTRY:SYSDEF-SOURCE-REGISTRY-SEARCH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSDEF-SOURCE-REGISTRY-SEARCH names a compiled function:
+  Lambda-list: (SYSTEM)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:

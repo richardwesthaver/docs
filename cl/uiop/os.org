@@ -1,0 +1,582 @@
+#+TITLE: UIOP/OS
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/OS
+:PROPERTIES:
+:ID: UIOP/OS
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/PACKAGE][UIOP/PACKAGE]]
+  - [[id:UIOP/UTILITY][UIOP/UTILITY]]
+
+- dependents
+  - [[id:UIOP/FILESYSTEM][UIOP/FILESYSTEM]]
+  - [[id:UIOP/STREAM][UIOP/STREAM]]
+  - [[id:UIOP/IMAGE][UIOP/IMAGE]]
+  - [[id:UIOP/LAUNCH-PROGRAM][UIOP/LAUNCH-PROGRAM]]
+  - [[id:UIOP/CONFIGURATION][UIOP/CONFIGURATION]]
+  - [[id:UIOP/BACKWARD-DRIVER][UIOP/BACKWARD-DRIVER]]
+  - [[id:UIOP/RUN-PROGRAM][UIOP/RUN-PROGRAM]]
+  - [[id:UIOP/PATHNAME][UIOP/PATHNAME]]
+  - [[id:UIOP/LISP-BUILD][UIOP/LISP-BUILD]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** *IMPLEMENTATION-TYPE​* :var:
+:PROPERTIES:
+:ID: UIOP/OS:*IMPLEMENTATION-TYPE*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*IMPLEMENTATION-TYPE* names a special variable:
+  Value: :SBCL
+  Documentation:
+    The type of Lisp implementation used, as a short UIOP-standardized keyword
+
+#+end_example
+
+- Referenced by
+  - UIOP/LISP-BUILD:WARNINGS-FILE-TYPE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** IMPLEMENTATION-TYPE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:IMPLEMENTATION-TYPE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+IMPLEMENTATION-TYPE names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    The type of Lisp implementation used, as a short UIOP-standardized keyword
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (BASIC-COMPILE-BUNDLE-OP SYSTEM))
+  - UIOP/CONFIGURATION:RESOLVE-RELATIVE-LOCATION
+  - UIOP/OS:IMPLEMENTATION-IDENTIFIER
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DETECT-OS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:DETECT-OS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DETECT-OS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES (NOT NULL) &OPTIONAL))
+  Documentation:
+    Detects the current operating system. Only needs be run at compile-time,
+    except on ABCL where it might change between FASL compilation and runtime.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PARSE-FILE-LOCATION-INFO :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:PARSE-FILE-LOCATION-INFO
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PARSE-FILE-LOCATION-INFO names a compiled function:
+  Lambda-list: (S)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    helper to parse-windows-shortcut
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/OS:PARSE-WINDOWS-SHORTCUT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** HOSTNAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:HOSTNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+HOSTNAME names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES (OR SIMPLE-STRING NULL) &OPTIONAL))
+  Documentation:
+    return the hostname of the current host
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:RESOLVE-RELATIVE-LOCATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** IMPLEMENTATION-IDENTIFIER :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:IMPLEMENTATION-IDENTIFIER
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+IMPLEMENTATION-IDENTIFIER names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES SIMPLE-STRING &OPTIONAL))
+  Documentation:
+    Return a string that identifies the ABI of the current implementation,
+    suitable for use as a directory name to segregate Lisp FASLs, C dynamiclibraries, etc.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:RESOLVE-RELATIVE-LOCATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** GETENVP :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:GETENVP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GETENVP names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    Predicate that is true if the named variable is present in the libcenvironment,
+    then returning the non-empty string value of the variable
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:ARGV0
+  - UIOP/FILESYSTEM:GETENV-PATHNAMES
+  - UIOP/FILESYSTEM:GETENV-PATHNAME
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LISP-VERSION-STRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:LISP-VERSION-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LISP-VERSION-STRING names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES SIMPLE-STRING &OPTIONAL))
+  Documentation:
+    return a string that identifies the current Lisp implementation version
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/OS:IMPLEMENTATION-IDENTIFIER
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** OS-WINDOWS-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:OS-WINDOWS-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OS-WINDOWS-P names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Is the underlying operating system Microsoft Windows?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** OS-GENERA-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:OS-GENERA-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OS-GENERA-P names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Is the underlying operating system Genera (running on a Symbolics LispMachine)?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** OS-UNIX-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:OS-UNIX-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OS-UNIX-P names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Is the underlying operating system some Unix variant?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/OS:OS-WINDOWS-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** OPERATING-SYSTEM :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:OPERATING-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OPERATING-SYSTEM names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    The operating system of the current host
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/OS:IMPLEMENTATION-IDENTIFIER
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** READ-NULL-TERMINATED-STRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:READ-NULL-TERMINATED-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+READ-NULL-TERMINATED-STRING names a compiled function:
+  Lambda-list: (S)
+  Derived type: (FUNCTION (T) (VALUES SIMPLE-STRING &OPTIONAL))
+  Documentation:
+    Read a null-terminated string from an octet stream S
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/OS:PARSE-FILE-LOCATION-INFO
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** OS-MACOSX-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:OS-MACOSX-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OS-MACOSX-P names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Is the underlying operating system MacOS X?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/OS:OS-UNIX-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** GETCWD :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:GETCWD
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GETCWD names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Get the current working directory as per POSIX getcwd(3), as a pathnameobject
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/FILESYSTEM:CALL-WITH-CURRENT-DIRECTORY
+  - UIOP/FILESYSTEM:GET-PATHNAME-DEFAULTS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PARSE-WINDOWS-SHORTCUT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:PARSE-WINDOWS-SHORTCUT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PARSE-WINDOWS-SHORTCUT names a compiled function:
+  Lambda-list: (PATHNAME)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    From a .lnk windows shortcut, extract the pathname linked to
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FEATUREP :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:FEATUREP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FEATUREP names a compiled function:
+  Lambda-list: (X &OPTIONAL (*FEATURES* *FEATURES*))
+  Derived type: (FUNCTION (T &OPTIONAL LIST) *)
+  Documentation:
+    Checks whether a feature expression X is true with respect to the*FEATURES* set,
+    as per the CLHS standard for #+ and #-. Beware that just like the CLHS,
+    we assume symbols from the KEYWORD package are used, but that unless you'reusing #+/#-
+    your reader will not have magically used the KEYWORD package, so you needspecify
+    keywords explicitly.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (RESOLVE-DEPENDENCY-COMBINATION (T (EQL FEATURE) T))
+  - ASDF/ACTION:ACTION-VALID-P
+  - (RECURSE IN SUB-COMPONENTS)
+  - UIOP/OS::FIRST-FEATURE
+  - UIOP/OS::OS-HAIKU-P
+  - UIOP/OS::OS-OLDMAC-P
+  - UIOP/OS:OS-GENERA-P
+  - UIOP/OS:OS-WINDOWS-P
+  - UIOP/OS:OS-UNIX-P
+  - UIOP/OS:OS-MACOSX-P
+  - [[id:SB-INT:FEATUREP][FEATUREP]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** GETENV :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:GETENV
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+GETENV names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES (OR SIMPLE-STRING NULL) &OPTIONAL))
+  Documentation:
+    Query the environment, as in C getenv.
+    Beware: may return empty string if a variable is present but empty;
+    use getenvp to return NIL in such a case.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+(SETF GETENV) has a complex setf-expansion:
+  Lambda-list: (X)
+  Documentation:
+    Set an environment variable.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:ENVIRONMENT-SOURCE-REGISTRY
+  - ASDF/OUTPUT-TRANSLATIONS:ENVIRONMENT-OUTPUT-TRANSLATIONS
+  - UIOP/OS:GETENVP
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** OS-COND :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/OS:OS-COND
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OS-COND names a macro:
+  Lambda-list: (&REST CLAUSES)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - ASDF/BUNDLE:BUNDLE-PATHNAME-TYPE
+  - ASDF/SYSTEM-REGISTRY:PROBE-ASD
+  - UIOP/CONFIGURATION:SYSTEM-CONFIG-PATHNAMES
+  - UIOP/CONFIGURATION:XDG-CACHE-HOME
+  - UIOP/CONFIGURATION:XDG-CONFIG-DIRS
+  - UIOP/CONFIGURATION:XDG-DATA-DIRS
+  - UIOP/CONFIGURATION:XDG-CONFIG-HOME
+  - UIOP/CONFIGURATION:XDG-DATA-HOME
+  - UIOP/RUN-PROGRAM::%REDIRECTED-SYSTEM-COMMAND
+  - UIOP/RUN-PROGRAM::%NORMALIZE-SYSTEM-COMMAND
+  - UIOP/LAUNCH-PROGRAM:TERMINATE-PROCESS
+  - UIOP/LAUNCH-PROGRAM:ESCAPE-SHELL-TOKEN
+  - UIOP/STREAM:DEFAULT-TEMPORARY-DIRECTORY
+  - UIOP/STREAM:NULL-DEVICE-PATHNAME
+  - UIOP/FILESYSTEM:INTER-DIRECTORY-SEPARATOR
+  - UIOP/PATHNAME:DIRECTORIZE-PATHNAME-HOST-DEVICE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** READ-LITTLE-ENDIAN :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:READ-LITTLE-ENDIAN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+READ-LITTLE-ENDIAN names a compiled function:
+  Lambda-list: (S &OPTIONAL (BYTES 4))
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES INTEGER &OPTIONAL))
+  Documentation:
+    Read a number in little-endian format from an byte (octet) stream S,
+    the number having BYTES octets (defaulting to 4).
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/OS:PARSE-WINDOWS-SHORTCUT
+  - UIOP/OS:PARSE-FILE-LOCATION-INFO
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ARCHITECTURE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:ARCHITECTURE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ARCHITECTURE names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    The CPU architecture of the current host
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/OS:IMPLEMENTATION-IDENTIFIER
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CHDIR :compiled:function:
+:PROPERTIES:
+:ID: UIOP/OS:CHDIR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CHDIR names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Change current directory, as per POSIX chdir(2), to a given pathname object
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/FILESYSTEM:CALL-WITH-CURRENT-DIRECTORY
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:

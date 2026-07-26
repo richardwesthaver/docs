@@ -1,0 +1,295 @@
+#+TITLE: ASDF/UPGRADE
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/UPGRADE
+:PROPERTIES:
+:ID: ASDF/UPGRADE
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+- dependents
+  - [[id:ASDF/PACKAGE-INFERRED-SYSTEM][ASDF/PACKAGE-INFERRED-SYSTEM]]
+  - [[id:ASDF/SYSTEM-REGISTRY][ASDF/SYSTEM-REGISTRY]]
+  - [[id:ASDF/ACTION][ASDF/ACTION]]
+  - [[id:ASDF/FIND-COMPONENT][ASDF/FIND-COMPONENT]]
+  - [[id:ASDF/COMPONENT][ASDF/COMPONENT]]
+  - [[id:ASDF/BACKWARD-INTERNALS][ASDF/BACKWARD-INTERNALS]]
+  - [[id:ASDF/SESSION][ASDF/SESSION]]
+  - [[id:ASDF/PARSE-DEFSYSTEM][ASDF/PARSE-DEFSYSTEM]]
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+  - [[id:ASDF/CONCATENATE-SOURCE][ASDF/CONCATENATE-SOURCE]]
+  - [[id:ASDF/SYSTEM][ASDF/SYSTEM]]
+  - [[id:ASDF/LISP-ACTION][ASDF/LISP-ACTION]]
+  - [[id:ASDF/OPERATION][ASDF/OPERATION]]
+  - [[id:ASDF/BUNDLE][ASDF/BUNDLE]]
+  - [[id:ASDF/BACKWARD-INTERFACE][ASDF/BACKWARD-INTERFACE]]
+  - [[id:ASDF/OPERATE][ASDF/OPERATE]]
+  - [[id:ASDF/OUTPUT-TRANSLATIONS][ASDF/OUTPUT-TRANSLATIONS]]
+  - [[id:ASDF/PLAN][ASDF/PLAN]]
+  - [[id:ASDF/FORCING][ASDF/FORCING]]
+  - [[id:ASDF/FOOTER][ASDF/FOOTER]]
+  - [[id:ASDF/FIND-SYSTEM][ASDF/FIND-SYSTEM]]
+  - [[id:ASDF/SOURCE-REGISTRY][ASDF/SOURCE-REGISTRY]]
+
+** CLEANUP-UPGRADED-ASDF :compiled:function:
+:PROPERTIES:
+:ID: ASDF/UPGRADE:CLEANUP-UPGRADED-ASDF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEANUP-UPGRADED-ASDF names a compiled function:
+  Lambda-list: (&OPTIONAL (OLD-VERSION (FIRST *PREVIOUS-ASDF-VERSIONS*)))
+  Derived type: (FUNCTION (&OPTIONAL T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** DEFPARAMETER* :compiled:macro:function:
+:PROPERTIES:
+:ID: ASDF/UPGRADE:DEFPARAMETER*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEFPARAMETER* names a macro:
+  Lambda-list: (VAR VALUE &OPTIONAL DOCSTRING
+                (VERSION *OLDEST-FORWARD-COMPATIBLE-ASDF-VERSION*))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** UPGRADE-ASDF :compiled:function:
+:PROPERTIES:
+:ID: ASDF/UPGRADE:UPGRADE-ASDF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UPGRADE-ASDF names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Try to upgrade of ASDF. If a different version was used, return T.
+       We need do that before we operate on anything that may possibly dependon ASDF.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (OPERATE AROUND (T T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** WITH-ASDF-DEPRECATION :compiled:macro:function:
+:PROPERTIES:
+:ID: ASDF/UPGRADE:WITH-ASDF-DEPRECATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-ASDF-DEPRECATION names a macro:
+  Lambda-list: ((&REST KEYS &KEY &ALLOW-OTHER-KEYS) &BODY BODY)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** *PREVIOUS-ASDF-VERSIONS​* :var:
+:PROPERTIES:
+:ID: ASDF/UPGRADE:*PREVIOUS-ASDF-VERSIONS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*PREVIOUS-ASDF-VERSIONS* names a special variable:
+  Value: ("3.3.1")
+
+#+end_example
+
+- Set by
+  - ASDF/UPGRADE:CLEANUP-UPGRADED-ASDF
+
+- Referenced by
+  - ASDF/UPGRADE:CLEANUP-UPGRADED-ASDF
+  - ASDF/UPGRADE:UPGRADING-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** *ASDF-VERSION​* :var:
+:PROPERTIES:
+:ID: ASDF/UPGRADE:*ASDF-VERSION*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*ASDF-VERSION* names a special variable:
+  Value: "3.3.1"
+
+#+end_example
+
+- Referenced by
+  - ASDF/ACTION::BACKWARD-COMPATIBLE-DEPENDS-ON
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ASDF-MESSAGE :compiled:function:
+:PROPERTIES:
+:ID: ASDF/UPGRADE:ASDF-MESSAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ASDF-MESSAGE names a compiled function:
+  Lambda-list: (FORMAT-STRING &REST FORMAT-ARGS)
+  Derived type: (FUNCTION (T &REST T) (VALUES (OR STRING NULL) &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (EXPLAIN (OPERATION COMPONENT))
+  - ASDF/BACKWARD-INTERFACE:RUN-SHELL-COMMAND
+  - (PERFORM (DEFINE-OP SYSTEM))
+  - ASDF/SYSTEM-REGISTRY:REGISTER-SYSTEM
+  - ASDF/UPGRADE:CLEANUP-UPGRADED-ASDF
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** UPGRADING-P :compiled:function:
+:PROPERTIES:
+:ID: ASDF/UPGRADE:UPGRADING-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UPGRADING-P names a compiled function:
+  Lambda-list: (&OPTIONAL
+                (OLDEST-COMPATIBLE-VERSION
+                 *OLDEST-FORWARD-COMPATIBLE-ASDF-VERSION*))
+  Derived type: (FUNCTION (&OPTIONAL T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ASDF-VERSION :compiled:function:
+:PROPERTIES:
+:ID: ASDF/UPGRADE:ASDF-VERSION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ASDF-VERSION names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
+  Documentation:
+    Exported interface to the version of ASDF currently installed. A string.
+    You can compare this string with e.g.: (ASDF:VERSION-SATISFIES (ASDF:ASDF-VERSION) "3.4.5.67").
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM::CHECK-NOT-OLD-ASDF-SYSTEM
+  - ASDF/UPGRADE:CLEANUP-UPGRADED-ASDF
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** *POST-UPGRADE-CLEANUP-HOOK​* :var:
+:PROPERTIES:
+:ID: ASDF/UPGRADE:*POST-UPGRADE-CLEANUP-HOOK*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*POST-UPGRADE-CLEANUP-HOOK* names a special variable:
+  Value: (ASDF/OPERATE::RESTART-UPGRADED-ASDF)
+
+#+end_example
+
+- Referenced by
+  - ASDF/UPGRADE:CLEANUP-UPGRADED-ASDF
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** WHEN-UPGRADING :compiled:macro:function:
+:PROPERTIES:
+:ID: ASDF/UPGRADE:WHEN-UPGRADING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WHEN-UPGRADING names a macro:
+  Lambda-list: ((&KEY (VERSION *OLDEST-FORWARD-COMPATIBLE-ASDF-VERSION*)
+                 (UPGRADING-P `(UPGRADING-P ,VERSION)) WHEN)
+                &BODY BODY)
+  Documentation:
+    A wrapper macro for code that should only be run when upgrading a
+    previously-loaded version of ASDF.
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** *VERBOSE-OUT​* :var:
+:PROPERTIES:
+:ID: ASDF/UPGRADE:*VERBOSE-OUT*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*VERBOSE-OUT* names a special variable:
+  Value: NIL
+
+#+end_example
+
+- Bound by
+  - ASDF/OPERATE:MODULE-PROVIDE-ASDF
+  - (OPERATE AROUND (T T))
+
+- Referenced by
+  - ASDF/BACKWARD-INTERFACE:RUN-SHELL-COMMAND
+  - ASDF/SOURCE-REGISTRY:COMPUTE-SOURCE-REGISTRY
+  - ASDF/UPGRADE:ASDF-MESSAGE
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:

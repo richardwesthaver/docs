@@ -1,0 +1,775 @@
+#+TITLE: UIOP/IMAGE
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/IMAGE
+:PROPERTIES:
+:ID: UIOP/IMAGE
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/PACKAGE][UIOP/PACKAGE]]
+  - [[id:UIOP/UTILITY][UIOP/UTILITY]]
+  - [[id:UIOP/PATHNAME][UIOP/PATHNAME]]
+  - [[id:UIOP/STREAM][UIOP/STREAM]]
+  - [[id:UIOP/OS][UIOP/OS]]
+
+- dependents
+  - [[id:UIOP/CONFIGURATION][UIOP/CONFIGURATION]]
+  - [[id:UIOP/BACKWARD-DRIVER][UIOP/BACKWARD-DRIVER]]
+  - [[id:UIOP/LISP-BUILD][UIOP/LISP-BUILD]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** *LISP-INTERACTION​* :var:
+:PROPERTIES:
+:ID: UIOP/IMAGE:*LISP-INTERACTION*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*LISP-INTERACTION* names a special variable:
+  Value: T
+  Documentation:
+    Is this an interactive Lisp environment, or is it batch processing?
+
+#+end_example
+
+- Set by
+  - UIOP/IMAGE:RESTORE-IMAGE
+
+- Referenced by
+  - UIOP/IMAGE:RESTORE-IMAGE
+  - UIOP/IMAGE:HANDLE-FATAL-CONDITION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CREATE-IMAGE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:CREATE-IMAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CREATE-IMAGE names a compiled function:
+  Lambda-list: (DESTINATION LISP-OBJECT-FILES &KEY KIND OUTPUT-NAME
+                PROLOGUE-CODE EPILOGUE-CODE EXTRA-OBJECT-FILES
+                (PRELUDE NIL PRELUDEP) (POSTLUDE NIL POSTLUDEP)
+                (ENTRY-POINT NIL ENTRY-POINT-P) BUILD-ARGS NO-UIOP)
+  Derived type: (FUNCTION
+                 (T T &KEY (:KIND T) (:OUTPUT-NAME T) (:PROLOGUE-CODE T)
+                  (:EPILOGUE-CODE T) (:EXTRA-OBJECT-FILES T) (:PRELUDE T)
+                  (:POSTLUDE T) (:ENTRY-POINT T) (:BUILD-ARGS T) (:NO-UIOP T))
+                 *)
+  Documentation:
+    On ECL, create an executable at pathname DESTINATION from the specifiedOBJECT-FILES and options
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RAW-PRINT-BACKTRACE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:RAW-PRINT-BACKTRACE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RAW-PRINT-BACKTRACE names a compiled function:
+  Lambda-list: (&KEY (STREAM *DEBUG-IO*) COUNT CONDITION)
+  Derived type: (FUNCTION (&KEY (:STREAM T) (:COUNT T) (:CONDITION T)) *)
+  Documentation:
+    Print a backtrace, directly accessing the implementation
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:SB-DEBUG:PRINT-BACKTRACE][PRINT-BACKTRACE]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-IMAGE-DUMP-HOOK :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:CALL-IMAGE-DUMP-HOOK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-IMAGE-DUMP-HOOK names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Call the hook functions registered to be run before to dump an image
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:DUMP-IMAGE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PRINT-CONDITION-BACKTRACE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:PRINT-CONDITION-BACKTRACE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PRINT-CONDITION-BACKTRACE names a compiled function:
+  Lambda-list: (CONDITION &KEY (STREAM *STDERR*) COUNT)
+  Derived type: (FUNCTION (T &KEY (:STREAM T) (:COUNT T)) *)
+  Documentation:
+    Print a condition after a backtrace triggered by that condition
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:HANDLE-FATAL-CONDITION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DUMP-IMAGE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:DUMP-IMAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DUMP-IMAGE names a compiled function:
+  Lambda-list: (FILENAME &KEY OUTPUT-NAME EXECUTABLE
+                (POSTLUDE *IMAGE-POSTLUDE*) (DUMP-HOOK *IMAGE-DUMP-HOOK*)
+                COMPRESSION)
+  Derived type: (FUNCTION
+                 (T &KEY (:OUTPUT-NAME T) (:EXECUTABLE T) (:POSTLUDE T)
+                  (:DUMP-HOOK T) (:COMPRESSION T))
+                 *)
+  Documentation:
+    Dump an image of the current Lisp environment at pathname FILENAME, withvarious options.
+    
+    First, finalize the image, by evaluating the POSTLUDE as per EVAL-INPUT,then calling each of
+     the functions in DUMP-HOOK, in reverse order of registration by REGISTER-DUMP-HOOK.
+    
+    If EXECUTABLE is true, create an standalone executable program that callsRESTORE-IMAGE on startup.
+    
+    Pass various implementation-defined options, such as PREPEND-SYMBOLS andPURITY on CCL,
+    or COMPRESSION on SBCL, and APPLICATION-TYPE on SBCL/Windows.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (IMAGE-OP SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *IMAGE-ENTRY-POINT​* :var:
+:PROPERTIES:
+:ID: UIOP/IMAGE:*IMAGE-ENTRY-POINT*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*IMAGE-ENTRY-POINT* names a special variable:
+  Value: NIL
+  Documentation:
+    a function with which to restart the dumped image when execution isrestored from it.
+
+#+end_example
+
+- Set by
+  - (PERFORM BEFORE (PROGRAM-OP SYSTEM))
+
+- Referenced by
+  - UIOP/IMAGE:RESTORE-IMAGE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-FATAL-CONDITION-HANDLER :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:CALL-WITH-FATAL-CONDITION-HANDLER
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-FATAL-CONDITION-HANDLER names a compiled function:
+  Lambda-list: (THUNK)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Call THUNK in a context where fatal conditions are appropriately handled
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:RESTORE-IMAGE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FATAL-CONDITION-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:FATAL-CONDITION-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FATAL-CONDITION-P names a compiled function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Is the CONDITION fatal?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *IMAGE-DUMP-HOOK​* :var:
+:PROPERTIES:
+:ID: UIOP/IMAGE:*IMAGE-DUMP-HOOK*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*IMAGE-DUMP-HOOK* names a special variable:
+  Value: (UIOP/CONFIGURATION:CLEAR-CONFIGURATION)
+  Documentation:
+    Functions to call (in order) when before an image is dumped
+
+#+end_example
+
+- Set by
+  - UIOP/IMAGE:DUMP-IMAGE
+
+- Referenced by
+  - UIOP/IMAGE:DUMP-IMAGE
+  - UIOP/IMAGE:CALL-IMAGE-DUMP-HOOK
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *IMAGE-RESTORE-HOOK​* :var:
+:PROPERTIES:
+:ID: UIOP/IMAGE:*IMAGE-RESTORE-HOOK*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*IMAGE-RESTORE-HOOK* names a special variable:
+  Value: (UIOP/CONFIGURATION::COMPUTE-USER-CACHE
+          UIOP/STREAM:SETUP-TEMPORARY-DIRECTORY
+          UIOP/IMAGE:SETUP-COMMAND-LINE-ARGUMENTS UIOP/STREAM:SETUP-STDERR
+          UIOP/STREAM:SETUP-STDOUT UIOP/STREAM:SETUP-STDIN)
+  Documentation:
+    Functions to call (in reverse order) when the image is restored
+
+#+end_example
+
+- Set by
+  - UIOP/IMAGE:RESTORE-IMAGE
+
+- Referenced by
+  - UIOP/IMAGE:RESTORE-IMAGE
+  - UIOP/IMAGE:CALL-IMAGE-RESTORE-HOOK
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RAW-COMMAND-LINE-ARGUMENTS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:RAW-COMMAND-LINE-ARGUMENTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RAW-COMMAND-LINE-ARGUMENTS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
+  Documentation:
+    Find what the actual command line for this process was.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:ARGV0
+  - UIOP/IMAGE:COMMAND-LINE-ARGUMENTS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ARGV0 :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:ARGV0
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ARGV0 names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    On supported implementations (most that matter), or when invoked by aproper wrapper script,
+    return a string that for the name with which the program was invoked, i.e.argv[0] in C.
+    Otherwise, return NIL.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *IMAGE-DUMPED-P​* :var:
+:PROPERTIES:
+:ID: UIOP/IMAGE:*IMAGE-DUMPED-P*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*IMAGE-DUMPED-P* names a special variable:
+  Value: NIL
+  Documentation:
+    Is this a dumped image? As a standalone executable?
+
+#+end_example
+
+- Set by
+  - UIOP/IMAGE:DUMP-IMAGE
+
+- Referenced by
+  - UIOP/IMAGE:ARGV0
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *IMAGE-PRELUDE​* :var:
+:PROPERTIES:
+:ID: UIOP/IMAGE:*IMAGE-PRELUDE*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*IMAGE-PRELUDE* names a special variable:
+  Value: NIL
+  Documentation:
+    a form to evaluate, or string containing forms to read and evaluate
+    when the image is restarted, but before the entry point is called.
+
+#+end_example
+
+- Set by
+  - UIOP/IMAGE:RESTORE-IMAGE
+
+- Referenced by
+  - UIOP/IMAGE:RESTORE-IMAGE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-IMAGE-RESTORE-HOOK :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:CALL-IMAGE-RESTORE-HOOK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-IMAGE-RESTORE-HOOK names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Call the hook functions registered to be run when restoring a dumped image
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:RESTORE-IMAGE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SHELL-BOOLEAN-EXIT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:SHELL-BOOLEAN-EXIT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SHELL-BOOLEAN-EXIT names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Quit with a return code that is 0 iff argument X is true
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:RESTORE-IMAGE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PRINT-BACKTRACE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:PRINT-BACKTRACE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PRINT-BACKTRACE names a compiled function:
+  Lambda-list: (&REST KEYS &KEY STREAM COUNT CONDITION)
+  Derived type: (FUNCTION (&REST T &KEY (:STREAM T) (:COUNT T) (:CONDITION T))
+                 *)
+  Documentation:
+    Print a backtrace
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:PRINT-CONDITION-BACKTRACE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *COMMAND-LINE-ARGUMENTS​* :var:
+:PROPERTIES:
+:ID: UIOP/IMAGE:*COMMAND-LINE-ARGUMENTS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*COMMAND-LINE-ARGUMENTS* names a special variable:
+  Value: NIL
+  Documentation:
+    Command-line arguments
+
+#+end_example
+
+- Set by
+  - UIOP/IMAGE:SETUP-COMMAND-LINE-ARGUMENTS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-FATAL-CONDITION-HANDLER :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:WITH-FATAL-CONDITION-HANDLER
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-FATAL-CONDITION-HANDLER names a macro:
+  Lambda-list: ((&OPTIONAL) &BODY BODY)
+  Documentation:
+    Execute BODY in a context where fatal conditions are appropriately handled
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - UIOP/IMAGE:RESTORE-IMAGE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FATAL-CONDITION :condition:
+:PROPERTIES:
+:ID: UIOP/IMAGE:FATAL-CONDITION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FATAL-CONDITION names a type-specifier:
+  Lambda-list: ()
+  Expansion: (AND SERIOUS-CONDITION)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DIE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:DIE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DIE names a compiled function:
+  Lambda-list: (CODE FORMAT &REST ARGUMENTS)
+  Derived type: (FUNCTION (T T &REST T) *)
+  Documentation:
+    Die in error with some error message
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:HANDLE-FATAL-CONDITION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SETUP-COMMAND-LINE-ARGUMENTS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:SETUP-COMMAND-LINE-ARGUMENTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SETUP-COMMAND-LINE-ARGUMENTS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** REGISTER-IMAGE-DUMP-HOOK :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:REGISTER-IMAGE-DUMP-HOOK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REGISTER-IMAGE-DUMP-HOOK names a compiled function:
+  Lambda-list: (HOOK &OPTIONAL (CALL-NOW-P NIL))
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Register a the hook function to be run before to dump an image
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COMMAND-LINE-ARGUMENTS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:COMMAND-LINE-ARGUMENTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMMAND-LINE-ARGUMENTS names a compiled function:
+  Lambda-list: (&OPTIONAL (ARGUMENTS (RAW-COMMAND-LINE-ARGUMENTS)))
+  Derived type: (FUNCTION (&OPTIONAL T) (VALUES T &OPTIONAL))
+  Documentation:
+    Extract user arguments from command-line invocation of current process.
+    Assume the calling conventions of a generated script that uses --
+    if we are not called from a directly executable image.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:SETUP-COMMAND-LINE-ARGUMENTS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** REGISTER-IMAGE-RESTORE-HOOK :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:REGISTER-IMAGE-RESTORE-HOOK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REGISTER-IMAGE-RESTORE-HOOK names a compiled function:
+  Lambda-list: (HOOK &OPTIONAL (CALL-NOW-P T))
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Documentation:
+    Regiter a hook function to be run when restoring a dumped image
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *IMAGE-POSTLUDE​* :var:
+:PROPERTIES:
+:ID: UIOP/IMAGE:*IMAGE-POSTLUDE*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*IMAGE-POSTLUDE* names a special variable:
+  Value: NIL
+  Documentation:
+    a form to evaluate, or string containing forms to read and evaluate
+    before the image dump hooks are called and before the image is dumped.
+
+#+end_example
+
+- Set by
+  - UIOP/IMAGE:DUMP-IMAGE
+
+- Referenced by
+  - UIOP/IMAGE:DUMP-IMAGE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RESTORE-IMAGE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:RESTORE-IMAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RESTORE-IMAGE names a compiled function:
+  Lambda-list: (&KEY (LISP-INTERACTION *LISP-INTERACTION*)
+                (RESTORE-HOOK *IMAGE-RESTORE-HOOK*) (PRELUDE *IMAGE-PRELUDE*)
+                (ENTRY-POINT *IMAGE-ENTRY-POINT*)
+                (IF-ALREADY-RESTORED (QUOTE (CERROR RUN RESTORE-IMAGEANYWAY))))
+  Derived type: (FUNCTION
+                 (&KEY (:LISP-INTERACTION T) (:RESTORE-HOOK T) (:PRELUDE T)
+                  (:ENTRY-POINT T) (:IF-ALREADY-RESTORED T))
+                 *)
+  Documentation:
+    From a freshly restarted Lisp image, restore the saved Lisp environment
+    by setting appropriate variables, running various hooks, and calling anyspecified entry point.
+    
+    If the image has already been restored or is already being restored, as per*IMAGE-RESTORED-P*,
+    call the IF-ALREADY-RESTORED error handler (by default, a continuableerror), and do return
+    immediately to the surrounding restore process if allowed to continue.
+    
+    Then, comes the restore process itself:
+    First, call each function in the RESTORE-HOOK,
+    in the order they were registered with REGISTER-IMAGE-RESTORE-HOOK.
+    Second, evaluate the prelude, which is often Lisp text that is read,
+    as per EVAL-INPUT.
+    Third, call the ENTRY-POINT function, if any is specified, with noargument.
+    
+    The restore process happens in a WITH-FATAL-CONDITION-HANDLER, so that ifLISP-INTERACTION is NIL,
+    any unhandled error leads to a backtrace and an exit with an error status.
+    If LISP-INTERACTION is NIL, the process also exits when no error occurs:
+    if neither restart nor entry function is provided, the program will exitwith status 0 (success);
+    if a function was provided, the program will exit after the functionreturns (if it returns),
+    with status 0 if and only if the primary return value of result isgeneralized boolean true,
+    and with status 1 if this value is NIL.
+    
+    If LISP-INTERACTION is true, unhandled errors will take you to thedebugger, and the result
+    of the function will be returned rather than interpreted as a booleandesignating an exit code.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:DUMP-IMAGE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** QUIT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:QUIT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+QUIT names a compiled function:
+  Lambda-list: (&OPTIONAL (CODE 0) (FINISH-OUTPUT T))
+  Derived type: (FUNCTION (&OPTIONAL T T) NIL)
+  Documentation:
+    Quits from the Lisp world, with the given exit status if provided.
+    This is designed to abstract away the implementation specific quit forms.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:SHELL-BOOLEAN-EXIT
+  - UIOP/IMAGE:DIE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** HANDLE-FATAL-CONDITION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/IMAGE:HANDLE-FATAL-CONDITION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+HANDLE-FATAL-CONDITION names a compiled function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Handle a fatal CONDITION:
+    depending on whether *LISP-INTERACTION* is set, enter debugger or die
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:CALL-WITH-FATAL-CONDITION-HANDLER
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:

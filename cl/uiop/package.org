@@ -1,0 +1,785 @@
+#+TITLE: UIOP/PACKAGE
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/PACKAGE
+:PROPERTIES:
+:ID: UIOP/PACKAGE
+:END:
+- dependencies
+  - [[id:COMMON-LISP][COMMON-LISP]]
+
+- dependents
+  - [[id:UIOP/VERSION][UIOP/VERSION]]
+  - [[id:UIOP/FILESYSTEM][UIOP/FILESYSTEM]]
+  - [[id:UIOP/STREAM][UIOP/STREAM]]
+  - [[id:UIOP/IMAGE][UIOP/IMAGE]]
+  - [[id:UIOP/UTILITY][UIOP/UTILITY]]
+  - [[id:UIOP/LAUNCH-PROGRAM][UIOP/LAUNCH-PROGRAM]]
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/OS][UIOP/OS]]
+  - [[id:UIOP/BACKWARD-DRIVER][UIOP/BACKWARD-DRIVER]]
+  - [[id:UIOP/RUN-PROGRAM][UIOP/RUN-PROGRAM]]
+  - [[id:UIOP/PATHNAME][UIOP/PATHNAME]]
+  - [[id:UIOP/LISP-BUILD][UIOP/LISP-BUILD]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** REIFY-PACKAGE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:REIFY-PACKAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REIFY-PACKAGE names a compiled function:
+  Lambda-list: (PACKAGE &OPTIONAL PACKAGE-CONTEXT)
+  Derived type: (FUNCTION (T &OPTIONAL T)
+                 (VALUES (OR SIMPLE-STRING (MEMBER :CL NIL T)) &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/SYM:ENSURE-SYMBOL][ENSURE-SYMBOL]]
+  - [[id:STD/DEFPKG:REIFY-SYMBOL][REIFY-SYMBOL]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DELETE-PACKAGE* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:DELETE-PACKAGE*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DELETE-PACKAGE* names a compiled function:
+  Lambda-list: (PACKAGE &KEY NUKE)
+  Derived type: (FUNCTION (T &KEY (:NUKE T)) *)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PACKAGE-DEFINITION-FORM :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:PACKAGE-DEFINITION-FORM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PACKAGE-DEFINITION-FORM names a compiled function:
+  Lambda-list: (PACKAGE-DESIGNATOR &KEY (NICKNAMESP T) (USEP T) (SHADOWP T)
+                (SHADOWING-IMPORT-P T) (EXPORTP T) (IMPORTP T) INTERNP
+                (ERROR T))
+  Derived type: (FUNCTION
+                 (T &KEY (:NICKNAMESP T) (:USEP T) (:SHADOWP T)
+                  (:SHADOWING-IMPORT-P T) (:EXPORTP T) (:IMPORTP T)
+                  (:INTERNP T) (:ERROR T))
+                 (VALUES LIST &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** REHOME-SYMBOL :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:REHOME-SYMBOL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REHOME-SYMBOL names a compiled function:
+  Lambda-list: (SYMBOL PACKAGE-DESIGNATOR)
+  Derived type: (FUNCTION (T T)
+                 (VALUES SYMBOL (MEMBER NIL :INHERITED :EXTERNAL :INTERNAL)
+                         &OPTIONAL))
+  Documentation:
+    Changes the home package of a symbol, also leaving it present in its oldhome if any
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:ENSURE-PACKAGE][ENSURE-PACKAGE]]
+  - [[id:STD/SYM:ENSURE-SYMBOL][ENSURE-SYMBOL]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** NUKE-SYMBOL-IN-PACKAGE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:NUKE-SYMBOL-IN-PACKAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NUKE-SYMBOL-IN-PACKAGE names a compiled function:
+  Lambda-list: (SYMBOL PACKAGE-DESIGNATOR)
+  Derived type: (FUNCTION (T T) *)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:NUKE-SYMBOL][NUKE-SYMBOL]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** RENAME-PACKAGE-AWAY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:RENAME-PACKAGE-AWAY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+RENAME-PACKAGE-AWAY names a compiled function:
+  Lambda-list: (P &REST KEYS &KEY PREFIX &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION (T &REST T &KEY (:PREFIX T) &ALLOW-OTHER-KEYS)
+                 (VALUES PACKAGE &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:ENSURE-PACKAGE][ENSURE-PACKAGE]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ENSURE-PACKAGE-UNUSED :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:ENSURE-PACKAGE-UNUSED
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENSURE-PACKAGE-UNUSED names a compiled function:
+  Lambda-list: (PACKAGE)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:DELETE-PACKAGE*][DELETE-PACKAGE*]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** UNREIFY-SYMBOL :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:UNREIFY-SYMBOL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNREIFY-SYMBOL names a compiled function:
+  Lambda-list: (SYMBOL &OPTIONAL PACKAGE-CONTEXT)
+  Derived type: (FUNCTION (T &OPTIONAL T) *)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LISP-BUILD:UNREIFY-SIMPLE-SEXP
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PACKAGE-NAMES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:PACKAGE-NAMES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PACKAGE-NAMES names a compiled function:
+  Lambda-list: (PACKAGE)
+  Derived type: (FUNCTION (T) (VALUES CONS &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PACKAGE-INFERRED-SYSTEM::INITIAL-PACKAGE-INFERRED-SYSTEMS-TABLE
+  - [[id:STD/DEFPKG:ENSURE-PACKAGE][ENSURE-PACKAGE]]
+  - [[id:STD/DEFPKG:RENAME-PACKAGE-AWAY][RENAME-PACKAGE-AWAY]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FIND-PACKAGE* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:FIND-PACKAGE*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FIND-PACKAGE* names a compiled function:
+  Lambda-list: (PACKAGE-DESIGNATOR &OPTIONAL (ERROR T))
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES (OR PACKAGE NULL) &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:ENSURE-PACKAGE][ENSURE-PACKAGE]]
+  - [[id:STD/DEFPKG:PACKAGE-DEFINITION-FORM][PACKAGE-DEFINITION-FORM]]
+  - [[id:STD/DEFPKG:REHOME-SYMBOL][REHOME-SYMBOL]]
+  - [[id:STD/DEFPKG:NUKE-SYMBOL-IN-PACKAGE][NUKE-SYMBOL-IN-PACKAGE]]
+  - [[id:STD/DEFPKG:HOME-PACKAGE-P][HOME-PACKAGE-P]]
+  - [[id:STD/DEFPKG:UNINTERN*][UNINTERN*]]
+  - [[id:STD/DEFPKG:SHADOW*][SHADOW*]]
+  - [[id:STD/DEFPKG:SHADOWING-IMPORT*][SHADOWING-IMPORT*]]
+  - [[id:STD/DEFPKG:IMPORT*][IMPORT*]]
+  - [[id:STD/DEFPKG:EXPORT*][EXPORT*]]
+  - [[id:STD/DEFPKG:INTERN*][INTERN*]]
+  - [[id:STD/DEFPKG:FIND-SYMBOL*][FIND-SYMBOL*]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FIND-SYMBOL* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:FIND-SYMBOL*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FIND-SYMBOL* names a compiled function:
+  Lambda-list: (NAME PACKAGE-DESIGNATOR &OPTIONAL (ERROR T))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SYMBOL (MEMBER NIL :INHERITED :EXTERNAL :INTERNAL)
+                         &OPTIONAL))
+  Documentation:
+    Find a symbol in a package of given string'ified NAME;
+    unlike CL:FIND-SYMBOL, work well with 'modern' case sensitive syntax
+    by letting you supply a symbol or keyword for the name;
+    also works well when the package is not present.
+    If optional ERROR argument is NIL, return NIL instead of an error
+    when the symbol is not found.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (OPERATE BEFORE (T T))
+  - ASDF/FORCING:MAKE-FORCING
+  - UIOP/FILESYSTEM:LISP-IMPLEMENTATION-DIRECTORY
+  - UIOP/UTILITY:MATCH-CONDITION-P
+  - UIOP/UTILITY:COERCE-CLASS
+  - UIOP/UTILITY:FIND-STANDARD-CASE-SYMBOL
+  - UIOP/PACKAGE::ENSURE-EXPORT
+  - UIOP/PACKAGE::ENSURE-SHADOWING-IMPORT
+  - [[id:STD/DEFPKG:PACKAGE-DEFINITION-FORM][PACKAGE-DEFINITION-FORM]]
+  - [[id:STD/DEFPKG:STANDARD-COMMON-LISP-SYMBOL-P][STANDARD-COMMON-LISP-SYMBOL-P]]
+  - [[id:STD/DEFPKG:UNINTERN*][UNINTERN*]]
+  - [[id:STD/DEFPKG:SYMBOL-CALL][SYMBOL-CALL]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** MAKE-SYMBOL* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:MAKE-SYMBOL*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-SYMBOL* names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (T) (VALUES SYMBOL &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:UNREIFY-SYMBOL][UNREIFY-SYMBOL]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** HOME-PACKAGE-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:HOME-PACKAGE-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+HOME-PACKAGE-P names a compiled function:
+  Lambda-list: (SYMBOL PACKAGE)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:ENSURE-PACKAGE][ENSURE-PACKAGE]]
+  - UIOP/PACKAGE::ENSURE-EXPORTED-TO-USER
+  - UIOP/PACKAGE::RECYCLE-SYMBOL
+  - [[id:OBJ/META/MIX:ENSURE-MIX][ENSURE-MIX]]
+  - UIOP/PACKAGE::ENSURE-INHERITED
+  - UIOP/PACKAGE::ENSURE-IMPORTED
+  - UIOP/PACKAGE::ENSURE-SHADOWING-IMPORT
+  - [[id:STD/DEFPKG:DELETE-PACKAGE*][DELETE-PACKAGE*]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DEFINE-PACKAGE :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:DEFINE-PACKAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEFINE-PACKAGE names a macro:
+  Lambda-list: (PACKAGE &REST CLAUSES)
+  Documentation:
+    DEFINE-PACKAGE takes a PACKAGE and a number of CLAUSES, of the form
+    (KEYWORD . ARGS).
+    DEFINE-PACKAGE supports the following keywords:
+    USE, SHADOW, SHADOWING-IMPORT-FROM, IMPORT-FROM, EXPORT, INTERN -- as perCL:DEFPACKAGE.
+    RECYCLE -- Recycle the package's exported symbols from the specifiedpackages,
+    in order.  For every symbol scheduled to be exported by the DEFINE-PACKAGE,
+    either through an :EXPORT option or a :REEXPORT option, if the symbolexists in
+    one of the :RECYCLE packages, the first such symbol is re-homed to thepackage
+    being defined.
+    For the sake of idempotence, it is important that the package being defined
+    should appear in first position if it already exists, and even if itdoesn't,
+    ahead of any package that is not going to be deleted afterwards and never
+    created again. In short, except for special cases, always make it the first
+    package on the list if the list is not empty.
+    MIX -- Takes a list of package designators.  MIX behaves like
+    (:USE PKG1 PKG2 ... PKGn) but additionally uses :SHADOWING-IMPORT-FROM to
+    resolve conflicts in favor of the first found symbol.  It may still yield
+    an error if there is a conflict with an explicitly :IMPORT-FROM symbol.
+    REEXPORT -- Takes a list of package designators.  For each package, p, inthe list,
+    export symbols with the same name as those exported from p.  Note that inthe case
+    of shadowing, etc. the symbols with the same name may not be the samesymbols.
+    UNINTERN -- Remove symbols here from PACKAGE.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** REIFY-SYMBOL :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:REIFY-SYMBOL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REIFY-SYMBOL names a compiled function:
+  Lambda-list: (SYMBOL &OPTIONAL PACKAGE-CONTEXT)
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LISP-BUILD:REIFY-SIMPLE-SEXP
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SYMBOL-CALL :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:SYMBOL-CALL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYMBOL-CALL names a compiled function:
+  Lambda-list: (PACKAGE NAME &REST ARGS)
+  Derived type: (FUNCTION (T T &REST T) *)
+  Documentation:
+    Call a function associated with symbol of given name in given package,
+    with given ARGS. Useful when the call is read before the package is loaded,
+    or when loading the package is optional.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/UPGRADE:UPGRADE-ASDF
+  - UIOP/OS:CHDIR
+  - (NOT-IMPLEMENTED-ERROR)
+  - UIOP/UTILITY:COERCE-CLASS
+  - (PERFORM (TEST-OP (EQL #<SYSTEM "std/tests">)))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** UNINTERN* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:UNINTERN*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNINTERN* names a compiled function:
+  Lambda-list: (NAME PACKAGE-DESIGNATOR &OPTIONAL (ERROR T))
+  Derived type: (FUNCTION (T T &OPTIONAL T) (VALUES SYMBOL T &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:ENSURE-PACKAGE][ENSURE-PACKAGE]]
+  - UIOP/PACKAGE::ENSURE-INHERITED
+  - UIOP/PACKAGE::ENSURE-IMPORTED
+  - [[id:STD/DEFPKG:REHOME-SYMBOL][REHOME-SYMBOL]]
+  - [[id:STD/DEFPKG:NUKE-SYMBOL-IN-PACKAGE][NUKE-SYMBOL-IN-PACKAGE]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** NUKE-SYMBOL :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:NUKE-SYMBOL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NUKE-SYMBOL names a compiled function:
+  Lambda-list: (SYMBOL &OPTIONAL (PACKAGES (LIST-ALL-PACKAGES)))
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES NULL &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:DELETE-PACKAGE*][DELETE-PACKAGE*]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SYMBOL-SHADOWING-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:SYMBOL-SHADOWING-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYMBOL-SHADOWING-P names a compiled function:
+  Lambda-list: (SYMBOL PACKAGE)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:ENSURE-PACKAGE][ENSURE-PACKAGE]]
+  - UIOP/PACKAGE::ENSURE-EXPORTED-TO-USER
+  - UIOP/PACKAGE::ENSURE-INHERITED
+  - UIOP/PACKAGE::ENSURE-IMPORTED
+  - UIOP/PACKAGE::ENSURE-SHADOWING-IMPORT
+  - [[id:STD/DEFPKG:PACKAGE-DEFINITION-FORM][PACKAGE-DEFINITION-FORM]]
+  - [[id:STD/DEFPKG:REHOME-SYMBOL][REHOME-SYMBOL]]
+  - [[id:STD/DEFPKG:NUKE-SYMBOL-IN-PACKAGE][NUKE-SYMBOL-IN-PACKAGE]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** IMPORT* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:IMPORT*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+IMPORT* names a compiled function:
+  Lambda-list: (SYMBOL PACKAGE-DESIGNATOR)
+  Derived type: (FUNCTION (T T) (VALUES (MEMBER T) &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:ENSURE-PACKAGE][ENSURE-PACKAGE]]
+  - UIOP/PACKAGE::ENSURE-INHERITED
+  - UIOP/PACKAGE::ENSURE-IMPORTED
+  - [[id:STD/DEFPKG:REHOME-SYMBOL][REHOME-SYMBOL]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PARSE-DEFINE-PACKAGE-FORM :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:PARSE-DEFINE-PACKAGE-FORM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PARSE-DEFINE-PACKAGE-FORM names a compiled function:
+  Lambda-list: (PACKAGE CLAUSES)
+  Derived type: (FUNCTION (T T) (VALUES CONS &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (DEFINE-PACKAGE)
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** EXPORT* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:EXPORT*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EXPORT* names a compiled function:
+  Lambda-list: (NAME PACKAGE-DESIGNATOR)
+  Derived type: (FUNCTION (T T) (VALUES (MEMBER T) &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/PACKAGE::ENSURE-EXPORTED
+  - [[id:STD/DEFPKG:REHOME-SYMBOL][REHOME-SYMBOL]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** INTERN* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:INTERN*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+INTERN* names a compiled function:
+  Lambda-list: (NAME PACKAGE-DESIGNATOR &OPTIONAL (ERROR T))
+  Derived type: (FUNCTION (T T &OPTIONAL T)
+                 (VALUES SYMBOL (MEMBER NIL :INHERITED :EXTERNAL :INTERNAL)
+                         &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/SYM:ENSURE-SYMBOL][ENSURE-SYMBOL]]
+  - UIOP/PACKAGE::ENSURE-IMPORT
+  - [[id:STD/DEFPKG:UNREIFY-SYMBOL][UNREIFY-SYMBOL]]
+  - [[id:STD/DEFPKG:EXPORT*][EXPORT*]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FRESH-PACKAGE-NAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:FRESH-PACKAGE-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FRESH-PACKAGE-NAME names a compiled function:
+  Lambda-list: (&KEY (PREFIX %TO-BE-DELETED) SEPARATOR
+                (INDEX (RANDOM MOST-POSITIVE-FIXNUM)))
+  Derived type: (FUNCTION (&KEY (:PREFIX T) (:SEPARATOR T) (:INDEX T))
+                 (VALUES (OR SIMPLE-STRING NULL) &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:RENAME-PACKAGE-AWAY][RENAME-PACKAGE-AWAY]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ENSURE-PACKAGE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:ENSURE-PACKAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENSURE-PACKAGE names a compiled function:
+  Lambda-list: (NAME &KEY NICKNAMES DOCUMENTATION USE SHADOW
+                SHADOWING-IMPORT-FROM IMPORT-FROM EXPORT INTERN RECYCLE MIX
+                REEXPORT UNINTERN)
+  Derived type: (FUNCTION
+                 (T &KEY (:NICKNAMES T) (:DOCUMENTATION T) (:USE T) (:SHADOW T)
+                  (:SHADOWING-IMPORT-FROM T) (:IMPORT-FROM T) (:EXPORT T)
+                  (:INTERN T) (:RECYCLE T) (:MIX T) (:REEXPORT T)
+                  (:UNINTERN T))
+                 (VALUES (OR STRING (AND SYMBOL (NOT NULL)) CHARACTER PACKAGE)
+                         &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SYMBOL-PACKAGE-NAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:SYMBOL-PACKAGE-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYMBOL-PACKAGE-NAME names a compiled function:
+  Lambda-list: (SYMBOL)
+  Derived type: (FUNCTION (T) (VALUES (OR SIMPLE-STRING NULL) &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:ENSURE-PACKAGE][ENSURE-PACKAGE]]
+  - UIOP/PACKAGE::ENSURE-EXPORTED-TO-USER
+  - [[id:OBJ/META/MIX:ENSURE-MIX][ENSURE-MIX]]
+  - UIOP/PACKAGE::ENSURE-INHERITED
+  - UIOP/PACKAGE::ENSURE-IMPORTED
+  - UIOP/PACKAGE::ENSURE-SHADOWING-IMPORT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** STANDARD-COMMON-LISP-SYMBOL-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:STANDARD-COMMON-LISP-SYMBOL-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+STANDARD-COMMON-LISP-SYMBOL-P names a compiled function:
+  Lambda-list: (SYMBOL)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SHADOW* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:SHADOW*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SHADOW* names a compiled function:
+  Lambda-list: (NAME PACKAGE-DESIGNATOR)
+  Derived type: (FUNCTION (T T) (VALUES (MEMBER T) &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:ENSURE-PACKAGE][ENSURE-PACKAGE]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SHADOWING-IMPORT* :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:SHADOWING-IMPORT*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SHADOWING-IMPORT* names a compiled function:
+  Lambda-list: (SYMBOL PACKAGE-DESIGNATOR)
+  Derived type: (FUNCTION (T T) (VALUES (MEMBER T) &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:ENSURE-PACKAGE][ENSURE-PACKAGE]]
+  - UIOP/PACKAGE::ENSURE-EXPORTED-TO-USER
+  - UIOP/PACKAGE::ENSURE-IMPORTED
+  - UIOP/PACKAGE::ENSURE-SHADOWING-IMPORT
+  - [[id:STD/DEFPKG:REHOME-SYMBOL][REHOME-SYMBOL]]
+  - [[id:STD/DEFPKG:NUKE-SYMBOL-IN-PACKAGE][NUKE-SYMBOL-IN-PACKAGE]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** UNREIFY-PACKAGE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:UNREIFY-PACKAGE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UNREIFY-PACKAGE names a compiled function:
+  Lambda-list: (PACKAGE &OPTIONAL PACKAGE-CONTEXT)
+  Derived type: (FUNCTION (T &OPTIONAL T) (VALUES T &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:UNREIFY-SYMBOL][UNREIFY-SYMBOL]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PACKAGES-FROM-NAMES :compiled:function:
+:PROPERTIES:
+:ID: UIOP/PACKAGE:PACKAGES-FROM-NAMES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PACKAGES-FROM-NAMES names a compiled function:
+  Lambda-list: (NAMES)
+  Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/DEFPKG:ENSURE-PACKAGE][ENSURE-PACKAGE]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:

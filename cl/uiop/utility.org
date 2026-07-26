@@ -1,0 +1,1747 @@
+#+TITLE: UIOP/UTILITY
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/UTILITY
+:PROPERTIES:
+:ID: UIOP/UTILITY
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/PACKAGE][UIOP/PACKAGE]]
+
+- dependents
+  - [[id:UIOP/VERSION][UIOP/VERSION]]
+  - [[id:UIOP/FILESYSTEM][UIOP/FILESYSTEM]]
+  - [[id:UIOP/STREAM][UIOP/STREAM]]
+  - [[id:UIOP/IMAGE][UIOP/IMAGE]]
+  - [[id:UIOP/LAUNCH-PROGRAM][UIOP/LAUNCH-PROGRAM]]
+  - [[id:UIOP/CONFIGURATION][UIOP/CONFIGURATION]]
+  - [[id:UIOP/OS][UIOP/OS]]
+  - [[id:UIOP/BACKWARD-DRIVER][UIOP/BACKWARD-DRIVER]]
+  - [[id:UIOP/RUN-PROGRAM][UIOP/RUN-PROGRAM]]
+  - [[id:UIOP/PATHNAME][UIOP/PATHNAME]]
+  - [[id:UIOP/LISP-BUILD][UIOP/LISP-BUILD]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** APPENDF :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:APPENDF
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+APPENDF names a macro:
+  Lambda-list: (PLACE &REST ARGS)
+  Documentation:
+    Append onto list
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - ASDF/SOURCE-REGISTRY::PROCESS-SOURCE-REGISTRY-DIRECTIVE
+  - ASDF/PARSE-DEFSYSTEM:PARSE-COMPONENT-FORM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** +CRLF​+ :var:
+:PROPERTIES:
+:ID: UIOP/UTILITY:+CRLF+
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
++CRLF+ names a special variable:
+  Value: "
+"
+
+#+end_example
+
+- Referenced by
+  - UIOP/UTILITY:STRIPLN
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** +CR​+ :var:
+:PROPERTIES:
+:ID: UIOP/UTILITY:+CR+
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
++CR+ names a special variable:
+  Value: ""
+
+#+end_example
+
+- Referenced by
+  - UIOP/UTILITY:STRIPLN
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** MATCH-ANY-CONDITION-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:MATCH-ANY-CONDITION-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MATCH-ANY-CONDITION-P names a compiled function:
+  Lambda-list: (CONDITION CONDITIONS)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Documentation:
+    match CONDITION against any of the patterns of CONDITIONS supplied
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/UTILITY:CALL-WITH-MUFFLED-CONDITIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FIRST-CHAR :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:FIRST-CHAR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FIRST-CHAR names a compiled function:
+  Lambda-list: (S)
+  Derived type: (FUNCTION (T) (VALUES (OR CHARACTER NULL) &OPTIONAL))
+  Documentation:
+    Return the first character of a non-empty string S, or NIL
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/PATHNAME:SPLIT-UNIX-NAMESTRING-DIRECTORY-COMPONENTS
+  - UIOP/PATHNAME:HIDDEN-PATHNAME-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** *UIOP-DEBUG-UTILITY​* :var:
+:PROPERTIES:
+:ID: UIOP/UTILITY:*UIOP-DEBUG-UTILITY*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*UIOP-DEBUG-UTILITY* names a special variable:
+  Value: (OR
+          (IGNORE-ERRORS
+           (PROBE-FILE
+            (UIOP/PACKAGE:SYMBOL-CALL :ASDF :SYSTEM-RELATIVE-PATHNAME :UIOP
+                                      "contrib/debug.lisp")))
+          (PROBE-FILE
+           (UIOP/PACKAGE:SYMBOL-CALL :UIOP/PATHNAME :SUBPATHNAME
+                                     (USER-HOMEDIR-PATHNAME)
+                                     "common-lisp/asdf/uiop/contrib/debug.lisp")))
+  Documentation:
+    form that evaluates to the pathname to your favorite debugging utilities
+
+#+end_example
+
+- Referenced by
+  - UIOP/UTILITY:LOAD-UIOP-DEBUG-UTILITY
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** TIMESTAMP< :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:TIMESTAMP<
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TIMESTAMP< names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/UTILITY:LATER-TIMESTAMP
+  - UIOP/UTILITY:EARLIER-TIMESTAMP
+  - [[id:OBJ/TIME:TIMESTAMP<=][TIMESTAMP<=]]
+  - UIOP/UTILITY:TIMESTAMPS<
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SIMPLE-STYLE-WARNING :condition:class:
+:PROPERTIES:
+:ID: UIOP/UTILITY:SIMPLE-STYLE-WARNING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SIMPLE-STYLE-WARNING names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/UTILITY:SIMPLE-STYLE-WARNING>:
+  Class precedence-list: UIOP/UTILITY:SIMPLE-STYLE-WARNING,
+                         SIMPLE-STYLE-WARNING, SIMPLE-CONDITION, STYLE-WARNING,
+                         WARNING, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: SIMPLE-STYLE-WARNING
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** NEST :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:NEST
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NEST names a macro:
+  Lambda-list: (&REST THINGS)
+  Documentation:
+    Macro to keep code nesting and indentation under control.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - (FIND-SYSTEM (STRING))
+  - (PERFORM (DEFINE-OP SYSTEM))
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - UIOP/RUN-PROGRAM::%SYSTEM
+  - UIOP/LAUNCH-PROGRAM:LAUNCH-PROGRAM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LATEST-TIMESTAMP :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:LATEST-TIMESTAMP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LATEST-TIMESTAMP names a compiled function:
+  Lambda-list: (&REST LIST)
+  Derived type: FUNCTION
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PLAN::MERGE-ACTION-STATUS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ENSURE-GETHASH :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:ENSURE-GETHASH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENSURE-GETHASH names a compiled function:
+  Lambda-list: (KEY TABLE DEFAULT)
+  Derived type: (FUNCTION (T T T) (VALUES T BOOLEAN &OPTIONAL))
+  Documentation:
+    Lookup the TABLE for a KEY as by GETHASH, but if not present,
+    call the (possibly constant) function designated by DEFAULT as per CALL-FUNCTION,
+    set the corresponding entry to the result in the table.
+    Return two values: the entry after its optional computation, and whether itwas found
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM::CHECK-NOT-OLD-ASDF-SYSTEM
+  - ASDF/OPERATION:MAKE-OPERATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** STRING-SUFFIX-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:STRING-SUFFIX-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+STRING-SUFFIX-P names a compiled function:
+  Lambda-list: (STRING SUFFIX)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Does STRING end with SUFFIX?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:PARSE-SOURCE-REGISTRY-STRING
+  - UIOP/UTILITY:STRIPLN
+  - [[id:STD/STRING:STRING-ENCLOSED-P][STRING-ENCLOSED-P]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** +MAX-CHARACTER-TYPE-INDEX​+ :var:
+:PROPERTIES:
+:ID: UIOP/UTILITY:+MAX-CHARACTER-TYPE-INDEX+
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
++MAX-CHARACTER-TYPE-INDEX+ names a special variable:
+  Value: 1
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CHARACTER-TYPE-INDEX :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:CHARACTER-TYPE-INDEX
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CHARACTER-TYPE-INDEX names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BIT &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/UTILITY:STRINGS-COMMON-ELEMENT-TYPE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** STANDARD-CASE-SYMBOL-NAME :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:STANDARD-CASE-SYMBOL-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+STANDARD-CASE-SYMBOL-NAME names a compiled function:
+  Lambda-list: (NAME-DESIGNATOR)
+  Derived type: (FUNCTION (T) (VALUES SIMPLE-STRING &OPTIONAL))
+  Documentation:
+    Given a NAME-DESIGNATOR for a symbol, if it is a symbol, convert it to astring using STRING;
+    if it is a string, use STRING-UPCASE on an ANSI CL platform, or STRING on aso-called "modern"
+    platform such as Allegro with modern syntax.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/UTILITY:FIND-STANDARD-CASE-SYMBOL
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** EARLIER-TIMESTAMP :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:EARLIER-TIMESTAMP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EARLIER-TIMESTAMP names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** EARLIEST-TIMESTAMP :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:EARLIEST-TIMESTAMP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EARLIEST-TIMESTAMP names a compiled function:
+  Lambda-list: (&REST LIST)
+  Derived type: FUNCTION
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** STYLE-WARN :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:STYLE-WARN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+STYLE-WARN names a compiled function:
+  Lambda-list: (DATUM &REST ARGUMENTS)
+  Derived type: (FUNCTION (T &REST T) (VALUES NULL &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/VERSION::NOTIFY-DEPRECATED-FUNCTION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** REMOVE-PLIST-KEYS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:REMOVE-PLIST-KEYS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REMOVE-PLIST-KEYS names a compiled function:
+  Lambda-list: (KEYS PLIST)
+  Derived type: (FUNCTION (T T) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Remove a list of keys from a plist
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - ASDF/PARSE-DEFSYSTEM:PARSE-COMPONENT-FORM
+  - ASDF/SYSTEM-REGISTRY::MAKE-PRELOADED-SYSTEM
+  - UIOP/LISP-BUILD:COMPILE-FILE*
+  - UIOP/LISP-BUILD:COMPILE-FILE-PATHNAME*
+  - UIOP/PATHNAME:PARSE-UNIX-NAMESTRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** REGISTER-HOOK-FUNCTION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:REGISTER-HOOK-FUNCTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REGISTER-HOOK-FUNCTION names a compiled function:
+  Lambda-list: (VARIABLE HOOK &OPTIONAL CALL-NOW-P)
+  Derived type: (FUNCTION (T T &OPTIONAL T) *)
+  Documentation:
+    Push the HOOK function (a designator as per ENSURE-FUNCTION) onto the hookVARIABLE.
+    When CALL-NOW-P is true, also call the function immediately.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/CONFIGURATION:REGISTER-CLEAR-CONFIGURATION-HOOK
+  - UIOP/IMAGE:REGISTER-IMAGE-DUMP-HOOK
+  - UIOP/IMAGE:REGISTER-IMAGE-RESTORE-HOOK
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-UPGRADABILITY :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:WITH-UPGRADABILITY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-UPGRADABILITY names a macro:
+  Lambda-list: ((&OPTIONAL) &BODY BODY)
+  Documentation:
+    Evaluate BODY at compile- load- and run- times, with DEFUN and DEFGENERICmodified
+    to also declare the functions NOTINLINE and to accept a wrapping thefunction name
+    specification into a list with keyword argument SUPERSEDE (which defaultsto T if the name
+    is not wrapped, and NIL if it is wrapped). If SUPERSEDE is true, callUNDEFINE-FUNCTION
+    to supersede any previous definition.
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** EMPTYP :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:EMPTYP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+EMPTYP names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Predicate that is true for an empty sequence
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/FILESYSTEM:SPLIT-NATIVE-PATHNAMES-STRING
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/OS:GETENVP
+  - UIOP/UTILITY:STRINGS-COMMON-ELEMENT-TYPE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PARAMETER-ERROR :compiled:function:condition:class:
+:PROPERTIES:
+:ID: UIOP/UTILITY:PARAMETER-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PARAMETER-ERROR names a compiled function:
+  Lambda-list: (FORMAT-CONTROL FUNCTIONALITY &REST FORMAT-ARGUMENTS)
+  Derived type: (FUNCTION (T T &REST T) NIL)
+  Documentation:
+    Signal an error because some FUNCTIONALITY or its specific implementationon a given underlying
+    platform does not accept a given parameter or combination of parameters.Report a formatted error
+    message, that takes the functionality as its first argument (that can beskipped with ~*).
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+PARAMETER-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/UTILITY:PARAMETER-ERROR>:
+  Class precedence-list: UIOP/UTILITY:PARAMETER-ERROR, ERROR, SERIOUS-CONDITION,
+                         CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ERROR
+  No subclasses.
+  Direct slots:
+    UIOP/UTILITY::FUNCTIONALITY
+      Initargs: :FUNCTIONALITY
+    UIOP/UTILITY::FORMAT-CONTROL
+      Initargs: :FORMAT-CONTROL
+    UIOP/UTILITY::FORMAT-ARGUMENTS
+      Initargs: :FORMAT-ARGUMENTS
+
+#+end_example
+
+- Called by
+  - (RESOLVE-DEPENDENCY-COMBINATION (T (EQL REQUIRE) T))
+  - ASDF/FORCING:MAKE-FORCING
+  - (RESOLVE-DEPENDENCY-COMBINATION (T T T))
+  - (INITIALIZE-INSTANCE AFTER (OPERATION))
+  - UIOP/RUN-PROGRAM::%SYSTEM
+  - UIOP/RUN-PROGRAM::%REDIRECTED-SYSTEM-COMMAND
+  - UIOP/RUN-PROGRAM::%USE-LAUNCH-PROGRAM
+  - UIOP/RUN-PROGRAM::%CALL-WITH-PROGRAM-IO
+  - (VOMIT-OUTPUT-STREAM (T T))
+  - (SLURP-INPUT-STREAM (T T))
+  - UIOP/LAUNCH-PROGRAM::%NORMALIZE-IO-SPECIFIER
+  - UIOP/LAUNCH-PROGRAM::REQUIRES-ESCAPING-P
+  - UIOP/FILESYSTEM:DELETE-DIRECTORY-TREE
+  - UIOP/FILESYSTEM:GETENV-PATHNAMES
+  - [[id:UIOP/FILESYSTEM:DIRECTORY-FILES][DIRECTORY-FILES]]
+  - UIOP/PATHNAME:TRANSLATE-PATHNAME*
+  - UIOP/PATHNAME:UNIX-NAMESTRING
+  - UIOP/PATHNAME:NORMALIZE-PATHNAME-DIRECTORY-COMPONENT
+  - [[id:SB-INT:FEATUREP][FEATUREP]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** IF-LET :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:IF-LET
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+IF-LET names a macro:
+  Lambda-list: (BINDINGS &BODY (THEN-FORM &OPTIONAL ELSE-FORM))
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - ASDF/BACKWARD-INTERFACE:SYSTEM-REGISTERED-P
+  - (EXPLAIN (OPERATION T))
+  - (TRAVERSE (OPERATION T))
+  - ASDF/SOURCE-REGISTRY:COMPUTE-SOURCE-REGISTRY
+  - ASDF/PACKAGE-INFERRED-SYSTEM:SYSDEF-PACKAGE-INFERRED-SYSTEM-SEARCH
+  - ASDF/PACKAGE-INFERRED-SYSTEM::PACKAGE-INFERRED-SYSTEM-FILE-DEPENDENCIES
+  - ASDF/PARSE-DEFSYSTEM:REGISTER-SYSTEM-DEFINITION
+  - ASDF/PARSE-DEFSYSTEM::NORMALIZE-VERSION
+  - (FIND-SYSTEM (STRING))
+  - ASDF/FIND-SYSTEM:LOAD-ASD
+  - (PERFORM (DEFINE-OP SYSTEM))
+  - (INPUT-FILES (DEFINE-OP SYSTEM))
+  - (RECORD-DEPENDENCY (NULL T T))
+  - ASDF/OPERATE:COMPONENT-LOADED-P
+  - (OPERATE (OPERATION T))
+  - ASDF/PLAN:ACTION-ALREADY-DONE-P
+  - (MARK-AS-DONE (T OPERATION T))
+  - (MAKE-PLAN (T OPERATION T))
+  - (COLLECT-DEPENDENCIES (OPERATION T))
+  - (FORCING (NULL))
+  - (FIND-COMPONENT (STRING T))
+  - (INPUT-FILES (PREPARE-SOURCE-OP SYSTEM))
+  - ASDF/LISP-ACTION:PERFORM-LISP-LOAD-FASL
+  - (OUTPUT-FILES (COMPILE-OP SYSTEM))
+  - (INPUT-FILES (PREPARE-OP SYSTEM))
+  - (PERFORM (OPERATION T))
+  - (COMPONENT-OPERATION-TIME (OPERATION T))
+  - (INPUT-FILES (SELFWARD-OPERATION COMPONENT))
+  - (ADDITIONAL-INPUT-FILES (OPERATION T))
+  - (OPERATION-DONE-P (OPERATION T))
+  - (INPUT-FILES (OPERATION T))
+  - (OUTPUT-FILES (OPERATION T))
+  - ASDF/ACTION::UPWARD-OPERATION-DEPENDS-ON
+  - (COMPONENT-DEPENDS-ON (OPERATION T))
+  - ASDF/ACTION:ACTION-VALID-P
+  - ASDF/SYSTEM-REGISTRY:PROBE-ASD
+  - ASDF/SYSTEM-REGISTRY:SEARCH-FOR-SYSTEM-DEFINITION
+  - ASDF/SYSTEM-REGISTRY:REGISTER-PRELOADED-SYSTEM
+  - ASDF/SYSTEM-REGISTRY::ENSURE-PRELOADED-SYSTEM-REGISTERED
+  - ASDF/SYSTEM:PRIMARY-SYSTEM-NAME
+  - (RECURSE IN SUB-COMPONENTS)
+  - (COMPONENT-SYSTEM (COMPONENT))
+  - UIOP/RUN-PROGRAM::%USE-LAUNCH-PROGRAM
+  - UIOP/LAUNCH-PROGRAM:CLOSE-STREAMS
+  - UIOP/LAUNCH-PROGRAM:WAIT-PROCESS
+  - UIOP/LAUNCH-PROGRAM::%PROCESS-STATUS
+  - UIOP/LISP-BUILD:WARNINGS-FILE-P
+  - [[id:STD/PATH:TMPIZE-PATHNAME][TMPIZE-PATHNAME]]
+  - UIOP/FILESYSTEM:LISP-IMPLEMENTATION-PATHNAME-P
+  - UIOP/FILESYSTEM:LISP-IMPLEMENTATION-DIRECTORY
+  - UIOP/FILESYSTEM:TRUENAMIZE
+  - UIOP/OS:CHDIR
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** REDUCE/STRCAT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:REDUCE/STRCAT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REDUCE/STRCAT names a compiled function:
+  Lambda-list: (STRINGS &KEY KEY START END)
+  Derived type: (FUNCTION (T &KEY (:KEY T) (:START T) (:END T))
+                 (VALUES SIMPLE-STRING &OPTIONAL))
+  Documentation:
+    Reduce a list as if by STRCAT, accepting KEY START and END keywords likeREDUCE.
+    NIL is interpreted as an empty string. A character is interpreted as astring of length one.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/RUN-PROGRAM::%REDIRECTED-SYSTEM-COMMAND
+  - UIOP/UTILITY:STRCAT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DEFUN* :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:DEFUN*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEFUN* names a macro:
+  Lambda-list: (NAME FORMALS &REST REST)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COERCE-CLASS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:COERCE-CLASS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COERCE-CLASS names a compiled function:
+  Lambda-list: (CLASS &KEY (PACKAGE CL) (SUPER T) (ERROR (QUOTE ERROR)))
+  Derived type: (FUNCTION (T &KEY (:PACKAGE T) (:SUPER T) (:ERROR T)) *)
+  Documentation:
+    Coerce CLASS to a class that is subclass of SUPER if specified,
+    or invoke ERROR handler as per CALL-FUNCTION.
+    
+    A keyword designates the name a symbol, which when found in either PACKAGE,designates a class.
+    -- for backward compatibility, *PACKAGE* is also accepted for now, but thismay go in the future.
+    A string is read as a symbol while in PACKAGE, the symbol designates aclass.
+    
+    A class object designates itself.
+    NIL designates itself (no class).
+    A symbol otherwise designates a class by name.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/BUNDLE::BUNDLE-OUTPUT-FILES
+  - ASDF/PARSE-DEFSYSTEM:CLASS-FOR-TYPE
+  - ASDF/OPERATION:MAKE-OPERATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LATER-TIMESTAMP :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:LATER-TIMESTAMP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LATER-TIMESTAMP names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WITH-MUFFLED-CONDITIONS :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:WITH-MUFFLED-CONDITIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WITH-MUFFLED-CONDITIONS names a macro:
+  Lambda-list: ((CONDITIONS) &BODY BODY)
+  Documentation:
+    Shorthand syntax for CALL-WITH-MUFFLED-CONDITIONS
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** TIMESTAMP*< :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:TIMESTAMP*<
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TIMESTAMP*< names a compiled function:
+  Lambda-list: (&REST LIST)
+  Derived type: FUNCTION
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** DEFGENERIC* :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:DEFGENERIC*
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEFGENERIC* names a macro:
+  Lambda-list: (NAME FORMALS &REST REST)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LOAD-UIOP-DEBUG-UTILITY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:LOAD-UIOP-DEBUG-UTILITY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD-UIOP-DEBUG-UTILITY names a compiled function:
+  Lambda-list: (&KEY PACKAGE UTILITY-FILE)
+  Derived type: (FUNCTION (&KEY (:PACKAGE T) (:UTILITY-FILE T))
+                 (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-FUNCTIONS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:CALL-FUNCTIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-FUNCTIONS names a compiled function:
+  Lambda-list: (FUNCTION-SPECS)
+  Derived type: (FUNCTION (T) (VALUES NULL &OPTIONAL))
+  Documentation:
+    For each function in the list FUNCTION-SPECS, in order, call the functionas per CALL-FUNCTION
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/UPGRADE:CLEANUP-UPGRADED-ASDF
+  - UIOP/CONFIGURATION:CLEAR-CONFIGURATION
+  - UIOP/IMAGE:CALL-IMAGE-DUMP-HOOK
+  - UIOP/IMAGE:CALL-IMAGE-RESTORE-HOOK
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** MATCH-CONDITION-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:MATCH-CONDITION-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MATCH-CONDITION-P names a compiled function:
+  Lambda-list: (X CONDITION)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Compare received CONDITION to some pattern X:
+    a symbol naming a condition class,
+    a simple vector of length 2, arguments to find-symbol* with result asabove,
+    or a string describing the format-control of a simple-condition.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/UTILITY:MATCH-ANY-CONDITION-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** STRCAT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:STRCAT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+STRCAT names a compiled function:
+  Lambda-list: (&REST STRINGS)
+  Derived type: FUNCTION
+  Documentation:
+    Concatenate strings.
+    NIL is interpreted as an empty string, a character as a string of lengthone.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:SYSDEF-ERROR-COMPONENT
+  - (BAD-SYSTEM-NAME)
+  - [[id:STD/PATH:TMPIZE-PATHNAME][TMPIZE-PATHNAME]]
+  - UIOP/STREAM:ADD-PATHNAME-SUFFIX
+  - UIOP/OS:PARSE-FILE-LOCATION-INFO
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LEXICOGRAPHIC< :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:LEXICOGRAPHIC<
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LEXICOGRAPHIC< names a compiled function:
+  Lambda-list: (ELEMENT< X Y)
+  Derived type: (FUNCTION (T T T) *)
+  Documentation:
+    Lexicographically compare two lists of using the function element< tocompare elements.
+    element< is a strict total order; the resulting order on X and Y will alsobe strict.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/VERSION:VERSION<
+  - UIOP/UTILITY:LEXICOGRAPHIC<=
+  - UIOP/UTILITY:LEXICOGRAPHIC<
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LIST-TO-HASH-SET :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:LIST-TO-HASH-SET
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LIST-TO-HASH-SET names a compiled function:
+  Lambda-list: (LIST &AUX (H (MAKE-HASH-TABLE TEST (QUOTE EQUAL))))
+  Derived type: (FUNCTION (T) (VALUES HASH-TABLE &OPTIONAL))
+  Documentation:
+    Convert a LIST into hash-table that has the same elements when viewed as aset,
+    up to the given equality TEST
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FIND-SYSTEM:LOAD-ASD
+  - ASDF/FORCING:NORMALIZE-FORCED-NOT-SYSTEMS
+  - ASDF/FORCING:NORMALIZE-FORCED-SYSTEMS
+  - ASDF/SYSTEM-REGISTRY:REGISTER-IMMUTABLE-SYSTEM
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LAST-CHAR :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:LAST-CHAR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LAST-CHAR names a compiled function:
+  Lambda-list: (S)
+  Derived type: (FUNCTION (T) (VALUES (OR CHARACTER NULL) &OPTIONAL))
+  Documentation:
+    Return the last character of a non-empty string S, or NIL
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/PATHNAME:DIRECTORY-SEPARATOR-FOR-HOST
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** TIMESTAMPS-EARLIEST :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:TIMESTAMPS-EARLIEST
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TIMESTAMPS-EARLIEST names a compiled function:
+  Lambda-list: (LIST)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - UIOP/UTILITY:EARLIEST-TIMESTAMP
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LEXICOGRAPHIC<= :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:LEXICOGRAPHIC<=
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LEXICOGRAPHIC<= names a compiled function:
+  Lambda-list: (ELEMENT< X Y)
+  Derived type: (FUNCTION (T T T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Lexicographically compare two lists of using the function element< tocompare elements.
+    element< is a strict total order; the resulting order on X and Y will be anon-strict total order.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/BACKWARD-DRIVER:VERSION-COMPATIBLE-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** UIOP-DEBUG :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:UIOP-DEBUG
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+UIOP-DEBUG names a macro:
+  Lambda-list: (&REST KEYS)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ENSURE-LIST :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:ENSURE-LIST
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENSURE-LIST names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PACKAGE-INFERRED-SYSTEM:REGISTER-SYSTEM-PACKAGES
+  - (INPUT-FILES (SELFWARD-OPERATION COMPONENT))
+  - ASDF/ACTION::SELFWARD-OPERATION-DEPENDS-ON
+  - (DEFPARAMETER*)
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** SPLIT-STRING :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:SPLIT-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SPLIT-STRING names a compiled function:
+  Lambda-list: (STRING &KEY MAX (SEPARATOR (QUOTE (  	))))
+  Derived type: (FUNCTION (T &KEY (:MAX T) (:SEPARATOR T))
+                 (VALUES LIST &OPTIONAL))
+  Documentation:
+    Split STRING into a list of components separated by
+    any of the characters in the sequence SEPARATOR.
+    If MAX is specified, then no more than max(1,MAX) components will bereturned,
+    starting the separation from the end, e.g. when called with arguments
+     "a.b.c.d.e" :max 3 :separator "." it will return ("a.b.c" "d" "e").
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/FILESYSTEM:SPLIT-NATIVE-PATHNAMES-STRING
+  - UIOP/PATHNAME:SPLIT-NAME-TYPE
+  - UIOP/PATHNAME:SPLIT-UNIX-NAMESTRING-DIRECTORY-COMPONENTS
+  - UIOP/VERSION:PARSE-VERSION
+  - ORGAN:ORG-TAG-SPLIT
+  - DAT/MIME::MIME-EQUAL
+  - DAT/SVG::CONVERT-TO-POINTS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** PARSE-BODY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:PARSE-BODY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PARSE-BODY names a compiled function:
+  Lambda-list: (BODY &KEY DOCUMENTATION WHOLE)
+  Derived type: (FUNCTION (T &KEY (:DOCUMENTATION T) (:WHOLE T))
+                 (VALUES LIST LIST T &OPTIONAL))
+  Documentation:
+    Parses BODY into (values remaining-forms declarations doc-string).
+    Documentation strings are recognized only if DOCUMENTATION is true.
+    Syntax errors in body are signalled and WHOLE is used in the signal
+    arguments when given.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (WITH-DEPRECATION)
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** STRING-ENCLOSED-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:STRING-ENCLOSED-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+STRING-ENCLOSED-P names a compiled function:
+  Lambda-list: (PREFIX STRING SUFFIX)
+  Derived type: (FUNCTION (T T T) *)
+  Documentation:
+    Does STRING begin with PREFIX and end with SUFFIX?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LISP-BUILD::SB-GROVEL-UNKNOWN-CONSTANT-CONDITION-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** FIND-STANDARD-CASE-SYMBOL :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:FIND-STANDARD-CASE-SYMBOL
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FIND-STANDARD-CASE-SYMBOL names a compiled function:
+  Lambda-list: (NAME-DESIGNATOR PACKAGE-DESIGNATOR &OPTIONAL (ERROR T))
+  Derived type: (FUNCTION (T T &OPTIONAL T) *)
+  Documentation:
+    Find a symbol designated by NAME-DESIGNATOR in a package designated byPACKAGE-DESIGNATOR,
+    where STANDARD-CASE-SYMBOL-NAME is used to transform them if thesedesignators are strings.
+    If optional ERROR argument is NIL, return NIL instead of an error when thesymbol is not found.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** REMOVE-PLIST-KEY :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:REMOVE-PLIST-KEY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+REMOVE-PLIST-KEY names a compiled function:
+  Lambda-list: (KEY PLIST)
+  Derived type: (FUNCTION (T T) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Remove a single key from a plist
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PLAN:REQUIRED-COMPONENTS
+  - UIOP/LAUNCH-PROGRAM:LAUNCH-PROGRAM
+  - UIOP/STREAM:SAFE-READ-FILE-FORM
+  - UIOP/STREAM:SAFE-READ-FILE-LINE
+  - UIOP/STREAM:READ-FILE-FORM
+  - UIOP/STREAM:READ-FILE-FORMS
+  - UIOP/STREAM:READ-FILE-LINE
+  - (WRITE-FILE-ENTRY (T T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ACCESS-AT-COUNT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:ACCESS-AT-COUNT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ACCESS-AT-COUNT names a compiled function:
+  Lambda-list: (AT)
+  Derived type: (FUNCTION (T) (VALUES (OR NUMBER NULL) &OPTIONAL))
+  Documentation:
+    From an AT specification, extract a COUNT of maximum number
+    of sub-objects to read as per ACCESS-AT
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/STREAM:SLURP-STREAM-FORM
+  - UIOP/STREAM:SLURP-STREAM-LINE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** TIMESTAMPS< :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:TIMESTAMPS<
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TIMESTAMPS< names a compiled function:
+  Lambda-list: (LIST)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/UTILITY:TIMESTAMP*<
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** +CHARACTER-TYPES​+ :var:
+:PROPERTIES:
+:ID: UIOP/UTILITY:+CHARACTER-TYPES+
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
++CHARACTER-TYPES+ names a special variable:
+  Value: #(BASE-CHAR CHARACTER)
+
+#+end_example
+
+- Referenced by
+  - UIOP/UTILITY:STRINGS-COMMON-ELEMENT-TYPE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** NOT-IMPLEMENTED-ERROR :compiled:function:condition:class:
+:PROPERTIES:
+:ID: UIOP/UTILITY:NOT-IMPLEMENTED-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NOT-IMPLEMENTED-ERROR names a compiled function:
+  Lambda-list: (FUNCTIONALITY &OPTIONAL FORMAT-CONTROL &REST FORMAT-ARGUMENTS)
+  Derived type: (FUNCTION (T &REST T) NIL)
+  Documentation:
+    Signal an error because some FUNCTIONALITY is not implemented in thecurrent version
+    of the software on the current platform; it may or may not be implementedin different combinations
+    of version of the software and of the underlying platform. Optionally,report a formatted error
+    message.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+NOT-IMPLEMENTED-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS UIOP/UTILITY:NOT-IMPLEMENTED-ERROR>:
+  Class precedence-list: UIOP/UTILITY:NOT-IMPLEMENTED-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ERROR
+  No subclasses.
+  Direct slots:
+    UIOP/UTILITY::FUNCTIONALITY
+      Initargs: :FUNCTIONALITY
+    UIOP/UTILITY::FORMAT-CONTROL
+      Initargs: :FORMAT-CONTROL
+    UIOP/UTILITY::FORMAT-ARGUMENTS
+      Initargs: :FORMAT-ARGUMENTS
+
+#+end_example
+
+- Called by
+  - UIOP/IMAGE:CREATE-IMAGE
+  - UIOP/OS:GETCWD
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** +LF​+ :var:
+:PROPERTIES:
+:ID: UIOP/UTILITY:+LF+
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
++LF+ names a special variable:
+  Value: "
+"
+
+#+end_example
+
+- Referenced by
+  - UIOP/UTILITY:STRIPLN
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** STRIPLN :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:STRIPLN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+STRIPLN names a compiled function:
+  Lambda-list: (X)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL SEQUENCE))
+  Documentation:
+    Strip a string X from any ending CR, LF or CRLF.
+    Return two values, the stripped string and the ending that was stripped,
+    or the original value and NIL if no stripping took place.
+    Since our STRCAT accepts NIL as empty string designator,
+    the two results passed to STRCAT always reconstitute the original string
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/STREAM:SLURP-STREAM-LINES
+  - UIOP/STREAM:SLURP-STREAM-STRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LENGTH=N-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:LENGTH=N-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LENGTH=N-P names a compiled function:
+  Lambda-list: (X N)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/SOURCE-REGISTRY:VALIDATE-SOURCE-REGISTRY-DIRECTIVE
+  - ASDF/OUTPUT-TRANSLATIONS:VALIDATE-OUTPUT-TRANSLATIONS-DIRECTIVE
+  - ASDF/PACKAGE-INFERRED-SYSTEM::SAME-PACKAGE-INFERRED-SYSTEM-P
+  - (RESOLVE-DEPENDENCY-COMBINATION (T (EQL REQUIRE) T))
+  - ASDF/ACTION:OUTPUT-FILE
+  - UIOP/CONFIGURATION:LOCATION-FUNCTION-P
+  - UIOP/CONFIGURATION:VALIDATE-CONFIGURATION-FILE
+  - UIOP/CONFIGURATION:CONFIGURATION-INHERITANCE-DIRECTIVE-P
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** TIMESTAMPS-LATEST :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:TIMESTAMPS-LATEST
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TIMESTAMPS-LATEST names a compiled function:
+  Lambda-list: (LIST)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+  - UIOP/UTILITY:LATEST-TIMESTAMP
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ENSURE-FUNCTION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:ENSURE-FUNCTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENSURE-FUNCTION names a compiled function:
+  Lambda-list: (FUN &KEY (PACKAGE CL))
+  Derived type: (FUNCTION (T &KEY (:PACKAGE T)) *)
+  Documentation:
+    Coerce the object FUN into a function.
+    
+    If FUN is a FUNCTION, return it.
+    If the FUN is a non-sequence literal constant, return constantly that,
+    i.e. for a boolean keyword character number or pathname.
+    Otherwise if FUN is a non-literally constant symbol, return itsFDEFINITION.
+    If FUN is a CONS, return the function that applies its CAR
+    to the appended list of the rest of its CDR and the arguments,
+    unless the CAR is LAMBDA, in which case the expression is evaluated.
+    If FUN is a string, READ a form from it in the specified PACKAGE (default:CL)
+    and EVAL that in a (FUNCTION ...) context.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OUTPUT-TRANSLATIONS::PROCESS-OUTPUT-TRANSLATIONS-DIRECTIVE
+  - (PERFORM BEFORE (PROGRAM-OP SYSTEM))
+  - UIOP/UTILITY:CALL-FUNCTION
+  - UIOP/UTILITY:ACCESS-AT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** WHILE-COLLECTING :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:WHILE-COLLECTING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WHILE-COLLECTING names a macro:
+  Lambda-list: ((&REST COLLECTORS) &BODY BODY)
+  Documentation:
+    COLLECTORS should be a list of names for collections.  A collector
+    defines a function that, when applied to an argument inside BODY, will
+    add its argument to the corresponding collection.  Returns multiple values,
+    a list for each collection, in order.
+       E.g.,
+    (while-collecting (foo bar)
+               (dolist (x '((a 1) (b 2) (c 3)))
+                 (foo (first x))
+                 (bar (second x))))
+    Returns two values: (A B C) and (1 2 3).
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Macroexpanded by
+  - ASDF/SOURCE-REGISTRY:FLATTEN-SOURCE-REGISTRY
+  - ASDF/OUTPUT-TRANSLATIONS:COMPUTE-OUTPUT-TRANSLATIONS
+  - ASDF/PACKAGE-INFERRED-SYSTEM::PACKAGE-DEPENDENCIES
+  - (PERFORM (DELIVER-ASD-OP SYSTEM))
+  - ASDF/BUNDLE:DIRECT-DEPENDENCY-FILES
+  - ASDF/COMPONENT:SUB-COMPONENTS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** TIMESTAMP<= :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:TIMESTAMP<=
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+TIMESTAMP<= names a compiled function:
+  Lambda-list: (X Y)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (FIND-SYSTEM (STRING))
+  - ASDF/FIND-SYSTEM::DEFINITION-DEPENDENCIES-UP-TO-DATE-P
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** ACCESS-AT :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:ACCESS-AT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ACCESS-AT names a compiled function:
+  Lambda-list: (OBJECT AT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Given an OBJECT and an AT specifier, list of successive accessors,
+    call each accessor on the result of the previous calls.
+    An accessor may be an integer, meaning a call to ELT,
+    a keyword, meaning a call to GETF,
+    NIL, meaning identity,
+    a function or other symbol, meaning itself,
+    or a list of a function designator and arguments, interpreted as per ENSURE-FUNCTION.
+    As a degenerate case, the AT specifier may be an atom of a single suchaccessor
+    instead of a list.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/STREAM:SLURP-STREAM-FORM
+  - UIOP/STREAM:SLURP-STREAM-LINE
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** BASE-STRING-P :compiled:vop:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:BASE-STRING-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+BASE-STRING-P names a compiled function:
+  Lambda-list: (STRING)
+  Derived type: (FUNCTION (T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Does the STRING only contain BASE-CHARs?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** +NON-BASE-CHARS-EXIST-P​+ :constant:var:
+:PROPERTIES:
+:ID: UIOP/UTILITY:+NON-BASE-CHARS-EXIST-P+
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
++NON-BASE-CHARS-EXIST-P+ names a constant variable:
+  Value: T
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** STRING-PREFIX-P :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:STRING-PREFIX-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+STRING-PREFIX-P names a compiled function:
+  Lambda-list: (PREFIX STRING)
+  Derived type: (FUNCTION (T T) (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Does STRING begin with PREFIX?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - [[id:STD/STRING:STRING-ENCLOSED-P][STRING-ENCLOSED-P]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** LATEST-TIMESTAMP-F :compiled:macro:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:LATEST-TIMESTAMP-F
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LATEST-TIMESTAMP-F names a macro:
+  Lambda-list: (PLACE &REST TIMESTAMPS)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** STRINGS-COMMON-ELEMENT-TYPE :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:STRINGS-COMMON-ELEMENT-TYPE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+STRINGS-COMMON-ELEMENT-TYPE names a compiled function:
+  Lambda-list: (STRINGS)
+  Derived type: (FUNCTION (T) (VALUES T &OPTIONAL))
+  Documentation:
+    What least subtype of CHARACTER can contain all the elements of all theSTRINGS?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/UTILITY:REDUCE/STRCAT
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-FUNCTION :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:CALL-FUNCTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-FUNCTION names a compiled function:
+  Lambda-list: (FUNCTION-SPEC &REST ARGUMENTS)
+  Derived type: (FUNCTION (T &REST T) *)
+  Documentation:
+    Call the function designated by FUNCTION-SPEC as per ENSURE-FUNCTION,
+    with the given ARGUMENTS
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FORCING::OR-FUNCTION
+  - ASDF/FORCING::ACTION-OVERRIDE-P
+  - ASDF/FORCING:NORMALIZE-FORCED-NOT-SYSTEMS
+  - ASDF/SESSION:CONSULT-ASDF-CACHE
+  - UIOP/RUN-PROGRAM::%CALL-WITH-PROGRAM-IO
+  - (BEFORE70 IN %CALL-WITH-PROGRAM-IO)
+  - UIOP/LISP-BUILD:CALL-AROUND-HOOK
+  - UIOP/IMAGE:RESTORE-IMAGE
+  - UIOP/STREAM:CALL-WITH-TEMPORARY-FILE
+  - UIOP/FILESYSTEM:DELETE-DIRECTORY-TREE
+  - UIOP/PATHNAME:ENSURE-PATHNAME
+  - UIOP/FILESYSTEM:COLLECT-SUB*DIRECTORIES
+  - UIOP/FILESYSTEM:FILTER-LOGICAL-DIRECTORY-RESULTS
+  - [[id:STD/PATH:ENSURE-ABSOLUTE-PATHNAME][ENSURE-ABSOLUTE-PATHNAME]]
+  - UIOP/PATHNAME:ENSURE-DIRECTORY-PATHNAME
+  - UIOP/VERSION:PARSE-VERSION
+  - [[id:SB-INT:ENSURE-GETHASH][ENSURE-GETHASH]]
+  - UIOP/UTILITY:COERCE-CLASS
+  - UIOP/UTILITY:REGISTER-HOOK-FUNCTION
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** CALL-WITH-MUFFLED-CONDITIONS :compiled:function:
+:PROPERTIES:
+:ID: UIOP/UTILITY:CALL-WITH-MUFFLED-CONDITIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CALL-WITH-MUFFLED-CONDITIONS names a compiled function:
+  Lambda-list: (THUNK CONDITIONS)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    calls the THUNK in a context where the CONDITIONS are muffled
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - UIOP/LISP-BUILD:CALL-WITH-MUFFLED-LOADER-CONDITIONS
+  - UIOP/LISP-BUILD:CALL-WITH-MUFFLED-COMPILER-CONDITIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:

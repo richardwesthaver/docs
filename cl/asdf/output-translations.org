@@ -1,0 +1,552 @@
+#+TITLE: ASDF/OUTPUT-TRANSLATIONS
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/OUTPUT-TRANSLATIONS
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+  - [[id:ASDF/UPGRADE][ASDF/UPGRADE]]
+
+- dependents
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+  - [[id:ASDF/BACKWARD-INTERFACE][ASDF/BACKWARD-INTERFACE]]
+
+** SYSTEM-OUTPUT-TRANSLATIONS-DIRECTORY-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:SYSTEM-OUTPUT-TRANSLATIONS-DIRECTORY-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-OUTPUT-TRANSLATIONS-DIRECTORY-PATHNAME names a compiled function:
+  Lambda-list: (&KEY (DIRECTION INPUT))
+  Derived type: (FUNCTION (&KEY (:DIRECTION T)) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** OUTPUT-TRANSLATIONS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:OUTPUT-TRANSLATIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OUTPUT-TRANSLATIONS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES T &OPTIONAL))
+  Documentation:
+    Return the configured output-translations, if any
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+(SETF OUTPUT-TRANSLATIONS) names a compiled function:
+  Lambda-list: (NEW-VALUE)
+  Derived type: (FUNCTION (T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OUTPUT-TRANSLATIONS:ENSURE-OUTPUT-TRANSLATIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ENSURE-OUTPUT-TRANSLATIONS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:ENSURE-OUTPUT-TRANSLATIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENSURE-OUTPUT-TRANSLATIONS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OUTPUT-TRANSLATIONS:APPLY-OUTPUT-TRANSLATIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SYSTEM-OUTPUT-TRANSLATIONS-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:SYSTEM-OUTPUT-TRANSLATIONS-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SYSTEM-OUTPUT-TRANSLATIONS-PATHNAME names a compiled function:
+  Lambda-list: (&KEY (DIRECTION INPUT))
+  Derived type: (FUNCTION (&KEY (:DIRECTION T)) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** WRAPPING-OUTPUT-TRANSLATIONS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:WRAPPING-OUTPUT-TRANSLATIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+WRAPPING-OUTPUT-TRANSLATIONS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES CONS &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** INITIALIZE-OUTPUT-TRANSLATIONS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:INITIALIZE-OUTPUT-TRANSLATIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+INITIALIZE-OUTPUT-TRANSLATIONS names a compiled function:
+  Lambda-list: (&OPTIONAL (PARAMETER *OUTPUT-TRANSLATIONS-PARAMETER*))
+  Derived type: (FUNCTION (&OPTIONAL T) *)
+  Documentation:
+    read the configuration, initialize the internal configuration variable,
+    return the configuration
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/BACKWARD-INTERFACE:ENABLE-ASDF-BINARY-LOCATIONS-COMPATIBILITY
+  - ASDF/OUTPUT-TRANSLATIONS:ENSURE-OUTPUT-TRANSLATIONS
+  - ASDF/OUTPUT-TRANSLATIONS:DISABLE-OUTPUT-TRANSLATIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** *OUTPUT-TRANSLATIONS​* :var:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:*OUTPUT-TRANSLATIONS*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*OUTPUT-TRANSLATIONS* names a special variable:
+  Value: (((#P"/home/ellis/.cache/common-lisp/sbcl-2.6.6.164-e45c5c70b-linux-x64/**/*.*"
+            T)
+           (#P"/usr/lib/sbcl/**/*.*" T)
+           (T
+            #P"/home/ellis/.cache/common-lisp/sbcl-2.6.6.164-e45c5c70b-linux-x64/**/*.*")))
+  Documentation:
+    Either NIL (for uninitialized), or a list of one element,
+    said element itself being a sorted list of mappings.
+    Each mapping is a pair of a source pathname and destination pathname,
+    and the order is by decreasing length of namestring of the source pathname.
+
+#+end_example
+
+- Set by
+  - ASDF/OUTPUT-TRANSLATIONS:CLEAR-OUTPUT-TRANSLATIONS
+  - ASDF/OUTPUT-TRANSLATIONS::SET-OUTPUT-TRANSLATIONS
+
+- Referenced by
+  - ASDF/OUTPUT-TRANSLATIONS:APPLY-OUTPUT-TRANSLATIONS
+  - ASDF/OUTPUT-TRANSLATIONS:OUTPUT-TRANSLATIONS-INITIALIZED-P
+  - ASDF/OUTPUT-TRANSLATIONS:OUTPUT-TRANSLATIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** OUTPUT-TRANSLATIONS-INITIALIZED-P :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:OUTPUT-TRANSLATIONS-INITIALIZED-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+OUTPUT-TRANSLATIONS-INITIALIZED-P names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES BOOLEAN &OPTIONAL))
+  Documentation:
+    Have the output-translations been initialized yet?
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OUTPUT-TRANSLATIONS:ENSURE-OUTPUT-TRANSLATIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** *OUTPUT-TRANSLATIONS-PARAMETER​* :var:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:*OUTPUT-TRANSLATIONS-PARAMETER*
+:ALLOC: HEAP IMMOBILE
+:END:
+ 
+#+begin_example
+
+*OUTPUT-TRANSLATIONS-PARAMETER* names a special variable:
+  Value: NIL
+
+#+end_example
+
+- Set by
+  - ASDF/OUTPUT-TRANSLATIONS:INITIALIZE-OUTPUT-TRANSLATIONS
+
+- Referenced by
+  - ASDF/OUTPUT-TRANSLATIONS:INITIALIZE-OUTPUT-TRANSLATIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPUTE-OUTPUT-TRANSLATIONS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:COMPUTE-OUTPUT-TRANSLATIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPUTE-OUTPUT-TRANSLATIONS names a compiled function:
+  Lambda-list: (&OPTIONAL PARAMETER)
+  Derived type: (FUNCTION (&OPTIONAL T) (VALUES LIST &OPTIONAL))
+  Documentation:
+    read the configuration, return it
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/OUTPUT-TRANSLATIONS:INITIALIZE-OUTPUT-TRANSLATIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** APPLY-OUTPUT-TRANSLATIONS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:APPLY-OUTPUT-TRANSLATIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+APPLY-OUTPUT-TRANSLATIONS names a compiled function:
+  Lambda-list: (PATH)
+  Derived type: (FUNCTION (T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** DISABLE-OUTPUT-TRANSLATIONS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:DISABLE-OUTPUT-TRANSLATIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DISABLE-OUTPUT-TRANSLATIONS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Documentation:
+    Initialize output translations in a way that maps every file to itself,
+    effectively disabling the output translation facility.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** USER-OUTPUT-TRANSLATIONS-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:USER-OUTPUT-TRANSLATIONS-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+USER-OUTPUT-TRANSLATIONS-PATHNAME names a compiled function:
+  Lambda-list: (&KEY (DIRECTION INPUT))
+  Derived type: (FUNCTION (&KEY (:DIRECTION T)) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** USER-OUTPUT-TRANSLATIONS-DIRECTORY-PATHNAME :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:USER-OUTPUT-TRANSLATIONS-DIRECTORY-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+USER-OUTPUT-TRANSLATIONS-DIRECTORY-PATHNAME names a compiled function:
+  Lambda-list: (&KEY (DIRECTION INPUT))
+  Derived type: (FUNCTION (&KEY (:DIRECTION T)) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** INVALID-OUTPUT-TRANSLATION :condition:class:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:INVALID-OUTPUT-TRANSLATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+INVALID-OUTPUT-TRANSLATION names the condition-class #<SB-PCL::CONDITION-CLASSASDF/OUTPUT-TRANSLATIONS:INVALID-OUTPUT-TRANSLATION>:
+  Class precedence-list: ASDF/OUTPUT-TRANSLATIONS:INVALID-OUTPUT-TRANSLATION,
+                         UIOP/CONFIGURATION:INVALID-CONFIGURATION, WARNING,
+                         CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: UIOP/CONFIGURATION:INVALID-CONFIGURATION, WARNING
+  No subclasses.
+  Direct slots:
+    FORMAT
+      Initargs: :FORMAT
+      Initform: '(UIOP/COMMON-LISP::COMPATFMT
+                  "~@<Invalid asdf output-translation ~S~@[ in ~S~]~@{ ~@?~}~@:>")
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PARSE-OUTPUT-TRANSLATIONS-STRING :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:PARSE-OUTPUT-TRANSLATIONS-STRING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PARSE-OUTPUT-TRANSLATIONS-STRING names a compiled function:
+  Lambda-list: (STRING &KEY LOCATION)
+  Derived type: (FUNCTION (T &KEY (:LOCATION T)) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PROCESS-OUTPUT-TRANSLATIONS (STRING))
+  - ASDF/OUTPUT-TRANSLATIONS:PARSE-OUTPUT-TRANSLATIONS-STRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** VALIDATE-OUTPUT-TRANSLATIONS-FORM :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:VALIDATE-OUTPUT-TRANSLATIONS-FORM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VALIDATE-OUTPUT-TRANSLATIONS-FORM names a compiled function:
+  Lambda-list: (FORM &KEY LOCATION)
+  Derived type: (FUNCTION (T &KEY (:LOCATION T)) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PROCESS-OUTPUT-TRANSLATIONS (CONS))
+  - ASDF/OUTPUT-TRANSLATIONS:PARSE-OUTPUT-TRANSLATIONS-STRING
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ENVIRONMENT-OUTPUT-TRANSLATIONS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:ENVIRONMENT-OUTPUT-TRANSLATIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ENVIRONMENT-OUTPUT-TRANSLATIONS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** CLEAR-OUTPUT-TRANSLATIONS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:CLEAR-OUTPUT-TRANSLATIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CLEAR-OUTPUT-TRANSLATIONS names a compiled function:
+  Lambda-list: ()
+  Derived type: (FUNCTION NIL (VALUES &OPTIONAL))
+  Documentation:
+    Undoes any initialization of the output translations.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** VALIDATE-OUTPUT-TRANSLATIONS-DIRECTORY :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:VALIDATE-OUTPUT-TRANSLATIONS-DIRECTORY
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VALIDATE-OUTPUT-TRANSLATIONS-DIRECTORY names a compiled function:
+  Lambda-list: (DIRECTORY)
+  Derived type: (FUNCTION (T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PROCESS-OUTPUT-TRANSLATIONS (PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** VALIDATE-OUTPUT-TRANSLATIONS-DIRECTIVE :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:VALIDATE-OUTPUT-TRANSLATIONS-DIRECTIVE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VALIDATE-OUTPUT-TRANSLATIONS-DIRECTIVE names a compiled function:
+  Lambda-list: (DIRECTIVE)
+  Derived type: (FUNCTION (T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PROCESS-OUTPUT-TRANSLATIONS :generic:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:PROCESS-OUTPUT-TRANSLATIONS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PROCESS-OUTPUT-TRANSLATIONS names a generic function:
+  Lambda-list: (SPEC &KEY INHERIT COLLECT)
+  Derived type: (FUNCTION (T &KEY (:INHERIT T) (:COLLECT T)) *)
+  Method-combination: STANDARD
+  Methods:
+    (PROCESS-OUTPUT-TRANSLATIONS (CONS))
+    (PROCESS-OUTPUT-TRANSLATIONS (NULL))
+    (PROCESS-OUTPUT-TRANSLATIONS (STRING))
+    (PROCESS-OUTPUT-TRANSLATIONS (PATHNAME))
+    (PROCESS-OUTPUT-TRANSLATIONS (SYMBOL))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PROCESS-OUTPUT-TRANSLATIONS (STRING))
+  - (PROCESS-OUTPUT-TRANSLATIONS (PATHNAME))
+  - (PROCESS-OUTPUT-TRANSLATIONS (SYMBOL))
+  - ASDF/OUTPUT-TRANSLATIONS::PROCESS-OUTPUT-TRANSLATIONS-DIRECTIVE
+  - ASDF/OUTPUT-TRANSLATIONS::INHERIT-OUTPUT-TRANSLATIONS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (SPEC &KEY INHERIT COLLECT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:CONS][CONS]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - NULL
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:PATHNAME][PATHNAME]]
+:end:
+** VALIDATE-OUTPUT-TRANSLATIONS-FILE :compiled:function:
+:PROPERTIES:
+:ID: ASDF/OUTPUT-TRANSLATIONS:VALIDATE-OUTPUT-TRANSLATIONS-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VALIDATE-OUTPUT-TRANSLATIONS-FILE names a compiled function:
+  Lambda-list: (FILE)
+  Derived type: (FUNCTION (T) *)
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PROCESS-OUTPUT-TRANSLATIONS (PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:

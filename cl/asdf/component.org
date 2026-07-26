@@ -1,0 +1,1735 @@
+#+TITLE: ASDF/COMPONENT
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/COMPONENT
+:PROPERTIES:
+:ID: ASDF/COMPONENT
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+  - [[id:ASDF/UPGRADE][ASDF/UPGRADE]]
+  - [[id:ASDF/SESSION][ASDF/SESSION]]
+
+- dependents
+  - [[id:ASDF/PACKAGE-INFERRED-SYSTEM][ASDF/PACKAGE-INFERRED-SYSTEM]]
+  - [[id:ASDF/SYSTEM-REGISTRY][ASDF/SYSTEM-REGISTRY]]
+  - [[id:ASDF/ACTION][ASDF/ACTION]]
+  - [[id:ASDF/FIND-COMPONENT][ASDF/FIND-COMPONENT]]
+  - [[id:ASDF/PARSE-DEFSYSTEM][ASDF/PARSE-DEFSYSTEM]]
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+  - [[id:ASDF/CONCATENATE-SOURCE][ASDF/CONCATENATE-SOURCE]]
+  - [[id:ASDF/SYSTEM][ASDF/SYSTEM]]
+  - [[id:ASDF/LISP-ACTION][ASDF/LISP-ACTION]]
+  - [[id:ASDF/BUNDLE][ASDF/BUNDLE]]
+  - [[id:ASDF/BACKWARD-INTERFACE][ASDF/BACKWARD-INTERFACE]]
+  - [[id:ASDF/OPERATE][ASDF/OPERATE]]
+  - [[id:ASDF/PLAN][ASDF/PLAN]]
+  - [[id:ASDF/FORCING][ASDF/FORCING]]
+  - [[id:ASDF/FIND-SYSTEM][ASDF/FIND-SYSTEM]]
+
+** SUB-COMPONENTS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:SUB-COMPONENTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SUB-COMPONENTS names a compiled function:
+  Lambda-list: (COMPONENT &KEY (TYPE T))
+  Derived type: (FUNCTION (T &KEY (:TYPE T)) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Compute the transitive sub-components of given COMPONENT that are of givenTYPE
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (INPUT-FILES (COMPILE-OP SYSTEM))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SOURCE-FILE :class:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:SOURCE-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SOURCE-FILE names the standard-class #<STANDARD-CLASS ASDF/COMPONENT:SOURCE-FILE>:
+  Class precedence-list: ASDF/COMPONENT:SOURCE-FILE,
+                         ASDF/COMPONENT:FILE-COMPONENT,
+                         ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:FILE-COMPONENT
+  Direct subclasses: ASDF/LISP-ACTION:CL-SOURCE-FILE,
+                     ASDF/COMPONENT:STATIC-FILE,
+                     ASDF/COMPONENT:JAVA-SOURCE-FILE,
+                     ASDF/COMPONENT:C-SOURCE-FILE
+  Direct slots:
+    TYPE
+      Readers: ASDF/COMPONENT:SOURCE-FILE-EXPLICIT-TYPE
+      Writers: (SETF ASDF/COMPONENT:SOURCE-FILE-EXPLICIT-TYPE)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PARENT-COMPONENT :class:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:PARENT-COMPONENT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PARENT-COMPONENT names the standard-class #<STANDARD-CLASS ASDF/COMPONENT:PARENT-COMPONENT>:
+  Documentation:
+    A PARENT-COMPONENT is a component that may have children.
+  Class precedence-list: ASDF/COMPONENT:PARENT-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:COMPONENT
+  Direct subclasses: ASDF/COMPONENT:MODULE
+  Direct slots:
+    ASDF/COMPONENT:CHILDREN
+      Initargs: :COMPONENTS
+      Readers: ASDF/COMPONENT:COMPONENT-CHILDREN, ASDF/COMPONENT:MODULE-COMPONENTS
+      Writers: (SETF ASDF/COMPONENT:COMPONENT-CHILDREN)
+    ASDF/COMPONENT:CHILDREN-BY-NAME
+      Readers: ASDF/COMPONENT:COMPONENT-CHILDREN-BY-NAME, ASDF/COMPONENT::MODULE-COMPONENTS-BY-NAME
+      Writers: (SETF ASDF/COMPONENT:COMPONENT-CHILDREN-BY-NAME)
+    ASDF/COMPONENT:DEFAULT-COMPONENT-CLASS
+      Initargs: :DEFAULT-COMPONENT-CLASS
+      Readers: ASDF/COMPONENT:MODULE-DEFAULT-COMPONENT-CLASS
+      Writers: (SETF ASDF/COMPONENT:MODULE-DEFAULT-COMPONENT-CLASS)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** PROPERTIES
+:PROPERTIES:
+:ID: ASDF/COMPONENT:PROPERTIES
+:ALLOC: HEAP DYNAMIC
+:END:
+** AROUND-COMPILE
+:PROPERTIES:
+:ID: ASDF/COMPONENT:AROUND-COMPILE
+:ALLOC: HEAP DYNAMIC
+:END:
+** COMPONENT-EXTERNAL-FORMAT :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-EXTERNAL-FORMAT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-EXTERNAL-FORMAT names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    The external-format of the COMPONENT.
+    By default, deduced from the COMPONENT-ENCODING.
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-EXTERNAL-FORMAT (COMPONENT))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/LISP-ACTION:PERFORM-LISP-LOAD-SOURCE
+  - ASDF/LISP-ACTION:PERFORM-LISP-COMPILATION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** COMPUTE-CHILDREN-BY-NAME :compiled:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPUTE-CHILDREN-BY-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPUTE-CHILDREN-BY-NAME names a compiled function:
+  Lambda-list: (PARENT &KEY ONLY-IF-NEEDED-P)
+  Derived type: (FUNCTION (T &KEY (:ONLY-IF-NEEDED-P T))
+                 (VALUES (OR NULL HASH-TABLE) &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:PARSE-COMPONENT-FORM
+  - (FIND-COMPONENT (PARENT-COMPONENT STRING))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** SOURCE-FILE-TYPE :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:SOURCE-FILE-TYPE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SOURCE-FILE-TYPE names a generic function:
+  Lambda-list: (COMPONENT SYSTEM)
+  Argument precedence order: (COMPONENT SYSTEM)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    DEPRECATED. Use the FILE-TYPE of a COMPONENT instead.
+  Method-combination: STANDARD
+  Methods:
+    (SOURCE-FILE-TYPE (FILE-COMPONENT PARENT-COMPONENT))
+    (SOURCE-FILE-TYPE (PARENT-COMPONENT PARENT-COMPONENT))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (COMPONENT-RELATIVE-PATHNAME (COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT SYSTEM)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (FILE-COMPONENT PARENT-COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (PARENT-COMPONENT PARENT-COMPONENT)
+:end:
+** LICENCE
+:PROPERTIES:
+:ID: ASDF/COMPONENT:LICENCE
+:ALLOC: HEAP DYNAMIC
+:END:
+** AUTHOR
+:PROPERTIES:
+:ID: ASDF/COMPONENT:AUTHOR
+:ALLOC: HEAP DYNAMIC
+:END:
+** STATIC-FILE :class:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:STATIC-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+STATIC-FILE names the standard-class #<STANDARD-CLASS ASDF/COMPONENT:STATIC-FILE>:
+  Documentation:
+    Component for a file to be included as is in the build output
+  Class precedence-list: ASDF/COMPONENT:STATIC-FILE, ASDF/COMPONENT:SOURCE-FILE,
+                         ASDF/COMPONENT:FILE-COMPONENT,
+                         ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:SOURCE-FILE
+  Direct subclasses: ASDF/COMPONENT:DOC-FILE
+  Direct slots:
+    TYPE
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPONENT-IF-FEATURE :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-IF-FEATURE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-IF-FEATURE names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-IF-FEATURE (COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+(SETF COMPONENT-IF-FEATURE) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-IF-FEATURE) (T COMPONENT))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/ACTION:ACTION-VALID-P
+  - (RECURSE IN SUB-COMPONENTS)
+  - [[id:SKEL/COMP/LISP:WRITE-ASD-COMPONENTS][WRITE-ASD-COMPONENTS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** DEFAULT-COMPONENT-CLASS
+:PROPERTIES:
+:ID: ASDF/COMPONENT:DEFAULT-COMPONENT-CLASS
+:ALLOC: HEAP DYNAMIC
+:END:
+** OPERATION-TIMES
+:PROPERTIES:
+:ID: ASDF/COMPONENT:OPERATION-TIMES
+:ALLOC: HEAP DYNAMIC
+:END:
+** CHILD-COMPONENT :class:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:CHILD-COMPONENT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+CHILD-COMPONENT names the standard-class #<STANDARD-CLASS ASDF/COMPONENT:CHILD-COMPONENT>:
+  Documentation:
+    A CHILD-COMPONENT is a COMPONENT that may be part of
+    a PARENT-COMPONENT.
+  Class precedence-list: ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:COMPONENT
+  Direct subclasses: ASDF/COMPONENT:MODULE, ASDF/COMPONENT:FILE-COMPONENT
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** DOC-FILE :class:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:DOC-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DOC-FILE names the standard-class #<STANDARD-CLASS ASDF/COMPONENT:DOC-FILE>:
+  Class precedence-list: ASDF/COMPONENT:DOC-FILE, ASDF/COMPONENT:STATIC-FILE,
+                         ASDF/COMPONENT:SOURCE-FILE,
+                         ASDF/COMPONENT:FILE-COMPONENT,
+                         ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:STATIC-FILE
+  Direct subclasses: ASDF/COMPONENT:HTML-FILE
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPONENT-BUILD-OPERATION :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-BUILD-OPERATION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-BUILD-OPERATION names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-BUILD-OPERATION (COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+#+end_example
+
+- Called by
+  - ASDF/BUNDLE::BUNDLE-OUTPUT-FILES
+  - (COMPONENT-DEPENDS-ON (BUILD-OP COMPONENT))
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** COMPONENT-PATHNAME :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-PATHNAME names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Pathname of the COMPONENT if any, or NIL.
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-PATHNAME (SYSTEM))
+      Documentation:
+        Given a SYSTEM, and a (Unix-style relative path) NAME of a file (ordirectory) of given TYPE,
+        return the absolute pathname of a corresponding file under thatsystem's source code pathname.
+    (COMPONENT-PATHNAME (COMPONENT))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (COMPILE-OP GROVEL-CONSTANTS-FILE))
+  - ASDF/PACKAGE-INFERRED-SYSTEM:SYSDEF-PACKAGE-INFERRED-SYSTEM-SEARCH
+  - ASDF/PACKAGE-INFERRED-SYSTEM::SAME-PACKAGE-INFERRED-SYSTEM-P
+  - (OUTPUT-FILES (DELIVER-ASD-OP SYSTEM))
+  - (INPUT-FILES (OPERATION COMPILED-FILE))
+  - ASDF/BUNDLE::BUNDLE-OUTPUT-FILES
+  - ASDF/PARSE-DEFSYSTEM:PARSE-COMPONENT-FORM
+  - (OUTPUT-FILES (COMPILE-OP SYSTEM))
+  - (INPUT-FILES (SELFWARD-OPERATION COMPONENT))
+  - (OUTPUT-FILES AROUND (T T))
+  - (COMPONENT-ENCODING (COMPONENT))
+  - (COMPONENT-PARENT-PATHNAME (T))
+  - (CHANGE-CLASS (SYSTEM (EQL BENCH-SYSTEM)))
+  - (CHANGE-CLASS (SYSTEM (EQL TEST-SYSTEM)))
+  - (CHANGE-CLASS (SYSTEM (EQL SYSTEM)))
+  - (CHANGE-CLASS (MOD-COMPONENT (EQL MODULE)))
+  - (CHANGE-CLASS (MODULE (EQL MOD-COMPONENT)))
+  - (CHANGE-CLASS (GROVEL-CONSTANTS-FILE (EQL GROVEL-COMPONENT)))
+  - (CHANGE-CLASS (FILE-COMPONENT (EQL FILE-COMPONENT)))
+  - (CHANGE-CLASS (COMPONENT (EQL COMPONENT)))
+  - (CHANGE-CLASS (COMPONENT (EQL COMPONENT)))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** MODULE-DEFAULT-COMPONENT-CLASS :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:MODULE-DEFAULT-COMPONENT-CLASS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MODULE-DEFAULT-COMPONENT-CLASS names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (MODULE-DEFAULT-COMPONENT-CLASS (PARENT-COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+(SETF MODULE-DEFAULT-COMPONENT-CLASS) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF MODULE-DEFAULT-COMPONENT-CLASS) (T PARENT-COMPONENT))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:CLASS-FOR-TYPE
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/COMPONENT:PARENT-COMPONENT
+:end:
+** SOURCE-FILE-EXPLICIT-TYPE :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:SOURCE-FILE-EXPLICIT-TYPE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+SOURCE-FILE-EXPLICIT-TYPE names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (SOURCE-FILE-EXPLICIT-TYPE (SOURCE-FILE))
+      Documentation:
+        automatically generated reader method
+
+(SETF SOURCE-FILE-EXPLICIT-TYPE) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF SOURCE-FILE-EXPLICIT-TYPE) (T SOURCE-FILE))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/COMPONENT:SOURCE-FILE
+:end:
+** DEFSYSTEM-DEPENDS-ON
+:PROPERTIES:
+:ID: ASDF/COMPONENT:DEFSYSTEM-DEPENDS-ON
+:ALLOC: HEAP DYNAMIC
+:END:
+** FIND-COMPONENT :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:FIND-COMPONENT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FIND-COMPONENT names a generic function:
+  Lambda-list: (BASE PATH &KEY REGISTERED)
+  Argument precedence order: (BASE PATH)
+  Derived type: (FUNCTION (T T &KEY (:REGISTERED T)) *)
+  Documentation:
+    Find a component by resolving the PATH starting from BASE parent.
+    If REGISTERED is true, only search currently registered systems.
+  Method-combination: STANDARD
+  Methods:
+    (FIND-COMPONENT (T COMPONENT))
+    (FIND-COMPONENT (COMPONENT CONS))
+    (FIND-COMPONENT (T SYMBOL))
+    (FIND-COMPONENT (PARENT-COMPONENT STRING))
+    (FIND-COMPONENT (CONS T))
+    (FIND-COMPONENT (SYMBOL T))
+    (FIND-COMPONENT (STRING T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (EXPLAIN (OPERATION T))
+  - (EXPLAIN (SYMBOL T))
+  - (EXPLAIN (STRING T))
+  - (TRAVERSE (OPERATION T))
+  - (TRAVERSE (SYMBOL T))
+  - (TRAVERSE (STRING T))
+  - ASDF/PARSE-DEFSYSTEM:PARSE-COMPONENT-FORM
+  - ASDF/PARSE-DEFSYSTEM::NORMALIZE-VERSION
+  - ASDF/PARSE-DEFSYSTEM::RECORD-ADDITIONAL-SYSTEM-INPUT-FILE
+  - ASDF/SYSTEM-REGISTRY:MARK-COMPONENT-PRELOADED
+  - ASDF/OPERATE:COMPONENT-LOADED-P
+  - (OPERATE (OPERATION T))
+  - (OPERATE (SYMBOL T))
+  - (OPERATE (STRING T))
+  - (MARK-AS-DONE (T OPERATION T))
+  - (MARK-AS-DONE (T SYMBOL T))
+  - (MARK-AS-DONE (T STRING T))
+  - (MAKE-PLAN (T OPERATION T))
+  - (MAKE-PLAN (T SYMBOL T))
+  - (MAKE-PLAN (T STRING T))
+  - (COLLECT-DEPENDENCIES (OPERATION T))
+  - (COLLECT-DEPENDENCIES (SYMBOL T))
+  - (COLLECT-DEPENDENCIES (STRING T))
+  - ASDF/FORCING::ACTION-OVERRIDE-P
+  - ASDF/FIND-COMPONENT:RESOLVE-DEPENDENCY-SPEC
+  - ASDF/FIND-COMPONENT:RESOLVE-DEPENDENCY-NAME
+  - (FIND-COMPONENT (COMPONENT CONS))
+  - (FIND-COMPONENT (T SYMBOL))
+  - (FIND-COMPONENT (CONS T))
+  - (FIND-COMPONENT (SYMBOL T))
+  - (FIND-COMPONENT (STRING T))
+  - (PERFORM (OPERATION T))
+  - (PERFORM (SYMBOL T))
+  - (PERFORM (STRING T))
+  - (COMPONENT-OPERATION-TIME (OPERATION T))
+  - (COMPONENT-OPERATION-TIME (SYMBOL T))
+  - (COMPONENT-OPERATION-TIME (STRING T))
+  - (ADDITIONAL-INPUT-FILES (OPERATION T))
+  - (ADDITIONAL-INPUT-FILES (SYMBOL T))
+  - (ADDITIONAL-INPUT-FILES (STRING T))
+  - (OUTPUT-FILES AROUND (T T))
+  - (OPERATION-DONE-P (OPERATION T))
+  - (OPERATION-DONE-P (SYMBOL T))
+  - (OPERATION-DONE-P (STRING T))
+  - (INPUT-FILES (OPERATION T))
+  - (INPUT-FILES (SYMBOL T))
+  - (INPUT-FILES (STRING T))
+  - (OUTPUT-FILES (OPERATION T))
+  - (OUTPUT-FILES (SYMBOL T))
+  - (OUTPUT-FILES (STRING T))
+  - (COMPONENT-DEPENDS-ON (OPERATION T))
+  - (COMPONENT-DEPENDS-ON (SYMBOL T))
+  - (COMPONENT-DEPENDS-ON (STRING T))
+  - ASDF/ACTION:FIND-ACTION
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (BASE PATH &KEY REGISTERED)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:CONS][CONS]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:SYMBOL][SYMBOL]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT CONS)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (PARENT-COMPONENT STRING)
+:end:
+** COMPONENT-IN-ORDER-TO :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-IN-ORDER-TO
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-IN-ORDER-TO names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-IN-ORDER-TO (COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+(SETF COMPONENT-IN-ORDER-TO) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-IN-ORDER-TO) (T COMPONENT))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (COMPONENT-DEPENDS-ON (OPERATION COMPONENT))
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** COMPONENT-SIDEWAY-DEPENDENCIES :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-SIDEWAY-DEPENDENCIES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-SIDEWAY-DEPENDENCIES names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-SIDEWAY-DEPENDENCIES (COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+(SETF COMPONENT-SIDEWAY-DEPENDENCIES) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-SIDEWAY-DEPENDENCIES) (T COMPONENT))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/BACKWARD-INTERFACE:COMPONENT-LOAD-DEPENDENCIES
+  - ASDF/PACKAGE-INFERRED-SYSTEM::SAME-PACKAGE-INFERRED-SYSTEM-P
+  - (COMPONENT-DEPENDS-ON (LOAD-BUNDLE-OP SYSTEM))
+  - ASDF/ACTION::SIDEWAY-OPERATION-DEPENDS-ON
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** CHILDREN
+:PROPERTIES:
+:ID: ASDF/COMPONENT:CHILDREN
+:ALLOC: HEAP DYNAMIC
+:END:
+** COMPONENT-OPERATION-TIMES :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-OPERATION-TIMES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-OPERATION-TIMES names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-OPERATION-TIMES (COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+(SETF COMPONENT-OPERATION-TIMES) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-OPERATION-TIMES) (T COMPONENT))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/SYSTEM-REGISTRY:MARK-COMPONENT-PRELOADED
+  - ((SETF ACTION-STATUS) (T NULL OPERATION COMPONENT))
+  - ((SETF COMPONENT-OPERATION-TIME) (T OPERATION COMPONENT))
+  - (COMPONENT-OPERATION-TIME (OPERATION COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** COMPONENT-PARENT-PATHNAME :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-PARENT-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-PARENT-PATHNAME names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    The pathname of the COMPONENT's parent, if any, or NIL
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-PARENT-PATHNAME (SYSTEM))
+    (COMPONENT-PARENT-PATHNAME (T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (COMPONENT-RELATIVE-PATHNAME (COMPONENT))
+  - (COMPONENT-PATHNAME (COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+:end:
+** NAME
+:PROPERTIES:
+:ID: ASDF/COMPONENT:NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+** MAINTAINER
+:PROPERTIES:
+:ID: ASDF/COMPONENT:MAINTAINER
+:ALLOC: HEAP DYNAMIC
+:END:
+** COMPONENTS
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENTS
+:ALLOC: HEAP DYNAMIC
+:END:
+** COMPONENT-DESCRIPTION :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-DESCRIPTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-DESCRIPTION names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-DESCRIPTION (COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+(SETF COMPONENT-DESCRIPTION) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-DESCRIPTION) (T COMPONENT))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (CHANGE-CLASS (SYSTEM (EQL BENCH-SYSTEM)))
+  - (CHANGE-CLASS (SYSTEM (EQL TEST-SYSTEM)))
+  - (CHANGE-CLASS (SYSTEM (EQL SYSTEM)))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** COMPONENT-CHILDREN-BY-NAME :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-CHILDREN-BY-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-CHILDREN-BY-NAME names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-CHILDREN-BY-NAME (PARENT-COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+(SETF COMPONENT-CHILDREN-BY-NAME) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-CHILDREN-BY-NAME) (T PARENT-COMPONENT))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (FIND-COMPONENT (PARENT-COMPONENT STRING))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/COMPONENT:PARENT-COMPONENT
+:end:
+** JAVA-SOURCE-FILE :class:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:JAVA-SOURCE-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+JAVA-SOURCE-FILE names the standard-class #<STANDARD-CLASS ASDF/COMPONENT:JAVA-SOURCE-FILE>:
+  Class precedence-list: ASDF/COMPONENT:JAVA-SOURCE-FILE,
+                         ASDF/COMPONENT:SOURCE-FILE,
+                         ASDF/COMPONENT:FILE-COMPONENT,
+                         ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:SOURCE-FILE
+  No subclasses.
+  Direct slots:
+    TYPE
+      Initform: "java"
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPONENT-RELATIVE-PATHNAME :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-RELATIVE-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-RELATIVE-PATHNAME names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Specified pathname of the COMPONENT,
+    intended to be merged with the pathname of that component's parent if any,using merged-pathnames*.
+    Despite the function's name, the return value can be an absolute pathname,in which case the merge
+    will leave it unmodified.
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-RELATIVE-PATHNAME (SYSTEM))
+    (COMPONENT-RELATIVE-PATHNAME (COMPONENT))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (COMPONENT-PATHNAME (COMPONENT))
+  - [[id:SKEL/COMP/LISP:WRITE-ASD-COMPONENTS][WRITE-ASD-COMPONENTS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:SYSTEM][SYSTEM]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** FILE-TYPE :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:FILE-TYPE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FILE-TYPE names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (FILE-TYPE (FILE-COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+(SETF FILE-TYPE) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF FILE-TYPE) (T FILE-COMPONENT))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - (SOURCE-FILE-TYPE (FILE-COMPONENT PARENT-COMPONENT))
+  - [[id:SKEL/COMP/LISP:WRITE-ASD-COMPONENTS][WRITE-ASD-COMPONENTS]]
+  - (CHANGE-CLASS (GROVEL-CONSTANTS-FILE (EQL GROVEL-COMPONENT)))
+  - (CHANGE-CLASS (FILE-COMPONENT (EQL FILE-COMPONENT)))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:FILE-COMPONENT][FILE-COMPONENT]]
+:end:
+** SIDEWAY-DEPENDENCIES
+:PROPERTIES:
+:ID: ASDF/COMPONENT:SIDEWAY-DEPENDENCIES
+:ALLOC: HEAP DYNAMIC
+:END:
+** AROUND-COMPILE-HOOK :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:AROUND-COMPILE-HOOK
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+AROUND-COMPILE-HOOK names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    An optional hook function that will be called with one argument, a thunk.
+    The hook function must call the thunk, that will compile code from thecomponent, and may or may not
+    also evaluate the compiled results. The hook function may establish dynamicvariable bindings around
+    this compilation, or check its results, etc.
+  Method-combination: STANDARD
+  Methods:
+    (AROUND-COMPILE-HOOK (COMPONENT))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PACKAGE-INFERRED-SYSTEM:SYSDEF-PACKAGE-INFERRED-SYSTEM-SEARCH
+  - ASDF/PACKAGE-INFERRED-SYSTEM::SAME-PACKAGE-INFERRED-SYSTEM-P
+  - (INPUT-FILES (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+  - (CALL-WITH-AROUND-COMPILE-HOOK (COMPONENT T))
+  - (AROUND-COMPILE-HOOK (COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** CHILDREN-BY-NAME
+:PROPERTIES:
+:ID: ASDF/COMPONENT:CHILDREN-BY-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+** ABSOLUTE-PATHNAME
+:PROPERTIES:
+:ID: ASDF/COMPONENT:ABSOLUTE-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+** MODULE :class:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:MODULE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MODULE names the standard-class #<STANDARD-CLASS ASDF/COMPONENT:MODULE>:
+  Documentation:
+    A module is a intermediate component with both a parent and children,
+    typically but not necessarily representing the files in a subdirectory ofthe build source.
+  Class precedence-list: ASDF/COMPONENT:MODULE, ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:PARENT-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:CHILD-COMPONENT,
+                       ASDF/COMPONENT:PARENT-COMPONENT
+  Direct subclasses: ASDF/SYSTEM:SYSTEM
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** HTML-FILE :class:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:HTML-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+HTML-FILE names the standard-class #<STANDARD-CLASS ASDF/COMPONENT:HTML-FILE>:
+  Class precedence-list: ASDF/COMPONENT:HTML-FILE, ASDF/COMPONENT:DOC-FILE,
+                         ASDF/COMPONENT:STATIC-FILE, ASDF/COMPONENT:SOURCE-FILE,
+                         ASDF/COMPONENT:FILE-COMPONENT,
+                         ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:DOC-FILE
+  No subclasses.
+  Direct slots:
+    TYPE
+      Initform: "html"
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** INLINE-METHODS
+:PROPERTIES:
+:ID: ASDF/COMPONENT:INLINE-METHODS
+:ALLOC: HEAP DYNAMIC
+:END:
+** IN-ORDER-TO
+:PROPERTIES:
+:ID: ASDF/COMPONENT:IN-ORDER-TO
+:ALLOC: HEAP DYNAMIC
+:END:
+** PARENT
+:PROPERTIES:
+:ID: ASDF/COMPONENT:PARENT
+:ALLOC: HEAP DYNAMIC
+:END:
+** FILE-COMPONENT :class:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:FILE-COMPONENT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FILE-COMPONENT names the standard-class #<STANDARD-CLASS ASDF/COMPONENT:FILE-COMPONENT>:
+  Documentation:
+    a COMPONENT that represents a file
+  Class precedence-list: ASDF/COMPONENT:FILE-COMPONENT,
+                         ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:CHILD-COMPONENT
+  Direct subclasses: ASDF/BUNDLE:COMPILED-FILE, ASDF/COMPONENT:SOURCE-FILE
+  Direct slots:
+    TYPE
+      Initargs: :TYPE
+      Readers: ASDF/COMPONENT:FILE-TYPE
+      Writers: (SETF ASDF/COMPONENT:FILE-TYPE)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPONENT-NAME :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-NAME names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Name of the COMPONENT, unique relative to its parent
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-NAME (BAD-SYSTEM-NAME))
+    (COMPONENT-NAME (SYSTEM-OUT-OF-DATE))
+    (COMPONENT-NAME (COMPONENT))
+      Documentation:
+        Component name: designator for a string composed of portable pathnamecharacters
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+(SETF COMPONENT-NAME) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-NAME) (T COMPONENT))
+      Documentation:
+        Component name: designator for a string composed of portable pathnamecharacters
+
+#+end_example
+
+- Called by
+  - ASDF/PACKAGE-INFERRED-SYSTEM::SAME-PACKAGE-INFERRED-SYSTEM-P
+  - (OUTPUT-FILES (DELIVER-ASD-OP SYSTEM))
+  - ASDF/BUNDLE::BUNDLE-OUTPUT-FILES
+  - ASDF/PARSE-DEFSYSTEM:PARSE-COMPONENT-FORM
+  - (BAD-SYSTEM-NAME)
+  - (SYSTEM-OUT-OF-DATE)
+  - (PERFORM-WITH-RESTARTS (LOAD-OP CL-SOURCE-FILE))
+  - ASDF/SYSTEM-REGISTRY:REGISTER-SYSTEM
+  - ASDF/SYSTEM:COERCE-NAME
+  - (COMPONENT-RELATIVE-PATHNAME (COMPONENT))
+  - ASDF/COMPONENT:COMPUTE-CHILDREN-BY-NAME
+  - ASDF/COMPONENT:COMPONENT-FIND-PATH
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+  - [[id:SKEL/COMP/LISP:WRITE-ASD-COMPONENTS][WRITE-ASD-COMPONENTS]]
+  - (CHANGE-CLASS (SYSTEM (EQL BENCH-SYSTEM)))
+  - (CHANGE-CLASS (SYSTEM (EQL TEST-SYSTEM)))
+  - (CHANGE-CLASS (SYSTEM (EQL SYSTEM)))
+  - (CHANGE-CLASS (MODULE (EQL MOD-COMPONENT)))
+  - (CHANGE-CLASS (GROVEL-CONSTANTS-FILE (EQL GROVEL-COMPONENT)))
+  - (CHANGE-CLASS (FILE-COMPONENT (EQL FILE-COMPONENT)))
+  - (CHANGE-CLASS (COMPONENT (EQL COMPONENT)))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/PARSE-DEFSYSTEM:BAD-SYSTEM-NAME
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/PLAN:SYSTEM-OUT-OF-DATE
+:end:
+** COMPONENT-PARENT :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-PARENT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-PARENT names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    The parent of a child COMPONENT,
+    or NIL for top-level components (a.k.a. systems)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-PARENT (COMPONENT))
+      Documentation:
+        automatically generated reader method
+    (COMPONENT-PARENT (NULL))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM::RECORD-ADDITIONAL-SYSTEM-INPUT-FILE
+  - ASDF/PARSE-DEFSYSTEM:CLASS-FOR-TYPE
+  - ASDF/FIND-COMPONENT:RESOLVE-DEPENDENCY-NAME
+  - ASDF/ACTION::UPWARD-OPERATION-DEPENDS-ON
+  - (AROUND-COMPILE-HOOK (COMPONENT))
+  - (COMPONENT-ENCODING (COMPONENT))
+  - (COMPONENT-PARENT-PATHNAME (T))
+  - (COMPONENT-SYSTEM (COMPONENT))
+  - ASDF/COMPONENT:COMPONENT-FIND-PATH
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - NULL
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** COMPONENTS-BY-NAME
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENTS-BY-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+** COMPONENT-LONG-DESCRIPTION :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-LONG-DESCRIPTION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-LONG-DESCRIPTION names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-LONG-DESCRIPTION (COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+(SETF COMPONENT-LONG-DESCRIPTION) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-LONG-DESCRIPTION) (T COMPONENT))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** IF-FEATURE
+:PROPERTIES:
+:ID: ASDF/COMPONENT:IF-FEATURE
+:ALLOC: HEAP DYNAMIC
+:END:
+** LONG-DESCRIPTION
+:PROPERTIES:
+:ID: ASDF/COMPONENT:LONG-DESCRIPTION
+:ALLOC: HEAP DYNAMIC
+:END:
+** VERSION-SATISFIES :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:VERSION-SATISFIES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VERSION-SATISFIES names a generic function:
+  Lambda-list: (COMPONENT VERSION)
+  Argument precedence order: (COMPONENT VERSION)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Check whether a COMPONENT satisfies the constraint of being at least asrecent
+    as the specified VERSION, which must be a string of dot-separated naturalnumbers, or NIL.
+  Method-combination: STANDARD
+  Methods:
+    (VERSION-SATISFIES (STRING T))
+    (VERSION-SATISFIES (COMPONENT T))
+    (VERSION-SATISFIES :AROUND (T NULL))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (OPERATE BEFORE (OPERATION COMPONENT))
+  - ASDF/FIND-COMPONENT:RESOLVE-DEPENDENCY-NAME
+  - (VERSION-SATISFIES (COMPONENT T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:COMMON-LISP:STRING][STRING]]
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (AROUND NULL)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT VERSION)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** COMPONENT-SYSTEM :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-SYSTEM names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Top-level system containing the COMPONENT
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-SYSTEM (COMPONENT))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM:PARSE-COMPONENT-FORM
+  - (COLLECT-DEPENDENCIES (OPERATION COMPONENT))
+  - (ACTION-FORCED-P (T T T))
+  - ASDF/FORCING::ACTION-OVERRIDE-P
+  - ASDF/LISP-ACTION:LISP-COMPILATION-OUTPUT-FILES
+  - ASDF/SYSTEM:PRIMARY-SYSTEM-NAME
+  - (COMPONENT-RELATIVE-PATHNAME (COMPONENT))
+  - (COMPONENT-SYSTEM (COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** RELATIVE-PATHNAME
+:PROPERTIES:
+:ID: ASDF/COMPONENT:RELATIVE-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+** %ENCODING
+:PROPERTIES:
+:ID: ASDF/COMPONENT:%ENCODING
+:ALLOC: HEAP DYNAMIC
+:END:
+** COMPONENT-INLINE-METHODS :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-INLINE-METHODS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-INLINE-METHODS names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-INLINE-METHODS (COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+(SETF COMPONENT-INLINE-METHODS) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-INLINE-METHODS) (T COMPONENT))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/PARSE-DEFSYSTEM::%DEFINE-COMPONENT-INLINE-METHODS
+  - ASDF/PARSE-DEFSYSTEM::%REMOVE-COMPONENT-INLINE-METHODS
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** VERSION
+:PROPERTIES:
+:ID: ASDF/COMPONENT:VERSION
+:ALLOC: HEAP DYNAMIC
+:END:
+** C-SOURCE-FILE :class:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:C-SOURCE-FILE
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+C-SOURCE-FILE names the standard-class #<STANDARD-CLASS ASDF/COMPONENT:C-SOURCE-FILE>:
+  Class precedence-list: ASDF/COMPONENT:C-SOURCE-FILE,
+                         ASDF/COMPONENT:SOURCE-FILE,
+                         ASDF/COMPONENT:FILE-COMPONENT,
+                         ASDF/COMPONENT:CHILD-COMPONENT,
+                         ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/COMPONENT:SOURCE-FILE
+  No subclasses.
+  Direct slots:
+    TYPE
+      Initform: "c"
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPONENT-ENCODING :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-ENCODING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-ENCODING names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    The encoding of the COMPONENT. By default, only :utf-8 is supported.
+    Use asdf-encodings to support more encodings.
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-ENCODING (COMPONENT))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (INPUT-FILES (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+  - (COMPONENT-EXTERNAL-FORMAT (COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** COMPONENT-PROPERTIES :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-PROPERTIES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-PROPERTIES names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-PROPERTIES (COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+(SETF COMPONENT-PROPERTIES) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-PROPERTIES) (T COMPONENT))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** MODULE-COMPONENTS :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:MODULE-COMPONENTS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MODULE-COMPONENTS names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (MODULE-COMPONENTS (PARENT-COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+#+end_example
+
+- Called by
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+  - [[id:SKEL/COMP/LISP:WRITE-ASD-COMPONENTS][WRITE-ASD-COMPONENTS]]
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/COMPONENT:PARENT-COMPONENT
+:end:
+** COMPONENT-VERSION :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-VERSION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-VERSION names a generic function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Return the version of a COMPONENT, which must be a string of dot-separated
+    natural numbers, or NIL.
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-VERSION (COMPONENT))
+      Documentation:
+        automatically generated reader method
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+(SETF COMPONENT-VERSION) names a generic function:
+  Lambda-list: (NEW-VERSION COMPONENT)
+  Argument precedence order: (NEW-VERSION COMPONENT)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Updates the version of a COMPONENT, which must be a string of dot-separated
+    natural numbers, or NIL.
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-VERSION) (T COMPONENT))
+      Documentation:
+        automatically generated writer method
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (PERFORM (DELIVER-ASD-OP SYSTEM))
+  - ASDF/SYSTEM-REGISTRY:REGISTER-PRELOADED-SYSTEM
+  - (VERSION-SATISFIES (COMPONENT T))
+  - (WRITE-AST (ASDF-SYSTEM PATHNAME))
+  - (CHANGE-CLASS (SYSTEM (EQL BENCH-SYSTEM)))
+  - (CHANGE-CLASS (SYSTEM (EQL TEST-SYSTEM)))
+  - (CHANGE-CLASS (SYSTEM (EQL SYSTEM)))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - [[id:STD/DEFSYS:COMPONENT][COMPONENT]]
+:end:
+** DUPLICATE-NAMES :condition:class:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:DUPLICATE-NAMES
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DUPLICATE-NAMES names the condition-class #<SB-PCL::CONDITION-CLASS ASDF/COMPONENT:DUPLICATE-NAMES>:
+  Class precedence-list: ASDF/COMPONENT:DUPLICATE-NAMES,
+                         ASDF/SESSION:SYSTEM-DEFINITION-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/SESSION:SYSTEM-DEFINITION-ERROR
+  No subclasses.
+  Direct slots:
+    ASDF/COMPONENT:NAME
+      Initargs: :NAME
+      Readers: ASDF/COMPONENT::DUPLICATE-NAMES-NAME
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** DESCRIPTION
+:PROPERTIES:
+:ID: ASDF/COMPONENT:DESCRIPTION
+:ALLOC: HEAP DYNAMIC
+:END:
+** COMPONENT-FIND-PATH :compiled:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-FIND-PATH
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-FIND-PATH names a compiled function:
+  Lambda-list: (COMPONENT)
+  Derived type: (FUNCTION (T) (VALUES LIST &OPTIONAL))
+  Documentation:
+    Return a path from a root system to the COMPONENT.
+    The return value is a list of component NAMES; a list of strings.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (INPUT-FILES (BASIC-CONCATENATE-SOURCE-OP SYSTEM))
+  - (RECURSIVE-OPERATE)
+  - (OPERATE AROUND (T T))
+  - ASDF/ACTION:ACTION-PATH
+  - (COMPONENT-PATHNAME (COMPONENT))
+  - (PRINT-OBJECT (COMPONENT T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** COMPONENT-CHILDREN :generic:function:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT-CHILDREN
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT-CHILDREN names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (COMPONENT-CHILDREN (PARENT-COMPONENT))
+      Documentation:
+        automatically generated reader method
+
+(SETF COMPONENT-CHILDREN) names a generic function:
+  Lambda-list: (NEW-VALUE OBJECT)
+  Argument precedence order: (NEW-VALUE OBJECT)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF COMPONENT-CHILDREN) (T PARENT-COMPONENT))
+      Documentation:
+        automatically generated writer method
+
+#+end_example
+
+- Called by
+  - ASDF/PACKAGE-INFERRED-SYSTEM::SAME-PACKAGE-INFERRED-SYSTEM-P
+  - (TRIVIAL-SYSTEM-P (SYSTEM))
+  - ASDF/SYSTEM-REGISTRY:MARK-COMPONENT-PRELOADED
+  - (PERFORM (LOAD-OP REQUIRE-SYSTEM))
+  - ASDF/ACTION::DOWNWARD-OPERATION-DEPENDS-ON
+  - (RECURSE IN SUB-COMPONENTS)
+  - ASDF/COMPONENT:COMPUTE-CHILDREN-BY-NAME
+  - (CHANGE-CLASS (SYSTEM (EQL BENCH-SYSTEM)))
+  - (CHANGE-CLASS (SYSTEM (EQL TEST-SYSTEM)))
+  - (CHANGE-CLASS (SYSTEM (EQL SYSTEM)))
+  - (CHANGE-CLASS (MODULE (EQL MOD-COMPONENT)))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/COMPONENT:PARENT-COMPONENT
+:end:
+** COMPONENT :class:
+:PROPERTIES:
+:ID: ASDF/COMPONENT:COMPONENT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COMPONENT names the standard-class #<STANDARD-CLASS ASDF/COMPONENT:COMPONENT>:
+  Documentation:
+    Base class for all components of a build
+  Class precedence-list: ASDF/COMPONENT:COMPONENT, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: STANDARD-OBJECT
+  Direct subclasses: ASDF/COMPONENT:PARENT-COMPONENT,
+                     ASDF/COMPONENT:CHILD-COMPONENT
+  Direct slots:
+    ASDF/COMPONENT:NAME
+      Type: STRING
+      Initargs: :NAME
+      Readers: ASDF/COMPONENT:COMPONENT-NAME
+      Writers: (SETF ASDF/COMPONENT:COMPONENT-NAME)
+      Documentation:
+       Component name: designator for a string composed of portable pathnamecharacters
+    ASDF/COMPONENT:VERSION
+      Initargs: :VERSION
+      Readers: ASDF/COMPONENT:COMPONENT-VERSION
+      Writers: (SETF ASDF/COMPONENT:COMPONENT-VERSION)
+    ASDF/COMPONENT:DESCRIPTION
+      Initargs: :DESCRIPTION
+      Readers: ASDF/COMPONENT:COMPONENT-DESCRIPTION
+      Writers: (SETF ASDF/COMPONENT:COMPONENT-DESCRIPTION)
+    ASDF/COMPONENT:LONG-DESCRIPTION
+      Initargs: :LONG-DESCRIPTION
+      Readers: ASDF/COMPONENT:COMPONENT-LONG-DESCRIPTION
+      Writers: (SETF ASDF/COMPONENT:COMPONENT-LONG-DESCRIPTION)
+    ASDF/COMPONENT:SIDEWAY-DEPENDENCIES
+      Readers: ASDF/COMPONENT:COMPONENT-SIDEWAY-DEPENDENCIES
+      Writers: (SETF ASDF/COMPONENT:COMPONENT-SIDEWAY-DEPENDENCIES)
+    ASDF/COMPONENT:IF-FEATURE
+      Initargs: :IF-FEATURE
+      Readers: ASDF/COMPONENT:COMPONENT-IF-FEATURE
+      Writers: (SETF ASDF/COMPONENT:COMPONENT-IF-FEATURE)
+    ASDF/COMPONENT:IN-ORDER-TO
+      Initargs: :IN-ORDER-TO
+      Readers: ASDF/COMPONENT:COMPONENT-IN-ORDER-TO
+      Writers: (SETF ASDF/COMPONENT:COMPONENT-IN-ORDER-TO)
+    ASDF/COMPONENT:INLINE-METHODS
+      Readers: ASDF/COMPONENT:COMPONENT-INLINE-METHODS
+      Writers: (SETF ASDF/COMPONENT:COMPONENT-INLINE-METHODS)
+    ASDF/COMPONENT:RELATIVE-PATHNAME
+      Initargs: :PATHNAME
+    ASDF/COMPONENT:ABSOLUTE-PATHNAME
+    ASDF/COMPONENT:OPERATION-TIMES
+      Initform: (MAKE-HASH-TABLE)
+      Readers: ASDF/COMPONENT:COMPONENT-OPERATION-TIMES
+      Writers: (SETF ASDF/COMPONENT:COMPONENT-OPERATION-TIMES)
+    ASDF/COMPONENT:AROUND-COMPILE
+      Initargs: :AROUND-COMPILE
+    ASDF/COMPONENT:PROPERTIES
+      Initargs: :PROPERTIES
+      Readers: ASDF/COMPONENT:COMPONENT-PROPERTIES
+      Writers: (SETF ASDF/COMPONENT:COMPONENT-PROPERTIES)
+    ASDF/COMPONENT:%ENCODING
+      Initargs: :ENCODING
+      Readers: ASDF/COMPONENT::%COMPONENT-ENCODING
+      Writers: (SETF ASDF/COMPONENT::%COMPONENT-ENCODING)
+    ASDF/COMPONENT:PARENT
+      Initargs: :PARENT
+      Readers: ASDF/COMPONENT:COMPONENT-PARENT
+    ASDF/COMPONENT::BUILD-OPERATION
+      Initargs: :BUILD-OPERATION
+      Readers: ASDF/COMPONENT:COMPONENT-BUILD-OPERATION
+    ASDF/COMPONENT::ADDITIONAL-INPUT-FILES
+      Readers: ASDF/COMPONENT::%ADDITIONAL-INPUT-FILES
+      Writers: (SETF ASDF/COMPONENT::%ADDITIONAL-INPUT-FILES)
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:

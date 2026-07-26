@@ -1,0 +1,244 @@
+#+TITLE: ASDF/FIND-SYSTEM
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/FIND-SYSTEM
+:PROPERTIES:
+:ID: ASDF/FIND-SYSTEM
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+  - [[id:ASDF/UPGRADE][ASDF/UPGRADE]]
+  - [[id:ASDF/SESSION][ASDF/SESSION]]
+  - [[id:ASDF/COMPONENT][ASDF/COMPONENT]]
+  - [[id:ASDF/SYSTEM][ASDF/SYSTEM]]
+  - [[id:ASDF/OPERATION][ASDF/OPERATION]]
+  - [[id:ASDF/ACTION][ASDF/ACTION]]
+  - [[id:ASDF/LISP-ACTION][ASDF/LISP-ACTION]]
+  - [[id:ASDF/FIND-COMPONENT][ASDF/FIND-COMPONENT]]
+  - [[id:ASDF/SYSTEM-REGISTRY][ASDF/SYSTEM-REGISTRY]]
+  - [[id:ASDF/PLAN][ASDF/PLAN]]
+  - [[id:ASDF/OPERATE][ASDF/OPERATE]]
+
+- dependents
+  - [[id:ASDF/BACKWARD-INTERNALS][ASDF/BACKWARD-INTERNALS]]
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+  - [[id:ASDF/BACKWARD-INTERFACE][ASDF/BACKWARD-INTERFACE]]
+
+** DEFINE-OP :class:
+:PROPERTIES:
+:ID: ASDF/FIND-SYSTEM:DEFINE-OP
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+DEFINE-OP names the standard-class #<STANDARD-CLASS ASDF/FIND-SYSTEM:DEFINE-OP>:
+  Documentation:
+    An operation to record dependencies on loading a .asd file.
+  Class precedence-list: ASDF/FIND-SYSTEM:DEFINE-OP,
+                         ASDF/ACTION:NON-PROPAGATING-OPERATION,
+                         ASDF/OPERATION:OPERATION, STANDARD-OBJECT,
+                         SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/ACTION:NON-PROPAGATING-OPERATION
+  No subclasses.
+  No direct slots.
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ERROR-NAME :generic:function:
+:PROPERTIES:
+:ID: ASDF/FIND-SYSTEM:ERROR-NAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ERROR-NAME names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (ERROR-NAME (CUDA-ERROR))
+    (ERROR-NAME (PAM-ERROR))
+    (ERROR-NAME (COMMAND-ERROR))
+    (ERROR-NAME (DEFSYS-LOAD-ERROR))
+    (ERROR-NAME (UNKNOWN-ARGUMENT))
+    (ERROR-NAME (LOAD-SYSTEM-DEFINITION-ERROR))
+
+(SETF ERROR-NAME) names a generic function:
+  Lambda-list: (NEW-VALUE CONDITION)
+  Argument precedence order: (NEW-VALUE CONDITION)
+  Derived type: (FUNCTION (T T) *)
+  Method-combination: STANDARD
+  Methods:
+    ((SETF ERROR-NAME) (T PAM-ERROR))
+    ((SETF ERROR-NAME) (T DEFSYS-LOAD-ERROR))
+
+#+end_example
+
+- Called by
+  - (LOAD-SYSTEM-DEFINITION-ERROR)
+  - (CUDA-ERROR)
+  - (PAM-ERROR)
+  - (COMMAND-EVAL-ERROR)
+  - (INVALID-COMMAND-TYPE)
+  - (UNDEFINED-COMMAND-TYPE)
+  - (UNDEFINED-COMMAND)
+  - (DEFSYS-LOAD-ERROR)
+  - (UNKNOWN-ARGUMENT)
+
+:definitions:
+- /home/ellis/src/core/lib/io/sys.lisp
+  - IO/SYS::PAM-ERROR
+- /home/ellis/src/core/alien/cuda/pkg.lisp
+  - CUDA::CUDA-ERROR
+- /home/ellis/src/core/lib/obj/cmd.lisp
+  - [[id:OBJ/CMD:COMMAND-ERROR][COMMAND-ERROR]]
+- /home/ellis/src/core/std/condition.lisp
+  - [[id:STD/CONDITION:UNKNOWN-ARGUMENT][UNKNOWN-ARGUMENT]]
+- /home/ellis/src/core/std/defsys.lisp
+  - STD/DEFSYS::DEFSYS-LOAD-ERROR
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/FIND-SYSTEM:LOAD-SYSTEM-DEFINITION-ERROR
+:end:
+** LOCATE-SYSTEM :compiled:function:
+:PROPERTIES:
+:ID: ASDF/FIND-SYSTEM:LOCATE-SYSTEM
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOCATE-SYSTEM names a compiled function:
+  Lambda-list: (NAME)
+  Derived type: (FUNCTION (T) *)
+  Documentation:
+    Given a system NAME designator, try to locate where to load the systemfrom.
+    Returns five values: FOUNDP FOUND-SYSTEM PATHNAME PREVIOUS PREVIOUS-TIME
+    FOUNDP is true when a system was found,
+    either a new unregistered one or a previously registered one.
+    FOUND-SYSTEM when not null is a SYSTEM object that may be REGISTER-SYSTEM'ed.
+    PATHNAME when not null is a path from which to load the system,
+    either associated with FOUND-SYSTEM, or with the PREVIOUS system.
+    PREVIOUS when not null is a previously loaded SYSTEM object of same name.
+    PREVIOUS-TIME when not null is the time at which the PREVIOUS system wasloaded.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (FIND-SYSTEM (STRING))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ERROR-PATHNAME :generic:function:
+:PROPERTIES:
+:ID: ASDF/FIND-SYSTEM:ERROR-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ERROR-PATHNAME names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (ERROR-PATHNAME (LOAD-SYSTEM-DEFINITION-ERROR))
+
+#+end_example
+
+- Called by
+  - (LOAD-SYSTEM-DEFINITION-ERROR)
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/FIND-SYSTEM:LOAD-SYSTEM-DEFINITION-ERROR
+:end:
+** LOAD-SYSTEM-DEFINITION-ERROR :condition:class:
+:PROPERTIES:
+:ID: ASDF/FIND-SYSTEM:LOAD-SYSTEM-DEFINITION-ERROR
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD-SYSTEM-DEFINITION-ERROR names the condition-class #<SB-PCL::CONDITION-CLASS ASDF/FIND-SYSTEM:LOAD-SYSTEM-DEFINITION-ERROR>:
+  Class precedence-list: ASDF/FIND-SYSTEM:LOAD-SYSTEM-DEFINITION-ERROR,
+                         ASDF/SESSION:SYSTEM-DEFINITION-ERROR, ERROR,
+                         SERIOUS-CONDITION, CONDITION, SB-PCL::SLOT-OBJECT, T
+  Direct superclasses: ASDF/SESSION:SYSTEM-DEFINITION-ERROR
+  No subclasses.
+  Direct slots:
+    ASDF/COMPONENT:NAME
+      Initargs: :NAME
+      Readers: ERROR-NAME
+    PATHNAME
+      Initargs: :PATHNAME
+      Readers: ASDF/FIND-SYSTEM:ERROR-PATHNAME
+    CONDITION
+      Initargs: :CONDITION
+      Readers: ASDF/FIND-SYSTEM:ERROR-CONDITION
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ERROR-CONDITION :generic:function:
+:PROPERTIES:
+:ID: ASDF/FIND-SYSTEM:ERROR-CONDITION
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ERROR-CONDITION names a generic function:
+  Lambda-list: (CONDITION)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (ERROR-CONDITION (LOAD-SYSTEM-DEFINITION-ERROR))
+
+#+end_example
+
+- Called by
+  - (LOAD-SYSTEM-DEFINITION-ERROR)
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/FIND-SYSTEM:LOAD-SYSTEM-DEFINITION-ERROR
+:end:
+** LOAD-ASD :compiled:function:
+:PROPERTIES:
+:ID: ASDF/FIND-SYSTEM:LOAD-ASD
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+LOAD-ASD names a compiled function:
+  Lambda-list: (PATHNAME &KEY NAME)
+  Derived type: (FUNCTION (T &KEY (:NAME T)) *)
+  Documentation:
+    Load system definitions from PATHNAME.
+    NAME if supplied is the name of a system expected to be defined in thatfile.
+    
+    Do NOT try to load a .asd file directly with CL:LOAD. Always use ASDF:LOAD-ASD.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (FIND-SYSTEM (STRING))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:

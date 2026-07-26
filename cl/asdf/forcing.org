@@ -1,0 +1,246 @@
+#+TITLE: ASDF/FORCING
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* ASDF/FORCING
+:PROPERTIES:
+:ID: ASDF/FORCING
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+  - [[id:ASDF/UPGRADE][ASDF/UPGRADE]]
+  - [[id:ASDF/SESSION][ASDF/SESSION]]
+  - [[id:ASDF/COMPONENT][ASDF/COMPONENT]]
+  - [[id:ASDF/OPERATION][ASDF/OPERATION]]
+  - [[id:ASDF/SYSTEM][ASDF/SYSTEM]]
+  - [[id:ASDF/SYSTEM-REGISTRY][ASDF/SYSTEM-REGISTRY]]
+
+- dependents
+  - [[id:ASDF/INTERFACE][ASDF/INTERFACE]]
+  - [[id:ASDF/OPERATE][ASDF/OPERATE]]
+  - [[id:ASDF/PLAN][ASDF/PLAN]]
+
+** FORCED-NOT :generic:function:
+:PROPERTIES:
+:ID: ASDF/FORCING:FORCED-NOT
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FORCED-NOT names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (FORCED-NOT (FORCING))
+      Documentation:
+        automatically generated reader method
+
+#+end_example
+
+- Called by
+  - ASDF/FORCING:MAKE-FORCING
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/SESSION:FORCING
+:end:
+** NORMALIZE-FORCED-SYSTEMS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/FORCING:NORMALIZE-FORCED-SYSTEMS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NORMALIZE-FORCED-SYSTEMS names a compiled function:
+  Lambda-list: (FORCE SYSTEM)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Given a SYSTEM on which operate is called and the specified FORCE argument,
+    extract a hash-set of systems that are forced, or a predicate on systemnames,
+    or NIL if none are forced, or :ALL if all are.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FORCING:MAKE-FORCING
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** MAKE-FORCING :compiled:function:
+:PROPERTIES:
+:ID: ASDF/FORCING:MAKE-FORCING
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+MAKE-FORCING names a compiled function:
+  Lambda-list: (&KEY PERFORMABLE-P SYSTEM (FORCE NIL FORCE-P)
+                (FORCE-NOT NIL FORCE-NOT-P) &ALLOW-OTHER-KEYS)
+  Derived type: (FUNCTION
+                 (&KEY (:PERFORMABLE-P T) (:SYSTEM T) (:FORCE T) (:FORCE-NOT T)
+                  &ALLOW-OTHER-KEYS)
+                 (VALUES T &OPTIONAL))
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (OPERATE AROUND (T T))
+  - (INITIALIZE-INSTANCE AFTER (FILTERED-SEQUENTIAL-PLAN))
+  - (FORCING (NULL))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** FORCED :generic:function:
+:PROPERTIES:
+:ID: ASDF/FORCING:FORCED
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+FORCED names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (FORCED (FORCING))
+      Documentation:
+        automatically generated reader method
+
+#+end_example
+
+- Called by
+  - ASDF/FORCING:MAKE-FORCING
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/SESSION:FORCING
+:end:
+** PERFORMABLE-P :generic:function:
+:PROPERTIES:
+:ID: ASDF/FORCING:PERFORMABLE-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+PERFORMABLE-P names a generic function:
+  Lambda-list: (OBJECT)
+  Derived type: (FUNCTION (T) *)
+  Method-combination: STANDARD
+  Methods:
+    (PERFORMABLE-P (FORCING))
+      Documentation:
+        automatically generated reader method
+
+#+end_example
+
+- Called by
+  - (PERFORM-PLAN AROUND (T))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - ASDF/SESSION:FORCING
+:end:
+** ACTION-FORCED-P :generic:function:
+:PROPERTIES:
+:ID: ASDF/FORCING:ACTION-FORCED-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ACTION-FORCED-P names a generic function:
+  Lambda-list: (FORCING OPERATION COMPONENT)
+  Argument precedence order: (FORCING OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T T) *)
+  Documentation:
+    Is this action forced to happen in this plan?
+  Method-combination: STANDARD
+  Methods:
+    (ACTION-FORCED-P (NULL OPERATION COMPONENT))
+    (ACTION-FORCED-P (T T T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - (COMPUTE-ACTION-STAMP (T OPERATION COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (NULL OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (FORCING OPERATION COMPONENT)
+:end:
+** NORMALIZE-FORCED-NOT-SYSTEMS :compiled:function:
+:PROPERTIES:
+:ID: ASDF/FORCING:NORMALIZE-FORCED-NOT-SYSTEMS
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+NORMALIZE-FORCED-NOT-SYSTEMS names a compiled function:
+  Lambda-list: (FORCE-NOT SYSTEM)
+  Derived type: (FUNCTION (T T) (VALUES T &OPTIONAL))
+  Documentation:
+    Given a SYSTEM on which operate is called, the specified FORCE-NOTargument,
+    and the set of IMMUTABLE systems, extract a hash-set of systems that areeffectively forced-not,
+    or predicate on system names, or NIL if none are forced, or :ALL if allare.
+  Inline proclamation: NOTINLINE (no inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/FORCING:MAKE-FORCING
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+:end:
+** ACTION-FORCED-NOT-P :generic:function:
+:PROPERTIES:
+:ID: ASDF/FORCING:ACTION-FORCED-NOT-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+ACTION-FORCED-NOT-P names a generic function:
+  Lambda-list: (FORCING OPERATION COMPONENT)
+  Argument precedence order: (FORCING OPERATION COMPONENT)
+  Derived type: (FUNCTION (T T T) *)
+  Documentation:
+    Is this action forced to not happen in this plan?
+    Takes precedence over action-forced-p.
+  Method-combination: STANDARD
+  Methods:
+    (ACTION-FORCED-NOT-P (NULL OPERATION COMPONENT))
+    (ACTION-FORCED-NOT-P (T T T))
+  Source file: SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+
+#+end_example
+
+- Called by
+  - ASDF/PLAN::COLLECT-ACTION-DEPENDENCIES
+  - (ACTION-STATUS (PLAN OPERATION COMPONENT))
+
+:definitions:
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (NULL OPERATION COMPONENT)
+- SYS:CONTRIB;ASDF;ASDF.LISP.NEWEST
+  - (FORCING OPERATION COMPONENT)
+:end:

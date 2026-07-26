@@ -1,0 +1,75 @@
+#+TITLE: UIOP/BACKWARD-DRIVER
+#+SETUPFILE: ../../clean.theme
+#+TODO:
+* UIOP/BACKWARD-DRIVER
+:PROPERTIES:
+:ID: UIOP/BACKWARD-DRIVER
+:END:
+- dependencies
+  - [[id:UIOP/COMMON-LISP][UIOP/COMMON-LISP]]
+  - [[id:UIOP/PACKAGE][UIOP/PACKAGE]]
+  - [[id:UIOP/UTILITY][UIOP/UTILITY]]
+  - [[id:UIOP/VERSION][UIOP/VERSION]]
+  - [[id:UIOP/PATHNAME][UIOP/PATHNAME]]
+  - [[id:UIOP/STREAM][UIOP/STREAM]]
+  - [[id:UIOP/OS][UIOP/OS]]
+  - [[id:UIOP/IMAGE][UIOP/IMAGE]]
+  - [[id:UIOP/RUN-PROGRAM][UIOP/RUN-PROGRAM]]
+  - [[id:UIOP/LISP-BUILD][UIOP/LISP-BUILD]]
+  - [[id:UIOP/CONFIGURATION][UIOP/CONFIGURATION]]
+
+- dependents
+  - [[id:UIOP/DRIVER][UIOP/DRIVER]]
+
+** VERSION-COMPATIBLE-P :compiled:cmacro:function:
+:PROPERTIES:
+:ID: UIOP/BACKWARD-DRIVER:VERSION-COMPATIBLE-P
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+VERSION-COMPATIBLE-P names a compiled function:
+  Lambda-list: (PROVIDED-VERSION REQUIRED-VERSION)
+  Derived type: (FUNCTION (T T) *)
+  Documentation:
+    Is the provided version a compatible substitution for the required-version?
+    If major versions differ, it's not compatible.
+    If they are equal, then any later version is compatible,
+    with later being determined by a lexicographical comparison of minornumbers.
+    DEPRECATED.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+VERSION-COMPATIBLE-P has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
+** COERCE-PATHNAME :compiled:cmacro:function:
+:PROPERTIES:
+:ID: UIOP/BACKWARD-DRIVER:COERCE-PATHNAME
+:ALLOC: HEAP DYNAMIC
+:END:
+ 
+#+begin_example
+
+COERCE-PATHNAME names a compiled function:
+  Lambda-list: (NAME &KEY TYPE DEFAULTS)
+  Derived type: (FUNCTION (T &KEY (:TYPE T) (:DEFAULTS T)) *)
+  Documentation:
+    DEPRECATED. Please use UIOP:PARSE-UNIX-NAMESTRING instead.
+  Inline proclamation: INLINE (inline expansion available)
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+COERCE-PATHNAME has a compiler-macro:
+  Source file: SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+
+#+end_example
+
+:definitions:
+- SYS:CONTRIB;ASDF;UIOP.LISP.NEWEST
+:end:
